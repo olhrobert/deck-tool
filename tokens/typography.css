@@ -1,0 +1,60 @@
+:root {
+	/* ---- SEMANTIC - Overridden by brand ---- */
+
+	/* heading */
+	--font-family-heading: var(--font-family-display);
+	--font-weight-heading: var(--font-weight-bold);
+	--lineheight-heading: var(--lineheight-md);
+
+	--font-size-heading-lg: var(--font-size-text-4xl);
+	--font-size-heading-md: var(--font-size-text-3xl);
+	--font-size-heading-sm: var(--font-size-text-2xl);
+
+	/* body */
+	--font-family-body: var(--font-family-base);
+	--font-weight-body: var(--font-weight-medium);
+	--font-weight-body-strong: var(--font-weight-bold);
+	--lineheight-body: var(--lineheight-md);
+
+	--font-size-body-xl: var(--font-size-text-xl);
+	--font-size-body-lg: var(--font-size-text-lg);
+	--font-size-body-base: var(--font-size-text-base);
+	--font-size-body-sm: var(--font-size-text-sm);
+	--font-size-body-xs: var(--font-size-text-xs);
+	--font-size-body-2xs: var(--font-size-text-2xs);
+	--font-size-body-3xs: var(--font-size-text-3xs);
+
+	/* ---- BASE VALUES ---- */
+
+	/* font family */
+	--font-family-display: "Fraunces", system-ui, sans-serif;
+	--font-family-base: "Inter", system-ui, sans-serif;
+
+	/* letterspacing */
+	--letterspacing-base: 0%;
+	--letterspacing-loose: 2%;
+
+	/* lineheights */
+	--lineheight-single: 1;
+	--lineheight-sm: 1.1;
+	--lineheight-md: 1.25;
+	--lineheight-lg: 1.5;
+
+	/* weights */
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+
+	/* texts */
+	--font-size-text-4xl: 40px;
+	--font-size-text-3xl: 32px;
+	--font-size-text-2xl: 24px;
+	--font-size-text-xl: 20px;
+	--font-size-text-lg: 18px;
+	--font-size-text-base: 16px;
+	--font-size-text-sm: 14px;
+	--font-size-text-xs: 12px;
+	--font-size-text-2xs: 10px;
+	--font-size-text-3xs: 9px;
+}

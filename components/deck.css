@@ -1,0 +1,11 @@
+body {
+	margin: 0;
+}
+
+deck {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background-color: rgba(0, 0, 0, 1);
+}
