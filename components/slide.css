@@ -1,9 +1,0 @@
-slide {
-	display: flex;
-	flex-direction: column;
-	gap: var(--spacing-0);
-	width: 1280px;
-	height: 800px;
-	padding: var(--spacing-0);
-	background-color: var(--color-slide-bg);
-}

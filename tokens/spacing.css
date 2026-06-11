@@ -1,4 +1,37 @@
 :root {
+	/* SEMANTIC */
+
+	/* card */
+	--card-padding-sm: var(--spacing-3);
+	--card-padding-md: var(--spacing-4);
+	--card-padding-lg: var(--spacing-6);
+	--card-gap-sm: var(--spacing-2);
+	--card-gap-md: var(--spacing-3);
+	--card-gap-lg: var(--spacing-4);
+
+	/* alert */
+	--alert-padding-sm: var(--card-padding-sm);
+	--alert-padding-md: var(--card-padding-md);
+	--alert-padding-lg: var(--card-padding-lg);
+	--alert-gap: var(--spacing-1);
+
+	/* stack */
+	--stack-gap-sm: var(--spacing-2);
+	--stack-gap-md: var(--spacing-3);
+	--stack-gap-lg: var(--spacing-4);
+
+	/* slide */
+	--slide-title-gap: var(--spacing-2);
+	--slide-padding-x: var(--spacing-20);
+	--slide-header-padding-top: var(--spacing-16);
+	--slide-header-padding-bottom: var(--spacing-0);
+	--slide-content-padding-top: var(--spacing-10);
+	--slide-content-padding-bottom: var(--spacing-0);
+	--slide-padding-footer-y: var(--spacing-6);
+	--slide-padding-footer-x: var(--spacing-6);
+
+	/* GLOBAL */
+
 	--spacing-0: 0px;
 	--spacing-0-25: 1px;
 	--spacing-0-5: 2px;

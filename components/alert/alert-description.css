@@ -1,0 +1,10 @@
+alert-description {
+	display: block;
+	margin: 0;
+	font-family: var(--alert-description-family);
+	font-weight: var(--alert-description-weight);
+	line-height: var(--alert-description-lineheight);
+	font-size: var(--alert-description-size);
+	letter-spacing: var(--letterspacing-base);
+	color: var(--color-text-base);
+}

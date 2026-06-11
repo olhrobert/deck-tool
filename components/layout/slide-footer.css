@@ -1,0 +1,9 @@
+slide-footer {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	padding-top: var(--slide-padding-footer-y);
+	padding-bottom: var(--slide-padding-footer-y);
+	padding-left: var(--slide-padding-footer-x);
+	padding-right: var(--slide-padding-footer-x);
+}

@@ -1,4 +1,11 @@
 :root {
+	/* SEMANTIC */
+
+	--border-radius-card: var(--border-radius-med);
+	--border-radius-alert: var(--border-radius-none);
+
+	/* GLOBAL */
+
 	--border-radius-none: 0px;
 	--border-radius-sm: 4px;
 	--border-radius-med: 8px;

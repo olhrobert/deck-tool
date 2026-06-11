@@ -1,0 +1,10 @@
+slide-title-sub {
+	display: block;
+	margin: 0;
+	font-family: var(--slide-title-sub-family);
+	font-weight: var(--slide-title-sub-weight);
+	line-height: var(--slide-title-sub-lineheight);
+	font-size: var(--slide-title-sub-size);
+	letter-spacing: var(--letterspacing-base);
+	color: var(--color-text-base);
+}

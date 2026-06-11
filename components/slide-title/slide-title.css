@@ -1,0 +1,6 @@
+slide-title {
+	display: flex;
+	flex-direction: column;
+	gap: var(--slide-title-gap);
+	margin: 0;
+}

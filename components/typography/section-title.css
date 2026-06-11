@@ -1,0 +1,21 @@
+section-title {
+	display: block;
+	margin: 0;
+	font-family: var(--section-title-family);
+	font-weight: var(--section-title-weight);
+	line-height: var(--section-title-lineheight);
+	font-size: var(--section-title-size-md);
+	letter-spacing: var(--letterspacing-base);
+}
+
+section-title[size="lg"] {
+	font-size: var(--section-title-size-lg);
+}
+
+section-title[size="md"] {
+	font-size: var(--section-title-size-md);
+}
+
+section-title[size="sm"] {
+	font-size: var(--section-title-size-sm);
+}
