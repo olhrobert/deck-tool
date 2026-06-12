@@ -1,0 +1,19 @@
+slide[layout="chapter-title"] {
+	justify-content: center;
+	--slide-padding-x: var(--spacing-24);
+	--slide-header-padding-top: var(--spacing-0);
+	--slide-header-padding-bottom: var(--spacing-0);
+	--slide-title-gap: var(--spacing-4);
+	--slide-title-pre-size: var(--text-size-500);
+	--slide-title-pre-weight: var(--font-weight-bold);
+	--slide-title-main-size-lg: var(--text-size-1200);
+}
+
+slide[layout="chapter-title"] slide-header {
+	text-align: center;
+}
+
+slide[layout="chapter-title"] slide-title-pre {
+	color: var(--color-primary);
+	letter-spacing: var(--letterspacing-loose);
+}

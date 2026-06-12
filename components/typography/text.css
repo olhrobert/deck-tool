@@ -7,6 +7,7 @@ text {
 	line-height: var(--lineheight-md);
 	font-size: var(--text-size-400);
 	letter-spacing: var(--letterspacing-base);
+	color: var(--font-family-base);
 }
 
 /* font family */
@@ -47,11 +48,6 @@ text[lineheight="sm"] {
 	line-height: var(--lineheight-sm);
 }
 
-.text-lineheight-title,
-text[lineheight="title"] {
-	line-height: var(--lineheight-title);
-}
-
 .text-lineheight-md,
 text[lineheight="md"] {
 	line-height: var(--lineheight-md);
@@ -74,6 +70,26 @@ text[letterspacing="loose"] {
 }
 
 /* sizes */
+.text-size-4000,
+text[size="4000"] {
+	font-size: var(--text-size-4000);
+}
+
+.text-size-3400,
+text[size="3400"] {
+	font-size: var(--text-size-3400);
+}
+
+.text-size-3000,
+text[size="3000"] {
+	font-size: var(--text-size-3000);
+}
+
+.text-size-2400,
+text[size="2400"] {
+	font-size: var(--text-size-2400);
+}
+
 .text-size-2000,
 text[size="2000"] {
 	font-size: var(--text-size-2000);
@@ -157,4 +173,22 @@ text[size="225"] {
 .text-size-200,
 text[size="200"] {
 	font-size: var(--text-size-200);
+}
+
+text[size="sm"] {
+	font-size: var(--text-size-350);
+}
+
+/* color */
+text[color="strong"] {
+	color: var(--color-text-strong);
+}
+
+text[color="subtle"] {
+	color: var(--color-text-subtle);
+}
+
+/* transform */
+text[transform="uppercase"] {
+	text-transform: uppercase;
 }

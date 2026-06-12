@@ -8,6 +8,10 @@ card-title {
 	letter-spacing: var(--letterspacing-base);
 }
 
+card-title[size="xl"] {
+	font-size: var(--card-title-size-xl);
+}
+
 card-title[size="lg"] {
 	font-size: var(--card-title-size-lg);
 }

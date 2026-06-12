@@ -10,8 +10,18 @@ stack[direction="row"] {
 	flex-direction: row;
 }
 
+stack[direction="row"] > card,
+stack[direction="row"] > stack {
+	flex: 1;
+	min-width: 0;
+}
+
 stack[direction="col"] {
 	flex-direction: column;
+}
+
+stack[gap="0"] {
+	gap: var(--spacing-0);
 }
 
 stack[gap="sm"] {

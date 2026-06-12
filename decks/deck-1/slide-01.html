@@ -15,46 +15,211 @@
 			rel="stylesheet"
 			href="../../components/index.css"
 		/>
+		<link
+			rel="stylesheet"
+			href="../../styles/utilities.css"
+		/>
 	</head>
 	<body>
 		<deck>
-			<slide>
+			<slide layout="content">
 				<slide-header>
 					<slide-title>
-						<slide-title-pre
-							>Core banking conversion</slide-title-pre
-						>
-						<slide-title-main>
-							Migrate Riverton's core banking platform from
-							Symitar to FIS over
-							<span weight="strong">18 months</span>, sequenced as
-							3 waves with 90-day hypercare each.
-						</slide-title-main>
-						<slide-title-sub>
-							Symitar → FIS · 3 migration waves · 90-day hypercare
-							per release
-						</slide-title-sub>
+						<slide-title-main> Project overview </slide-title-main>
 					</slide-title>
 				</slide-header>
 				<slide-content>
-					<stack>
-						<alert variant="positive">
-							<alert-title>Where we win</alert-title>
-							<alert-description>
-								2-hour decisioning for qualified merchants,
-								flexible use of funds (inventory + ops), and
-								clearer terms (APR-equivalent disclosed).
-							</alert-description>
-						</alert>
-						<alert variant="negative">
-							<alert-title>Where we lose</alert-title>
-							<alert-description>
-								Embedded placement without platform-native
-								distribution, and weaker brand pull vs.
-								consumer-led BNPL.
-							</alert-description>
-						</alert>
-					</stack>
+					<div class="box-border min-w-0 flex flex-col gap-3">
+						<div class="box-border min-w-0 flex flex-row gap-2">
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<text
+									size="300"
+									weight="bold"
+									color="subtle"
+									letterspacing="loose"
+									transform="uppercase"
+								>
+									Sponsor
+								</text>
+								<card-title size="xl">Marcus Bell</card-title>
+								<text
+									size="300"
+									weight="regular"
+									color="subtle"
+								>
+									CIO, Riverton Financial
+								</text>
+							</card>
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<text
+									size="300"
+									weight="bold"
+									color="subtle"
+									letterspacing="loose"
+									transform="uppercase"
+								>
+									Program lead
+								</text>
+								<card-title size="xl">Andrea Sims</card-title>
+								<text
+									size="300"
+									weight="regular"
+									color="subtle"
+								>
+									VP Core Platforms
+								</text>
+							</card>
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<text
+									size="300"
+									weight="bold"
+									color="subtle"
+									letterspacing="loose"
+									transform="uppercase"
+								>
+									Budget
+								</text>
+								<card-title size="xl">$84M</card-title>
+								<text
+									size="300"
+									weight="regular"
+									color="subtle"
+								>
+									$72M capex · $12M opex
+								</text>
+							</card>
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<text
+									size="300"
+									weight="bold"
+									color="subtle"
+									letterspacing="loose"
+									transform="uppercase"
+								>
+									Timeline
+								</text>
+								<card-title size="xl">18 months</card-title>
+								<text
+									size="300"
+									weight="regular"
+									color="subtle"
+								>
+									Apr '26 → Sep '27 (Wave 1–2)
+								</text>
+							</card>
+						</div>
+						<div class="box-border min-w-0 flex flex-row gap-2">
+							<div
+								class="box-border min-w-0 flex flex-1 flex-col gap-2"
+							>
+								<section-title size="lg"
+									>Objectives</section-title
+								>
+								<div class="flex flex-col gap-2">
+									<div class="flex flex-col gap-0">
+										<text
+											size="sm"
+											weight="bold"
+											color="strong"
+										>
+											Modernize core platform
+										</text>
+										<text
+											size="sm"
+											weight="regular"
+											color="subtle"
+										>
+											Replace Symitar (end-of-life FY28)
+											with FIS Code Connect cloud-native
+											core.
+										</text>
+									</div>
+									<div class="flex flex-col gap-0">
+										<text
+											size="sm"
+											weight="bold"
+											color="strong"
+										>
+											Reduce IT operating cost by $5.4M
+											annually
+										</text>
+										<text
+											size="sm"
+											weight="regular"
+											color="subtle"
+										>
+											Sunset 6 ancillary systems wrapped
+											around legacy core.
+										</text>
+									</div>
+									<div class="flex flex-col gap-0">
+										<text
+											size="sm"
+											weight="bold"
+											color="strong"
+										>
+											Enable next-gen products
+										</text>
+										<text
+											size="sm"
+											weight="regular"
+											color="subtle"
+										>
+											Instant-issue debit, real-time
+											fraud, embedded banking APIs.
+										</text>
+									</div>
+									<div class="flex flex-col gap-0">
+										<text
+											size="sm"
+											weight="bold"
+											color="strong"
+										>
+											Maintain regulatory standing
+										</text>
+										<text
+											size="sm"
+											weight="regular"
+											color="subtle"
+										>
+											SOC 1 Type II + FFIEC parity
+											throughout migration.
+										</text>
+									</div>
+								</div>
+							</div>
+							<div
+								class="box-border min-w-0 flex flex-1 flex-col gap-2"
+							>
+								<section-title size="lg"
+									>In scope</section-title
+								>
+							</div>
+							<div
+								class="box-border min-w-0 flex flex-1 flex-col gap-2"
+							>
+								<section-title size="lg"
+									>Out of scope</section-title
+								>
+							</div>
+						</div>
+					</div>
 				</slide-content>
 				<slide-footer></slide-footer>
 			</slide>

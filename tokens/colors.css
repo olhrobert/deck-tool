@@ -24,10 +24,11 @@
 
 	/* GLOBAL */
 
-	--color-primary: rgba(201, 162, 39, 1);
-	--color-white: rgba(247, 246, 243, 1);
+	--color-primary: rgb(160, 203, 50);
+	--color-secondary: rgb(158, 118, 30);
+	--color-white: rgb(234, 239, 227);
 	--color-surface-bg: rgba(255, 255, 255, 1);
-	--color-text: rgba(0, 0, 0, 1);
+	--color-text: rgb(12, 12, 15);
 	--color-border: rgba(0, 0, 0, 0.2);
 
 	--color-positive: rgba(22, 163, 74, 1);
@@ -46,33 +47,4 @@
 	--color-chart-2: rgba(99, 102, 241, 1);
 	--color-chart-3: rgba(30, 58, 95, 1);
 	--color-chart-4: rgba(13, 148, 136, 1);
-}
-
-/* Reassigns the same tokens for dark surfaces — add class="dark" or the dark attribute on slide. */
-.dark,
-slide[dark] {
-	/* GLOBAL */
-
-	--color-primary: rgba(219, 184, 74, 1);
-	--color-white: rgba(20, 20, 20, 1);
-	--color-surface-bg: rgba(38, 38, 38, 1);
-	--color-text: rgba(255, 255, 255, 1);
-	--color-border: rgba(255, 255, 255, 0.2);
-
-	--color-positive: rgba(34, 197, 94, 1);
-	--color-positive-bg: rgba(34, 197, 94, 0.1);
-
-	--color-warning: rgba(249, 115, 22, 1);
-	--color-warning-bg: rgba(249, 115, 22, 0.1);
-
-	--color-negative: rgba(239, 68, 68, 1);
-	--color-negative-bg: rgba(239, 68, 68, 0.1);
-
-	--color-informative: rgba(59, 130, 246, 1);
-	--color-informative-bg: rgba(59, 130, 246, 0.1);
-
-	--color-chart-1: rgba(168, 85, 247, 1);
-	--color-chart-2: rgba(129, 140, 248, 1);
-	--color-chart-3: rgba(96, 165, 250, 1);
-	--color-chart-4: rgba(45, 212, 191, 1);
 }

@@ -16,3 +16,5 @@
 @import "layout/slide-header.css";
 @import "layout/slide-content.css";
 @import "layout/slide-footer.css";
+@import "layout/presets/content.css";
+@import "layout/presets/chapter-title.css";

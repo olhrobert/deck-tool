@@ -5,10 +5,10 @@
 	--slide-title-main-family: var(--font-family-display);
 	--slide-title-main-weight-default: var(--font-weight-regular);
 	--slide-title-main-weight-strong: var(--font-weight-bold);
-	--slide-title-main-lineheight: var(--lineheight-title);
-	--slide-title-main-size-lg: var(--text-size-1000);
-	--slide-title-main-size-md: var(--text-size-800);
-	--slide-title-main-size-sm: var(--text-size-600);
+	--slide-title-main-lineheight: var(--lineheight-md);
+	--slide-title-main-size-lg: var(--text-size-1200);
+	--slide-title-main-size-md: var(--text-size-1000);
+	--slide-title-main-size-sm: var(--text-size-800);
 
 	/* slide title pre */
 	--slide-title-pre-family: var(--font-family-base);
@@ -25,7 +25,8 @@
 	/* card title */
 	--card-title-family: var(--font-family-display);
 	--card-title-weight: var(--font-weight-bold);
-	--card-title-lineheight: var(--lineheight-title);
+	--card-title-lineheight: var(--lineheight-md);
+	--card-title-size-xl: var(--text-size-600);
 	--card-title-size-lg: var(--text-size-500);
 	--card-title-size-md: var(--text-size-400);
 	--card-title-size-sm: var(--text-size-350);
@@ -33,7 +34,7 @@
 	/* section title */
 	--section-title-family: var(--font-family-display);
 	--section-title-weight: var(--font-weight-bold);
-	--section-title-lineheight: var(--lineheight-title);
+	--section-title-lineheight: var(--lineheight-md);
 	--section-title-size-lg: var(--text-size-500);
 	--section-title-size-md: var(--text-size-450);
 	--section-title-size-sm: var(--text-size-400);
@@ -41,7 +42,7 @@
 	/* alert title */
 	--alert-title-family: var(--font-family-display);
 	--alert-title-weight: var(--font-weight-bold);
-	--alert-title-lineheight: var(--lineheight-title);
+	--alert-title-lineheight: var(--lineheight-md);
 	--alert-title-size: var(--text-size-500);
 
 	/* alert description */
@@ -56,7 +57,7 @@
 	--copy-weight-strong: var(--font-weight-bold);
 	--copy-lineheight: var(--lineheight-md);
 	--copy-size-lg: var(--text-size-400);
-	--copy-size-base: var(--text-size-350);
+	--copy-size-md: var(--text-size-350);
 	--copy-size-sm: var(--text-size-300);
 	--copy-size-xs: var(--text-size-250);
 	--copy-size-2xs: var(--text-size-225);
@@ -81,11 +82,14 @@
 	/* lineheights */
 	--lineheight-single: 1;
 	--lineheight-sm: 1.1;
-	--lineheight-title: 1.2;
-	--lineheight-md: 1.25;
+	--lineheight-md: 1.2;
 	--lineheight-lg: 1.5;
 
 	/* sizes */
+	--text-size-4000: 160px;
+	--text-size-3400: 136px;
+	--text-size-3000: 120px;
+	--text-size-2400: 96px;
 	--text-size-2000: 80px;
 	--text-size-1600: 64px;
 	--text-size-1200: 48px;
