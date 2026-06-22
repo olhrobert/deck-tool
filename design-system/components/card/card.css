@@ -1,0 +1,41 @@
+card {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0%;
+	min-width: 0;
+	box-sizing: border-box;
+	background-color: var(--color-card-bg);
+	border-style: solid;
+	border-color: var(--color-card-border);
+	border-top-width: var(--card-border-size-top);
+	border-bottom-width: var(--card-border-size-bottom);
+	border-left-width: var(--card-border-size-left);
+	border-right-width: var(--card-border-size-right);
+	border-radius: var(--border-radius-card);
+	padding: var(--card-padding-md);
+	gap: var(--card-gap-md);
+}
+
+card[padding="sm"] {
+	padding: var(--card-padding-sm);
+}
+
+card[padding="md"] {
+	padding: var(--card-padding-md);
+}
+
+card[padding="lg"] {
+	padding: var(--card-padding-lg);
+}
+
+card[gap="sm"] {
+	gap: var(--card-gap-sm);
+}
+
+card[gap="md"] {
+	gap: var(--card-gap-md);
+}
+
+card[gap="lg"] {
+	gap: var(--card-gap-lg);
+}

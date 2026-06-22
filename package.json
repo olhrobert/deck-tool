@@ -1,0 +1,9 @@
+{
+	"name": "decktool",
+	"private": true,
+	"scripts": {
+		"compile": "node scripts/compile-deck.js",
+		"compile:all": "node scripts/compile-all-decks.js",
+		"generate-brand": "node scripts/generate-brand-css.js"
+	}
+}

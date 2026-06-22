@@ -1,0 +1,116 @@
+:root {
+	/* SEMANTIC */
+
+	/* slide title main */
+	--slide-title-main-family: var(--font-family-display);
+	--slide-title-main-weight-default: var(--font-weight-regular);
+	--slide-title-main-weight-strong: var(--font-weight-bold);
+	--slide-title-main-lineheight: var(--lineheight-md);
+	--slide-title-main-size-lg: var(--text-size-1200);
+	--slide-title-main-size-md: var(--text-size-1000);
+	--slide-title-main-size-sm: var(--text-size-800);
+
+	/* slide title pre */
+	--slide-title-pre-family: var(--font-family-base);
+	--slide-title-pre-weight: var(--font-weight-medium);
+	--slide-title-pre-lineheight: var(--lineheight-md);
+	--slide-title-pre-size: var(--text-size-350);
+
+	/* slide title sub */
+	--slide-title-sub-family: var(--font-family-base);
+	--slide-title-sub-weight: var(--font-weight-regular);
+	--slide-title-sub-lineheight: var(--lineheight-md);
+	--slide-title-sub-size: var(--text-size-350);
+
+	/* section title */
+	--section-title-family: var(--font-family-display);
+	--section-title-weight: var(--font-weight-bold);
+	--section-title-lineheight: var(--lineheight-sm);
+	--section-title-size-lg: var(--text-size-600);
+	--section-title-size-md: var(--text-size-500);
+	--section-title-size-sm: var(--text-size-400);
+
+	/* alert title */
+	--alert-title-family: var(--font-family-display);
+	--alert-title-weight: var(--font-weight-bold);
+	--alert-title-lineheight: var(--lineheight-md);
+	--alert-title-size: var(--text-size-500);
+
+	/* alert description */
+	--alert-description-family: var(--font-family-base);
+	--alert-description-weight: var(--font-weight-regular);
+	--alert-description-lineheight: var(--lineheight-md);
+	--alert-description-size: var(--text-size-400);
+
+	/* quick fact card */
+	--quick-fact-card-pretitle-family: var(--font-family-base);
+	--quick-fact-card-pretitle-weight: var(--font-weight-bold);
+	--quick-fact-card-pretitle-lineheight: var(--lineheight-md);
+	--quick-fact-card-pretitle-size: var(--text-size-300);
+	--quick-fact-card-pretitle-letterspacing: var(--letterspacing-loose);
+	--quick-fact-card-title-family: var(--font-family-display);
+	--quick-fact-card-title-weight: var(--font-weight-bold);
+	--quick-fact-card-title-lineheight: var(--lineheight-single);
+	--quick-fact-card-title-size: var(--text-size-800);
+	--quick-fact-card-meta-family: var(--font-family-base);
+	--quick-fact-card-meta-weight: var(--font-weight-regular);
+	--quick-fact-card-meta-lineheight: var(--lineheight-md);
+	--quick-fact-card-meta-size: var(--text-size-300);
+
+	/* copy */
+	--copy-family: var(--font-family-base);
+	--copy-weight-default: var(--font-weight-medium);
+	--copy-weight-strong: var(--font-weight-bold);
+	--copy-lineheight: var(--lineheight-md);
+	--copy-size-lg: var(--text-size-400);
+	--copy-size-md: var(--text-size-350);
+	--copy-size-sm: var(--text-size-300);
+	--copy-size-xs: var(--text-size-250);
+	--copy-size-2xs: var(--text-size-225);
+	--copy-size-3xs: var(--text-size-200);
+
+	/* GLOBAL */
+
+	/* font family — neutral defaults. Per-client fonts come from brands/<name>/brand.css. */
+	--font-family-display: system-ui, sans-serif;
+	--font-family-base: system-ui, sans-serif;
+
+	/* weights */
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 600;
+	--font-weight-extrabold: 700;
+
+	/* letterspacing */
+	--letterspacing-base: 0%;
+	--letterspacing-loose: 2%;
+
+	/* lineheights */
+	--lineheight-single: 1;
+	--lineheight-sm: 1.1;
+	--lineheight-md: 1.2;
+	--lineheight-lg: 1.5;
+
+	/* sizes */
+	--text-size-4000: 160px;
+	--text-size-3400: 136px;
+	--text-size-3000: 120px;
+	--text-size-2400: 96px;
+	--text-size-2000: 80px;
+	--text-size-1600: 64px;
+	--text-size-1200: 48px;
+	--text-size-1000: 40px;
+	--text-size-800: 32px;
+	--text-size-700: 28px;
+	--text-size-600: 24px;
+	--text-size-550: 22px;
+	--text-size-500: 20px;
+	--text-size-450: 18px;
+	--text-size-400: 16px;
+	--text-size-350: 14px;
+	--text-size-300: 12px;
+	--text-size-275: 11px;
+	--text-size-250: 10px;
+	--text-size-225: 9px;
+	--text-size-200: 8px;
+}

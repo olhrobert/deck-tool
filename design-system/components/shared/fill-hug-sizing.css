@@ -1,0 +1,42 @@
+/*
+ * Fill/hug sizing for flex children.
+ * Mirrored in utilities.css as .w-fill, .w-hug, .h-fill, .h-hug.
+ * Use .w-100 / .h-100 for explicit width/height: 100%.
+ */
+
+card[width="hug"],
+alert[width="hug"],
+attribution-box[width="hug"],
+stack[width="hug"] {
+	flex: 0 0 auto;
+}
+
+card[width="fill"],
+alert[width="fill"],
+attribution-box[width="fill"],
+stack[width="fill"] {
+	flex: 1 1 0%;
+	min-width: 0;
+}
+
+card[height="fill"],
+alert[height="fill"],
+attribution-box[height="fill"],
+stack[height="fill"] {
+	align-self: stretch;
+	min-height: 0;
+}
+
+.flex-col > card[height="fill"]:not([width="fill"]),
+.flex-col > alert[height="fill"]:not([width="fill"]),
+.flex-col > attribution-box[height="fill"]:not([width="fill"]),
+.flex-col > stack[height="fill"]:not([width="fill"]) {
+	flex: 1 1 0%;
+}
+
+card[height="hug"],
+alert[height="hug"],
+attribution-box[height="hug"],
+stack[height="hug"] {
+	align-self: auto;
+}

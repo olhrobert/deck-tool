@@ -1,0 +1,11 @@
+quick-fact-card-meta {
+	display: block;
+	margin: 0;
+	padding-top: var(--quick-fact-card-meta-padding-top);
+	font-family: var(--quick-fact-card-meta-family);
+	font-weight: var(--quick-fact-card-meta-weight);
+	line-height: var(--quick-fact-card-meta-lineheight);
+	font-size: var(--quick-fact-card-meta-size);
+	letter-spacing: var(--letterspacing-base);
+	color: var(--color-text-subtle);
+}

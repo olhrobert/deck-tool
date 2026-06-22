@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Deck title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-primary">
+				<div class="box-border w-full h-full flex">
+					<div
+						class="box-border h-full grow min-w-0 flex flex-col gap-4 p-20 pb-4"
+					>
+						<div class="flex flex-col gap-4 grow">
+							<text
+								family="display"
+								weight="bold"
+								size="1600"
+								lineheight="sm"
+								class="color-text-strong"
+							>
+								Title of this deck. Keep it concise.
+							</text>
+
+							<text
+								family="base"
+								weight="regular"
+								size="450"
+								lineheight="lg"
+								class="color-text-subtle"
+							>
+								Optional subtitle. Can be one or two sentences
+								long.
+							</text>
+						</div>
+
+						<text
+							family="base"
+							weight="regular"
+							size="300"
+							lineheight="lg"
+							class="color-text-subtle"
+						>
+							Optional metadata. Can be several sentences long.
+						</text>
+					</div>
+					<div
+						class="box-border h-full shrink-0 flex flex-col justify-between items-start pt-24"
+					>
+						<svg
+							role="img"
+							aria-label="Logo"
+							class="shrink-0 block color-text-strong"
+							style="height: 24px"
+							viewBox="0 0 44 12"
+							fill="none"
+						>
+							<use
+								href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+							/>
+						</svg>
+						<attribution-box variant="title">
+							<text>
+								Sanitized excerpt prepared by
+							</text>
+							<img
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
+						</attribution-box>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>

@@ -1,0 +1,6 @@
+attribution-box-separator {
+	flex-shrink: 0;
+	align-self: stretch;
+	width: 1px;
+	border-left: 1px solid var(--color-separator);
+}

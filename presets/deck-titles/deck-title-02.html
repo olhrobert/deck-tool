@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Deck title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-primary">
+				<div
+					class="box-border w-full h-full flex flex-col justify-between p-20"
+				>
+					<div class="flex justify-between items-start">
+						<div class="flex items-center py-4 px-6 bg-card">
+							<svg
+								role="img"
+								aria-label="Logo"
+								class="shrink-0 block color-text-strong"
+								style="height: 24px"
+								viewBox="0 0 44 12"
+								fill="none"
+							>
+								<use
+									href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+								/>
+							</svg>
+						</div>
+
+						<attribution-box variant="title">
+							<text>
+								Sanitized excerpt prepared by
+							</text>
+							<img
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
+						</attribution-box>
+					</div>
+
+					<div class="flex flex-col gap-4">
+						<text
+							family="display"
+							weight="bold"
+							size="3000"
+							lineheight="sm"
+							class="color-text-strong"
+						>
+							Title of this deck. Keep it concise.
+						</text>
+						<text
+							size="sm"
+							tone="subtle"
+						>
+							Optional subtitle. Can be one or two sentences long.
+						</text>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>

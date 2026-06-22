@@ -1,0 +1,73 @@
+.deck-viewer > slide {
+	display: none;
+}
+
+.deck-viewer > slide.is-active {
+	display: flex;
+}
+
+.deck-nav {
+	position: fixed;
+	bottom: var(--spacing-6);
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-4);
+	padding: var(--spacing-2) var(--spacing-4);
+	border-radius: var(--border-radius-full);
+	background-color: rgba(0, 0, 0, 0.72);
+	backdrop-filter: blur(8px);
+	font-family: var(--font-family-base);
+	font-size: var(--text-size-300);
+	color: var(--color-white);
+}
+
+.deck-nav button {
+	appearance: none;
+	border: none;
+	margin: 0;
+	padding: var(--spacing-2) var(--spacing-3);
+	border-radius: var(--border-radius-med);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.deck-nav button:hover {
+	background-color: rgba(255, 255, 255, 0.12);
+}
+
+.deck-nav button:disabled {
+	opacity: 0.35;
+	cursor: default;
+}
+
+.deck-nav button:disabled:hover {
+	background: transparent;
+}
+
+#deck-counter {
+	min-width: 4ch;
+	text-align: center;
+	color: rgb(255 255 255 / 0.6);
+	user-select: none;
+}
+
+@media print {
+	.deck-nav {
+		display: none;
+	}
+
+	.deck-viewer > slide {
+		display: flex !important;
+		page-break-after: always;
+	}
+
+	.deck-viewer > slide:last-child {
+		page-break-after: auto;
+	}
+}

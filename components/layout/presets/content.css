@@ -1,5 +1,0 @@
-/* Default content slide: header + growing content + footer. */
-slide[layout="content"],
-slide:not([layout]) {
-	justify-content: flex-start;
-}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>{{deckTitle}}</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		{{brandStylesheet}}
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../viewer/deck-viewer.css"
+		/>
+	</head>
+	<body>
+		<deck class="deck-viewer">
+			{{slides}}
+		</deck>
+		<nav
+			class="deck-nav"
+			aria-label="Slide navigation"
+		>
+			<button
+				type="button"
+				id="deck-prev"
+				aria-label="Previous slide"
+			>
+				←
+			</button>
+			<span
+				id="deck-counter"
+				aria-live="polite"
+			></span>
+			<button
+				type="button"
+				id="deck-next"
+				aria-label="Next slide"
+			>
+				→
+			</button>
+		</nav>
+		<script src="../../viewer/deck-viewer.js"></script>
+	</body>
+</html>

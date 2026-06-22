@@ -1,0 +1,11 @@
+quick-fact-card-pretitle {
+	display: block;
+	margin: 0;
+	font-family: var(--quick-fact-card-pretitle-family);
+	font-weight: var(--quick-fact-card-pretitle-weight);
+	line-height: var(--quick-fact-card-pretitle-lineheight);
+	font-size: var(--quick-fact-card-pretitle-size);
+	letter-spacing: var(--quick-fact-card-pretitle-letterspacing);
+	text-transform: uppercase;
+	color: var(--color-text-subtle);
+}

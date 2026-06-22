@@ -1,0 +1,41 @@
+attribution-box {
+	display: flex;
+	align-items: center;
+	flex: 0 0 auto;
+	box-sizing: border-box;
+	gap: var(--attribution-box-gap);
+	background-color: var(--color-card-bg);
+}
+
+attribution-box img {
+	flex-shrink: 0;
+	display: block;
+}
+
+attribution-box[variant="title"] {
+	padding: var(--attribution-box-padding-y-title)
+		var(--attribution-box-padding-x-title);
+}
+
+attribution-box[variant="title"] text {
+	font-size: var(--text-size-300);
+	color: var(--color-text-base);
+}
+
+attribution-box[variant="title"] img {
+	height: var(--attribution-box-logo-height-title);
+}
+
+attribution-box[variant="content"] {
+	padding: var(--attribution-box-padding-y-content)
+		var(--attribution-box-padding-x-content);
+}
+
+attribution-box[variant="content"] text {
+	font-size: var(--text-size-200);
+	color: var(--color-text-subtle);
+}
+
+attribution-box[variant="content"] img {
+	height: var(--attribution-box-logo-height-content);
+}

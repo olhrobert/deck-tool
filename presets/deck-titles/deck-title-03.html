@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Deck title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-primary">
+				<div class="box-border w-full h-full flex">
+					<div
+						class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
+					>
+						<svg
+							role="img"
+							aria-label="Logo"
+							class="shrink-0 block"
+							style="
+								height: 24px;
+								color: var(--color-text-strong);
+							"
+							viewBox="0 0 44 12"
+							fill="none"
+						>
+							<use
+								href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+							/>
+						</svg>
+
+						<div>
+							<text
+								family="display"
+								weight="bold"
+								size="4000"
+								lineheight="single"
+								style="color: var(--color-white)"
+							>
+								Title of
+							</text>
+							<text
+								family="display"
+								weight="bold"
+								size="4000"
+								lineheight="single"
+								style="
+									color: var(--color-text-on-primary-strong);
+								"
+							>
+								the deck
+							</text>
+						</div>
+					</div>
+
+					<div
+						class="box-border h-full shrink-0 flex flex-col justify-between p-0"
+					>
+						<attribution-box variant="title">
+							<text
+								style="color: var(--color-text-on-primary-base)"
+							>
+								Sanitized excerpt prepared by
+							</text>
+							<img
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
+						</attribution-box>
+
+						<div class="flex pb-10 pr-6 w-full">
+							<text
+								size="sm"
+								tone="subtle"
+								class="text-left grow"
+							>
+								Optional subtitle. Can be one or two sentences
+								long.
+							</text>
+						</div>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>

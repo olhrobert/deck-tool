@@ -1,0 +1,10 @@
+quick-fact-card-title {
+	display: block;
+	margin: 0;
+	font-family: var(--quick-fact-card-title-family);
+	font-weight: var(--quick-fact-card-title-weight);
+	line-height: var(--quick-fact-card-title-lineheight);
+	font-size: var(--quick-fact-card-title-size);
+	letter-spacing: var(--letterspacing-base);
+	color: var(--color-text-strong);
+}

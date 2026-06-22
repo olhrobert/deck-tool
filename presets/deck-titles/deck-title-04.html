@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Deck title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-primary">
+				<div class="relative box-border w-full h-full">
+					<div
+						class="absolute top-0 left-0 right-0 flex justify-center pt-20"
+					>
+						<svg
+							role="img"
+							aria-label="Logo"
+							class="shrink-0 block"
+							style="
+								height: 24px;
+								color: var(--color-text-on-primary-strong);
+							"
+							viewBox="0 0 44 12"
+							fill="none"
+						>
+							<use
+								href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+							/>
+						</svg>
+					</div>
+
+					<div
+						class="box-border w-full h-full flex items-center justify-center"
+					>
+						<div class="flex flex-col items-center gap-4">
+							<text
+								family="display"
+								weight="bold"
+								size="3000"
+								lineheight="sm"
+								class="text-center"
+								style="
+									color: var(--color-text-on-primary-strong);
+								"
+							>
+								Title of the deck
+							</text>
+							<text
+								size="sm"
+								tone="subtle"
+								class="text-center"
+							>
+								Optional subtitle. Can be one or two sentences
+								long.
+							</text>
+						</div>
+					</div>
+
+					<div
+						class="absolute bottom-0 left-0 right-0 flex justify-center"
+					>
+						<attribution-box variant="title">
+							<text>
+								Sanitized excerpt prepared by
+							</text>
+							<img
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
+						</attribution-box>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>
