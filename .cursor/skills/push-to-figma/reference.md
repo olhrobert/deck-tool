@@ -17,7 +17,8 @@
 
 - Colors 0–1. No `figma.notify()`. No `loadAllPagesAsync` / `createImageAsync` / `setPluginData`
 - `setSharedPluginData("dsb", key, value)`
-- Load fonts before text mutate. Fraunces bold = `SemiBold`; Inter bold = `Semi Bold`
+- Load fonts before text mutate, including every family in every Primitives mode before binding `fontFamily`. Fraunces/DM Sans bold = `SemiBold`; Inter bold = `Semi Bold`. Bind weight as FLOAT (`fontWeight`), not `fontStyle` strings
+- No text styles. IR `typography` → bind `fontFamily` / `fontWeight` / `fontSize`. `lineheight/md` is CSS × 100; apply as `{ unit: "PERCENT", value: 120 }` (Figma FLOAT vars on lineHeight/letterSpacing are pixels)
 - `layoutSizing*` only after the node is in an auto-layout parent
 - Header/Content/Footer **slots** must FILL; hugging slots collapse nested FILL children to ~100px
 - Nested instance `remove()` on slot children throws `Node … not found`. Mutate top-level, then reparent

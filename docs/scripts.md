@@ -85,13 +85,13 @@ node scripts/new-brand.js acme --name "Acme Capital"
 npm run new-brand -- acme --name "Acme Capital"
 ```
 
-Then edit `brand.json` / `logo.svg` and run `validate-brand.js`. See [brands.md](brands.md).
+Then edit `brand.json` / `{slug}-logo.svg` and run `validate-brand.js`. See [brands.md](brands.md).
 
 ---
 
 ## `validate-brand.js`
 
-Checks `TOKEN_MAP` keys, color parse, WCAG AA for text on tertiary / primary / surface, and that `logo.svg` exists.
+Checks `TOKEN_MAP` keys, color parse, WCAG AA for text on tertiary / primary / surface, and that `{slug}-logo.svg` exists.
 
 ```bash
 node scripts/validate-brand.js brands/riverton

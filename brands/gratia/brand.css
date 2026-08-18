@@ -1,0 +1,47 @@
+/* AUTO-GENERATED from brand.json for "Gratia" — do not edit by hand. */
+/* Regenerate: npm run generate-brand -- brands/<name> */
+
+:root {
+	/* colors */
+	--color-primary: rgb(35, 221, 156);
+	--color-secondary: rgb(4, 56, 58);
+	--color-tertiary: rgb(242, 245, 245);
+	--color-surface: rgba(255, 255, 255, 1);
+	--color-surface-on-primary: rgb(4, 56, 58);
+	--color-text: rgb(1, 25, 26);
+	--color-text-on-primary: rgb(1, 25, 26);
+	--color-border: rgba(1, 25, 26, 0.18);
+	--color-positive: rgba(8, 120, 85, 1);
+	--color-positive-bg: rgba(35, 221, 156, 0.15);
+	--color-warning: rgba(180, 110, 10, 1);
+	--color-warning-bg: rgba(180, 110, 10, 0.1);
+	--color-negative: rgba(180, 30, 65, 1);
+	--color-negative-bg: rgba(180, 30, 65, 0.1);
+	--color-informative: rgba(4, 90, 100, 1);
+	--color-informative-bg: rgba(4, 90, 100, 0.1);
+	--color-chart-1: rgba(35, 221, 156, 1);
+	--color-chart-2: rgba(4, 56, 58, 1);
+	--color-chart-3: rgba(1, 25, 26, 1);
+	--color-chart-4: rgba(20, 150, 130, 1);
+
+	/* fonts */
+	--font-family-display: "Inter", system-ui, sans-serif;
+	--font-family-base: "Inter", system-ui, sans-serif;
+
+	/* border radius */
+	--border-radius-none: 0px;
+	--border-radius-sm: 4px;
+	--border-radius-med: 8px;
+	--border-radius-lg: 12px;
+	--border-radius-full: 200px;
+
+	/* border size */
+	--card-border-size-top: 1px;
+	--card-border-size-bottom: 1px;
+	--card-border-size-left: 1px;
+	--card-border-size-right: 1px;
+	--alert-border-size-top: 0px;
+	--alert-border-size-bottom: 0px;
+	--alert-border-size-left: 2px;
+	--alert-border-size-right: 0px;
+}

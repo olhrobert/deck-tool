@@ -8,8 +8,12 @@
 		"primitives": {
 			"id": "VariableCollectionId:11004:2",
 			"key": "collection/primitives",
-			"modes": [{ "name": "Riverton", "modeId": "11004:0" }],
-			"note": "Add one mode per brand. Apply the mode on the deck page. Color aliases resolve through it."
+			"modes": [
+				{ "name": "Riverton", "modeId": "11004:0" },
+				{ "name": "Vantage", "modeId": "11056:0" },
+				{ "name": "Gratia", "modeId": "11079:0" }
+			],
+			"note": "Add one mode per brand. Apply the mode on the deck page. Color and font-family aliases resolve through it."
 		},
 		"color": {
 			"id": "VariableCollectionId:11004:3",
@@ -29,7 +33,8 @@
 		"typography": {
 			"id": "VariableCollectionId:11004:6",
 			"key": "collection/typography",
-			"modes": [{ "name": "Value", "modeId": "11004:4" }]
+			"modes": [{ "name": "Value", "modeId": "11004:4" }],
+			"note": "family/display and family/base alias Primitives font-family/*. lineheight/* is CSS unitless × 100. Apply as PERCENT literals — do not bind; FLOAT lineHeight vars are pixels."
 		}
 	},
 	"pages": {
@@ -44,7 +49,8 @@
 		"page/list-item": "11030:2",
 		"page/slide": "11031:2",
 		"page/utilities": "11011:7",
-		"page/riverton-deck": "11033:2"
+		"page/riverton-deck": "11033:2",
+		"page/vantage-deck": "11056:2"
 	},
 	"components": {
 		"componentset/card": {
@@ -107,6 +113,12 @@
 		},
 		"component/attribution-box-separator": { "id": "11027:2" },
 		"component/logo-gratia": { "id": "11027:11" },
+		"component/logo-gratia-brand": {
+			"id": "11079:374",
+			"viewBox": { "width": 65, "height": 16 },
+			"coverHeight": 24,
+			"footerHeight": 16
+		},
 		"componentset/list-item": {
 			"id": "11030:38",
 			"properties": { "Label": "Label#11030:3", "kind": "kind" },
@@ -134,47 +146,34 @@
 			"viewBox": { "width": 76, "height": 16 },
 			"coverHeight": 24,
 			"footerHeight": 16
+		},
+		"component/logo-vantage": {
+			"id": "11056:6",
+			"coverHeight": 24,
+			"footerHeight": 16
 		}
 	},
-	"textStyles": {
-		"Text/Display/1600/Bold": { "id": "S:266ae36b02e4a50e713398a28d81fb67504712e0,", "fontName": { "family": "Fraunces", "style": "SemiBold" }, "fontSize": 64 },
-		"Text/Base/450/Regular": { "id": "S:9786877c8cfa83b4d7d99d135671f5589158e27d,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 18 },
-		"Text/Base/400/Regular": { "id": "S:db4cafa94ae9b35390fe65a78a90247660a98b92,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 16 },
-		"Text/Base/400/Bold": { "id": "S:86d89b0c8d646afe3efda19bc5bc2e38ae5f9ab1,", "fontName": { "family": "Inter", "style": "Semi Bold" }, "fontSize": 16 },
-		"Text/Base/350/Regular": { "id": "S:45cd2485f8fcf75593f2cacc9ed41bce9dd6d214,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 14 },
-		"Text/Base/300/Regular": { "id": "S:0ccb1979e469020f89d4daa97cc1a1b08ac4e66d,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 12 },
-		"Text/Base/200/Regular": { "id": "S:4a467deff71cc96b7812f40bbeb9663a25eeb4fe,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 8 },
-		"Slide Title/Main/LG": { "id": "S:94317250059453f8e9e7037521d73e4d70ef027d," },
-		"Slide Title/Main/MD": { "id": "S:9f881e35696591710907c25a0d27e17ff4a1af38," },
-		"Slide Title/Main/SM": { "id": "S:235f88d8d4eb62db050f2abd390ccd72bb0a8250," },
-		"Slide Title/Pre": { "id": "S:f08424058e71d022a5914f55fae214ce2e2d892e," },
-		"Slide Title/Sub": { "id": "S:837736bd88472a5751fdc745ed4a4f795193c326," },
-		"Section Title/LG": { "id": "S:93a51dc1765870acb9290b0769446ed60ed77a81," },
-		"Section Title/MD": { "id": "S:499e2aba61b8008154c890e2defd0eb4f7bce940," },
-		"Section Title/SM": { "id": "S:5ab2365b612f9ca4c235b126e1e4142c91da2366," },
-		"Quick Fact/Pretitle": { "id": "S:c640bec6fba2c96ebbba63b3efceae584f17cd1a," },
-		"Quick Fact/Title": { "id": "S:4ad8c9ee90b1377098cb307c5bc4807526b9f2ff," },
-		"Quick Fact/Meta": { "id": "S:283e579b7493a0ee797e4c8b5e6d8efaaab56b74," },
-		"Alert/Title": { "id": "S:1a829b4f3c1c5fc45ba8ff7af72d68a380a12de4," },
-		"Alert/Description": { "id": "S:a02895d7c109a51247503de5db5efb6093b5adbc," },
-		"Copy/LG": { "id": "S:adfbbb10caeb0cefabe227414aaa2cd4661e18d9," },
-		"Copy/MD": { "id": "S:78edee4d8feeb0f6ba3e8763d616f5caea173119," },
-		"Copy/SM": { "id": "S:ba08ceca435c3500d3e0ec6ef85c0cb76d88860e," },
-		"Copy/XS": { "id": "S:4eedee7fe884aa13fbcfc40b0c6d3fe1f9eb8013," },
-		"Copy/2XS": { "id": "S:c4c8f8c257d3b023f95e9277af3a8e69bc32684a," },
-		"Copy/3XS": { "id": "S:2bb64d0a9843b307889208976797230007e0b733," }
+	"typeVariables": {
+		"primitive/font-family/display": { "id": "VariableID:11066:2", "Riverton": "Fraunces", "Vantage": "DM Sans", "Gratia": "Inter" },
+		"primitive/font-family/base": { "id": "VariableID:11066:3", "Riverton": "Inter", "Vantage": "Inter", "Gratia": "Inter" },
+		"bind": ["fontFamily", "fontWeight", "fontSize"],
+		"percentLiterals": ["lineHeight", "letterSpacing"],
+		"note": "No text styles. Bind family/weight/size. lineHeight/letterSpacing FLOAT vars apply as px — set PERCENT from the token instead (CSS × 100)."
 	},
 	"fonts": {
 		"display": {
 			"Riverton": { "family": "Fraunces", "regular": "Regular", "bold": "SemiBold" },
-			"note": "Vantage HTML uses DM Sans. Text styles in this file are Riverton (Fraunces + Inter). Decide font-family variables vs per-brand text styles before pushing a second brand."
+			"Vantage": { "family": "DM Sans", "regular": "Regular", "bold": "SemiBold" },
+			"Gratia": { "family": "Inter", "regular": "Regular", "bold": "Semi Bold" },
+			"note": "Page Primitives mode switches family/display. Logo wordmarks stay hardcoded (Vantage logo is DM Sans Bold 700)."
 		},
 		"base": {
 			"family": "Inter",
 			"regular": "Regular",
 			"medium": "Medium",
 			"bold": "Semi Bold"
-		}
+		},
+		"lineHeight": "Store CSS unitless × 100 (1.2 → 120). Apply as { unit: 'PERCENT', value: 120 }. Do not bind — Figma FLOAT lineHeight/letterSpacing vars are pixels."
 	},
 	"htmlMap": {
 		"slide[bg-primary without chrome]": "custom 1280×800 frame, fill color/slide-bg-primary. Do not instance Slide.",
@@ -186,10 +185,10 @@
 		"attribution-box": "instance componentset/attribution-box",
 		"attribution-box-separator": "instance component/attribution-box-separator",
 		"img gratia-logo.svg": "instance component/logo-gratia",
-		"svg brand/placeholder logo": "instance component/logo-{brand} or placeholder",
+		"svg brand/placeholder logo": "instance component/logo-{brand} or placeholder. Gratia deck mark is component/logo-gratia-brand (monochrome); img gratia-logo.svg stays the two-color lockup.",
 		"flex-row + check/close icon + text": "instance componentset/list-item",
 		"div.flex": "anonymous auto-layout frame",
-		"text / copy": "text node + text style + color variable",
-		"alert": "frame (no Figma component yet) + Alert text styles"
+		"text / copy": "text node + bind family/weight/size; PERCENT lineHeight/letterSpacing from tokens; color variable",
+		"alert": "frame (no Figma component yet) + Alert type tokens"
 	}
 }

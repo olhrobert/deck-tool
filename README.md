@@ -8,7 +8,7 @@ HTML is the source of truth. Brands override tokens. Figma instances the library
 
 ```
 assets/           fonts, icons, logos
-brands/           brand.json + generated brand.css + logo.svg
+brands/           brand.json + generated brand.css + {slug}-logo.svg
 design-system/    tokens, components, utilities
 viewer/           presentation template, viewer JS/CSS
 presets/          copy-ready slide HTML

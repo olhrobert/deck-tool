@@ -20,8 +20,8 @@ HTML brands live in `brands/{slug}/`. Figma theming is an extra **Primitives** m
 node scripts/new-brand.js {slug} --name "{Display Name}"
 ```
 
-3. Put the real colors, fonts, radii, and border sizes into `brands/{slug}/brand.json`. Keep values as `rgb()` / `rgba()`.
-4. Replace `brands/{slug}/logo.svg` with a `<symbol id="{slug}-logo">` sprite, `fill="currentColor"`.
+3. Put the real colors, fonts, radii, and border sizes into `brands/{slug}/brand.json`. Keep values as `rgb()` / `rgba()`. Map colors by slide role using **Where color tokens land** in `docs/brands.md` (`primary` = cover fill, not “the logo color”).
+4. Replace `brands/{slug}/{slug}-logo.svg` with a `<symbol id="{slug}-logo">` sprite, `fill="currentColor"`.
 5. Validate:
 
 ```bash
@@ -33,6 +33,7 @@ Fix contrast failures before continuing.
 6. Figma (`figma/library.json` `fileKey`), `use_figma` with `skillNames`: `figma-use,figma-generate-library`:
    - Add a Primitives mode named `{Display Name}`
    - Write primitive color values for that mode from `brand.json` (map via `primitive/color/*` dsb keys)
+   - Write `primitive/font-family/display` and `primitive/font-family/base` for that mode — first quoted family from `fonts.display` / `fonts.base` (not the CSS stack). Load those fonts before `setValueForMode`
    - Flatten the logo SVG, create `__Logo/{Display Name}`, size from viewBox, bind fills to `color/text-strong`
    - `setSharedPluginData("dsb", "key", "component/logo-{slug}")`
    - Return modeId + component id; append both to `figma/library.json`

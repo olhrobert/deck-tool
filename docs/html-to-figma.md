@@ -29,12 +29,12 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | brand / placeholder `<svg><use>` | `__Logo/{Brand}` |
 | flex row + check/close path + text | List Item `kind=in-scope\|out-of-scope` |
 | `div.flex` | auto-layout frame (gap/padding/justify/align/fill from utilities) |
-| `<text>` / `<copy>` | text + text style + color variable |
+| `<text>` / `<copy>` | text + `typography` variables (`family`, `weight`, `size`, `lineHeight`, `letterSpacing`) + color variable |
 | `<alert>` | frame (no Alert component in the library yet) |
 
 Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/card-border`.
 
-`text[size="sm"]` is 350. `text[tone="strong|subtle|base"]` maps to `color/text-*`. Attribution slot text is forced to 300 (title) or 200 (content) to match CSS, even if the markup omits `size`.
+`text[size="sm"]` is 350. `text[tone="strong|subtle|base"]` maps to `color/text-*`. Attribution slot text is forced to `size/300` (title) or `size/200` (content) to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
 
 ## Push sequence
 

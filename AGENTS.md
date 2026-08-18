@@ -10,4 +10,4 @@ When working in this repo:
 
 HTML is the source of truth. Brands only override tokens (`brands/{slug}/brand.json`). Figma instances the library in `figma/library.json`; do not rebuild components per deck.
 
-See `docs/brands.md`, `docs/figma.md`, `docs/html-to-figma.md`, and `docs/scripts.md`.
+See `docs/brands.md` (including where each color token lands on slides), `docs/figma.md`, `docs/html-to-figma.md`, and `docs/scripts.md`.

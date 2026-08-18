@@ -1,0 +1,51 @@
+{
+	"name": "Gratia",
+	"logo": "gratia-logo.svg",
+	"colors": {
+		"primary": "rgb(35, 221, 156)",
+		"secondary": "rgb(4, 56, 58)",
+		"tertiary": "rgb(242, 245, 245)",
+		"surface": "rgba(255, 255, 255, 1)",
+		"surfaceOnPrimary": "rgb(4, 56, 58)",
+		"text": "rgb(1, 25, 26)",
+		"textOnPrimary": "rgb(1, 25, 26)",
+		"border": "rgba(1, 25, 26, 0.18)",
+		"positive": "rgba(8, 120, 85, 1)",
+		"positiveBg": "rgba(35, 221, 156, 0.15)",
+		"warning": "rgba(180, 110, 10, 1)",
+		"warningBg": "rgba(180, 110, 10, 0.1)",
+		"negative": "rgba(180, 30, 65, 1)",
+		"negativeBg": "rgba(180, 30, 65, 0.1)",
+		"informative": "rgba(4, 90, 100, 1)",
+		"informativeBg": "rgba(4, 90, 100, 0.1)",
+		"chart1": "rgba(35, 221, 156, 1)",
+		"chart2": "rgba(4, 56, 58, 1)",
+		"chart3": "rgba(1, 25, 26, 1)",
+		"chart4": "rgba(20, 150, 130, 1)"
+	},
+	"fonts": {
+		"display": "\"Inter\", system-ui, sans-serif",
+		"base": "\"Inter\", system-ui, sans-serif"
+	},
+	"borderRadius": {
+		"none": "0px",
+		"sm": "4px",
+		"med": "8px",
+		"lg": "12px",
+		"full": "200px"
+	},
+	"borderSize": {
+		"card": {
+			"top": "1px",
+			"bottom": "1px",
+			"left": "1px",
+			"right": "1px"
+		},
+		"alert": {
+			"top": "0px",
+			"bottom": "0px",
+			"left": "2px",
+			"right": "0px"
+		}
+	}
+}

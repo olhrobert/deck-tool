@@ -26,7 +26,7 @@ There is no `chapter-titles/` or `content-slides/` folder. Build content slides 
 
 3. Create `decks/{deck-name}/` with `01.html`, `02.html`, … Copy a title preset into `01.html`. Copy a footer preset into every content slide.
 4. Replace placeholder copy only. Keep `../../design-system/` and `../../assets/` paths.
-5. Add `{slug}-logo.svg` to the deck folder (sprite). Point every `<use href>` at it. Sync wrapping `viewBox` with the symbol.
+5. Copy `brands/{slug}/{slug}-logo.svg` into the deck folder. Point every `<use href>` at `{slug}-logo.svg#{slug}-logo`. Sync wrapping `viewBox` with the symbol.
 6. Write `slides.json`:
 
 ```json

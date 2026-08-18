@@ -30,13 +30,13 @@ const SKIP_TAGS = new Set([
 	"deck",
 ]);
 
-const COPY_STYLE = {
-	lg: "Copy/LG",
-	base: "Copy/MD",
-	sm: "Copy/SM",
-	xs: "Copy/XS",
-	"2xs": "Copy/2XS",
-	"3xs": "Copy/3XS",
+const COPY_SIZE = {
+	lg: "400",
+	base: "350",
+	sm: "300",
+	xs: "250",
+	"2xs": "225",
+	"3xs": "200",
 };
 
 function usage() {
@@ -244,20 +244,50 @@ function colorFromNode(node) {
 	return "color/text-base";
 }
 
-function textStyleFromNode(node) {
-	const family = attr(node, "family", "base");
-	const weight = attr(node, "weight", "regular");
-	let size = attr(node, "size", "400");
-	if (size === "sm") size = "350";
-	if (size === "base") size = "400";
-	const weightLabel = weight === "bold" ? "Bold" : "Regular";
-	if (family === "display") return `Text/Display/${size}/${weightLabel}`;
-	return `Text/Base/${size}/${weightLabel}`;
+function normalizeSize(size) {
+	let value = String(size || "400");
+	if (value === "sm") value = "350";
+	if (value === "base") value = "400";
+	return value;
 }
 
-function copyStyleFromNode(node) {
-	const size = String(attr(node, "size", "base")).toLowerCase();
-	return COPY_STYLE[size] || "Copy/MD";
+function weightToken(weight) {
+	if (weight === "bold" || weight === "strong") return "weight/bold";
+	if (weight === "medium") return "weight/medium";
+	return "weight/regular";
+}
+
+function typeTokens({
+	family = "base",
+	weight = "regular",
+	size = "400",
+	lineHeight = "md",
+	letterSpacing = "base",
+} = {}) {
+	return {
+		family: family === "display" ? "family/display" : "family/base",
+		weight: weightToken(weight),
+		size: `size/${normalizeSize(size)}`,
+		lineHeight: `lineheight/${lineHeight}`,
+		letterSpacing: `letterspacing/${letterSpacing}`,
+	};
+}
+
+function typeFromTextNode(node) {
+	return typeTokens({
+		family: attr(node, "family", "base"),
+		weight: attr(node, "weight", "regular"),
+		size: attr(node, "size", "400"),
+	});
+}
+
+function typeFromCopyNode(node) {
+	const sizeKey = String(attr(node, "size", "base")).toLowerCase();
+	return typeTokens({
+		family: "base",
+		weight: attr(node, "weight") === "strong" ? "bold" : "medium",
+		size: COPY_SIZE[sizeKey] || "350",
+	});
 }
 
 function isQfcCard(node) {
@@ -293,6 +323,7 @@ function logoFromSvg(node, warnings) {
 	let component = "component/logo-placeholder";
 	if (/riverton-logo/.test(href) || /riverton/i.test(label)) component = "component/logo-riverton";
 	else if (/vantage-logo/.test(href) || /vantage/i.test(label)) component = "component/logo-vantage";
+	else if (/gratia-logo/.test(href) || /gratia/i.test(label)) component = "component/logo-gratia-brand";
 	else if (/placeholder-logo/.test(href)) {
 		component = "component/logo-placeholder";
 		warnings.push("Placeholder logo in slide; swap for a brand logo component before publishing.");
@@ -324,7 +355,7 @@ function walk(node, warnings) {
 			type: "text",
 			name: "Text",
 			characters,
-			textStyle: textStyleFromNode(node),
+			typography: typeFromTextNode(node),
 			color: colorFromNode(node),
 		};
 	}
@@ -336,7 +367,7 @@ function walk(node, warnings) {
 			type: "text",
 			name: "Copy",
 			characters,
-			textStyle: copyStyleFromNode(node),
+			typography: typeFromCopyNode(node),
 			color: colorFromNode(node),
 		};
 	}
@@ -409,7 +440,11 @@ function walk(node, warnings) {
 		const slot = (node.children || []).map((child) => walk(child, warnings)).filter(Boolean);
 		for (const child of slot) {
 			if (child.type === "text") {
-				child.textStyle = variant === "title" ? "Text/Base/300/Regular" : "Text/Base/200/Regular";
+				child.typography = typeTokens({
+					family: "base",
+					weight: "regular",
+					size: variant === "title" ? "300" : "200",
+				});
 				child.color = variant === "title" ? "color/text-base" : "color/text-subtle";
 			}
 		}
@@ -472,7 +507,7 @@ function walk(node, warnings) {
 					type: "text",
 					name: "Alert title",
 					characters: collapseText(collectText(child)),
-					textStyle: "Alert/Title",
+					typography: typeTokens({ family: "display", weight: "bold", size: "500" }),
 					color: "color/text-strong",
 				};
 			}
@@ -481,7 +516,7 @@ function walk(node, warnings) {
 					type: "text",
 					name: "Alert description",
 					characters: collapseText(collectText(child)),
-					textStyle: "Alert/Description",
+					typography: typeTokens({ family: "base", weight: "regular", size: "400" }),
 					color: "color/text-base",
 				};
 			}

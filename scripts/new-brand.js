@@ -49,7 +49,8 @@ function main() {
 
 	const template = JSON.parse(fs.readFileSync(TEMPLATE_JSON, "utf8"));
 	template.name = name || titleCaseSlug(slug);
-	template.logo = "logo.svg";
+	const logoFile = `${slug}-logo.svg`;
+	template.logo = logoFile;
 
 	fs.mkdirSync(destDir, { recursive: true });
 	fs.writeFileSync(
@@ -57,13 +58,13 @@ function main() {
 		`${JSON.stringify(template, null, "\t")}\n`,
 		"utf8",
 	);
-	fs.copyFileSync(PLACEHOLDER_LOGO, path.join(destDir, "logo.svg"));
+	fs.copyFileSync(PLACEHOLDER_LOGO, path.join(destDir, logoFile));
 	generateBrandCss(destDir);
 
 	console.log(`Created brands/${slug}/`);
 	console.log("Next:");
 	console.log(`  1. Edit brands/${slug}/brand.json (colors, fonts, radii).`);
-	console.log(`  2. Replace brands/${slug}/logo.svg with a currentColor sprite.`);
+	console.log(`  2. Replace brands/${slug}/${logoFile} with a currentColor sprite.`);
 	console.log(`  3. node scripts/validate-brand.js brands/${slug}`);
 	console.log("  4. Add a Primitives mode in Figma and a __Logo component (skill: new-brand).");
 }

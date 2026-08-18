@@ -29,7 +29,7 @@ node scripts/html-to-ir.js decks/{deck-name} --out /tmp/{deck-name}-ir.json
    - `chrome: "cover"` → custom 1280×800 tree (fill `root.fill`). **Do not** instance Slide
    - `chrome: "slide"` → instance `componentset/slide`, FILL Header/Content/Footer slots, clear placeholder slot children, append IR slot trees
 6. Attribution: create the instance on the page, mutate slot text before any `await`, then reparent into the footer/cover. Hide the extra separator + number for footer-02.
-7. Set variants explicitly (`size`, `padding`, `gap`, `surface`) — Figma defaultVariant ≠ CSS default.
+7. Set variants explicitly (`size`, `padding`, `gap`, `surface`) — Figma defaultVariant ≠ CSS default. For IR text nodes, bind `fontFamily` / `fontWeight` / `fontSize` from `node.typography`. Set `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` from those tokens (CSS × 100) — do not `setBoundVariable` them; Figma applies those FLOAT vars as pixels. Never `textStyleId`. Load every font used in every Primitives mode first.
 8. Screenshot each slide (`get_screenshot`, 1280). Fix layout (hugging slots, FILL/HUG) before calling it done.
 9. Tag the page and frames with `setSharedPluginData("dsb", "key", …)` / `run_id`.
 

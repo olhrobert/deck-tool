@@ -63,7 +63,7 @@ function compositeOn(fg, bg) {
 function validateBrand(brandDir) {
 	const resolved = path.resolve(brandDir);
 	const jsonPath = path.join(resolved, "brand.json");
-	const logoPath = path.join(resolved, "logo.svg");
+	const slug = path.basename(resolved);
 	const errors = [];
 	const warnings = [];
 
@@ -72,6 +72,8 @@ function validateBrand(brandDir) {
 
 	const brand = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 	if (!brand.name) errors.push("brand.json is missing name");
+	const logoFile = brand.logo || `${slug}-logo.svg`;
+	const logoPath = path.join(resolved, logoFile);
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
 		if (getPath(brand, jsonPathKey) === undefined) {
@@ -118,14 +120,14 @@ function validateBrand(brandDir) {
 	}
 
 	if (!fs.existsSync(logoPath)) {
-		errors.push("Missing logo.svg");
+		errors.push(`Missing ${logoFile}`);
 	} else {
 		const svg = fs.readFileSync(logoPath, "utf8");
 		if (!/currentColor/.test(svg)) {
-			warnings.push("logo.svg does not use currentColor; Figma fill binding to color/text-strong will not match HTML.");
+			warnings.push(`${logoFile} does not use currentColor; Figma fill binding to color/text-strong will not match HTML.`);
 		}
 		if (!/<symbol[\s\S]*id=/.test(svg)) {
-			warnings.push("logo.svg has no <symbol id>; deck <use href> sprites expect one.");
+			warnings.push(`${logoFile} has no <symbol id>; deck <use href> sprites expect one.`);
 		}
 	}
 

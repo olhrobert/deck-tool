@@ -10,15 +10,17 @@ Machine-readable IDs and property names: [`figma/library.json`](../figma/library
 
 | Collection | Modes | Role |
 |---|---|---|
-| Primitives | one per brand (Riverton today) | Raw brand values, scopes `[]` |
+| Primitives | one per brand | Raw brand values, scopes `[]` — colors **and** `font-family/display`, `font-family/base` |
 | Color | `Value` | Semantic aliases (`color/text-strong`, `color/slide-bg`, …) |
 | Spacing | `Value` | `spacing/0` … `spacing/40`, plus `0-25`, `0-5`, `1-5`, `2-5` |
 | Radius | `Value` | including `radius/card`, `radius/alert` |
-| Typography | `Value` | size / weight / family tokens |
+| Typography | `Value` | `family/*` aliases the primitive families; shared size / weight / line-height / letter-spacing |
 
-A new brand is a new Primitives **mode**, then set that mode on the deck page. Color aliases follow the selected primitive mode.
+A new brand is a new Primitives **mode**, then set that mode on the deck page. Color and typeface aliases follow the selected primitive mode.
 
-Text styles in the file are Riverton-shaped (Fraunces + Inter). Vantage HTML uses DM Sans. Decide font-family variables vs per-brand text styles before pushing a second brand.
+Do **not** use Figma text styles. Bind `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, and `letterSpacing` on text nodes (and on library component text). Logo wordmarks stay hardcoded in `__Logo/{Brand}`.
+
+**Line-height:** CSS is unitless (`--lineheight-md: 1.2`). Store **CSS × 100** in Typography (`120`). Figma number variables bound to `lineHeight` / `letterSpacing` apply as **pixels**, so do not bind those fields — set `{ unit: "PERCENT", value: 120 }` (and `2` for `--letterspacing-loose`) from the token. Bind `fontFamily`, `fontWeight`, and `fontSize`.
 
 ## Creation API
 
@@ -31,7 +33,7 @@ Never parallelize `use_figma`. `setCurrentPageAsync` at most once per script. Al
 - Colors are 0–1, not 0–255
 - `figma.notify()` throws — skip it
 - `setSharedPluginData("dsb", …)`, not `setPluginData`
-- Load fonts before any text mutate. Fraunces 600 = `SemiBold`; Inter 600 = `Semi Bold`
+- Load fonts before any text mutate, including every family used in **every** Primitives mode, before `setBoundVariable("fontFamily")` or `setExplicitVariableModeForCollection`. Fraunces/DM Sans 600 = `SemiBold`; Inter 600 = `Semi Bold`. Prefer `fontWeight` numbers over `fontStyle` strings.
 - `layoutSizingHorizontal/Vertical` only after the node is in an auto-layout parent
 - Header / Content / Footer slots must be `FILL` (horizontal; Content also vertical). Hugging slots collapse nested FILL children
 - Do not `remove()` children of a **nested** instance slot. Edit attribution copy on a top-level instance, then reparent
@@ -44,4 +46,4 @@ Never parallelize `use_figma`. `setCurrentPageAsync` at most once per script. Al
 
 ## Refreshing `library.json`
 
-Dump keys with `use_figma`: walk `COMPONENT` / `COMPONENT_SET`, local variables, and text styles; read `getSharedPluginData("dsb", "key")`. Update IDs when the file is rebuilt.
+Dump keys with `use_figma`: walk `COMPONENT` / `COMPONENT_SET` and local variables; read `getSharedPluginData("dsb", "key")`. Update IDs when the file is rebuilt.
