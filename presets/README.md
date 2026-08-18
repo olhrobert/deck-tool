@@ -46,4 +46,4 @@ See `decks/riverton-project-charter/` for a working example with a deck-local Ri
 
 ## Example prompt
 
-> Create `decks/client-pitch/` using `deck-title-03` for the opener, `chapter-title-01` for section breaks, and `slide-02` for comparison slides. Add `client-logo.svg` to the deck folder and swap the placeholder logo.
+> Create `decks/client-pitch/` using `deck-title-03` for the opener and `footer-01` on content slides. Add `client-logo.svg` to the deck folder and swap the placeholder logo. Set `slides.json.brand` to the client brand slug.

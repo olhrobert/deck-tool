@@ -6,37 +6,29 @@ alwaysApply: false
 
 # Deck generation
 
-When creating or editing files in `decks/`:
+When creating or editing files in `decks/`, follow `.cursor/skills/generate-deck/SKILL.md`.
 
-1. **Copy presets** from `presets/` — never build title or layout slides from scratch.
-2. **Replace text only** — swap placeholder copy inside existing elements. Do not change structure, classes, stylesheets, or `../../` asset paths.
-3. **Pick presets by name** — e.g. `deck-title-02`, `chapter-title-01`, `slide-02`. See `presets/README.md` and `presets/deck-titles/README.md`.
+1. **Copy presets** from `presets/` — never invent title or footer layout.
+2. **Replace text only** — do not change structure, classes, stylesheets, or `../../` asset paths.
+3. **Set `slides.json.brand`** to a folder name under `brands/`.
+4. **Compile** after edits: `node scripts/compile-deck.js decks/{deck-name}`.
 
 ## File layout
 
 ```
 decks/{deck-name}/
-  deck-title.html
-  slide-01.html
-  slide-02-chapter-title.html
-  slide-03.html
+  slides.json
+  {slug}-logo.svg
+  01.html
+  02.html
 ```
 
-## Preset map
+## Presets that exist
 
-- **Title**: `presets/deck-titles/deck-title-01.html` … `deck-title-04.html`
-- **Chapter**: `presets/chapter-titles/chapter-title-01.html`
-- **Content**: `presets/content-slides/slide-01.html` (card grid), `slide-02.html` (alert stack)
-- **Cards**: `presets/cards/quick-fact-card.html` (label + headline + meta inside `<card>`)
+- Title: `presets/deck-titles/deck-title-01.html` … `deck-title-04.html`
+- Footer: `presets/content-footers/footer-01.html`, `footer-02.html`
+- Card fragment: `presets/cards/quick-fact-card.html`
 
-## Compile for presentation
+There is no `presets/chapter-titles/` or `presets/content-slides/`. For content slides, copy the chrome from `decks/riverton-project-charter/02.html` (header + content + footer) and fill with design-system tags.
 
-Run the compiler after editing slide files. It auto-updates `slides.json` from every `.html` slide in the folder (excluding generated `index.html`), then writes `index.html`:
-
-```bash
-node scripts/compile-deck.js decks/{deck-name}
-# or compile every deck:
-node scripts/compile-all-decks.js
-```
-
-Open `decks/{deck-name}/index.html` to present. The `title` field in `slides.json` is preserved across syncs; the `slides` array is rewritten from folder contents (sorted by filename).
+`slides.json` `title` and `brand` are preserved on compile; `slides` is rewritten from the folder (sorted by filename).

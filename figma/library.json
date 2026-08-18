@@ -1,0 +1,195 @@
+{
+	"fileKey": "0jCUSNx7OCEe9eUhlhMPsU",
+	"fileUrl": "https://www.figma.com/design/0jCUSNx7OCEe9eUhlhMPsU/Test",
+	"namespace": "dsb",
+	"slideSize": { "width": 1280, "height": 800 },
+	"pluginSkills": "figma-use,figma-generate-library,figma-generate-design",
+	"collections": {
+		"primitives": {
+			"id": "VariableCollectionId:11004:2",
+			"key": "collection/primitives",
+			"modes": [{ "name": "Riverton", "modeId": "11004:0" }],
+			"note": "Add one mode per brand. Apply the mode on the deck page. Color aliases resolve through it."
+		},
+		"color": {
+			"id": "VariableCollectionId:11004:3",
+			"key": "collection/color",
+			"modes": [{ "name": "Value", "modeId": "11004:1" }]
+		},
+		"spacing": {
+			"id": "VariableCollectionId:11004:4",
+			"key": "collection/spacing",
+			"modes": [{ "name": "Value", "modeId": "11004:2" }]
+		},
+		"radius": {
+			"id": "VariableCollectionId:11004:5",
+			"key": "collection/radius",
+			"modes": [{ "name": "Value", "modeId": "11004:3" }]
+		},
+		"typography": {
+			"id": "VariableCollectionId:11004:6",
+			"key": "collection/typography",
+			"modes": [{ "name": "Value", "modeId": "11004:4" }]
+		}
+	},
+	"pages": {
+		"page/Cover": "12:17042",
+		"page/getting-started": "11011:2",
+		"page/foundations": "11011:3",
+		"page/card": "11018:2",
+		"page/quick-fact-card": "11020:2",
+		"page/slide-title": "11022:2",
+		"page/section-title": "11024:2",
+		"page/attribution-box": "11025:2",
+		"page/list-item": "11030:2",
+		"page/slide": "11031:2",
+		"page/utilities": "11011:7",
+		"page/riverton-deck": "11033:2"
+	},
+	"components": {
+		"componentset/card": {
+			"id": "11019:2",
+			"cssDefault": { "padding": "md", "gap": "md" },
+			"figmaDefault": { "padding": "sm", "gap": "sm" },
+			"properties": { "Content": "Content#11019:0", "padding": "padding", "gap": "gap" },
+			"variants": {
+				"padding=md, gap=sm": "11018:17",
+				"padding=md, gap=md": "11018:19"
+			}
+		},
+		"component/quick-fact-card": {
+			"id": "11020:31",
+			"note": "Mirrors Card padding=md gap=sm. Do not nest a Card instance.",
+			"properties": {
+				"Pretitle": "Pretitle#11020:4",
+				"Title": "Title#11020:5",
+				"Meta": "Meta#11020:6",
+				"Show meta": "Show meta#11020:7"
+			}
+		},
+		"componentset/slide-title": {
+			"id": "11023:15",
+			"cssDefault": { "size": "md" },
+			"figmaDefault": { "size": "lg" },
+			"properties": {
+				"Pre": "Pre#11023:0",
+				"Main": "Main#11023:4",
+				"Sub": "Sub#11023:8",
+				"Show pre": "Show pre#11023:12",
+				"Show sub": "Show sub#11023:16",
+				"size": "size"
+			},
+			"variants": {
+				"size=lg": "11023:2",
+				"size=md": "11023:6",
+				"size=sm": "11023:10"
+			}
+		},
+		"componentset/section-title": {
+			"id": "11024:15",
+			"cssDefault": { "size": "md" },
+			"figmaDefault": { "size": "lg" },
+			"properties": { "Title": "Title#11024:0", "size": "size" },
+			"variants": {
+				"size=lg": "11024:9",
+				"size=md": "11024:11",
+				"size=sm": "11024:13"
+			}
+		},
+		"componentset/attribution-box": {
+			"id": "11029:28",
+			"figmaDefault": { "variant": "title" },
+			"properties": { "Slot": "Slot#11029:2", "variant": "variant" },
+			"variants": {
+				"variant=title": "11029:2",
+				"variant=content": "11029:13"
+			}
+		},
+		"component/attribution-box-separator": { "id": "11027:2" },
+		"component/logo-gratia": { "id": "11027:11" },
+		"componentset/list-item": {
+			"id": "11030:38",
+			"properties": { "Label": "Label#11030:3", "kind": "kind" },
+			"variants": {
+				"kind=in-scope": "11030:15",
+				"kind=out-of-scope": "11030:19"
+			}
+		},
+		"component/icon-check": { "id": "11030:11" },
+		"component/icon-close": { "id": "11030:14" },
+		"component/slide-header": { "id": "11031:9" },
+		"component/slide-content": { "id": "11031:12" },
+		"component/slide-footer": { "id": "11031:15" },
+		"componentset/slide": {
+			"id": "11031:54",
+			"figmaDefault": { "surface": "default" },
+			"properties": { "surface": "surface" },
+			"variants": {
+				"surface=default": "11031:18",
+				"surface=primary": "11031:28"
+			}
+		},
+		"component/logo-riverton": {
+			"id": "11035:11",
+			"viewBox": { "width": 76, "height": 16 },
+			"coverHeight": 24,
+			"footerHeight": 16
+		}
+	},
+	"textStyles": {
+		"Text/Display/1600/Bold": { "id": "S:266ae36b02e4a50e713398a28d81fb67504712e0,", "fontName": { "family": "Fraunces", "style": "SemiBold" }, "fontSize": 64 },
+		"Text/Base/450/Regular": { "id": "S:9786877c8cfa83b4d7d99d135671f5589158e27d,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 18 },
+		"Text/Base/400/Regular": { "id": "S:db4cafa94ae9b35390fe65a78a90247660a98b92,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 16 },
+		"Text/Base/400/Bold": { "id": "S:86d89b0c8d646afe3efda19bc5bc2e38ae5f9ab1,", "fontName": { "family": "Inter", "style": "Semi Bold" }, "fontSize": 16 },
+		"Text/Base/350/Regular": { "id": "S:45cd2485f8fcf75593f2cacc9ed41bce9dd6d214,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 14 },
+		"Text/Base/300/Regular": { "id": "S:0ccb1979e469020f89d4daa97cc1a1b08ac4e66d,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 12 },
+		"Text/Base/200/Regular": { "id": "S:4a467deff71cc96b7812f40bbeb9663a25eeb4fe,", "fontName": { "family": "Inter", "style": "Regular" }, "fontSize": 8 },
+		"Slide Title/Main/LG": { "id": "S:94317250059453f8e9e7037521d73e4d70ef027d," },
+		"Slide Title/Main/MD": { "id": "S:9f881e35696591710907c25a0d27e17ff4a1af38," },
+		"Slide Title/Main/SM": { "id": "S:235f88d8d4eb62db050f2abd390ccd72bb0a8250," },
+		"Slide Title/Pre": { "id": "S:f08424058e71d022a5914f55fae214ce2e2d892e," },
+		"Slide Title/Sub": { "id": "S:837736bd88472a5751fdc745ed4a4f795193c326," },
+		"Section Title/LG": { "id": "S:93a51dc1765870acb9290b0769446ed60ed77a81," },
+		"Section Title/MD": { "id": "S:499e2aba61b8008154c890e2defd0eb4f7bce940," },
+		"Section Title/SM": { "id": "S:5ab2365b612f9ca4c235b126e1e4142c91da2366," },
+		"Quick Fact/Pretitle": { "id": "S:c640bec6fba2c96ebbba63b3efceae584f17cd1a," },
+		"Quick Fact/Title": { "id": "S:4ad8c9ee90b1377098cb307c5bc4807526b9f2ff," },
+		"Quick Fact/Meta": { "id": "S:283e579b7493a0ee797e4c8b5e6d8efaaab56b74," },
+		"Alert/Title": { "id": "S:1a829b4f3c1c5fc45ba8ff7af72d68a380a12de4," },
+		"Alert/Description": { "id": "S:a02895d7c109a51247503de5db5efb6093b5adbc," },
+		"Copy/LG": { "id": "S:adfbbb10caeb0cefabe227414aaa2cd4661e18d9," },
+		"Copy/MD": { "id": "S:78edee4d8feeb0f6ba3e8763d616f5caea173119," },
+		"Copy/SM": { "id": "S:ba08ceca435c3500d3e0ec6ef85c0cb76d88860e," },
+		"Copy/XS": { "id": "S:4eedee7fe884aa13fbcfc40b0c6d3fe1f9eb8013," },
+		"Copy/2XS": { "id": "S:c4c8f8c257d3b023f95e9277af3a8e69bc32684a," },
+		"Copy/3XS": { "id": "S:2bb64d0a9843b307889208976797230007e0b733," }
+	},
+	"fonts": {
+		"display": {
+			"Riverton": { "family": "Fraunces", "regular": "Regular", "bold": "SemiBold" },
+			"note": "Vantage HTML uses DM Sans. Text styles in this file are Riverton (Fraunces + Inter). Decide font-family variables vs per-brand text styles before pushing a second brand."
+		},
+		"base": {
+			"family": "Inter",
+			"regular": "Regular",
+			"medium": "Medium",
+			"bold": "Semi Bold"
+		}
+	},
+	"htmlMap": {
+		"slide[bg-primary without chrome]": "custom 1280×800 frame, fill color/slide-bg-primary. Do not instance Slide.",
+		"slide with header/content/footer": "instance componentset/slide; surface=default unless class bg-primary",
+		"slide-title": "instance componentset/slide-title; always set size (CSS default md, Figma default lg)",
+		"section-title": "instance componentset/section-title",
+		"card + quick-fact-card-*": "instance component/quick-fact-card, not Card",
+		"card otherwise": "instance componentset/card; set padding/gap explicitly (CSS default md/md, Figma default sm/sm)",
+		"attribution-box": "instance componentset/attribution-box",
+		"attribution-box-separator": "instance component/attribution-box-separator",
+		"img gratia-logo.svg": "instance component/logo-gratia",
+		"svg brand/placeholder logo": "instance component/logo-{brand} or placeholder",
+		"flex-row + check/close icon + text": "instance componentset/list-item",
+		"div.flex": "anonymous auto-layout frame",
+		"text / copy": "text node + text style + color variable",
+		"alert": "frame (no Figma component yet) + Alert text styles"
+	}
+}

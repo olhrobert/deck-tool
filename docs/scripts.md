@@ -9,7 +9,7 @@ Compiles one deck folder into a presentable `index.html`.
 **What it does**
 
 1. Scans the deck folder for `.html` files containing a `<slide>` element (skips generated `index.html`)
-2. Updates `slides.json` — rewrites the `slides` array (sorted by filename), preserves `title`
+2. Updates `slides.json` — rewrites the `slides` array (sorted by filename), preserves `title` and `brand`
 3. Extracts each `<slide>…</slide>` block and merges them into `viewer/deck.html`
 4. Writes `index.html` in the deck folder
 
@@ -32,7 +32,7 @@ node scripts/compile-deck.js decks/riverton-project-charter
 
 **Slide order** — controlled by filename sort (`01.html`, `02.html`, …). Rename files to reorder.
 
-**Edit `slides.json` by hand** — only the `title` field; `slides` is regenerated on every compile.
+**Edit `slides.json` by hand** — only the `title` and `brand` fields; `slides` is regenerated on every compile.
 
 ---
 
@@ -73,3 +73,49 @@ open decks/{deck-name}/index.html
 ```
 
 No build step. Recompile the deck if slide content changes.
+
+---
+
+## `new-brand.js`
+
+Scaffolds `brands/{slug}/` from the Riverton `brand.json` template, copies the placeholder logo sprite, and generates `brand.css`.
+
+```bash
+node scripts/new-brand.js acme --name "Acme Capital"
+npm run new-brand -- acme --name "Acme Capital"
+```
+
+Then edit `brand.json` / `logo.svg` and run `validate-brand.js`. See [brands.md](brands.md).
+
+---
+
+## `validate-brand.js`
+
+Checks `TOKEN_MAP` keys, color parse, WCAG AA for text on tertiary / primary / surface, and that `logo.svg` exists.
+
+```bash
+node scripts/validate-brand.js brands/riverton
+npm run validate-brand -- brands/riverton
+```
+
+---
+
+## `html-to-ir.js`
+
+Parses a deck folder into a Figma build plan (cover vs Slide chrome, instances, frames, text). Used by the `push-to-figma` skill. See [html-to-figma.md](html-to-figma.md).
+
+```bash
+node scripts/html-to-ir.js decks/riverton-project-charter --out /tmp/riverton-ir.json
+npm run html-to-ir -- decks/riverton-project-charter
+```
+
+---
+
+## `generate-brand-css.js`
+
+Maps `brand.json` → `brand.css`. Called by `compile-deck.js` and `new-brand.js`. Rarely run directly:
+
+```bash
+node scripts/generate-brand-css.js brands/riverton
+```
+
