@@ -7,13 +7,22 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Component showcase</title>
-		<link rel="stylesheet" href="../tokens/index.css" />
-		<link rel="stylesheet" href="index.css" />
-		<link rel="stylesheet" href="../utilities.css" />
+		<link
+			rel="stylesheet"
+			href="../tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../utilities.css"
+		/>
 		<style>
 			body {
 				margin: 0;
-				background-color: var(--color-slide-bg);
+				background-color: var(--color-slide-background);
 			}
 
 			.showcase {
@@ -21,6 +30,7 @@
 				flex-direction: column;
 				gap: var(--spacing-10);
 				padding: var(--spacing-10);
+				padding-top: var(--spacing-20);
 				max-width: 1280px;
 				margin: 0 auto;
 			}
@@ -38,12 +48,10 @@
 			}
 
 			.showcase-label {
-				font-family: var(--font-family-base);
-				font-size: var(--text-size-300);
-				font-weight: var(--font-weight-bold);
-				letter-spacing: var(--letterspacing-loose);
-				text-transform: uppercase;
-				color: var(--color-text-subtle);
+				font-family: system-ui, sans-serif;
+				font-size: var(--copy-size-sm);
+				font-weight: var(--copy-weight-default);
+				color: var(--color-slide-foreground-subtle);
 			}
 
 			.showcase-deck deck {
@@ -57,226 +65,409 @@
 			}
 
 			.showcase-footer {
-				border: 1px solid var(--color-card-border);
+				border: 1px solid var(--color-slide-surface-border);
 				border-radius: var(--border-radius-card);
 				overflow: hidden;
 			}
 
 			.showcase-toolbar {
+				position: fixed;
+				bottom: 24px;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 100;
 				display: flex;
 				align-items: center;
-				gap: var(--spacing-3);
-				padding: var(--spacing-4);
-				background-color: var(--color-card-bg);
-				border: 1px solid var(--color-card-border);
+				gap: 4px;
+				padding: 4px;
+				background-color: var(--color-slide-surface-background);
+				border: 1px solid var(--color-slide-surface-border);
 				border-radius: var(--border-radius-card);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				width: fit-content;
 			}
 
-			.showcase-toolbar label {
-				font-family: var(--font-family-base);
-				font-size: var(--text-size-350);
-				font-weight: var(--font-weight-medium);
-				color: var(--color-text-base);
+			.showcase-filter {
+				position: fixed;
+				top: 24px;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 100;
+				display: flex;
+				align-items: center;
+				gap: 0;
+				padding: 4px;
+				background-color: var(--color-slide-surface-background);
+				border: 1px solid var(--color-slide-surface-border);
+				border-radius: var(--border-radius-card);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				width: fit-content;
+			}
+
+			.showcase-filter button {
+				font-family: system-ui, sans-serif;
+				font-size: 12px;
+				font-weight: 500;
+				padding: 6px 8px;
+				border: none;
+				border-radius: 6px;
+				background: transparent;
+				color: var(--color-slide-foreground-base);
+				cursor: pointer;
+				transition:
+					background-color 0.15s,
+					color 0.15s;
+			}
+
+			.showcase-filter button:hover {
+				background-color: var(--color-slide-surface-border);
+			}
+
+			.showcase-filter button.is-active {
+				background-color: var(--color-cover-background);
+				color: var(--color-cover-foreground);
 			}
 
 			.showcase-toolbar select {
-				font-family: var(--font-family-base);
-				font-size: var(--text-size-350);
-				padding: var(--spacing-2) var(--spacing-3);
-				border: 1px solid var(--color-card-border);
-				border-radius: var(--border-radius-sm);
-				background-color: var(--color-surface);
-				color: var(--color-text-strong);
+				font-family: system-ui, sans-serif;
+				font-size: 12px;
+				font-weight: 500;
+				padding: 6px 8px;
+				border: none;
+				border-radius: 6px;
+				background: transparent;
+				color: var(--color-slide-foreground-base);
+				cursor: pointer;
 			}
 
 			.showcase-toolbar button {
-				font-family: var(--font-family-base);
-				font-size: var(--text-size-350);
-				font-weight: var(--font-weight-medium);
-				padding: var(--spacing-2) var(--spacing-4);
-				border: 1px solid var(--color-card-border);
-				border-radius: var(--border-radius-sm);
-				background-color: var(--color-primary);
-				color: var(--color-text-on-primary);
+				font-family: system-ui, sans-serif;
+				font-size: 12px;
+				font-weight: 500;
+				padding: 6px 8px;
+				border: none;
+				border-radius: 6px;
+				background-color: var(--color-cover-background);
+				color: var(--color-cover-foreground);
 				cursor: pointer;
+				transition:
+					background-color 0.15s,
+					color 0.15s;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="showcase">
+			<div class="showcase-filter">
+				<button
+					type="button"
+					class="is-active"
+					data-filter="slides"
+				>
+					Slides
+				</button>
+				<button
+					type="button"
+					data-filter="components"
+				>
+					Comps
+				</button>
+				<button
+					type="button"
+					data-filter="typography"
+				>
+					Type
+				</button>
+			</div>
+
 			<div class="showcase-toolbar">
-				<label for="brand-selector">Brand</label>
 				<select id="brand-selector">
-					<option value="">Default</option>
+					<option
+						value="gratia"
+						selected
+					>
+						Gratia
+					</option>
 					<option value="riverton">Riverton</option>
-					<option value="vantage">Vantage</option>
 				</select>
-				<button type="button" id="brand-load">Load brand</button>
-			</div>
-
-			<slide-title>
-				<slide-title-main size="lg"
-					>Component showcase</slide-title-main
+				<button
+					type="button"
+					id="brand-load"
 				>
-				<slide-title-sub
-					>Non-layout components and presets</slide-title-sub
-				>
-			</slide-title>
-
-			<div class="showcase-group">
-				<section-title size="lg">Typography</section-title>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">text</text>
-					<text size="base" weight="bold" tone="strong"
-						>This is body text.</text
-					>
-					<text size="sm" tone="subtle"
-						>Subtle supporting text.</text
-					>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">copy</text>
-					<copy size="lg">Large copy block.</copy>
-					<copy size="sm">Small copy block.</copy>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">section-title</text>
-					<section-title size="lg">Section title large</section-title>
-					<section-title size="md">Section title medium</section-title>
-					<section-title size="sm">Section title small</section-title>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">slide-title</text>
-					<slide-title>
-						<slide-title-pre>Pre-title</slide-title-pre>
-						<slide-title-main>Slide title main</slide-title-main>
-						<slide-title-sub>Slide title sub</slide-title-sub>
-					</slide-title>
-				</div>
+					Load brand
+				</button>
 			</div>
 
-			<div class="showcase-group">
-				<section-title size="lg">Alert</section-title>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">default</text>
-					<alert padding="md">
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>This is an alert description with placeholder
-							copy.</alert-description
-						>
-					</alert>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">positive</text>
-					<alert variant="positive" padding="md">
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Positive alert description.</alert-description
-						>
-					</alert>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">warning</text>
-					<alert variant="warning" padding="md">
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Warning alert description.</alert-description
-						>
-					</alert>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">negative</text>
-					<alert variant="negative" padding="md">
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Negative alert description.</alert-description
-						>
-					</alert>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">informative</text>
-					<alert variant="informative" padding="md">
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Informative alert description.</alert-description
-						>
-					</alert>
-				</div>
-			</div>
-
-			<div class="showcase-group">
-				<section-title size="lg">Attribution box</section-title>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">variant="title"</text>
-					<attribution-box variant="title">
-						<text>Sanitized excerpt prepared by</text>
-						<img
-							src="../../assets/logos/gratia-logo.svg"
-							alt="Gratia"
-						/>
-					</attribution-box>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label">variant="content"</text>
-					<attribution-box variant="content">
-						<text>Optional disclaimer placeholder</text>
-						<attribution-box-separator></attribution-box-separator>
-						<text>Prepared by</text>
-						<img
-							src="../../assets/logos/gratia-logo.svg"
-							alt="Gratia"
-						/>
-						<attribution-box-separator></attribution-box-separator>
-						<text>01</text>
-					</attribution-box>
-				</div>
-			</div>
-
-			<div class="showcase-group">
-				<section-title size="lg">Quick fact card</section-title>
-
-				<div class="flex flex-row gap-2">
-					<card width="fill" padding="md" gap="sm">
-						<quick-fact-card-pretitle>Label</quick-fact-card-pretitle>
-						<quick-fact-card-title>Value</quick-fact-card-title>
-						<quick-fact-card-meta>Card meta</quick-fact-card-meta>
-					</card>
-					<card width="fill" padding="md" gap="sm">
-						<quick-fact-card-pretitle>Budget</quick-fact-card-pretitle>
-						<quick-fact-card-title>$84M</quick-fact-card-title>
-						<quick-fact-card-meta
-							>$72M capex · $12M opex</quick-fact-card-meta
-						>
-					</card>
-				</div>
-			</div>
-
-			<div class="showcase-group">
-				<section-title size="lg">Presets</section-title>
-
-				<div class="showcase-subgroup">
+			<div
+				class="showcase-group"
+				data-section="slides"
+			>
+				<div class="showcase-subgroup showcase-deck">
 					<text class="showcase-label"
-						>presets/cards/quick-fact-card.html</text
+						>presets/deck-titles/deck-title-01.html</text
 					>
-					<card width="fill" padding="md" gap="sm">
-						<quick-fact-card-pretitle>Label</quick-fact-card-pretitle>
-						<quick-fact-card-title>Value</quick-fact-card-title>
-						<quick-fact-card-meta
-							>Optional supporting detail</quick-fact-card-meta
-						>
-					</card>
+					<deck>
+						<slide class="bg-cover">
+							<div class="box-border w-full h-full flex">
+								<div
+									class="box-border h-full grow min-w-0 flex flex-col gap-4 p-20 pb-4"
+								>
+									<div class="flex flex-col gap-4 grow">
+										<text
+											family="cover-title"
+											weight="bold"
+											size="1600"
+											lineheight="sm"
+											class="color-cover-foreground-strong"
+										>
+											Title of this deck. Keep it concise.
+										</text>
+										<text
+											family="body"
+											weight="regular"
+											size="450"
+											lineheight="lg"
+											class="color-cover-foreground-subtle"
+										>
+											Optional subtitle. Can be one or two
+											sentences long.
+										</text>
+									</div>
+									<text
+										family="body"
+										weight="regular"
+										size="300"
+										lineheight="lg"
+										class="color-cover-foreground-subtle"
+									>
+										Optional metadata. Can be several
+										sentences long.
+									</text>
+								</div>
+								<div
+									class="box-border h-full shrink-0 flex flex-col justify-between items-start pt-24"
+								>
+									<svg
+										role="img"
+										aria-label="Logo"
+										class="shrink-0 block color-cover-foreground-strong"
+										style="height: 24px"
+										viewBox="0 0 44 12"
+										fill="none"
+									>
+										<use
+											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+										/>
+									</svg>
+									<attribution-box variant="title">
+										<text
+											>Sanitized excerpt prepared by</text
+										>
+										<img
+											src="../../assets/logos/gratia-logo.svg"
+											alt="Gratia"
+										/>
+									</attribution-box>
+								</div>
+							</div>
+						</slide>
+					</deck>
+				</div>
+
+				<div class="showcase-subgroup showcase-deck">
+					<text class="showcase-label"
+						>presets/deck-titles/deck-title-02.html</text
+					>
+					<deck>
+						<slide class="bg-cover">
+							<div
+								class="box-border w-full h-full flex flex-col justify-between p-20"
+							>
+								<div class="flex justify-between items-start">
+									<div
+										class="flex items-center py-4 px-6 bg-slide-surface"
+									>
+										<svg
+											role="img"
+											aria-label="Logo"
+											class="shrink-0 block color-slide-surface-foreground-strong"
+											style="height: 24px"
+											viewBox="0 0 44 12"
+											fill="none"
+										>
+											<use
+												href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+											/>
+										</svg>
+									</div>
+									<attribution-box variant="title">
+										<text
+											>Sanitized excerpt prepared by</text
+										>
+										<img
+											src="../../assets/logos/gratia-logo.svg"
+											alt="Gratia"
+										/>
+									</attribution-box>
+								</div>
+								<div class="flex flex-col gap-4">
+									<text
+										family="cover-title"
+										weight="bold"
+										size="3000"
+										lineheight="sm"
+										class="color-cover-foreground-strong"
+									>
+										Title of this deck. Keep it concise.
+									</text>
+									<text
+										size="sm"
+										tone="subtle"
+									>
+										Optional subtitle. Can be one or two
+										sentences long.
+									</text>
+								</div>
+							</div>
+						</slide>
+					</deck>
+				</div>
+
+				<div class="showcase-subgroup showcase-deck">
+					<text class="showcase-label"
+						>presets/deck-titles/deck-title-03.html</text
+					>
+					<deck>
+						<slide class="bg-cover">
+							<div class="box-border w-full h-full flex">
+								<div
+									class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
+								>
+									<svg
+										role="img"
+										aria-label="Logo"
+										class="shrink-0 block color-cover-foreground-strong"
+										style="height: 24px"
+										viewBox="0 0 44 12"
+										fill="none"
+									>
+										<use
+											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+										/>
+									</svg>
+									<div>
+										<text
+											family="cover-title"
+											weight="bold"
+											size="4000"
+											lineheight="single"
+											class="color-cover-foreground-strong"
+										>
+											Title of
+										</text>
+										<text
+											family="cover-title"
+											weight="bold"
+											size="4000"
+											lineheight="single"
+											class="color-cover-foreground-strong"
+										>
+											the deck
+										</text>
+									</div>
+								</div>
+								<div
+									class="box-border h-full shrink-0 flex flex-col justify-between p-0"
+								>
+									<attribution-box variant="title">
+										<text
+											>Sanitized excerpt prepared by</text
+										>
+										<img
+											src="../../assets/logos/gratia-logo.svg"
+											alt="Gratia"
+										/>
+									</attribution-box>
+									<div class="flex pb-10 pr-6 w-full">
+										<text
+											size="sm"
+											tone="subtle"
+											class="text-left grow"
+										>
+											Optional subtitle. Can be one or two
+											sentences long.
+										</text>
+									</div>
+								</div>
+							</div>
+						</slide>
+					</deck>
+				</div>
+
+				<div class="showcase-subgroup showcase-deck">
+					<text class="showcase-label"
+						>presets/deck-titles/deck-title-04.html</text
+					>
+					<deck>
+						<slide class="bg-cover">
+							<div class="relative box-border w-full h-full">
+								<div
+									class="absolute top-0 left-0 right-0 flex justify-center pt-20"
+								>
+									<svg
+										role="img"
+										aria-label="Logo"
+										class="shrink-0 block color-cover-foreground-strong"
+										style="height: 24px"
+										viewBox="0 0 44 12"
+										fill="none"
+									>
+										<use
+											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+										/>
+									</svg>
+								</div>
+								<div
+									class="box-border w-full h-full flex items-center justify-center"
+								>
+									<div
+										class="flex flex-col items-center gap-4"
+									>
+										<text
+											family="cover-title"
+											weight="bold"
+											size="3000"
+											lineheight="sm"
+											class="text-center color-cover-foreground-strong"
+										>
+											Title of the deck
+										</text>
+										<text
+											size="sm"
+											tone="subtle"
+											class="text-center"
+										>
+											Optional subtitle. Can be one or two
+											sentences long.
+										</text>
+									</div>
+								</div>
+								<div
+									class="absolute bottom-0 left-0 right-0 flex justify-center"
+								>
+									<attribution-box variant="title">
+										<text
+											>Sanitized excerpt prepared by</text
+										>
+										<img
+											src="../../assets/logos/gratia-logo.svg"
+											alt="Gratia"
+										/>
+									</attribution-box>
+								</div>
+							</div>
+						</slide>
+					</deck>
 				</div>
 
 				<div class="showcase-subgroup">
@@ -289,7 +480,7 @@
 								<svg
 									role="img"
 									aria-label="Logo"
-									class="shrink-0 block color-text-strong"
+									class="shrink-0 block color-slide-foreground-strong"
 									style="height: 12px"
 									viewBox="0 0 44 12"
 									fill="none"
@@ -324,13 +515,11 @@
 					<div class="showcase-footer">
 						<slide-footer>
 							<div class="flex items-center w-full">
-								<div
-									class="flex-1 flex justify-start min-w-0"
-								>
+								<div class="flex-1 flex justify-start min-w-0">
 									<svg
 										role="img"
 										aria-label="Logo"
-										class="shrink-0 block color-text-strong"
+										class="shrink-0 block color-slide-foreground-strong"
 										style="height: 12px"
 										viewBox="0 0 44 12"
 										fill="none"
@@ -352,285 +541,210 @@
 										alt="Gratia"
 									/>
 								</attribution-box>
-								<div
-									class="flex-1 flex justify-end min-w-0"
-								>
-									<text size="200" tone="subtle">01</text>
+								<div class="flex-1 flex justify-end min-w-0">
+									<text
+										size="200"
+										tone="subtle"
+										>01</text
+									>
 								</div>
 							</div>
 						</slide-footer>
 					</div>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
+				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>presets/deck-titles/deck-title-01.html</text
+						>presets/cards/quick-fact-card.html</text
 					>
-					<deck>
-						<slide class="bg-primary">
-							<div class="box-border w-full h-full flex">
-								<div
-									class="box-border h-full grow min-w-0 flex flex-col gap-4 p-20 pb-4"
-								>
-									<div class="flex flex-col gap-4 grow">
-										<text
-											family="display"
-											weight="bold"
-											size="1600"
-											lineheight="sm"
-											class="color-text-strong"
-										>
-											Title of this deck. Keep it concise.
-										</text>
-										<text
-											family="base"
-											weight="regular"
-											size="450"
-											lineheight="lg"
-											class="color-text-subtle"
-										>
-											Optional subtitle. Can be one or two
-											sentences long.
-										</text>
-									</div>
-									<text
-										family="base"
-										weight="regular"
-										size="300"
-										lineheight="lg"
-										class="color-text-subtle"
-									>
-										Optional metadata. Can be several
-										sentences long.
-									</text>
-								</div>
-								<div
-									class="box-border h-full shrink-0 flex flex-col justify-between items-start pt-24"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block color-text-strong"
-										style="height: 24px"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-									<attribution-box variant="title">
-										<text
-											>Sanitized excerpt prepared
-											by</text
-										>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-								</div>
-							</div>
-						</slide>
-					</deck>
+					<card
+						width="fill"
+						padding="md"
+						gap="sm"
+					>
+						<quick-fact-card-pretitle
+							>Label</quick-fact-card-pretitle
+						>
+						<quick-fact-card-title>Value</quick-fact-card-title>
+						<quick-fact-card-meta
+							>Optional supporting detail</quick-fact-card-meta
+						>
+					</card>
+				</div>
+			</div>
+
+			<div
+				class="showcase-group"
+				data-section="components"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label">default</text>
+					<alert padding="md">
+						<alert-title>This is an alert title</alert-title>
+						<alert-description
+							>This is an alert description with placeholder
+							copy.</alert-description
+						>
+					</alert>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
-					<text class="showcase-label"
-						>presets/deck-titles/deck-title-02.html</text
+				<div class="showcase-subgroup">
+					<text class="showcase-label">positive</text>
+					<alert
+						variant="positive"
+						padding="md"
 					>
-					<deck>
-						<slide class="bg-primary">
-							<div
-								class="box-border w-full h-full flex flex-col justify-between p-20"
-							>
-								<div class="flex justify-between items-start">
-									<div
-										class="flex items-center py-4 px-6 bg-card"
-									>
-										<svg
-											role="img"
-											aria-label="Logo"
-											class="shrink-0 block color-text-strong"
-											style="height: 24px"
-											viewBox="0 0 44 12"
-											fill="none"
-										>
-											<use
-												href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-											/>
-										</svg>
-									</div>
-									<attribution-box variant="title">
-										<text
-											>Sanitized excerpt prepared
-											by</text
-										>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-								</div>
-								<div class="flex flex-col gap-4">
-									<text
-										family="display"
-										weight="bold"
-										size="3000"
-										lineheight="sm"
-										class="color-text-strong"
-									>
-										Title of this deck. Keep it concise.
-									</text>
-									<text size="sm" tone="subtle">
-										Optional subtitle. Can be one or two
-										sentences long.
-									</text>
-								</div>
-							</div>
-						</slide>
-					</deck>
+						<alert-title>This is an alert title</alert-title>
+						<alert-description
+							>Positive alert description.</alert-description
+						>
+					</alert>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
-					<text class="showcase-label"
-						>presets/deck-titles/deck-title-03.html</text
+				<div class="showcase-subgroup">
+					<text class="showcase-label">warning</text>
+					<alert
+						variant="warning"
+						padding="md"
 					>
-					<deck>
-						<slide class="bg-primary">
-							<div class="box-border w-full h-full flex">
-								<div
-									class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block color-text-strong"
-										style="height: 24px"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-									<div>
-										<text
-											family="display"
-											weight="bold"
-											size="4000"
-											lineheight="single"
-											class="color-text-strong"
-										>
-											Title of
-										</text>
-										<text
-											family="display"
-											weight="bold"
-											size="4000"
-											lineheight="single"
-											class="color-text-on-primary-strong"
-										>
-											the deck
-										</text>
-									</div>
-								</div>
-								<div
-									class="box-border h-full shrink-0 flex flex-col justify-between p-0"
-								>
-									<attribution-box variant="title">
-										<text
-											>Sanitized excerpt prepared
-											by</text
-										>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-									<div class="flex pb-10 pr-6 w-full">
-										<text
-											size="sm"
-											tone="subtle"
-											class="text-left grow"
-										>
-											Optional subtitle. Can be one or
-											two sentences long.
-										</text>
-									</div>
-								</div>
-							</div>
-						</slide>
-					</deck>
+						<alert-title>This is an alert title</alert-title>
+						<alert-description
+							>Warning alert description.</alert-description
+						>
+					</alert>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
-					<text class="showcase-label"
-						>presets/deck-titles/deck-title-04.html</text
+				<div class="showcase-subgroup">
+					<text class="showcase-label">negative</text>
+					<alert
+						variant="negative"
+						padding="md"
 					>
-					<deck>
-						<slide class="bg-primary">
-							<div
-								class="relative box-border w-full h-full"
-							>
-								<div
-									class="absolute top-0 left-0 right-0 flex justify-center pt-20"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block color-text-on-primary-strong"
-										style="height: 24px"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-								</div>
-								<div
-									class="box-border w-full h-full flex items-center justify-center"
-								>
-									<div
-										class="flex flex-col items-center gap-4"
-									>
-										<text
-											family="display"
-											weight="bold"
-											size="3000"
-											lineheight="sm"
-											class="text-center color-text-on-primary-strong"
-										>
-											Title of the deck
-										</text>
-										<text
-											size="sm"
-											tone="subtle"
-											class="text-center"
-										>
-											Optional subtitle. Can be one or
-											two sentences long.
-										</text>
-									</div>
-								</div>
-								<div
-									class="absolute bottom-0 left-0 right-0 flex justify-center"
-								>
-									<attribution-box variant="title">
-										<text
-											>Sanitized excerpt prepared
-											by</text
-										>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-								</div>
-							</div>
-						</slide>
-					</deck>
+						<alert-title>This is an alert title</alert-title>
+						<alert-description
+							>Negative alert description.</alert-description
+						>
+					</alert>
+				</div>
+
+				<div class="showcase-subgroup">
+					<text class="showcase-label">informative</text>
+					<alert
+						variant="informative"
+						padding="md"
+					>
+						<alert-title>This is an alert title</alert-title>
+						<alert-description
+							>Informative alert description.</alert-description
+						>
+					</alert>
+				</div>
+			</div>
+
+			<div
+				class="showcase-group"
+				data-section="components"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label">variant="title"</text>
+					<attribution-box variant="title">
+						<text>Sanitized excerpt prepared by</text>
+						<img
+							src="../../assets/logos/gratia-logo.svg"
+							alt="Gratia"
+						/>
+					</attribution-box>
+				</div>
+
+				<div class="showcase-subgroup">
+					<text class="showcase-label">variant="content"</text>
+					<attribution-box variant="content">
+						<text>Optional disclaimer placeholder</text>
+						<attribution-box-separator></attribution-box-separator>
+						<text>Prepared by</text>
+						<img
+							src="../../assets/logos/gratia-logo.svg"
+							alt="Gratia"
+						/>
+						<attribution-box-separator></attribution-box-separator>
+						<text>01</text>
+					</attribution-box>
+				</div>
+			</div>
+
+			<div
+				class="showcase-group"
+				data-section="components"
+			>
+				<div class="flex flex-row gap-2">
+					<card
+						width="fill"
+						padding="md"
+						gap="sm"
+					>
+						<quick-fact-card-pretitle
+							>Label</quick-fact-card-pretitle
+						>
+						<quick-fact-card-title>Value</quick-fact-card-title>
+						<quick-fact-card-meta>Card meta</quick-fact-card-meta>
+					</card>
+					<card
+						width="fill"
+						padding="md"
+						gap="sm"
+					>
+						<quick-fact-card-pretitle
+							>Budget</quick-fact-card-pretitle
+						>
+						<quick-fact-card-title>$84M</quick-fact-card-title>
+						<quick-fact-card-meta
+							>$72M capex · $12M opex</quick-fact-card-meta
+						>
+					</card>
+				</div>
+			</div>
+
+			<div
+				class="showcase-group"
+				data-section="typography"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label">text</text>
+					<text
+						size="base"
+						weight="bold"
+						tone="strong"
+						>This is body text.</text
+					>
+					<text
+						size="sm"
+						tone="subtle"
+						>Subtle supporting text.</text
+					>
+				</div>
+
+				<div class="showcase-subgroup">
+					<text class="showcase-label">copy</text>
+					<copy size="lg">Large copy block.</copy>
+					<copy size="sm">Small copy block.</copy>
+				</div>
+
+				<div class="showcase-subgroup">
+					<text class="showcase-label">section-title</text>
+					<section-title size="lg">Section title large</section-title>
+					<section-title size="md"
+						>Section title medium</section-title
+					>
+					<section-title size="sm">Section title small</section-title>
+				</div>
+
+				<div class="showcase-subgroup">
+					<text class="showcase-label">slide-title</text>
+					<slide-title>
+						<slide-title-pre>Pre-title</slide-title-pre>
+						<slide-title-main>Slide title main</slide-title-main>
+						<slide-title-sub>Slide title sub</slide-title-sub>
+					</slide-title>
 				</div>
 			</div>
 		</div>
@@ -653,6 +767,35 @@
 			}
 
 			brandLoadButton.addEventListener("click", applyBrand);
+			applyBrand();
+
+			const filterButtons = document.querySelectorAll(
+				".showcase-filter button",
+			);
+			const sections = document.querySelectorAll(
+				".showcase-group[data-section]",
+			);
+
+			function applyFilter(active) {
+				filterButtons.forEach((btn) => {
+					btn.classList.toggle(
+						"is-active",
+						btn.dataset.filter === active,
+					);
+				});
+				sections.forEach((sec) => {
+					sec.style.display =
+						sec.dataset.section === active ? "" : "none";
+				});
+			}
+
+			filterButtons.forEach((btn) => {
+				btn.addEventListener("click", () =>
+					applyFilter(btn.dataset.filter),
+				);
+			});
+
+			applyFilter("slides");
 		</script>
 	</body>
 </html>

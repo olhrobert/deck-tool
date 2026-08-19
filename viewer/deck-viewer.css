@@ -19,8 +19,8 @@
 	border-radius: var(--border-radius-full);
 	background-color: rgba(0, 0, 0, 0.72);
 	backdrop-filter: blur(8px);
-	font-family: var(--font-family-base);
-	font-size: var(--text-size-300);
+	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-size: 12px;
 	color: var(--color-white);
 }
 

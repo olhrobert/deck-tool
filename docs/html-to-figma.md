@@ -8,7 +8,7 @@ node scripts/html-to-ir.js decks/{deck-name} --out /tmp/{deck}-ir.json
 
 IR is JSON: `{ title, brand, slides[] }`. Each slide is either:
 
-- `chrome: "cover"` — anonymous 1280×800 tree (`root`). Fill `color/slide-bg` or `color/slide-bg-primary`
+- `chrome: "cover"` — anonymous 1280×800 tree (`root`). Fill `color/cover-background` or `color/slide-background`
 - `chrome: "slide"` — instance `componentset/slide` with `slots.header|content|footer`
 
 Node types: `frame`, `instance`, `text`, `slot`.
@@ -18,7 +18,7 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | HTML | IR |
 |---|---|
 | `<slide>` without header/content/footer | cover frame |
-| `<slide>` with chrome | Slide instance, `surface` from `.bg-primary` |
+| `<slide>` with chrome | Slide instance, `surface` from `.bg-cover` (Figma variant is still `surface=primary`) |
 | `<slide-title>` | Slide Title instance; always set `size` (`md` if omitted) |
 | `<section-title>` | Section Title instance |
 | `<card>` + QFC children | Quick Fact Card instance |
@@ -32,9 +32,9 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | `<text>` / `<copy>` | text + `typography` variables (`family`, `weight`, `size`, `lineHeight`, `letterSpacing`) + color variable |
 | `<alert>` | frame (no Alert component in the library yet) |
 
-Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/card-border`.
+Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/slide-surface-border`.
 
-`text[size="sm"]` is 350. `text[tone="strong|subtle|base"]` maps to `color/text-*`. Attribution slot text is forced to `size/300` (title) or `size/200` (content) to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
+`text[size="sm"]` is 350. `text[tone="strong|subtle|base"]` maps to `color/slide-foreground-*`. Attribution slot text is forced to `size/300` (title) or `size/200` (content) to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
 
 ## Push sequence
 

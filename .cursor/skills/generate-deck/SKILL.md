@@ -4,7 +4,7 @@ description: >-
   Generate or edit DeckTool HTML decks from presets in a specified brand.
   Copies presets, replaces copy only, sets slides.json.brand, compiles
   index.html. Use when creating slides, decks, pitch decks, or title slides
-  in riverton, vantage, or another brand.
+  in riverton, gratia, or another brand.
 ---
 
 # Generate deck

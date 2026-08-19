@@ -7,5 +7,5 @@ quick-fact-card-pretitle {
 	font-size: var(--quick-fact-card-pretitle-size);
 	letter-spacing: var(--quick-fact-card-pretitle-letterspacing);
 	text-transform: uppercase;
-	color: var(--color-text-subtle);
+	color: var(--color-slide-surface-foreground-subtle);
 }

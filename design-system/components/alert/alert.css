@@ -4,9 +4,9 @@ alert {
 	flex: 1 1 0%;
 	min-width: 0;
 	box-sizing: border-box;
-	background-color: var(--color-alert-bg);
+	background-color: var(--color-slide-surface-background);
 	border-style: solid;
-	border-color: var(--color-alert-border);
+	border-color: var(--color-highlight);
 	border-top-width: var(--alert-border-size-top);
 	border-bottom-width: var(--alert-border-size-bottom);
 	border-left-width: var(--alert-border-size-left);
@@ -17,19 +17,19 @@ alert {
 }
 
 alert[variant="positive"] {
-	border-color: var(--color-alert-border-positive);
+	border-color: var(--color-positive);
 }
 
 alert[variant="warning"] {
-	border-color: var(--color-alert-border-warning);
+	border-color: var(--color-warning);
 }
 
 alert[variant="negative"] {
-	border-color: var(--color-alert-border-negative);
+	border-color: var(--color-negative);
 }
 
 alert[variant="informative"] {
-	border-color: var(--color-alert-border-informative);
+	border-color: var(--color-informative);
 }
 
 alert[padding="sm"] {

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg">
-	<symbol id="vantage-logo" viewBox="0 0 132 24" fill="none">
-		<path d="M11 2 L21 20 L17.2 20 L11 8.9 L4.8 20 L1 20 Z" fill="currentColor"/>
-		<path d="M11 12.4 L15.1 20 L11.9 20 L11 18.3 L10.1 20 L6.9 20 Z" fill="currentColor"/>
-		<text x="31" y="18" font-family="'DM Sans', system-ui, sans-serif" font-size="17" font-weight="700" letter-spacing="-0.3" fill="currentColor">Vantage</text>
-	</symbol>
-</svg>

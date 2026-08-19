@@ -5,6 +5,6 @@ alert-description {
 	font-weight: var(--alert-description-weight);
 	line-height: var(--alert-description-lineheight);
 	font-size: var(--alert-description-size);
-	letter-spacing: var(--letterspacing-base);
-	color: var(--color-text-base);
+	letter-spacing: 0%;
+	color: var(--color-slide-surface-foreground-base);
 }

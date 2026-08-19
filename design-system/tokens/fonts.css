@@ -1,4 +1,4 @@
-/* Fraunces — display */
+/* Fraunces — heading */
 @font-face {
 	font-family: "Fraunces";
 	src: url("../../assets/fonts/Fraunces/static/Fraunces_72pt-Regular.ttf")
@@ -35,7 +35,7 @@
 	font-display: swap;
 }
 
-/* Inter — base */
+/* Inter — body */
 @font-face {
 	font-family: "Inter";
 	src: url("../../assets/fonts/Inter/static/Inter_18pt-Regular.ttf") format("truetype");

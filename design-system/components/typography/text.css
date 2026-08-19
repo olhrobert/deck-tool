@@ -2,190 +2,211 @@
 text {
 	display: block;
 	margin: 0;
-	font-family: var(--font-family-base);
-	font-weight: var(--font-weight-regular);
-	line-height: var(--lineheight-md);
-	font-size: var(--text-size-400);
-	letter-spacing: var(--letterspacing-base);
-	color: var(--color-text-base);
+	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-weight: 400;
+	line-height: 1.2;
+	font-size: 16px;
+	letter-spacing: 0%;
+	color: var(--color-slide-foreground-base);
 }
 
 /* font family */
-.text-family-display,
-text[family="display"] {
-	font-family: var(--font-family-display);
+.text-family-cover-title,
+text[family="cover-title"] {
+	font-family: var(--font-family-cover-title, system-ui, sans-serif);
 }
 
-.text-family-base,
-text[family="base"] {
-	font-family: var(--font-family-base);
+.text-family-slide-title,
+text[family="slide-title"] {
+	font-family: var(--font-family-slide-title, system-ui, sans-serif);
+}
+
+.text-family-card-title,
+text[family="card-title"] {
+	font-family: var(--font-family-card-title, system-ui, sans-serif);
+}
+
+.text-family-paragraph-title,
+text[family="paragraph-title"] {
+	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
+}
+
+.text-family-body,
+text[family="body"] {
+	font-family: var(--font-family-body, system-ui, sans-serif);
+}
+
+/* legacy aliases */
+.text-family-heading,
+text[family="heading"] {
+	font-family: var(--font-family-slide-title, system-ui, sans-serif);
 }
 
 /* font weight */
 .text-weight-regular,
 text[weight="regular"] {
-	font-weight: var(--font-weight-regular);
+	font-weight: 400;
 }
 
 .text-weight-medium,
 text[weight="medium"] {
-	font-weight: var(--font-weight-medium);
+	font-weight: 500;
 }
 
 .text-weight-bold,
 text[weight="bold"] {
-	font-weight: var(--font-weight-bold);
+	font-weight: 600;
 }
 
 /* line height */
 .text-lineheight-single,
 text[lineheight="single"] {
-	line-height: var(--lineheight-single);
+	line-height: 1;
 }
 
 .text-lineheight-sm,
 text[lineheight="sm"] {
-	line-height: var(--lineheight-sm);
+	line-height: 1.1;
 }
 
 .text-lineheight-md,
 text[lineheight="md"] {
-	line-height: var(--lineheight-md);
+	line-height: 1.2;
 }
 
 .text-lineheight-lg,
 text[lineheight="lg"] {
-	line-height: var(--lineheight-lg);
+	line-height: 1.5;
 }
 
 /* letter spacing */
 .text-letterspacing-base,
 text[letterspacing="base"] {
-	letter-spacing: var(--letterspacing-base);
+	letter-spacing: 0%;
 }
 
 .text-letterspacing-loose,
 text[letterspacing="loose"] {
-	letter-spacing: var(--letterspacing-loose);
+	letter-spacing: 2%;
 }
 
 /* sizes */
 .text-size-4000,
 text[size="4000"] {
-	font-size: var(--text-size-4000);
+	font-size: 160px;
 }
 
 .text-size-3400,
 text[size="3400"] {
-	font-size: var(--text-size-3400);
+	font-size: 136px;
 }
 
 .text-size-3000,
 text[size="3000"] {
-	font-size: var(--text-size-3000);
+	font-size: 120px;
 }
 
 .text-size-2400,
 text[size="2400"] {
-	font-size: var(--text-size-2400);
+	font-size: 96px;
 }
 
 .text-size-2000,
 text[size="2000"] {
-	font-size: var(--text-size-2000);
+	font-size: 80px;
 }
 
 .text-size-1600,
 text[size="1600"] {
-	font-size: var(--text-size-1600);
+	font-size: 64px;
 }
 
 .text-size-1200,
 text[size="1200"] {
-	font-size: var(--text-size-1200);
+	font-size: 48px;
 }
 
 .text-size-1000,
 text[size="1000"] {
-	font-size: var(--text-size-1000);
+	font-size: 40px;
 }
 
 .text-size-800,
 text[size="800"] {
-	font-size: var(--text-size-800);
+	font-size: 32px;
 }
 
 .text-size-700,
 text[size="700"] {
-	font-size: var(--text-size-700);
+	font-size: 28px;
 }
 
 .text-size-600,
 text[size="600"] {
-	font-size: var(--text-size-600);
+	font-size: 24px;
 }
 
 .text-size-550,
 text[size="550"] {
-	font-size: var(--text-size-550);
+	font-size: 22px;
 }
 
 .text-size-500,
 text[size="500"] {
-	font-size: var(--text-size-500);
+	font-size: 20px;
 }
 
 .text-size-450,
 text[size="450"] {
-	font-size: var(--text-size-450);
+	font-size: 18px;
 }
 
 .text-size-400,
 text[size="400"] {
-	font-size: var(--text-size-400);
+	font-size: 16px;
 }
 
 .text-size-350,
 text[size="350"] {
-	font-size: var(--text-size-350);
+	font-size: 14px;
 }
 
 .text-size-300,
 text[size="300"] {
-	font-size: var(--text-size-300);
+	font-size: 12px;
 }
 
 .text-size-275,
 text[size="275"] {
-	font-size: var(--text-size-275);
+	font-size: 11px;
 }
 
 .text-size-250,
 text[size="250"] {
-	font-size: var(--text-size-250);
+	font-size: 10px;
 }
 
 .text-size-225,
 text[size="225"] {
-	font-size: var(--text-size-225);
+	font-size: 9px;
 }
 
 .text-size-200,
 text[size="200"] {
-	font-size: var(--text-size-200);
+	font-size: 8px;
 }
 
 text[size="sm"] {
-	font-size: var(--text-size-350);
+	font-size: 14px;
 }
 
 /* tone */
 text[tone="strong"] {
-	color: var(--color-text-strong);
+	color: var(--color-slide-foreground-strong);
 }
 
 text[tone="subtle"] {
-	color: var(--color-text-subtle);
+	color: var(--color-slide-foreground-subtle);
 }
 
 /* transform */

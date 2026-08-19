@@ -32,39 +32,57 @@ Then edit `brand.json` (start from the Riverton copy the scaffold writes) and re
 
 ## `brand.json` fields
 
-Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. Spacing, type scale, and weights stay in `design-system/tokens/`. Semantic aliases (`--color-slide-bg`, `--color-text-strong`, …) live in `design-system/tokens/colors.css` and are **not** brand overrides — they follow the primitives below.
+Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. Spacing, type scale, and weights stay in `design-system/tokens/`.
 
-Colors must be `rgb()`, `rgba()`, or `#rrggbb`. `validate-brand.js` checks WCAG AA for **text on tertiary**, **textOnPrimary on primary**, and **text on surface**.
+`design-system/tokens/colors.css` holds the **same role names** as `brand.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`). There is no `primary` / `secondary` / `tertiary` layer.
 
-### Where color tokens land
+Colors must be `rgb()`, `rgba()`, or `#rrggbb`. `validate-brand.js` checks WCAG AA for **slide foreground on slide background**, **cover foreground on cover background**, **slide surface foreground on slide surface background**, and **cover surface foreground on cover surface background**.
 
-Pick Gratia (or any brand) colors by **role on the slide**, not by the JSON key name. `primary` is not “the logo color”; it is the full-bleed cover.
+### Color tokens
 
-| `brand.json`                           | CSS primitive                | What you see                                                                                                                                                                                                                                                           |
-| -------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `colors.primary`                       | `--color-primary`            | **Cover / title slides.** `<slide class="bg-primary">` in every `presets/deck-titles/*.html` and in compiled covers (`01.html`). Also `--color-slide-bg-primary`, the default `<alert>` left border, and the `.color-primary` text utility. Pair with `textOnPrimary`. |
-| `colors.tertiary`                      | `--color-tertiary`           | **Default slide canvas.** `<slide>` fill via `--color-slide-bg`. Content slides (overview, etc.) sit on this. Pair with `text`.                                                                                                                                        |
-| `colors.surface`                       | `--color-surface`            | **Cards and attribution chips.** `--color-card-bg` on `<card>`, Quick Fact Card, and `<attribution-box>`. White panels on the tertiary canvas.                                                                                                                         |
-| `colors.surfaceOnPrimary`              | `--color-surface-on-primary` | Card fill when a card sits on a primary cover (`.bg-card-on-primary` → `--color-card-on-primary-bg`). Unused on current Riverton/Vantage covers (no cards on the title slide).                                                                                         |
-| `colors.text`                          | `--color-text`               | **Ink on tertiary/surface.** Aliases: `--color-text-strong` (100%), `--color-text-base` (70%), `--color-text-subtle` (50%). Slide Title main, section titles, QFC titles, body `<text>`, list items, attribution. Logo `currentColor` on content slides.               |
-| `colors.textOnPrimary`                 | `--color-text-on-primary`    | **Ink on the cover.** Strong/base/subtle variants for title-slide copy and logos on `bg-primary`. Must pass AA on `primary`.                                                                                                                                           |
-| `colors.secondary`                     | `--color-secondary`          | Utility only (`.bg-secondary`, `.color-secondary`). Not wired into default slide chrome. Riverton/Vantage set it equal to ink.                                                                                                                                         |
-| `colors.border`                        | `--color-border`             | Card stroke (`--color-card-border`) and attribution separator (`--color-separator`).                                                                                                                                                                                   |
-| `colors.positive` / `positiveBg`       | `--color-positive*`          | `<alert variant="positive">` border; `.color-positive` utility.                                                                                                                                                                                                        |
-| `colors.warning` / `warningBg`         | `--color-warning*`           | `<alert variant="warning">`; `.color-warning`.                                                                                                                                                                                                                         |
-| `colors.negative` / `negativeBg`       | `--color-negative*`          | `<alert variant="negative">`; `.color-negative`.                                                                                                                                                                                                                       |
-| `colors.informative` / `informativeBg` | `--color-informative*`       | `<alert variant="informative">`; `.color-informative`. Default `<alert>` (no variant) uses **primary** for the border, not informative.                                                                                                                                |
-| `colors.chart1`…`chart4`               | `--color-chart-*`            | `.color-chart-*` utilities. No chart component in the library yet.                                                                                                                                                                                                     |
+Pick colors by **role on the slide**. Cover and content slide are independent canvases; surfaces (cards) have their own fill and ink.
 
-**Typical mapping:** brand accent → `primary` (covers + alert accent); page background → `tertiary`; card fill → `surface`; body ink → `text`; ink that sits on the accent cover → `textOnPrimary`.
+| `brand.json` | CSS | What you see |
+|---|---|---|
+| `colors.cover.background` | `--color-cover-background` | Title/cover fill. `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
+| `colors.cover.foreground` | `--color-cover-foreground` | Ink on the cover. Pair with `background`. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
+| `colors.cover.surfaceBackground` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). |
+| `colors.cover.surfaceForeground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. |
+| `colors.slide.background` | `--color-slide-background` | Default content-slide canvas. `<slide>` fill. `.bg-slide`. |
+| `colors.slide.foreground` | `--color-slide-foreground` | Ink on the content canvas. Slide Title, section titles, body `<text>`, footer logos. `.color-slide-foreground-*`. |
+| `colors.slide.surfaceBackground` | `--color-slide-surface-background` | Cards, Quick Fact Card, `<attribution-box>`, `<alert>` fill. `.bg-slide-surface`. |
+| `colors.slide.surfaceForeground` | `--color-slide-surface-foreground` | Ink on those panels (QFC, attribution, alert copy). |
+| `colors.slide.surfaceBorder` | `--color-slide-surface-border` | Card stroke and attribution separator. `.border-color-slide-surface`. |
+| `colors.highlight` | `--color-highlight` | Default `<alert>` left border and `.color-highlight` / `.bg-highlight`. Independent of cover fill. |
+| `colors.status.*.color` / `background` | `--color-positive` … `--color-informative-bg` | Alert variants and `.color-positive` etc. |
+| `colors.charts.chart1`…`chart4` | `--color-chart-*` | `.color-chart-*` utilities. No chart component in the library yet. |
+
+**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; cards → `slide.surface*`; alert stripe → `highlight` (often the same as `cover.background`).
 
 ### Other `brand.json` fields
 
-| JSON                                       | CSS                                                               |
-| ------------------------------------------ | ----------------------------------------------------------------- |
-| `fonts.display` / `fonts.base`             | `--font-family-display` / `--font-family-base` (headings vs body) |
-| `borderRadius.*`                           | `--border-radius-*`                                               |
-| `borderSize.card.*` / `borderSize.alert.*` | card and alert stroke widths                                      |
+### Font tokens
+
+Each text role has its own family and sizes (except cover title, whose sizes are driven by the cover presets).
+
+| `brand.json` | CSS | HTML |
+|---|---|---|
+| `fonts.coverTitle.family` | `--font-family-cover-title` | `family="cover-title"` |
+| `fonts.slideTitle.family` | `--font-family-slide-title` | `<slide-title-main>` |
+| `fonts.slideTitle.sizeLg/Md/Sm` | `--slide-title-main-size-lg/md/sm` | `size="lg"` etc. |
+| `fonts.cardTitle.family` | `--font-family-card-title` | `<quick-fact-card-title>` |
+| `fonts.cardTitle.sizeLg/Md/Sm` | `--card-title-size-lg/md/sm` | |
+| `fonts.paragraphTitle.family` | `--font-family-paragraph-title` | `<section-title>` |
+| `fonts.paragraphTitle.sizeLg/Md/Sm` | `--paragraph-title-size-lg/md/sm` | `size="lg"` etc. |
+| `fonts.body.family` | `--font-family-body` | `<text>`, `<copy>` |
+| `fonts.body.sizeLg/Md/Sm` | `--body-size-lg/md/sm` | `<copy size="lg">` etc. |
+
+### Other `brand.json` fields
+
+| JSON | CSS |
+|---|---|
+| `borderRadius.*` | `--border-radius-*` |
+| `borderSize.card.*` / `borderSize.alert.*` | card and alert stroke widths |
 
 ## Logo sprite
 
@@ -78,4 +96,4 @@ Keep `viewBox` in sync with the wrapping `<svg viewBox>`.
 
 ## Figma
 
-Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive colors **and** `font-family/display` / `font-family/base` (first quoted family from `brand.json`, e.g. `"DM Sans"` not the CSS stack). Create `__Logo/{Brand}` from the flattened sprite and bind fills to `color/text-strong`. Logo wordmarks are not bound to the family variables.
+Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive font families (`font-family/cover-title`, `font-family/slide-title`, `font-family/card-title`, `font-family/paragraph-title`, `font-family/body`) using the first quoted family from `brand.json` (e.g. `"Inter"` not the CSS stack). Create `__Logo/{Brand}` from the flattened sprite and bind fills to `color/slide-foreground-strong`. Logo wordmarks are not bound to the family variables.

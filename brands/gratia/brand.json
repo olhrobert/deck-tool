@@ -2,37 +2,94 @@
 	"name": "Gratia",
 	"logo": "gratia-logo.svg",
 	"colors": {
-		"primary": "rgb(35, 221, 156)",
-		"secondary": "rgb(4, 56, 58)",
-		"tertiary": "rgb(242, 245, 245)",
-		"surface": "rgba(255, 255, 255, 1)",
-		"surfaceOnPrimary": "rgb(4, 56, 58)",
-		"text": "rgb(1, 25, 26)",
-		"textOnPrimary": "rgb(1, 25, 26)",
-		"border": "rgba(1, 25, 26, 0.18)",
-		"positive": "rgba(8, 120, 85, 1)",
-		"positiveBg": "rgba(35, 221, 156, 0.15)",
-		"warning": "rgba(180, 110, 10, 1)",
-		"warningBg": "rgba(180, 110, 10, 0.1)",
-		"negative": "rgba(180, 30, 65, 1)",
-		"negativeBg": "rgba(180, 30, 65, 0.1)",
-		"informative": "rgba(4, 90, 100, 1)",
-		"informativeBg": "rgba(4, 90, 100, 0.1)",
-		"chart1": "rgba(35, 221, 156, 1)",
-		"chart2": "rgba(4, 56, 58, 1)",
-		"chart3": "rgba(1, 25, 26, 1)",
-		"chart4": "rgba(20, 150, 130, 1)"
+		"cover": {
+			"background": "rgb(4, 56, 58)",
+			"foreground": "rgb(255, 255, 255)",
+			"surfaceBackground": "rgb(255, 255, 255)",
+			"surfaceForeground": "rgb(1, 25, 26)"
+		},
+		"slide": {
+			"background": "rgb(242, 245, 245)",
+			"foreground": "rgb(1, 25, 26)",
+			"surfaceBackground": "rgba(255, 255, 255, 1)",
+			"surfaceForeground": "rgb(1, 25, 26)",
+			"surfaceBorder": "rgba(1, 25, 26, 0.18)"
+		},
+		"highlight": "rgb(4, 56, 58)",
+		"status": {
+			"positive": {
+				"color": "rgba(8, 120, 85, 1)",
+				"background": "rgba(35, 221, 156, 0.15)"
+			},
+			"warning": {
+				"color": "rgba(180, 110, 10, 1)",
+				"background": "rgba(180, 110, 10, 0.1)"
+			},
+			"negative": {
+				"color": "rgba(180, 30, 65, 1)",
+				"background": "rgba(180, 30, 65, 0.1)"
+			},
+			"informative": {
+				"color": "rgba(4, 90, 100, 1)",
+				"background": "rgba(4, 90, 100, 0.1)"
+			}
+		},
+		"charts": {
+			"chart1": "rgba(35, 221, 156, 1)",
+			"chart2": "rgba(4, 56, 58, 1)",
+			"chart3": "rgba(1, 25, 26, 1)",
+			"chart4": "rgba(20, 150, 130, 1)"
+		}
 	},
 	"fonts": {
-		"display": "\"Inter\", system-ui, sans-serif",
-		"base": "\"Inter\", system-ui, sans-serif"
+		"coverTitle": {
+			"family": "\"DM Sans\", system-ui, sans-serif"
+		},
+		"slideTitle": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"sizeLg": "48px",
+			"sizeMd": "40px",
+			"sizeSm": "32px"
+		},
+		"slideTitlePre": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"size": "14px"
+		},
+		"slideTitleSub": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"size": "14px"
+		},
+		"cardTitle": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"sizeLg": "32px",
+			"sizeMd": "32px",
+			"sizeSm": "24px"
+		},
+		"cardPretitle": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"size": "12px"
+		},
+		"paragraphTitle": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"sizeLg": "24px",
+			"sizeMd": "20px",
+			"sizeSm": "16px"
+		},
+		"body": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"sizeLg": "16px",
+			"sizeMd": "14px",
+			"sizeSm": "12px"
+		}
 	},
 	"borderRadius": {
 		"none": "0px",
 		"sm": "4px",
 		"med": "8px",
 		"lg": "12px",
-		"full": "200px"
+		"full": "200px",
+		"card": "8px",
+		"alert": "0px"
 	},
 	"borderSize": {
 		"card": {

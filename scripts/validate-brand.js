@@ -81,41 +81,26 @@ function validateBrand(brandDir) {
 		}
 	}
 
-	const colors = {};
-	for (const key of [
-		"primary",
-		"secondary",
-		"tertiary",
-		"surface",
-		"text",
-		"textOnPrimary",
-	]) {
-		const raw = getPath(brand, `colors.${key}`);
-		const parsed = parseColor(raw);
-		if (!parsed) {
-			errors.push(`colors.${key} is not rgb()/rgba()/#hex: ${raw}`);
-		} else {
-			colors[key] = parsed;
-		}
-	}
+	const pairs = [
+		["colors.slide.foreground", "colors.slide.background", "slide foreground on slide background"],
+		["colors.cover.foreground", "colors.cover.background", "cover foreground on cover background"],
+		["colors.slide.surfaceForeground", "colors.slide.surfaceBackground", "slide surface foreground on slide surface background"],
+		["colors.cover.surfaceForeground", "colors.cover.surfaceBackground", "cover surface foreground on cover surface background"],
+	];
 
-	if (colors.text && colors.tertiary) {
-		const ratio = contrast(colors.text, colors.tertiary);
-		if (ratio < 4.5) {
-			errors.push(`text on tertiary contrast ${ratio.toFixed(2)} < 4.5`);
-		}
-	}
-	if (colors.textOnPrimary && colors.primary) {
-		const ratio = contrast(colors.textOnPrimary, colors.primary);
-		if (ratio < 4.5) {
-			errors.push(`textOnPrimary on primary contrast ${ratio.toFixed(2)} < 4.5`);
-		}
-	}
-	if (colors.text && colors.surface) {
-		const ink = compositeOn(colors.text, colors.surface);
-		const ratio = contrast(ink, colors.surface);
-		if (ratio < 4.5) {
-			errors.push(`text on surface contrast ${ratio.toFixed(2)} < 4.5`);
+	for (const [fgPath, bgPath, label] of pairs) {
+		const fgRaw = getPath(brand, fgPath);
+		const bgRaw = getPath(brand, bgPath);
+		const fg = parseColor(fgRaw);
+		const bg = parseColor(bgRaw);
+		if (!fg) errors.push(`${fgPath} is not rgb()/rgba()/#hex: ${fgRaw}`);
+		if (!bg) errors.push(`${bgPath} is not rgb()/rgba()/#hex: ${bgRaw}`);
+		if (fg && bg) {
+			const ink = compositeOn(fg, bg);
+			const ratio = contrast(ink, bg);
+			if (ratio < 4.5) {
+				errors.push(`${label} contrast ${ratio.toFixed(2)} < 4.5`);
+			}
 		}
 	}
 
@@ -124,7 +109,7 @@ function validateBrand(brandDir) {
 	} else {
 		const svg = fs.readFileSync(logoPath, "utf8");
 		if (!/currentColor/.test(svg)) {
-			warnings.push(`${logoFile} does not use currentColor; Figma fill binding to color/text-strong will not match HTML.`);
+			warnings.push(`${logoFile} does not use currentColor; Figma fill binding to color/slide-foreground-strong will not match HTML.`);
 		}
 		if (!/<symbol[\s\S]*id=/.test(svg)) {
 			warnings.push(`${logoFile} has no <symbol id>; deck <use href> sprites expect one.`);

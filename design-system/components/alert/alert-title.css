@@ -5,6 +5,6 @@ alert-title {
 	font-weight: var(--alert-title-weight);
 	line-height: var(--alert-title-lineheight);
 	font-size: var(--alert-title-size);
-	letter-spacing: var(--letterspacing-base);
-	color: var(--color-text-strong);
+	letter-spacing: 0%;
+	color: var(--color-slide-surface-foreground-strong);
 }

@@ -13,35 +13,71 @@ const OUTPUT_FILENAME = "brand.css";
  * here stays a shared design-system default (spacing, type scale, weights, etc.).
  */
 const TOKEN_MAP = [
-	["colors.primary", "--color-primary", "colors"],
-	["colors.secondary", "--color-secondary"],
-	["colors.tertiary", "--color-tertiary"],
-	["colors.surface", "--color-surface"],
-	["colors.surfaceOnPrimary", "--color-surface-on-primary"],
-	["colors.text", "--color-text"],
-	["colors.textOnPrimary", "--color-text-on-primary"],
-	["colors.border", "--color-border"],
-	["colors.positive", "--color-positive"],
-	["colors.positiveBg", "--color-positive-bg"],
-	["colors.warning", "--color-warning"],
-	["colors.warningBg", "--color-warning-bg"],
-	["colors.negative", "--color-negative"],
-	["colors.negativeBg", "--color-negative-bg"],
-	["colors.informative", "--color-informative"],
-	["colors.informativeBg", "--color-informative-bg"],
-	["colors.chart1", "--color-chart-1"],
-	["colors.chart2", "--color-chart-2"],
-	["colors.chart3", "--color-chart-3"],
-	["colors.chart4", "--color-chart-4"],
+	["colors.cover.background", "--color-cover-background", "cover"],
+	["colors.cover.foreground", "--color-cover-foreground"],
+	["colors.cover.surfaceBackground", "--color-cover-surface-background"],
+	["colors.cover.surfaceForeground", "--color-cover-surface-foreground"],
 
-	["fonts.display", "--font-family-display", "fonts"],
-	["fonts.base", "--font-family-base"],
+	["colors.slide.background", "--color-slide-background", "slide"],
+	["colors.slide.foreground", "--color-slide-foreground"],
+	["colors.slide.surfaceBackground", "--color-slide-surface-background"],
+	["colors.slide.surfaceForeground", "--color-slide-surface-foreground"],
+	["colors.slide.surfaceBorder", "--color-slide-surface-border"],
+
+	["colors.highlight", "--color-highlight", "highlight"],
+
+	["colors.status.positive.color", "--color-positive", "status"],
+	["colors.status.positive.background", "--color-positive-bg"],
+	["colors.status.warning.color", "--color-warning"],
+	["colors.status.warning.background", "--color-warning-bg"],
+	["colors.status.negative.color", "--color-negative"],
+	["colors.status.negative.background", "--color-negative-bg"],
+	["colors.status.informative.color", "--color-informative"],
+	["colors.status.informative.background", "--color-informative-bg"],
+
+	["colors.charts.chart1", "--color-chart-1", "charts"],
+	["colors.charts.chart2", "--color-chart-2"],
+	["colors.charts.chart3", "--color-chart-3"],
+	["colors.charts.chart4", "--color-chart-4"],
+
+	["fonts.coverTitle.family", "--font-family-cover-title", "fonts — cover title"],
+
+	["fonts.slideTitle.family", "--font-family-slide-title", "fonts — slide title"],
+	["fonts.slideTitle.sizeLg", "--slide-title-main-size-lg"],
+	["fonts.slideTitle.sizeMd", "--slide-title-main-size-md"],
+	["fonts.slideTitle.sizeSm", "--slide-title-main-size-sm"],
+
+	["fonts.slideTitlePre.family", "--font-family-slide-title-pre", "fonts — slide title pre"],
+	["fonts.slideTitlePre.size", "--slide-title-pre-size"],
+
+	["fonts.slideTitleSub.family", "--font-family-slide-title-sub", "fonts — slide title sub"],
+	["fonts.slideTitleSub.size", "--slide-title-sub-size"],
+
+	["fonts.cardTitle.family", "--font-family-card-title", "fonts — card title"],
+	["fonts.cardTitle.sizeLg", "--card-title-size-lg"],
+	["fonts.cardTitle.sizeMd", "--card-title-size-md"],
+	["fonts.cardTitle.sizeSm", "--card-title-size-sm"],
+
+	["fonts.cardPretitle.family", "--font-family-card-pretitle", "fonts — card pretitle"],
+	["fonts.cardPretitle.size", "--card-pretitle-size"],
+
+	["fonts.paragraphTitle.family", "--font-family-paragraph-title", "fonts — paragraph title"],
+	["fonts.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
+	["fonts.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
+	["fonts.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
+
+	["fonts.body.family", "--font-family-body", "fonts — body"],
+	["fonts.body.sizeLg", "--body-size-lg"],
+	["fonts.body.sizeMd", "--body-size-md"],
+	["fonts.body.sizeSm", "--body-size-sm"],
 
 	["borderRadius.none", "--border-radius-none", "border radius"],
 	["borderRadius.sm", "--border-radius-sm"],
 	["borderRadius.med", "--border-radius-med"],
 	["borderRadius.lg", "--border-radius-lg"],
 	["borderRadius.full", "--border-radius-full"],
+	["borderRadius.card", "--border-radius-card"],
+	["borderRadius.alert", "--border-radius-alert"],
 
 	["borderSize.card.top", "--card-border-size-top", "border size"],
 	["borderSize.card.bottom", "--card-border-size-bottom"],

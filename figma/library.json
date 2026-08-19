@@ -10,7 +10,6 @@
 			"key": "collection/primitives",
 			"modes": [
 				{ "name": "Riverton", "modeId": "11004:0" },
-				{ "name": "Vantage", "modeId": "11056:0" },
 				{ "name": "Gratia", "modeId": "11079:0" }
 			],
 			"note": "Add one mode per brand. Apply the mode on the deck page. Color and font-family aliases resolve through it."
@@ -34,7 +33,7 @@
 			"id": "VariableCollectionId:11004:6",
 			"key": "collection/typography",
 			"modes": [{ "name": "Value", "modeId": "11004:4" }],
-			"note": "family/display and family/base alias Primitives font-family/*. lineheight/* is CSS unitless × 100. Apply as PERCENT literals — do not bind; FLOAT lineHeight vars are pixels."
+			"note": "family/heading and family/body alias Primitives font-family/*. lineheight/* is CSS unitless × 100. Apply as PERCENT literals — do not bind; FLOAT lineHeight vars are pixels."
 		}
 	},
 	"pages": {
@@ -49,8 +48,7 @@
 		"page/list-item": "11030:2",
 		"page/slide": "11031:2",
 		"page/utilities": "11011:7",
-		"page/riverton-deck": "11033:2",
-		"page/vantage-deck": "11056:2"
+		"page/riverton-deck": "11033:2"
 	},
 	"components": {
 		"componentset/card": {
@@ -146,38 +144,30 @@
 			"viewBox": { "width": 76, "height": 16 },
 			"coverHeight": 24,
 			"footerHeight": 16
-		},
-		"component/logo-vantage": {
-			"id": "11056:6",
-			"coverHeight": 24,
-			"footerHeight": 16
 		}
 	},
 	"typeVariables": {
-		"primitive/font-family/display": { "id": "VariableID:11066:2", "Riverton": "Fraunces", "Vantage": "DM Sans", "Gratia": "Inter" },
-		"primitive/font-family/base": { "id": "VariableID:11066:3", "Riverton": "Inter", "Vantage": "Inter", "Gratia": "Inter" },
+		"primitive/font-family/heading": { "id": "VariableID:11066:2", "Riverton": "Fraunces", "Gratia": "DM Sans", "legacyKey": "primitive/font-family/display" },
+		"primitive/font-family/body": { "id": "VariableID:11066:3", "Riverton": "Inter", "Gratia": "DM Sans", "legacyKey": "primitive/font-family/base" },
 		"bind": ["fontFamily", "fontWeight", "fontSize"],
 		"percentLiterals": ["lineHeight", "letterSpacing"],
 		"note": "No text styles. Bind family/weight/size. lineHeight/letterSpacing FLOAT vars apply as px — set PERCENT from the token instead (CSS × 100)."
 	},
 	"fonts": {
-		"display": {
+		"heading": {
 			"Riverton": { "family": "Fraunces", "regular": "Regular", "bold": "SemiBold" },
-			"Vantage": { "family": "DM Sans", "regular": "Regular", "bold": "SemiBold" },
-			"Gratia": { "family": "Inter", "regular": "Regular", "bold": "Semi Bold" },
-			"note": "Page Primitives mode switches family/display. Logo wordmarks stay hardcoded (Vantage logo is DM Sans Bold 700)."
+			"Gratia": { "family": "DM Sans", "regular": "Regular", "bold": "SemiBold" },
+			"note": "Page Primitives mode switches family/heading. Logo wordmarks stay hardcoded."
 		},
-		"base": {
-			"family": "Inter",
-			"regular": "Regular",
-			"medium": "Medium",
-			"bold": "Semi Bold"
+		"body": {
+			"Riverton": { "family": "Inter", "regular": "Regular", "medium": "Medium", "bold": "Semi Bold" },
+			"Gratia": { "family": "DM Sans", "regular": "Regular", "medium": "Medium", "bold": "SemiBold" }
 		},
 		"lineHeight": "Store CSS unitless × 100 (1.2 → 120). Apply as { unit: 'PERCENT', value: 120 }. Do not bind — Figma FLOAT lineHeight/letterSpacing vars are pixels."
 	},
 	"htmlMap": {
-		"slide[bg-primary without chrome]": "custom 1280×800 frame, fill color/slide-bg-primary. Do not instance Slide.",
-		"slide with header/content/footer": "instance componentset/slide; surface=default unless class bg-primary",
+		"slide[bg-cover without chrome]": "custom 1280×800 frame, fill color/cover-background. Do not instance Slide.",
+		"slide with header/content/footer": "instance componentset/slide; surface=default unless class bg-cover (Figma variant still surface=primary)",
 		"slide-title": "instance componentset/slide-title; always set size (CSS default md, Figma default lg)",
 		"section-title": "instance componentset/section-title",
 		"card + quick-fact-card-*": "instance component/quick-fact-card, not Card",

@@ -10,13 +10,15 @@ Machine-readable IDs and property names: [`figma/library.json`](../figma/library
 
 | Collection | Modes | Role |
 |---|---|---|
-| Primitives | one per brand | Raw brand values, scopes `[]` — colors **and** `font-family/display`, `font-family/base` |
-| Color | `Value` | Semantic aliases (`color/text-strong`, `color/slide-bg`, …) |
+| Primitives | one per brand | Brand role values, scopes `[]` — colors (`cover-background`, `slide-foreground`, …) **and** `font-family/heading`, `font-family/body` |
+| Color | `Value` | Opacity variants and aliases (`color/slide-foreground-strong`, `color/cover-background`, …) |
 | Spacing | `Value` | `spacing/0` … `spacing/40`, plus `0-25`, `0-5`, `1-5`, `2-5` |
 | Radius | `Value` | including `radius/card`, `radius/alert` |
-| Typography | `Value` | `family/*` aliases the primitive families; shared size / weight / line-height / letter-spacing |
+| Typography | `Value` | `family/heading` and `family/body` alias the primitive families; shared size / weight / line-height / letter-spacing |
 
 A new brand is a new Primitives **mode**, then set that mode on the deck page. Color and typeface aliases follow the selected primitive mode.
+
+The live Figma file may still use the previous keys (`primary`, `font-family/display`, `color/text-strong`, Slide `surface=primary`). Rename those to the role names in `brand.json` on the next library pass; IDs in `library.json` stay valid.
 
 Do **not** use Figma text styles. Bind `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, and `letterSpacing` on text nodes (and on library component text). Logo wordmarks stay hardcoded in `__Logo/{Brand}`.
 
@@ -33,7 +35,7 @@ Never parallelize `use_figma`. `setCurrentPageAsync` at most once per script. Al
 - Colors are 0–1, not 0–255
 - `figma.notify()` throws — skip it
 - `setSharedPluginData("dsb", …)`, not `setPluginData`
-- Load fonts before any text mutate, including every family used in **every** Primitives mode, before `setBoundVariable("fontFamily")` or `setExplicitVariableModeForCollection`. Fraunces/DM Sans 600 = `SemiBold`; Inter 600 = `Semi Bold`. Prefer `fontWeight` numbers over `fontStyle` strings.
+- Load fonts before any text mutate, including every family used in **every** Primitives mode, before `setBoundVariable("fontFamily")` or `setExplicitVariableModeForCollection`. Fraunces 600 = `SemiBold`; Inter 600 = `Semi Bold`. Prefer `fontWeight` numbers over `fontStyle` strings.
 - `layoutSizingHorizontal/Vertical` only after the node is in an auto-layout parent
 - Header / Content / Footer slots must be `FILL` (horizontal; Content also vertical). Hugging slots collapse nested FILL children
 - Do not `remove()` children of a **nested** instance slot. Edit attribution copy on a top-level instance, then reparent

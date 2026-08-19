@@ -4,9 +4,9 @@ card {
 	flex: 1 1 0%;
 	min-width: 0;
 	box-sizing: border-box;
-	background-color: var(--color-card-bg);
+	background-color: var(--color-slide-surface-background);
 	border-style: solid;
-	border-color: var(--color-card-border);
+	border-color: var(--color-slide-surface-border);
 	border-top-width: var(--card-border-size-top);
 	border-bottom-width: var(--card-border-size-bottom);
 	border-left-width: var(--card-border-size-left);

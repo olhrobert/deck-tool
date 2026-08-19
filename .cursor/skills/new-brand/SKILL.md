@@ -1,7 +1,7 @@
 ---
 name: new-brand
 description: >-
-  Create a new DeckTool brand (token override) besides riverton/vantage.
+  Create a new DeckTool brand (token override) besides riverton/gratia.
   Scaffolds brands/{slug}/, generates CSS, validates contrast, and adds a
   Figma Primitives mode plus __Logo component. Use when the user asks for a
   new brand, client theme, or brand.json.
@@ -20,7 +20,7 @@ HTML brands live in `brands/{slug}/`. Figma theming is an extra **Primitives** m
 node scripts/new-brand.js {slug} --name "{Display Name}"
 ```
 
-3. Put the real colors, fonts, radii, and border sizes into `brands/{slug}/brand.json`. Keep values as `rgb()` / `rgba()`. Map colors by slide role using **Where color tokens land** in `docs/brands.md` (`primary` = cover fill, not “the logo color”).
+3. Put the real colors, fonts, radii, and border sizes into `brands/{slug}/brand.json`. Keep values as `rgb()` / `rgba()`. Map colors by slide role using **Color tokens** in `docs/brands.md` (`cover.background` = title fill, not “the logo color”).
 4. Replace `brands/{slug}/{slug}-logo.svg` with a `<symbol id="{slug}-logo">` sprite, `fill="currentColor"`.
 5. Validate:
 
@@ -32,9 +32,9 @@ Fix contrast failures before continuing.
 
 6. Figma (`figma/library.json` `fileKey`), `use_figma` with `skillNames`: `figma-use,figma-generate-library`:
    - Add a Primitives mode named `{Display Name}`
-   - Write primitive color values for that mode from `brand.json` (map via `primitive/color/*` dsb keys)
-   - Write `primitive/font-family/display` and `primitive/font-family/base` for that mode — first quoted family from `fonts.display` / `fonts.base` (not the CSS stack). Load those fonts before `setValueForMode`
-   - Flatten the logo SVG, create `__Logo/{Display Name}`, size from viewBox, bind fills to `color/text-strong`
+   - Write primitive color values for that mode from `brand.json` (map via `primitive/color/*` dsb keys — role names: `cover-background`, `slide-foreground`, …)
+   - Write `primitive/font-family/heading` and `primitive/font-family/body` for that mode — first quoted family from `fonts.heading` / `fonts.body` (not the CSS stack). If the file still has `font-family/display` / `font-family/base`, write those keys from heading/body. Load those fonts before `setValueForMode`
+   - Flatten the logo SVG, create `__Logo/{Display Name}`, size from viewBox, bind fills to `color/slide-foreground-strong`
    - `setSharedPluginData("dsb", "key", "component/logo-{slug}")`
    - Return modeId + component id; append both to `figma/library.json`
 

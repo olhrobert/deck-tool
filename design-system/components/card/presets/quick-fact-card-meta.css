@@ -6,6 +6,6 @@ quick-fact-card-meta {
 	font-weight: var(--quick-fact-card-meta-weight);
 	line-height: var(--quick-fact-card-meta-lineheight);
 	font-size: var(--quick-fact-card-meta-size);
-	letter-spacing: var(--letterspacing-base);
-	color: var(--color-text-subtle);
+	letter-spacing: 0%;
+	color: var(--color-slide-surface-foreground-subtle);
 }

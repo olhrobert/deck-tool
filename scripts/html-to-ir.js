@@ -221,7 +221,7 @@ function parseUtilityLayout(node) {
 
 	if (hasClass(node, "border-t")) {
 		layout.strokeTopWeight = 1;
-		layout.strokeColor = "color/card-border";
+		layout.strokeColor = "color/slide-surface-border";
 	}
 
 	if (attr(node, "width") === "fill") layout.layoutSizingHorizontal = "FILL";
@@ -238,10 +238,10 @@ function colorFromNode(node) {
 		if (cls.startsWith("color-")) return cls.replace(/^color-/, "color/").replace(/_/g, "-");
 	}
 	const tone = attr(node, "tone");
-	if (tone === "strong") return "color/text-strong";
-	if (tone === "subtle") return "color/text-subtle";
-	if (tone === "base") return "color/text-base";
-	return "color/text-base";
+	if (tone === "strong") return "color/slide-foreground-strong";
+	if (tone === "subtle") return "color/slide-foreground-subtle";
+	if (tone === "base") return "color/slide-foreground-base";
+	return "color/slide-foreground-base";
 }
 
 function normalizeSize(size) {
@@ -257,15 +257,30 @@ function weightToken(weight) {
 	return "weight/regular";
 }
 
+const FAMILY_MAP = {
+	"cover-title": "family/cover-title",
+	"slide-title": "family/slide-title",
+	"card-title": "family/card-title",
+	"paragraph-title": "family/paragraph-title",
+	body: "family/body",
+	heading: "family/slide-title",
+	display: "family/slide-title",
+	base: "family/body",
+};
+
+function familyToken(family) {
+	return FAMILY_MAP[family] || "family/body";
+}
+
 function typeTokens({
-	family = "base",
+	family = "body",
 	weight = "regular",
 	size = "400",
 	lineHeight = "md",
 	letterSpacing = "base",
 } = {}) {
 	return {
-		family: family === "display" ? "family/display" : "family/base",
+		family: familyToken(family),
 		weight: weightToken(weight),
 		size: `size/${normalizeSize(size)}`,
 		lineHeight: `lineheight/${lineHeight}`,
@@ -275,7 +290,7 @@ function typeTokens({
 
 function typeFromTextNode(node) {
 	return typeTokens({
-		family: attr(node, "family", "base"),
+		family: attr(node, "family", "body"),
 		weight: attr(node, "weight", "regular"),
 		size: attr(node, "size", "400"),
 	});
@@ -284,7 +299,7 @@ function typeFromTextNode(node) {
 function typeFromCopyNode(node) {
 	const sizeKey = String(attr(node, "size", "base")).toLowerCase();
 	return typeTokens({
-		family: "base",
+		family: "body",
 		weight: attr(node, "weight") === "strong" ? "bold" : "medium",
 		size: COPY_SIZE[sizeKey] || "350",
 	});
@@ -322,7 +337,6 @@ function logoFromSvg(node, warnings) {
 	const width = (vbW / vbH) * height;
 	let component = "component/logo-placeholder";
 	if (/riverton-logo/.test(href) || /riverton/i.test(label)) component = "component/logo-riverton";
-	else if (/vantage-logo/.test(href) || /vantage/i.test(label)) component = "component/logo-vantage";
 	else if (/gratia-logo/.test(href) || /gratia/i.test(label)) component = "component/logo-gratia-brand";
 	else if (/placeholder-logo/.test(href)) {
 		component = "component/logo-placeholder";
@@ -441,11 +455,11 @@ function walk(node, warnings) {
 		for (const child of slot) {
 			if (child.type === "text") {
 				child.typography = typeTokens({
-					family: "base",
+					family: "body",
 					weight: "regular",
 					size: variant === "title" ? "300" : "200",
 				});
-				child.color = variant === "title" ? "color/text-base" : "color/text-subtle";
+				child.color = variant === "title" ? "color/slide-surface-foreground-base" : "color/slide-surface-foreground-subtle";
 			}
 		}
 		return {
@@ -499,16 +513,18 @@ function walk(node, warnings) {
 		const frame = parseUtilityLayout(node);
 		frame.name = "Alert";
 		frame.layout = "VERTICAL";
-		frame.fill = "color/alert-bg";
-		frame.strokeColor = `color/alert-border${attr(node, "variant") ? `-${attr(node, "variant")}` : ""}`;
+		frame.fill = "color/slide-surface-background";
+		frame.strokeColor = attr(node, "variant")
+			? `color/${attr(node, "variant")}`
+			: "color/highlight";
 		frame.children = (node.children || []).map((child) => {
 			if (child.tag === "alert-title") {
 				return {
 					type: "text",
 					name: "Alert title",
 					characters: collapseText(collectText(child)),
-					typography: typeTokens({ family: "display", weight: "bold", size: "500" }),
-					color: "color/text-strong",
+					typography: typeTokens({ family: "heading", weight: "bold", size: "500" }),
+					color: "color/slide-surface-foreground-strong",
 				};
 			}
 			if (child.tag === "alert-description") {
@@ -516,8 +532,8 @@ function walk(node, warnings) {
 					type: "text",
 					name: "Alert description",
 					characters: collapseText(collectText(child)),
-					typography: typeTokens({ family: "base", weight: "regular", size: "400" }),
-					color: "color/text-base",
+					typography: typeTokens({ family: "body", weight: "regular", size: "400" }),
+					color: "color/slide-surface-foreground-base",
 				};
 			}
 			return walk(child, warnings);
@@ -580,20 +596,20 @@ function parseSlide(html, source, warnings) {
 	const hasChrome = (slide.children || []).some((child) =>
 		["slide-header", "slide-content", "slide-footer"].includes(child.tag),
 	);
-	const surface = hasClass(slide, "bg-primary") ? "primary" : "default";
+	const isCover = hasClass(slide, "bg-cover");
 	const ir = {
 		source,
-		surface,
+		surface: isCover ? "cover" : "default",
 		chrome: hasChrome ? "slide" : "cover",
 		size: { width: 1280, height: 800 },
 	};
 	if (!hasChrome) {
-		ir.fill = surface === "primary" ? "color/slide-bg-primary" : "color/slide-bg";
+		ir.fill = isCover ? "color/cover-background" : "color/slide-background";
 		ir.root = walk(slide, warnings);
 		ir.note = "Cover/title slides must not instance the Slide component; header/content/footer padding would be wrong.";
 	} else {
 		ir.component = "componentset/slide";
-		ir.properties = { surface };
+		ir.properties = { surface: isCover ? "primary" : "default" };
 		ir.slots = {};
 		for (const child of slide.children || []) {
 			const mapped = walk(child, warnings);

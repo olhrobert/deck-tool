@@ -2,37 +2,94 @@
 	"name": "Riverton",
 	"logo": "riverton-logo.svg",
 	"colors": {
-		"primary": "rgb(160, 203, 50)",
-		"secondary": "rgb(12, 12, 15)",
-		"tertiary": "rgb(234, 239, 227)",
-		"surface": "rgba(255, 255, 255, 1)",
-		"surfaceOnPrimary": "rgb(12, 12, 15)",
-		"text": "rgb(12, 12, 15)",
-		"textOnPrimary": "rgb(12, 12, 15)",
-		"border": "rgba(0, 0, 0, 0.2)",
-		"positive": "rgba(22, 163, 74, 1)",
-		"positiveBg": "rgba(22, 163, 74, 0.1)",
-		"warning": "rgba(234, 88, 12, 1)",
-		"warningBg": "rgba(234, 88, 12, 0.1)",
-		"negative": "rgba(220, 38, 38, 1)",
-		"negativeBg": "rgba(220, 38, 38, 0.1)",
-		"informative": "rgba(37, 99, 235, 1)",
-		"informativeBg": "rgba(37, 99, 235, 0.1)",
-		"chart1": "rgba(147, 51, 234, 1)",
-		"chart2": "rgba(99, 102, 241, 1)",
-		"chart3": "rgba(30, 58, 95, 1)",
-		"chart4": "rgba(13, 148, 136, 1)"
+		"cover": {
+			"background": "rgb(160, 203, 50)",
+			"foreground": "rgb(12, 12, 15)",
+			"surfaceBackground": "rgb(12, 12, 15)",
+			"surfaceForeground": "rgb(255, 255, 255)"
+		},
+		"slide": {
+			"background": "rgb(234, 239, 227)",
+			"foreground": "rgb(12, 12, 15)",
+			"surfaceBackground": "rgba(255, 255, 255, 1)",
+			"surfaceForeground": "rgb(12, 12, 15)",
+			"surfaceBorder": "rgba(0, 0, 0, 0.2)"
+		},
+		"highlight": "rgb(160, 203, 50)",
+		"status": {
+			"positive": {
+				"color": "rgba(22, 163, 74, 1)",
+				"background": "rgba(22, 163, 74, 0.1)"
+			},
+			"warning": {
+				"color": "rgba(234, 88, 12, 1)",
+				"background": "rgba(234, 88, 12, 0.1)"
+			},
+			"negative": {
+				"color": "rgba(220, 38, 38, 1)",
+				"background": "rgba(220, 38, 38, 0.1)"
+			},
+			"informative": {
+				"color": "rgba(37, 99, 235, 1)",
+				"background": "rgba(37, 99, 235, 0.1)"
+			}
+		},
+		"charts": {
+			"chart1": "rgba(147, 51, 234, 1)",
+			"chart2": "rgba(99, 102, 241, 1)",
+			"chart3": "rgba(30, 58, 95, 1)",
+			"chart4": "rgba(13, 148, 136, 1)"
+		}
 	},
 	"fonts": {
-		"display": "\"Fraunces\", system-ui, sans-serif",
-		"base": "\"Inter\", system-ui, sans-serif"
+		"coverTitle": {
+			"family": "\"Fraunces\", system-ui, sans-serif"
+		},
+		"slideTitle": {
+			"family": "\"Fraunces\", system-ui, sans-serif",
+			"sizeLg": "48px",
+			"sizeMd": "40px",
+			"sizeSm": "32px"
+		},
+		"slideTitlePre": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"size": "14px"
+		},
+		"slideTitleSub": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"size": "14px"
+		},
+		"cardTitle": {
+			"family": "\"Fraunces\", system-ui, sans-serif",
+			"sizeLg": "32px",
+			"sizeMd": "32px",
+			"sizeSm": "24px"
+		},
+		"cardPretitle": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"size": "12px"
+		},
+		"paragraphTitle": {
+			"family": "\"Fraunces\", system-ui, sans-serif",
+			"sizeLg": "24px",
+			"sizeMd": "20px",
+			"sizeSm": "16px"
+		},
+		"body": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"sizeLg": "16px",
+			"sizeMd": "14px",
+			"sizeSm": "12px"
+		}
 	},
 	"borderRadius": {
 		"none": "0px",
 		"sm": "4px",
 		"med": "8px",
 		"lg": "12px",
-		"full": "200px"
+		"full": "200px",
+		"card": "8px",
+		"alert": "0px"
 	},
 	"borderSize": {
 		"card": {

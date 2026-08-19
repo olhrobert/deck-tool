@@ -91,7 +91,7 @@ Then edit `brand.json` / `{slug}-logo.svg` and run `validate-brand.js`. See [bra
 
 ## `validate-brand.js`
 
-Checks `TOKEN_MAP` keys, color parse, WCAG AA for text on tertiary / primary / surface, and that `{slug}-logo.svg` exists.
+Checks `TOKEN_MAP` keys, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` exists.
 
 ```bash
 node scripts/validate-brand.js brands/riverton

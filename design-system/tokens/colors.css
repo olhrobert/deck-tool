@@ -1,67 +1,26 @@
 :root {
-	/* SEMANTIC */
+	/* FALLBACK — used when no brand.css is loaded (showcase “Default”).
+	   Brands override these same names from brand.json via generate-brand-css.js. */
 
-	/* text */
-	--color-text-strong: rgb(from var(--color-text) r g b / 1);
-	--color-text-base: rgb(from var(--color-text) r g b / 0.7);
-	--color-text-subtle: rgb(from var(--color-text) r g b / 0.5);
-	--color-text-highlight: var(--color-text);
+	--color-cover-background: rgb(30, 41, 59);
+	--color-cover-foreground: rgb(255, 255, 255);
+	--color-cover-surface-background: rgb(241, 245, 249);
+	--color-cover-surface-foreground: rgb(15, 23, 42);
 
-	--color-text-on-primary-strong: rgb(
-		from var(--color-text-on-primary) r g b / 1
-	);
-	--color-text-on-primary-base: rgb(
-		from var(--color-text-on-primary) r g b / 0.7
-	);
-	--color-text-on-primary-subtle: rgb(
-		from var(--color-text-on-primary) r g b / 0.5
-	);
-	--color-text-on-primary-highlight: var(--color-text-on-primary);
+	--color-slide-background: rgb(241, 245, 249);
+	--color-slide-foreground: rgb(15, 23, 42);
+	--color-slide-surface-background: rgba(255, 255, 255, 1);
+	--color-slide-surface-foreground: rgb(15, 23, 42);
+	--color-slide-surface-border: rgba(0, 0, 0, 0.2);
 
-	/* slide */
-	--color-slide-bg: var(--color-tertiary);
-	--color-slide-bg-primary: var(--color-primary);
-
-	/* card */
-	--color-card-bg: var(--color-surface);
-	--color-card-on-primary-bg: var(--color-surface-on-primary);
-	--color-card-border: var(--color-border);
-	--color-separator: var(--color-card-border);
-
-	/* alert */
-	--color-alert-bg: var(--color-surface-bg);
-	--color-alert-border: var(--color-primary);
-	--color-alert-border-positive: var(--color-positive);
-	--color-alert-border-warning: var(--color-warning);
-	--color-alert-border-negative: var(--color-negative);
-	--color-alert-border-informative: var(--color-informative);
-
-	/* GLOBAL — neutral defaults. Per-client values come from brands/<name>/brand.css. */
-
-	--color-primary: rgb(30, 41, 59);
-	--color-secondary: rgb(15, 23, 42);
-	--color-tertiary: rgb(241, 245, 249); /* Slide bg */
-
-	--color-white: rgb(255, 255, 255, 1); /* Utility color, don't modify */
-	--color-black: rgb(0, 0, 0, 1); /* Utility color, don't modify */
-
-	--color-surface: rgba(255, 255, 255, 1);
-	--color-surface-on-primary: rgb(241, 245, 249);
-
-	--color-text: rgb(15, 23, 42);
-	--color-text-on-primary: rgb(255, 255, 255);
-
-	--color-border: rgba(0, 0, 0, 0.2);
+	--color-highlight: rgb(30, 41, 59);
 
 	--color-positive: rgba(22, 163, 74, 1);
 	--color-positive-bg: rgba(22, 163, 74, 0.1);
-
 	--color-warning: rgba(234, 88, 12, 1);
 	--color-warning-bg: rgba(234, 88, 12, 0.1);
-
 	--color-negative: rgba(220, 38, 38, 1);
 	--color-negative-bg: rgba(220, 38, 38, 0.1);
-
 	--color-informative: rgba(37, 99, 235, 1);
 	--color-informative-bg: rgba(37, 99, 235, 0.1);
 
@@ -69,4 +28,47 @@
 	--color-chart-2: rgba(99, 102, 241, 1);
 	--color-chart-3: rgba(30, 58, 95, 1);
 	--color-chart-4: rgba(13, 148, 136, 1);
+
+	--color-white: rgb(255, 255, 255, 1);
+	--color-black: rgb(0, 0, 0, 1);
+
+	/* Opacity variants — derived from the role tokens above. */
+
+	--color-cover-foreground-strong: rgb(
+		from var(--color-cover-foreground) r g b / 1
+	);
+	--color-cover-foreground-base: rgb(
+		from var(--color-cover-foreground) r g b / 0.7
+	);
+	--color-cover-foreground-subtle: rgb(
+		from var(--color-cover-foreground) r g b / 0.5
+	);
+	--color-cover-surface-foreground-strong: rgb(
+		from var(--color-cover-surface-foreground) r g b / 1
+	);
+	--color-cover-surface-foreground-base: rgb(
+		from var(--color-cover-surface-foreground) r g b / 0.7
+	);
+	--color-cover-surface-foreground-subtle: rgb(
+		from var(--color-cover-surface-foreground) r g b / 0.5
+	);
+
+	--color-slide-foreground-strong: rgb(
+		from var(--color-slide-foreground) r g b / 1
+	);
+	--color-slide-foreground-base: rgb(
+		from var(--color-slide-foreground) r g b / 0.7
+	);
+	--color-slide-foreground-subtle: rgb(
+		from var(--color-slide-foreground) r g b / 0.5
+	);
+	--color-slide-surface-foreground-strong: rgb(
+		from var(--color-slide-surface-foreground) r g b / 1
+	);
+	--color-slide-surface-foreground-base: rgb(
+		from var(--color-slide-surface-foreground) r g b / 0.7
+	);
+	--color-slide-surface-foreground-subtle: rgb(
+		from var(--color-slide-surface-foreground) r g b / 0.5
+	);
 }

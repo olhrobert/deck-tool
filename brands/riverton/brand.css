@@ -2,15 +2,23 @@
 /* Regenerate: npm run generate-brand -- brands/<name> */
 
 :root {
-	/* colors */
-	--color-primary: rgb(160, 203, 50);
-	--color-secondary: rgb(12, 12, 15);
-	--color-tertiary: rgb(234, 239, 227);
-	--color-surface: rgba(255, 255, 255, 1);
-	--color-surface-on-primary: rgb(12, 12, 15);
-	--color-text: rgb(12, 12, 15);
-	--color-text-on-primary: rgb(12, 12, 15);
-	--color-border: rgba(0, 0, 0, 0.2);
+	/* cover */
+	--color-cover-background: rgb(160, 203, 50);
+	--color-cover-foreground: rgb(12, 12, 15);
+	--color-cover-surface-background: rgb(12, 12, 15);
+	--color-cover-surface-foreground: rgb(255, 255, 255);
+
+	/* slide */
+	--color-slide-background: rgb(234, 239, 227);
+	--color-slide-foreground: rgb(12, 12, 15);
+	--color-slide-surface-background: rgba(255, 255, 255, 1);
+	--color-slide-surface-foreground: rgb(12, 12, 15);
+	--color-slide-surface-border: rgba(0, 0, 0, 0.2);
+
+	/* highlight */
+	--color-highlight: rgb(160, 203, 50);
+
+	/* status */
 	--color-positive: rgba(22, 163, 74, 1);
 	--color-positive-bg: rgba(22, 163, 74, 0.1);
 	--color-warning: rgba(234, 88, 12, 1);
@@ -19,14 +27,51 @@
 	--color-negative-bg: rgba(220, 38, 38, 0.1);
 	--color-informative: rgba(37, 99, 235, 1);
 	--color-informative-bg: rgba(37, 99, 235, 0.1);
+
+	/* charts */
 	--color-chart-1: rgba(147, 51, 234, 1);
 	--color-chart-2: rgba(99, 102, 241, 1);
 	--color-chart-3: rgba(30, 58, 95, 1);
 	--color-chart-4: rgba(13, 148, 136, 1);
 
-	/* fonts */
-	--font-family-display: "Fraunces", system-ui, sans-serif;
-	--font-family-base: "Inter", system-ui, sans-serif;
+	/* fonts — cover title */
+	--font-family-cover-title: "Fraunces", system-ui, sans-serif;
+
+	/* fonts — slide title */
+	--font-family-slide-title: "Fraunces", system-ui, sans-serif;
+	--slide-title-main-size-lg: 48px;
+	--slide-title-main-size-md: 40px;
+	--slide-title-main-size-sm: 32px;
+
+	/* fonts — slide title pre */
+	--font-family-slide-title-pre: "Inter", system-ui, sans-serif;
+	--slide-title-pre-size: 14px;
+
+	/* fonts — slide title sub */
+	--font-family-slide-title-sub: "Inter", system-ui, sans-serif;
+	--slide-title-sub-size: 14px;
+
+	/* fonts — card title */
+	--font-family-card-title: "Fraunces", system-ui, sans-serif;
+	--card-title-size-lg: 32px;
+	--card-title-size-md: 32px;
+	--card-title-size-sm: 24px;
+
+	/* fonts — card pretitle */
+	--font-family-card-pretitle: "Inter", system-ui, sans-serif;
+	--card-pretitle-size: 12px;
+
+	/* fonts — paragraph title */
+	--font-family-paragraph-title: "Fraunces", system-ui, sans-serif;
+	--paragraph-title-size-lg: 24px;
+	--paragraph-title-size-md: 20px;
+	--paragraph-title-size-sm: 16px;
+
+	/* fonts — body */
+	--font-family-body: "Inter", system-ui, sans-serif;
+	--body-size-lg: 16px;
+	--body-size-md: 14px;
+	--body-size-sm: 12px;
 
 	/* border radius */
 	--border-radius-none: 0px;
@@ -34,6 +79,8 @@
 	--border-radius-med: 8px;
 	--border-radius-lg: 12px;
 	--border-radius-full: 200px;
+	--border-radius-card: 8px;
+	--border-radius-alert: 0px;
 
 	/* border size */
 	--card-border-size-top: 1px;

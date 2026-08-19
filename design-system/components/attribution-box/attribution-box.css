@@ -4,7 +4,7 @@ attribution-box {
 	flex: 0 0 auto;
 	box-sizing: border-box;
 	gap: var(--attribution-box-gap);
-	background-color: var(--color-card-bg);
+	background-color: var(--color-slide-surface-background);
 }
 
 attribution-box img {
@@ -18,8 +18,8 @@ attribution-box[variant="title"] {
 }
 
 attribution-box[variant="title"] text {
-	font-size: var(--text-size-300);
-	color: var(--color-text-base);
+	font-size: 12px;
+	color: var(--color-slide-surface-foreground-base);
 }
 
 attribution-box[variant="title"] img {
@@ -32,8 +32,8 @@ attribution-box[variant="content"] {
 }
 
 attribution-box[variant="content"] text {
-	font-size: var(--text-size-200);
-	color: var(--color-text-subtle);
+	font-size: 8px;
+	color: var(--color-slide-surface-foreground-subtle);
 }
 
 attribution-box[variant="content"] img {

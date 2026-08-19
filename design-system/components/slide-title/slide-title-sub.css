@@ -5,6 +5,6 @@ slide-title-sub {
 	font-weight: var(--slide-title-sub-weight);
 	line-height: var(--slide-title-sub-lineheight);
 	font-size: var(--slide-title-sub-size);
-	letter-spacing: var(--letterspacing-base);
-	color: var(--color-text-base);
+	letter-spacing: 0%;
+	color: var(--color-slide-foreground-base);
 }
