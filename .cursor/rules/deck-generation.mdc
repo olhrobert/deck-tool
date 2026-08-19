@@ -19,6 +19,7 @@ When creating or editing files in `decks/`, follow `.cursor/skills/generate-deck
 decks/{deck-name}/
   slides.json
   {slug}-logo.svg
+  {slug}-logo-inverted.svg
   01.html
   02.html
 ```

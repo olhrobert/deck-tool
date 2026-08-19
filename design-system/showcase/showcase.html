@@ -566,42 +566,100 @@
 			const BRAND_LINK_ID = "brand-stylesheet";
 			const brandSelector = document.getElementById("brand-selector");
 
+			const LOGO_SURFACES = {
+				cover: "--color-cover-background",
+				slide: "--color-slide-background",
+				"slide-surface": "--color-slide-surface-background",
+				"cover-surface": "--color-cover-surface-background",
+			};
+
 			const BRAND_LOGOS = {
 				"": {
-					href: "../../assets/logos/placeholder-logo.svg#placeholder-logo",
-					viewBox: "0 0 44 12",
+					default: "../../assets/logos/placeholder-logo.svg",
+					inverted:
+						"../../assets/logos/placeholder-logo-inverted.svg",
 				},
 				gratia: {
-					href: "../../brands/gratia/gratia-logo.svg#gratia-logo",
-					viewBox: "0 0 65 16",
+					default: "../../brands/gratia/gratia-logo.svg",
+					inverted:
+						"../../brands/gratia/gratia-logo-inverted.svg",
 				},
 				riverton: {
-					href: "../../brands/riverton/riverton-logo.svg#riverton-logo",
-					viewBox: "0 0 76 16",
+					default: "../../brands/riverton/riverton-logo.svg",
+					inverted:
+						"../../brands/riverton/riverton-logo-inverted.svg",
 				},
 			};
 
+			function parseCssRgb(value) {
+				const match = String(value).match(
+					/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/i,
+				);
+				if (!match) return null;
+				return {
+					r: Number(match[1]) / 255,
+					g: Number(match[2]) / 255,
+					b: Number(match[3]) / 255,
+				};
+			}
+
+			function relativeLuminance(rgb) {
+				const lin = (channel) =>
+					channel <= 0.04045
+						? channel / 12.92
+						: ((channel + 0.055) / 1.055) ** 2.4;
+				return (
+					0.2126 * lin(rgb.r) +
+					0.7152 * lin(rgb.g) +
+					0.0722 * lin(rgb.b)
+				);
+			}
+
+			function isDarkBackground(cssVar) {
+				const raw = getComputedStyle(
+					document.documentElement,
+				).getPropertyValue(cssVar);
+				const rgb = parseCssRgb(raw);
+				if (!rgb) return false;
+				return relativeLuminance(rgb) < 0.45;
+			}
+
+			function applyLogos(brand) {
+				const files = BRAND_LOGOS[brand] || BRAND_LOGOS[""];
+				document.querySelectorAll("img[data-logo]").forEach((img) => {
+					const surface = img.getAttribute("data-logo");
+					const cssVar =
+						LOGO_SURFACES[surface] || LOGO_SURFACES.slide;
+					img.src = isDarkBackground(cssVar)
+						? files.inverted
+						: files.default;
+				});
+			}
+
+			let brandApplyId = 0;
+
 			function applyBrand() {
+				const applyId = ++brandApplyId;
 				document.getElementById(BRAND_LINK_ID)?.remove();
 
 				const brand = brandSelector.value;
+				const finish = () => {
+					if (applyId !== brandApplyId) return;
+					applyLogos(brand);
+				};
 
-				if (brand) {
-					const link = document.createElement("link");
-					link.id = BRAND_LINK_ID;
-					link.rel = "stylesheet";
-					link.href = `../../brands/${brand}/brand.css`;
-					document.head.appendChild(link);
+				if (!brand) {
+					finish();
+					return;
 				}
 
-				const logo = BRAND_LOGOS[brand] || BRAND_LOGOS[""];
-				document
-					.querySelectorAll('svg[aria-label="Logo"]')
-					.forEach((svg) => {
-						svg.setAttribute("viewBox", logo.viewBox);
-						const use = svg.querySelector("use");
-						if (use) use.setAttribute("href", logo.href);
-					});
+				const link = document.createElement("link");
+				link.id = BRAND_LINK_ID;
+				link.rel = "stylesheet";
+				link.href = `../../brands/${brand}/brand.css`;
+				link.addEventListener("load", finish);
+				link.addEventListener("error", finish);
+				document.head.appendChild(link);
 			}
 
 			brandSelector.addEventListener("change", applyBrand);

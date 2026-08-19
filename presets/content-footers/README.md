@@ -15,7 +15,7 @@ Use the same footer preset across every content slide in a deck.
 
 - `Optional disclaimer. Can be one or two sentences long.` — omit the disclaimer `<text>` and its trailing separator if not needed
 - Slide number (`01`) — set per slide (`02`, `03`, …)
-- Logo `<use href="…">` — point at a deck-local logo when provided (see [presets/README.md](../README.md#logos))
+- Logo `<img data-logo>` — point at a deck-local logo when provided (see [presets/README.md](../README.md#logos))
 
 ## Example prompt
 

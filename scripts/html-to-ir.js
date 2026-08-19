@@ -353,6 +353,27 @@ function logoFromSvg(node, warnings) {
 	};
 }
 
+function logoFromImg(node, warnings) {
+	const src = String(attr(node, "src", ""));
+	const style = String(attr(node, "style", ""));
+	const heightMatch = style.match(/height:\s*([\d.]+)px/i);
+	const height = heightMatch ? Number(heightMatch[1]) : 24;
+	let component = "component/logo-placeholder";
+	if (/riverton-logo/.test(src)) component = "component/logo-riverton";
+	else if (/gratia-logo/.test(src)) component = "component/logo-gratia";
+	else if (/placeholder-logo/.test(src)) {
+		component = "component/logo-placeholder";
+		warnings.push("Placeholder logo in slide; swap for a brand logo component before publishing.");
+	}
+	return {
+		type: "instance",
+		component,
+		name: "Logo",
+		height,
+		layoutSizingVertical: "FIXED",
+	};
+}
+
 function walk(node, warnings) {
 	if (!node || node.type === "text") return null;
 	if (SKIP_TAGS.has(node.tag)) {
@@ -401,6 +422,9 @@ function walk(node, warnings) {
 
 	if (node.tag === "img") {
 		const src = String(attr(node, "src", ""));
+		if (attr(node, "data-logo")) {
+			return logoFromImg(node, warnings);
+		}
 		if (/gratia-logo/.test(src)) {
 			return { type: "instance", component: "component/logo-gratia", name: "Gratia" };
 		}

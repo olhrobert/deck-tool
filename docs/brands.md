@@ -4,9 +4,10 @@ A brand is a token override, not a fork of the design system.
 
 ```
 brands/{slug}/
-  brand.json       source of truth
-  brand.css        generated — do not edit
-  {slug}-logo.svg  currentColor <symbol> sprite
+  brand.json                source of truth
+  brand.css                 generated — do not edit
+  {slug}-logo.svg           default lockup, baked fills
+  {slug}-logo-inverted.svg  light lockup for dark backgrounds
 ```
 
 ## Create
@@ -16,7 +17,7 @@ node scripts/new-brand.js acme --name "Acme Capital"
 node scripts/validate-brand.js brands/acme
 ```
 
-Then edit `brand.json` (start from the Riverton copy the scaffold writes) and replace `{slug}-logo.svg`.
+Then edit `brand.json` (start from the Riverton copy the scaffold writes) and replace `{slug}-logo.svg` and `{slug}-logo-inverted.svg`.
 
 `slides.json` selects the brand:
 
@@ -84,16 +85,19 @@ Each text role has its own family and sizes (except cover title, whose sizes are
 | `borderRadius.*` | `--border-radius-*` |
 | `borderSize.card.*` / `borderSize.alert.*` | card and alert stroke widths |
 
-## Logo sprite
+## Logos
 
-Match `assets/logos/placeholder-logo.svg`: a `<symbol id="{slug}-logo">` with `fill="currentColor"` on paths. Deck HTML uses:
+Each brand ships two standalone SVGs with **baked fills** (no `currentColor`, no `<symbol>` sprite):
 
-```html
-<use href="{slug}-logo.svg#{slug}-logo" />
-```
+| File | Use |
+|---|---|
+| `{slug}-logo.svg` | Default lockup on light backgrounds |
+| `{slug}-logo-inverted.svg` | Light lockup on dark backgrounds |
 
-Keep `viewBox` in sync with the wrapping `<svg viewBox>`.
+Presets use `<img data-logo="cover|slide|slide-surface">`. The showcase (and later deck generation) picks default vs inverted from the luminance of that surface token. Do not wrap brand logos in `color-*` classes.
+
+The Gratia mark inside `<attribution-box>` is a separate prepared-by lockup (`<img data-slot="logo">`); leave it alone.
 
 ## Figma
 
-Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive font families (`font-family/cover-title`, `font-family/slide-title`, `font-family/card-title`, `font-family/paragraph-title`, `font-family/body`) using the first quoted family from `brand.json` (e.g. `"Inter"` not the CSS stack). Create `__Logo/{Brand}` from the flattened sprite and bind fills to `color/slide-foreground-strong`. Logo wordmarks are not bound to the family variables.
+Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive font families (`font-family/cover-title`, `font-family/slide-title`, `font-family/card-title`, `font-family/paragraph-title`, `font-family/body`) using the first quoted family from `brand.json` (e.g. `"Inter"` not the CSS stack). Create `__Logo/{Brand}` from `{slug}-logo.svg` (baked fills; do not bind paths to `color/slide-foreground-strong`). Logo wordmarks are not bound to the family variables.

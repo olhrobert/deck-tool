@@ -110,7 +110,7 @@ No build step. Recompile the deck if slide content changes.
 
 ## `new-brand.js`
 
-Scaffolds `brands/{slug}/` from the Riverton `brand.json` template, copies the placeholder logo sprite, and generates `brand.css`.
+Scaffolds `brands/{slug}/` from the Riverton `brand.json` template, copies the placeholder logo pair (default + inverted), and generates `brand.css`.
 
 ```bash
 node scripts/new-brand.js acme --name "Acme Capital"
@@ -123,7 +123,7 @@ Then edit `brand.json` / `{slug}-logo.svg` and run `validate-brand.js`. See [bra
 
 ## `validate-brand.js`
 
-Checks `TOKEN_MAP` keys, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` exists.
+Checks `TOKEN_MAP` keys, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
 
 ```bash
 node scripts/validate-brand.js brands/riverton

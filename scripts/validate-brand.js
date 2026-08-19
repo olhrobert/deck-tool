@@ -73,7 +73,9 @@ function validateBrand(brandDir) {
 	const brand = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 	if (!brand.name) errors.push("brand.json is missing name");
 	const logoFile = brand.logo || `${slug}-logo.svg`;
+	const logoInvertedFile = logoFile.replace(/\.svg$/i, "-inverted.svg");
 	const logoPath = path.join(resolved, logoFile);
+	const logoInvertedPath = path.join(resolved, logoInvertedFile);
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
 		if (getPath(brand, jsonPathKey) === undefined) {
@@ -104,17 +106,25 @@ function validateBrand(brandDir) {
 		}
 	}
 
-	if (!fs.existsSync(logoPath)) {
-		errors.push(`Missing ${logoFile}`);
-	} else {
-		const svg = fs.readFileSync(logoPath, "utf8");
-		if (!/currentColor/.test(svg)) {
-			warnings.push(`${logoFile} does not use currentColor; Figma fill binding to color/slide-foreground-strong will not match HTML.`);
+	function checkLogoSvg(file, filePath) {
+		if (!fs.existsSync(filePath)) {
+			errors.push(`Missing ${file}`);
+			return;
 		}
-		if (!/<symbol[\s\S]*id=/.test(svg)) {
-			warnings.push(`${logoFile} has no <symbol id>; deck <use href> sprites expect one.`);
+		const svg = fs.readFileSync(filePath, "utf8");
+		if (!/<svg[^>]*viewBox=/i.test(svg)) {
+			errors.push(`${file} needs a viewBox on the root <svg> so it can be used as an <img>.`);
+		}
+		if (/currentColor/.test(svg)) {
+			warnings.push(`${file} uses currentColor; bake fills so brand colors are not overwritten.`);
+		}
+		if (/<symbol[\s\S]*id=/.test(svg)) {
+			warnings.push(`${file} is a <symbol> sprite; use a standalone SVG with baked fills.`);
 		}
 	}
+
+	checkLogoSvg(logoFile, logoPath);
+	checkLogoSvg(logoInvertedFile, logoInvertedPath);
 
 	return { errors, warnings, brand };
 }

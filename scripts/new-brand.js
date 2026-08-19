@@ -8,6 +8,12 @@ const ROOT = path.join(__dirname, "..");
 const BRANDS_DIR = path.join(ROOT, "brands");
 const TEMPLATE_JSON = path.join(BRANDS_DIR, "riverton", "brand.json");
 const PLACEHOLDER_LOGO = path.join(ROOT, "assets", "logos", "placeholder-logo.svg");
+const PLACEHOLDER_LOGO_INVERTED = path.join(
+	ROOT,
+	"assets",
+	"logos",
+	"placeholder-logo-inverted.svg",
+);
 
 function usage() {
 	console.error("Usage: node scripts/new-brand.js <slug> [--name \"Display Name\"]");
@@ -50,6 +56,7 @@ function main() {
 	const template = JSON.parse(fs.readFileSync(TEMPLATE_JSON, "utf8"));
 	template.name = name || titleCaseSlug(slug);
 	const logoFile = `${slug}-logo.svg`;
+	const logoInvertedFile = `${slug}-logo-inverted.svg`;
 	template.logo = logoFile;
 
 	fs.mkdirSync(destDir, { recursive: true });
@@ -59,12 +66,13 @@ function main() {
 		"utf8",
 	);
 	fs.copyFileSync(PLACEHOLDER_LOGO, path.join(destDir, logoFile));
+	fs.copyFileSync(PLACEHOLDER_LOGO_INVERTED, path.join(destDir, logoInvertedFile));
 	generateBrandCss(destDir);
 
 	console.log(`Created brands/${slug}/`);
 	console.log("Next:");
 	console.log(`  1. Edit brands/${slug}/brand.json (colors, fonts, radii).`);
-	console.log(`  2. Replace brands/${slug}/${logoFile} with a currentColor sprite.`);
+	console.log(`  2. Replace brands/${slug}/${logoFile} and ${logoInvertedFile} with baked-fill SVGs.`);
 	console.log(`  3. node scripts/validate-brand.js brands/${slug}`);
 	console.log("  4. Add a Primitives mode in Figma and a __Logo component (skill: new-brand).");
 }

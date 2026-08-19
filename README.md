@@ -32,7 +32,7 @@ Ask the agent; it loads the matching skill from [`AGENTS.md`](AGENTS.md).
 
 ```
 assets/           fonts, icons, logos
-brands/           brand.json + generated brand.css + {slug}-logo.svg
+brands/           brand.json + generated brand.css + {slug}-logo.svg + {slug}-logo-inverted.svg
 design-system/    tokens, components, utilities, showcase/
 viewer/           presentation template, viewer JS/CSS
 presets/          copy-ready slide HTML

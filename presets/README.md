@@ -17,7 +17,8 @@ Ready-made HTML slides for deck generation. **Copy a preset into `decks/{deck-na
 decks/
   my-deck/
     deck-title.html          ← copied from deck-titles/
-    client-logo.svg          ← optional: deck-specific logo sprite
+    client-logo.svg
+    client-logo-inverted.svg
     slide-01.html
     slide-02.html
     slide-03.html
@@ -27,23 +28,27 @@ Copied files keep `../../design-system/` and `../../assets/` paths — they work
 
 ## Logos
 
-Presets use a shared placeholder logo at `assets/logos/placeholder-logo.svg`. It inherits color via `currentColor`, so it works on any slide background.
-
-When creating a deck for a specific client or brand:
-
-1. Copy presets into `decks/{deck-name}/` as usual.
-2. Add the client's logo SVG to the deck folder (e.g. `decks/{deck-name}/client-logo.svg`).
-   - Use a `<symbol>` sprite with `fill="currentColor"` on paths, matching `placeholder-logo.svg` or `decks/riverton-project-charter/riverton-logo.svg`.
-3. Update the `<use href="…">` in each slide to point at the deck-local file (e.g. `client-logo.svg#client-logo`).
-4. Adjust the wrapping `<svg viewBox="…">` to match the logo's dimensions.
-
-If no deck-specific logo is provided, keep the placeholder reference from the preset:
+Presets use a shared placeholder at `assets/logos/placeholder-logo.svg` (light backgrounds) and `placeholder-logo-inverted.svg` (dark backgrounds). Artwork is used as-is via `<img>`; fills are not overwritten.
 
 ```html
-<use href="../../assets/logos/placeholder-logo.svg#placeholder-logo" />
+<img
+	src="../../assets/logos/placeholder-logo.svg"
+	alt="Logo"
+	data-logo="cover"
+	class="shrink-0 block"
+	style="height: 24px; width: auto"
+/>
 ```
 
-See `decks/riverton-project-charter/` for a working example with a deck-local Riverton logo.
+`data-logo` names the surface whose background decides default vs inverted: `cover`, `slide`, or `slide-surface`.
+
+When creating a deck for a specific brand:
+
+1. Copy presets into `decks/{deck-name}/` as usual.
+2. Copy `brands/{slug}/{slug}-logo.svg` and `{slug}-logo-inverted.svg` into the deck folder.
+3. Point each `<img data-logo>` at the matching deck-local file (inverted on dark surfaces). Leave `<img data-slot="logo">` in the attribution box unchanged.
+
+See [docs/brands.md](../docs/brands.md#logos).
 
 ## Example prompt
 
