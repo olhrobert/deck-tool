@@ -16,7 +16,7 @@ The pieces that make that work:
 | Brand tokens | `brands/{slug}/brand.json` overrides color, type, radius, and stroke. `brand.css` is generated. |
 | Component set | Custom HTML elements in `design-system/components/` (Slide, Card, Slide Title, Alert, …). |
 | Slide presets | Copy-ready HTML in `presets/` (title slides, content footers, Quick Fact Card). |
-| Showcase | [`design-system/components/showcase.html`](design-system/components/showcase.html) — work on components and slide layouts in the browser, with a brand switcher. |
+| Showcase | [`design-system/showcase/showcase.html`](design-system/showcase/showcase.html) — work on components and slide layouts in the browser, with a brand switcher. |
 | Agent skills | `.cursor/skills/` — `new-brand`, `generate-deck`, `push-to-figma`. |
 | HTML → Figma | `scripts/html-to-ir.js` parses a compiled deck; the push skill instances `figma/library.json` components in the target file. |
 
@@ -33,7 +33,7 @@ Ask the agent; it loads the matching skill from [`AGENTS.md`](AGENTS.md).
 ```
 assets/           fonts, icons, logos
 brands/           brand.json + generated brand.css + {slug}-logo.svg
-design-system/    tokens, components, utilities, showcase.html
+design-system/    tokens, components, utilities, showcase/
 viewer/           presentation template, viewer JS/CSS
 presets/          copy-ready slide HTML
 decks/            one folder per deck
@@ -55,4 +55,4 @@ New brand: `npm run new-brand -- acme --name "Acme Capital"` then [docs/brands.m
 
 Push to Figma: `npm run html-to-ir -- decks/{deck-name}` then `.cursor/skills/push-to-figma/`.
 
-See [docs/scripts.md](docs/scripts.md), [docs/figma.md](docs/figma.md), [docs/html-to-figma.md](docs/html-to-figma.md), and [AGENTS.md](AGENTS.md).
+Phases and working order: [docs/overview.md](docs/overview.md). Also [docs/scripts.md](docs/scripts.md), [docs/figma.md](docs/figma.md), [docs/html-to-figma.md](docs/html-to-figma.md), and [AGENTS.md](AGENTS.md).
