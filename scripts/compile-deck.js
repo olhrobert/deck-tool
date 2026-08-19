@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { generateBrandCss } = require("./generate-brand-css.js");
+const { generateBrandCss, BRAND_FILENAME } = require("./generate-brand-css.js");
 
 const ROOT = path.join(__dirname, "..");
 const TEMPLATE_PATH = path.join(ROOT, "viewer", "deck.html");
@@ -94,13 +94,13 @@ function resolveBrandStylesheet(brandName) {
 	if (!brandName) return "";
 
 	const brandDir = path.join(BRANDS_DIR, brandName);
-	if (!fs.existsSync(path.join(brandDir, "brand.json"))) {
+	if (!fs.existsSync(path.join(brandDir, BRAND_FILENAME))) {
 		throw new Error(
-			`Deck references brand "${brandName}" but brands/${brandName}/brand.json was not found`,
+			`Deck references brand "${brandName}" but brands/${brandName}/${BRAND_FILENAME} was not found`,
 		);
 	}
 
-	// Regenerate brand.css from brand.json so the compiled deck always reflects
+	// Regenerate brand.css from brand-settings.json so the compiled deck always reflects
 	// the current brand definition.
 	generateBrandCss(brandDir);
 

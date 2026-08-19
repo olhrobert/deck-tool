@@ -1,6 +1,6 @@
 :root {
 	/* FALLBACK — used when no brand.css is loaded (showcase “Default”).
-	   Brands override these same names from brand.json via generate-brand-css.js. */
+	   Brands override these same names from brand-settings.json via generate-brand-css.js. */
 
 	--color-cover-background: rgb(30, 41, 59);
 	--color-cover-foreground: rgb(255, 255, 255);

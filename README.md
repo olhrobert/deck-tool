@@ -13,7 +13,7 @@ The pieces that make that work:
 
 | Block | Role |
 | --- | --- |
-| Brand tokens | `brands/{slug}/brand.json` overrides color, type, radius, and stroke. `brand.css` is generated. |
+| Brand tokens | `brands/{slug}/brand-settings.json` overrides color, type, radius, and stroke. `brand.css` is generated. |
 | Component set | Custom HTML elements in `design-system/components/` (Slide, Card, Slide Title, Alert, …). |
 | Slide presets | Copy-ready HTML in `presets/` (title slides, content slides, content footers). |
 | Showcase | [`design-system/showcase/showcase.html`](design-system/showcase/showcase.html) — work on components and slide layouts in the browser, with a brand switcher. |
@@ -32,7 +32,7 @@ Ask the agent; it loads the matching skill from [`AGENTS.md`](AGENTS.md).
 
 ```
 assets/           fonts, icons, logos
-brands/           brand.json + generated brand.css + {slug}-logo.svg + {slug}-logo-inverted.svg
+brands/           brand-settings.json + generated brand.css + {slug}-logo.svg + {slug}-logo-inverted.svg
 design-system/    tokens, components, utilities, showcase/
 viewer/           presentation template, viewer JS/CSS
 presets/          copy-ready slide HTML

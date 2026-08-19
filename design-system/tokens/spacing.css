@@ -39,6 +39,8 @@
 	--attribution-box-padding-x-title: var(--spacing-6);
 	--attribution-box-padding-y-content: var(--spacing-2);
 	--attribution-box-padding-x-content: var(--spacing-2);
+	--attribution-box-text-size-title: var(--spacing-3);
+	--attribution-box-text-size-content: var(--spacing-2);
 	--attribution-box-logo-height-title: 14px;
 	--attribution-box-logo-height-content: 9px;
 

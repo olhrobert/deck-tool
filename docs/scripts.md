@@ -110,14 +110,14 @@ No build step. Recompile the deck if slide content changes.
 
 ## `new-brand.js`
 
-Scaffolds `brands/{slug}/` from the Riverton `brand.json` template, copies the placeholder logo pair (default + inverted), and generates `brand.css`.
+Scaffolds `brands/{slug}/` from the Riverton `brand-settings.json` template, copies the placeholder logo pair (default + inverted), and generates `brand.css`.
 
 ```bash
 node scripts/new-brand.js acme --name "Acme Capital"
 npm run new-brand -- acme --name "Acme Capital"
 ```
 
-Then edit `brand.json` / `{slug}-logo.svg` and run `validate-brand.js`. See [brands.md](brands.md).
+Then edit `brand-settings.json` / `{slug}-logo.svg` and run `validate-brand.js`. See [brands.md](brands.md).
 
 ---
 
@@ -145,9 +145,17 @@ npm run html-to-ir -- decks/riverton-project-charter
 
 ## `generate-brand-css.js`
 
-Maps `brand.json` → `brand.css`. Called by `compile-deck.js` and `new-brand.js`. Rarely run directly:
+Maps `brand-settings.json` → `brand.css`. Called by `compile-deck.js` and `new-brand.js`.
 
 ```bash
 node scripts/generate-brand-css.js brands/riverton
+npm run generate-brand -- brands/riverton
+```
+
+Rebuild every brand (after editing several `brand-settings.json` files, or before opening the showcase):
+
+```bash
+node scripts/generate-all-brands.js
+npm run generate-brand:all
 ```
 

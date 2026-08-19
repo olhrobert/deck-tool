@@ -5,6 +5,7 @@
 		"compile": "node scripts/compile-deck.js",
 		"compile:all": "node scripts/compile-all-decks.js",
 		"generate-brand": "node scripts/generate-brand-css.js",
+		"generate-brand:all": "node scripts/generate-all-brands.js",
 		"new-brand": "node scripts/new-brand.js",
 		"validate-brand": "node scripts/validate-brand.js",
 		"html-to-ir": "node scripts/html-to-ir.js",

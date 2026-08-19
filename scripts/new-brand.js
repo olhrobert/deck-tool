@@ -2,11 +2,11 @@
 
 const fs = require("fs");
 const path = require("path");
-const { generateBrandCss } = require("./generate-brand-css.js");
+const { generateBrandCss, BRAND_FILENAME } = require("./generate-brand-css.js");
 
 const ROOT = path.join(__dirname, "..");
 const BRANDS_DIR = path.join(ROOT, "brands");
-const TEMPLATE_JSON = path.join(BRANDS_DIR, "riverton", "brand.json");
+const TEMPLATE_JSON = path.join(BRANDS_DIR, "riverton", BRAND_FILENAME);
 const PLACEHOLDER_LOGO = path.join(ROOT, "assets", "logos", "placeholder-logo.svg");
 const PLACEHOLDER_LOGO_INVERTED = path.join(
 	ROOT,
@@ -61,7 +61,7 @@ function main() {
 
 	fs.mkdirSync(destDir, { recursive: true });
 	fs.writeFileSync(
-		path.join(destDir, "brand.json"),
+		path.join(destDir, BRAND_FILENAME),
 		`${JSON.stringify(template, null, "\t")}\n`,
 		"utf8",
 	);
@@ -71,7 +71,7 @@ function main() {
 
 	console.log(`Created brands/${slug}/`);
 	console.log("Next:");
-	console.log(`  1. Edit brands/${slug}/brand.json (colors, fonts, radii).`);
+	console.log(`  1. Edit brands/${slug}/${BRAND_FILENAME} (colors, fonts, radii).`);
 	console.log(`  2. Replace brands/${slug}/${logoFile} and ${logoInvertedFile} with baked-fill SVGs.`);
 	console.log(`  3. node scripts/validate-brand.js brands/${slug}`);
 	console.log("  4. Add a Primitives mode in Figma and a __Logo component (skill: new-brand).");

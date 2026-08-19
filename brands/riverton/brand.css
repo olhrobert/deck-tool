@@ -1,4 +1,4 @@
-/* AUTO-GENERATED from brand.json for "Riverton" — do not edit by hand. */
+/* AUTO-GENERATED from brand-settings.json for "Riverton" — do not edit by hand. */
 /* Regenerate: npm run generate-brand -- brands/<name> */
 
 :root {
@@ -36,42 +36,47 @@
 
 	/* fonts — cover title */
 	--font-family-cover-title: "Fraunces", system-ui, sans-serif;
+	--font-weight-cover-title: 500;
 
 	/* fonts — slide title */
 	--font-family-slide-title: "Fraunces", system-ui, sans-serif;
-	--slide-title-main-size-lg: 48px;
-	--slide-title-main-size-md: 40px;
-	--slide-title-main-size-sm: 32px;
+	--font-weight-slide-title: 500;
+	--slide-title-main-size-lg: var(--text-size-1200);
+	--slide-title-main-size-md: var(--text-size-1000);
+	--slide-title-main-size-sm: var(--text-size-800);
 
 	/* fonts — slide title pre */
 	--font-family-slide-title-pre: "Inter", system-ui, sans-serif;
-	--slide-title-pre-size: 14px;
+	--font-weight-slide-title-pre: 400;
+	--slide-title-pre-size: var(--text-size-350);
 
 	/* fonts — slide title sub */
 	--font-family-slide-title-sub: "Inter", system-ui, sans-serif;
-	--slide-title-sub-size: 14px;
+	--font-weight-slide-title-sub: 400;
+	--slide-title-sub-size: var(--text-size-350);
 
 	/* fonts — card title */
 	--font-family-card-title: "Fraunces", system-ui, sans-serif;
-	--card-title-size-lg: 32px;
-	--card-title-size-md: 32px;
-	--card-title-size-sm: 24px;
+	--font-weight-card-title: 500;
+	--card-title-size-lg: var(--text-size-800);
+	--card-title-size-md: var(--text-size-800);
+	--card-title-size-sm: var(--text-size-600);
 
 	/* fonts — card pretitle */
 	--font-family-card-pretitle: "Inter", system-ui, sans-serif;
-	--card-pretitle-size: 12px;
+	--font-weight-card-pretitle: 500;
+	--card-pretitle-size: var(--text-size-300);
 
 	/* fonts — paragraph title */
 	--font-family-paragraph-title: "Fraunces", system-ui, sans-serif;
-	--paragraph-title-size-lg: 24px;
-	--paragraph-title-size-md: 20px;
-	--paragraph-title-size-sm: 16px;
+	--font-weight-paragraph-title: 500;
+	--paragraph-title-size-lg: var(--text-size-600);
+	--paragraph-title-size-md: var(--text-size-500);
+	--paragraph-title-size-sm: var(--text-size-400);
 
 	/* fonts — body */
 	--font-family-body: "Inter", system-ui, sans-serif;
-	--body-size-lg: 16px;
-	--body-size-md: 14px;
-	--body-size-sm: 12px;
+	--font-weight-body: 400;
 
 	/* border radius */
 	--border-radius-none: 0px;

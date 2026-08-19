@@ -18,7 +18,7 @@ attribution-box[variant="title"] {
 }
 
 attribution-box[variant="title"] text {
-	font-size: 12px;
+	font-size: var(--attribution-box-text-size-title);
 	color: var(--color-slide-surface-foreground-base);
 }
 
@@ -32,7 +32,7 @@ attribution-box[variant="content"] {
 }
 
 attribution-box[variant="content"] text {
-	font-size: 8px;
+	font-size: var(--attribution-box-text-size-content);
 	color: var(--color-slide-surface-foreground-subtle);
 }
 

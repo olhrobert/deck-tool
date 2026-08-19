@@ -43,43 +43,48 @@
 	},
 	"fonts": {
 		"coverTitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif"
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"weight": 600
 		},
 		"slideTitle": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"sizeLg": "48px",
-			"sizeMd": "40px",
-			"sizeSm": "32px"
+			"weight": 600,
+			"sizeLg": 1200,
+			"sizeMd": 1000,
+			"sizeSm": 800
 		},
 		"slideTitlePre": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"size": "14px"
+			"weight": 400,
+			"size": 350
 		},
 		"slideTitleSub": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"size": "14px"
+			"weight": 400,
+			"size": 350
 		},
 		"cardTitle": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"sizeLg": "32px",
-			"sizeMd": "32px",
-			"sizeSm": "24px"
+			"weight": 600,
+			"sizeLg": 800,
+			"sizeMd": 800,
+			"sizeSm": 600
 		},
 		"cardPretitle": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"size": "12px"
+			"weight": 600,
+			"size": 300
 		},
 		"paragraphTitle": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"sizeLg": "24px",
-			"sizeMd": "20px",
-			"sizeSm": "16px"
+			"weight": 500,
+			"sizeLg": 600,
+			"sizeMd": 500,
+			"sizeSm": 400
 		},
 		"body": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"sizeLg": "16px",
-			"sizeMd": "14px",
-			"sizeSm": "12px"
+			"weight": 400
 		}
 	},
 	"borderRadius": {

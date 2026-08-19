@@ -3,9 +3,9 @@ text {
 	display: block;
 	margin: 0;
 	font-family: var(--font-family-body, system-ui, sans-serif);
-	font-weight: 400;
+	font-weight: var(--font-weight-body, 400);
 	line-height: 1.2;
-	font-size: 16px;
+	font-size: var(--text-size-400);
 	letter-spacing: 0%;
 	color: var(--color-slide-foreground-base);
 }
@@ -14,26 +14,31 @@ text {
 .text-family-cover-title,
 text[family="cover-title"] {
 	font-family: var(--font-family-cover-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-cover-title, 700);
 }
 
 .text-family-slide-title,
 text[family="slide-title"] {
 	font-family: var(--font-family-slide-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-slide-title, 700);
 }
 
 .text-family-card-title,
 text[family="card-title"] {
 	font-family: var(--font-family-card-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-card-title, 700);
 }
 
 .text-family-paragraph-title,
 text[family="paragraph-title"] {
 	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-paragraph-title, 700);
 }
 
 .text-family-body,
 text[family="body"] {
 	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-weight: var(--font-weight-body, 400);
 }
 
 /* legacy aliases */
@@ -55,7 +60,7 @@ text[weight="medium"] {
 
 .text-weight-bold,
 text[weight="bold"] {
-	font-weight: 600;
+	font-weight: 700;
 }
 
 /* line height */
@@ -90,114 +95,119 @@ text[letterspacing="loose"] {
 	letter-spacing: 2%;
 }
 
-/* sizes */
+/* sizes — shared type scale (--text-size-*) */
 .text-size-4000,
 text[size="4000"] {
-	font-size: 160px;
+	font-size: var(--text-size-4000);
 }
 
 .text-size-3400,
 text[size="3400"] {
-	font-size: 136px;
+	font-size: var(--text-size-3400);
 }
 
 .text-size-3000,
 text[size="3000"] {
-	font-size: 120px;
+	font-size: var(--text-size-3000);
 }
 
 .text-size-2400,
 text[size="2400"] {
-	font-size: 96px;
+	font-size: var(--text-size-2400);
 }
 
 .text-size-2000,
 text[size="2000"] {
-	font-size: 80px;
+	font-size: var(--text-size-2000);
 }
 
 .text-size-1600,
 text[size="1600"] {
-	font-size: 64px;
+	font-size: var(--text-size-1600);
 }
 
 .text-size-1200,
 text[size="1200"] {
-	font-size: 48px;
+	font-size: var(--text-size-1200);
 }
 
 .text-size-1000,
 text[size="1000"] {
-	font-size: 40px;
+	font-size: var(--text-size-1000);
 }
 
 .text-size-800,
 text[size="800"] {
-	font-size: 32px;
+	font-size: var(--text-size-800);
 }
 
 .text-size-700,
 text[size="700"] {
-	font-size: 28px;
+	font-size: var(--text-size-700);
 }
 
 .text-size-600,
 text[size="600"] {
-	font-size: 24px;
+	font-size: var(--text-size-600);
 }
 
 .text-size-550,
 text[size="550"] {
-	font-size: 22px;
+	font-size: var(--text-size-550);
 }
 
 .text-size-500,
 text[size="500"] {
-	font-size: 20px;
+	font-size: var(--text-size-500);
 }
 
 .text-size-450,
 text[size="450"] {
-	font-size: 18px;
+	font-size: var(--text-size-450);
 }
 
 .text-size-400,
 text[size="400"] {
-	font-size: 16px;
+	font-size: var(--text-size-400);
 }
 
 .text-size-350,
 text[size="350"] {
-	font-size: 14px;
+	font-size: var(--text-size-350);
 }
 
 .text-size-300,
 text[size="300"] {
-	font-size: 12px;
+	font-size: var(--text-size-300);
 }
 
 .text-size-275,
 text[size="275"] {
-	font-size: 11px;
+	font-size: var(--text-size-275);
 }
 
 .text-size-250,
 text[size="250"] {
-	font-size: 10px;
+	font-size: var(--text-size-250);
 }
 
 .text-size-225,
 text[size="225"] {
-	font-size: 9px;
+	font-size: var(--text-size-225);
 }
 
 .text-size-200,
 text[size="200"] {
-	font-size: 8px;
+	font-size: var(--text-size-200);
+}
+
+/* legacy aliases — sample decks; prefer size="400|350|300" */
+text[size="base"] {
+	font-size: var(--text-size-400);
 }
 
 text[size="sm"] {
-	font-size: 14px;
+	font-size: var(--text-size-350);
 }
 
 /* tone */

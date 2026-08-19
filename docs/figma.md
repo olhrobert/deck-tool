@@ -18,7 +18,7 @@ Machine-readable IDs and property names: [`figma/library.json`](../figma/library
 
 A new brand is a new Primitives **mode**, then set that mode on the deck page. Color and typeface aliases follow the selected primitive mode.
 
-The live Figma file may still use the previous keys (`primary`, `font-family/display`, `color/text-strong`, Slide `surface=primary`). Rename those to the role names in `brand.json` on the next library pass; IDs in `library.json` stay valid.
+The live Figma file may still use the previous keys (`primary`, `font-family/display`, `color/text-strong`, Slide `surface=primary`). Rename those to the role names in `brand-settings.json` on the next library pass; IDs in `library.json` stay valid.
 
 Do **not** use Figma text styles. Bind `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, and `letterSpacing` on text nodes (and on library component text). Logo wordmarks stay hardcoded in `__Logo/{Brand}`.
 

@@ -43,43 +43,48 @@
 	},
 	"fonts": {
 		"coverTitle": {
-			"family": "\"Fraunces\", system-ui, sans-serif"
+			"family": "\"Fraunces\", system-ui, sans-serif",
+			"weight": 500
 		},
 		"slideTitle": {
 			"family": "\"Fraunces\", system-ui, sans-serif",
-			"sizeLg": "48px",
-			"sizeMd": "40px",
-			"sizeSm": "32px"
+			"weight": 500,
+			"sizeLg": 1200,
+			"sizeMd": 1000,
+			"sizeSm": 800
 		},
 		"slideTitlePre": {
 			"family": "\"Inter\", system-ui, sans-serif",
-			"size": "14px"
+			"weight": 400,
+			"size": 350
 		},
 		"slideTitleSub": {
 			"family": "\"Inter\", system-ui, sans-serif",
-			"size": "14px"
+			"weight": 400,
+			"size": 350
 		},
 		"cardTitle": {
 			"family": "\"Fraunces\", system-ui, sans-serif",
-			"sizeLg": "32px",
-			"sizeMd": "32px",
-			"sizeSm": "24px"
+			"weight": 500,
+			"sizeLg": 800,
+			"sizeMd": 800,
+			"sizeSm": 600
 		},
 		"cardPretitle": {
 			"family": "\"Inter\", system-ui, sans-serif",
-			"size": "12px"
+			"weight": 500,
+			"size": 300
 		},
 		"paragraphTitle": {
 			"family": "\"Fraunces\", system-ui, sans-serif",
-			"sizeLg": "24px",
-			"sizeMd": "20px",
-			"sizeSm": "16px"
+			"weight": 500,
+			"sizeLg": 600,
+			"sizeMd": 500,
+			"sizeSm": 400
 		},
 		"body": {
 			"family": "\"Inter\", system-ui, sans-serif",
-			"sizeLg": "16px",
-			"sizeMd": "14px",
-			"sizeSm": "12px"
+			"weight": 400
 		}
 	},
 	"borderRadius": {

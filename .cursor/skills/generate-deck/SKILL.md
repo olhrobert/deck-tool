@@ -13,7 +13,7 @@ Source of truth is HTML in `decks/{deck-name}/`. Do not design layouts from scra
 
 ## Steps
 
-1. Confirm the brand exists (`brands/{slug}/brand.json`). If not, run the `new-brand` skill first.
+1. Confirm the brand exists (`brands/{slug}/brand-settings.json`). If not, run the `new-brand` skill first.
 2. List real presets — only these files exist:
 
 | Kind | Path |

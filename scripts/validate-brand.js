@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { TOKEN_MAP } = require("./generate-brand-css.js");
+const { TOKEN_MAP, isCssFontWeight, isTypeScaleStep, TYPE_SCALE_STEPS, BRAND_FILENAME } = require("./generate-brand-css.js");
 
 function usage() {
 	console.error("Usage: node scripts/validate-brand.js <brand-directory>");
@@ -62,7 +62,7 @@ function compositeOn(fg, bg) {
 
 function validateBrand(brandDir) {
 	const resolved = path.resolve(brandDir);
-	const jsonPath = path.join(resolved, "brand.json");
+	const jsonPath = path.join(resolved, BRAND_FILENAME);
 	const slug = path.basename(resolved);
 	const errors = [];
 	const warnings = [];
@@ -71,7 +71,7 @@ function validateBrand(brandDir) {
 	if (errors.length) return { errors, warnings };
 
 	const brand = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
-	if (!brand.name) errors.push("brand.json is missing name");
+	if (!brand.name) errors.push(`${BRAND_FILENAME} is missing name`);
 	const logoFile = brand.logo || `${slug}-logo.svg`;
 	const logoInvertedFile = logoFile.replace(/\.svg$/i, "-inverted.svg");
 	const logoPath = path.join(resolved, logoFile);
@@ -80,6 +80,28 @@ function validateBrand(brandDir) {
 	for (const [jsonPathKey] of TOKEN_MAP) {
 		if (getPath(brand, jsonPathKey) === undefined) {
 			errors.push(`Missing ${jsonPathKey}`);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!/^fonts\.[^.]+\.weight$/.test(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isCssFontWeight(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a CSS font-weight (400, 500, 600, 700, …) matching design-system/tokens/fonts.css (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!/^fonts\.[^.]+\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isTypeScaleStep(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a type-scale step (${TYPE_SCALE_STEPS.join(", ")}) from design-system/tokens/typography.css (got ${JSON.stringify(raw)})`,
+			);
 		}
 	}
 

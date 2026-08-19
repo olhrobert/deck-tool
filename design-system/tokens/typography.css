@@ -1,39 +1,80 @@
 :root {
-	/* SEMANTIC */
+	/* TYPE SCALE — shared. Brands pick a step (800, 600, …) in brand-settings.json;
+	   they do not override these pixel values. */
 
-	/* slide title main — family + sizes driven by fonts.slideTitle in brand.json */
+	--text-size-4000: 160px;
+	--text-size-3400: 136px;
+	--text-size-3000: 120px;
+	--text-size-2400: 96px;
+	--text-size-2000: 80px;
+	--text-size-1600: 64px;
+	--text-size-1200: 48px;
+	--text-size-1000: 40px;
+	--text-size-800: 32px;
+	--text-size-700: 28px;
+	--text-size-600: 24px;
+	--text-size-550: 22px;
+	--text-size-500: 20px;
+	--text-size-450: 18px;
+	--text-size-400: 16px;
+	--text-size-350: 14px;
+	--text-size-300: 12px;
+	--text-size-275: 11px;
+	--text-size-250: 10px;
+	--text-size-225: 9px;
+	--text-size-200: 8px;
+
+	/* SEMANTIC — role defaults. Brand.css remaps size* to other --text-size-* steps. */
+
+	/* Role weights — brands override via fonts.*.weight (same numbers as fonts.css) */
+	--font-weight-cover-title: 700;
+	--font-weight-slide-title: 700;
+	--font-weight-slide-title-pre: 400;
+	--font-weight-slide-title-sub: 400;
+	--font-weight-card-title: 700;
+	--font-weight-card-pretitle: 700;
+	--font-weight-paragraph-title: 700;
+	--font-weight-body: 400;
+
+	/* slide title main — family + sizes driven by fonts.slideTitle in brand-settings.json */
 	--slide-title-main-family: var(
 		--font-family-slide-title,
 		system-ui,
 		sans-serif
 	);
-	--slide-title-main-weight-default: 400;
-	--slide-title-main-weight-strong: 600;
+	--slide-title-main-weight-default: var(--font-weight-slide-title);
+	--slide-title-main-weight-strong: var(--font-weight-slide-title);
 	--slide-title-main-lineheight: 1.2;
+	--slide-title-main-size-lg: var(--text-size-1200);
+	--slide-title-main-size-md: var(--text-size-1000);
+	--slide-title-main-size-sm: var(--text-size-800);
 
-	/* slide title pre — driven by fonts.slideTitlePre in brand.json */
+	/* slide title pre — driven by fonts.slideTitlePre in brand-settings.json */
 	--slide-title-pre-family: var(--font-family-slide-title-pre, system-ui, sans-serif);
-	--slide-title-pre-weight: 500;
+	--slide-title-pre-weight: var(--font-weight-slide-title-pre);
 	--slide-title-pre-lineheight: 1.2;
-	--slide-title-pre-size: 14px;
+	--slide-title-pre-size: var(--text-size-350);
 
-	/* slide title sub — driven by fonts.slideTitleSub in brand.json */
+	/* slide title sub — driven by fonts.slideTitleSub in brand-settings.json */
 	--slide-title-sub-family: var(--font-family-slide-title-sub, system-ui, sans-serif);
-	--slide-title-sub-weight: 400;
+	--slide-title-sub-weight: var(--font-weight-slide-title-sub);
 	--slide-title-sub-lineheight: 1.2;
-	--slide-title-sub-size: 14px;
+	--slide-title-sub-size: var(--text-size-350);
 
-	/* section title (paragraph title) — family + sizes driven by fonts.paragraphTitle in brand.json */
+	/* section title (paragraph title) — family + sizes driven by fonts.paragraphTitle */
 	--section-title-family: var(
 		--font-family-paragraph-title,
 		system-ui,
 		sans-serif
 	);
-	--section-title-weight: 600;
+	--section-title-weight: var(--font-weight-paragraph-title);
 	--section-title-lineheight: 1.1;
-	--section-title-size-lg: var(--paragraph-title-size-lg, 24px);
-	--section-title-size-md: var(--paragraph-title-size-md, 20px);
-	--section-title-size-sm: var(--paragraph-title-size-sm, 16px);
+	--paragraph-title-size-lg: var(--text-size-600);
+	--paragraph-title-size-md: var(--text-size-500);
+	--paragraph-title-size-sm: var(--text-size-400);
+	--section-title-size-lg: var(--paragraph-title-size-lg);
+	--section-title-size-md: var(--paragraph-title-size-md);
+	--section-title-size-sm: var(--paragraph-title-size-sm);
 
 	/* alert title */
 	--alert-title-family: var(
@@ -41,49 +82,42 @@
 		system-ui,
 		sans-serif
 	);
-	--alert-title-weight: 600;
+	--alert-title-weight: var(--font-weight-paragraph-title);
 	--alert-title-lineheight: 1.2;
-	--alert-title-size: var(--paragraph-title-size-md, 20px);
+	--alert-title-size: var(--paragraph-title-size-md);
 
 	/* alert description */
 	--alert-description-family: var(--font-family-body, system-ui, sans-serif);
-	--alert-description-weight: 400;
+	--alert-description-weight: var(--font-weight-body);
 	--alert-description-lineheight: 1.2;
-	--alert-description-size: var(--body-size-lg, 16px);
+	--alert-description-size: var(--text-size-400);
 
-	/* quick fact card — family + sizes driven by fonts.cardTitle / fonts.body in brand.json */
+	/* card title sizes — brands set fonts.cardTitle.sizeLg/Md/Sm to scale steps */
+	--card-title-size-lg: var(--text-size-800);
+	--card-title-size-md: var(--text-size-800);
+	--card-title-size-sm: var(--text-size-600);
+	--card-pretitle-size: var(--text-size-300);
+
+	/* quick fact card — family + sizes driven by fonts.cardTitle / fonts.body */
 	--quick-fact-card-pretitle-family: var(--font-family-card-pretitle, system-ui, sans-serif);
-	--quick-fact-card-pretitle-weight: 600;
+	--quick-fact-card-pretitle-weight: var(--font-weight-card-pretitle);
 	--quick-fact-card-pretitle-lineheight: 1.2;
-	--quick-fact-card-pretitle-size: var(--card-pretitle-size, 12px);
+	--quick-fact-card-pretitle-size: var(--card-pretitle-size);
 	--quick-fact-card-pretitle-letterspacing: 2%;
 	--quick-fact-card-title-family: var(
 		--font-family-card-title,
 		system-ui,
 		sans-serif
 	);
-	--quick-fact-card-title-weight: 600;
+	--quick-fact-card-title-weight: var(--font-weight-card-title);
 	--quick-fact-card-title-lineheight: 1;
-	--quick-fact-card-title-size: var(--card-title-size-md, 32px);
+	--quick-fact-card-title-size: var(--card-title-size-md);
 	--quick-fact-card-meta-family: var(
 		--font-family-body,
 		system-ui,
 		sans-serif
 	);
-	--quick-fact-card-meta-weight: 400;
+	--quick-fact-card-meta-weight: var(--font-weight-body);
 	--quick-fact-card-meta-lineheight: 1.2;
-	--quick-fact-card-meta-size: var(--body-size-sm, 12px);
-
-	/* copy — family + sizes driven by fonts.body in brand.json */
-	--copy-family: var(--font-family-body, system-ui, sans-serif);
-	--copy-weight-default: 500;
-	--copy-weight-strong: 600;
-	--copy-lineheight: 1.2;
-	--copy-size-lg: var(--body-size-lg, 16px);
-	--copy-size-base: var(--body-size-md, 14px);
-	--copy-size-md: var(--body-size-md, 14px);
-	--copy-size-sm: var(--body-size-sm, 12px);
-	--copy-size-xs: 10px;
-	--copy-size-2xs: 9px;
-	--copy-size-3xs: 8px;
+	--quick-fact-card-meta-size: var(--text-size-300);
 }
