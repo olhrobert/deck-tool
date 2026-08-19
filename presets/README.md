@@ -4,11 +4,12 @@ Ready-made HTML slides for deck generation. **Copy a preset into `decks/{deck-na
 
 ## Preset folders
 
-| Folder            | Use for                                                                        |
-| ----------------- | ------------------------------------------------------------------------------ |
-| `deck-titles/`    | Opening title slide — see [deck-titles/README.md](deck-titles/README.md)       |
-| `content-footers/`| Content slide footer — see [content-footers/README.md](content-footers/README.md) |
-| `cards/`          | Card content patterns — see [cards/README.md](cards/README.md)                 |
+| Folder             | Use for                                                                          |
+| ------------------ | -------------------------------------------------------------------------------- |
+| `deck-titles/`     | Opening title slide — see [deck-titles/README.md](deck-titles/README.md)         |
+| `content-slides/`  | Content slide chrome — see [content-slides/README.md](content-slides/README.md) |
+| `content-footers/` | Content slide footer — see [content-footers/README.md](content-footers/README.md) |
+| `cards/`           | Card content patterns — see [cards/README.md](cards/README.md)                   |
 
 ## Deck folder convention
 

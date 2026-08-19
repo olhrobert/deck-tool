@@ -87,13 +87,8 @@
 										/>
 									</svg>
 									<attribution-box variant="title">
-										<text>
-											Sanitized excerpt prepared by
-										</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
+										<text data-slot="credit">Sanitized excerpt prepared by</text>
+										<img src="../../assets/logos/gratia-logo.svg" alt="Gratia" data-slot="logo" />
 									</attribution-box>
 								</div>
 							</div>
@@ -101,7 +96,7 @@
 			<slide>
 							<slide-header>
 								<slide-title>
-									<slide-title-main weight="strong"> Program overview </slide-title-main>
+									<slide-title-main weight="strong" data-slot="main">Program overview</slide-title-main>
 								</slide-title>
 							</slide-header>
 							<slide-content>
@@ -603,18 +598,12 @@
 										/>
 									</svg>
 									<attribution-box variant="content">
-										<text>
-											All figures are modified to prevent
-											reversability
-										</text>
+										<text data-slot="disclaimer">All figures are modified to prevent reversability</text>
 										<attribution-box-separator></attribution-box-separator>
-										<text>Prepared by</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
+										<text data-slot="prepared-by">Prepared by</text>
+										<img src="../../assets/logos/gratia-logo.svg" alt="Gratia" data-slot="logo" />
 										<attribution-box-separator></attribution-box-separator>
-										<text>02</text>
+										<text data-slot="page">02</text>
 									</attribution-box>
 								</div>
 							</slide-footer>
@@ -622,9 +611,7 @@
 			<slide>
 							<slide-header>
 								<slide-title>
-									<slide-title-main weight="strong">
-										Footer preset preview
-									</slide-title-main>
+									<slide-title-main weight="strong" data-slot="main">Footer preset preview</slide-title-main>
 								</slide-title>
 							</slide-header>
 							<slide-content>
@@ -657,16 +644,10 @@
 										</svg>
 									</div>
 									<attribution-box variant="content">
-										<text>
-											All figures are modified to prevent
-											reversability
-										</text>
+										<text data-slot="disclaimer">All figures are modified to prevent reversability</text>
 										<attribution-box-separator></attribution-box-separator>
-										<text>Prepared by</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
+										<text data-slot="prepared-by">Prepared by</text>
+										<img src="../../assets/logos/gratia-logo.svg" alt="Gratia" data-slot="logo" />
 									</attribution-box>
 									<div class="flex-1 flex justify-end min-w-0">
 										<text

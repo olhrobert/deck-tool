@@ -1,0 +1,76 @@
+{
+	"components": [
+		{
+			"id": "alert",
+			"tag": "alert",
+			"template": "alert/alert.html",
+			"slots": [
+				{ "name": "title", "tag": "alert-title", "required": true },
+				{
+					"name": "description",
+					"tag": "alert-description",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "slide-title",
+			"tag": "slide-title",
+			"template": "slide-title/slide-title.html",
+			"slots": [
+				{ "name": "pre", "tag": "slide-title-pre", "required": false },
+				{ "name": "main", "tag": "slide-title-main", "required": true },
+				{ "name": "sub", "tag": "slide-title-sub", "required": false }
+			]
+		},
+		{
+			"id": "quick-fact-card",
+			"tag": "card",
+			"match": {
+				"has": ["quick-fact-card-pretitle", "quick-fact-card-title"]
+			},
+			"template": "card/quick-fact-card.html",
+			"slots": [
+				{
+					"name": "pretitle",
+					"tag": "quick-fact-card-pretitle",
+					"required": true
+				},
+				{
+					"name": "title",
+					"tag": "quick-fact-card-title",
+					"required": true
+				},
+				{
+					"name": "meta",
+					"tag": "quick-fact-card-meta",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "attribution-box-title",
+			"tag": "attribution-box",
+			"match": { "attrs": { "variant": "title" } },
+			"template": "attribution-box/attribution-box.html",
+			"infer": "attribution-title",
+			"slots": [
+				{ "name": "credit", "tag": "text", "required": true },
+				{ "name": "logo", "tag": "img", "required": true }
+			]
+		},
+		{
+			"id": "attribution-box-content",
+			"tag": "attribution-box",
+			"match": { "attrs": { "variant": "content" } },
+			"template": "attribution-box/attribution-box-content.html",
+			"infer": "attribution-content",
+			"slots": [
+				{ "name": "disclaimer", "tag": "text", "required": false },
+				{ "name": "prepared-by", "tag": "text", "required": false },
+				{ "name": "logo", "tag": "img", "required": true },
+				{ "name": "page", "tag": "text", "required": false }
+			]
+		}
+	]
+}

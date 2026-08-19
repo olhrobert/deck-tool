@@ -9,9 +9,9 @@ alwaysApply: false
 When creating or editing files in `decks/`, follow `.cursor/skills/generate-deck/SKILL.md`.
 
 1. **Copy presets** from `presets/` — never invent title or footer layout.
-2. **Replace text only** — do not change structure, classes, stylesheets, or `../../` asset paths.
+2. **Replace text only** — do not change structure, classes, stylesheets, `data-slot`, or `../../` asset paths.
 3. **Set `slides.json.brand`** to a folder name under `brands/`.
-4. **Compile** after edits: `node scripts/compile-deck.js decks/{deck-name}`.
+4. **Compile** after edits: `node scripts/compile-deck.js decks/{deck-name}`. If composite component HTML changed, run `node scripts/refresh-components.js decks/{deck-name}` first.
 
 ## File layout
 
@@ -26,9 +26,10 @@ decks/{deck-name}/
 ## Presets that exist
 
 - Title: `presets/deck-titles/deck-title-01.html` … `deck-title-04.html`
+- Content: `presets/content-slides/content-slide-01.html`
 - Footer: `presets/content-footers/footer-01.html`, `footer-02.html`
-- Card fragment: `presets/cards/quick-fact-card.html`
+- Card fragment: `design-system/components/card/quick-fact-card.html`
 
-There is no `presets/chapter-titles/` or `presets/content-slides/`. For content slides, copy the chrome from `decks/riverton-project-charter/02.html` (header + content + footer) and fill with design-system tags.
+There is no `presets/chapter-titles/`.
 
 `slides.json` `title` and `brand` are preserved on compile; `slides` is rewritten from the folder (sorted by filename).

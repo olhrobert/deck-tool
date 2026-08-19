@@ -7,6 +7,8 @@
 		"generate-brand": "node scripts/generate-brand-css.js",
 		"new-brand": "node scripts/new-brand.js",
 		"validate-brand": "node scripts/validate-brand.js",
-		"html-to-ir": "node scripts/html-to-ir.js"
+		"html-to-ir": "node scripts/html-to-ir.js",
+		"refresh": "node scripts/refresh-components.js",
+		"refresh:all": "node scripts/refresh-components.js --all"
 	}
 }

@@ -1,14 +1,12 @@
 # Card presets
 
-Reusable card content patterns built on `<card>`. Copy a fragment into a slide and replace placeholder text only. Do not change element structure or classes.
+Reusable card content patterns built on `<card>`. The canonical fragment lives with the component:
+
+`design-system/components/card/quick-fact-card.html`
+
+Copy that file into a slide and replace placeholder text only. Do not change element structure or classes.
 
 Styles live in `design-system/components/card/presets/`.
-
-## Presets
-
-| File                   | Use for                                                                 |
-| ---------------------- | ----------------------------------------------------------------------- |
-| `quick-fact-card.html` | Label + headline + optional meta (e.g. sponsor, budget, timeline facts) |
 
 ## Placeholders to replace
 
@@ -18,4 +16,4 @@ Styles live in `design-system/components/card/presets/`.
 
 ## Example prompt
 
-> On slide 02, add a row of four quick-fact cards for Sponsor, Program lead, Budget, and Timeline using `presets/cards/quick-fact-card.html`.
+> On slide 02, add a row of four quick-fact cards for Sponsor, Program lead, Budget, and Timeline using `design-system/components/card/quick-fact-card.html`.

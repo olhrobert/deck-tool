@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Content slide</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide>
+				<slide-header>
+					<slide-title>
+						<slide-title-pre data-slot="pre"
+							>Optional pre-title</slide-title-pre
+						>
+						<slide-title-main data-slot="main"
+							>Content slide</slide-title-main
+						>
+						<slide-title-sub data-slot="sub"
+							>Optional subtitle</slide-title-sub
+						>
+					</slide-title>
+				</slide-header>
+				<slide-content>
+					<div class="box-border min-w-0 flex flex-col gap-10">
+						<div class="box-border min-w-0 flex flex-row gap-2">
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<quick-fact-card-pretitle data-slot="pretitle"
+									>Label</quick-fact-card-pretitle
+								>
+								<quick-fact-card-title data-slot="title"
+									>Value</quick-fact-card-title
+								>
+								<quick-fact-card-meta data-slot="meta"
+									>Optional supporting
+									detail</quick-fact-card-meta
+								>
+							</card>
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<quick-fact-card-pretitle data-slot="pretitle"
+									>Budget</quick-fact-card-pretitle
+								>
+								<quick-fact-card-title data-slot="title"
+									>$84M</quick-fact-card-title
+								>
+								<quick-fact-card-meta data-slot="meta"
+									>$72M capex · $12M opex</quick-fact-card-meta
+								>
+							</card>
+							<card
+								class="flex-1 min-w-0"
+								padding="md"
+								gap="sm"
+							>
+								<quick-fact-card-pretitle data-slot="pretitle"
+									>Timeline</quick-fact-card-pretitle
+								>
+								<quick-fact-card-title data-slot="title"
+									>18 mo</quick-fact-card-title
+								>
+								<quick-fact-card-meta data-slot="meta"
+									>Kickoff to go-live</quick-fact-card-meta
+								>
+							</card>
+						</div>
+						<div class="flex flex-col gap-2">
+							<section-title size="lg">Section title</section-title>
+							<text
+								family="body"
+								size="400"
+								weight="regular"
+								lineheight="lg"
+							>
+								Body copy on the content canvas. Switch brands
+								to check slide foreground, surface, and type
+								roles together.
+							</text>
+						</div>
+						<alert padding="md">
+							<alert-title data-slot="title">Alert title</alert-title>
+							<alert-description data-slot="description">
+								Alert description with placeholder copy.
+							</alert-description>
+						</alert>
+					</div>
+				</slide-content>
+				<slide-footer>
+					<div class="flex items-center justify-between">
+						<svg
+							role="img"
+							aria-label="Logo"
+							class="shrink-0 block color-slide-foreground-strong"
+							style="height: 12px"
+							viewBox="0 0 44 12"
+							fill="none"
+						>
+							<use
+								href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
+							/>
+						</svg>
+						<attribution-box variant="content">
+							<text data-slot="disclaimer">
+								Optional disclaimer. Can be one or two sentences
+								long.
+							</text>
+							<attribution-box-separator></attribution-box-separator>
+							<text data-slot="prepared-by">Prepared by</text>
+							<img
+								data-slot="logo"
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
+							<attribution-box-separator></attribution-box-separator>
+							<text data-slot="page">01</text>
+						</attribution-box>
+					</div>
+				</slide-footer>
+			</slide>
+		</deck>
+	</body>
+</html>

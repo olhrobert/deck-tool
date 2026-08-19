@@ -25,74 +25,31 @@
 			<slide>
 				<slide-header>
 					<slide-title>
-						<slide-title-main> Project overview </slide-title-main>
+						<slide-title-main data-slot="main">Project overview</slide-title-main>
 					</slide-title>
 				</slide-header>
 				<slide-content>
 					<div class="box-border min-w-0 flex flex-col gap-10">
 						<div class="box-border min-w-0 flex flex-row gap-2">
-							<card
-								width="fill"
-								padding="md"
-								gap="sm"
-							>
-								<quick-fact-card-pretitle
-									>Sponsor</quick-fact-card-pretitle
-								>
-								<quick-fact-card-title
-									>Marcus Bell</quick-fact-card-title
-								>
-								<quick-fact-card-meta
-									>CIO, Riverton
-									Financial</quick-fact-card-meta
-								>
+							<card width="fill" padding="md" gap="sm">
+								<quick-fact-card-pretitle data-slot="pretitle">Sponsor</quick-fact-card-pretitle>
+								<quick-fact-card-title data-slot="title">Marcus Bell</quick-fact-card-title>
+								<quick-fact-card-meta data-slot="meta">CIO, Riverton Financial</quick-fact-card-meta>
 							</card>
-							<card
-								width="fill"
-								padding="md"
-								gap="sm"
-							>
-								<quick-fact-card-pretitle
-									>Program lead</quick-fact-card-pretitle
-								>
-								<quick-fact-card-title
-									>Andrea Sims</quick-fact-card-title
-								>
-								<quick-fact-card-meta
-									>VP Core Platforms</quick-fact-card-meta
-								>
+							<card width="fill" padding="md" gap="sm">
+								<quick-fact-card-pretitle data-slot="pretitle">Program lead</quick-fact-card-pretitle>
+								<quick-fact-card-title data-slot="title">Andrea Sims</quick-fact-card-title>
+								<quick-fact-card-meta data-slot="meta">VP Core Platforms</quick-fact-card-meta>
 							</card>
-							<card
-								width="fill"
-								padding="md"
-								gap="sm"
-							>
-								<quick-fact-card-pretitle
-									>Budget</quick-fact-card-pretitle
-								>
-								<quick-fact-card-title
-									>$84M</quick-fact-card-title
-								>
-								<quick-fact-card-meta
-									>$72M capex · $12M
-									opex</quick-fact-card-meta
-								>
+							<card width="fill" padding="md" gap="sm">
+								<quick-fact-card-pretitle data-slot="pretitle">Budget</quick-fact-card-pretitle>
+								<quick-fact-card-title data-slot="title">$84M</quick-fact-card-title>
+								<quick-fact-card-meta data-slot="meta">$72M capex · $12M opex</quick-fact-card-meta>
 							</card>
-							<card
-								width="fill"
-								padding="md"
-								gap="sm"
-							>
-								<quick-fact-card-pretitle
-									>Timeline</quick-fact-card-pretitle
-								>
-								<quick-fact-card-title
-									>18 months</quick-fact-card-title
-								>
-								<quick-fact-card-meta
-									>Apr '26 → Sep '27 (Wave
-									1-2)</quick-fact-card-meta
-								>
+							<card width="fill" padding="md" gap="sm">
+								<quick-fact-card-pretitle data-slot="pretitle">Timeline</quick-fact-card-pretitle>
+								<quick-fact-card-title data-slot="title">18 months</quick-fact-card-title>
+								<quick-fact-card-meta data-slot="meta">Apr '26 → Sep '27 (Wave 1-2)</quick-fact-card-meta>
 							</card>
 						</div>
 						<div class="box-border min-w-0 flex flex-row gap-12">
@@ -484,18 +441,12 @@
 							<use href="riverton-logo.svg#riverton-logo" />
 						</svg>
 						<attribution-box variant="content">
-							<text>
-								All figures are modified to prevent
-								reversability
-							</text>
+							<text data-slot="disclaimer">All figures are modified to prevent reversability</text>
 							<attribution-box-separator></attribution-box-separator>
-							<text>Prepared by</text>
-							<img
-								src="../../assets/logos/gratia-logo.svg"
-								alt="Gratia"
-							/>
+							<text data-slot="prepared-by">Prepared by</text>
+							<img src="../../assets/logos/gratia-logo.svg" alt="Gratia" data-slot="logo" />
 							<attribution-box-separator></attribution-box-separator>
-							<text>02</text>
+							<text data-slot="page">02</text>
 						</attribution-box>
 					</div>
 				</slide-footer>

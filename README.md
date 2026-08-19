@@ -15,7 +15,7 @@ The pieces that make that work:
 | --- | --- |
 | Brand tokens | `brands/{slug}/brand.json` overrides color, type, radius, and stroke. `brand.css` is generated. |
 | Component set | Custom HTML elements in `design-system/components/` (Slide, Card, Slide Title, Alert, …). |
-| Slide presets | Copy-ready HTML in `presets/` (title slides, content footers, Quick Fact Card). |
+| Slide presets | Copy-ready HTML in `presets/` (title slides, content slides, content footers). |
 | Showcase | [`design-system/showcase/showcase.html`](design-system/showcase/showcase.html) — work on components and slide layouts in the browser, with a brand switcher. |
 | Agent skills | `.cursor/skills/` — `new-brand`, `generate-deck`, `push-to-figma`. |
 | HTML → Figma | `scripts/html-to-ir.js` parses a compiled deck; the push skill instances `figma/library.json` components in the target file. |
@@ -49,7 +49,8 @@ docs/             workflow documentation
 2. Set `"brand"` in `slides.json` (e.g. `"riverton"`)
 3. Edit slide content (text only — keep paths and structure)
 4. Compile: `npm run compile -- decks/{deck-name}`
-5. Present: open `decks/{deck-name}/index.html` in a browser
+5. If component HTML structure changed: `npm run refresh -- decks/{deck-name}` then compile again
+6. Present: open `decks/{deck-name}/index.html` in a browser
 
 New brand: `npm run new-brand -- acme --name "Acme Capital"` then [docs/brands.md](docs/brands.md).
 

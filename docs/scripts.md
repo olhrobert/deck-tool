@@ -36,6 +36,38 @@ node scripts/compile-deck.js decks/riverton-project-charter
 
 ---
 
+## `refresh-components.js`
+
+Rebuilds registered component instances in deck slide HTML from their canonical templates, keeping slot copy and instance attributes. Does not restamp slides from presets, so unique layouts stay unique.
+
+**What it updates**
+
+Alert, Slide Title, Quick Fact Card, and Attribution Box — listed in `design-system/components/registry.json`. Generic `<card>` content, body `<text>`, and layout wrappers are left alone. Optional slots the slide never had (subtitle, QFC meta, footer page number) stay omitted.
+
+**Usage**
+
+```bash
+node scripts/refresh-components.js decks/{deck-name}
+npm run refresh -- decks/{deck-name}
+```
+
+```bash
+node scripts/refresh-components.js --all
+npm run refresh:all
+```
+
+`--dry-run` prints what would change without writing files.
+
+Then compile:
+
+```bash
+npm run compile -- decks/{deck-name}
+```
+
+Token and CSS changes do not need this script. Use it when you change composite component **HTML** (wrappers, slot structure).
+
+---
+
 ## `compile-all-decks.js`
 
 Runs `compile-deck.js` for every subdirectory under `decks/` that contains at least one slide HTML file.

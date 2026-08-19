@@ -15,7 +15,7 @@ HTML is the source of truth. Brands override tokens. The Figma file instances th
 | ---------- | ---------------------------------------------------- | ---------------------------------------------------------------- |
 | Tokens     | `design-system/tokens/` + `brands/{slug}/brand.json` | Shared scale; brands override color, type, radius, stroke        |
 | Components | `design-system/components/`                          | Slide chrome, type, Card, Alert, Attribution, …                  |
-| Presets    | `presets/`                                           | Copy-ready title slides, footers, card fragments                 |
+| Presets    | `presets/`                                           | Copy-ready title slides, content slides, footers                 |
 | Showcase   | `design-system/showcase/showcase.html`               | Workbench for tokens, components, and presets                    |
 | Decks      | `decks/{name}/`                                      | Real slides; compiled `index.html` via `scripts/compile-deck.js` |
 | Skills     | `.cursor/skills/`                                    | Prompt workflows: new-brand, generate-deck, push-to-figma        |
@@ -24,6 +24,17 @@ HTML is the source of truth. Brands override tokens. The Figma file instances th
 Work **tokens → showcase → components/presets → deck generation → Figma**. Do not reverse that order.
 
 The Gratia mark inside `<attribution-box>` is intentional (prepared-by), not a brand leak.
+
+## How changes propagate
+
+| What changed | Showcase | Decks |
+| --- | --- | --- |
+| Token value or `brand.json` color | Automatic (CSS variables) | Automatic (CSS variables) |
+| Component CSS (padding, radius, type) | Automatic (same stylesheets) | Automatic (same stylesheets) |
+| Component HTML structure (wrappers, slots) | Automatic (`fetch()` loads live files on reload) | Run `npm run refresh -- decks/{name}` then `npm run compile -- decks/{name}` |
+| Preset HTML | Automatic (`fetch()` loads live files on reload) | Only affects new decks that copy the preset; existing decks keep their snapshot |
+
+Showcase always reflects the current state of the library. Decks contain a **copy** of component markup, so structural HTML changes require `refresh-components.js` to update instances in place while preserving slide copy and unique layout.
 
 ---
 
@@ -61,7 +72,7 @@ When Phase 1 is done: switching brand restyles every showcase example, and nothi
 
 ### Fill the preset gap
 
-Content slides have no presets. Agents copy `decks/riverton-project-charter/02.html`. Add a small set of content-slide presets (chrome + a few body patterns: fact row, two-column copy, title + body + alert) before inventing new chrome.
+Content slides start from `presets/content-slides/content-slide-01.html`. Add more body patterns (two-column copy, title + body + alert variants) as new files there before inventing new chrome.
 
 ### Add components only when a preset needs them
 

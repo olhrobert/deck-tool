@@ -39,13 +39,13 @@
 			.showcase-group {
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-4);
+				gap: var(--spacing-20);
 			}
 
 			.showcase-subgroup {
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-2);
+				gap: var(--spacing-4);
 			}
 
 			.showcase-heading,
@@ -192,553 +192,84 @@
 				</select>
 			</div>
 
+			<!-- === SLIDES === -->
+
 			<div
 				class="showcase-group"
 				data-section="slides"
 			>
-				<div class="showcase-subgroup showcase-deck">
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/deck-titles/deck-title-01.html"
+				>
 					<text class="showcase-label"
 						>presets/deck-titles/deck-title-01.html</text
 					>
-					<deck>
-						<slide class="bg-cover">
-							<div class="box-border w-full h-full flex">
-								<div
-									class="box-border h-full grow min-w-0 flex flex-col gap-4 p-20 pb-4"
-								>
-									<div class="flex flex-col gap-4 grow">
-										<text
-											family="cover-title"
-											weight="bold"
-											size="1600"
-											lineheight="sm"
-											class="color-cover-foreground-strong"
-										>
-											Title of this deck. Keep it concise.
-										</text>
-
-										<text
-											family="body"
-											weight="regular"
-											size="450"
-											lineheight="lg"
-											class="color-cover-foreground-subtle"
-										>
-											Optional subtitle. Can be one or two
-											sentences long.
-										</text>
-									</div>
-
-									<text
-										family="body"
-										weight="regular"
-										size="300"
-										lineheight="lg"
-										class="color-cover-foreground-subtle"
-									>
-										Optional metadata. Can be several
-										sentences long.
-									</text>
-								</div>
-								<div
-									class="box-border h-full shrink-0 flex flex-col justify-between items-start pt-24"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block color-cover-foreground-strong"
-										style="height: 24px"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-									<attribution-box variant="title">
-										<text>
-											Sanitized excerpt prepared by
-										</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-								</div>
-							</div>
-						</slide>
-					</deck>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/deck-titles/deck-title-02.html"
+				>
 					<text class="showcase-label"
 						>presets/deck-titles/deck-title-02.html</text
 					>
-					<deck>
-						<slide class="bg-cover">
-							<div
-								class="box-border w-full h-full flex flex-col justify-between p-20"
-							>
-								<div class="flex justify-between items-start">
-									<div
-										class="flex items-center py-4 px-6 bg-slide-surface"
-									>
-										<svg
-											role="img"
-											aria-label="Logo"
-											class="shrink-0 block color-slide-surface-foreground-strong"
-											style="height: 24px"
-											viewBox="0 0 44 12"
-											fill="none"
-										>
-											<use
-												href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-											/>
-										</svg>
-									</div>
-
-									<attribution-box variant="title">
-										<text>
-											Sanitized excerpt prepared by
-										</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-								</div>
-
-								<div class="flex flex-col gap-4">
-									<text
-										family="cover-title"
-										weight="bold"
-										size="3000"
-										lineheight="sm"
-										class="color-cover-foreground-strong"
-									>
-										Title of this deck. Keep it concise.
-									</text>
-									<text
-										size="sm"
-										tone="subtle"
-									>
-										Optional subtitle. Can be one or two
-										sentences long.
-									</text>
-								</div>
-							</div>
-						</slide>
-					</deck>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/deck-titles/deck-title-03.html"
+				>
 					<text class="showcase-label"
 						>presets/deck-titles/deck-title-03.html</text
 					>
-					<deck>
-						<slide class="bg-cover">
-							<div class="box-border w-full h-full flex">
-								<div
-									class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block"
-										style="
-											height: 24px;
-											color: var(
-												--color-cover-foreground-strong
-											);
-										"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-
-									<div>
-										<text
-											family="cover-title"
-											weight="bold"
-											size="4000"
-											lineheight="single"
-											style="color: var(--color-white)"
-										>
-											Title of
-										</text>
-										<text
-											family="cover-title"
-											weight="bold"
-											size="4000"
-											lineheight="single"
-											style="
-												color: var(
-													--color-cover-foreground-strong
-												);
-											"
-										>
-											the deck
-										</text>
-									</div>
-								</div>
-
-								<div
-									class="box-border h-full shrink-0 flex flex-col justify-between p-0"
-								>
-									<attribution-box variant="title">
-										<text
-											style="
-												color: var(
-													--color-cover-foreground-base
-												);
-											"
-										>
-											Sanitized excerpt prepared by
-										</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-
-									<div class="flex pb-10 pr-6 w-full">
-										<text
-											size="sm"
-											tone="subtle"
-											class="text-left grow"
-										>
-											Optional subtitle. Can be one or two
-											sentences long.
-										</text>
-									</div>
-								</div>
-							</div>
-						</slide>
-					</deck>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/deck-titles/deck-title-04.html"
+				>
 					<text class="showcase-label"
 						>presets/deck-titles/deck-title-04.html</text
 					>
-					<deck>
-						<slide class="bg-cover">
-							<div class="relative box-border w-full h-full">
-								<div
-									class="absolute top-0 left-0 right-0 flex justify-center pt-20"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block"
-										style="
-											height: 24px;
-											color: var(
-												--color-cover-foreground-strong
-											);
-										"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-								</div>
-
-								<div
-									class="box-border w-full h-full flex items-center justify-center"
-								>
-									<div
-										class="flex flex-col items-center gap-4"
-									>
-										<text
-											family="cover-title"
-											weight="bold"
-											size="3000"
-											lineheight="sm"
-											class="text-center"
-											style="
-												color: var(
-													--color-cover-foreground-strong
-												);
-											"
-										>
-											Title of the deck
-										</text>
-										<text
-											size="sm"
-											tone="subtle"
-											class="text-center"
-										>
-											Optional subtitle. Can be one or two
-											sentences long.
-										</text>
-									</div>
-								</div>
-
-								<div
-									class="absolute bottom-0 left-0 right-0 flex justify-center"
-								>
-									<attribution-box variant="title">
-										<text>
-											Sanitized excerpt prepared by
-										</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-									</attribution-box>
-								</div>
-							</div>
-						</slide>
-					</deck>
 				</div>
 
-				<div class="showcase-subgroup showcase-deck">
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/content-slides/content-slide-01.html"
+				>
 					<text class="showcase-label"
-						>content slide (header / content / footer)</text
+						>presets/content-slides/content-slide-01.html</text
 					>
-					<deck>
-						<slide>
-							<slide-header>
-								<slide-title>
-									<slide-title-pre
-										>Optional pre-title</slide-title-pre
-									>
-									<slide-title-main
-										>Content slide</slide-title-main
-									>
-									<slide-title-sub
-										>Optional subtitle</slide-title-sub
-									>
-								</slide-title>
-							</slide-header>
-							<slide-content>
-								<div
-									class="box-border min-w-0 flex flex-col gap-10"
-								>
-									<div
-										class="box-border min-w-0 flex flex-row gap-2"
-									>
-										<card
-											class="flex-1 min-w-0"
-											padding="md"
-											gap="sm"
-										>
-											<quick-fact-card-pretitle
-												>Label</quick-fact-card-pretitle
-											>
-											<quick-fact-card-title
-												>Value</quick-fact-card-title
-											>
-											<quick-fact-card-meta
-												>Optional supporting
-												detail</quick-fact-card-meta
-											>
-										</card>
-										<card
-											class="flex-1 min-w-0"
-											padding="md"
-											gap="sm"
-										>
-											<quick-fact-card-pretitle
-												>Budget</quick-fact-card-pretitle
-											>
-											<quick-fact-card-title
-												>$84M</quick-fact-card-title
-											>
-											<quick-fact-card-meta
-												>$72M capex · $12M
-												opex</quick-fact-card-meta
-											>
-										</card>
-										<card
-											class="flex-1 min-w-0"
-											padding="md"
-											gap="sm"
-										>
-											<quick-fact-card-pretitle
-												>Timeline</quick-fact-card-pretitle
-											>
-											<quick-fact-card-title
-												>18 mo</quick-fact-card-title
-											>
-											<quick-fact-card-meta
-												>Kickoff to
-												go-live</quick-fact-card-meta
-											>
-										</card>
-									</div>
-									<div class="flex flex-col gap-2">
-										<section-title size="lg"
-											>Section title</section-title
-										>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											lineheight="lg"
-										>
-											Body copy on the content canvas.
-											Switch brands to check slide
-											foreground, surface, and type roles
-											together.
-										</text>
-									</div>
-									<alert padding="md">
-										<alert-title
-											>Alert title</alert-title
-										>
-										<alert-description
-											>Alert description with placeholder
-											copy.</alert-description
-										>
-									</alert>
-								</div>
-							</slide-content>
-							<slide-footer>
-								<div
-									class="flex items-center justify-between"
-								>
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block color-slide-foreground-strong"
-										style="height: 12px"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-									<attribution-box variant="content">
-										<text>
-											Optional disclaimer. Can be one or
-											two sentences long.
-										</text>
-										<attribution-box-separator></attribution-box-separator>
-										<text>Prepared by</text>
-										<img
-											src="../../assets/logos/gratia-logo.svg"
-											alt="Gratia"
-										/>
-										<attribution-box-separator></attribution-box-separator>
-										<text>01</text>
-									</attribution-box>
-								</div>
-							</slide-footer>
-						</slide>
-					</deck>
 				</div>
 
-				<div class="showcase-subgroup">
+				<div
+					class="showcase-subgroup"
+					data-preset="footer"
+					data-src="../../presets/content-footers/footer-01.html"
+				>
 					<text class="showcase-label"
 						>presets/content-footers/footer-01.html</text
 					>
-					<div class="showcase-footer">
-						<slide-footer>
-							<div class="flex items-center justify-between">
-								<svg
-									role="img"
-									aria-label="Logo"
-									class="shrink-0 block color-slide-foreground-strong"
-									style="height: 12px"
-									viewBox="0 0 44 12"
-									fill="none"
-								>
-									<use
-										href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-									/>
-								</svg>
-								<attribution-box variant="content">
-									<text>
-										Optional disclaimer. Can be one or two
-										sentences long.
-									</text>
-									<attribution-box-separator></attribution-box-separator>
-									<text>Prepared by</text>
-									<img
-										src="../../assets/logos/gratia-logo.svg"
-										alt="Gratia"
-									/>
-									<attribution-box-separator></attribution-box-separator>
-									<text>01</text>
-								</attribution-box>
-							</div>
-						</slide-footer>
-					</div>
 				</div>
 
-				<div class="showcase-subgroup">
+				<div
+					class="showcase-subgroup"
+					data-preset="footer"
+					data-src="../../presets/content-footers/footer-02.html"
+				>
 					<text class="showcase-label"
 						>presets/content-footers/footer-02.html</text
 					>
-					<div class="showcase-footer">
-						<slide-footer>
-							<div class="flex items-center w-full">
-								<div class="flex-1 flex justify-start min-w-0">
-									<svg
-										role="img"
-										aria-label="Logo"
-										class="shrink-0 block color-slide-foreground-strong"
-										style="height: 12px"
-										viewBox="0 0 44 12"
-										fill="none"
-									>
-										<use
-											href="../../assets/logos/placeholder-logo.svg#placeholder-logo"
-										/>
-									</svg>
-								</div>
-								<attribution-box variant="content">
-									<text>
-										Optional disclaimer. Can be one or two
-										sentences long.
-									</text>
-									<attribution-box-separator></attribution-box-separator>
-									<text>Prepared by</text>
-									<img
-										src="../../assets/logos/gratia-logo.svg"
-										alt="Gratia"
-									/>
-								</attribution-box>
-								<div class="flex-1 flex justify-end min-w-0">
-									<text
-										size="200"
-										tone="subtle"
-									>
-										01
-									</text>
-								</div>
-							</div>
-						</slide-footer>
-					</div>
-				</div>
-
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>presets/cards/quick-fact-card.html</text
-					>
-					<card
-						class="flex-1 min-w-0"
-						padding="md"
-						gap="sm"
-					>
-						<quick-fact-card-pretitle
-							>Label</quick-fact-card-pretitle
-						>
-						<quick-fact-card-title>Value</quick-fact-card-title>
-						<quick-fact-card-meta
-							>Optional supporting detail</quick-fact-card-meta
-						>
-					</card>
 				</div>
 			</div>
+
+			<!-- === COMPONENTS === -->
 
 			<div
 				class="showcase-group"
@@ -746,34 +277,31 @@
 			>
 				<text class="showcase-heading">Slide Title</text>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">size="lg"</text>
-					<slide-title>
-						<slide-title-pre>Pre-title</slide-title-pre>
-						<slide-title-main size="lg"
-							>Slide title main</slide-title-main
-						>
-						<slide-title-sub>Slide title sub</slide-title-sub>
-					</slide-title>
+					<text class="showcase-label"
+						>components/slide-title/slide-title-lg.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-lg.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">size="md"</text>
-					<slide-title>
-						<slide-title-pre>Pre-title</slide-title-pre>
-						<slide-title-main size="md"
-							>Slide title main</slide-title-main
-						>
-						<slide-title-sub>Slide title sub</slide-title-sub>
-					</slide-title>
+					<text class="showcase-label"
+						>components/slide-title/slide-title.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">size="sm"</text>
-					<slide-title>
-						<slide-title-pre>Pre-title</slide-title-pre>
-						<slide-title-main size="sm"
-							>Slide title main</slide-title-main
-						>
-						<slide-title-sub>Slide title sub</slide-title-sub>
-					</slide-title>
+					<text class="showcase-label"
+						>components/slide-title/slide-title-sm.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-sm.html"
+					></div>
 				</div>
 			</div>
 
@@ -783,55 +311,22 @@
 			>
 				<text class="showcase-heading">Card / Quick Fact Card</text>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">card padding="md" gap="md"</text>
-					<card
-						padding="md"
-						gap="md"
+					<text class="showcase-label"
+						>components/card/card.html</text
 					>
-						<text
-							family="body"
-							weight="bold"
-							size="400"
-							tone="strong"
-							>Card heading</text
-						>
-						<text
-							family="body"
-							size="350"
-							>Body copy inside a generic card.</text
-						>
-					</card>
+					<div
+						data-preset="fragment"
+						data-src="../components/card/card.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">quick-fact-card</text>
-					<div class="flex flex-row gap-2">
-						<card
-							class="flex-1 min-w-0"
-							padding="md"
-							gap="sm"
-						>
-							<quick-fact-card-pretitle
-								>Label</quick-fact-card-pretitle
-							>
-							<quick-fact-card-title>Value</quick-fact-card-title>
-							<quick-fact-card-meta
-								>Card meta</quick-fact-card-meta
-							>
-						</card>
-						<card
-							class="flex-1 min-w-0"
-							padding="md"
-							gap="sm"
-						>
-							<quick-fact-card-pretitle
-								>Budget</quick-fact-card-pretitle
-							>
-							<quick-fact-card-title>$84M</quick-fact-card-title>
-							<quick-fact-card-meta
-								>$72M capex · $12M opex</quick-fact-card-meta
-							>
-						</card>
-					</div>
+					<text class="showcase-label"
+						>components/card/quick-fact-card.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/card/quick-fact-card.html"
+					></div>
 				</div>
 			</div>
 
@@ -841,62 +336,49 @@
 			>
 				<text class="showcase-heading">Alert</text>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">default</text>
-					<alert padding="md">
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>This is an alert description with placeholder
-							copy.</alert-description
-						>
-					</alert>
+					<text class="showcase-label"
+						>components/alert/alert.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/alert/alert.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">positive</text>
-					<alert
-						variant="positive"
-						padding="md"
+					<text class="showcase-label"
+						>components/alert/alert-positive.html</text
 					>
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Positive alert description.</alert-description
-						>
-					</alert>
+					<div
+						data-preset="fragment"
+						data-src="../components/alert/alert-positive.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">warning</text>
-					<alert
-						variant="warning"
-						padding="md"
+					<text class="showcase-label"
+						>components/alert/alert-warning.html</text
 					>
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Warning alert description.</alert-description
-						>
-					</alert>
+					<div
+						data-preset="fragment"
+						data-src="../components/alert/alert-warning.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">negative</text>
-					<alert
-						variant="negative"
-						padding="md"
+					<text class="showcase-label"
+						>components/alert/alert-negative.html</text
 					>
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Negative alert description.</alert-description
-						>
-					</alert>
+					<div
+						data-preset="fragment"
+						data-src="../components/alert/alert-negative.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">informative</text>
-					<alert
-						variant="informative"
-						padding="md"
+					<text class="showcase-label"
+						>components/alert/alert-informative.html</text
 					>
-						<alert-title>This is an alert title</alert-title>
-						<alert-description
-							>Informative alert description.</alert-description
-						>
-					</alert>
+					<div
+						data-preset="fragment"
+						data-src="../components/alert/alert-informative.html"
+					></div>
 				</div>
 			</div>
 
@@ -906,30 +388,26 @@
 			>
 				<text class="showcase-heading">Attribution</text>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">variant="title"</text>
-					<attribution-box variant="title">
-						<text>Sanitized excerpt prepared by</text>
-						<img
-							src="../../assets/logos/gratia-logo.svg"
-							alt="Gratia"
-						/>
-					</attribution-box>
+					<text class="showcase-label"
+						>components/attribution-box/attribution-box.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/attribution-box/attribution-box.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label">variant="content"</text>
-					<attribution-box variant="content">
-						<text>Optional disclaimer placeholder</text>
-						<attribution-box-separator></attribution-box-separator>
-						<text>Prepared by</text>
-						<img
-							src="../../assets/logos/gratia-logo.svg"
-							alt="Gratia"
-						/>
-						<attribution-box-separator></attribution-box-separator>
-						<text>01</text>
-					</attribution-box>
+					<text class="showcase-label"
+						>components/attribution-box/attribution-box-content.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/attribution-box/attribution-box-content.html"
+					></div>
 				</div>
 			</div>
+
+			<!-- === TYPOGRAPHY === -->
 
 			<div
 				class="showcase-group"
@@ -938,18 +416,12 @@
 				<text class="showcase-heading">Cover title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>family="cover-title" · sizes come from cover
-						presets</text
+						>components/typography/cover-title.html</text
 					>
-					<text
-						family="cover-title"
-						weight="bold"
-						size="1600"
-						lineheight="sm"
-						tone="strong"
-					>
-						Cover title
-					</text>
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/cover-title.html"
+					></div>
 				</div>
 			</div>
 
@@ -960,18 +432,48 @@
 				<text class="showcase-heading">Slide title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>fonts.slideTitle sizeLg / sizeMd / sizeSm</text
+						>components/slide-title/slide-title-main-lg.html</text
 					>
-					<slide-title-main size="lg">Slide title lg</slide-title-main>
-					<slide-title-main size="md">Slide title md</slide-title-main>
-					<slide-title-main size="sm">Slide title sm</slide-title-main>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-main-lg.html"
+					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>fonts.slideTitlePre / fonts.slideTitleSub</text
+						>components/slide-title/slide-title-main.html</text
 					>
-					<slide-title-pre>Slide title pre</slide-title-pre>
-					<slide-title-sub>Slide title sub</slide-title-sub>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-main.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/slide-title/slide-title-main-sm.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-main-sm.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/slide-title/slide-title-pre.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-pre.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/slide-title/slide-title-sub.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/slide-title/slide-title-sub.html"
+					></div>
 				</div>
 			</div>
 
@@ -982,20 +484,12 @@
 				<text class="showcase-heading">Card title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>fonts.cardPretitle / fonts.cardTitle (md) /
-						fonts.body on meta</text
+						>components/card/quick-fact-card.html</text
 					>
-					<card
-						class="flex-1 min-w-0"
-						padding="md"
-						gap="sm"
-					>
-						<quick-fact-card-pretitle
-							>Pretitle</quick-fact-card-pretitle
-						>
-						<quick-fact-card-title>Card title</quick-fact-card-title>
-						<quick-fact-card-meta>Card meta</quick-fact-card-meta>
-					</card>
+					<div
+						data-preset="fragment"
+						data-src="../components/card/quick-fact-card.html"
+					></div>
 				</div>
 			</div>
 
@@ -1006,13 +500,30 @@
 				<text class="showcase-heading">Paragraph title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>fonts.paragraphTitle sizeLg / sizeMd / sizeSm</text
+						>components/typography/section-title-lg.html</text
 					>
-					<section-title size="lg">Section title large</section-title>
-					<section-title size="md"
-						>Section title medium</section-title
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/section-title-lg.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/typography/section-title.html</text
 					>
-					<section-title size="sm">Section title small</section-title>
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/section-title.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/typography/section-title-sm.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/section-title-sm.html"
+					></div>
 				</div>
 			</div>
 
@@ -1023,49 +534,151 @@
 				<text class="showcase-heading">Body</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>family="body" · size 400 / 350 / 300 (lg / md /
-						sm)</text
+						>components/typography/text-lg.html</text
 					>
-					<text
-						family="body"
-						size="400"
-						weight="bold"
-						tone="strong"
-						>Body lg (16px)</text
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/text-lg.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/typography/text.html</text
 					>
-					<text
-						family="body"
-						size="350"
-						>Body md (14px)</text
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/text.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/typography/text-sm.html</text
 					>
-					<text
-						family="body"
-						size="300"
-						tone="subtle"
-						>Body sm (12px)</text
-					>
+					<div
+						data-preset="fragment"
+						data-src="../components/typography/text-sm.html"
+					></div>
 				</div>
 			</div>
+
 		</div>
 		<script>
 			const BRAND_LINK_ID = "brand-stylesheet";
 			const brandSelector = document.getElementById("brand-selector");
 
+			const BRAND_LOGOS = {
+				"": {
+					href: "../../assets/logos/placeholder-logo.svg#placeholder-logo",
+					viewBox: "0 0 44 12",
+				},
+				gratia: {
+					href: "../../brands/gratia/gratia-logo.svg#gratia-logo",
+					viewBox: "0 0 65 16",
+				},
+				riverton: {
+					href: "../../brands/riverton/riverton-logo.svg#riverton-logo",
+					viewBox: "0 0 76 16",
+				},
+			};
+
 			function applyBrand() {
 				document.getElementById(BRAND_LINK_ID)?.remove();
 
 				const brand = brandSelector.value;
-				if (!brand) return;
 
-				const link = document.createElement("link");
-				link.id = BRAND_LINK_ID;
-				link.rel = "stylesheet";
-				link.href = `../../brands/${brand}/brand.css`;
-				document.head.appendChild(link);
+				if (brand) {
+					const link = document.createElement("link");
+					link.id = BRAND_LINK_ID;
+					link.rel = "stylesheet";
+					link.href = `../../brands/${brand}/brand.css`;
+					document.head.appendChild(link);
+				}
+
+				const logo = BRAND_LOGOS[brand] || BRAND_LOGOS[""];
+				document
+					.querySelectorAll('svg[aria-label="Logo"]')
+					.forEach((svg) => {
+						svg.setAttribute("viewBox", logo.viewBox);
+						const use = svg.querySelector("use");
+						if (use) use.setAttribute("href", logo.href);
+					});
 			}
 
 			brandSelector.addEventListener("change", applyBrand);
-			applyBrand();
+
+			// --- Preset loader ---
+
+			function extractSlide(html) {
+				const match = html.match(/<slide[\s\S]*?>[\s\S]*<\/slide>/i);
+				return match ? match[0] : html;
+			}
+
+			function extractFooterInner(html) {
+				const match = html.match(
+					/<slide-footer[\s\S]*?>([\s\S]*)<\/slide-footer>/i,
+				);
+				return match ? match[1] : html;
+			}
+
+			async function loadPresets() {
+				while (true) {
+					const slots = document.querySelectorAll(
+						"[data-preset][data-src]:not([data-loaded])",
+					);
+
+					if (!slots.length) break;
+
+					await Promise.all(
+						[...slots].map(async (slot) => {
+							const src = slot.dataset.src;
+							const type = slot.dataset.preset;
+
+							let html;
+							try {
+								const res = await fetch(src);
+								if (!res.ok) throw new Error(res.status);
+								html = await res.text();
+							} catch (e) {
+								slot.insertAdjacentHTML(
+									"beforeend",
+									`<div class="showcase-label" style="color:var(--color-negative)">Failed to load ${src}</div>`,
+								);
+								slot.dataset.loaded = "true";
+								slot.removeAttribute("data-src");
+								slot.removeAttribute("data-preset");
+								return;
+							}
+
+							if (type === "deck-title") {
+								const slideHtml = extractSlide(html);
+								slot.insertAdjacentHTML(
+									"beforeend",
+									`<deck>${slideHtml}</deck>`,
+								);
+							} else if (type === "footer") {
+								if (slot.tagName.toLowerCase() === "slide-footer") {
+									slot.innerHTML = extractFooterInner(html);
+								} else {
+									slot.insertAdjacentHTML(
+										"beforeend",
+										`<div class="showcase-footer">${html}</div>`,
+									);
+								}
+							} else {
+								slot.insertAdjacentHTML("beforeend", html);
+							}
+
+							slot.dataset.loaded = "true";
+							slot.removeAttribute("data-src");
+							slot.removeAttribute("data-preset");
+						}),
+					);
+				}
+
+				applyBrand();
+			}
+
+			// --- Filter tabs ---
 
 			const filterButtons = document.querySelectorAll(
 				".showcase-filter button",
@@ -1094,6 +707,7 @@
 			});
 
 			applyFilter("slides");
+			loadPresets();
 		</script>
 	</body>
 </html>
