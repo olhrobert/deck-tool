@@ -75,26 +75,10 @@
 				overflow: hidden;
 			}
 
-			.showcase-toolbar {
-				position: fixed;
-				top: var(--spacing-4);
-				left: var(--spacing-4);
-				z-index: 100;
-				display: flex;
-				align-items: center;
-				gap: 4px;
-				padding: 4px;
-				background-color: var(--color-slide-surface-background);
-				border: 1px solid var(--color-slide-surface-border);
-				border-radius: var(--border-radius-card);
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-				width: fit-content;
-			}
-
+			.showcase-toolbar,
 			.showcase-filter {
 				position: fixed;
 				top: var(--spacing-4);
-				right: var(--spacing-4);
 				z-index: 100;
 				display: flex;
 				align-items: center;
@@ -107,6 +91,15 @@
 				width: fit-content;
 			}
 
+			.showcase-toolbar {
+				left: var(--spacing-4);
+			}
+
+			.showcase-filter {
+				right: var(--spacing-4);
+			}
+
+			.showcase-toolbar a,
 			.showcase-filter a {
 				font-family: system-ui, sans-serif;
 				font-size: 12px;
@@ -123,25 +116,15 @@
 					color 0.15s;
 			}
 
+			.showcase-toolbar a:hover,
 			.showcase-filter a:hover {
 				background-color: var(--color-slide-surface-border);
 			}
 
+			.showcase-toolbar a.is-active,
 			.showcase-filter a.is-active {
 				background-color: var(--color-cover-background);
 				color: var(--color-cover-foreground);
-			}
-
-			.showcase-toolbar select {
-				font-family: system-ui, sans-serif;
-				font-size: 12px;
-				font-weight: 500;
-				padding: 6px 8px;
-				border: none;
-				border-radius: 6px;
-				background: transparent;
-				color: var(--color-slide-foreground-base);
-				cursor: pointer;
 			}
 
 			[data-section="typography"] text[family="cover-title"] {
@@ -170,10 +153,16 @@
 			</div>
 
 			<div class="showcase-toolbar">
-				<select id="brand-selector">
-					<option value="gratia">Gratia</option>
-					<option value="riverton">Riverton</option>
-				</select>
+				<a
+					href="?brand=gratia"
+					data-brand="gratia"
+					>Gratia</a
+				>
+				<a
+					href="?brand=riverton"
+					data-brand="riverton"
+					>Riverton</a
+				>
 			</div>
 
 			<!-- === SLIDES === -->
@@ -496,8 +485,10 @@
 		</div>
 		<script>
 			const BRAND_LINK_ID = "brand-stylesheet";
-			const brandSelector = document.getElementById("brand-selector");
-			const VALID_BRANDS = [...brandSelector.options].map((o) => o.value);
+			const brandLinks = document.querySelectorAll(
+				".showcase-toolbar a[data-brand]",
+			);
+			const VALID_BRANDS = [...brandLinks].map((a) => a.dataset.brand);
 
 			function brandFromUrl() {
 				const brand = new URLSearchParams(location.search).get("brand");
@@ -510,9 +501,20 @@
 				history.replaceState(null, "", url);
 			}
 
-			brandSelector.value = brandFromUrl();
+			function syncBrandTabs(active) {
+				brandLinks.forEach((link) => {
+					link.classList.toggle(
+						"is-active",
+						link.dataset.brand === active,
+					);
+					link.href = `?brand=${link.dataset.brand}${location.hash}`;
+				});
+			}
+
+			let currentBrand = brandFromUrl();
+			syncBrandTabs(currentBrand);
 			if (!new URLSearchParams(location.search).has("brand")) {
-				setBrandInUrl(brandSelector.value);
+				setBrandInUrl(currentBrand);
 			}
 
 			const LOGO_SURFACES = {
@@ -586,12 +588,13 @@
 
 			let brandApplyId = 0;
 
-			function applyBrand() {
+			function applyBrand(brand = currentBrand) {
 				const applyId = ++brandApplyId;
 				document.getElementById(BRAND_LINK_ID)?.remove();
 
-				const brand = brandSelector.value;
+				currentBrand = brand;
 				setBrandInUrl(brand);
+				syncBrandTabs(brand);
 				const finish = () => {
 					if (applyId !== brandApplyId) return;
 					applyLogos(brand);
@@ -611,7 +614,12 @@
 				document.head.appendChild(link);
 			}
 
-			brandSelector.addEventListener("change", applyBrand);
+			brandLinks.forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					applyBrand(link.dataset.brand);
+				});
+			});
 
 			// --- Preset loader ---
 
@@ -714,9 +722,10 @@
 				});
 			}
 
-			window.addEventListener("hashchange", () =>
-				applyFilter(filterFromHash()),
-			);
+			window.addEventListener("hashchange", () => {
+				applyFilter(filterFromHash());
+				syncBrandTabs(currentBrand);
+			});
 
 			if (!location.hash) {
 				history.replaceState(null, "", "#slides");
