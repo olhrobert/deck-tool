@@ -123,7 +123,7 @@ Then edit `brand-settings.json` / `{slug}-logo.svg` and run `validate-brand.js`.
 
 ## `validate-brand.js`
 
-Checks `TOKEN_MAP` keys, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
+Checks `TOKEN_MAP` keys, type-scale and spacing-scale steps, `slide.maxWidth` as a pixel integer, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
 
 ```bash
 node scripts/validate-brand.js brands/riverton

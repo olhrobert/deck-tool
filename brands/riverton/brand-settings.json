@@ -6,7 +6,8 @@
 			"background": "rgb(160, 203, 50)",
 			"foreground": "rgb(12, 12, 15)",
 			"surfaceBackground": "rgb(12, 12, 15)",
-			"surfaceForeground": "rgb(255, 255, 255)"
+			"surfaceForeground": "rgb(255, 255, 255)",
+			"surfaceBorder": "rgba(255, 255, 255, 0.2)"
 		},
 		"slide": {
 			"background": "rgb(234, 239, 227)",
@@ -42,49 +43,14 @@
 		}
 	},
 	"fonts": {
-		"coverTitle": {
-			"family": "\"Fraunces\", system-ui, sans-serif",
-			"weight": 500
-		},
-		"slideTitle": {
-			"family": "\"Fraunces\", system-ui, sans-serif",
-			"weight": 500,
-			"sizeLg": 1200,
-			"sizeMd": 1000,
-			"sizeSm": 800
-		},
-		"slideTitlePre": {
-			"family": "\"Inter\", system-ui, sans-serif",
-			"weight": 400,
-			"size": 350
-		},
-		"slideTitleSub": {
-			"family": "\"Inter\", system-ui, sans-serif",
-			"weight": 400,
-			"size": 350
-		},
-		"cardTitle": {
-			"family": "\"Fraunces\", system-ui, sans-serif",
-			"weight": 500,
-			"sizeLg": 800,
-			"sizeMd": 800,
-			"sizeSm": 600
-		},
-		"cardPretitle": {
-			"family": "\"Inter\", system-ui, sans-serif",
-			"weight": 500,
-			"size": 300
-		},
-		"paragraphTitle": {
-			"family": "\"Fraunces\", system-ui, sans-serif",
-			"weight": 500,
-			"sizeLg": 600,
-			"sizeMd": 500,
-			"sizeSm": 400
+		"weights": {
+			"regular": 400,
+			"medium": 400,
+			"bold": 700
 		},
 		"body": {
 			"family": "\"Inter\", system-ui, sans-serif",
-			"weight": 400
+			"weight": "regular"
 		}
 	},
 	"borderRadius": {
@@ -92,22 +58,116 @@
 		"sm": "4px",
 		"med": "8px",
 		"lg": "12px",
-		"full": "200px",
-		"card": "8px",
-		"alert": "0px"
+		"full": "200px"
 	},
 	"borderSize": {
-		"card": {
-			"top": "1px",
-			"bottom": "1px",
-			"left": "1px",
-			"right": "1px"
+		"none": "0px",
+		"sm": "1px",
+		"md": "2px"
+	},
+	"slide": {
+		"maxWidth": 1280,
+		"header": {
+			"paddingTop": 8,
+			"paddingRight": 10,
+			"paddingBottom": 0,
+			"paddingLeft": 10
 		},
-		"alert": {
-			"top": "0px",
-			"bottom": "0px",
-			"left": "2px",
-			"right": "0px"
+		"content": {
+			"paddingTop": 10,
+			"paddingRight": 10,
+			"paddingBottom": 0,
+			"paddingLeft": 10
+		},
+		"footer": {
+			"paddingTop": 4,
+			"paddingRight": 4,
+			"paddingBottom": 4,
+			"paddingLeft": 4
 		}
+	},
+	"coverTitle": {
+		"family": "\"Fraunces\", system-ui, sans-serif",
+		"weight": "medium"
+	},
+	"slideTitle": {
+		"gap": 2,
+		"family": "\"Fraunces\", system-ui, sans-serif",
+		"weight": "medium",
+		"sizeLg": 1200,
+		"sizeMd": 1000,
+		"sizeSm": 800,
+		"pre": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"weight": "regular",
+			"size": 350
+		},
+		"sub": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"weight": "regular",
+			"size": 350
+		}
+	},
+	"stack": {
+		"gapSm": 2,
+		"gapMd": 3,
+		"gapLg": 4
+	},
+	"card": {
+		"paddingSm": 3,
+		"paddingMd": 4,
+		"paddingLg": 6,
+		"gapSm": 2,
+		"gapMd": 3,
+		"gapLg": 4,
+		"borderRadius": "med",
+		"borderSize": {
+			"top": "sm",
+			"bottom": "sm",
+			"left": "sm",
+			"right": "sm"
+		},
+		"title": {
+			"family": "\"Fraunces\", system-ui, sans-serif",
+			"weight": "medium",
+			"sizeLg": 800,
+			"sizeMd": 800,
+			"sizeSm": 600
+		},
+		"pretitle": {
+			"family": "\"Inter\", system-ui, sans-serif",
+			"weight": "medium",
+			"size": 300
+		},
+		"quickFact": {
+			"metaPaddingTop": "0-5"
+		}
+	},
+	"alert": {
+		"paddingSm": 3,
+		"paddingMd": 4,
+		"paddingLg": 6,
+		"gap": 1,
+		"borderRadius": "none",
+		"borderSize": {
+			"top": "none",
+			"bottom": "none",
+			"left": "md",
+			"right": "none"
+		}
+	},
+	"paragraphTitle": {
+		"family": "\"Fraunces\", system-ui, sans-serif",
+		"weight": "medium",
+		"sizeLg": 600,
+		"sizeMd": 500,
+		"sizeSm": 400
+	},
+	"attributionBox": {
+		"gap": 1,
+		"paddingYTitle": 4,
+		"paddingXTitle": 6,
+		"paddingYContent": 2,
+		"paddingXContent": 2
 	}
 }

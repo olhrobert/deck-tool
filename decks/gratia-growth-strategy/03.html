@@ -13,10 +13,6 @@
 		/>
 		<link
 			rel="stylesheet"
-			href="../../brands/gratia/brand.css"
-		/>
-		<link
-			rel="stylesheet"
 			href="../../design-system/components/index.css"
 		/>
 		<link
@@ -29,13 +25,16 @@
 			<slide>
 				<slide-header>
 					<slide-title>
-						<slide-title-main weight="strong" data-slot="main">Footer preset preview</slide-title-main>
+						<slide-title-main data-slot="main"
+							>Footer preset preview</slide-title-main
+						>
 					</slide-title>
 				</slide-header>
 				<slide-content>
 					<div class="box-border min-w-0 flex flex-col gap-6">
 						<text
-							size="base"
+							family="body"
+							size="400"
 							weight="regular"
 							tone="base"
 							lineheight="lg"
@@ -48,24 +47,26 @@
 				<slide-footer>
 					<div class="flex items-center w-full">
 						<div class="flex-1 flex justify-start min-w-0">
-							<svg
-								role="img"
-								aria-label="Gratia"
-								class="shrink-0 block color-slide-foreground-strong"
-								style="height: 16px"
-								viewBox="0 0 65 16"
-								fill="none"
-							>
-								<use
-									href="gratia-logo.svg#gratia-logo"
-								/>
-							</svg>
+							<img
+								src="gratia-logo.svg"
+								alt="Gratia"
+								data-logo="slide"
+								class="shrink-0 block"
+								style="height: 12px; width: auto"
+							/>
 						</div>
 						<attribution-box variant="content">
-							<text data-slot="disclaimer">All figures are modified to prevent reversability</text>
+							<text data-slot="disclaimer">
+								All figures are modified to prevent
+								reversibility
+							</text>
 							<attribution-box-separator></attribution-box-separator>
 							<text data-slot="prepared-by">Prepared by</text>
-							<img src="../../assets/logos/gratia-logo.svg" alt="Gratia" data-slot="logo" />
+							<img
+								data-slot="logo"
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
 						</attribution-box>
 						<div class="flex-1 flex justify-end min-w-0">
 							<text

@@ -20,7 +20,7 @@ HTML brands live in `brands/{slug}/`. Figma theming is an extra **Primitives** m
 node scripts/new-brand.js {slug} --name "{Display Name}"
 ```
 
-3. Put the real colors, fonts, radii, and border sizes into `brands/{slug}/brand-settings.json`. Keep values as `rgb()` / `rgba()`. Map colors by slide role using **Color tokens** in `docs/brands.md` (`cover.background` = title fill, not “the logo color”).
+3. Put the real colors, fonts, semantic spacing, radii, and border sizes into `brands/{slug}/brand-settings.json`. Keep color values as `rgb()` / `rgba()`. Map colors by slide role using **Color tokens** in `docs/brands.md` (`cover.background` = title fill, not “the logo color”). Spacing values are scale steps from `design-system/tokens/spacing.css`. Component `borderRadius` / `borderSize` name steps on the generic scales, not pixels.
 4. Replace `brands/{slug}/{slug}-logo.svg` and `{slug}-logo-inverted.svg` with standalone SVGs (root `viewBox`, baked fills, no `currentColor`). Inverted is the light lockup for dark backgrounds.
 5. Validate:
 
@@ -33,7 +33,7 @@ Fix contrast failures before continuing.
 6. Figma (`figma/library.json` `fileKey`), `use_figma` with `skillNames`: `figma-use,figma-generate-library`:
    - Add a Primitives mode named `{Display Name}`
    - Write primitive color values for that mode from `brand-settings.json` (map via `primitive/color/*` dsb keys — role names: `cover-background`, `slide-foreground`, …)
-   - Write `primitive/font-family/heading` and `primitive/font-family/body` for that mode — first quoted family from `fonts.heading` / `fonts.body` (not the CSS stack). If the file still has `font-family/display` / `font-family/base`, write those keys from heading/body. Load those fonts before `setValueForMode`
+   - Write primitive font families for that mode from `brand-settings.json` (first quoted family, not the CSS stack): `coverTitle` / `slideTitle` / `card.title` / `paragraphTitle` / `fonts.body`. The live Figma file may still expose `font-family/heading` and `font-family/body` — write those from `slideTitle` / `fonts.body` until the library pass. If the file still has `font-family/display` / `font-family/base`, write those keys the same way. Load those fonts before `setValueForMode`
    - Import `{slug}-logo.svg` as `__Logo/{Display Name}`, size from viewBox. Do not recolor paths; keep baked fills.
    - `setSharedPluginData("dsb", "key", "component/logo-{slug}")`
    - Return modeId + component id; append both to `figma/library.json`

@@ -16,12 +16,11 @@ Ready-made HTML slides for deck generation. **Copy a preset into `decks/{deck-na
 ```
 decks/
   my-deck/
-    deck-title.html          ← copied from deck-titles/
-    client-logo.svg
-    client-logo-inverted.svg
-    slide-01.html
-    slide-02.html
-    slide-03.html
+    01.html                  ← copied from deck-titles/
+    02.html                  ← copied from content-slides/
+    {slug}-logo.svg
+    {slug}-logo-inverted.svg
+    slides.json
 ```
 
 Copied files keep `../../design-system/` and `../../assets/` paths — they work from any `decks/{name}/` folder.

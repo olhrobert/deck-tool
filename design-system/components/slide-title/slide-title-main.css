@@ -2,7 +2,7 @@ slide-title-main {
 	display: block;
 	margin: 0;
 	font-family: var(--slide-title-main-family);
-	font-weight: var(--slide-title-main-weight-default);
+	font-weight: var(--font-weight-slide-title);
 	line-height: var(--slide-title-main-lineheight);
 	font-size: var(--slide-title-main-size-md);
 	letter-spacing: 0%;
@@ -19,10 +19,4 @@ slide-title-main[size="md"] {
 
 slide-title-main[size="sm"] {
 	font-size: var(--slide-title-main-size-sm);
-}
-
-slide-title-main strong,
-slide-title-main[weight="strong"] {
-	font-weight: var(--slide-title-main-weight-strong);
-	color: var(--color-slide-foreground);
 }

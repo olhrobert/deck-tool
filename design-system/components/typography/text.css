@@ -15,6 +15,7 @@ text {
 text[family="cover-title"] {
 	font-family: var(--font-family-cover-title, system-ui, sans-serif);
 	font-weight: var(--font-weight-cover-title, 700);
+	color: var(--color-cover-foreground);
 }
 
 .text-family-slide-title,
@@ -50,17 +51,17 @@ text[family="heading"] {
 /* font weight */
 .text-weight-regular,
 text[weight="regular"] {
-	font-weight: 400;
+	font-weight: var(--font-weight-regular);
 }
 
 .text-weight-medium,
 text[weight="medium"] {
-	font-weight: 500;
+	font-weight: var(--font-weight-medium);
 }
 
 .text-weight-bold,
 text[weight="bold"] {
-	font-weight: 700;
+	font-weight: var(--font-weight-bold);
 }
 
 /* line height */

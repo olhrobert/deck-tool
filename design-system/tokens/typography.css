@@ -26,42 +26,45 @@
 
 	/* SEMANTIC — role defaults. Brand.css remaps size* to other --text-size-* steps. */
 
-	/* Role weights — brands override via fonts.*.weight (same numbers as fonts.css) */
-	--font-weight-cover-title: 700;
-	--font-weight-slide-title: 700;
-	--font-weight-slide-title-pre: 400;
-	--font-weight-slide-title-sub: 400;
-	--font-weight-card-title: 700;
-	--font-weight-card-pretitle: 700;
-	--font-weight-paragraph-title: 700;
-	--font-weight-body: 400;
+	/* Named weights — brands set fonts.weights.regular|medium|bold to CSS numbers */
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-bold: 700;
 
-	/* slide title main — family + sizes driven by fonts.slideTitle in brand-settings.json */
+	/* Role weights — brands set coverTitle.weight / card.title.weight / fonts.body.weight to regular|medium|bold */
+	--font-weight-cover-title: var(--font-weight-bold);
+	--font-weight-slide-title: var(--font-weight-bold);
+	--font-weight-slide-title-pre: var(--font-weight-regular);
+	--font-weight-slide-title-sub: var(--font-weight-regular);
+	--font-weight-card-title: var(--font-weight-bold);
+	--font-weight-card-pretitle: var(--font-weight-bold);
+	--font-weight-paragraph-title: var(--font-weight-bold);
+	--font-weight-body: var(--font-weight-regular);
+
+	/* slide title main — family + sizes driven by slideTitle in brand-settings.json */
 	--slide-title-main-family: var(
 		--font-family-slide-title,
 		system-ui,
 		sans-serif
 	);
-	--slide-title-main-weight-default: var(--font-weight-slide-title);
-	--slide-title-main-weight-strong: var(--font-weight-slide-title);
 	--slide-title-main-lineheight: 1.2;
 	--slide-title-main-size-lg: var(--text-size-1200);
 	--slide-title-main-size-md: var(--text-size-1000);
 	--slide-title-main-size-sm: var(--text-size-800);
 
-	/* slide title pre — driven by fonts.slideTitlePre in brand-settings.json */
+	/* slide title pre — driven by slideTitle.pre in brand-settings.json */
 	--slide-title-pre-family: var(--font-family-slide-title-pre, system-ui, sans-serif);
 	--slide-title-pre-weight: var(--font-weight-slide-title-pre);
 	--slide-title-pre-lineheight: 1.2;
 	--slide-title-pre-size: var(--text-size-350);
 
-	/* slide title sub — driven by fonts.slideTitleSub in brand-settings.json */
+	/* slide title sub — driven by slideTitle.sub in brand-settings.json */
 	--slide-title-sub-family: var(--font-family-slide-title-sub, system-ui, sans-serif);
 	--slide-title-sub-weight: var(--font-weight-slide-title-sub);
 	--slide-title-sub-lineheight: 1.2;
 	--slide-title-sub-size: var(--text-size-350);
 
-	/* section title (paragraph title) — family + sizes driven by fonts.paragraphTitle */
+	/* section title (paragraph title) — family + sizes driven by paragraphTitle */
 	--section-title-family: var(
 		--font-family-paragraph-title,
 		system-ui,
@@ -92,13 +95,13 @@
 	--alert-description-lineheight: 1.2;
 	--alert-description-size: var(--text-size-400);
 
-	/* card title sizes — brands set fonts.cardTitle.sizeLg/Md/Sm to scale steps */
+	/* card title sizes — brands set card.title.sizeLg/Md/Sm to scale steps */
 	--card-title-size-lg: var(--text-size-800);
 	--card-title-size-md: var(--text-size-800);
 	--card-title-size-sm: var(--text-size-600);
 	--card-pretitle-size: var(--text-size-300);
 
-	/* quick fact card — family + sizes driven by fonts.cardTitle / fonts.body */
+	/* quick fact card — family + sizes driven by card.title / fonts.body */
 	--quick-fact-card-pretitle-family: var(--font-family-card-pretitle, system-ui, sans-serif);
 	--quick-fact-card-pretitle-weight: var(--font-weight-card-pretitle);
 	--quick-fact-card-pretitle-lineheight: 1.2;
@@ -111,7 +114,6 @@
 	);
 	--quick-fact-card-title-weight: var(--font-weight-card-title);
 	--quick-fact-card-title-lineheight: 1;
-	--quick-fact-card-title-size: var(--card-title-size-md);
 	--quick-fact-card-meta-family: var(
 		--font-family-body,
 		system-ui,
@@ -120,4 +122,8 @@
 	--quick-fact-card-meta-weight: var(--font-weight-body);
 	--quick-fact-card-meta-lineheight: 1.2;
 	--quick-fact-card-meta-size: var(--text-size-300);
+
+	/* attribution box type — same steps html-to-ir forces on slot text */
+	--attribution-box-text-size-title: var(--text-size-300);
+	--attribution-box-text-size-content: var(--text-size-200);
 }

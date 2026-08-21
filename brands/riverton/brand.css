@@ -7,6 +7,7 @@
 	--color-cover-foreground: rgb(12, 12, 15);
 	--color-cover-surface-background: rgb(12, 12, 15);
 	--color-cover-surface-foreground: rgb(255, 255, 255);
+	--color-cover-surface-border: rgba(255, 255, 255, 0.2);
 
 	/* slide */
 	--color-slide-background: rgb(234, 239, 227);
@@ -34,49 +35,14 @@
 	--color-chart-3: rgba(30, 58, 95, 1);
 	--color-chart-4: rgba(13, 148, 136, 1);
 
-	/* fonts — cover title */
-	--font-family-cover-title: "Fraunces", system-ui, sans-serif;
-	--font-weight-cover-title: 500;
-
-	/* fonts — slide title */
-	--font-family-slide-title: "Fraunces", system-ui, sans-serif;
-	--font-weight-slide-title: 500;
-	--slide-title-main-size-lg: var(--text-size-1200);
-	--slide-title-main-size-md: var(--text-size-1000);
-	--slide-title-main-size-sm: var(--text-size-800);
-
-	/* fonts — slide title pre */
-	--font-family-slide-title-pre: "Inter", system-ui, sans-serif;
-	--font-weight-slide-title-pre: 400;
-	--slide-title-pre-size: var(--text-size-350);
-
-	/* fonts — slide title sub */
-	--font-family-slide-title-sub: "Inter", system-ui, sans-serif;
-	--font-weight-slide-title-sub: 400;
-	--slide-title-sub-size: var(--text-size-350);
-
-	/* fonts — card title */
-	--font-family-card-title: "Fraunces", system-ui, sans-serif;
-	--font-weight-card-title: 500;
-	--card-title-size-lg: var(--text-size-800);
-	--card-title-size-md: var(--text-size-800);
-	--card-title-size-sm: var(--text-size-600);
-
-	/* fonts — card pretitle */
-	--font-family-card-pretitle: "Inter", system-ui, sans-serif;
-	--font-weight-card-pretitle: 500;
-	--card-pretitle-size: var(--text-size-300);
-
-	/* fonts — paragraph title */
-	--font-family-paragraph-title: "Fraunces", system-ui, sans-serif;
-	--font-weight-paragraph-title: 500;
-	--paragraph-title-size-lg: var(--text-size-600);
-	--paragraph-title-size-md: var(--text-size-500);
-	--paragraph-title-size-sm: var(--text-size-400);
+	/* fonts — weights */
+	--font-weight-regular: 400;
+	--font-weight-medium: 400;
+	--font-weight-bold: 700;
 
 	/* fonts — body */
 	--font-family-body: "Inter", system-ui, sans-serif;
-	--font-weight-body: 400;
+	--font-weight-body: var(--font-weight-regular);
 
 	/* border radius */
 	--border-radius-none: 0px;
@@ -84,16 +50,94 @@
 	--border-radius-med: 8px;
 	--border-radius-lg: 12px;
 	--border-radius-full: 200px;
-	--border-radius-card: 8px;
-	--border-radius-alert: 0px;
 
 	/* border size */
-	--card-border-size-top: 1px;
-	--card-border-size-bottom: 1px;
-	--card-border-size-left: 1px;
-	--card-border-size-right: 1px;
-	--alert-border-size-top: 0px;
-	--alert-border-size-bottom: 0px;
-	--alert-border-size-left: 2px;
-	--alert-border-size-right: 0px;
+	--border-size-none: 0px;
+	--border-size-sm: 1px;
+	--border-size-md: 2px;
+
+	/* cover title */
+	--font-family-cover-title: "Fraunces", system-ui, sans-serif;
+	--font-weight-cover-title: var(--font-weight-medium);
+
+	/* slide title */
+	--slide-title-gap: var(--spacing-2);
+	--font-family-slide-title: "Fraunces", system-ui, sans-serif;
+	--font-weight-slide-title: var(--font-weight-medium);
+	--slide-title-main-size-lg: var(--text-size-1200);
+	--slide-title-main-size-md: var(--text-size-1000);
+	--slide-title-main-size-sm: var(--text-size-800);
+	--font-family-slide-title-pre: "Inter", system-ui, sans-serif;
+	--font-weight-slide-title-pre: var(--font-weight-regular);
+	--slide-title-pre-size: var(--text-size-350);
+	--font-family-slide-title-sub: "Inter", system-ui, sans-serif;
+	--font-weight-slide-title-sub: var(--font-weight-regular);
+	--slide-title-sub-size: var(--text-size-350);
+
+	/* slide chrome */
+	--slide-max-width: 1280px;
+	--slide-header-padding-top: var(--spacing-8);
+	--slide-header-padding-right: var(--spacing-10);
+	--slide-header-padding-bottom: var(--spacing-0);
+	--slide-header-padding-left: var(--spacing-10);
+	--slide-content-padding-top: var(--spacing-10);
+	--slide-content-padding-right: var(--spacing-10);
+	--slide-content-padding-bottom: var(--spacing-0);
+	--slide-content-padding-left: var(--spacing-10);
+	--slide-footer-padding-top: var(--spacing-4);
+	--slide-footer-padding-right: var(--spacing-4);
+	--slide-footer-padding-bottom: var(--spacing-4);
+	--slide-footer-padding-left: var(--spacing-4);
+
+	/* card */
+	--card-padding-sm: var(--spacing-3);
+	--card-padding-md: var(--spacing-4);
+	--card-padding-lg: var(--spacing-6);
+	--card-gap-sm: var(--spacing-2);
+	--card-gap-md: var(--spacing-3);
+	--card-gap-lg: var(--spacing-4);
+	--border-radius-card: var(--border-radius-med);
+	--card-border-size-top: var(--border-size-sm);
+	--card-border-size-bottom: var(--border-size-sm);
+	--card-border-size-left: var(--border-size-sm);
+	--card-border-size-right: var(--border-size-sm);
+	--font-family-card-title: "Fraunces", system-ui, sans-serif;
+	--font-weight-card-title: var(--font-weight-medium);
+	--card-title-size-lg: var(--text-size-800);
+	--card-title-size-md: var(--text-size-800);
+	--card-title-size-sm: var(--text-size-600);
+	--font-family-card-pretitle: "Inter", system-ui, sans-serif;
+	--font-weight-card-pretitle: var(--font-weight-medium);
+	--card-pretitle-size: var(--text-size-300);
+	--quick-fact-card-meta-padding-top: var(--spacing-0-5);
+
+	/* alert */
+	--alert-padding-sm: var(--spacing-3);
+	--alert-padding-md: var(--spacing-4);
+	--alert-padding-lg: var(--spacing-6);
+	--alert-gap: var(--spacing-1);
+	--border-radius-alert: var(--border-radius-none);
+	--alert-border-size-top: var(--border-size-none);
+	--alert-border-size-bottom: var(--border-size-none);
+	--alert-border-size-left: var(--border-size-md);
+	--alert-border-size-right: var(--border-size-none);
+
+	/* stack */
+	--stack-gap-sm: var(--spacing-2);
+	--stack-gap-md: var(--spacing-3);
+	--stack-gap-lg: var(--spacing-4);
+
+	/* paragraph title */
+	--font-family-paragraph-title: "Fraunces", system-ui, sans-serif;
+	--font-weight-paragraph-title: var(--font-weight-medium);
+	--paragraph-title-size-lg: var(--text-size-600);
+	--paragraph-title-size-md: var(--text-size-500);
+	--paragraph-title-size-sm: var(--text-size-400);
+
+	/* attribution box */
+	--attribution-box-gap: var(--spacing-1);
+	--attribution-box-padding-y-title: var(--spacing-4);
+	--attribution-box-padding-x-title: var(--spacing-6);
+	--attribution-box-padding-y-content: var(--spacing-2);
+	--attribution-box-padding-x-content: var(--spacing-2);
 }

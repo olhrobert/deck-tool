@@ -3,7 +3,7 @@ slide-header {
 	box-sizing: border-box;
 	width: 100%;
 	padding-top: var(--slide-header-padding-top);
+	padding-right: var(--slide-header-padding-right);
 	padding-bottom: var(--slide-header-padding-bottom);
-	padding-left: var(--slide-padding-x);
-	padding-right: var(--slide-padding-x);
+	padding-left: var(--slide-header-padding-left);
 }

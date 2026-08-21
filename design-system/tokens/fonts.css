@@ -1,4 +1,4 @@
-/* Fraunces — heading */
+/* Fraunces */
 @font-face {
 	font-family: "Fraunces";
 	src: url("../../assets/fonts/Fraunces/static/Fraunces_72pt-Regular.ttf")
@@ -10,7 +10,7 @@
 
 @font-face {
 	font-family: "Fraunces";
-	src: url("../../assets/fonts/Fraunces/static/Fraunces_72pt-Regular.ttf")
+	src: url("../../assets/fonts/Fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf")
 		format("truetype");
 	font-weight: 500;
 	font-style: normal;

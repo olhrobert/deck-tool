@@ -71,7 +71,7 @@ function main() {
 
 	console.log(`Created brands/${slug}/`);
 	console.log("Next:");
-	console.log(`  1. Edit brands/${slug}/${BRAND_FILENAME} (colors, fonts, radii).`);
+	console.log(`  1. Edit brands/${slug}/${BRAND_FILENAME} (colors, fonts, spacing, radii).`);
 	console.log(`  2. Replace brands/${slug}/${logoFile} and ${logoInvertedFile} with baked-fill SVGs.`);
 	console.log(`  3. node scripts/validate-brand.js brands/${slug}`);
 	console.log("  4. Add a Primitives mode in Figma and a __Logo component (skill: new-brand).");

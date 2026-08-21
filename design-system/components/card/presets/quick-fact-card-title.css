@@ -4,7 +4,19 @@ quick-fact-card-title {
 	font-family: var(--quick-fact-card-title-family);
 	font-weight: var(--quick-fact-card-title-weight);
 	line-height: var(--quick-fact-card-title-lineheight);
-	font-size: var(--quick-fact-card-title-size);
+	font-size: var(--card-title-size-md);
 	letter-spacing: 0%;
 	color: var(--color-slide-surface-foreground-strong);
+}
+
+quick-fact-card-title[size="lg"] {
+	font-size: var(--card-title-size-lg);
+}
+
+quick-fact-card-title[size="md"] {
+	font-size: var(--card-title-size-md);
+}
+
+quick-fact-card-title[size="sm"] {
+	font-size: var(--card-title-size-sm);
 }

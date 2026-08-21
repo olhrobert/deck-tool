@@ -6,6 +6,7 @@ section-title {
 	line-height: var(--section-title-lineheight);
 	font-size: var(--section-title-size-md);
 	letter-spacing: 0%;
+	color: var(--color-slide-foreground-strong);
 }
 
 section-title[size="lg"] {

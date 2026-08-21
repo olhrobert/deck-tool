@@ -32,14 +32,16 @@
 				padding: var(--spacing-10);
 				padding-top: var(--spacing-20);
 				padding-bottom: var(--spacing-20);
-				max-width: calc(1280px + 2 * var(--spacing-10));
+				max-width: calc(
+					var(--slide-max-width, 1280px) + 2 * var(--spacing-10)
+				);
 				margin: 0 auto;
 			}
 
 			.showcase-group {
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-20);
+				gap: var(--spacing-10);
 			}
 
 			.showcase-subgroup {
@@ -48,27 +50,16 @@
 				gap: var(--spacing-4);
 			}
 
-			.showcase-heading,
 			.showcase-label {
 				font-family: system-ui, sans-serif;
 				font-weight: var(--font-weight-body);
+				font-size: var(--text-size-300);
 				color: var(--color-slide-foreground-subtle);
-			}
-
-			.showcase-heading {
-				font-size: var(--text-size-300);
-				font-weight: 600;
-				letter-spacing: 0.04em;
-				text-transform: uppercase;
-				color: var(--color-slide-foreground-strong);
-			}
-
-			.showcase-label {
-				font-size: var(--text-size-300);
 			}
 
 			.showcase-deck deck {
 				display: block;
+				width: 100%;
 				min-height: auto;
 				background-color: transparent;
 			}
@@ -86,8 +77,8 @@
 
 			.showcase-toolbar {
 				position: fixed;
-				top: 24px;
-				left: 24px;
+				top: var(--spacing-4);
+				left: var(--spacing-4);
 				z-index: 100;
 				display: flex;
 				align-items: center;
@@ -102,8 +93,8 @@
 
 			.showcase-filter {
 				position: fixed;
-				top: 24px;
-				right: 24px;
+				top: var(--spacing-4);
+				right: var(--spacing-4);
 				z-index: 100;
 				display: flex;
 				align-items: center;
@@ -116,7 +107,7 @@
 				width: fit-content;
 			}
 
-			.showcase-filter button {
+			.showcase-filter a {
 				font-family: system-ui, sans-serif;
 				font-size: 12px;
 				font-weight: 500;
@@ -125,17 +116,18 @@
 				border-radius: 6px;
 				background: transparent;
 				color: var(--color-slide-foreground-base);
+				text-decoration: none;
 				cursor: pointer;
 				transition:
 					background-color 0.15s,
 					color 0.15s;
 			}
 
-			.showcase-filter button:hover {
+			.showcase-filter a:hover {
 				background-color: var(--color-slide-surface-border);
 			}
 
-			.showcase-filter button.is-active {
+			.showcase-filter a.is-active {
 				background-color: var(--color-cover-background);
 				color: var(--color-cover-foreground);
 			}
@@ -151,40 +143,35 @@
 				color: var(--color-slide-foreground-base);
 				cursor: pointer;
 			}
+
+			[data-section="typography"] text[family="cover-title"] {
+				color: var(--color-slide-foreground-strong);
+			}
 		</style>
 	</head>
 	<body>
 		<div class="showcase">
 			<div class="showcase-filter">
-				<button
-					type="button"
-					class="is-active"
+				<a
+					href="#slides"
 					data-filter="slides"
+					>Slides</a
 				>
-					Slides
-				</button>
-				<button
-					type="button"
+				<a
+					href="#components"
 					data-filter="components"
+					>Comps</a
 				>
-					Comps
-				</button>
-				<button
-					type="button"
+				<a
+					href="#typography"
 					data-filter="typography"
+					>Type</a
 				>
-					Type
-				</button>
 			</div>
 
 			<div class="showcase-toolbar">
 				<select id="brand-selector">
-					<option
-						value="gratia"
-						selected
-					>
-						Gratia
-					</option>
+					<option value="gratia">Gratia</option>
 					<option value="riverton">Riverton</option>
 				</select>
 			</div>
@@ -272,7 +259,6 @@
 				class="showcase-group"
 				data-section="components"
 			>
-				<text class="showcase-heading">Slide Title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/slide-title/slide-title-lg.html</text
@@ -300,13 +286,6 @@
 						data-src="../components/slide-title/slide-title-sm.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="components"
-			>
-				<text class="showcase-heading">Card / Quick Fact Card</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/card/card.html</text
@@ -325,13 +304,6 @@
 						data-src="../components/card/quick-fact-card.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="components"
-			>
-				<text class="showcase-heading">Alert</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/alert/alert.html</text
@@ -377,13 +349,6 @@
 						data-src="../components/alert/alert-informative.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="components"
-			>
-				<text class="showcase-heading">Attribution</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/attribution-box/attribution-box.html</text
@@ -410,7 +375,6 @@
 				class="showcase-group"
 				data-section="typography"
 			>
-				<text class="showcase-heading">Cover title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/typography/cover-title.html</text
@@ -420,13 +384,6 @@
 						data-src="../components/typography/cover-title.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="typography"
-			>
-				<text class="showcase-heading">Slide title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/slide-title/slide-title-main-lg.html</text
@@ -472,13 +429,6 @@
 						data-src="../components/slide-title/slide-title-sub.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="typography"
-			>
-				<text class="showcase-heading">Card title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/card/quick-fact-card.html</text
@@ -488,13 +438,6 @@
 						data-src="../components/card/quick-fact-card.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="typography"
-			>
-				<text class="showcase-heading">Paragraph title</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/typography/section-title-lg.html</text
@@ -522,13 +465,6 @@
 						data-src="../components/typography/section-title-sm.html"
 					></div>
 				</div>
-			</div>
-
-			<div
-				class="showcase-group"
-				data-section="typography"
-			>
-				<text class="showcase-heading">Body</text>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
 						>components/typography/text-lg.html</text
@@ -557,11 +493,27 @@
 					></div>
 				</div>
 			</div>
-
 		</div>
 		<script>
 			const BRAND_LINK_ID = "brand-stylesheet";
 			const brandSelector = document.getElementById("brand-selector");
+			const VALID_BRANDS = [...brandSelector.options].map((o) => o.value);
+
+			function brandFromUrl() {
+				const brand = new URLSearchParams(location.search).get("brand");
+				return VALID_BRANDS.includes(brand) ? brand : "gratia";
+			}
+
+			function setBrandInUrl(brand) {
+				const url = new URL(location.href);
+				url.searchParams.set("brand", brand);
+				history.replaceState(null, "", url);
+			}
+
+			brandSelector.value = brandFromUrl();
+			if (!new URLSearchParams(location.search).has("brand")) {
+				setBrandInUrl(brandSelector.value);
+			}
 
 			const LOGO_SURFACES = {
 				cover: "--color-cover-background",
@@ -578,8 +530,7 @@
 				},
 				gratia: {
 					default: "../../brands/gratia/gratia-logo.svg",
-					inverted:
-						"../../brands/gratia/gratia-logo-inverted.svg",
+					inverted: "../../brands/gratia/gratia-logo-inverted.svg",
 				},
 				riverton: {
 					default: "../../brands/riverton/riverton-logo.svg",
@@ -640,6 +591,7 @@
 				document.getElementById(BRAND_LINK_ID)?.remove();
 
 				const brand = brandSelector.value;
+				setBrandInUrl(brand);
 				const finish = () => {
 					if (applyId !== brandApplyId) return;
 					applyLogos(brand);
@@ -711,7 +663,10 @@
 									`<deck>${slideHtml}</deck>`,
 								);
 							} else if (type === "footer") {
-								if (slot.tagName.toLowerCase() === "slide-footer") {
+								if (
+									slot.tagName.toLowerCase() ===
+									"slide-footer"
+								) {
 									slot.innerHTML = extractFooterInner(html);
 								} else {
 									slot.insertAdjacentHTML(
@@ -735,18 +690,22 @@
 
 			// --- Filter tabs ---
 
-			const filterButtons = document.querySelectorAll(
-				".showcase-filter button",
-			);
+			const VALID_FILTERS = ["slides", "components", "typography"];
+			const filterLinks = document.querySelectorAll(".showcase-filter a");
 			const sections = document.querySelectorAll(
 				".showcase-group[data-section]",
 			);
 
+			function filterFromHash() {
+				const hash = location.hash.replace(/^#/, "");
+				return VALID_FILTERS.includes(hash) ? hash : "slides";
+			}
+
 			function applyFilter(active) {
-				filterButtons.forEach((btn) => {
-					btn.classList.toggle(
+				filterLinks.forEach((link) => {
+					link.classList.toggle(
 						"is-active",
-						btn.dataset.filter === active,
+						link.dataset.filter === active,
 					);
 				});
 				sections.forEach((sec) => {
@@ -755,13 +714,15 @@
 				});
 			}
 
-			filterButtons.forEach((btn) => {
-				btn.addEventListener("click", () =>
-					applyFilter(btn.dataset.filter),
-				);
-			});
+			window.addEventListener("hashchange", () =>
+				applyFilter(filterFromHash()),
+			);
 
-			applyFilter("slides");
+			if (!location.hash) {
+				history.replaceState(null, "", "#slides");
+			}
+
+			applyFilter(filterFromHash());
 			loadPresets();
 		</script>
 	</body>

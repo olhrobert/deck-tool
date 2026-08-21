@@ -6,7 +6,8 @@
 			"background": "rgb(4, 56, 58)",
 			"foreground": "rgb(255, 255, 255)",
 			"surfaceBackground": "rgb(255, 255, 255)",
-			"surfaceForeground": "rgb(1, 25, 26)"
+			"surfaceForeground": "rgb(1, 25, 26)",
+			"surfaceBorder": "rgba(1, 25, 26, 0.18)"
 		},
 		"slide": {
 			"background": "rgb(242, 245, 245)",
@@ -42,49 +43,14 @@
 		}
 	},
 	"fonts": {
-		"coverTitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 600
-		},
-		"slideTitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 600,
-			"sizeLg": 1200,
-			"sizeMd": 1000,
-			"sizeSm": 800
-		},
-		"slideTitlePre": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 400,
-			"size": 350
-		},
-		"slideTitleSub": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 400,
-			"size": 350
-		},
-		"cardTitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 600,
-			"sizeLg": 800,
-			"sizeMd": 800,
-			"sizeSm": 600
-		},
-		"cardPretitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 600,
-			"size": 300
-		},
-		"paragraphTitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 500,
-			"sizeLg": 600,
-			"sizeMd": 500,
-			"sizeSm": 400
+		"weights": {
+			"regular": 400,
+			"medium": 500,
+			"bold": 600
 		},
 		"body": {
 			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": 400
+			"weight": "regular"
 		}
 	},
 	"borderRadius": {
@@ -92,22 +58,116 @@
 		"sm": "4px",
 		"med": "8px",
 		"lg": "12px",
-		"full": "200px",
-		"card": "8px",
-		"alert": "0px"
+		"full": "200px"
 	},
 	"borderSize": {
-		"card": {
-			"top": "1px",
-			"bottom": "1px",
-			"left": "1px",
-			"right": "1px"
+		"none": "0px",
+		"sm": "1px",
+		"md": "2px"
+	},
+	"slide": {
+		"maxWidth": 1280,
+		"header": {
+			"paddingTop": 16,
+			"paddingRight": 20,
+			"paddingBottom": 0,
+			"paddingLeft": 20
 		},
-		"alert": {
-			"top": "0px",
-			"bottom": "0px",
-			"left": "2px",
-			"right": "0px"
+		"content": {
+			"paddingTop": 10,
+			"paddingRight": 20,
+			"paddingBottom": 0,
+			"paddingLeft": 20
+		},
+		"footer": {
+			"paddingTop": 4,
+			"paddingRight": 4,
+			"paddingBottom": 4,
+			"paddingLeft": 4
 		}
+	},
+	"coverTitle": {
+		"family": "\"DM Sans\", system-ui, sans-serif",
+		"weight": "bold"
+	},
+	"slideTitle": {
+		"gap": 2,
+		"family": "\"DM Sans\", system-ui, sans-serif",
+		"weight": "bold",
+		"sizeLg": 1200,
+		"sizeMd": 1000,
+		"sizeSm": 800,
+		"pre": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"weight": "regular",
+			"size": 350
+		},
+		"sub": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"weight": "regular",
+			"size": 350
+		}
+	},
+	"stack": {
+		"gapSm": 2,
+		"gapMd": 3,
+		"gapLg": 4
+	},
+	"card": {
+		"paddingSm": 3,
+		"paddingMd": 4,
+		"paddingLg": 6,
+		"gapSm": 2,
+		"gapMd": 3,
+		"gapLg": 4,
+		"borderRadius": "med",
+		"borderSize": {
+			"top": "sm",
+			"bottom": "sm",
+			"left": "sm",
+			"right": "sm"
+		},
+		"title": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"weight": "bold",
+			"sizeLg": 800,
+			"sizeMd": 800,
+			"sizeSm": 600
+		},
+		"pretitle": {
+			"family": "\"DM Sans\", system-ui, sans-serif",
+			"weight": "bold",
+			"size": 300
+		},
+		"quickFact": {
+			"metaPaddingTop": "0-5"
+		}
+	},
+	"alert": {
+		"paddingSm": 3,
+		"paddingMd": 4,
+		"paddingLg": 6,
+		"gap": 1,
+		"borderRadius": "med",
+		"borderSize": {
+			"top": "sm",
+			"bottom": "sm",
+			"left": "sm",
+			"right": "sm"
+		}
+	},
+	"paragraphTitle": {
+		"family": "\"DM Sans\", system-ui, sans-serif",
+		"weight": "medium",
+		"sizeLg": 600,
+		"sizeMd": 500,
+		"sizeSm": 400
+	},
+	"attributionBox": {
+		"gap": 1,
+		"paddingYTitle": 4,
+		"paddingXTitle": 6,
+		"paddingYContent": 2,
+		"paddingXContent": 2
 	}
 }

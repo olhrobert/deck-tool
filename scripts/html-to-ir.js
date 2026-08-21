@@ -507,6 +507,7 @@ function walk(node, warnings) {
 			component: "component/quick-fact-card",
 			name: "Quick Fact Card",
 			properties: {
+				size: attr(title, "size", "md"),
 				Pretitle: collapseText(collectText(pre)),
 				Title: collapseText(collectText(title)),
 				Meta: collapseText(collectText(meta)),

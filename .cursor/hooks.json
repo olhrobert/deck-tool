@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"hooks": {
+		"afterFileEdit": [
+			{
+				"command": ".cursor/hooks/generate-brand-on-settings-edit.js",
+				"timeout": 30
+			}
+		],
+		"afterTabFileEdit": [
+			{
+				"command": ".cursor/hooks/generate-brand-on-settings-edit.js",
+				"timeout": 30
+			}
+		]
+	}
+}

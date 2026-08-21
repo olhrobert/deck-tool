@@ -1,11 +1,12 @@
 :root {
-	/* FALLBACK — used when no brand.css is loaded (showcase “Default”).
+	/* FALLBACK — used when no brand.css is loaded.
 	   Brands override these same names from brand-settings.json via generate-brand-css.js. */
 
 	--color-cover-background: rgb(30, 41, 59);
 	--color-cover-foreground: rgb(255, 255, 255);
 	--color-cover-surface-background: rgb(241, 245, 249);
 	--color-cover-surface-foreground: rgb(15, 23, 42);
+	--color-cover-surface-border: rgba(0, 0, 0, 0.2);
 
 	--color-slide-background: rgb(241, 245, 249);
 	--color-slide-foreground: rgb(15, 23, 42);
@@ -29,8 +30,8 @@
 	--color-chart-3: rgba(30, 58, 95, 1);
 	--color-chart-4: rgba(13, 148, 136, 1);
 
-	--color-white: rgb(255, 255, 255, 1);
-	--color-black: rgb(0, 0, 0, 1);
+	--color-white: rgb(255, 255, 255);
+	--color-black: rgb(0, 0, 0);
 
 	/* Opacity variants — derived from the role tokens above. */
 

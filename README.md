@@ -13,7 +13,7 @@ The pieces that make that work:
 
 | Block | Role |
 | --- | --- |
-| Brand tokens | `brands/{slug}/brand-settings.json` overrides color, type, radius, and stroke. `brand.css` is generated. |
+| Brand tokens | `brands/{slug}/brand-settings.json` overrides color, type, semantic spacing, radius, and stroke. `brand.css` is generated. |
 | Component set | Custom HTML elements in `design-system/components/` (Slide, Card, Slide Title, Alert, …). |
 | Slide presets | Copy-ready HTML in `presets/` (title slides, content slides, content footers). |
 | Showcase | [`design-system/showcase/showcase.html`](design-system/showcase/showcase.html) — work on components and slide layouts in the browser, with a brand switcher. |

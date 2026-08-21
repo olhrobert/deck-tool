@@ -5,7 +5,7 @@ slide-content {
 	width: 100%;
 	min-height: 0;
 	padding-top: var(--slide-content-padding-top);
+	padding-right: var(--slide-content-padding-right);
 	padding-bottom: var(--slide-content-padding-bottom);
-	padding-left: var(--slide-padding-x);
-	padding-right: var(--slide-padding-x);
+	padding-left: var(--slide-content-padding-left);
 }

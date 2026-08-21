@@ -33,7 +33,7 @@ Then edit `brand-settings.json` (start from the Riverton copy the scaffold write
 
 ## `brand-settings.json` fields
 
-Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. Spacing and the type scale stay in `design-system/tokens/`. Brand font sizes pick a type-scale step (`800`, `400`, …); they do not set pixels.
+Generic tokens are grouped by type (`colors`, `fonts`, `borderRadius`, `borderSize`). Component tokens (`card`, `alert`, `slideTitle`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `borderRadius` / `borderSize` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.maxWidth` (canvas cap, default `1280`).
 
 `design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`). There is no `primary` / `secondary` / `tertiary` layer.
 
@@ -49,6 +49,7 @@ Pick colors by **role on the slide**. Cover and content slide are independent ca
 | `colors.cover.foreground` | `--color-cover-foreground` | Ink on the cover. Pair with `background`. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
 | `colors.cover.surfaceBackground` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). |
 | `colors.cover.surfaceForeground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. |
+| `colors.cover.surfaceBorder` | `--color-cover-surface-border` | Card stroke on a cover surface. |
 | `colors.slide.background` | `--color-slide-background` | Default content-slide canvas. `<slide>` fill. `.bg-slide`. |
 | `colors.slide.foreground` | `--color-slide-foreground` | Ink on the content canvas. Slide Title, section titles, body `<text>`, footer logos. `.color-slide-foreground-*`. |
 | `colors.slide.surfaceBackground` | `--color-slide-surface-background` | Cards, Quick Fact Card, `<attribution-box>`, `<alert>` fill. `.bg-slide-surface`. |
@@ -62,59 +63,140 @@ Pick colors by **role on the slide**. Cover and content slide are independent ca
 
 ### Font tokens
 
-Each text role has its own family and weight. **Sizes in `brand-settings.json` are type-scale steps**, not pixels. The scale lives in `design-system/tokens/typography.css` (`--text-size-800` = 32px, `--text-size-400` = 16px, …). `<slide-title-main size="lg">` uses whatever step `fonts.slideTitle.sizeLg` names.
+Named weights (`regular`, `medium`, `bold`) live under `fonts.weights` as CSS numbers matching `@font-face` in `design-system/tokens/fonts.css`. `<text weight="bold">` and `slideTitle.weight: "bold"` both resolve to `fonts.weights.bold`. A brand can map two names to the same number (e.g. medium and bold both 500).
 
-Weight is a CSS number matching the `@font-face` files in `design-system/tokens/fonts.css`:
+**Sizes are type-scale steps**, not pixels. The scale lives in `design-system/tokens/typography.css` (`--text-size-800` = 32px, `--text-size-400` = 16px, …). `<slide-title-main size="lg">` uses whatever step `slideTitle.sizeLg` names.
 
-| Weight | File |
+| Named weight | Typical file |
 |---|---|
-| `400` | Regular |
-| `500` | Medium |
-| `600` | SemiBold |
-| `700` | Bold |
+| `regular` | Regular (`400`) |
+| `medium` | Medium (`500`) |
+| `bold` | SemiBold (`600`) or Bold (`700`) — brand-defined |
 
 | `brand-settings.json` | CSS | HTML |
 |---|---|---|
-| `fonts.coverTitle.family` | `--font-family-cover-title` | `family="cover-title"` |
-| `fonts.coverTitle.weight` | `--font-weight-cover-title` | default for cover titles |
-| `fonts.slideTitle.family` | `--font-family-slide-title` | `<slide-title-main>` |
-| `fonts.slideTitle.weight` | `--font-weight-slide-title` | default for slide titles |
-| `fonts.slideTitle.sizeLg/Md/Sm` | `--slide-title-main-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. |
-| `fonts.slideTitlePre.weight` | `--font-weight-slide-title-pre` | `<slide-title-pre>` |
-| `fonts.slideTitlePre.size` | `--slide-title-pre-size` → `var(--text-size-*)` | |
-| `fonts.slideTitleSub.weight` | `--font-weight-slide-title-sub` | `<slide-title-sub>` |
-| `fonts.slideTitleSub.size` | `--slide-title-sub-size` → `var(--text-size-*)` | |
-| `fonts.cardTitle.family` | `--font-family-card-title` | `<quick-fact-card-title>` |
-| `fonts.cardTitle.weight` | `--font-weight-card-title` | |
-| `fonts.cardTitle.sizeLg/Md/Sm` | `--card-title-size-lg/md/sm` → `var(--text-size-*)` | |
-| `fonts.cardPretitle.weight` | `--font-weight-card-pretitle` | `<quick-fact-card-pretitle>` |
-| `fonts.cardPretitle.size` | `--card-pretitle-size` → `var(--text-size-*)` | |
-| `fonts.paragraphTitle.family` | `--font-family-paragraph-title` | `<section-title>` |
-| `fonts.paragraphTitle.weight` | `--font-weight-paragraph-title` | |
-| `fonts.paragraphTitle.sizeLg/Md/Sm` | `--paragraph-title-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. |
+| `fonts.weights.regular` | `--font-weight-regular` | `<text weight="regular">` |
+| `fonts.weights.medium` | `--font-weight-medium` | `<text weight="medium">` |
+| `fonts.weights.bold` | `--font-weight-bold` | `<text weight="bold">` |
 | `fonts.body.family` | `--font-family-body` | `<text family="body">` |
 | `fonts.body.weight` | `--font-weight-body` | default body ink weight |
 
-Body and cover titles use the scale **in HTML** (`<text size="400">`, `<text size="1600">`). Brands do not remap those steps.
+Body and cover titles use the scale **in HTML** (`<text size="400">`, `<text size="1600">`). Brands do not remap those steps. Omit `weight` on a role (cover title, QFC title, slide title) so the brand role weight applies; set `weight="regular|medium|bold"` only to override it.
 
-Example — make slide-title `lg` use scale 800 (32px) instead of the default 1200 (48px):
+Example — Gratia-style named weights, then make slide-title `lg` use scale 800 (32px):
 
 ```json
+"fonts": {
+  "weights": {
+    "regular": 400,
+    "medium": 500,
+    "bold": 600
+  },
+  "body": {
+    "family": "\"DM Sans\", system-ui, sans-serif",
+    "weight": "regular"
+  }
+},
 "slideTitle": {
   "family": "\"DM Sans\", system-ui, sans-serif",
-  "weight": 600,
+  "weight": "bold",
   "sizeLg": 800,
   "sizeMd": 1000,
   "sizeSm": 800
 }
 ```
 
-### Other `brand-settings.json` fields
+### Spacing
+
+Semantic spacing is a **spacing-scale step** from `design-system/tokens/spacing.css` (`20` → `var(--spacing-20)` = 80px). Hyphenated steps are strings (`"0-5"` = 2px). Component padding and gap live on that component (below), not in a top-level `spacing` object.
+
+### Border radius and stroke scales
 
 | JSON | CSS |
 |---|---|
-| `borderRadius.*` | `--border-radius-*` |
-| `borderSize.card.*` / `borderSize.alert.*` | card and alert stroke widths |
+| `borderRadius.none/sm/med/lg/full` | `--border-radius-*` |
+| `borderSize.none/sm/md` | `--border-size-*` |
+
+Card and alert pick a step on these scales (`"med"`, `"sm"`, …), not a pixel value.
+
+### Component tokens
+
+#### Cover title
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `coverTitle.family` | `--font-family-cover-title` | `family="cover-title"` |
+| `coverTitle.weight` | `--font-weight-cover-title` → `var(--font-weight-*)` | default if `weight` is omitted |
+
+#### Slide title
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `slideTitle.gap` | `--slide-title-gap` | `<slide-title>` |
+| `slideTitle.family` | `--font-family-slide-title` | `<slide-title-main>` |
+| `slideTitle.weight` | `--font-weight-slide-title` | default for slide titles |
+| `slideTitle.sizeLg/Md/Sm` | `--slide-title-main-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. |
+| `slideTitle.pre.weight` | `--font-weight-slide-title-pre` | `<slide-title-pre>` |
+| `slideTitle.pre.size` | `--slide-title-pre-size` → `var(--text-size-*)` | |
+| `slideTitle.sub.weight` | `--font-weight-slide-title-sub` | `<slide-title-sub>` |
+| `slideTitle.sub.size` | `--slide-title-sub-size` → `var(--text-size-*)` | |
+
+#### Slide chrome
+
+`<slide>` fills its container up to `maxWidth`. `<slide-header>`, `<slide-content>`, and `<slide-footer>` each have four sides. Cover slides (`<slide class="bg-cover">`) do not use this chrome. Defaults: maxWidth 1280, header 16/20/0/20, content 10/20/0/20, footer 4/4/4/4 (top/right/bottom/left).
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `slide.maxWidth` | `--slide-max-width` | `<slide>` canvas cap (pixels) |
+| `slide.header.paddingTop/Right/Bottom/Left` | `--slide-header-padding-*` | `<slide-header>` |
+| `slide.content.paddingTop/Right/Bottom/Left` | `--slide-content-padding-*` | `<slide-content>` |
+| `slide.footer.paddingTop/Right/Bottom/Left` | `--slide-footer-padding-*` | `<slide-footer>` |
+
+#### Card
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `card.paddingSm/Md/Lg` | `--card-padding-*` | `<card size>` |
+| `card.gapSm/Md/Lg` | `--card-gap-*` | `<card>` gap |
+| `card.borderRadius` | `--border-radius-card` → `var(--border-radius-*)` | `<card>` |
+| `card.borderSize.*` | `--card-border-size-*` → `var(--border-size-*)` | card stroke |
+| `card.title.family` | `--font-family-card-title` | `<quick-fact-card-title>` |
+| `card.title.weight` | `--font-weight-card-title` | |
+| `card.title.sizeLg/Md/Sm` | `--card-title-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. Default is `md`. |
+| `card.pretitle.weight` | `--font-weight-card-pretitle` | `<quick-fact-card-pretitle>` |
+| `card.pretitle.size` | `--card-pretitle-size` → `var(--text-size-*)` | |
+| `card.quickFact.metaPaddingTop` | `--quick-fact-card-meta-padding-top` | `<quick-fact-card-meta>` |
+
+#### Alert
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `alert.paddingSm/Md/Lg` | `--alert-padding-*` | `<alert size>` |
+| `alert.gap` | `--alert-gap` | `<alert>` |
+| `alert.borderRadius` | `--border-radius-alert` → `var(--border-radius-*)` | |
+| `alert.borderSize.*` | `--alert-border-size-*` → `var(--border-size-*)` | alert stroke |
+
+#### Stack
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `stack.gapSm/Md/Lg` | `--stack-gap-*` | `<stack>` |
+
+#### Paragraph title
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `paragraphTitle.family` | `--font-family-paragraph-title` | `<section-title>` |
+| `paragraphTitle.weight` | `--font-weight-paragraph-title` | |
+| `paragraphTitle.sizeLg/Md/Sm` | `--paragraph-title-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. |
+
+#### Attribution box
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `attributionBox.gap` | `--attribution-box-gap` | `<attribution-box>` |
+| `attributionBox.paddingYTitle` / `paddingXTitle` | `--attribution-box-padding-*-title` | `type="title"` |
+| `attributionBox.paddingYContent` / `paddingXContent` | `--attribution-box-padding-*-content` | `type="content"` |
 
 ## Logos
 

@@ -5,6 +5,8 @@ attribution-box {
 	box-sizing: border-box;
 	gap: var(--attribution-box-gap);
 	background-color: var(--color-slide-surface-background);
+	--attribution-box-logo-height-title: 14px;
+	--attribution-box-logo-height-content: 9px;
 }
 
 attribution-box img {

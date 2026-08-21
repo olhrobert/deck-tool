@@ -2,7 +2,29 @@
 
 const fs = require("fs");
 const path = require("path");
-const { TOKEN_MAP, isCssFontWeight, isTypeScaleStep, TYPE_SCALE_STEPS, BRAND_FILENAME } = require("./generate-brand-css.js");
+const {
+	TOKEN_MAP,
+	isCssFontWeight,
+	isFontWeightName,
+	isFontNamedWeightPath,
+	isFontRoleWeightPath,
+	isTypeScaleStep,
+	isFontSizePath,
+	isSpacingStepPath,
+	isSpacingScaleStep,
+	isBorderRadiusRolePath,
+	isBorderRadiusStep,
+	isBorderSizeRolePath,
+	isBorderSizeStep,
+	isPixelDimensionPath,
+	isPixelDimension,
+	TYPE_SCALE_STEPS,
+	SPACING_SCALE_STEPS,
+	BORDER_RADIUS_STEPS,
+	BORDER_SIZE_STEPS,
+	FONT_WEIGHT_NAMES,
+	BRAND_FILENAME,
+} = require("./generate-brand-css.js");
 
 function usage() {
 	console.error("Usage: node scripts/validate-brand.js <brand-directory>");
@@ -84,23 +106,78 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
-		if (!/^fonts\.[^.]+\.weight$/.test(jsonPathKey)) continue;
-		const raw = getPath(brand, jsonPathKey);
-		if (raw === undefined) continue;
-		if (!isCssFontWeight(raw)) {
-			errors.push(
-				`${jsonPathKey} must be a CSS font-weight (400, 500, 600, 700, …) matching design-system/tokens/fonts.css (got ${JSON.stringify(raw)})`,
-			);
+		if (isFontNamedWeightPath(jsonPathKey)) {
+			const raw = getPath(brand, jsonPathKey);
+			if (raw === undefined) continue;
+			if (!isCssFontWeight(raw)) {
+				errors.push(
+					`${jsonPathKey} must be a CSS font-weight (400, 500, 600, 700, …) matching design-system/tokens/fonts.css (got ${JSON.stringify(raw)})`,
+				);
+			}
+			continue;
+		}
+		if (isFontRoleWeightPath(jsonPathKey)) {
+			const raw = getPath(brand, jsonPathKey);
+			if (raw === undefined) continue;
+			if (!isFontWeightName(raw)) {
+				errors.push(
+					`${jsonPathKey} must be a named weight (${FONT_WEIGHT_NAMES.join(", ")}) from fonts.weights (got ${JSON.stringify(raw)})`,
+				);
+			}
 		}
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
-		if (!/^fonts\.[^.]+\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPathKey)) continue;
+		if (!isFontSizePath(jsonPathKey)) continue;
 		const raw = getPath(brand, jsonPathKey);
 		if (raw === undefined) continue;
 		if (!isTypeScaleStep(raw)) {
 			errors.push(
 				`${jsonPathKey} must be a type-scale step (${TYPE_SCALE_STEPS.join(", ")}) from design-system/tokens/typography.css (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isSpacingStepPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isSpacingScaleStep(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a spacing-scale step (${SPACING_SCALE_STEPS.join(", ")}) from design-system/tokens/spacing.css (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isBorderRadiusRolePath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isBorderRadiusStep(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a border-radius step (${BORDER_RADIUS_STEPS.join(", ")}) from borderRadius (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isBorderSizeRolePath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isBorderSizeStep(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a border-size step (${BORDER_SIZE_STEPS.join(", ")}) from borderSize (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isPixelDimensionPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isPixelDimension(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a positive integer pixel value (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}

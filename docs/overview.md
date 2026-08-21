@@ -13,7 +13,7 @@ HTML is the source of truth. Brands override tokens. The Figma file instances th
 
 | Piece | Where | Job |
 | --- | --- | --- |
-| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, spacing. Brands pick colors, families, weights, and type-scale *steps* (not pixels). |
+| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.maxWidth` (pixels on the generic `borderRadius` / `borderSize` scales and the slide canvas cap). |
 | Components | `design-system/components/` (HTML fragments + CSS + `registry.json`) | Slide chrome, type, Card, Alert, Attribution, … |
 | Presets | `presets/` | Starting-point title slides, content slides, footers. A copied slide may diverge. |
 | Showcase | `design-system/showcase/showcase.html` | Workbench: `fetch()` of live component and preset files, brand switcher |
@@ -43,7 +43,7 @@ Showcase always reflects the current state of the library. Decks contain a **cop
 
 **Status:** Done.
 
-The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slides / Comps / Type tabs, full 1280×800 chrome. Token roles are cover / slide / surface — not primary / secondary.
+The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slides / Comps / Type tabs, full slide chrome (width fills up to `--slide-max-width`, height 800). Token roles are cover / slide / surface — not primary / secondary.
 
 ---
 
@@ -59,15 +59,14 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slide
 - `registry.json` + `refresh-components.js` restamp Alert, Slide Title, Quick Fact Card, and Attribution in a deck without wiping unique layout.
 - Title presets (01–04), footers (01–02), one content slide (`content-slide-01`: header, fact row, section + body, alert, footer-01).
 - Quick Fact Card lives with the component, not as a slide preset.
-- Tokens: cover / slide / surface colors; per-role families and **weights**; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeLg` / `sizeMd` / `sizeSm` pick a scale step (e.g. `800`), not a pixel value. Body/cover titles use the scale in HTML (`<text size="400">`). `<copy>` is gone.
-- Cover ink uses role classes (title-03 two-tone first line is `.color-white`). Attribution type sizes use spacing tokens. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeLg` / `sizeMd` / `sizeSm` pick a scale step (e.g. `800`), not a pixel value. Body/cover titles use the scale in HTML (`<text size="400">`). `<copy>` is gone.
+- Cover ink uses role classes (`.color-cover-foreground-*`). Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
-Sample decks may still use `size="base"` / `size="sm"` / `family="heading"` (CSS aliases until Phase 3).
 
 ### Still open
 
 - **More content-slide presets** — only `content-slide-01.html` exists. Add body patterns (two-column copy, title + body + alert variants) in `presets/content-slides/` before inventing new chrome.
-- **Unused:** `.bg-cover-surface` (token exists, no preset uses it) and `<stack>` (layouts are utility flex). Use them in a preset or delete them.
+- **Kept for later:** `.bg-cover-surface` and `<stack>` (plus unused utilities). Do not remove them; they are for upcoming presets.
 - **New components only when a preset needs them** — candidates, not a backlog: list item, generic card body patterns, charts (tokens exist, no component). Every new piece gets a fragment the showcase can load.
 
 ---

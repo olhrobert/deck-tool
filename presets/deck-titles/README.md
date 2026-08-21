@@ -8,7 +8,7 @@ Copy one file into `decks/{deck-name}/` and replace placeholder text only. Do no
 | -------------------- | ---------------------------------------------------------------- |
 | `deck-title-01.html` | Title and subtitle left; optional metadata below; logo top-right |
 | `deck-title-02.html` | Oversized title at bottom; logos in top corners                  |
-| `deck-title-03.html` | Split column; two-tone title; subtitle in right column           |
+| `deck-title-03.html` | Split column; title left, subtitle in the right column           |
 | `deck-title-04.html` | Centered title; logo top-center; badge bottom-center             |
 
 ## Placeholders to replace
@@ -19,4 +19,4 @@ Copy one file into `decks/{deck-name}/` and replace placeholder text only. Do no
 
 ## Example prompt
 
-> Create `decks/q3-review/`. Copy `presets/deck-titles/deck-title-02.html` to `decks/q3-review/deck-title.html`. Title: "Q3 Product Review". Subtitle: "Acme Corp · October 2025".
+> Create `decks/q3-review/`. Copy `presets/deck-titles/deck-title-02.html` to `decks/q3-review/01.html`. Title: "Q3 Product Review". Subtitle: "Acme Corp · October 2025".
