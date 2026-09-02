@@ -1,16 +1,10 @@
 <card
+	class="flex-1 min-w-0"
 	padding="md"
-	gap="md"
+	gap="sm"
 >
-	<text
-		family="card-title"
-		size="400"
-		tone="strong"
-		>Card heading</text
-	>
-	<text
-		family="body"
-		size="350"
-		>Body copy inside a generic card.</text
-	>
+	<card-pretitle data-slot="pretitle" color="subtle" context="surface">Label</card-pretitle>
+	<card-title data-slot="title" color="strong" context="surface">Value</card-title>
+	<body-copy data-slot="text" size="sm" color="base" context="surface">Optional body text</body-copy>
+	<card-meta data-slot="meta" color="subtle" context="surface">Optional supporting detail</card-meta>
 </card>

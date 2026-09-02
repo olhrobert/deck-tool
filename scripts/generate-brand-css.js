@@ -171,6 +171,24 @@ function isPixelDimension(value) {
 	return Number.isInteger(n) && n > 0;
 }
 
+const PRETITLE_UPPERCASE_SUFFIX = ".pretitle.uppercase";
+
+function isPretitleUppercasePath(jsonPath) {
+	return jsonPath.endsWith(PRETITLE_UPPERCASE_SUFFIX);
+}
+
+function isPretitleUppercaseBoolean(value) {
+	return typeof value === "boolean";
+}
+
+function isPretitleLetterSpacingPath(jsonPath) {
+	return jsonPath.endsWith(".pretitle.letterSpacing");
+}
+
+function isPretitleLetterSpacing(value) {
+	return typeof value === "string" && /^\d+(\.\d+)?%$/.test(value);
+}
+
 const TOKEN_MAP = [
 	["colors.cover.background", "--color-cover-background", "cover"],
 	["colors.cover.foreground", "--color-cover-foreground"],
@@ -206,6 +224,9 @@ const TOKEN_MAP = [
 
 	["fonts.body.family", "--font-family-body", "fonts — body"],
 	["fonts.body.weight", "--font-weight-body"],
+	["fonts.body.sizeSm", "--body-size-sm"],
+	["fonts.body.sizeMd", "--body-size-md"],
+	["fonts.body.sizeLg", "--body-size-lg"],
 
 	["borderRadius.none", "--border-radius-none", "border radius"],
 	["borderRadius.sm", "--border-radius-sm"],
@@ -220,18 +241,20 @@ const TOKEN_MAP = [
 	["coverTitle.family", "--font-family-cover-title", "cover title"],
 	["coverTitle.weight", "--font-weight-cover-title"],
 
-	["slideTitle.gap", "--slide-title-gap", "slide title"],
+	["slideTitle.pretitle.family", "--font-family-slide-pretitle", "slide title"],
+	["slideTitle.pretitle.weight", "--font-weight-slide-pretitle"],
+	["slideTitle.pretitle.uppercase", "--slide-pretitle-text-transform"],
+	["slideTitle.pretitle.letterSpacing", "--slide-pretitle-letter-spacing"],
+	["slideTitle.pretitle.size", "--slide-pretitle-size"],
+	["slideTitle.gap", "--slide-title-gap"],
 	["slideTitle.family", "--font-family-slide-title"],
 	["slideTitle.weight", "--font-weight-slide-title"],
-	["slideTitle.sizeLg", "--slide-title-main-size-lg"],
-	["slideTitle.sizeMd", "--slide-title-main-size-md"],
-	["slideTitle.sizeSm", "--slide-title-main-size-sm"],
-	["slideTitle.pre.family", "--font-family-slide-title-pre"],
-	["slideTitle.pre.weight", "--font-weight-slide-title-pre"],
-	["slideTitle.pre.size", "--slide-title-pre-size"],
-	["slideTitle.sub.family", "--font-family-slide-title-sub"],
-	["slideTitle.sub.weight", "--font-weight-slide-title-sub"],
-	["slideTitle.sub.size", "--slide-title-sub-size"],
+	["slideTitle.sizeLg", "--slide-title-size-lg"],
+	["slideTitle.sizeMd", "--slide-title-size-md"],
+	["slideTitle.sizeSm", "--slide-title-size-sm"],
+	["slideTitle.sub.family", "--font-family-slide-subtitle"],
+	["slideTitle.sub.weight", "--font-weight-slide-subtitle"],
+	["slideTitle.sub.size", "--slide-subtitle-size"],
 
 	["slide.maxWidth", "--slide-max-width", "slide chrome"],
 	["slide.header.paddingTop", "--slide-header-padding-top"],
@@ -265,8 +288,10 @@ const TOKEN_MAP = [
 	["card.title.sizeSm", "--card-title-size-sm"],
 	["card.pretitle.family", "--font-family-card-pretitle"],
 	["card.pretitle.weight", "--font-weight-card-pretitle"],
+	["card.pretitle.uppercase", "--card-pretitle-text-transform"],
+	["card.pretitle.letterSpacing", "--card-pretitle-letter-spacing"],
 	["card.pretitle.size", "--card-pretitle-size"],
-	["card.quickFact.metaPaddingTop", "--quick-fact-card-meta-padding-top"],
+	["card.metaPaddingTop", "--card-meta-padding-top"],
 
 	["alert.paddingSm", "--alert-padding-sm", "alert"],
 	["alert.paddingMd", "--alert-padding-md"],
@@ -287,12 +312,6 @@ const TOKEN_MAP = [
 	["paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
 	["paragraphTitle.sizeMd", "--paragraph-title-size-md"],
 	["paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
-
-	["attributionBox.gap", "--attribution-box-gap", "attribution box"],
-	["attributionBox.paddingYTitle", "--attribution-box-padding-y-title"],
-	["attributionBox.paddingXTitle", "--attribution-box-padding-x-title"],
-	["attributionBox.paddingYContent", "--attribution-box-padding-y-content"],
-	["attributionBox.paddingXContent", "--attribution-box-padding-x-content"],
 ];
 
 function getPath(obj, dottedPath) {
@@ -357,6 +376,22 @@ function toCssValue(jsonPath, value) {
 			);
 		}
 		return `${Number(value)}px`;
+	}
+	if (isPretitleUppercasePath(jsonPath)) {
+		if (!isPretitleUppercaseBoolean(value)) {
+			throw new Error(
+				`${jsonPath} must be a boolean (true = uppercase, false = no transform) (got ${JSON.stringify(value)})`,
+			);
+		}
+		return value ? "uppercase" : "none";
+	}
+	if (isPretitleLetterSpacingPath(jsonPath)) {
+		if (!isPretitleLetterSpacing(value)) {
+			throw new Error(
+				`${jsonPath} must be a percentage string such as "2%" (got ${JSON.stringify(value)})`,
+			);
+		}
+		return value;
 	}
 	return value;
 }
@@ -432,6 +467,10 @@ module.exports = {
 	isBorderSizeStep,
 	isPixelDimensionPath,
 	isPixelDimension,
+	isPretitleUppercasePath,
+	isPretitleUppercaseBoolean,
+	isPretitleLetterSpacingPath,
+	isPretitleLetterSpacing,
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	BRAND_FILENAME,

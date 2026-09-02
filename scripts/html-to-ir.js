@@ -237,18 +237,23 @@ function colorFromNode(node) {
 	for (const cls of classes) {
 		if (cls.startsWith("color-")) return cls.replace(/^color-/, "color/").replace(/_/g, "-");
 	}
-	const tone = attr(node, "tone");
-	if (tone === "strong") return "color/slide-foreground-strong";
-	if (tone === "subtle") return "color/slide-foreground-subtle";
-	if (tone === "base") return "color/slide-foreground-base";
-	return "color/slide-foreground-base";
+	const color = attr(node, "color");
+	const context = attr(node, "context", "slide");
+	const prefix =
+		context === "surface" ? "color/slide-surface-foreground" : "color/slide-foreground";
+	if (color === "strong") return `${prefix}-strong`;
+	if (color === "subtle") return `${prefix}-subtle`;
+	if (color === "base") return `${prefix}-base`;
+	return `${prefix}-base`;
 }
 
 function normalizeSize(size) {
-	let value = String(size || "400");
-	if (value === "sm") value = "350";
-	if (value === "base") value = "400";
-	return value;
+	const key = String(size || "md").toLowerCase();
+	const bodyAliases = { sm: "350", md: "400", lg: "450" };
+	if (Object.prototype.hasOwnProperty.call(bodyAliases, key)) {
+		return bodyAliases[key];
+	}
+	return key;
 }
 
 function weightToken(weight) {
@@ -288,11 +293,19 @@ function typeTokens({
 	};
 }
 
+function typeFromBodyCopyNode(node) {
+	return typeTokens({
+		family: "body",
+		weight: attr(node, "weight", "regular"),
+		size: attr(node, "size", "md"),
+	});
+}
+
 function typeFromTextNode(node) {
 	return typeTokens({
 		family: attr(node, "family", "body"),
 		weight: attr(node, "weight", "regular"),
-		size: attr(node, "size", "400"),
+		size: attr(node, "size", "md"),
 	});
 }
 
@@ -305,10 +318,8 @@ function typeFromCopyNode(node) {
 	});
 }
 
-function isQfcCard(node) {
-	return (node.children || []).some((child) =>
-		["quick-fact-card-pretitle", "quick-fact-card-title", "quick-fact-card-meta"].includes(child.tag),
-	);
+function isCard(node) {
+	return Boolean(findChild(node, "card-title"));
 }
 
 function iconKind(node) {
@@ -321,7 +332,7 @@ function iconKind(node) {
 function isListItemRow(node) {
 	if (node.tag !== "div") return false;
 	if (!hasClass(node, "flex") || !hasClass(node, "items-center")) return false;
-	return Boolean(iconKind(node)) && Boolean(findChild(node, "text") || findChild(node, "copy"));
+	return Boolean(iconKind(node)) && Boolean(findChild(node, "body-copy") || findChild(node, "text") || findChild(node, "copy"));
 }
 
 function logoFromSvg(node, warnings) {
@@ -383,6 +394,18 @@ function walk(node, warnings) {
 		return { type: "frame", name: node.tag, layout: "VERTICAL", children: kids };
 	}
 
+	if (node.tag === "body-copy") {
+		const characters = collapseText(collectText(node));
+		if (!characters) return null;
+		return {
+			type: "text",
+			name: "Body copy",
+			characters,
+			typography: typeFromBodyCopyNode(node),
+			color: colorFromNode(node),
+		};
+	}
+
 	if (node.tag === "text") {
 		const characters = collapseText(collectText(node));
 		if (!characters) return null;
@@ -432,11 +455,11 @@ function walk(node, warnings) {
 		return null;
 	}
 
-	if (node.tag === "section-title") {
+	if (node.tag === "paragraph-title") {
 		return {
 			type: "instance",
-			component: "componentset/section-title",
-			name: "Section Title",
+			component: "componentset/paragraph-title",
+			name: "Paragraph Title",
 			properties: {
 				size: attr(node, "size", "md"),
 				Title: collapseText(collectText(node)),
@@ -447,17 +470,38 @@ function walk(node, warnings) {
 	}
 
 	if (node.tag === "slide-title") {
-		const pre = findChild(node, "slide-title-pre");
-		const main = findChild(node, "slide-title-main");
-		const sub = findChild(node, "slide-title-sub");
-		const size = attr(main, "size", attr(node, "size", "md"));
+		const characters = collapseText(collectText(node));
+		if (characters) {
+			return {
+				type: "instance",
+				component: "componentset/slide-title",
+				name: "Slide Title",
+				properties: {
+					size: attr(node, "size", "md"),
+					Main: characters,
+					Pre: "",
+					Sub: "",
+					"Show pre": false,
+					"Show sub": false,
+				},
+				layoutSizingHorizontal: "FILL",
+				layoutSizingVertical: "HUG",
+			};
+		}
+	}
+
+	if (node.tag === "slide-title-group") {
+		const pre = findChild(node, "slide-pretitle");
+		const title = findChild(node, "slide-title");
+		const sub = findChild(node, "slide-subtitle");
+		const size = attr(title, "size", attr(node, "size", "md"));
 		return {
 			type: "instance",
 			component: "componentset/slide-title",
 			name: "Slide Title",
 			properties: {
 				size,
-				Main: collapseText(collectText(main || node)),
+				Main: collapseText(collectText(title || node)),
 				Pre: collapseText(collectText(pre)),
 				Sub: collapseText(collectText(sub)),
 				"Show pre": Boolean(pre && collapseText(collectText(pre))),
@@ -481,9 +525,9 @@ function walk(node, warnings) {
 				child.typography = typeTokens({
 					family: "body",
 					weight: "regular",
-					size: variant === "title" ? "300" : "200",
+					size: "300",
 				});
-				child.color = variant === "title" ? "color/slide-surface-foreground-base" : "color/slide-surface-foreground-subtle";
+				child.color = "color/slide-surface-foreground-base";
 			}
 		}
 		return {
@@ -498,19 +542,22 @@ function walk(node, warnings) {
 		};
 	}
 
-	if (node.tag === "card" && isQfcCard(node)) {
-		const pre = findChild(node, "quick-fact-card-pretitle");
-		const title = findChild(node, "quick-fact-card-title");
-		const meta = findChild(node, "quick-fact-card-meta");
+	if (node.tag === "card" && isCard(node)) {
+		const pre = findChild(node, "card-pretitle");
+		const title = findChild(node, "card-title");
+		const text = findChild(node, "body-copy") || findChild(node, "text");
+		const meta = findChild(node, "card-meta");
 		return {
 			type: "instance",
-			component: "component/quick-fact-card",
-			name: "Quick Fact Card",
+			component: "component/card",
+			name: "Card",
 			properties: {
 				size: attr(title, "size", "md"),
 				Pretitle: collapseText(collectText(pre)),
 				Title: collapseText(collectText(title)),
+				Text: collapseText(collectText(text)),
 				Meta: collapseText(collectText(meta)),
+				"Show text": Boolean(text && collapseText(collectText(text))),
 				"Show meta": Boolean(meta && collapseText(collectText(meta))),
 			},
 			layoutSizingHorizontal: attr(node, "width", "fill") === "fill" ? "FILL" : "HUG",
@@ -518,23 +565,7 @@ function walk(node, warnings) {
 		};
 	}
 
-	if (node.tag === "card") {
-		return {
-			type: "instance",
-			component: "componentset/card",
-			name: "Card",
-			properties: {
-				padding: attr(node, "padding", "md"),
-				gap: attr(node, "gap", "md"),
-			},
-			slot: (node.children || []).map((child) => walk(child, warnings)).filter(Boolean),
-			layoutSizingHorizontal: attr(node, "width", "fill") === "fill" ? "FILL" : "HUG",
-			layoutSizingVertical: "HUG",
-			note: "Always set padding/gap; Figma defaultVariant is sm/sm, CSS default is md/md.",
-		};
-	}
-
-	if (node.tag === "alert") {
+	if (node.tag === "slide") {
 		const frame = parseUtilityLayout(node);
 		frame.name = "Alert";
 		frame.layout = "VERTICAL";
@@ -573,7 +604,13 @@ function walk(node, warnings) {
 			name: "List Item",
 			properties: {
 				kind: iconKind(node),
-				Label: collapseText(collectText(findChild(node, "text") || findChild(node, "copy"))),
+				Label: collapseText(
+					collectText(
+						findChild(node, "body-copy") ||
+							findChild(node, "text") ||
+							findChild(node, "copy"),
+					),
+				),
 			},
 			layoutSizingHorizontal: "FILL",
 			layoutSizingVertical: "HUG",

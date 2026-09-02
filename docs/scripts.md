@@ -42,7 +42,7 @@ Rebuilds registered component instances in deck slide HTML from their canonical 
 
 **What it updates**
 
-Alert, Slide Title, Quick Fact Card, and Attribution Box — listed in `design-system/components/registry.json`. Generic `<card>` content, body `<text>`, and layout wrappers are left alone. Optional slots the slide never had (subtitle, QFC meta, footer page number) stay omitted.
+Alert, Slide Title, Card, and Attribution Box — listed in `design-system/components/registry.json`. `<body-copy>` outside composite slots and layout wrappers are left alone. Primitive `<text>` (cover title, attribution, page numbers) is also left alone. Optional slots the slide never had (subtitle, card text/meta, footer page number) stay omitted.
 
 **Usage**
 

@@ -43,6 +43,9 @@
 	/* fonts — body */
 	--font-family-body: "DM Sans", system-ui, sans-serif;
 	--font-weight-body: var(--font-weight-regular);
+	--body-size-sm: var(--text-size-350);
+	--body-size-md: var(--text-size-400);
+	--body-size-lg: var(--text-size-450);
 
 	/* border radius */
 	--border-radius-none: 0px;
@@ -61,18 +64,20 @@
 	--font-weight-cover-title: var(--font-weight-bold);
 
 	/* slide title */
+	--font-family-slide-pretitle: "DM Sans", system-ui, sans-serif;
+	--font-weight-slide-pretitle: var(--font-weight-regular);
+	--slide-pretitle-text-transform: none;
+	--slide-pretitle-letter-spacing: 2%;
+	--slide-pretitle-size: var(--text-size-350);
 	--slide-title-gap: var(--spacing-2);
 	--font-family-slide-title: "DM Sans", system-ui, sans-serif;
 	--font-weight-slide-title: var(--font-weight-bold);
-	--slide-title-main-size-lg: var(--text-size-1200);
-	--slide-title-main-size-md: var(--text-size-1000);
-	--slide-title-main-size-sm: var(--text-size-800);
-	--font-family-slide-title-pre: "DM Sans", system-ui, sans-serif;
-	--font-weight-slide-title-pre: var(--font-weight-regular);
-	--slide-title-pre-size: var(--text-size-350);
-	--font-family-slide-title-sub: "DM Sans", system-ui, sans-serif;
-	--font-weight-slide-title-sub: var(--font-weight-regular);
-	--slide-title-sub-size: var(--text-size-350);
+	--slide-title-size-lg: var(--text-size-1200);
+	--slide-title-size-md: var(--text-size-1000);
+	--slide-title-size-sm: var(--text-size-800);
+	--font-family-slide-subtitle: "DM Sans", system-ui, sans-serif;
+	--font-weight-slide-subtitle: var(--font-weight-regular);
+	--slide-subtitle-size: var(--text-size-350);
 
 	/* slide chrome */
 	--slide-max-width: 1280px;
@@ -104,12 +109,14 @@
 	--font-family-card-title: "DM Sans", system-ui, sans-serif;
 	--font-weight-card-title: var(--font-weight-bold);
 	--card-title-size-lg: var(--text-size-800);
-	--card-title-size-md: var(--text-size-800);
+	--card-title-size-md: var(--text-size-700);
 	--card-title-size-sm: var(--text-size-600);
 	--font-family-card-pretitle: "DM Sans", system-ui, sans-serif;
-	--font-weight-card-pretitle: var(--font-weight-bold);
+	--font-weight-card-pretitle: var(--font-weight-regular);
+	--card-pretitle-text-transform: none;
+	--card-pretitle-letter-spacing: 2%;
 	--card-pretitle-size: var(--text-size-300);
-	--quick-fact-card-meta-padding-top: var(--spacing-0-5);
+	--card-meta-padding-top: var(--spacing-0-5);
 
 	/* alert */
 	--alert-padding-sm: var(--spacing-3);
@@ -133,11 +140,4 @@
 	--paragraph-title-size-lg: var(--text-size-600);
 	--paragraph-title-size-md: var(--text-size-500);
 	--paragraph-title-size-sm: var(--text-size-400);
-
-	/* attribution box */
-	--attribution-box-gap: var(--spacing-1);
-	--attribution-box-padding-y-title: var(--spacing-4);
-	--attribution-box-padding-x-title: var(--spacing-6);
-	--attribution-box-padding-y-content: var(--spacing-2);
-	--attribution-box-padding-x-content: var(--spacing-2);
 }

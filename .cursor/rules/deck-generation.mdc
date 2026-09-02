@@ -28,8 +28,8 @@ decks/{deck-name}/
 
 - Title: `presets/deck-titles/deck-title-01.html` … `deck-title-04.html`
 - Content: `presets/content-slides/content-slide-01.html`
-- Footer: `presets/content-footers/footer-01.html`, `footer-02.html`
-- Card fragment: `design-system/components/card/quick-fact-card.html`
+- Footer: `presets/content-footers/footer-01.html`
+- Card fragment: `design-system/components/card/card.html`
 
 There is no `presets/chapter-titles/`.
 

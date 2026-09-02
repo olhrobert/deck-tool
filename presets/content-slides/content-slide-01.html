@@ -24,17 +24,17 @@
 		<deck>
 			<slide>
 				<slide-header>
-					<slide-title>
-						<slide-title-pre data-slot="pre"
-							>Optional pre-title</slide-title-pre
+					<slide-title-group>
+						<slide-pretitle data-slot="pre" color="subtle" context="slide"
+							>Optional pre-title</slide-pretitle
 						>
-						<slide-title-main data-slot="main"
-							>Content slide</slide-title-main
+						<slide-title data-slot="main" size="md" color="strong" context="slide"
+							>Content slide</slide-title
 						>
-						<slide-title-sub data-slot="sub"
-							>Optional subtitle</slide-title-sub
+						<slide-subtitle data-slot="sub" color="base" context="slide"
+							>Optional subtitle</slide-subtitle
 						>
-					</slide-title>
+					</slide-title-group>
 				</slide-header>
 				<slide-content>
 					<div class="box-border min-w-0 flex flex-col gap-10">
@@ -44,15 +44,15 @@
 								padding="md"
 								gap="sm"
 							>
-								<quick-fact-card-pretitle data-slot="pretitle"
-									>Label</quick-fact-card-pretitle
+								<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+									>Label</card-pretitle
 								>
-								<quick-fact-card-title data-slot="title"
-									>Value</quick-fact-card-title
+								<card-title data-slot="title" color="strong" context="surface"
+									>Value</card-title
 								>
-								<quick-fact-card-meta data-slot="meta"
+								<card-meta data-slot="meta" color="subtle" context="surface"
 									>Optional supporting
-									detail</quick-fact-card-meta
+									detail</card-meta
 								>
 							</card>
 							<card
@@ -60,14 +60,14 @@
 								padding="md"
 								gap="sm"
 							>
-								<quick-fact-card-pretitle data-slot="pretitle"
-									>Budget</quick-fact-card-pretitle
+								<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+									>Budget</card-pretitle
 								>
-								<quick-fact-card-title data-slot="title"
-									>$84M</quick-fact-card-title
+								<card-title data-slot="title" color="strong" context="surface"
+									>$84M</card-title
 								>
-								<quick-fact-card-meta data-slot="meta"
-									>$72M capex · $12M opex</quick-fact-card-meta
+								<card-meta data-slot="meta" color="subtle" context="surface"
+									>$72M capex · $12M opex</card-meta
 								>
 							</card>
 							<card
@@ -75,62 +75,53 @@
 								padding="md"
 								gap="sm"
 							>
-								<quick-fact-card-pretitle data-slot="pretitle"
-									>Timeline</quick-fact-card-pretitle
+								<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+									>Timeline</card-pretitle
 								>
-								<quick-fact-card-title data-slot="title"
-									>18 mo</quick-fact-card-title
+								<card-title data-slot="title" color="strong" context="surface"
+									>18 mo</card-title
 								>
-								<quick-fact-card-meta data-slot="meta"
-									>Kickoff to go-live</quick-fact-card-meta
+								<card-meta data-slot="meta" color="subtle" context="surface"
+									>Kickoff to go-live</card-meta
 								>
 							</card>
 						</div>
 						<div class="flex flex-col gap-2">
-							<section-title size="lg">Section title</section-title>
-							<text
-								family="body"
-								size="400"
-								weight="regular"
-								lineheight="lg"
-							>
+							<paragraph-title size="lg" color="strong" context="slide">Paragraph title</paragraph-title>
+							<body-copy size="md" weight="regular" color="base" context="slide" lineheight="lg">
 								Body copy on the content canvas. Switch brands
 								to check slide foreground, surface, and type
 								roles together.
-							</text>
+							</body-copy>
 						</div>
 						<alert padding="md">
-							<alert-title data-slot="title">Alert title</alert-title>
-							<alert-description data-slot="description">
+							<alert-title data-slot="title" color="strong" context="surface">Alert title</alert-title>
+							<alert-description data-slot="description" color="base" context="surface">
 								Alert description with placeholder copy.
 							</alert-description>
 						</alert>
 					</div>
 				</slide-content>
 				<slide-footer>
-					<div class="flex items-center justify-between">
-						<img
-							src="../../assets/logos/placeholder-logo.svg"
-							alt="Logo"
-							data-logo="slide"
-							class="shrink-0 block"
-							style="height: 12px; width: auto"
-						/>
-						<attribution-box variant="content">
-							<text data-slot="disclaimer">
-								Optional disclaimer. Can be one or two sentences
-								long.
-							</text>
-							<attribution-box-separator></attribution-box-separator>
-							<text data-slot="prepared-by">Prepared by</text>
+					<div class="flex items-center w-full">
+						<div class="flex-1 flex justify-start min-w-0">
 							<img
-								data-slot="logo"
-								src="../../assets/logos/gratia-logo.svg"
-								alt="Gratia"
+								src="../../assets/logos/placeholder-logo.svg"
+								alt="Logo"
+								data-logo="slide"
+								class="shrink-0 block"
+								style="height: 12px; width: auto"
 							/>
-							<attribution-box-separator></attribution-box-separator>
-							<text data-slot="page">01</text>
-						</attribution-box>
+						</div>
+						<div class="flex-1 flex justify-end min-w-0">
+							<text
+								size="200"
+								color="subtle"
+								context="slide"
+							>
+								01
+							</text>
+						</div>
 					</div>
 				</slide-footer>
 			</slide>

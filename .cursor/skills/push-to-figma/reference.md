@@ -6,8 +6,8 @@
 |---|---|
 | `componentset/slide` | 1280×800. Nested Header HUG / Content FILL / Footer HUG. Slots named `Slot` |
 | `componentset/slide-title` | Set `size` every time. CSS default `md`, Figma `lg` |
-| `componentset/section-title` | CSS default `md`; decks often use `lg` |
-| `component/quick-fact-card` | Standalone. Never nest inside a Card instance |
+| `componentset/paragraph-title` | CSS default `md`; decks often use `lg` |
+| `component/card` | Standalone card instance (pretitle, title, text, meta) |
 | `componentset/card` | Set `padding` and `gap`. CSS default `md/md`, Figma `sm/sm` |
 | `componentset/attribution-box` | Slot content is not a TEXT property |
 | `componentset/list-item` | `kind` picks Check vs Close (no INSTANCE_SWAP on unpublished icons) |

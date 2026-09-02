@@ -7,6 +7,7 @@ When working in this repo:
 1. **New brand** — load `.cursor/skills/new-brand/SKILL.md`
 2. **New or edited deck** — load `.cursor/skills/generate-deck/SKILL.md`
 3. **Push a deck to Figma** — load `.cursor/skills/push-to-figma/SKILL.md`
+4. **Attribution box** — load `.cursor/skills/attribution-box/SKILL.md` (brand-agnostic Gratia credit; never tokenize in `brand-settings.json`)
 
 HTML is the source of truth. Brands only override tokens (`brands/{slug}/brand-settings.json`). Figma instances the library in `figma/library.json`; do not rebuild components per deck.
 

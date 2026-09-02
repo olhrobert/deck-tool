@@ -1,0 +1,15 @@
+/* Slide-pretitle preset of base typography.
+   Defaults: color=subtle, context=slide (brand). No markup size variants. */
+
+slide-pretitle {
+	font-family: var(--font-family-slide-pretitle, system-ui, sans-serif);
+	font-weight: var(--font-weight-slide-pretitle);
+	line-height: 1.2;
+	letter-spacing: var(--slide-pretitle-letter-spacing);
+	text-transform: var(--slide-pretitle-text-transform);
+	font-size: var(--slide-pretitle-size);
+	--_ink-strong: var(--color-slide-foreground-strong);
+	--_ink-base: var(--color-slide-foreground-base);
+	--_ink-subtle: var(--color-slide-foreground-subtle);
+	color: var(--_ink-subtle);
+}

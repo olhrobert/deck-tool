@@ -43,7 +43,7 @@
 		"page/card": "11018:2",
 		"page/quick-fact-card": "11020:2",
 		"page/slide-title": "11022:2",
-		"page/section-title": "11024:2",
+		"page/paragraph-title": "11024:2",
 		"page/attribution-box": "11025:2",
 		"page/list-item": "11030:2",
 		"page/slide": "11031:2",
@@ -61,9 +61,9 @@
 				"padding=md, gap=md": "11018:19"
 			}
 		},
-		"component/quick-fact-card": {
+		"component/card": {
 			"id": "11020:31",
-			"note": "Mirrors Card padding=md gap=sm. Do not nest a Card instance.",
+			"note": "Card with pretitle, title, optional text, and optional meta.",
 			"properties": {
 				"Pretitle": "Pretitle#11020:4",
 				"Title": "Title#11020:5",
@@ -89,7 +89,7 @@
 				"size=sm": "11023:10"
 			}
 		},
-		"componentset/section-title": {
+		"componentset/paragraph-title": {
 			"id": "11024:15",
 			"cssDefault": { "size": "md" },
 			"figmaDefault": { "size": "lg" },
@@ -105,8 +105,7 @@
 			"figmaDefault": { "variant": "title" },
 			"properties": { "Slot": "Slot#11029:2", "variant": "variant" },
 			"variants": {
-				"variant=title": "11029:2",
-				"variant=content": "11029:13"
+				"variant=title": "11029:2"
 			}
 		},
 		"component/attribution-box-separator": { "id": "11027:2" },
@@ -168,10 +167,10 @@
 	"htmlMap": {
 		"slide[bg-cover without chrome]": "custom 1280×800 frame, fill color/cover-background. Do not instance Slide.",
 		"slide with header/content/footer": "instance componentset/slide; surface=default unless class bg-cover (Figma variant still surface=primary)",
-		"slide-title": "instance componentset/slide-title; always set size (CSS default md, Figma default lg)",
-		"section-title": "instance componentset/section-title",
-		"card + quick-fact-card-*": "instance component/quick-fact-card, not Card",
-		"card otherwise": "instance componentset/card; set padding/gap explicitly (CSS default md/md, Figma default sm/sm)",
+		"slide-title": "instance componentset/slide-title; headline or group — always set size (CSS default md, Figma default lg)",
+		"slide-title-group": "instance componentset/slide-title; pre + main + sub slots",
+		"paragraph-title": "instance componentset/paragraph-title",
+		"card": "instance component/card",
 		"attribution-box": "instance componentset/attribution-box",
 		"attribution-box-separator": "instance component/attribution-box-separator",
 		"img gratia-logo.svg": "instance component/logo-gratia",

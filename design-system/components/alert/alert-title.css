@@ -1,10 +1,14 @@
+/* Alert-title preset of base typography.
+   Defaults: color=strong, context=surface. */
+
 alert-title {
-	display: block;
-	margin: 0;
-	font-family: var(--alert-title-family);
-	font-weight: var(--alert-title-weight);
+	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-paragraph-title);
 	line-height: var(--alert-title-lineheight);
 	font-size: var(--alert-title-size);
 	letter-spacing: 0%;
-	color: var(--color-slide-surface-foreground-strong);
+	--_ink-strong: var(--color-slide-surface-foreground-strong);
+	--_ink-base: var(--color-slide-surface-foreground-base);
+	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
+	color: var(--_ink-strong);
 }

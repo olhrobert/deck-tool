@@ -20,8 +20,8 @@ Source of truth is HTML in `decks/{deck-name}/`. Do not design layouts from scra
 |---|---|
 | Title | `presets/deck-titles/deck-title-01.html` … `deck-title-04.html` |
 | Content | `presets/content-slides/content-slide-01.html` |
-| Footer | `presets/content-footers/footer-01.html`, `footer-02.html` |
-| Card fragment | `design-system/components/card/quick-fact-card.html` |
+| Footer | `presets/content-footers/footer-01.html` |
+| Card fragment | `design-system/components/card/card.html` |
 
 There is no `chapter-titles/` folder.
 
@@ -32,7 +32,7 @@ There is no `chapter-titles/` folder.
    - `slide` → same for `colors.slide.background`
    - `slide-surface` → same for `colors.slide.surfaceBackground`
 
-   Dark means relative luminance below 0.45. Do not change `<img data-slot="logo">` (attribution Gratia mark).
+   Dark means relative luminance below 0.45. Do not change `<img data-slot="logo">` (attribution Gratia mark). See `attribution-box` skill.
 6. Write `slides.json`:
 
 ```json
@@ -49,7 +49,7 @@ There is no `chapter-titles/` folder.
 node scripts/compile-deck.js decks/{deck-name}
 ```
 
-If composite component HTML changed (Alert, Slide Title, Quick Fact Card, Attribution), refresh instances first:
+If composite component HTML changed (Alert, Slide Title, Card, Attribution), refresh instances first:
 
 ```bash
 node scripts/refresh-components.js decks/{deck-name}
@@ -64,6 +64,6 @@ Open `decks/{deck-name}/index.html`.
 
 - Do not change component structure, classes, or stylesheet links
 - Keep `data-slot` attributes on composite components
-- Use `<card padding="md" gap="sm">` + QFC children for fact rows
+- Use `<card padding="md" gap="sm">` with `<card-pretitle>` (`color="subtle" context="surface"`), card-title, optional `<body-copy>`, and optional card-meta
 - Use the same footer preset on every content slide
 - Slide order is filename sort (`01.html` before `02.html`)

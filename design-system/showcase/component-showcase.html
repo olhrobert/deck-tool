@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Component showcase</title>
+		<link
+			rel="stylesheet"
+			href="../tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../utilities.css"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				background-color: var(--color-slide-background);
+				color: var(--color-slide-foreground-base);
+				font-family: system-ui, sans-serif;
+			}
+
+			.layout {
+				display: flex;
+				min-height: 100vh;
+			}
+
+			.sidebar {
+				flex: 0 0 280px;
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-6);
+				padding: var(--spacing-6);
+				padding-top: calc(var(--spacing-16) + var(--spacing-4));
+				border-right: 1px solid var(--color-slide-surface-border);
+				background-color: var(--color-slide-surface-background);
+				overflow-y: auto;
+				position: sticky;
+				top: 0;
+				height: 100vh;
+			}
+
+			.sidebar-title {
+				margin: 0;
+				font-size: var(--text-size-300);
+				font-weight: 600;
+				color: var(--color-slide-foreground-subtle);
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+
+			.sidebar-group {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-1);
+			}
+
+			.sidebar-group-label {
+				margin: 0;
+				padding: var(--spacing-2) var(--spacing-3) 0;
+				font-size: var(--text-size-275);
+				font-weight: 600;
+				color: var(--color-slide-foreground-subtle);
+			}
+
+			.sidebar-item {
+				display: block;
+				width: 100%;
+				padding: var(--spacing-2) var(--spacing-3);
+				border: none;
+				border-radius: var(--border-radius-med);
+				background: transparent;
+				color: var(--color-slide-foreground-base);
+				font: inherit;
+				font-size: var(--text-size-300);
+				text-align: left;
+				cursor: pointer;
+				transition: background-color 0.15s;
+			}
+
+			.sidebar-item:hover {
+				background-color: var(--color-slide-surface-border);
+			}
+
+			.sidebar-item.is-active {
+				background-color: var(--color-cover-background);
+				color: var(--color-cover-foreground);
+			}
+
+			.main {
+				flex: 1 1 auto;
+				display: flex;
+				flex-direction: column;
+				min-width: 0;
+				padding: var(--spacing-8);
+				padding-top: calc(var(--spacing-16) + var(--spacing-4));
+			}
+
+			.main-header {
+				flex: 0 0 auto;
+				margin-bottom: var(--spacing-8);
+			}
+
+			.main-filename {
+				margin: 0;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+					"Liberation Mono", "Courier New", monospace;
+				font-size: var(--text-size-350);
+				font-weight: 500;
+				color: var(--color-slide-foreground-strong);
+			}
+
+			.preview {
+				flex: 1 1 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 320px;
+				padding: var(--spacing-10);
+				border: 1px solid var(--color-slide-surface-border);
+				border-radius: var(--border-radius-card);
+				background-color: var(--color-slide-background);
+			}
+
+			.preview-stage {
+				width: 100%;
+				max-width: var(--slide-max-width, 1280px);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.preview-stage--surface {
+				width: auto;
+				max-width: none;
+				padding: var(--spacing-6);
+				border-radius: var(--border-radius-card);
+				background-color: var(--color-slide-surface-background);
+				border: 1px solid var(--color-slide-surface-border);
+			}
+
+			.preview-stage--cover-title text[family="cover-title"] {
+				color: var(--color-slide-foreground-strong);
+			}
+
+			.preview-error {
+				font-size: var(--text-size-350);
+				color: var(--color-negative);
+			}
+
+			.brand-toolbar {
+				position: fixed;
+				top: var(--spacing-4);
+				left: var(--spacing-4);
+				z-index: 100;
+				display: flex;
+				align-items: center;
+				gap: 0;
+				padding: 4px;
+				background-color: var(--color-slide-surface-background);
+				border: 1px solid var(--color-slide-surface-border);
+				border-radius: var(--border-radius-card);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			}
+
+			.brand-toolbar a {
+				font-family: system-ui, sans-serif;
+				font-size: 12px;
+				font-weight: 500;
+				padding: 6px 8px;
+				border: none;
+				border-radius: 6px;
+				background: transparent;
+				color: var(--color-slide-foreground-base);
+				text-decoration: none;
+				cursor: pointer;
+				transition:
+					background-color 0.15s,
+					color 0.15s;
+			}
+
+			.brand-toolbar a:hover {
+				background-color: var(--color-slide-surface-border);
+			}
+
+			.brand-toolbar a.is-active {
+				background-color: var(--color-cover-background);
+				color: var(--color-cover-foreground);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="brand-toolbar">
+			<a
+				href="?brand=gratia"
+				data-brand="gratia"
+				>Gratia</a
+			>
+			<a
+				href="?brand=riverton"
+				data-brand="riverton"
+				>Riverton</a
+			>
+		</div>
+
+		<div class="layout">
+			<aside
+				class="sidebar"
+				id="sidebar"
+				aria-label="Components"
+			></aside>
+
+			<main class="main">
+				<header class="main-header">
+					<p
+						class="main-filename"
+						id="filename"
+					></p>
+				</header>
+				<div class="preview">
+					<div
+						class="preview-stage"
+						id="preview-stage"
+					></div>
+				</div>
+			</main>
+		</div>
+
+		<script>
+			const BRAND_LINK_ID = "brand-stylesheet";
+			const COMPONENTS = [
+				{
+					group: "Alert",
+					items: [
+						"components/alert/alert.html",
+						"components/alert/alert-positive.html",
+						"components/alert/alert-warning.html",
+						"components/alert/alert-negative.html",
+						"components/alert/alert-informative.html",
+					],
+				},
+				{
+					group: "Attribution box",
+					items: ["components/attribution-box/attribution-box.html"],
+				},
+				{
+					group: "Card",
+					items: ["components/card/card.html"],
+				},
+				{
+					group: "Slide pretitle",
+					items: ["components/slide-title/slide-pretitle.html"],
+				},
+				{
+					group: "Card pretitle",
+					items: ["components/card/presets/card-pretitle.html"],
+				},
+				{
+					group: "Slide title",
+					items: [
+						"components/slide-title/slide-title-group-lg.html",
+						"components/slide-title/slide-title-group-md.html",
+						"components/slide-title/slide-title-group-sm.html",
+						"components/slide-title/slide-title-lg.html",
+						"components/slide-title/slide-title-md.html",
+						"components/slide-title/slide-title-sm.html",
+						"components/slide-title/slide-subtitle.html",
+					],
+				},
+				{
+					group: "Typography",
+					items: [
+						"components/typography/cover-title.html",
+						"components/typography/paragraph-title-lg.html",
+						"components/typography/paragraph-title-md.html",
+						"components/typography/paragraph-title-sm.html",
+						"components/typography/body-copy-lg.html",
+						"components/typography/body-copy-md.html",
+						"components/typography/body-copy-sm.html",
+					],
+				},
+			];
+
+			const ALL_COMPONENTS = COMPONENTS.flatMap(({ items }) => items);
+			const sidebar = document.getElementById("sidebar");
+			const filenameEl = document.getElementById("filename");
+			const previewStage = document.getElementById("preview-stage");
+			const brandLinks = document.querySelectorAll(
+				".brand-toolbar a[data-brand]",
+			);
+			const VALID_BRANDS = [...brandLinks].map((link) => link.dataset.brand);
+
+			let currentBrand = brandFromUrl();
+			let activeComponent = componentFromUrl();
+			let sidebarButtons = new Map();
+
+			function brandFromUrl() {
+				const brand = new URLSearchParams(location.search).get("brand");
+				return VALID_BRANDS.includes(brand) ? brand : "gratia";
+			}
+
+			function componentFromUrl() {
+				const component = new URLSearchParams(location.search).get(
+					"component",
+				);
+				return ALL_COMPONENTS.includes(component)
+					? component
+					: ALL_COMPONENTS[0];
+			}
+
+			function setUrl(brand, component) {
+				const url = new URL(location.href);
+				url.searchParams.set("brand", brand);
+				url.searchParams.set("component", component);
+				history.replaceState(null, "", url);
+			}
+
+			function syncBrandTabs(active) {
+				brandLinks.forEach((link) => {
+					link.classList.toggle(
+						"is-active",
+						link.dataset.brand === active,
+					);
+					link.href = `?brand=${link.dataset.brand}&component=${encodeURIComponent(activeComponent)}`;
+				});
+			}
+
+			function syncSidebar(active) {
+				sidebarButtons.forEach((button, path) => {
+					button.classList.toggle("is-active", path === active);
+				});
+			}
+
+			function componentSrc(path) {
+				return `../${path}`;
+			}
+
+			function previewClasses(html, path) {
+				const classes = ["preview-stage"];
+				if (html.includes('context="surface"')) {
+					classes.push("preview-stage--surface");
+				}
+				if (path.endsWith("cover-title.html")) {
+					classes.push("preview-stage--cover-title");
+				}
+				return classes.join(" ");
+			}
+
+			async function loadComponent(path) {
+				activeComponent = path;
+				setUrl(currentBrand, path);
+				syncBrandTabs(currentBrand);
+				syncSidebar(path);
+				filenameEl.textContent = path;
+
+				try {
+					const res = await fetch(componentSrc(path));
+					if (!res.ok) throw new Error(String(res.status));
+					const html = await res.text();
+					previewStage.className = previewClasses(html, path);
+					previewStage.innerHTML = html;
+					applyLogos(currentBrand);
+				} catch (error) {
+					previewStage.className = "preview-stage";
+					previewStage.innerHTML = `<p class="preview-error">Failed to load ${path}</p>`;
+				}
+			}
+
+			function buildSidebar() {
+				COMPONENTS.forEach(({ group, items }) => {
+					const groupEl = document.createElement("div");
+					groupEl.className = "sidebar-group";
+
+					const label = document.createElement("p");
+					label.className = "sidebar-group-label";
+					label.textContent = group;
+					groupEl.appendChild(label);
+
+					items.forEach((path) => {
+						const button = document.createElement("button");
+						button.type = "button";
+						button.className = "sidebar-item";
+						button.textContent = path.split("/").pop();
+						button.title = path;
+						button.addEventListener("click", () => {
+							loadComponent(path);
+						});
+						groupEl.appendChild(button);
+						sidebarButtons.set(path, button);
+					});
+
+					sidebar.appendChild(groupEl);
+				});
+			}
+
+			const LOGO_SURFACES = {
+				cover: "--color-cover-background",
+				slide: "--color-slide-background",
+				"slide-surface": "--color-slide-surface-background",
+				"cover-surface": "--color-cover-surface-background",
+			};
+
+			const BRAND_LOGOS = {
+				"": {
+					default: "../../assets/logos/placeholder-logo.svg",
+					inverted:
+						"../../assets/logos/placeholder-logo-inverted.svg",
+				},
+				gratia: {
+					default: "../../brands/gratia/gratia-logo.svg",
+					inverted: "../../brands/gratia/gratia-logo-inverted.svg",
+				},
+				riverton: {
+					default: "../../brands/riverton/riverton-logo.svg",
+					inverted:
+						"../../brands/riverton/riverton-logo-inverted.svg",
+				},
+			};
+
+			function parseCssRgb(value) {
+				const match = String(value).match(
+					/rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/i,
+				);
+				if (!match) return null;
+				return {
+					r: Number(match[1]) / 255,
+					g: Number(match[2]) / 255,
+					b: Number(match[3]) / 255,
+				};
+			}
+
+			function relativeLuminance(rgb) {
+				const lin = (channel) =>
+					channel <= 0.04045
+						? channel / 12.92
+						: ((channel + 0.055) / 1.055) ** 2.4;
+				return (
+					0.2126 * lin(rgb.r) +
+					0.7152 * lin(rgb.g) +
+					0.0722 * lin(rgb.b)
+				);
+			}
+
+			function isDarkBackground(cssVar) {
+				const raw = getComputedStyle(
+					document.documentElement,
+				).getPropertyValue(cssVar);
+				const rgb = parseCssRgb(raw);
+				if (!rgb) return false;
+				return relativeLuminance(rgb) < 0.45;
+			}
+
+			function applyLogos(brand) {
+				const files = BRAND_LOGOS[brand] || BRAND_LOGOS[""];
+				document.querySelectorAll("img[data-logo]").forEach((img) => {
+					const surface = img.getAttribute("data-logo");
+					const cssVar =
+						LOGO_SURFACES[surface] || LOGO_SURFACES.slide;
+					img.src = isDarkBackground(cssVar)
+						? files.inverted
+						: files.default;
+				});
+			}
+
+			let brandApplyId = 0;
+
+			function applyBrand(brand = currentBrand) {
+				return new Promise((resolve) => {
+					const applyId = ++brandApplyId;
+					document.getElementById(BRAND_LINK_ID)?.remove();
+
+					currentBrand = brand;
+					setUrl(brand, activeComponent);
+					syncBrandTabs(brand);
+
+					const finish = () => {
+						if (applyId !== brandApplyId) return;
+						applyLogos(brand);
+						resolve();
+					};
+
+					const link = document.createElement("link");
+					link.id = BRAND_LINK_ID;
+					link.rel = "stylesheet";
+					link.href = `../../brands/${brand}/brand.css`;
+					link.addEventListener("load", finish);
+					link.addEventListener("error", finish);
+					document.head.appendChild(link);
+				});
+			}
+
+			brandLinks.forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					applyBrand(link.dataset.brand);
+				});
+			});
+
+			buildSidebar();
+			syncSidebar(activeComponent);
+			if (!new URLSearchParams(location.search).has("component")) {
+				setUrl(currentBrand, activeComponent);
+			}
+			applyBrand(currentBrand).then(() => loadComponent(activeComponent));
+		</script>
+	</body>
+</html>

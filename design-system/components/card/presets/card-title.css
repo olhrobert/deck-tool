@@ -1,0 +1,26 @@
+/* Card-title preset of base typography.
+   Defaults: color=strong, context=surface, size=md (brand). */
+
+card-title {
+	font-family: var(--font-family-card-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-card-title);
+	line-height: var(--card-title-lineheight);
+	font-size: var(--card-title-size-md);
+	letter-spacing: 0%;
+	--_ink-strong: var(--color-slide-surface-foreground-strong);
+	--_ink-base: var(--color-slide-surface-foreground-base);
+	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
+	color: var(--_ink-strong);
+}
+
+card-title[size="lg"] {
+	font-size: var(--card-title-size-lg);
+}
+
+card-title[size="md"] {
+	font-size: var(--card-title-size-md);
+}
+
+card-title[size="sm"] {
+	font-size: var(--card-title-size-sm);
+}

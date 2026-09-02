@@ -1,16 +1,534 @@
-.text,
-text {
+/* Base typography.
+   <text> is the primitive. Semantic tags (body-copy, slide-pretitle, card-pretitle, …)
+   are presets: they inherit these axes and bake brand family/weight/size.
+
+   Axes:
+     color="subtle|base|strong"     default base
+     size="<type-scale step>"       raw scale (e.g. 200, 300, 1600)
+     uppercase="true|false"         default false
+     context="slide|surface"        default slide
+
+   Extra on <text> only: family, weight, lineheight, letterspacing.
+*/
+
+/* Shared layout + ink tokens for all typography tags. */
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+) {
 	display: block;
 	margin: 0;
-	font-family: var(--font-family-body, system-ui, sans-serif);
-	font-weight: var(--font-weight-body, 400);
 	line-height: 1.2;
-	font-size: var(--text-size-400);
-	letter-spacing: 0%;
-	color: var(--color-slide-foreground-base);
+	--_ink-strong: var(--color-slide-foreground-strong);
+	--_ink-base: var(--color-slide-foreground-base);
+	--_ink-subtle: var(--color-slide-foreground-subtle);
+	color: var(--_ink-base);
 }
 
-/* font family */
+/* Primitive defaults — <text> / .text only. Presets set family/weight in their CSS. */
+:is(.text, text) {
+	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-weight: var(--font-weight-body, 400);
+	font-size: var(--text-size-400);
+	letter-spacing: 0%;
+	text-transform: none;
+}
+
+/* context — which canvas the ink tokens come from */
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[context="slide"] {
+	--_ink-strong: var(--color-slide-foreground-strong);
+	--_ink-base: var(--color-slide-foreground-base);
+	--_ink-subtle: var(--color-slide-foreground-subtle);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[context="surface"] {
+	--_ink-strong: var(--color-slide-surface-foreground-strong);
+	--_ink-base: var(--color-slide-surface-foreground-base);
+	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
+}
+
+/* color */
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[color="strong"] {
+	color: var(--_ink-strong);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[color="base"] {
+	color: var(--_ink-base);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[color="subtle"] {
+	color: var(--_ink-subtle);
+}
+
+/* uppercase */
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[uppercase="true"] {
+	text-transform: uppercase;
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[uppercase="false"] {
+	text-transform: none;
+}
+
+/* size — full type scale */
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="4000"] {
+	font-size: var(--text-size-4000);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="3400"] {
+	font-size: var(--text-size-3400);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="3000"] {
+	font-size: var(--text-size-3000);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="2400"] {
+	font-size: var(--text-size-2400);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="2000"] {
+	font-size: var(--text-size-2000);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="1600"] {
+	font-size: var(--text-size-1600);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="1200"] {
+	font-size: var(--text-size-1200);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="1000"] {
+	font-size: var(--text-size-1000);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="800"] {
+	font-size: var(--text-size-800);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="700"] {
+	font-size: var(--text-size-700);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="600"] {
+	font-size: var(--text-size-600);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="550"] {
+	font-size: var(--text-size-550);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="500"] {
+	font-size: var(--text-size-500);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="450"] {
+	font-size: var(--text-size-450);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="400"] {
+	font-size: var(--text-size-400);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="350"] {
+	font-size: var(--text-size-350);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="300"] {
+	font-size: var(--text-size-300);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="275"] {
+	font-size: var(--text-size-275);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="250"] {
+	font-size: var(--text-size-250);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="225"] {
+	font-size: var(--text-size-225);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[size="200"] {
+	font-size: var(--text-size-200);
+}
+
+/* family — <text> / .text */
 .text-family-cover-title,
 text[family="cover-title"] {
 	font-family: var(--font-family-cover-title, system-ui, sans-serif);
@@ -42,185 +560,172 @@ text[family="body"] {
 	font-weight: var(--font-weight-body, 400);
 }
 
-/* legacy aliases */
 .text-family-heading,
 text[family="heading"] {
 	font-family: var(--font-family-slide-title, system-ui, sans-serif);
 }
 
-/* font weight */
+/* weight */
 .text-weight-regular,
-text[weight="regular"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[weight="regular"] {
 	font-weight: var(--font-weight-regular);
 }
 
 .text-weight-medium,
-text[weight="medium"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[weight="medium"] {
 	font-weight: var(--font-weight-medium);
 }
 
 .text-weight-bold,
-text[weight="bold"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[weight="bold"] {
 	font-weight: var(--font-weight-bold);
 }
 
 /* line height */
 .text-lineheight-single,
-text[lineheight="single"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[lineheight="single"] {
 	line-height: 1;
 }
 
 .text-lineheight-sm,
-text[lineheight="sm"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[lineheight="sm"] {
 	line-height: 1.1;
 }
 
 .text-lineheight-md,
-text[lineheight="md"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[lineheight="md"] {
 	line-height: 1.2;
 }
 
 .text-lineheight-lg,
-text[lineheight="lg"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[lineheight="lg"] {
 	line-height: 1.5;
 }
 
 /* letter spacing */
 .text-letterspacing-base,
-text[letterspacing="base"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[letterspacing="base"] {
 	letter-spacing: 0%;
 }
 
 .text-letterspacing-loose,
-text[letterspacing="loose"] {
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	alert-title,
+	alert-description
+)[letterspacing="loose"] {
 	letter-spacing: 2%;
-}
-
-/* sizes — shared type scale (--text-size-*) */
-.text-size-4000,
-text[size="4000"] {
-	font-size: var(--text-size-4000);
-}
-
-.text-size-3400,
-text[size="3400"] {
-	font-size: var(--text-size-3400);
-}
-
-.text-size-3000,
-text[size="3000"] {
-	font-size: var(--text-size-3000);
-}
-
-.text-size-2400,
-text[size="2400"] {
-	font-size: var(--text-size-2400);
-}
-
-.text-size-2000,
-text[size="2000"] {
-	font-size: var(--text-size-2000);
-}
-
-.text-size-1600,
-text[size="1600"] {
-	font-size: var(--text-size-1600);
-}
-
-.text-size-1200,
-text[size="1200"] {
-	font-size: var(--text-size-1200);
-}
-
-.text-size-1000,
-text[size="1000"] {
-	font-size: var(--text-size-1000);
-}
-
-.text-size-800,
-text[size="800"] {
-	font-size: var(--text-size-800);
-}
-
-.text-size-700,
-text[size="700"] {
-	font-size: var(--text-size-700);
-}
-
-.text-size-600,
-text[size="600"] {
-	font-size: var(--text-size-600);
-}
-
-.text-size-550,
-text[size="550"] {
-	font-size: var(--text-size-550);
-}
-
-.text-size-500,
-text[size="500"] {
-	font-size: var(--text-size-500);
-}
-
-.text-size-450,
-text[size="450"] {
-	font-size: var(--text-size-450);
-}
-
-.text-size-400,
-text[size="400"] {
-	font-size: var(--text-size-400);
-}
-
-.text-size-350,
-text[size="350"] {
-	font-size: var(--text-size-350);
-}
-
-.text-size-300,
-text[size="300"] {
-	font-size: var(--text-size-300);
-}
-
-.text-size-275,
-text[size="275"] {
-	font-size: var(--text-size-275);
-}
-
-.text-size-250,
-text[size="250"] {
-	font-size: var(--text-size-250);
-}
-
-.text-size-225,
-text[size="225"] {
-	font-size: var(--text-size-225);
-}
-
-.text-size-200,
-text[size="200"] {
-	font-size: var(--text-size-200);
-}
-
-/* legacy aliases — sample decks; prefer size="400|350|300" */
-text[size="base"] {
-	font-size: var(--text-size-400);
-}
-
-text[size="sm"] {
-	font-size: var(--text-size-350);
-}
-
-/* tone */
-text[tone="strong"] {
-	color: var(--color-slide-foreground-strong);
-}
-
-text[tone="subtle"] {
-	color: var(--color-slide-foreground-subtle);
-}
-
-/* transform */
-text[transform="uppercase"] {
-	text-transform: uppercase;
 }

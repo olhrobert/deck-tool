@@ -1,0 +1,15 @@
+/* Card-pretitle preset of base typography.
+   Defaults: color=subtle, context=surface (brand). No markup size variants. */
+
+card-pretitle {
+	font-family: var(--font-family-card-pretitle, system-ui, sans-serif);
+	font-weight: var(--font-weight-card-pretitle);
+	line-height: 1.2;
+	letter-spacing: var(--card-pretitle-letter-spacing);
+	text-transform: var(--card-pretitle-text-transform);
+	font-size: var(--card-pretitle-size);
+	--_ink-strong: var(--color-slide-surface-foreground-strong);
+	--_ink-base: var(--color-slide-surface-foreground-base);
+	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
+	color: var(--_ink-subtle);
+}

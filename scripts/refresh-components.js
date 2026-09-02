@@ -269,51 +269,10 @@ function extractSlotsByTag(node, spec) {
 function extractAttributionTitle(node) {
 	const slots = {};
 	const children = elementChildren(node);
-	const text = children.find((child) => child.tag === "text");
+	const text = children.find((child) => child.tag === "body-copy" || child.tag === "text");
 	const img = children.find((child) => child.tag === "img");
 	if (text) slots.credit = text;
 	if (img) slots.logo = img;
-	return slots;
-}
-
-function extractAttributionContent(node) {
-	const slots = {};
-	const children = elementChildren(node);
-	const texts = [];
-	let img = null;
-	let imgIndex = -1;
-
-	children.forEach((child, index) => {
-		if (child.tag === "img") {
-			img = child;
-			imgIndex = index;
-		}
-		if (child.tag === "text") texts.push({ child, index });
-	});
-
-	if (img) slots.logo = img;
-
-	const before = texts
-		.filter((item) => imgIndex === -1 || item.index < imgIndex)
-		.map((item) => item.child);
-	const after = texts
-		.filter((item) => imgIndex !== -1 && item.index > imgIndex)
-		.map((item) => item.child);
-
-	if (after[0]) slots.page = after[0];
-
-	if (before.length >= 2) {
-		slots.disclaimer = before[0];
-		slots["prepared-by"] = before[before.length - 1];
-	} else if (before.length === 1) {
-		const value = collectText(before[0]).trim().toLowerCase();
-		if (value === "prepared by" || value.startsWith("prepared by")) {
-			slots["prepared-by"] = before[0];
-		} else {
-			slots.disclaimer = before[0];
-		}
-	}
-
 	return slots;
 }
 
@@ -321,9 +280,6 @@ function extractSlots(node, spec) {
 	const byAttr = extractSlotsByAttr(node);
 	if (Object.keys(byAttr).length > 0) return byAttr;
 	if (spec.infer === "attribution-title") return extractAttributionTitle(node);
-	if (spec.infer === "attribution-content") {
-		return extractAttributionContent(node);
-	}
 	return extractSlotsByTag(node, spec);
 }
 

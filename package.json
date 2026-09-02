@@ -10,6 +10,7 @@
 		"validate-brand": "node scripts/validate-brand.js",
 		"html-to-ir": "node scripts/html-to-ir.js",
 		"refresh": "node scripts/refresh-components.js",
-		"refresh:all": "node scripts/refresh-components.js --all"
+		"refresh:all": "node scripts/refresh-components.js --all",
+		"showcase": "python3 -m http.server 8080"
 	}
 }

@@ -130,6 +130,12 @@
 			[data-section="typography"] text[family="cover-title"] {
 				color: var(--color-slide-foreground-strong);
 			}
+
+			[data-section="layout"] slide,
+			[data-section="layout"] slide-header,
+			[data-section="layout"] slide-footer {
+				border: 1px solid var(--color-slide-surface-border);
+			}
 		</style>
 	</head>
 	<body>
@@ -149,6 +155,11 @@
 					href="#typography"
 					data-filter="typography"
 					>Type</a
+				>
+				<a
+					href="#layout"
+					data-filter="layout"
+					>Layout</a
 				>
 			</div>
 
@@ -230,16 +241,6 @@
 						>presets/content-footers/footer-01.html</text
 					>
 				</div>
-
-				<div
-					class="showcase-subgroup"
-					data-preset="footer"
-					data-src="../../presets/content-footers/footer-02.html"
-				>
-					<text class="showcase-label"
-						>presets/content-footers/footer-02.html</text
-					>
-				</div>
 			</div>
 
 			<!-- === COMPONENTS === -->
@@ -250,29 +251,29 @@
 			>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-lg.html</text
+						>components/slide-title/slide-title-group-lg.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-lg.html"
+						data-src="../components/slide-title/slide-title-group-lg.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title.html</text
+						>components/slide-title/slide-title-group-md.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title.html"
+						data-src="../components/slide-title/slide-title-group-md.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-sm.html</text
+						>components/slide-title/slide-title-group-sm.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-sm.html"
+						data-src="../components/slide-title/slide-title-group-sm.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
@@ -282,15 +283,6 @@
 					<div
 						data-preset="fragment"
 						data-src="../components/card/card.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/card/quick-fact-card.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/card/quick-fact-card.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
@@ -347,13 +339,66 @@
 						data-src="../components/attribution-box/attribution-box.html"
 					></div>
 				</div>
+			</div>
+
+			<!-- === LAYOUT === -->
+
+			<div
+				class="showcase-group"
+				data-section="layout"
+			>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/attribution-box/attribution-box-content.html</text
+						>components/layout/slot.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/attribution-box/attribution-box-content.html"
+						data-src="../components/layout/slot.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/layout/stack.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/layout/stack.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/layout/slide-header.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/layout/slide-header.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/layout/slide-content.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/layout/slide-content.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/layout/slide-footer.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/layout/slide-footer.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/layout/slide.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/layout/slide.html"
 					></div>
 				</div>
 			</div>
@@ -375,110 +420,110 @@
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-main-lg.html</text
+						>components/slide-title/slide-title-lg.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-main-lg.html"
+						data-src="../components/slide-title/slide-title-lg.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-main.html</text
+						>components/slide-title/slide-title-md.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-main.html"
+						data-src="../components/slide-title/slide-title-md.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-main-sm.html</text
+						>components/slide-title/slide-title-sm.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-main-sm.html"
+						data-src="../components/slide-title/slide-title-sm.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-pre.html</text
+						>components/slide-title/slide-pretitle.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-pre.html"
+						data-src="../components/slide-title/slide-pretitle.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/slide-title/slide-title-sub.html</text
+						>components/card/presets/card-pretitle.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-sub.html"
+						data-src="../components/card/presets/card-pretitle.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/card/quick-fact-card.html</text
+						>components/slide-title/slide-subtitle.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/card/quick-fact-card.html"
+						data-src="../components/slide-title/slide-subtitle.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/typography/section-title-lg.html</text
+						>components/typography/paragraph-title-lg.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/typography/section-title-lg.html"
+						data-src="../components/typography/paragraph-title-lg.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/typography/section-title.html</text
+						>components/typography/paragraph-title-md.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/typography/section-title.html"
+						data-src="../components/typography/paragraph-title-md.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/typography/section-title-sm.html</text
+						>components/typography/paragraph-title-sm.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/typography/section-title-sm.html"
+						data-src="../components/typography/paragraph-title-sm.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/typography/text-lg.html</text
+						>components/typography/body-copy-lg.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/typography/text-lg.html"
+						data-src="../components/typography/body-copy-lg.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/typography/text.html</text
+						>components/typography/body-copy-md.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/typography/text.html"
+						data-src="../components/typography/body-copy-md.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/typography/text-sm.html</text
+						>components/typography/body-copy-sm.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/typography/text-sm.html"
+						data-src="../components/typography/body-copy-sm.html"
 					></div>
 				</div>
 			</div>
@@ -589,29 +634,32 @@
 			let brandApplyId = 0;
 
 			function applyBrand(brand = currentBrand) {
-				const applyId = ++brandApplyId;
-				document.getElementById(BRAND_LINK_ID)?.remove();
+				return new Promise((resolve) => {
+					const applyId = ++brandApplyId;
+					document.getElementById(BRAND_LINK_ID)?.remove();
 
-				currentBrand = brand;
-				setBrandInUrl(brand);
-				syncBrandTabs(brand);
-				const finish = () => {
-					if (applyId !== brandApplyId) return;
-					applyLogos(brand);
-				};
+					currentBrand = brand;
+					setBrandInUrl(brand);
+					syncBrandTabs(brand);
+					const finish = () => {
+						if (applyId !== brandApplyId) return;
+						applyLogos(brand);
+						resolve();
+					};
 
-				if (!brand) {
-					finish();
-					return;
-				}
+					if (!brand) {
+						finish();
+						return;
+					}
 
-				const link = document.createElement("link");
-				link.id = BRAND_LINK_ID;
-				link.rel = "stylesheet";
-				link.href = `../../brands/${brand}/brand.css`;
-				link.addEventListener("load", finish);
-				link.addEventListener("error", finish);
-				document.head.appendChild(link);
+					const link = document.createElement("link");
+					link.id = BRAND_LINK_ID;
+					link.rel = "stylesheet";
+					link.href = `../../brands/${brand}/brand.css`;
+					link.addEventListener("load", finish);
+					link.addEventListener("error", finish);
+					document.head.appendChild(link);
+				});
 			}
 
 			brandLinks.forEach((link) => {
@@ -693,12 +741,12 @@
 					);
 				}
 
-				applyBrand();
+				applyLogos(currentBrand);
 			}
 
 			// --- Filter tabs ---
 
-			const VALID_FILTERS = ["slides", "components", "typography"];
+			const VALID_FILTERS = ["slides", "components", "typography", "layout"];
 			const filterLinks = document.querySelectorAll(".showcase-filter a");
 			const sections = document.querySelectorAll(
 				".showcase-group[data-section]",
@@ -732,7 +780,7 @@
 			}
 
 			applyFilter(filterFromHash());
-			loadPresets();
+			applyBrand(currentBrand).then(() => loadPresets());
 		</script>
 	</body>
 </html>

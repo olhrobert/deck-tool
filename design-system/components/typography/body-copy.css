@@ -1,0 +1,23 @@
+/* Body-copy preset of base typography.
+   Defaults: color=base, context=slide, size=md (brand). */
+
+body-copy {
+	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-weight: var(--font-weight-body);
+	line-height: 1.2;
+	font-size: var(--body-size-md);
+	letter-spacing: 0%;
+	color: var(--_ink-base);
+}
+
+body-copy[size="lg"] {
+	font-size: var(--body-size-lg);
+}
+
+body-copy[size="md"] {
+	font-size: var(--body-size-md);
+}
+
+body-copy[size="sm"] {
+	font-size: var(--body-size-sm);
+}

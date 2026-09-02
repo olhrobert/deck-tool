@@ -1,6 +1,23 @@
+/* Slide-title preset of base typography.
+   Defaults: color=strong, context=slide, size=md (brand). */
+
 slide-title {
-	display: flex;
-	flex-direction: column;
-	gap: var(--slide-title-gap);
-	margin: 0;
+	font-family: var(--font-family-slide-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-slide-title);
+	line-height: var(--slide-title-lineheight);
+	font-size: var(--slide-title-size-md);
+	letter-spacing: 0%;
+	color: var(--_ink-strong);
+}
+
+slide-title[size="lg"] {
+	font-size: var(--slide-title-size-lg);
+}
+
+slide-title[size="md"] {
+	font-size: var(--slide-title-size-md);
+}
+
+slide-title[size="sm"] {
+	font-size: var(--slide-title-size-sm);
 }

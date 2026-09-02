@@ -23,6 +23,10 @@ const {
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	FONT_WEIGHT_NAMES,
+	isPretitleUppercasePath,
+	isPretitleUppercaseBoolean,
+	isPretitleLetterSpacingPath,
+	isPretitleLetterSpacing,
 	BRAND_FILENAME,
 } = require("./generate-brand-css.js");
 
@@ -178,6 +182,28 @@ function validateBrand(brandDir) {
 		if (!isPixelDimension(raw)) {
 			errors.push(
 				`${jsonPathKey} must be a positive integer pixel value (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isPretitleUppercasePath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isPretitleUppercaseBoolean(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a boolean (true = uppercase, false = no transform) (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isPretitleLetterSpacingPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isPretitleLetterSpacing(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a percentage string such as "2%" (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}

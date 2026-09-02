@@ -24,132 +24,85 @@
 		<deck>
 			<slide>
 				<slide-header>
-					<slide-title>
-						<slide-title-main data-slot="main">Project overview</slide-title-main>
-					</slide-title>
+					<slide-title data-slot="main">Project overview</slide-title>
 				</slide-header>
 				<slide-content>
 					<div class="box-border min-w-0 flex flex-col gap-10">
 						<div class="box-border min-w-0 flex flex-row gap-2">
 							<card class="flex-1 min-w-0" padding="md" gap="sm">
-								<quick-fact-card-pretitle data-slot="pretitle">Sponsor</quick-fact-card-pretitle>
-								<quick-fact-card-title data-slot="title">Marcus Bell</quick-fact-card-title>
-								<quick-fact-card-meta data-slot="meta">CIO, Riverton Financial</quick-fact-card-meta>
+								<card-pretitle color="subtle" context="surface" data-slot="pretitle">Sponsor</card-pretitle>
+								<card-title data-slot="title">Marcus Bell</card-title>
+								<card-meta data-slot="meta">CIO, Riverton Financial</card-meta>
 							</card>
 							<card class="flex-1 min-w-0" padding="md" gap="sm">
-								<quick-fact-card-pretitle data-slot="pretitle">Program lead</quick-fact-card-pretitle>
-								<quick-fact-card-title data-slot="title">Andrea Sims</quick-fact-card-title>
-								<quick-fact-card-meta data-slot="meta">VP Core Platforms</quick-fact-card-meta>
+								<card-pretitle color="subtle" context="surface" data-slot="pretitle">Program lead</card-pretitle>
+								<card-title data-slot="title">Andrea Sims</card-title>
+								<card-meta data-slot="meta">VP Core Platforms</card-meta>
 							</card>
 							<card class="flex-1 min-w-0" padding="md" gap="sm">
-								<quick-fact-card-pretitle data-slot="pretitle">Budget</quick-fact-card-pretitle>
-								<quick-fact-card-title data-slot="title">$84M</quick-fact-card-title>
-								<quick-fact-card-meta data-slot="meta">$72M capex · $12M opex</quick-fact-card-meta>
+								<card-pretitle color="subtle" context="surface" data-slot="pretitle">Budget</card-pretitle>
+								<card-title data-slot="title">$84M</card-title>
+								<card-meta data-slot="meta">$72M capex · $12M opex</card-meta>
 							</card>
 							<card class="flex-1 min-w-0" padding="md" gap="sm">
-								<quick-fact-card-pretitle data-slot="pretitle">Timeline</quick-fact-card-pretitle>
-								<quick-fact-card-title data-slot="title">18 months</quick-fact-card-title>
-								<quick-fact-card-meta data-slot="meta">Apr '26 → Sep '27 (Wave 1-2)</quick-fact-card-meta>
+								<card-pretitle color="subtle" context="surface" data-slot="pretitle">Timeline</card-pretitle>
+								<card-title data-slot="title">18 months</card-title>
+								<card-meta data-slot="meta">Apr '26 → Sep '27 (Wave 1-2)</card-meta>
 							</card>
 						</div>
 						<div class="box-border min-w-0 flex flex-row gap-12">
 							<div
 								class="box-border min-w-0 flex flex-1 flex-col gap-6 pt-6 border-t border-color-slide-surface"
 							>
-								<section-title size="lg"
-									>Objectives</section-title
+								<paragraph-title size="lg"
+									>Objectives</paragraph-title
 								>
 								<div class="flex flex-col gap-4">
 									<div class="flex flex-col gap-0-5">
-										<text
-											family="body"
-											size="400"
-											weight="bold"
-											tone="strong"
-										>
+										<body-copy size="md" weight="bold" color="strong">
 											Modernize core platform
-										</text>
-										<text
-											family="body"
-											size="350"
-											weight="regular"
-											tone="subtle"
-											lineheight="lg"
-										>
+										</body-copy>
+										<body-copy size="sm" weight="regular" color="subtle" lineheight="lg">
 											Replace Symitar (end-of-life FY28)
 											with FIS Code Connect cloud-native
 											core.
-										</text>
+										</body-copy>
 									</div>
 									<div class="flex flex-col gap-0-5">
-										<text
-											family="body"
-											size="400"
-											weight="bold"
-											tone="strong"
-										>
+										<body-copy size="md" weight="bold" color="strong">
 											Reduce IT operating cost by $5.4M
 											annually
-										</text>
-										<text
-											family="body"
-											size="350"
-											weight="regular"
-											tone="subtle"
-											lineheight="lg"
-										>
+										</body-copy>
+										<body-copy size="sm" weight="regular" color="subtle" lineheight="lg">
 											Sunset 6 ancillary systems wrapped
 											around legacy core.
-										</text>
+										</body-copy>
 									</div>
 									<div class="flex flex-col gap-0-5">
-										<text
-											family="body"
-											size="400"
-											weight="bold"
-											tone="strong"
-											lineheight="lg"
-										>
+										<body-copy size="md" weight="bold" color="strong" lineheight="lg">
 											Enable next-gen products
-										</text>
-										<text
-											family="body"
-											size="350"
-											weight="regular"
-											tone="subtle"
-											lineheight="lg"
-										>
+										</body-copy>
+										<body-copy size="sm" weight="regular" color="subtle" lineheight="lg">
 											Instant-issue debit, real-time
 											fraud, embedded banking APIs.
-										</text>
+										</body-copy>
 									</div>
 									<div class="flex flex-col gap-0-5">
-										<text
-											family="body"
-											size="400"
-											weight="bold"
-											tone="strong"
-										>
+										<body-copy size="md" weight="bold" color="strong">
 											Maintain regulatory standing
-										</text>
-										<text
-											family="body"
-											size="350"
-											weight="regular"
-											tone="subtle"
-											lineheight="lg"
-										>
+										</body-copy>
+										<body-copy size="sm" weight="regular" color="subtle" lineheight="lg">
 											SOC 1 Type II + FFIEC parity
 											throughout migration.
-										</text>
+										</body-copy>
 									</div>
 								</div>
 							</div>
 							<div
 								class="box-border min-w-0 flex flex-1 flex-col gap-2 pt-6 border-t border-color-slide-surface"
 							>
-								<section-title size="lg"
-									>In scope</section-title
+								<paragraph-title size="lg"
+									>In scope</paragraph-title
 								>
 								<div class="flex flex-col gap-2">
 									<div
@@ -168,15 +121,10 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Deposit accounts (consumer +
 											commercial)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -194,15 +142,10 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Loans (consumer, mortgage,
 											commercial)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -220,15 +163,10 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Treasury services (wires, ACH,
 											lockbox)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -246,14 +184,9 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Card issuance + processing migration
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -271,14 +204,9 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Online + mobile banking re-platform
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -296,22 +224,17 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Branch teller workflows
-										</text>
+										</body-copy>
 									</div>
 								</div>
 							</div>
 							<div
 								class="box-border min-w-0 flex flex-1 flex-col gap-2 pt-6 border-t border-color-slide-surface"
 							>
-								<section-title size="lg"
-									>Out of scope</section-title
+								<paragraph-title size="lg"
+									>Out of scope</paragraph-title
 								>
 								<div class="flex flex-col gap-2">
 									<div
@@ -330,15 +253,10 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Trust + wealth management platform
 											(separate program)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -356,14 +274,9 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Marketing CRM (Salesforce stays)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -381,14 +294,9 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											HRIS / payroll (Workday stays)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -406,15 +314,10 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											Compliance reporting
 											(Riverton-built; integrate via API)
-										</text>
+										</body-copy>
 									</div>
 									<div
 										class="flex flex-row gap-2 items-center"
@@ -432,15 +335,10 @@
 												fill="currentColor"
 											/>
 										</svg>
-										<text
-											family="body"
-											size="400"
-											weight="regular"
-											tone="base"
-										>
+										<body-copy size="md" weight="regular" color="base">
 											ATM hardware refresh (in flight,
 											parallel)
-										</text>
+										</body-copy>
 									</div>
 								</div>
 							</div>
@@ -448,29 +346,25 @@
 					</div>
 				</slide-content>
 				<slide-footer>
-					<div class="flex items-center justify-between">
-						<img
-							src="riverton-logo.svg"
-							alt="Riverton"
-							data-logo="slide"
-							class="shrink-0 block"
-							style="height: 12px; width: auto"
-						/>
-						<attribution-box variant="content">
-							<text data-slot="disclaimer">
-								All figures are modified to prevent
-								reversibility
-							</text>
-							<attribution-box-separator></attribution-box-separator>
-							<text data-slot="prepared-by">Prepared by</text>
+					<div class="flex items-center w-full">
+						<div class="flex-1 flex justify-start min-w-0">
 							<img
-								data-slot="logo"
-								src="../../assets/logos/gratia-logo.svg"
-								alt="Gratia"
+								src="riverton-logo.svg"
+								alt="Riverton"
+								data-logo="slide"
+								class="shrink-0 block"
+								style="height: 12px; width: auto"
 							/>
-							<attribution-box-separator></attribution-box-separator>
-							<text data-slot="page">02</text>
-						</attribution-box>
+						</div>
+						<div class="flex-1 flex justify-end min-w-0">
+							<text
+								size="200"
+								color="subtle"
+								context="slide"
+							>
+								02
+							</text>
+						</div>
 					</div>
 				</slide-footer>
 			</slide>

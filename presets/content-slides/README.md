@@ -8,13 +8,13 @@ Use the same footer preset across every content slide in a deck.
 
 | File                    | Layout                                                                 |
 | ----------------------- | ---------------------------------------------------------------------- |
-| `content-slide-01.html` | Header + content + footer. Fact row, section title, body, alert. Uses `footer-01`. |
+| `content-slide-01.html` | Header + content + footer. Fact row, paragraph title, body, alert. Uses `footer-01`. |
 
 ## Placeholders to replace
 
 - Slide title pre / main / sub
 - Quick-fact card labels, values, and meta
-- Section title and body copy
+- Paragraph title and body copy
 - Alert title and description
 - Footer disclaimer and slide number
 

@@ -19,9 +19,10 @@ Node types: `frame`, `instance`, `text`, `slot`.
 |---|---|
 | `<slide>` without header/content/footer | cover frame |
 | `<slide>` with chrome | Slide instance, `surface` from `.bg-cover` (Figma variant is still `surface=primary`) |
-| `<slide-title>` | Slide Title instance; always set `size` (`md` if omitted) |
-| `<section-title>` | Section Title instance |
-| `<card>` + QFC children | Quick Fact Card instance |
+| `<slide-title>` | Slide Title instance (headline); always set `size` (`md` if omitted) |
+| `<slide-title-group>` | Slide Title instance with pretitle + title + subtitle slots |
+| `<paragraph-title>` | Paragraph Title instance |
+| `<card>` | Card instance (pretitle, title, optional text, meta) |
 | `<card>` otherwise | Card instance; set `padding`/`gap` (`md`/`md` if omitted) |
 | `<attribution-box>` | Attribution Box; `slot` is filled separately |
 | `<attribution-box-separator>` | separator instance |
@@ -29,12 +30,13 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | brand / placeholder `<svg><use>` | `__Logo/{Brand}` |
 | flex row + check/close path + text | List Item `kind=in-scope\|out-of-scope` |
 | `div.flex` | auto-layout frame (gap/padding/justify/align/fill from utilities) |
-| `<text>` | text + `typography` variables (`family`, `weight`, `size`, `lineHeight`, `letterSpacing`) + color variable |
+| `<body-copy>` | text + `typography` variables (`family/body`, `weight`, `size` from `sm|md|lg`, …) + color variable |
+| `<text>` | primitive — raw `size` step, `family`, etc. |
 | `<alert>` | frame (no Alert component in the library yet) |
 
 Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/slide-surface-border`.
 
-`text[size="350"]` is `--text-size-350` (14px). `text[size="sm"]` / `size="base"` are legacy aliases for 350 / 400. `text[tone="strong|subtle|base"]` maps to `color/slide-foreground-*`. Attribution slot text is forced to `size/300` (title) or `size/200` (content) to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
+`<body-copy size="sm|md|lg">` maps to `--body-size-sm|md|lg` (brand type-scale steps; default `md` = `--text-size-400`). Primitive `<text size="350">` still resolves to `--text-size-*`. `text[color="strong|subtle|base"]` plus `context="slide|surface"` maps to `color/slide-foreground-*` or `color/slide-surface-foreground-*`. Attribution slot text is forced to `size/300` to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
 
 ## Push sequence
 
@@ -45,7 +47,7 @@ Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` →
 5. Place 1280×800 frames 80px apart
 6. Cover: build the `root` tree with tokens; instance logos and attribution
 7. Chrome slides: instance Slide, `FILL` the three slots, put instances into slots
-8. Attribution: create instance on the page, mutate slot text **before** any `await`, hide extra separator/number for footer-02, then reparent
+8. Attribution (cover/title slides): create instance on the page, mutate slot text **before** any `await`, then reparent into the cover
 9. Screenshot each slide; compare to `index.html` in the browser
 
 Instance helper:

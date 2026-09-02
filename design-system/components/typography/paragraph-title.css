@@ -1,0 +1,23 @@
+/* Paragraph-title preset of base typography.
+   Defaults: color=strong, context=slide, size=md (brand). */
+
+paragraph-title {
+	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
+	font-weight: var(--font-weight-paragraph-title);
+	line-height: var(--paragraph-title-lineheight);
+	font-size: var(--paragraph-title-size-md);
+	letter-spacing: 0%;
+	color: var(--_ink-strong);
+}
+
+paragraph-title[size="lg"] {
+	font-size: var(--paragraph-title-size-lg);
+}
+
+paragraph-title[size="md"] {
+	font-size: var(--paragraph-title-size-md);
+}
+
+paragraph-title[size="sm"] {
+	font-size: var(--paragraph-title-size-sm);
+}

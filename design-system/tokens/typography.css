@@ -34,50 +34,42 @@
 	/* Role weights — brands set coverTitle.weight / card.title.weight / fonts.body.weight to regular|medium|bold */
 	--font-weight-cover-title: var(--font-weight-bold);
 	--font-weight-slide-title: var(--font-weight-bold);
-	--font-weight-slide-title-pre: var(--font-weight-regular);
-	--font-weight-slide-title-sub: var(--font-weight-regular);
+	--font-weight-slide-subtitle: var(--font-weight-regular);
+	--font-weight-slide-pretitle: var(--font-weight-regular);
+	--font-weight-card-pretitle: var(--font-weight-regular);
 	--font-weight-card-title: var(--font-weight-bold);
-	--font-weight-card-pretitle: var(--font-weight-bold);
 	--font-weight-paragraph-title: var(--font-weight-bold);
 	--font-weight-body: var(--font-weight-regular);
 
-	/* slide title main — family + sizes driven by slideTitle in brand-settings.json */
-	--slide-title-main-family: var(
-		--font-family-slide-title,
-		system-ui,
-		sans-serif
-	);
-	--slide-title-main-lineheight: 1.2;
-	--slide-title-main-size-lg: var(--text-size-1200);
-	--slide-title-main-size-md: var(--text-size-1000);
-	--slide-title-main-size-sm: var(--text-size-800);
+	/* body copy — brands set fonts.body.sizeSm/Md/Lg to type-scale steps */
+	--body-size-sm: var(--text-size-350);
+	--body-size-md: var(--text-size-400);
+	--body-size-lg: var(--text-size-450);
+	/* slide title — family + sizes driven by slideTitle in brand-settings.json */
+	--slide-title-lineheight: 1.2;
+	--slide-title-size-lg: var(--text-size-1200);
+	--slide-title-size-md: var(--text-size-1000);
+	--slide-title-size-sm: var(--text-size-800);
 
-	/* slide title pre — driven by slideTitle.pre in brand-settings.json */
-	--slide-title-pre-family: var(--font-family-slide-title-pre, system-ui, sans-serif);
-	--slide-title-pre-weight: var(--font-weight-slide-title-pre);
-	--slide-title-pre-lineheight: 1.2;
-	--slide-title-pre-size: var(--text-size-350);
+	/* slide pretitle — driven by slideTitle.pretitle in brand-settings.json */
+	--slide-pretitle-size: var(--text-size-350);
+	--slide-pretitle-text-transform: none;
+	--slide-pretitle-letter-spacing: 2%;
 
-	/* slide title sub — driven by slideTitle.sub in brand-settings.json */
-	--slide-title-sub-family: var(--font-family-slide-title-sub, system-ui, sans-serif);
-	--slide-title-sub-weight: var(--font-weight-slide-title-sub);
-	--slide-title-sub-lineheight: 1.2;
-	--slide-title-sub-size: var(--text-size-350);
+	/* card pretitle — driven by card.pretitle in brand-settings.json */
+	--card-pretitle-size: var(--text-size-300);
+	--card-pretitle-text-transform: none;
+	--card-pretitle-letter-spacing: 2%;
 
-	/* section title (paragraph title) — family + sizes driven by paragraphTitle */
-	--section-title-family: var(
-		--font-family-paragraph-title,
-		system-ui,
-		sans-serif
-	);
-	--section-title-weight: var(--font-weight-paragraph-title);
-	--section-title-lineheight: 1.1;
+	/* slide subtitle — driven by slideTitle.sub in brand-settings.json */
+	--slide-subtitle-lineheight: 1.2;
+	--slide-subtitle-size: var(--text-size-350);
+
+	/* paragraph title — driven by paragraphTitle in brand-settings.json */
+	--paragraph-title-lineheight: 1.1;
 	--paragraph-title-size-lg: var(--text-size-600);
 	--paragraph-title-size-md: var(--text-size-500);
 	--paragraph-title-size-sm: var(--text-size-400);
-	--section-title-size-lg: var(--paragraph-title-size-lg);
-	--section-title-size-md: var(--paragraph-title-size-md);
-	--section-title-size-sm: var(--paragraph-title-size-sm);
 
 	/* alert title */
 	--alert-title-family: var(
@@ -99,31 +91,24 @@
 	--card-title-size-lg: var(--text-size-800);
 	--card-title-size-md: var(--text-size-800);
 	--card-title-size-sm: var(--text-size-600);
-	--card-pretitle-size: var(--text-size-300);
 
-	/* quick fact card — family + sizes driven by card.title / fonts.body */
-	--quick-fact-card-pretitle-family: var(--font-family-card-pretitle, system-ui, sans-serif);
-	--quick-fact-card-pretitle-weight: var(--font-weight-card-pretitle);
-	--quick-fact-card-pretitle-lineheight: 1.2;
-	--quick-fact-card-pretitle-size: var(--card-pretitle-size);
-	--quick-fact-card-pretitle-letterspacing: 2%;
-	--quick-fact-card-title-family: var(
+	/* card title — family from card.title */
+	--card-title-family: var(
 		--font-family-card-title,
 		system-ui,
 		sans-serif
 	);
-	--quick-fact-card-title-weight: var(--font-weight-card-title);
-	--quick-fact-card-title-lineheight: 1;
-	--quick-fact-card-meta-family: var(
+	--card-title-weight: var(--font-weight-card-title);
+	--card-title-lineheight: 1;
+	--card-meta-family: var(
 		--font-family-body,
 		system-ui,
 		sans-serif
 	);
-	--quick-fact-card-meta-weight: var(--font-weight-body);
-	--quick-fact-card-meta-lineheight: 1.2;
-	--quick-fact-card-meta-size: var(--text-size-300);
+	--card-meta-weight: var(--font-weight-body);
+	--card-meta-lineheight: 1.2;
+	--card-meta-size: var(--text-size-300);
 
 	/* attribution box type — same steps html-to-ir forces on slot text */
 	--attribution-box-text-size-title: var(--text-size-300);
-	--attribution-box-text-size-content: var(--text-size-200);
 }

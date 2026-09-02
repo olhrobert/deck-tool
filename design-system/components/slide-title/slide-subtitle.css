@@ -1,0 +1,11 @@
+/* Slide-subtitle preset of base typography.
+   Defaults: color=base, context=slide, size from brand. */
+
+slide-subtitle {
+	font-family: var(--font-family-slide-subtitle, system-ui, sans-serif);
+	font-weight: var(--font-weight-slide-subtitle);
+	line-height: var(--slide-subtitle-lineheight);
+	font-size: var(--slide-subtitle-size);
+	letter-spacing: 0%;
+	color: var(--_ink-base);
+}

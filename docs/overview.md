@@ -56,10 +56,10 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slide
 ### Done
 
 - Showcase `fetch()`es live component fragments and presets (no inlined fork).
-- `registry.json` + `refresh-components.js` restamp Alert, Slide Title, Quick Fact Card, and Attribution in a deck without wiping unique layout.
+- `registry.json` + `refresh-components.js` restamp Alert, Slide Title, Card, and Attribution in a deck without wiping unique layout.
 - Title presets (01–04), footers (01–02), one content slide (`content-slide-01`: header, fact row, section + body, alert, footer-01).
-- Quick Fact Card lives with the component, not as a slide preset.
-- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeLg` / `sizeMd` / `sizeSm` pick a scale step (e.g. `800`), not a pixel value. Body/cover titles use the scale in HTML (`<text size="400">`). `<copy>` is gone.
+- Card component lives at `design-system/components/card/card.html`.
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeLg` / `sizeMd` / `sizeSm` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution, page numbers). Semantic type tags are presets of `<text>` (`color`, `size`, `uppercase`, `context`). `<copy>` is gone.
 - Cover ink uses role classes (`.color-cover-foreground-*`). Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 

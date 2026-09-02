@@ -41,7 +41,7 @@ Never parallelize `use_figma`. `setCurrentPageAsync` at most once per script. Al
 - Do not `remove()` children of a **nested** instance slot. Edit attribution copy on a top-level instance, then reparent
 - Do not `await` between `createInstance()` and reading nested text — node refs go stale
 - Cover/title slides: **do not** instance `Slide`. Custom padding (`p-20 pb-4`) does not match chrome
-- Quick Fact Card does **not** nest Card. Figma cannot set text property refs on layers inside a nested instance
+- Card is a single component (pretitle, title, optional text, meta). Do not nest a generic Card instance inside it
 - `width="fill|hug"` is instance `layoutSizing*`, not a variant
 - CSS vs Figma defaultVariant (setter is read-only): Card CSS `md/md`, Figma `sm/sm`; Slide Title CSS `md`, Figma `lg`. Always set variants explicitly
 - Failed `use_figma` scripts are atomic — retry the whole script

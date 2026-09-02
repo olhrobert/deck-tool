@@ -24,24 +24,13 @@
 		<deck>
 			<slide>
 				<slide-header>
-					<slide-title>
-						<slide-title-main data-slot="main"
-							>Footer preset preview</slide-title-main
-						>
-					</slide-title>
+					<slide-title data-slot="main">Footer preset preview</slide-title>
 				</slide-header>
 				<slide-content>
 					<div class="box-border min-w-0 flex flex-col gap-6">
-						<text
-							family="body"
-							size="400"
-							weight="regular"
-							tone="base"
-							lineheight="lg"
-						>
-							This slide uses footer-02: logo left, attribution
-							box centered, slide number right.
-						</text>
+						<body-copy size="md" weight="regular" color="base" lineheight="lg">
+							This slide uses footer-01: logo left, slide number right.
+						</body-copy>
 					</div>
 				</slide-content>
 				<slide-footer>
@@ -55,23 +44,11 @@
 								style="height: 12px; width: auto"
 							/>
 						</div>
-						<attribution-box variant="content">
-							<text data-slot="disclaimer">
-								All figures are modified to prevent
-								reversibility
-							</text>
-							<attribution-box-separator></attribution-box-separator>
-							<text data-slot="prepared-by">Prepared by</text>
-							<img
-								data-slot="logo"
-								src="../../assets/logos/gratia-logo.svg"
-								alt="Gratia"
-							/>
-						</attribution-box>
 						<div class="flex-1 flex justify-end min-w-0">
 							<text
 								size="200"
-								tone="subtle"
+								color="subtle"
+								context="slide"
 							>
 								03
 							</text>

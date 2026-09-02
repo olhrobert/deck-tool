@@ -1,10 +1,14 @@
+/* Alert-description preset of base typography.
+   Defaults: color=base, context=surface. */
+
 alert-description {
-	display: block;
-	margin: 0;
-	font-family: var(--alert-description-family);
-	font-weight: var(--alert-description-weight);
+	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-weight: var(--font-weight-body);
 	line-height: var(--alert-description-lineheight);
 	font-size: var(--alert-description-size);
 	letter-spacing: 0%;
-	color: var(--color-slide-surface-foreground-base);
+	--_ink-strong: var(--color-slide-surface-foreground-strong);
+	--_ink-base: var(--color-slide-surface-foreground-base);
+	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
+	color: var(--_ink-base);
 }
