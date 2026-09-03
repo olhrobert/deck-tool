@@ -37,8 +37,8 @@
 
 /* Primitive defaults — <text> / .text only. Presets set family/weight in their CSS. */
 :is(.text, text) {
-	font-family: var(--font-family-body, system-ui, sans-serif);
-	font-weight: var(--font-weight-body, 400);
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-weight: var(--body-font-weight, 400);
 	font-size: var(--text-size-400);
 	letter-spacing: 0%;
 	text-transform: none;
@@ -531,38 +531,38 @@
 /* family — <text> / .text */
 .text-family-cover-title,
 text[family="cover-title"] {
-	font-family: var(--font-family-cover-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-cover-title, 700);
+	font-family: var(--cover-title-font-family, system-ui, sans-serif);
+	font-weight: var(--cover-title-font-weight, 700);
 	color: var(--color-cover-foreground);
 }
 
 .text-family-slide-title,
 text[family="slide-title"] {
-	font-family: var(--font-family-slide-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-slide-title, 700);
+	font-family: var(--slide-title-font-family, system-ui, sans-serif);
+	font-weight: var(--slide-title-font-weight, 700);
 }
 
 .text-family-card-title,
 text[family="card-title"] {
-	font-family: var(--font-family-card-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-card-title, 700);
+	font-family: var(--card-title-font-family, system-ui, sans-serif);
+	font-weight: var(--card-title-font-weight, 700);
 }
 
 .text-family-paragraph-title,
 text[family="paragraph-title"] {
-	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-paragraph-title, 700);
+	font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
+	font-weight: var(--paragraph-title-font-weight, 700);
 }
 
 .text-family-body,
 text[family="body"] {
-	font-family: var(--font-family-body, system-ui, sans-serif);
-	font-weight: var(--font-weight-body, 400);
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-weight: var(--body-font-weight, 400);
 }
 
 .text-family-heading,
 text[family="heading"] {
-	font-family: var(--font-family-slide-title, system-ui, sans-serif);
+	font-family: var(--slide-title-font-family, system-ui, sans-serif);
 }
 
 /* weight */

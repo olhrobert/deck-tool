@@ -2,37 +2,27 @@
 	"name": "Riverton",
 	"logo": "riverton-logo.svg",
 	"colors": {
-		"cover": {
-			"background": "rgb(160, 203, 50)",
-			"foreground": "rgb(12, 12, 15)",
-			"surfaceBackground": "rgb(12, 12, 15)",
-			"surfaceForeground": "rgb(255, 255, 255)",
-			"surfaceBorder": "rgba(255, 255, 255, 0.2)"
-		},
-		"slide": {
-			"background": "rgb(234, 239, 227)",
-			"foreground": "rgb(12, 12, 15)",
-			"surfaceBackground": "rgba(255, 255, 255, 1)",
-			"surfaceForeground": "rgb(12, 12, 15)",
-			"surfaceBorder": "rgba(0, 0, 0, 0.2)"
-		},
 		"highlight": "rgb(160, 203, 50)",
 		"status": {
 			"positive": {
-				"color": "rgba(22, 163, 74, 1)",
-				"background": "rgba(22, 163, 74, 0.1)"
+				"foreground": "rgba(22, 163, 74, 1)",
+				"background": "rgba(22, 163, 74, 0.1)",
+				"border": "rgba(22, 163, 74, 0.2)"
 			},
 			"warning": {
-				"color": "rgba(234, 88, 12, 1)",
-				"background": "rgba(234, 88, 12, 0.1)"
+				"foreground": "rgba(234, 88, 12, 1)",
+				"background": "rgba(234, 88, 12, 0.1)",
+				"border": "rgba(234, 88, 12, 0.2)"
 			},
 			"negative": {
-				"color": "rgba(220, 38, 38, 1)",
-				"background": "rgba(220, 38, 38, 0.1)"
+				"foreground": "rgba(220, 38, 38, 1)",
+				"background": "rgba(220, 38, 38, 0.1)",
+				"border": "rgba(220, 38, 38, 0.2)"
 			},
 			"informative": {
-				"color": "rgba(37, 99, 235, 1)",
-				"background": "rgba(37, 99, 235, 0.1)"
+				"foreground": "rgba(37, 99, 235, 1)",
+				"background": "rgba(37, 99, 235, 0.1)",
+				"border": "rgba(37, 99, 235, 0.2)"
 			}
 		},
 		"charts": {
@@ -43,32 +33,85 @@
 		}
 	},
 	"fonts": {
+		"families": {
+			"display": "\"Fraunces\", system-ui, sans-serif",
+			"base": "\"Inter\", system-ui, sans-serif"
+		},
 		"weights": {
 			"regular": 400,
 			"medium": 400,
 			"bold": 700
 		},
+		"paragraphTitle": {
+			"family": "display",
+			"weight": "medium",
+			"sizeSm": 400,
+			"sizeMd": 500,
+			"sizeLg": 600
+		},
 		"body": {
-			"family": "\"Inter\", system-ui, sans-serif",
+			"family": "base",
 			"weight": "regular",
 			"sizeSm": 350,
 			"sizeMd": 400,
 			"sizeLg": 450
 		}
 	},
-	"borderRadius": {
-		"none": "0px",
-		"sm": "4px",
-		"med": "8px",
-		"lg": "12px",
-		"full": "200px"
+	"border": {
+		"radius": {
+			"none": "0px",
+			"sm": "4px",
+			"med": "8px",
+			"lg": "12px",
+			"full": "200px"
+		},
+		"size": {
+			"none": "0px",
+			"sm": "1px",
+			"md": "2px"
+		}
 	},
-	"borderSize": {
-		"none": "0px",
-		"sm": "1px",
-		"md": "2px"
+	"cover": {
+		"background": "rgb(160, 203, 50)",
+		"foreground": "rgb(12, 12, 15)",
+		"surface": {
+			"background": "rgb(12, 12, 15)",
+			"foreground": "rgb(255, 255, 255)",
+			"border": "rgba(255, 255, 255, 0.2)"
+		},
+		"title": {
+			"family": "display",
+			"weight": "medium"
+		}
 	},
 	"slide": {
+		"background": "rgb(234, 239, 227)",
+		"foreground": "rgb(12, 12, 15)",
+		"surface": {
+			"background": "rgba(255, 255, 255, 1)",
+			"foreground": "rgb(12, 12, 15)",
+			"border": "rgba(0, 0, 0, 0.2)"
+		},
+		"pretitle": {
+			"family": "base",
+			"weight": "regular",
+			"uppercase": true,
+			"letterSpacing": "2%",
+			"size": 350
+		},
+		"title": {
+			"gap": 2,
+			"family": "display",
+			"weight": "medium",
+			"sizeSm": 800,
+			"sizeMd": 1000,
+			"sizeLg": 1200
+		},
+		"subtitle": {
+			"family": "base",
+			"weight": "regular",
+			"size": 350
+		},
 		"maxWidth": 1280,
 		"header": {
 			"paddingTop": 8,
@@ -88,37 +131,6 @@
 			"paddingBottom": 4,
 			"paddingLeft": 4
 		}
-	},
-	"coverTitle": {
-		"family": "\"Fraunces\", system-ui, sans-serif",
-		"weight": "medium"
-	},
-	"slideTitle": {
-		"pretitle": {
-			"family": "\"Inter\", system-ui, sans-serif",
-			"weight": "regular",
-			"uppercase": true,
-			"letterSpacing": "2%",
-			"size": 350
-		},
-		"gap": 2,
-		"family": "\"Fraunces\", system-ui, sans-serif",
-		"weight": "medium",
-		"sizeLg": 1200,
-		"sizeMd": 1000,
-		"sizeSm": 800,
-		"sub": {
-			"family": "\"Inter\", system-ui, sans-serif",
-			"weight": "regular",
-			"size": 350
-		}
-	},
-	"paragraphTitle": {
-		"family": "\"Fraunces\", system-ui, sans-serif",
-		"weight": "medium",
-		"sizeLg": 600,
-		"sizeMd": 500,
-		"sizeSm": 400
 	},
 	"stack": {
 		"gapSm": 2,
@@ -140,14 +152,14 @@
 			"right": "sm"
 		},
 		"title": {
-			"family": "\"Fraunces\", system-ui, sans-serif",
+			"family": "display",
 			"weight": "medium",
-			"sizeLg": 800,
+			"sizeSm": 600,
 			"sizeMd": 700,
-			"sizeSm": 600
+			"sizeLg": 800
 		},
 		"pretitle": {
-			"family": "\"Inter\", system-ui, sans-serif",
+			"family": "base",
 			"weight": "regular",
 			"uppercase": true,
 			"letterSpacing": "2%",

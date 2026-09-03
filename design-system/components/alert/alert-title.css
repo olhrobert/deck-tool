@@ -2,8 +2,8 @@
    Defaults: color=strong, context=surface. */
 
 alert-title {
-	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-paragraph-title);
+	font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
+	font-weight: var(--paragraph-title-font-weight);
 	line-height: var(--alert-title-lineheight);
 	font-size: var(--alert-title-size);
 	letter-spacing: 0%;

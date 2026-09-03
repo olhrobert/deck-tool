@@ -2,8 +2,8 @@
    Defaults: color=strong, context=slide, size=md (brand). */
 
 paragraph-title {
-	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-paragraph-title);
+	font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
+	font-weight: var(--paragraph-title-font-weight);
 	line-height: var(--paragraph-title-lineheight);
 	font-size: var(--paragraph-title-size-md);
 	letter-spacing: 0%;

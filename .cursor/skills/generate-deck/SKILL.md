@@ -28,9 +28,9 @@ There is no `chapter-titles/` folder.
 3. Create `decks/{deck-name}/` with `01.html`, `02.html`, … Copy a title preset into `01.html`. Copy `presets/content-slides/content-slide-01.html` for content slides (or copy chrome + the same footer preset onto every content slide).
 4. Replace placeholder copy only. Keep `../../design-system/` and `../../assets/` paths.
 5. Copy `brands/{slug}/{slug}-logo.svg` and `{slug}-logo-inverted.svg` into the deck folder. On each `<img data-logo>`, set `src` to the deck-local file that matches the surface:
-   - `cover` → inverted if `colors.cover.background` is dark, else default
-   - `slide` → same for `colors.slide.background`
-   - `slide-surface` → same for `colors.slide.surfaceBackground`
+   - `cover` → inverted if `cover.background` is dark, else default
+   - `slide` → same for `slide.background`
+   - `slide-surface` → same for `slide.surface.background`
 
    Dark means relative luminance below 0.45. Do not change `<img data-slot="logo">` (attribution Gratia mark). See `attribution-box` skill.
 6. Write `slides.json`:

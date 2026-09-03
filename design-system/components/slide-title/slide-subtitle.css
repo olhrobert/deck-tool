@@ -2,8 +2,8 @@
    Defaults: color=base, context=slide, size from brand. */
 
 slide-subtitle {
-	font-family: var(--font-family-slide-subtitle, system-ui, sans-serif);
-	font-weight: var(--font-weight-slide-subtitle);
+	font-family: var(--slide-subtitle-font-family, system-ui, sans-serif);
+	font-weight: var(--slide-subtitle-font-weight);
 	line-height: var(--slide-subtitle-lineheight);
 	font-size: var(--slide-subtitle-size);
 	letter-spacing: 0%;

@@ -13,7 +13,7 @@ HTML is the source of truth. Brands override tokens. The Figma file instances th
 
 | Piece | Where | Job |
 | --- | --- | --- |
-| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.maxWidth` (pixels on the generic `borderRadius` / `borderSize` scales and the slide canvas cap). |
+| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.maxWidth` (pixels on the generic `border.radius` / `border.size` scales and the slide canvas cap). |
 | Components | `design-system/components/` (HTML fragments + CSS + `registry.json`) | Slide chrome, type, Card, Alert, Attribution, … |
 | Presets | `presets/` | Starting-point title slides, content slides, footers. A copied slide may diverge. |
 | Showcase | `design-system/showcase/showcase.html` | Workbench: `fetch()` of live component and preset files, brand switcher |
@@ -59,7 +59,7 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slide
 - `registry.json` + `refresh-components.js` restamp Alert, Slide Title, Card, and Attribution in a deck without wiping unique layout.
 - Title presets (01–04), footers (01–02), one content slide (`content-slide-01`: header, fact row, section + body, alert, footer-01).
 - Card component lives at `design-system/components/card/card.html`.
-- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeLg` / `sizeMd` / `sizeSm` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution, page numbers). Semantic type tags are presets of `<text>` (`color`, `size`, `uppercase`, `context`). `<copy>` is gone.
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution, page numbers). Semantic type tags are presets of `<text>` (`color`, `size`, `uppercase`, `context`). `<copy>` is gone.
 - Cover ink uses role classes (`.color-cover-foreground-*`). Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 

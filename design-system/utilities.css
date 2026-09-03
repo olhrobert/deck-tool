@@ -1344,11 +1344,17 @@
 .color-positive-bg {
 	color: var(--color-positive-bg);
 }
+.color-positive-border {
+	color: var(--color-positive-border);
+}
 .color-warning {
 	color: var(--color-warning);
 }
 .color-warning-bg {
 	color: var(--color-warning-bg);
+}
+.color-warning-border {
+	color: var(--color-warning-border);
 }
 .color-negative {
 	color: var(--color-negative);
@@ -1356,11 +1362,17 @@
 .color-negative-bg {
 	color: var(--color-negative-bg);
 }
+.color-negative-border {
+	color: var(--color-negative-border);
+}
 .color-informative {
 	color: var(--color-informative);
 }
 .color-informative-bg {
 	color: var(--color-informative-bg);
+}
+.color-informative-border {
+	color: var(--color-informative-border);
 }
 .color-chart-1 {
 	color: var(--color-chart-1);
@@ -1377,17 +1389,17 @@
 
 /* Typography */
 .font-family-cover-title {
-	font-family: var(--font-family-cover-title, system-ui, sans-serif);
+	font-family: var(--cover-title-font-family, system-ui, sans-serif);
 }
 .font-family-slide-title {
-	font-family: var(--font-family-slide-title, system-ui, sans-serif);
+	font-family: var(--slide-title-font-family, system-ui, sans-serif);
 }
 .font-family-card-title {
-	font-family: var(--font-family-card-title, system-ui, sans-serif);
+	font-family: var(--card-title-font-family, system-ui, sans-serif);
 }
 .font-family-paragraph-title {
-	font-family: var(--font-family-paragraph-title, system-ui, sans-serif);
+	font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
 }
 .font-family-body {
-	font-family: var(--font-family-body, system-ui, sans-serif);
+	font-family: var(--body-font-family, system-ui, sans-serif);
 }

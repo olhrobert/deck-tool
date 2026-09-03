@@ -2,8 +2,8 @@
    Defaults: color=strong, context=slide, size=md (brand). */
 
 slide-title {
-	font-family: var(--font-family-slide-title, system-ui, sans-serif);
-	font-weight: var(--font-weight-slide-title);
+	font-family: var(--slide-title-font-family, system-ui, sans-serif);
+	font-weight: var(--slide-title-font-weight);
 	line-height: var(--slide-title-lineheight);
 	font-size: var(--slide-title-size-md);
 	letter-spacing: 0%;

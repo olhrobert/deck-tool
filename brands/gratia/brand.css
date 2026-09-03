@@ -2,32 +2,22 @@
 /* Regenerate: npm run generate-brand -- brands/<name> */
 
 :root {
-	/* cover */
-	--color-cover-background: rgb(4, 56, 58);
-	--color-cover-foreground: rgb(255, 255, 255);
-	--color-cover-surface-background: rgb(255, 255, 255);
-	--color-cover-surface-foreground: rgb(1, 25, 26);
-	--color-cover-surface-border: rgba(1, 25, 26, 0.18);
-
-	/* slide */
-	--color-slide-background: rgb(242, 245, 245);
-	--color-slide-foreground: rgb(1, 25, 26);
-	--color-slide-surface-background: rgba(255, 255, 255, 1);
-	--color-slide-surface-foreground: rgb(1, 25, 26);
-	--color-slide-surface-border: rgba(1, 25, 26, 0.18);
-
 	/* highlight */
 	--color-highlight: rgb(4, 56, 58);
 
 	/* status */
 	--color-positive: rgba(8, 120, 85, 1);
 	--color-positive-bg: rgba(35, 221, 156, 0.15);
+	--color-positive-border: rgba(35, 221, 156, 0.2);
 	--color-warning: rgba(180, 110, 10, 1);
 	--color-warning-bg: rgba(180, 110, 10, 0.1);
+	--color-warning-border: rgba(180, 110, 10, 0.2);
 	--color-negative: rgba(180, 30, 65, 1);
 	--color-negative-bg: rgba(180, 30, 65, 0.1);
+	--color-negative-border: rgba(180, 30, 65, 0.2);
 	--color-informative: rgba(4, 90, 100, 1);
 	--color-informative-bg: rgba(4, 90, 100, 0.1);
+	--color-informative-border: rgba(4, 90, 100, 0.2);
 
 	/* charts */
 	--color-chart-1: rgba(35, 221, 156, 1);
@@ -35,51 +25,70 @@
 	--color-chart-3: rgba(1, 25, 26, 1);
 	--color-chart-4: rgba(20, 150, 130, 1);
 
+	/* fonts — families */
+	--font-family-display: "DM Sans", system-ui, sans-serif;
+	--font-family-base: "DM Sans", system-ui, sans-serif;
+
 	/* fonts — weights */
 	--font-weight-regular: 400;
 	--font-weight-medium: 500;
 	--font-weight-bold: 600;
 
+	/* fonts — paragraph title */
+	--paragraph-title-font-family: var(--font-family-display);
+	--paragraph-title-font-weight: var(--font-weight-medium);
+	--paragraph-title-size-sm: var(--text-size-400);
+	--paragraph-title-size-md: var(--text-size-500);
+	--paragraph-title-size-lg: var(--text-size-600);
+
 	/* fonts — body */
-	--font-family-body: "DM Sans", system-ui, sans-serif;
-	--font-weight-body: var(--font-weight-regular);
+	--body-font-family: var(--font-family-base);
+	--body-font-weight: var(--font-weight-regular);
 	--body-size-sm: var(--text-size-350);
 	--body-size-md: var(--text-size-400);
 	--body-size-lg: var(--text-size-450);
 
-	/* border radius */
+	/* border — radius */
 	--border-radius-none: 0px;
 	--border-radius-sm: 4px;
 	--border-radius-med: 8px;
 	--border-radius-lg: 12px;
 	--border-radius-full: 200px;
 
-	/* border size */
+	/* border — size */
 	--border-size-none: 0px;
 	--border-size-sm: 1px;
 	--border-size-md: 2px;
 
-	/* cover title */
-	--font-family-cover-title: "DM Sans", system-ui, sans-serif;
-	--font-weight-cover-title: var(--font-weight-bold);
+	/* cover */
+	--color-cover-background: rgb(4, 56, 58);
+	--color-cover-foreground: rgb(255, 255, 255);
+	--color-cover-surface-background: rgb(255, 255, 255);
+	--color-cover-surface-foreground: rgb(1, 25, 26);
+	--color-cover-surface-border: rgba(1, 25, 26, 0.18);
+	--cover-title-font-family: var(--font-family-display);
+	--cover-title-font-weight: var(--font-weight-bold);
 
-	/* slide title */
-	--font-family-slide-pretitle: "DM Sans", system-ui, sans-serif;
-	--font-weight-slide-pretitle: var(--font-weight-regular);
+	/* slide */
+	--color-slide-background: rgb(242, 245, 245);
+	--color-slide-foreground: rgb(1, 25, 26);
+	--color-slide-surface-background: rgba(255, 255, 255, 1);
+	--color-slide-surface-foreground: rgb(1, 25, 26);
+	--color-slide-surface-border: rgba(1, 25, 26, 0.18);
+	--slide-pretitle-font-family: var(--font-family-base);
+	--slide-pretitle-font-weight: var(--font-weight-regular);
 	--slide-pretitle-text-transform: none;
 	--slide-pretitle-letter-spacing: 2%;
 	--slide-pretitle-size: var(--text-size-350);
 	--slide-title-gap: var(--spacing-2);
-	--font-family-slide-title: "DM Sans", system-ui, sans-serif;
-	--font-weight-slide-title: var(--font-weight-bold);
-	--slide-title-size-lg: var(--text-size-1200);
-	--slide-title-size-md: var(--text-size-1000);
+	--slide-title-font-family: var(--font-family-display);
+	--slide-title-font-weight: var(--font-weight-bold);
 	--slide-title-size-sm: var(--text-size-800);
-	--font-family-slide-subtitle: "DM Sans", system-ui, sans-serif;
-	--font-weight-slide-subtitle: var(--font-weight-regular);
+	--slide-title-size-md: var(--text-size-1000);
+	--slide-title-size-lg: var(--text-size-1200);
+	--slide-subtitle-font-family: var(--font-family-base);
+	--slide-subtitle-font-weight: var(--font-weight-regular);
 	--slide-subtitle-size: var(--text-size-350);
-
-	/* slide chrome */
 	--slide-max-width: 1280px;
 	--slide-header-padding-top: var(--spacing-16);
 	--slide-header-padding-right: var(--spacing-20);
@@ -101,18 +110,18 @@
 	--card-gap-sm: var(--spacing-2);
 	--card-gap-md: var(--spacing-3);
 	--card-gap-lg: var(--spacing-4);
-	--border-radius-card: var(--border-radius-med);
+	--card-border-radius: var(--border-radius-med);
 	--card-border-size-top: var(--border-size-sm);
 	--card-border-size-bottom: var(--border-size-sm);
 	--card-border-size-left: var(--border-size-sm);
 	--card-border-size-right: var(--border-size-sm);
-	--font-family-card-title: "DM Sans", system-ui, sans-serif;
-	--font-weight-card-title: var(--font-weight-bold);
-	--card-title-size-lg: var(--text-size-800);
-	--card-title-size-md: var(--text-size-700);
+	--card-title-font-family: var(--font-family-display);
+	--card-title-font-weight: var(--font-weight-bold);
 	--card-title-size-sm: var(--text-size-600);
-	--font-family-card-pretitle: "DM Sans", system-ui, sans-serif;
-	--font-weight-card-pretitle: var(--font-weight-regular);
+	--card-title-size-md: var(--text-size-700);
+	--card-title-size-lg: var(--text-size-800);
+	--card-pretitle-font-family: var(--font-family-base);
+	--card-pretitle-font-weight: var(--font-weight-regular);
 	--card-pretitle-text-transform: none;
 	--card-pretitle-letter-spacing: 2%;
 	--card-pretitle-size: var(--text-size-300);
@@ -123,7 +132,7 @@
 	--alert-padding-md: var(--spacing-4);
 	--alert-padding-lg: var(--spacing-6);
 	--alert-gap: var(--spacing-1);
-	--border-radius-alert: var(--border-radius-med);
+	--alert-border-radius: var(--border-radius-med);
 	--alert-border-size-top: var(--border-size-sm);
 	--alert-border-size-bottom: var(--border-size-sm);
 	--alert-border-size-left: var(--border-size-sm);
@@ -133,11 +142,4 @@
 	--stack-gap-sm: var(--spacing-2);
 	--stack-gap-md: var(--spacing-3);
 	--stack-gap-lg: var(--spacing-4);
-
-	/* paragraph title */
-	--font-family-paragraph-title: "DM Sans", system-ui, sans-serif;
-	--font-weight-paragraph-title: var(--font-weight-medium);
-	--paragraph-title-size-lg: var(--text-size-600);
-	--paragraph-title-size-md: var(--text-size-500);
-	--paragraph-title-size-sm: var(--text-size-400);
 }

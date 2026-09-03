@@ -2,37 +2,27 @@
 	"name": "Gratia",
 	"logo": "gratia-logo.svg",
 	"colors": {
-		"cover": {
-			"background": "rgb(4, 56, 58)",
-			"foreground": "rgb(255, 255, 255)",
-			"surfaceBackground": "rgb(255, 255, 255)",
-			"surfaceForeground": "rgb(1, 25, 26)",
-			"surfaceBorder": "rgba(1, 25, 26, 0.18)"
-		},
-		"slide": {
-			"background": "rgb(242, 245, 245)",
-			"foreground": "rgb(1, 25, 26)",
-			"surfaceBackground": "rgba(255, 255, 255, 1)",
-			"surfaceForeground": "rgb(1, 25, 26)",
-			"surfaceBorder": "rgba(1, 25, 26, 0.18)"
-		},
 		"highlight": "rgb(4, 56, 58)",
 		"status": {
 			"positive": {
-				"color": "rgba(8, 120, 85, 1)",
-				"background": "rgba(35, 221, 156, 0.15)"
+				"foreground": "rgba(8, 120, 85, 1)",
+				"background": "rgba(35, 221, 156, 0.15)",
+				"border": "rgba(35, 221, 156, 0.2)"
 			},
 			"warning": {
-				"color": "rgba(180, 110, 10, 1)",
-				"background": "rgba(180, 110, 10, 0.1)"
+				"foreground": "rgba(180, 110, 10, 1)",
+				"background": "rgba(180, 110, 10, 0.1)",
+				"border": "rgba(180, 110, 10, 0.2)"
 			},
 			"negative": {
-				"color": "rgba(180, 30, 65, 1)",
-				"background": "rgba(180, 30, 65, 0.1)"
+				"foreground": "rgba(180, 30, 65, 1)",
+				"background": "rgba(180, 30, 65, 0.1)",
+				"border": "rgba(180, 30, 65, 0.2)"
 			},
 			"informative": {
-				"color": "rgba(4, 90, 100, 1)",
-				"background": "rgba(4, 90, 100, 0.1)"
+				"foreground": "rgba(4, 90, 100, 1)",
+				"background": "rgba(4, 90, 100, 0.1)",
+				"border": "rgba(4, 90, 100, 0.2)"
 			}
 		},
 		"charts": {
@@ -43,32 +33,85 @@
 		}
 	},
 	"fonts": {
+		"families": {
+			"display": "\"DM Sans\", system-ui, sans-serif",
+			"base": "\"DM Sans\", system-ui, sans-serif"
+		},
 		"weights": {
 			"regular": 400,
 			"medium": 500,
 			"bold": 600
 		},
+		"paragraphTitle": {
+			"family": "display",
+			"weight": "medium",
+			"sizeSm": 400,
+			"sizeMd": 500,
+			"sizeLg": 600
+		},
 		"body": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
+			"family": "base",
 			"weight": "regular",
 			"sizeSm": 350,
 			"sizeMd": 400,
 			"sizeLg": 450
 		}
 	},
-	"borderRadius": {
-		"none": "0px",
-		"sm": "4px",
-		"med": "8px",
-		"lg": "12px",
-		"full": "200px"
+	"border": {
+		"radius": {
+			"none": "0px",
+			"sm": "4px",
+			"med": "8px",
+			"lg": "12px",
+			"full": "200px"
+		},
+		"size": {
+			"none": "0px",
+			"sm": "1px",
+			"md": "2px"
+		}
 	},
-	"borderSize": {
-		"none": "0px",
-		"sm": "1px",
-		"md": "2px"
+	"cover": {
+		"background": "rgb(4, 56, 58)",
+		"foreground": "rgb(255, 255, 255)",
+		"surface": {
+			"background": "rgb(255, 255, 255)",
+			"foreground": "rgb(1, 25, 26)",
+			"border": "rgba(1, 25, 26, 0.18)"
+		},
+		"title": {
+			"family": "display",
+			"weight": "bold"
+		}
 	},
 	"slide": {
+		"background": "rgb(242, 245, 245)",
+		"foreground": "rgb(1, 25, 26)",
+		"surface": {
+			"background": "rgba(255, 255, 255, 1)",
+			"foreground": "rgb(1, 25, 26)",
+			"border": "rgba(1, 25, 26, 0.18)"
+		},
+		"pretitle": {
+			"family": "base",
+			"weight": "regular",
+			"uppercase": false,
+			"letterSpacing": "2%",
+			"size": 350
+		},
+		"title": {
+			"gap": 2,
+			"family": "display",
+			"weight": "bold",
+			"sizeSm": 800,
+			"sizeMd": 1000,
+			"sizeLg": 1200
+		},
+		"subtitle": {
+			"family": "base",
+			"weight": "regular",
+			"size": 350
+		},
 		"maxWidth": 1280,
 		"header": {
 			"paddingTop": 16,
@@ -88,37 +131,6 @@
 			"paddingBottom": 4,
 			"paddingLeft": 4
 		}
-	},
-	"coverTitle": {
-		"family": "\"DM Sans\", system-ui, sans-serif",
-		"weight": "bold"
-	},
-	"slideTitle": {
-		"pretitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": "regular",
-			"uppercase": false,
-			"letterSpacing": "2%",
-			"size": 350
-		},
-		"gap": 2,
-		"family": "\"DM Sans\", system-ui, sans-serif",
-		"weight": "bold",
-		"sizeLg": 1200,
-		"sizeMd": 1000,
-		"sizeSm": 800,
-		"sub": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
-			"weight": "regular",
-			"size": 350
-		}
-	},
-	"paragraphTitle": {
-		"family": "\"DM Sans\", system-ui, sans-serif",
-		"weight": "medium",
-		"sizeLg": 600,
-		"sizeMd": 500,
-		"sizeSm": 400
 	},
 	"stack": {
 		"gapSm": 2,
@@ -140,14 +152,14 @@
 			"right": "sm"
 		},
 		"title": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
+			"family": "display",
 			"weight": "bold",
-			"sizeLg": 800,
+			"sizeSm": 600,
 			"sizeMd": 700,
-			"sizeSm": 600
+			"sizeLg": 800
 		},
 		"pretitle": {
-			"family": "\"DM Sans\", system-ui, sans-serif",
+			"family": "base",
 			"weight": "regular",
 			"uppercase": false,
 			"letterSpacing": "2%",

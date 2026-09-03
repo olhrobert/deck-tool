@@ -26,32 +26,36 @@
 
 	/* SEMANTIC — role defaults. Brand.css remaps size* to other --text-size-* steps. */
 
+	/* Named families — brands set fonts.families.display|base to CSS stacks */
+	--font-family-display: system-ui, sans-serif;
+	--font-family-base: system-ui, sans-serif;
+
 	/* Named weights — brands set fonts.weights.regular|medium|bold to CSS numbers */
 	--font-weight-regular: 400;
 	--font-weight-medium: 500;
 	--font-weight-bold: 700;
 
-	/* Role weights — brands set coverTitle.weight / card.title.weight / fonts.body.weight to regular|medium|bold */
-	--font-weight-cover-title: var(--font-weight-bold);
-	--font-weight-slide-title: var(--font-weight-bold);
-	--font-weight-slide-subtitle: var(--font-weight-regular);
-	--font-weight-slide-pretitle: var(--font-weight-regular);
-	--font-weight-card-pretitle: var(--font-weight-regular);
-	--font-weight-card-title: var(--font-weight-bold);
-	--font-weight-paragraph-title: var(--font-weight-bold);
-	--font-weight-body: var(--font-weight-regular);
+	/* Role weights — brands set cover.title.weight / card.title.weight / fonts.body.weight to regular|medium|bold */
+	--cover-title-font-weight: var(--font-weight-bold);
+	--slide-title-font-weight: var(--font-weight-bold);
+	--slide-subtitle-font-weight: var(--font-weight-regular);
+	--slide-pretitle-font-weight: var(--font-weight-regular);
+	--card-pretitle-font-weight: var(--font-weight-regular);
+	--card-title-font-weight: var(--font-weight-bold);
+	--paragraph-title-font-weight: var(--font-weight-bold);
+	--body-font-weight: var(--font-weight-regular);
 
 	/* body copy — brands set fonts.body.sizeSm/Md/Lg to type-scale steps */
 	--body-size-sm: var(--text-size-350);
 	--body-size-md: var(--text-size-400);
 	--body-size-lg: var(--text-size-450);
-	/* slide title — family + sizes driven by slideTitle in brand-settings.json */
+	/* slide title — family + sizes driven by slide.title in brand-settings.json */
 	--slide-title-lineheight: 1.2;
-	--slide-title-size-lg: var(--text-size-1200);
-	--slide-title-size-md: var(--text-size-1000);
 	--slide-title-size-sm: var(--text-size-800);
+	--slide-title-size-md: var(--text-size-1000);
+	--slide-title-size-lg: var(--text-size-1200);
 
-	/* slide pretitle — driven by slideTitle.pretitle in brand-settings.json */
+	/* slide pretitle — driven by slide.pretitle in brand-settings.json */
 	--slide-pretitle-size: var(--text-size-350);
 	--slide-pretitle-text-transform: none;
 	--slide-pretitle-letter-spacing: 2%;
@@ -61,51 +65,51 @@
 	--card-pretitle-text-transform: none;
 	--card-pretitle-letter-spacing: 2%;
 
-	/* slide subtitle — driven by slideTitle.sub in brand-settings.json */
+	/* slide subtitle — driven by slide.subtitle in brand-settings.json */
 	--slide-subtitle-lineheight: 1.2;
 	--slide-subtitle-size: var(--text-size-350);
 
-	/* paragraph title — driven by paragraphTitle in brand-settings.json */
+	/* paragraph title — driven by fonts.paragraphTitle in brand-settings.json */
 	--paragraph-title-lineheight: 1.1;
-	--paragraph-title-size-lg: var(--text-size-600);
-	--paragraph-title-size-md: var(--text-size-500);
 	--paragraph-title-size-sm: var(--text-size-400);
+	--paragraph-title-size-md: var(--text-size-500);
+	--paragraph-title-size-lg: var(--text-size-600);
 
 	/* alert title */
 	--alert-title-family: var(
-		--font-family-paragraph-title,
+		--paragraph-title-font-family,
 		system-ui,
 		sans-serif
 	);
-	--alert-title-weight: var(--font-weight-paragraph-title);
+	--alert-title-weight: var(--paragraph-title-font-weight);
 	--alert-title-lineheight: 1.2;
 	--alert-title-size: var(--paragraph-title-size-md);
 
 	/* alert description */
-	--alert-description-family: var(--font-family-body, system-ui, sans-serif);
-	--alert-description-weight: var(--font-weight-body);
+	--alert-description-family: var(--body-font-family, system-ui, sans-serif);
+	--alert-description-weight: var(--body-font-weight);
 	--alert-description-lineheight: 1.2;
 	--alert-description-size: var(--text-size-400);
 
-	/* card title sizes — brands set card.title.sizeLg/Md/Sm to scale steps */
-	--card-title-size-lg: var(--text-size-800);
-	--card-title-size-md: var(--text-size-800);
+	/* card title sizes — brands set card.title.sizeSm/Md/Lg to scale steps */
 	--card-title-size-sm: var(--text-size-600);
+	--card-title-size-md: var(--text-size-800);
+	--card-title-size-lg: var(--text-size-800);
 
 	/* card title — family from card.title */
 	--card-title-family: var(
-		--font-family-card-title,
+		--card-title-font-family,
 		system-ui,
 		sans-serif
 	);
-	--card-title-weight: var(--font-weight-card-title);
+	--card-title-weight: var(--card-title-font-weight);
 	--card-title-lineheight: 1;
 	--card-meta-family: var(
-		--font-family-body,
+		--body-font-family,
 		system-ui,
 		sans-serif
 	);
-	--card-meta-weight: var(--font-weight-body);
+	--card-meta-weight: var(--body-font-weight);
 	--card-meta-lineheight: 1.2;
 	--card-meta-size: var(--text-size-300);
 

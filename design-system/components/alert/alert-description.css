@@ -2,8 +2,8 @@
    Defaults: color=base, context=surface. */
 
 alert-description {
-	font-family: var(--font-family-body, system-ui, sans-serif);
-	font-weight: var(--font-weight-body);
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-weight: var(--body-font-weight);
 	line-height: var(--alert-description-lineheight);
 	font-size: var(--alert-description-size);
 	letter-spacing: 0%;

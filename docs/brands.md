@@ -33,39 +33,73 @@ Then edit `brand-settings.json` (start from the Riverton copy the scaffold write
 
 ## `brand-settings.json` fields
 
-Generic tokens are grouped by type (`colors`, `fonts`, `borderRadius`, `borderSize`). Component tokens (`card`, `alert`, `slideTitle`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `borderRadius` / `borderSize` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.maxWidth` (canvas cap, default `1280`).
+Cover and slide settings live under top-level `cover` and `slide` (colors, type, chrome), nested by group (`cover.surface.background`, `slide.pretitle.family`, `slide.header.paddingLeft`). Shared tokens are grouped by type (`colors` for highlight/status/charts, `fonts`, `border`). Other component tokens (`card`, `alert`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `border.radius` / `border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.maxWidth` (canvas cap, default `1280`).
 
 `design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`). There is no `primary` / `secondary` / `tertiary` layer.
 
 Colors must be `rgb()`, `rgba()`, or `#rrggbb`. `validate-brand.js` checks WCAG AA for **slide foreground on slide background**, **cover foreground on cover background**, **slide surface foreground on slide surface background**, and **cover surface foreground on cover surface background**.
 
-### Color tokens
+### Cover
 
-Pick colors by **role on the slide**. Cover and content slide are independent canvases; surfaces (cards) have their own fill and ink.
+Title/cover canvas plus cover title type.
 
 | `brand-settings.json` | CSS | What you see |
 |---|---|---|
-| `colors.cover.background` | `--color-cover-background` | Title/cover fill. `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
-| `colors.cover.foreground` | `--color-cover-foreground` | Ink on the cover. Pair with `background`. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
-| `colors.cover.surfaceBackground` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). |
-| `colors.cover.surfaceForeground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. |
-| `colors.cover.surfaceBorder` | `--color-cover-surface-border` | Card stroke on a cover surface. |
-| `colors.slide.background` | `--color-slide-background` | Default content-slide canvas. `<slide>` fill. `.bg-slide`. |
-| `colors.slide.foreground` | `--color-slide-foreground` | Ink on the content canvas. Slide Title, paragraph titles, `<body-copy>`, footer logos. `.color-slide-foreground-*`. |
-| `colors.slide.surfaceBackground` | `--color-slide-surface-background` | Cards, `<attribution-box>`, `<alert>` fill. `.bg-slide-surface`. |
-| `colors.slide.surfaceForeground` | `--color-slide-surface-foreground` | Ink on those panels (cards, attribution, alert copy). |
-| `colors.slide.surfaceBorder` | `--color-slide-surface-border` | Card stroke and attribution separator. `.border-color-slide-surface`. |
+| `cover.background` | `--color-cover-background` | Title/cover fill. `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
+| `cover.foreground` | `--color-cover-foreground` | Ink on the cover. Pair with `background`. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
+| `cover.surface.background` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). |
+| `cover.surface.foreground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. |
+| `cover.surface.border` | `--color-cover-surface-border` | Card stroke on a cover surface. |
+| `cover.title.family` | `--cover-title-font-family` → `var(--font-family-*)` | `family="cover-title"` |
+| `cover.title.weight` | `--cover-title-font-weight` → `var(--font-weight-*)` | default if `weight` is omitted |
+
+### Slide
+
+Content-slide canvas, title stack type, and chrome padding.
+
+| `brand-settings.json` | CSS | What you see / HTML |
+|---|---|---|
+| `slide.background` | `--color-slide-background` | Default content-slide canvas. `<slide>` fill. `.bg-slide`. |
+| `slide.foreground` | `--color-slide-foreground` | Ink on the content canvas. Slide Title, paragraph titles, `<body-copy>`, footer logos. `.color-slide-foreground-*`. |
+| `slide.surface.background` | `--color-slide-surface-background` | Cards, `<attribution-box>`, `<alert>` fill. `.bg-slide-surface`. |
+| `slide.surface.foreground` | `--color-slide-surface-foreground` | Ink on those panels (cards, attribution, alert copy). |
+| `slide.surface.border` | `--color-slide-surface-border` | Card stroke and attribution separator. `.border-color-slide-surface`. |
+| `slide.pretitle.family` | `--slide-pretitle-font-family` → `var(--font-family-*)` | `<slide-pretitle>` |
+| `slide.pretitle.weight` | `--slide-pretitle-font-weight` → `var(--font-weight-*)` | |
+| `slide.pretitle.uppercase` | `--slide-pretitle-text-transform` | brand default; override with `uppercase="true\|false"` |
+| `slide.pretitle.letterSpacing` | `--slide-pretitle-letter-spacing` | percentage string, e.g. `"2%"` |
+| `slide.pretitle.size` | `--slide-pretitle-size` → `var(--text-size-*)` | brand-only (no `size` attribute) |
+| `slide.title.gap` | `--slide-title-gap` | `<slide-title-group>` |
+| `slide.title.family` | `--slide-title-font-family` → `var(--font-family-*)` | `<slide-title>` |
+| `slide.title.weight` | `--slide-title-font-weight` | default for slide titles |
+| `slide.title.sizeSm/Md/Lg` | `--slide-title-size-sm/md/lg` → `var(--text-size-*)` | `size="lg"` etc. |
+| `slide.subtitle.family` | `--slide-subtitle-font-family` → `var(--font-family-*)` | `<slide-subtitle>` |
+| `slide.subtitle.weight` | `--slide-subtitle-font-weight` | |
+| `slide.subtitle.size` | `--slide-subtitle-size` → `var(--text-size-*)` | |
+| `slide.maxWidth` | `--slide-max-width` | `<slide>` canvas cap (pixels) |
+| `slide.header.paddingTop/Right/Bottom/Left` | `--slide-header-padding-*` | `<slide-header>` |
+| `slide.content.paddingTop/Right/Bottom/Left` | `--slide-content-padding-*` | `<slide-content>` |
+| `slide.footer.paddingTop/Right/Bottom/Left` | `--slide-footer-padding-*` | `<slide-footer>` |
+
+`<slide>` fills its container up to `maxWidth`. Cover slides (`<slide class="bg-cover">`) do not use this chrome. Defaults: maxWidth 1280, header 16/20/0/20, content 10/20/0/20, footer 4/4/4/4 (top/right/bottom/left).
+
+`<slide-pretitle>` defaults: `color` is `subtle`, `context="slide"`. No markup size variants — one type-scale step per brand via `slide.pretitle.size`.
+
+### Shared color tokens
+
+| `brand-settings.json` | CSS | What you see |
+|---|---|---|
 | `colors.highlight` | `--color-highlight` | Default `<alert>` left border and `.color-highlight` / `.bg-highlight`. Independent of cover fill. |
-| `colors.status.*.color` / `background` | `--color-positive` … `--color-informative-bg` | Alert variants and `.color-positive` etc. |
+| `colors.status.*.foreground` / `background` / `border` | `--color-positive` … `--color-informative-border` | Alert variant borders (`.border` → `--color-*-border`), ink utilities (`.color-positive` etc.) |
 | `colors.charts.chart1`…`chart4` | `--color-chart-*` | `.color-chart-*` utilities. No chart component in the library yet. |
 
-**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; cards → `slide.surface*`; alert stripe → `highlight` (often the same as `cover.background`).
+**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; cards → `slide.surface.*`; alert stripe → `highlight` (often the same as `cover.background`).
 
 ### Font tokens
 
-Named weights (`regular`, `medium`, `bold`) live under `fonts.weights` as CSS numbers matching `@font-face` in `design-system/tokens/fonts.css`. `<text weight="bold">` and `slideTitle.weight: "bold"` both resolve to `fonts.weights.bold`. A brand can map two names to the same number (e.g. medium and bold both 500).
+Named families (`display`, `base`) live under `fonts.families` as CSS stacks. Role family fields (`cover.title.family`, `fonts.body.family`, …) name one of those two — they do not repeat the stack. Named weights (`regular`, `medium`, `bold`) live under `fonts.weights` as CSS numbers matching `@font-face` in `design-system/tokens/fonts.css`. `<text weight="bold">` and `slide.title.weight: "bold"` both resolve to `fonts.weights.bold`. A brand can map two names to the same number (e.g. medium and bold both 500).
 
-**Sizes are type-scale steps**, not pixels. The scale lives in `design-system/tokens/typography.css` (`--text-size-800` = 32px, `--text-size-400` = 16px, …). `<slide-title size="lg">` uses whatever step `slideTitle.sizeLg` names.
+**Sizes are type-scale steps**, not pixels. The scale lives in `design-system/tokens/typography.css` (`--text-size-800` = 32px, `--text-size-400` = 16px, …). `<slide-title size="lg">` uses whatever step `slide.title.sizeLg` names.
 
 | Named weight | Typical file |
 |---|---|
@@ -75,14 +109,19 @@ Named weights (`regular`, `medium`, `bold`) live under `fonts.weights` as CSS nu
 
 | `brand-settings.json` | CSS | HTML |
 |---|---|---|
+| `fonts.families.display` | `--font-family-display` | display stack (titles) |
+| `fonts.families.base` | `--font-family-base` | base stack (body, pretitles) |
 | `fonts.weights.regular` | `--font-weight-regular` | `<text weight="regular">` |
 | `fonts.weights.medium` | `--font-weight-medium` | `<text weight="medium">` |
 | `fonts.weights.bold` | `--font-weight-bold` | `<text weight="bold">` |
-| `fonts.body.family` | `--font-family-body` | `<text family="body">` |
-| `fonts.body.weight` | `--font-weight-body` | default body ink weight |
+| `fonts.body.family` | `--body-font-family` → `var(--font-family-*)` | `<text family="body">` |
+| `fonts.body.weight` | `--body-font-weight` | default body ink weight |
 | `fonts.body.sizeSm` | `--body-size-sm` → `var(--text-size-*)` | `<body-copy size="sm">` |
 | `fonts.body.sizeMd` | `--body-size-md` → `var(--text-size-*)` | `<body-copy size="md">` (default) |
 | `fonts.body.sizeLg` | `--body-size-lg` → `var(--text-size-*)` | `<body-copy size="lg">` |
+| `fonts.paragraphTitle.family` | `--paragraph-title-font-family` → `var(--font-family-*)` | `<paragraph-title>` |
+| `fonts.paragraphTitle.weight` | `--paragraph-title-font-weight` | |
+| `fonts.paragraphTitle.sizeSm/Md/Lg` | `--paragraph-title-size-sm/md/lg` → `var(--text-size-*)` | `size="lg"` etc. |
 
 Body copy uses **`<body-copy size="sm|md|lg">`** (brand-mapped). Default is `md` (Gratia/Riverton: step `400` / 16px). Use primitive `<text>` with a raw type-scale step for one-offs (`size="300"` for attribution or cover captions, `size="1600"` with `family="cover-title"` for cover titles). Omit `weight` on a role so the brand role weight applies; set `weight="regular|medium|bold"` only to override it.
 
@@ -92,22 +131,28 @@ Example — Gratia-style named weights, then make slide-title `lg` use scale 800
 
 ```json
 "fonts": {
+  "families": {
+    "display": "\"DM Sans\", system-ui, sans-serif",
+    "base": "\"DM Sans\", system-ui, sans-serif"
+  },
   "weights": {
     "regular": 400,
     "medium": 500,
     "bold": 600
   },
   "body": {
-    "family": "\"DM Sans\", system-ui, sans-serif",
+    "family": "base",
     "weight": "regular"
   }
 },
-"slideTitle": {
-  "family": "\"DM Sans\", system-ui, sans-serif",
-  "weight": "bold",
-  "sizeLg": 800,
-  "sizeMd": 1000,
-  "sizeSm": 800
+"slide": {
+  "title": {
+    "family": "display",
+    "weight": "bold",
+    "sizeSm": 800,
+    "sizeMd": 1000,
+    "sizeLg": 800
+  }
 }
 ```
 
@@ -119,24 +164,14 @@ Semantic spacing is a **spacing-scale step** from `design-system/tokens/spacing.
 
 | JSON | CSS |
 |---|---|
-| `borderRadius.none/sm/med/lg/full` | `--border-radius-*` |
-| `borderSize.none/sm/md` | `--border-size-*` |
+| `border.radius.none/sm/med/lg/full` | `--border-radius-*` |
+| `border.size.none/sm/md` | `--border-size-*` |
 
 Card and alert pick a step on these scales (`"med"`, `"sm"`, …), not a pixel value.
 
 ### Component tokens
 
-#### Slide pretitle
-
-`<slide-pretitle>` is a preset for labels in the slide title stack. Default `color` is `subtle`, `context="slide"`. No markup size variants — one type-scale step per brand via `slideTitle.pretitle.size`. Markup `uppercase="true|false"` overrides the brand default.
-
-| JSON | CSS | HTML |
-|---|---|---|
-| `slideTitle.pretitle.family` | `--font-family-slide-pretitle` | `<slide-pretitle>` |
-| `slideTitle.pretitle.weight` | `--font-weight-slide-pretitle` → `var(--font-weight-*)` | |
-| `slideTitle.pretitle.uppercase` | `--slide-pretitle-text-transform` | brand default; override with `uppercase="true\|false"` |
-| `slideTitle.pretitle.letterSpacing` | `--slide-pretitle-letter-spacing` | percentage string, e.g. `"2%"` |
-| `slideTitle.pretitle.size` | `--slide-pretitle-size` → `var(--text-size-*)` | brand-only (no `size` attribute) |
+CSS custom properties are component-leading (`--slide-pretitle-font-family`, not `--font-family-slide-pretitle`). Generic scales keep type first (`--font-weight-regular`, `--border-radius-med`).
 
 #### Card pretitle
 
@@ -144,45 +179,15 @@ Card and alert pick a step on these scales (`"med"`, `"sm"`, …), not a pixel v
 
 | JSON | CSS | HTML |
 |---|---|---|
-| `card.pretitle.family` | `--font-family-card-pretitle` | `<card-pretitle>` |
-| `card.pretitle.weight` | `--font-weight-card-pretitle` → `var(--font-weight-*)` | |
+| `card.pretitle.family` | `--card-pretitle-font-family` → `var(--font-family-*)` | `<card-pretitle>` |
+| `card.pretitle.weight` | `--card-pretitle-font-weight` → `var(--font-weight-*)` | |
 | `card.pretitle.uppercase` | `--card-pretitle-text-transform` | brand default; override with `uppercase="true\|false"` |
 | `card.pretitle.letterSpacing` | `--card-pretitle-letter-spacing` | percentage string, e.g. `"2%"` |
 | `card.pretitle.size` | `--card-pretitle-size` → `var(--text-size-*)` | brand-only (no `size` attribute) |
 
-Slide and card pretitles use separate token groups (`slideTitle.pretitle` vs `card.pretitle`). Duplicate family, weight, uppercase, and letter-spacing between them when both contexts should match; only `size` typically differs (e.g. slide step `350`, card step `300`).
+Slide and card pretitles use separate token groups (`slide.pretitle` vs `card.pretitle`). Duplicate family, weight, uppercase, and letter-spacing between them when both contexts should match; only `size` typically differs (e.g. slide step `350`, card step `300`).
 
 Context and color are set in markup: `context="slide|surface"` and `color="subtle|base|strong"`.
-
-#### Cover title
-
-| JSON | CSS | HTML |
-|---|---|---|
-| `coverTitle.family` | `--font-family-cover-title` | `family="cover-title"` |
-| `coverTitle.weight` | `--font-weight-cover-title` → `var(--font-weight-*)` | default if `weight` is omitted |
-
-#### Slide title
-
-| JSON | CSS | HTML |
-|---|---|---|
-| `slideTitle.gap` | `--slide-title-gap` | `<slide-title-group>` |
-| `slideTitle.family` | `--font-family-slide-title` | `<slide-title>` |
-| `slideTitle.weight` | `--font-weight-slide-title` | default for slide titles |
-| `slideTitle.sizeLg/Md/Sm` | `--slide-title-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. |
-| `slideTitle.sub.family` | `--font-family-slide-subtitle` | `<slide-subtitle>` |
-| `slideTitle.sub.weight` | `--font-weight-slide-subtitle` | |
-| `slideTitle.sub.size` | `--slide-subtitle-size` → `var(--text-size-*)` | |
-
-#### Slide chrome
-
-`<slide>` fills its container up to `maxWidth`. `<slide-header>`, `<slide-content>`, and `<slide-footer>` each have four sides. Cover slides (`<slide class="bg-cover">`) do not use this chrome. Defaults: maxWidth 1280, header 16/20/0/20, content 10/20/0/20, footer 4/4/4/4 (top/right/bottom/left).
-
-| JSON | CSS | HTML |
-|---|---|---|
-| `slide.maxWidth` | `--slide-max-width` | `<slide>` canvas cap (pixels) |
-| `slide.header.paddingTop/Right/Bottom/Left` | `--slide-header-padding-*` | `<slide-header>` |
-| `slide.content.paddingTop/Right/Bottom/Left` | `--slide-content-padding-*` | `<slide-content>` |
-| `slide.footer.paddingTop/Right/Bottom/Left` | `--slide-footer-padding-*` | `<slide-footer>` |
 
 #### Card
 
@@ -190,11 +195,11 @@ Context and color are set in markup: `context="slide|surface"` and `color="subtl
 |---|---|---|
 | `card.paddingSm/Md/Lg` | `--card-padding-*` | `<card size>` |
 | `card.gapSm/Md/Lg` | `--card-gap-*` | `<card>` gap |
-| `card.borderRadius` | `--border-radius-card` → `var(--border-radius-*)` | `<card>` |
+| `card.borderRadius` | `--card-border-radius` → `var(--border-radius-*)` | `<card>` |
 | `card.borderSize.*` | `--card-border-size-*` → `var(--border-size-*)` | card stroke |
-| `card.title.family` | `--font-family-card-title` | `<card-title>` |
-| `card.title.weight` | `--font-weight-card-title` | |
-| `card.title.sizeLg/Md/Sm` | `--card-title-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. Default is `md`. |
+| `card.title.family` | `--card-title-font-family` → `var(--font-family-*)` | `<card-title>` |
+| `card.title.weight` | `--card-title-font-weight` | |
+| `card.title.sizeSm/Md/Lg` | `--card-title-size-sm/md/lg` → `var(--text-size-*)` | `size="lg"` etc. Default is `md`. |
 | `card.metaPaddingTop` | `--card-meta-padding-top` | `<card-meta>` |
 
 #### Alert
@@ -203,7 +208,7 @@ Context and color are set in markup: `context="slide|surface"` and `color="subtl
 |---|---|---|
 | `alert.paddingSm/Md/Lg` | `--alert-padding-*` | `<alert size>` |
 | `alert.gap` | `--alert-gap` | `<alert>` |
-| `alert.borderRadius` | `--border-radius-alert` → `var(--border-radius-*)` | |
+| `alert.borderRadius` | `--alert-border-radius` → `var(--border-radius-*)` | |
 | `alert.borderSize.*` | `--alert-border-size-*` → `var(--border-size-*)` | alert stroke |
 
 #### Stack
@@ -211,14 +216,6 @@ Context and color are set in markup: `context="slide|surface"` and `color="subtl
 | JSON | CSS | HTML |
 |---|---|---|
 | `stack.gapSm/Md/Lg` | `--stack-gap-*` | `<stack>` |
-
-#### Paragraph title
-
-| JSON | CSS | HTML |
-|---|---|---|
-| `paragraphTitle.family` | `--font-family-paragraph-title` | `<paragraph-title>` |
-| `paragraphTitle.weight` | `--font-weight-paragraph-title` | |
-| `paragraphTitle.sizeLg/Md/Sm` | `--paragraph-title-size-lg/md/sm` → `var(--text-size-*)` | `size="lg"` etc. |
 
 `<attribution-box>` is brand-agnostic — see `.cursor/skills/attribution-box/SKILL.md`. Do not add `attributionBox` keys to `brand-settings.json`.
 
@@ -237,4 +234,4 @@ The Gratia mark inside `<attribution-box>` is a separate prepared-by lockup (`<i
 
 ## Figma
 
-Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive font families (`font-family/cover-title`, `font-family/slide-title`, `font-family/card-title`, `font-family/paragraph-title`, `font-family/body`) using the first quoted family from `brand-settings.json` (e.g. `"Inter"` not the CSS stack). Create `__Logo/{Brand}` from `{slug}-logo.svg` (baked fills; do not bind paths to `color/slide-foreground-strong`). Logo wordmarks are not bound to the family variables.
+Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive font families (`font-family/display`, `font-family/base`) using the first quoted family from `fonts.families` in `brand-settings.json` (e.g. `"Inter"` not the CSS stack). Create `__Logo/{Brand}` from `{slug}-logo.svg` (baked fills; do not bind paths to `color/slide-foreground-strong`). Logo wordmarks are not bound to the family variables.

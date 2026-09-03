@@ -2,8 +2,8 @@
    Defaults: color=subtle, context=surface (brand). No markup size variants. */
 
 card-pretitle {
-	font-family: var(--font-family-card-pretitle, system-ui, sans-serif);
-	font-weight: var(--font-weight-card-pretitle);
+	font-family: var(--card-pretitle-font-family, system-ui, sans-serif);
+	font-weight: var(--card-pretitle-font-weight);
 	line-height: 1.2;
 	letter-spacing: var(--card-pretitle-letter-spacing);
 	text-transform: var(--card-pretitle-text-transform);

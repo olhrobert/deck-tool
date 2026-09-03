@@ -2,8 +2,8 @@
    Defaults: color=base, context=slide, size=md (brand). */
 
 body-copy {
-	font-family: var(--font-family-body, system-ui, sans-serif);
-	font-weight: var(--font-weight-body);
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-weight: var(--body-font-weight);
 	line-height: 1.2;
 	font-size: var(--body-size-md);
 	letter-spacing: 0%;

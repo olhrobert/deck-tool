@@ -11,7 +11,7 @@ card {
 	border-bottom-width: var(--card-border-size-bottom);
 	border-left-width: var(--card-border-size-left);
 	border-right-width: var(--card-border-size-right);
-	border-radius: var(--border-radius-card);
+	border-radius: var(--card-border-radius);
 	padding: var(--card-padding-md);
 	gap: var(--card-gap-md);
 }

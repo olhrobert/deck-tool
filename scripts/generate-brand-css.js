@@ -18,6 +18,13 @@ function isFontWeightName(value) {
 	return FONT_WEIGHT_NAME_SET.has(String(value));
 }
 
+const FONT_FAMILY_NAMES = ["display", "base"];
+const FONT_FAMILY_NAME_SET = new Set(FONT_FAMILY_NAMES);
+
+function isFontFamilyName(value) {
+	return FONT_FAMILY_NAME_SET.has(String(value));
+}
+
 /**
  * Maps brand-settings.json fields to CSS custom properties. This is the single
  * source of truth for which design-system globals a brand is allowed to override.
@@ -25,20 +32,26 @@ function isFontWeightName(value) {
  * Anything not listed here stays a shared design-system default (type scale,
  * global spacing scale, etc.).
  *
- * Font *named weights* (`fonts.weights.regular|medium|bold`) are CSS numbers
+ * Font *named families* (`fonts.families.display|base`) are CSS stacks.
+ * Role families (`cover.title.family`, `fonts.body.family`, …) name one of those
+ * two. Font *named weights* (`fonts.weights.regular|medium|bold`) are CSS numbers
  * (400, 500, 600, 700, …) matching `@font-face` in design-system/tokens/fonts.css.
- * Role weights (`slideTitle.weight`, `card.title.weight`, …) and `<text weight>`
+ * Role weights (`slide.title.weight`, `card.title.weight`, …) and `<text weight>`
  * name one of those three. Font *sizes* are type-scale steps (800, 600, 400, …)
  * from design-system/tokens/typography.css — not pixel values.
  * Semantic *spacing* is a spacing-scale step (20, 16, "0-5", …) from
  * design-system/tokens/spacing.css — not pixel values.
  * `slide.maxWidth` is a pixel integer (default 1280) — the slide canvas cap.
- * Component *radius* names a `borderRadius` step (`med`, `none`, …).
- * Component *stroke* names a `borderSize` step (`none`, `sm`, `md`).
+ * Component *radius* names a `border.radius` step (`med`, `none`, …).
+ * Component *stroke* names a `border.size` step (`none`, `sm`, `md`).
  *
- * Generic tokens are grouped by type (`colors`, `fonts.weights`, `fonts.body`,
- * `borderRadius` scale, `borderSize` scale). Component tokens are grouped by
- * component (`card`, `alert`, `slideTitle`, …). TOKEN_MAP order is the brand.css order.
+ * Cover and slide settings live under top-level `cover` / `slide` (colors,
+ * type, chrome), nested by group (`cover.surface.background`,
+ * `slide.pretitle.family`, `slide.header.paddingLeft`). Other generic tokens
+ * are grouped by type (`colors`, `fonts.families`, `fonts.weights`, `fonts.body`,
+ * `border.radius`, `border.size`). Remaining component tokens are grouped by
+ * component (`card`, `alert`, …) and named component-leading
+ * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
  */
 const TYPE_SCALE_STEPS = [
 	"4000",
@@ -123,13 +136,25 @@ function isSpacingScaleStep(value) {
 }
 
 function isFontSizePath(jsonPath) {
-	return /\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPath);
+	return (
+		/\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPath) ||
+		/(pretitle|title|subtitle)Size(Lg|Md|Sm)?$/.test(jsonPath)
+	);
 }
 
 function isSpacingStepPath(jsonPath) {
-	return /\.(padding(Sm|Md|Lg|Top|Right|Bottom|Left)|gap(Sm|Md|Lg)?|metaPaddingTop|padding[XY](Title|Content))$/.test(
+	return /(padding(Sm|Md|Lg|Top|Right|Bottom|Left)|gap(Sm|Md|Lg)?|metaPaddingTop|titleGap|padding[XY](Title|Content))$/i.test(
 		jsonPath,
 	);
+}
+
+function isFontNamedFamilyPath(jsonPath) {
+	return /^fonts\.families\.(display|base)$/.test(jsonPath);
+}
+
+function isFontRoleFamilyPath(jsonPath) {
+	if (jsonPath.startsWith("fonts.families.")) return false;
+	return jsonPath.endsWith(".family") || /(title|pretitle|subtitle)Family$/.test(jsonPath);
 }
 
 function isFontNamedWeightPath(jsonPath) {
@@ -137,7 +162,11 @@ function isFontNamedWeightPath(jsonPath) {
 }
 
 function isFontRoleWeightPath(jsonPath) {
-	return jsonPath.endsWith(".weight") && !jsonPath.startsWith("fonts.weights.");
+	if (jsonPath.startsWith("fonts.weights.")) return false;
+	return (
+		jsonPath.endsWith(".weight") ||
+		/(title|pretitle|subtitle)Weight$/.test(jsonPath)
+	);
 }
 
 const BORDER_RADIUS_STEPS = ["none", "sm", "med", "lg", "full"];
@@ -148,7 +177,7 @@ function isBorderRadiusStep(value) {
 }
 
 function isBorderRadiusRolePath(jsonPath) {
-	return jsonPath.endsWith(".borderRadius") && !jsonPath.startsWith("borderRadius.");
+	return jsonPath.endsWith(".borderRadius") && !jsonPath.startsWith("border.radius.");
 }
 
 const BORDER_SIZE_STEPS = ["none", "sm", "md"];
@@ -171,10 +200,11 @@ function isPixelDimension(value) {
 	return Number.isInteger(n) && n > 0;
 }
 
-const PRETITLE_UPPERCASE_SUFFIX = ".pretitle.uppercase";
-
 function isPretitleUppercasePath(jsonPath) {
-	return jsonPath.endsWith(PRETITLE_UPPERCASE_SUFFIX);
+	return (
+		jsonPath.endsWith(".pretitle.uppercase") ||
+		jsonPath.endsWith(".pretitleUppercase")
+	);
 }
 
 function isPretitleUppercaseBoolean(value) {
@@ -182,7 +212,10 @@ function isPretitleUppercaseBoolean(value) {
 }
 
 function isPretitleLetterSpacingPath(jsonPath) {
-	return jsonPath.endsWith(".pretitle.letterSpacing");
+	return (
+		jsonPath.endsWith(".pretitle.letterSpacing") ||
+		jsonPath.endsWith(".pretitleLetterSpacing")
+	);
 }
 
 function isPretitleLetterSpacing(value) {
@@ -190,73 +223,83 @@ function isPretitleLetterSpacing(value) {
 }
 
 const TOKEN_MAP = [
-	["colors.cover.background", "--color-cover-background", "cover"],
-	["colors.cover.foreground", "--color-cover-foreground"],
-	["colors.cover.surfaceBackground", "--color-cover-surface-background"],
-	["colors.cover.surfaceForeground", "--color-cover-surface-foreground"],
-	["colors.cover.surfaceBorder", "--color-cover-surface-border"],
-
-	["colors.slide.background", "--color-slide-background", "slide"],
-	["colors.slide.foreground", "--color-slide-foreground"],
-	["colors.slide.surfaceBackground", "--color-slide-surface-background"],
-	["colors.slide.surfaceForeground", "--color-slide-surface-foreground"],
-	["colors.slide.surfaceBorder", "--color-slide-surface-border"],
-
 	["colors.highlight", "--color-highlight", "highlight"],
 
-	["colors.status.positive.color", "--color-positive", "status"],
+	["colors.status.positive.foreground", "--color-positive", "status"],
 	["colors.status.positive.background", "--color-positive-bg"],
-	["colors.status.warning.color", "--color-warning"],
+	["colors.status.positive.border", "--color-positive-border"],
+	["colors.status.warning.foreground", "--color-warning"],
 	["colors.status.warning.background", "--color-warning-bg"],
-	["colors.status.negative.color", "--color-negative"],
+	["colors.status.warning.border", "--color-warning-border"],
+	["colors.status.negative.foreground", "--color-negative"],
 	["colors.status.negative.background", "--color-negative-bg"],
-	["colors.status.informative.color", "--color-informative"],
+	["colors.status.negative.border", "--color-negative-border"],
+	["colors.status.informative.foreground", "--color-informative"],
 	["colors.status.informative.background", "--color-informative-bg"],
+	["colors.status.informative.border", "--color-informative-border"],
 
 	["colors.charts.chart1", "--color-chart-1", "charts"],
 	["colors.charts.chart2", "--color-chart-2"],
 	["colors.charts.chart3", "--color-chart-3"],
 	["colors.charts.chart4", "--color-chart-4"],
 
+	["fonts.families.display", "--font-family-display", "fonts — families"],
+	["fonts.families.base", "--font-family-base"],
+
 	["fonts.weights.regular", "--font-weight-regular", "fonts — weights"],
 	["fonts.weights.medium", "--font-weight-medium"],
 	["fonts.weights.bold", "--font-weight-bold"],
 
-	["fonts.body.family", "--font-family-body", "fonts — body"],
-	["fonts.body.weight", "--font-weight-body"],
+	["fonts.paragraphTitle.family", "--paragraph-title-font-family", "fonts — paragraph title"],
+	["fonts.paragraphTitle.weight", "--paragraph-title-font-weight"],
+	["fonts.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
+	["fonts.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
+	["fonts.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
+
+	["fonts.body.family", "--body-font-family", "fonts — body"],
+	["fonts.body.weight", "--body-font-weight"],
 	["fonts.body.sizeSm", "--body-size-sm"],
 	["fonts.body.sizeMd", "--body-size-md"],
 	["fonts.body.sizeLg", "--body-size-lg"],
 
-	["borderRadius.none", "--border-radius-none", "border radius"],
-	["borderRadius.sm", "--border-radius-sm"],
-	["borderRadius.med", "--border-radius-med"],
-	["borderRadius.lg", "--border-radius-lg"],
-	["borderRadius.full", "--border-radius-full"],
+	["border.radius.none", "--border-radius-none", "border — radius"],
+	["border.radius.sm", "--border-radius-sm"],
+	["border.radius.med", "--border-radius-med"],
+	["border.radius.lg", "--border-radius-lg"],
+	["border.radius.full", "--border-radius-full"],
 
-	["borderSize.none", "--border-size-none", "border size"],
-	["borderSize.sm", "--border-size-sm"],
-	["borderSize.md", "--border-size-md"],
+	["border.size.none", "--border-size-none", "border — size"],
+	["border.size.sm", "--border-size-sm"],
+	["border.size.md", "--border-size-md"],
 
-	["coverTitle.family", "--font-family-cover-title", "cover title"],
-	["coverTitle.weight", "--font-weight-cover-title"],
+	["cover.background", "--color-cover-background", "cover"],
+	["cover.foreground", "--color-cover-foreground"],
+	["cover.surface.background", "--color-cover-surface-background"],
+	["cover.surface.foreground", "--color-cover-surface-foreground"],
+	["cover.surface.border", "--color-cover-surface-border"],
+	["cover.title.family", "--cover-title-font-family"],
+	["cover.title.weight", "--cover-title-font-weight"],
 
-	["slideTitle.pretitle.family", "--font-family-slide-pretitle", "slide title"],
-	["slideTitle.pretitle.weight", "--font-weight-slide-pretitle"],
-	["slideTitle.pretitle.uppercase", "--slide-pretitle-text-transform"],
-	["slideTitle.pretitle.letterSpacing", "--slide-pretitle-letter-spacing"],
-	["slideTitle.pretitle.size", "--slide-pretitle-size"],
-	["slideTitle.gap", "--slide-title-gap"],
-	["slideTitle.family", "--font-family-slide-title"],
-	["slideTitle.weight", "--font-weight-slide-title"],
-	["slideTitle.sizeLg", "--slide-title-size-lg"],
-	["slideTitle.sizeMd", "--slide-title-size-md"],
-	["slideTitle.sizeSm", "--slide-title-size-sm"],
-	["slideTitle.sub.family", "--font-family-slide-subtitle"],
-	["slideTitle.sub.weight", "--font-weight-slide-subtitle"],
-	["slideTitle.sub.size", "--slide-subtitle-size"],
-
-	["slide.maxWidth", "--slide-max-width", "slide chrome"],
+	["slide.background", "--color-slide-background", "slide"],
+	["slide.foreground", "--color-slide-foreground"],
+	["slide.surface.background", "--color-slide-surface-background"],
+	["slide.surface.foreground", "--color-slide-surface-foreground"],
+	["slide.surface.border", "--color-slide-surface-border"],
+	["slide.pretitle.family", "--slide-pretitle-font-family"],
+	["slide.pretitle.weight", "--slide-pretitle-font-weight"],
+	["slide.pretitle.uppercase", "--slide-pretitle-text-transform"],
+	["slide.pretitle.letterSpacing", "--slide-pretitle-letter-spacing"],
+	["slide.pretitle.size", "--slide-pretitle-size"],
+	["slide.title.gap", "--slide-title-gap"],
+	["slide.title.family", "--slide-title-font-family"],
+	["slide.title.weight", "--slide-title-font-weight"],
+	["slide.title.sizeSm", "--slide-title-size-sm"],
+	["slide.title.sizeMd", "--slide-title-size-md"],
+	["slide.title.sizeLg", "--slide-title-size-lg"],
+	["slide.subtitle.family", "--slide-subtitle-font-family"],
+	["slide.subtitle.weight", "--slide-subtitle-font-weight"],
+	["slide.subtitle.size", "--slide-subtitle-size"],
+	["slide.maxWidth", "--slide-max-width"],
 	["slide.header.paddingTop", "--slide-header-padding-top"],
 	["slide.header.paddingRight", "--slide-header-padding-right"],
 	["slide.header.paddingBottom", "--slide-header-padding-bottom"],
@@ -276,18 +319,18 @@ const TOKEN_MAP = [
 	["card.gapSm", "--card-gap-sm"],
 	["card.gapMd", "--card-gap-md"],
 	["card.gapLg", "--card-gap-lg"],
-	["card.borderRadius", "--border-radius-card"],
+	["card.borderRadius", "--card-border-radius"],
 	["card.borderSize.top", "--card-border-size-top"],
 	["card.borderSize.bottom", "--card-border-size-bottom"],
 	["card.borderSize.left", "--card-border-size-left"],
 	["card.borderSize.right", "--card-border-size-right"],
-	["card.title.family", "--font-family-card-title"],
-	["card.title.weight", "--font-weight-card-title"],
-	["card.title.sizeLg", "--card-title-size-lg"],
-	["card.title.sizeMd", "--card-title-size-md"],
+	["card.title.family", "--card-title-font-family"],
+	["card.title.weight", "--card-title-font-weight"],
 	["card.title.sizeSm", "--card-title-size-sm"],
-	["card.pretitle.family", "--font-family-card-pretitle"],
-	["card.pretitle.weight", "--font-weight-card-pretitle"],
+	["card.title.sizeMd", "--card-title-size-md"],
+	["card.title.sizeLg", "--card-title-size-lg"],
+	["card.pretitle.family", "--card-pretitle-font-family"],
+	["card.pretitle.weight", "--card-pretitle-font-weight"],
 	["card.pretitle.uppercase", "--card-pretitle-text-transform"],
 	["card.pretitle.letterSpacing", "--card-pretitle-letter-spacing"],
 	["card.pretitle.size", "--card-pretitle-size"],
@@ -297,7 +340,7 @@ const TOKEN_MAP = [
 	["alert.paddingMd", "--alert-padding-md"],
 	["alert.paddingLg", "--alert-padding-lg"],
 	["alert.gap", "--alert-gap"],
-	["alert.borderRadius", "--border-radius-alert"],
+	["alert.borderRadius", "--alert-border-radius"],
 	["alert.borderSize.top", "--alert-border-size-top"],
 	["alert.borderSize.bottom", "--alert-border-size-bottom"],
 	["alert.borderSize.left", "--alert-border-size-left"],
@@ -306,12 +349,6 @@ const TOKEN_MAP = [
 	["stack.gapSm", "--stack-gap-sm", "stack"],
 	["stack.gapMd", "--stack-gap-md"],
 	["stack.gapLg", "--stack-gap-lg"],
-
-	["paragraphTitle.family", "--font-family-paragraph-title", "paragraph title"],
-	["paragraphTitle.weight", "--font-weight-paragraph-title"],
-	["paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
-	["paragraphTitle.sizeMd", "--paragraph-title-size-md"],
-	["paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
 ];
 
 function getPath(obj, dottedPath) {
@@ -328,6 +365,22 @@ function toCssValue(jsonPath, value) {
 			);
 		}
 		return `var(--text-size-${value})`;
+	}
+	if (isFontNamedFamilyPath(jsonPath)) {
+		if (typeof value !== "string" || value.trim() === "") {
+			throw new Error(
+				`${jsonPath} must be a CSS font stack (got ${JSON.stringify(value)})`,
+			);
+		}
+		return value;
+	}
+	if (isFontRoleFamilyPath(jsonPath)) {
+		if (!isFontFamilyName(value)) {
+			throw new Error(
+				`${jsonPath} must be a named family (${FONT_FAMILY_NAMES.join(", ")}) from fonts.families (got ${JSON.stringify(value)})`,
+			);
+		}
+		return `var(--font-family-${value})`;
 	}
 	if (isFontNamedWeightPath(jsonPath)) {
 		if (!isCssFontWeight(value)) {
@@ -356,7 +409,7 @@ function toCssValue(jsonPath, value) {
 	if (isBorderRadiusRolePath(jsonPath)) {
 		if (!isBorderRadiusStep(value)) {
 			throw new Error(
-				`${jsonPath} must be a border-radius step (${BORDER_RADIUS_STEPS.join(", ")}) from borderRadius (got ${JSON.stringify(value)})`,
+				`${jsonPath} must be a border-radius step (${BORDER_RADIUS_STEPS.join(", ")}) from border.radius (got ${JSON.stringify(value)})`,
 			);
 		}
 		return `var(--border-radius-${value})`;
@@ -364,7 +417,7 @@ function toCssValue(jsonPath, value) {
 	if (isBorderSizeRolePath(jsonPath)) {
 		if (!isBorderSizeStep(value)) {
 			throw new Error(
-				`${jsonPath} must be a border-size step (${BORDER_SIZE_STEPS.join(", ")}) from borderSize (got ${JSON.stringify(value)})`,
+				`${jsonPath} must be a border-size step (${BORDER_SIZE_STEPS.join(", ")}) from border.size (got ${JSON.stringify(value)})`,
 			);
 		}
 		return `var(--border-size-${value})`;
@@ -453,8 +506,12 @@ module.exports = {
 	TYPE_SCALE_STEPS,
 	SPACING_SCALE_STEPS,
 	FONT_WEIGHT_NAMES,
+	FONT_FAMILY_NAMES,
 	isCssFontWeight,
 	isFontWeightName,
+	isFontFamilyName,
+	isFontNamedFamilyPath,
+	isFontRoleFamilyPath,
 	isFontNamedWeightPath,
 	isFontRoleWeightPath,
 	isFontSizePath,

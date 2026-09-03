@@ -6,6 +6,9 @@ const {
 	TOKEN_MAP,
 	isCssFontWeight,
 	isFontWeightName,
+	isFontFamilyName,
+	isFontNamedFamilyPath,
+	isFontRoleFamilyPath,
 	isFontNamedWeightPath,
 	isFontRoleWeightPath,
 	isTypeScaleStep,
@@ -23,6 +26,7 @@ const {
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	FONT_WEIGHT_NAMES,
+	FONT_FAMILY_NAMES,
 	isPretitleUppercasePath,
 	isPretitleUppercaseBoolean,
 	isPretitleLetterSpacingPath,
@@ -110,6 +114,26 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (isFontNamedFamilyPath(jsonPathKey)) {
+			const raw = getPath(brand, jsonPathKey);
+			if (raw === undefined) continue;
+			if (typeof raw !== "string" || raw.trim() === "") {
+				errors.push(
+					`${jsonPathKey} must be a CSS font stack (got ${JSON.stringify(raw)})`,
+				);
+			}
+			continue;
+		}
+		if (isFontRoleFamilyPath(jsonPathKey)) {
+			const raw = getPath(brand, jsonPathKey);
+			if (raw === undefined) continue;
+			if (!isFontFamilyName(raw)) {
+				errors.push(
+					`${jsonPathKey} must be a named family (${FONT_FAMILY_NAMES.join(", ")}) from fonts.families (got ${JSON.stringify(raw)})`,
+				);
+			}
+			continue;
+		}
 		if (isFontNamedWeightPath(jsonPathKey)) {
 			const raw = getPath(brand, jsonPathKey);
 			if (raw === undefined) continue;
@@ -159,7 +183,7 @@ function validateBrand(brandDir) {
 		if (raw === undefined) continue;
 		if (!isBorderRadiusStep(raw)) {
 			errors.push(
-				`${jsonPathKey} must be a border-radius step (${BORDER_RADIUS_STEPS.join(", ")}) from borderRadius (got ${JSON.stringify(raw)})`,
+				`${jsonPathKey} must be a border-radius step (${BORDER_RADIUS_STEPS.join(", ")}) from border.radius (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}
@@ -170,7 +194,7 @@ function validateBrand(brandDir) {
 		if (raw === undefined) continue;
 		if (!isBorderSizeStep(raw)) {
 			errors.push(
-				`${jsonPathKey} must be a border-size step (${BORDER_SIZE_STEPS.join(", ")}) from borderSize (got ${JSON.stringify(raw)})`,
+				`${jsonPathKey} must be a border-size step (${BORDER_SIZE_STEPS.join(", ")}) from border.size (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}
@@ -209,10 +233,10 @@ function validateBrand(brandDir) {
 	}
 
 	const pairs = [
-		["colors.slide.foreground", "colors.slide.background", "slide foreground on slide background"],
-		["colors.cover.foreground", "colors.cover.background", "cover foreground on cover background"],
-		["colors.slide.surfaceForeground", "colors.slide.surfaceBackground", "slide surface foreground on slide surface background"],
-		["colors.cover.surfaceForeground", "colors.cover.surfaceBackground", "cover surface foreground on cover surface background"],
+		["slide.foreground", "slide.background", "slide foreground on slide background"],
+		["cover.foreground", "cover.background", "cover foreground on cover background"],
+		["slide.surface.foreground", "slide.surface.background", "slide surface foreground on slide surface background"],
+		["cover.surface.foreground", "cover.surface.background", "cover surface foreground on cover surface background"],
 	];
 
 	for (const [fgPath, bgPath, label] of pairs) {

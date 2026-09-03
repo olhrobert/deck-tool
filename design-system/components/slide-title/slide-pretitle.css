@@ -2,8 +2,8 @@
    Defaults: color=subtle, context=slide (brand). No markup size variants. */
 
 slide-pretitle {
-	font-family: var(--font-family-slide-pretitle, system-ui, sans-serif);
-	font-weight: var(--font-weight-slide-pretitle);
+	font-family: var(--slide-pretitle-font-family, system-ui, sans-serif);
+	font-weight: var(--slide-pretitle-font-weight);
 	line-height: 1.2;
 	letter-spacing: var(--slide-pretitle-letter-spacing);
 	text-transform: var(--slide-pretitle-text-transform);
