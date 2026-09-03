@@ -2,6 +2,14 @@
 /* Regenerate: npm run generate-brand -- brands/<name> */
 
 :root {
+	/* brand */
+	--color-brand-1: rgb(1, 25, 26);
+	--color-brand-2: rgb(4, 56, 58);
+	--color-brand-3: rgb(35, 221, 156);
+	--color-brand-4: rgb(242, 245, 245);
+	--color-brand-5: rgb(255, 255, 255);
+	--color-brand-6: rgb(20, 150, 130);
+
 	/* highlight */
 	--color-highlight: rgb(4, 56, 58);
 
@@ -72,7 +80,7 @@
 	/* slide */
 	--color-slide-background: rgb(242, 245, 245);
 	--color-slide-foreground: rgb(1, 25, 26);
-	--color-slide-surface-background: rgba(255, 255, 255, 1);
+	--color-slide-surface-background: rgb(255, 255, 255);
 	--color-slide-surface-foreground: rgb(1, 25, 26);
 	--color-slide-surface-border: rgba(1, 25, 26, 0.18);
 	--slide-pretitle-font-family: var(--font-family-base);

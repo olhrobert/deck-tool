@@ -20,7 +20,7 @@ HTML brands live in `brands/{slug}/`. Figma theming is an extra **Primitives** m
 node scripts/new-brand.js {slug} --name "{Display Name}"
 ```
 
-3. Put the real colors, fonts, semantic spacing, radii, and border sizes into `brands/{slug}/brand-settings.json`. Keep color values as `rgb()` / `rgba()`. Map colors by slide role using **Color tokens** in `docs/brands.md` (`cover.background` = title fill, not “the logo color”). Spacing values are scale steps from `design-system/tokens/spacing.css`. Component `borderRadius` / `borderSize` name steps on the generic `border.radius` / `border.size` scales, not pixels. Do not add `attributionBox` keys — load `.cursor/skills/attribution-box/SKILL.md`.
+3. Put the real colors, fonts, semantic spacing, radii, and border sizes into `brands/{slug}/brand-settings.json`. Define hard-coded RGB/RGBA on `colors.brand.brand1`…`brandN` (as many as needed, ≤6), plus `colors.status` and `colors.charts`. Set `colors.highlight` and cover/slide color fields to palette refs (`"brand2"` or `{ "color": "brand1", "opacity": 0.18 }`) — not raw RGB. Map roles using **Color tokens** in `docs/brands.md`. Spacing values are scale steps from `design-system/tokens/spacing.css`. Component `borderRadius` / `borderSize` name steps on the generic `border.radius` / `border.size` scales, not pixels. Do not add `attributionBox` keys — load `.cursor/skills/attribution-box/SKILL.md`.
 4. Replace `brands/{slug}/{slug}-logo.svg` and `{slug}-logo-inverted.svg` with standalone SVGs (root `viewBox`, baked fills, no `currentColor`). Inverted is the light lockup for dark backgrounds.
 5. Validate:
 

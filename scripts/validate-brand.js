@@ -31,6 +31,11 @@ const {
 	isPretitleUppercaseBoolean,
 	isPretitleLetterSpacingPath,
 	isPretitleLetterSpacing,
+	isBrandSwatchPath,
+	isColorLiteralPath,
+	isColorLiteral,
+	isColorRolePath,
+	resolveColorRef,
 	BRAND_FILENAME,
 } = require("./generate-brand-css.js");
 
@@ -108,8 +113,41 @@ function validateBrand(brandDir) {
 	const logoInvertedPath = path.join(resolved, logoInvertedFile);
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (isBrandSwatchPath(jsonPathKey)) continue;
 		if (getPath(brand, jsonPathKey) === undefined) {
 			errors.push(`Missing ${jsonPathKey}`);
+		}
+	}
+
+	const brandSwatches = brand.colors && brand.colors.brand;
+	if (!brandSwatches || typeof brandSwatches !== "object") {
+		errors.push("Missing colors.brand (need at least one brand1–brand6 swatch)");
+	} else {
+		const present = Object.keys(brandSwatches).filter((k) => /^brand[1-6]$/.test(k));
+		if (present.length === 0) {
+			errors.push("colors.brand must define at least one of brand1–brand6");
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isColorLiteralPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isColorLiteral(raw)) {
+			errors.push(
+				`${jsonPathKey} must be rgb()/rgba()/#rrggbb (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isColorRolePath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		try {
+			resolveColorRef(brand, raw, jsonPathKey);
+		} catch (error) {
+			errors.push(error.message);
 		}
 	}
 
@@ -242,10 +280,22 @@ function validateBrand(brandDir) {
 	for (const [fgPath, bgPath, label] of pairs) {
 		const fgRaw = getPath(brand, fgPath);
 		const bgRaw = getPath(brand, bgPath);
-		const fg = parseColor(fgRaw);
-		const bg = parseColor(bgRaw);
-		if (!fg) errors.push(`${fgPath} is not rgb()/rgba()/#hex: ${fgRaw}`);
-		if (!bg) errors.push(`${bgPath} is not rgb()/rgba()/#hex: ${bgRaw}`);
+		let fgResolved;
+		let bgResolved;
+		try {
+			fgResolved = resolveColorRef(brand, fgRaw, fgPath);
+		} catch (error) {
+			errors.push(error.message);
+		}
+		try {
+			bgResolved = resolveColorRef(brand, bgRaw, bgPath);
+		} catch (error) {
+			errors.push(error.message);
+		}
+		const fg = parseColor(fgResolved);
+		const bg = parseColor(bgResolved);
+		if (fgResolved && !fg) errors.push(`${fgPath} resolved to non-color: ${fgResolved}`);
+		if (bgResolved && !bg) errors.push(`${bgPath} resolved to non-color: ${bgResolved}`);
 		if (fg && bg) {
 			const ink = compositeOn(fg, bg);
 			const ratio = contrast(ink, bg);

@@ -2,7 +2,15 @@
 	"name": "Gratia",
 	"logo": "gratia-logo.svg",
 	"colors": {
-		"highlight": "rgb(4, 56, 58)",
+		"brand": {
+			"brand1": "rgb(1, 25, 26)",
+			"brand2": "rgb(4, 56, 58)",
+			"brand3": "rgb(35, 221, 156)",
+			"brand4": "rgb(242, 245, 245)",
+			"brand5": "rgb(255, 255, 255)",
+			"brand6": "rgb(20, 150, 130)"
+		},
+		"highlight": "brand2",
 		"status": {
 			"positive": {
 				"foreground": "rgba(8, 120, 85, 1)",
@@ -72,12 +80,12 @@
 		}
 	},
 	"cover": {
-		"background": "rgb(4, 56, 58)",
-		"foreground": "rgb(255, 255, 255)",
+		"background": "brand2",
+		"foreground": "brand5",
 		"surface": {
-			"background": "rgb(255, 255, 255)",
-			"foreground": "rgb(1, 25, 26)",
-			"border": "rgba(1, 25, 26, 0.18)"
+			"background": "brand5",
+			"foreground": "brand1",
+			"border": { "color": "brand1", "opacity": 0.18 }
 		},
 		"title": {
 			"family": "display",
@@ -85,12 +93,12 @@
 		}
 	},
 	"slide": {
-		"background": "rgb(242, 245, 245)",
-		"foreground": "rgb(1, 25, 26)",
+		"background": "brand4",
+		"foreground": "brand1",
 		"surface": {
-			"background": "rgba(255, 255, 255, 1)",
-			"foreground": "rgb(1, 25, 26)",
-			"border": "rgba(1, 25, 26, 0.18)"
+			"background": "brand5",
+			"foreground": "brand1",
+			"border": { "color": "brand1", "opacity": 0.18 }
 		},
 		"pretitle": {
 			"family": "base",

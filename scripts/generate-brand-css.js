@@ -48,10 +48,14 @@ function isFontFamilyName(value) {
  * Cover and slide settings live under top-level `cover` / `slide` (colors,
  * type, chrome), nested by group (`cover.surface.background`,
  * `slide.pretitle.family`, `slide.header.paddingLeft`). Other generic tokens
- * are grouped by type (`colors`, `fonts.families`, `fonts.weights`, `fonts.body`,
- * `border.radius`, `border.size`). Remaining component tokens are grouped by
- * component (`card`, `alert`, …) and named component-leading
- * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
+ * are grouped by type (`colors.brand`, `colors.status`, `colors.charts`,
+ * `fonts.families`, `fonts.weights`, `fonts.body`, `border.radius`,
+ * `border.size`). Hard-coded RGB lives on `colors.brand` / status / charts;
+ * `colors.highlight` and cover/slide color roles ref that palette
+ * (`"brand2"` or `{ "color": "brand1", "opacity": 0.18 }`). Remaining
+ * component tokens are grouped by component (`card`, `alert`, …) and named
+ * component-leading (`--slide-pretitle-font-family`). TOKEN_MAP order is the
+ * brand.css order.
  */
 const TYPE_SCALE_STEPS = [
 	"4000",
@@ -222,7 +226,155 @@ function isPretitleLetterSpacing(value) {
 	return typeof value === "string" && /^\d+(\.\d+)?%$/.test(value);
 }
 
+const BRAND_SWATCH_KEYS = ["brand1", "brand2", "brand3", "brand4", "brand5", "brand6"];
+const BRAND_SWATCH_KEY_SET = new Set(BRAND_SWATCH_KEYS);
+
+function isBrandSwatchPath(jsonPath) {
+	return /^colors\.brand\.brand[1-6]$/.test(jsonPath);
+}
+
+function isColorLiteralPath(jsonPath) {
+	return (
+		isBrandSwatchPath(jsonPath) ||
+		/^colors\.status\.(positive|warning|negative|informative)\.(foreground|background|border)$/.test(
+			jsonPath,
+		) ||
+		/^colors\.charts\.chart[1-4]$/.test(jsonPath)
+	);
+}
+
+function isColorRolePath(jsonPath) {
+	return (
+		jsonPath === "colors.highlight" ||
+		/^(cover|slide)\.(background|foreground)$/.test(jsonPath) ||
+		/^(cover|slide)\.surface\.(background|foreground|border)$/.test(jsonPath)
+	);
+}
+
+function isColorLiteral(value) {
+	if (typeof value !== "string") return false;
+	return (
+		/^rgba?\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+(?:\s*,\s*[\d.]+)?\s*\)$/i.test(value) ||
+		/^#[0-9a-f]{6}$/i.test(value)
+	);
+}
+
+function parseColorChannels(value) {
+	if (typeof value !== "string") return null;
+	const rgb = value.match(
+		/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i,
+	);
+	if (rgb) {
+		return {
+			r: Number(rgb[1]),
+			g: Number(rgb[2]),
+			b: Number(rgb[3]),
+			a: rgb[4] === undefined ? 1 : Number(rgb[4]),
+		};
+	}
+	const hex = value.match(/^#([0-9a-f]{6})$/i);
+	if (hex) {
+		const n = parseInt(hex[1], 16);
+		return {
+			r: (n >> 16) & 255,
+			g: (n >> 8) & 255,
+			b: n & 255,
+			a: 1,
+		};
+	}
+	return null;
+}
+
+function withOpacity(colorValue, opacity) {
+	const channels = parseColorChannels(colorValue);
+	if (!channels) {
+		throw new Error(`Cannot apply opacity to non-color value ${JSON.stringify(colorValue)}`);
+	}
+	if (typeof opacity !== "number" || Number.isNaN(opacity) || opacity < 0 || opacity > 1) {
+		throw new Error(`opacity must be a number between 0 and 1 (got ${JSON.stringify(opacity)})`);
+	}
+	return `rgba(${channels.r}, ${channels.g}, ${channels.b}, ${opacity})`;
+}
+
+function resolvePalettePath(refName) {
+	if (BRAND_SWATCH_KEY_SET.has(refName)) {
+		return `colors.brand.${refName}`;
+	}
+	if (
+		/^status\.(positive|warning|negative|informative)\.(foreground|background|border)$/.test(
+			refName,
+		)
+	) {
+		return `colors.${refName}`;
+	}
+	if (/^charts\.chart[1-4]$/.test(refName)) {
+		return `colors.${refName}`;
+	}
+	return null;
+}
+
+/**
+ * Resolve a color role ref against the extended palette
+ * (`colors.brand.*`, `colors.status.*`, `colors.charts.*`).
+ * Accepts `"brand1"` / `"status.positive.foreground"` or
+ * `{ "color": "brand1", "opacity": 0.18 }`.
+ */
+function resolveColorRef(brand, raw, jsonPath) {
+	let refName;
+	let opacity;
+
+	if (typeof raw === "string") {
+		refName = raw;
+	} else if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+		refName = raw.color;
+		opacity = raw.opacity;
+		if (typeof refName !== "string" || refName.trim() === "") {
+			throw new Error(
+				`${jsonPath} color ref object must include a string "color" (got ${JSON.stringify(raw)})`,
+			);
+		}
+		if (opacity !== undefined && (typeof opacity !== "number" || Number.isNaN(opacity))) {
+			throw new Error(
+				`${jsonPath} opacity must be a number between 0 and 1 (got ${JSON.stringify(opacity)})`,
+			);
+		}
+	} else {
+		throw new Error(
+			`${jsonPath} must be a palette ref string or { "color", "opacity"? } (got ${JSON.stringify(raw)})`,
+		);
+	}
+
+	const palettePath = resolvePalettePath(refName);
+	if (!palettePath) {
+		throw new Error(
+			`${jsonPath} unknown palette ref "${refName}" (use brand1–brand6, status.*.*, or charts.chart*)`,
+		);
+	}
+
+	const literal = getPath(brand, palettePath);
+	if (literal === undefined || literal === null) {
+		throw new Error(`${jsonPath} references missing palette entry ${palettePath}`);
+	}
+	if (!isColorLiteral(literal)) {
+		throw new Error(
+			`${palettePath} must be rgb()/rgba()/#rrggbb (got ${JSON.stringify(literal)})`,
+		);
+	}
+
+	if (opacity !== undefined) {
+		return withOpacity(literal, opacity);
+	}
+	return literal;
+}
+
 const TOKEN_MAP = [
+	["colors.brand.brand1", "--color-brand-1", "brand"],
+	["colors.brand.brand2", "--color-brand-2"],
+	["colors.brand.brand3", "--color-brand-3"],
+	["colors.brand.brand4", "--color-brand-4"],
+	["colors.brand.brand5", "--color-brand-5"],
+	["colors.brand.brand6", "--color-brand-6"],
+
 	["colors.highlight", "--color-highlight", "highlight"],
 
 	["colors.status.positive.foreground", "--color-positive", "status"],
@@ -357,7 +509,18 @@ function getPath(obj, dottedPath) {
 	}, obj);
 }
 
-function toCssValue(jsonPath, value) {
+function toCssValue(jsonPath, value, brand) {
+	if (isColorRolePath(jsonPath)) {
+		return resolveColorRef(brand, value, jsonPath);
+	}
+	if (isColorLiteralPath(jsonPath)) {
+		if (!isColorLiteral(value)) {
+			throw new Error(
+				`${jsonPath} must be rgb()/rgba()/#rrggbb (got ${JSON.stringify(value)})`,
+			);
+		}
+		return value;
+	}
 	if (isFontSizePath(jsonPath)) {
 		if (!isTypeScaleStep(value)) {
 			throw new Error(
@@ -454,7 +617,7 @@ function buildBrandCss(brand) {
 	for (const [jsonPath, cssVar, group] of TOKEN_MAP) {
 		const raw = getPath(brand, jsonPath);
 		if (raw === undefined || raw === null) continue;
-		const value = toCssValue(jsonPath, raw);
+		const value = toCssValue(jsonPath, raw, brand);
 		if (group) {
 			if (lines.length > 0) lines.push("");
 			lines.push(`\t/* ${group} */`);
@@ -507,6 +670,12 @@ module.exports = {
 	SPACING_SCALE_STEPS,
 	FONT_WEIGHT_NAMES,
 	FONT_FAMILY_NAMES,
+	BRAND_SWATCH_KEYS,
+	resolveColorRef,
+	isColorRolePath,
+	isColorLiteralPath,
+	isColorLiteral,
+	isBrandSwatchPath,
 	isCssFontWeight,
 	isFontWeightName,
 	isFontFamilyName,

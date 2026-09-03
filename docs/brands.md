@@ -33,11 +33,11 @@ Then edit `brand-settings.json` (start from the Riverton copy the scaffold write
 
 ## `brand-settings.json` fields
 
-Cover and slide settings live under top-level `cover` and `slide` (colors, type, chrome), nested by group (`cover.surface.background`, `slide.pretitle.family`, `slide.header.paddingLeft`). Shared tokens are grouped by type (`colors` for highlight/status/charts, `fonts`, `border`). Other component tokens (`card`, `alert`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `border.radius` / `border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.maxWidth` (canvas cap, default `1280`).
+Cover and slide settings live under top-level `cover` and `slide` (colors, type, chrome), nested by group (`cover.surface.background`, `slide.pretitle.family`, `slide.header.paddingLeft`). Shared tokens are grouped by type (`colors` for brand swatches / highlight / status / charts, `fonts`, `border`). Other component tokens (`card`, `alert`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `border.radius` / `border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.maxWidth` (canvas cap, default `1280`).
 
-`design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`). There is no `primary` / `secondary` / `tertiary` layer.
+`design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`). Brand identity swatches live under `colors.brand.brand1`…`brand6` (omit unused slots).
 
-Colors must be `rgb()`, `rgba()`, or `#rrggbb`. `validate-brand.js` checks WCAG AA for **slide foreground on slide background**, **cover foreground on cover background**, **slide surface foreground on slide surface background**, and **cover surface foreground on cover surface background**.
+**Color layers:** hard-coded RGB/RGBA lives only on the extended palette — `colors.brand.*`, `colors.status.*.*`, and `colors.charts.*`. `colors.highlight` and every cover/slide color field **reference** that palette: a string (`"brand2"`, `"status.positive.foreground"`, `"charts.chart1"`) or `{ "color": "brand1", "opacity": 0.18 }` when alpha differs. The generator bakes refs into concrete `rgb`/`rgba` in `brand.css`. `validate-brand.js` resolves the same way before WCAG AA checks on cover/slide (and surface) foreground/background pairs.
 
 ### Cover
 
@@ -45,11 +45,11 @@ Title/cover canvas plus cover title type.
 
 | `brand-settings.json` | CSS | What you see |
 |---|---|---|
-| `cover.background` | `--color-cover-background` | Title/cover fill. `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
-| `cover.foreground` | `--color-cover-foreground` | Ink on the cover. Pair with `background`. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
-| `cover.surface.background` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). |
-| `cover.surface.foreground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. |
-| `cover.surface.border` | `--color-cover-surface-border` | Card stroke on a cover surface. |
+| `cover.background` | `--color-cover-background` | Title/cover fill. Ref a palette color (e.g. `"brand2"`). `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
+| `cover.foreground` | `--color-cover-foreground` | Ink on the cover. Palette ref. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
+| `cover.surface.background` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). Palette ref. |
+| `cover.surface.foreground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. Palette ref. |
+| `cover.surface.border` | `--color-cover-surface-border` | Card stroke on a cover surface. Often `{ "color": "brand1", "opacity": 0.18 }`. |
 | `cover.title.family` | `--cover-title-font-family` → `var(--font-family-*)` | `family="cover-title"` |
 | `cover.title.weight` | `--cover-title-font-weight` → `var(--font-weight-*)` | default if `weight` is omitted |
 
@@ -59,11 +59,11 @@ Content-slide canvas, title stack type, and chrome padding.
 
 | `brand-settings.json` | CSS | What you see / HTML |
 |---|---|---|
-| `slide.background` | `--color-slide-background` | Default content-slide canvas. `<slide>` fill. `.bg-slide`. |
-| `slide.foreground` | `--color-slide-foreground` | Ink on the content canvas. Slide Title, paragraph titles, `<body-copy>`, footer logos. `.color-slide-foreground-*`. |
-| `slide.surface.background` | `--color-slide-surface-background` | Cards, `<attribution-box>`, `<alert>` fill. `.bg-slide-surface`. |
-| `slide.surface.foreground` | `--color-slide-surface-foreground` | Ink on those panels (cards, attribution, alert copy). |
-| `slide.surface.border` | `--color-slide-surface-border` | Card stroke and attribution separator. `.border-color-slide-surface`. |
+| `slide.background` | `--color-slide-background` | Default content-slide canvas. Palette ref. `<slide>` fill. `.bg-slide`. |
+| `slide.foreground` | `--color-slide-foreground` | Ink on the content canvas. Palette ref. Slide Title, paragraph titles, `<body-copy>`, footer logos. `.color-slide-foreground-*`. |
+| `slide.surface.background` | `--color-slide-surface-background` | Cards, `<attribution-box>`, `<alert>` fill. Palette ref. `.bg-slide-surface`. |
+| `slide.surface.foreground` | `--color-slide-surface-foreground` | Ink on those panels (cards, attribution, alert copy). Palette ref. |
+| `slide.surface.border` | `--color-slide-surface-border` | Card stroke and attribution separator. Palette ref (often with opacity). `.border-color-slide-surface`. |
 | `slide.pretitle.family` | `--slide-pretitle-font-family` → `var(--font-family-*)` | `<slide-pretitle>` |
 | `slide.pretitle.weight` | `--slide-pretitle-font-weight` → `var(--font-weight-*)` | |
 | `slide.pretitle.uppercase` | `--slide-pretitle-text-transform` | brand default; override with `uppercase="true\|false"` |
@@ -89,11 +89,12 @@ Content-slide canvas, title stack type, and chrome padding.
 
 | `brand-settings.json` | CSS | What you see |
 |---|---|---|
-| `colors.highlight` | `--color-highlight` | Default `<alert>` left border and `.color-highlight` / `.bg-highlight`. Independent of cover fill. |
-| `colors.status.*.foreground` / `background` / `border` | `--color-positive` … `--color-informative-border` | Alert variant borders (`.border` → `--color-*-border`), ink utilities (`.color-positive` etc.) |
-| `colors.charts.chart1`…`chart4` | `--color-chart-*` | `.color-chart-*` utilities. No chart component in the library yet. |
+| `colors.brand.brand1`…`brand6` | `--color-brand-1` … `--color-brand-6` | Hard-coded identity swatches (omit unused). Role colors ref these by name (`"brand2"`). |
+| `colors.highlight` | `--color-highlight` | Palette ref. Default `<alert>` left border and `.color-highlight` / `.bg-highlight`. |
+| `colors.status.*.foreground` / `background` / `border` | `--color-positive` … `--color-informative-border` | Hard-coded status palette (12 values). Alert variant borders and `.color-positive` etc. Roles may also ref these (`"status.positive.foreground"`). |
+| `colors.charts.chart1`…`chart4` | `--color-chart-*` | Hard-coded chart palette. `.color-chart-*` utilities. Roles may ref (`"charts.chart1"`). |
 
-**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; cards → `slide.surface.*`; alert stripe → `highlight` (often the same as `cover.background`).
+**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; cards → `slide.surface.*`; alert stripe → `highlight` (often `"brand2"`, same as `cover.background`).
 
 ### Font tokens
 
