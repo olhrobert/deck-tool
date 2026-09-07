@@ -32,7 +32,6 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | `div.flex` | auto-layout frame (gap/padding/justify/align/fill from utilities) |
 | `<body-copy>` | text + `typography` variables (`family/body`, `weight`, `size` from `sm|md|lg`, …) + color variable |
 | `<text>` | primitive — raw `size` step, `family`, etc. |
-| `<alert>` | frame (no Alert component in the library yet) |
 
 Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/slide-surface-border`.
 

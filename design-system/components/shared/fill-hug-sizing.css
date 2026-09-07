@@ -5,7 +5,6 @@
  */
 
 card[width="hug"],
-alert[width="hug"],
 attribution-box[width="hug"],
 stack[width="hug"],
 slot[width="hug"] {
@@ -13,7 +12,6 @@ slot[width="hug"] {
 }
 
 card[width="fill"],
-alert[width="fill"],
 attribution-box[width="fill"],
 stack[width="fill"],
 slot[width="fill"] {
@@ -22,7 +20,6 @@ slot[width="fill"] {
 }
 
 card[height="fill"],
-alert[height="fill"],
 attribution-box[height="fill"],
 stack[height="fill"],
 slot[height="fill"] {
@@ -31,7 +28,6 @@ slot[height="fill"] {
 }
 
 .flex-col > card[height="fill"]:not([width="fill"]),
-.flex-col > alert[height="fill"]:not([width="fill"]),
 .flex-col > attribution-box[height="fill"]:not([width="fill"]),
 .flex-col > stack[height="fill"]:not([width="fill"]),
 .flex-col > slot[height="fill"]:not([width="fill"]) {
@@ -39,7 +35,6 @@ slot[height="fill"] {
 }
 
 card[height="hug"],
-alert[height="hug"],
 attribution-box[height="hug"],
 stack[height="hug"],
 slot[height="hug"] {

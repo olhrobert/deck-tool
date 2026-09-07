@@ -32,30 +32,31 @@ function isFontFamilyName(value) {
  * Anything not listed here stays a shared design-system default (type scale,
  * global spacing scale, etc.).
  *
- * Font *named families* (`fonts.families.display|base`) are CSS stacks.
- * Role families (`cover.title.family`, `fonts.body.family`, …) name one of those
- * two. Font *named weights* (`fonts.weights.regular|medium|bold`) are CSS numbers
+ * Font *named families* (`font.family.display|base`) are CSS stacks.
+ * Role families (`cover.title.family`, `font.body.family`, …) name one of those
+ * two. Font *named weights* (`font.weight.regular|medium|bold`) are CSS numbers
  * (400, 500, 600, 700, …) matching `@font-face` in design-system/tokens/fonts.css.
  * Role weights (`slide.title.weight`, `card.title.weight`, …) and `<text weight>`
  * name one of those three. Font *sizes* are type-scale steps (800, 600, 400, …)
  * from design-system/tokens/typography.css — not pixel values.
  * Semantic *spacing* is a spacing-scale step (20, 16, "0-5", …) from
  * design-system/tokens/spacing.css — not pixel values.
- * `slide.maxWidth` is a pixel integer (default 1280) — the slide canvas cap.
+ * `slide.canvas.maxWidth` is a pixel integer (default 1280) — the slide canvas cap.
  * Component *radius* names a `border.radius` step (`med`, `none`, …).
  * Component *stroke* names a `border.size` step (`none`, `sm`, `md`).
  *
  * Cover and slide settings live under top-level `cover` / `slide` (colors,
- * type, chrome), nested by group (`cover.surface.background`,
- * `slide.pretitle.family`, `slide.header.paddingLeft`). Other generic tokens
- * are grouped by type (`colors.brand`, `colors.status`, `colors.charts`,
- * `fonts.families`, `fonts.weights`, `fonts.body`, `border.radius`,
- * `border.size`). Hard-coded RGB lives on `colors.brand` / status / charts;
- * `colors.highlight` and cover/slide color roles ref that palette
- * (`"brand2"` or `{ "color": "brand1", "opacity": 0.18 }`). Remaining
- * component tokens are grouped by component (`card`, `alert`, …) and named
- * component-leading (`--slide-pretitle-font-family`). TOKEN_MAP order is the
- * brand.css order.
+ * type, chrome), nested by group (`cover.canvas.background`,
+ * `cover.surface.background`, `slide.pretitle.family`,
+ * `slide.header.paddingLeft`). Top-level groups, in
+ * order: `basics`, `colorBrand`, `colorSemantic`, `font`, `border`, `cover`,
+ * `slide`, `stack`, `card`. Hard-coded RGB lives on `colorBrand` (brand1–brand6,
+ * chart1–chart4) and `colorSemantic` (`defaultQuiet.foreground.strong`, …);
+ * every leaf in a group sits at the same depth (`background.base` matches
+ * `foreground.base`). Cover/slide color roles ref that palette (`"brand2"` or
+ * `{ "color": "brand1", "opacity": 0.18 }`). Remaining component tokens are
+ * grouped by component (`card`, …) and named component-leading
+ * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
  */
 const TYPE_SCALE_STEPS = [
 	"4000",
@@ -147,26 +148,29 @@ function isFontSizePath(jsonPath) {
 }
 
 function isSpacingStepPath(jsonPath) {
-	return /(padding(Sm|Md|Lg|Top|Right|Bottom|Left)|gap(Sm|Md|Lg)?|metaPaddingTop|titleGap|padding[XY](Title|Content))$/i.test(
-		jsonPath,
+	return (
+		/\.(padding|gap)\.(sm|md|lg)$/i.test(jsonPath) ||
+		/\.padding(Top|Right|Bottom|Left)$/i.test(jsonPath) ||
+		/\.title\.gap$/i.test(jsonPath) ||
+		/(padding(Sm|Md|Lg)|gap(Sm|Md|Lg)|metaPaddingTop|titleGap)$/i.test(jsonPath)
 	);
 }
 
 function isFontNamedFamilyPath(jsonPath) {
-	return /^fonts\.families\.(display|base)$/.test(jsonPath);
+	return /^font\.family\.(display|base)$/.test(jsonPath);
 }
 
 function isFontRoleFamilyPath(jsonPath) {
-	if (jsonPath.startsWith("fonts.families.")) return false;
+	if (jsonPath.startsWith("font.family.")) return false;
 	return jsonPath.endsWith(".family") || /(title|pretitle|subtitle)Family$/.test(jsonPath);
 }
 
 function isFontNamedWeightPath(jsonPath) {
-	return /^fonts\.weights\.(regular|medium|bold)$/.test(jsonPath);
+	return /^font\.weight\.(regular|medium|bold)$/.test(jsonPath);
 }
 
 function isFontRoleWeightPath(jsonPath) {
-	if (jsonPath.startsWith("fonts.weights.")) return false;
+	if (jsonPath.startsWith("font.weight.")) return false;
 	return (
 		jsonPath.endsWith(".weight") ||
 		/(title|pretitle|subtitle)Weight$/.test(jsonPath)
@@ -181,7 +185,10 @@ function isBorderRadiusStep(value) {
 }
 
 function isBorderRadiusRolePath(jsonPath) {
-	return jsonPath.endsWith(".borderRadius") && !jsonPath.startsWith("border.radius.");
+	return (
+		(jsonPath.endsWith(".borderRadius") || jsonPath.endsWith(".border.radius")) &&
+		!jsonPath.startsWith("border.radius.")
+	);
 }
 
 const BORDER_SIZE_STEPS = ["none", "sm", "md"];
@@ -192,11 +199,14 @@ function isBorderSizeStep(value) {
 }
 
 function isBorderSizeRolePath(jsonPath) {
-	return /\.borderSize\.(top|bottom|left|right)$/.test(jsonPath);
+	return (
+		/\.borderSize\.(top|bottom|left|right)$/.test(jsonPath) ||
+		/\.border\.size(Top|Bottom|Left|Right)$/.test(jsonPath)
+	);
 }
 
 function isPixelDimensionPath(jsonPath) {
-	return jsonPath === "slide.maxWidth";
+	return jsonPath === "slide.canvas.maxWidth";
 }
 
 function isPixelDimension(value) {
@@ -230,23 +240,84 @@ const BRAND_SWATCH_KEYS = ["brand1", "brand2", "brand3", "brand4", "brand5", "br
 const BRAND_SWATCH_KEY_SET = new Set(BRAND_SWATCH_KEYS);
 
 function isBrandSwatchPath(jsonPath) {
-	return /^colors\.brand\.brand[1-6]$/.test(jsonPath);
+	return /^colorBrand\.brand[1-6]$/.test(jsonPath);
+}
+
+function isChartSwatchPath(jsonPath) {
+	return /^colorBrand\.chart[1-4]$/.test(jsonPath);
+}
+
+function camelToKebab(value) {
+	return String(value).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+}
+
+function jsonPathToCssVar(jsonPath) {
+	return `--${jsonPath.split(".").map(camelToKebab).join("-")}`;
+}
+
+function semanticFamilyKey(variant, tone) {
+	return `${variant}${tone.charAt(0).toUpperCase()}${tone.slice(1)}`;
+}
+
+const SEMANTIC_COLOR_VARIANTS = [
+	"default",
+	"positive",
+	"warning",
+	"negative",
+	"informative",
+];
+const SEMANTIC_COLOR_TONES = ["quiet", "emphasis"];
+const SEMANTIC_COLOR_FAMILIES = SEMANTIC_COLOR_VARIANTS.flatMap((variant) =>
+	SEMANTIC_COLOR_TONES.map((tone) => semanticFamilyKey(variant, tone)),
+);
+const SEMANTIC_FAMILY_GROUP = SEMANTIC_COLOR_FAMILIES.join("|");
+const SEMANTIC_LEAF_GROUP =
+	"(background\\.base|foreground\\.(strong|base|subtle)|border\\.(subtle|strong))";
+const SEMANTIC_LITERAL_PATH = new RegExp(
+	`^colorSemantic\\.(${SEMANTIC_FAMILY_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
+);
+const SEMANTIC_PALETTE_REF = new RegExp(
+	`^(${SEMANTIC_FAMILY_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
+);
+
+const SEMANTIC_TOKEN_LEAVES = [
+	"foreground.strong",
+	"foreground.base",
+	"foreground.subtle",
+	"background.base",
+	"border.subtle",
+	"border.strong",
+];
+
+function semanticColorTokenMapEntries() {
+	const entries = [];
+	let first = true;
+	for (const family of SEMANTIC_COLOR_FAMILIES) {
+		for (const jsonSuffix of SEMANTIC_TOKEN_LEAVES) {
+			const jsonPath = `colorSemantic.${family}.${jsonSuffix}`;
+			const cssVar = jsonPathToCssVar(jsonPath);
+			if (first) {
+				entries.push([jsonPath, cssVar, "colorSemantic"]);
+				first = false;
+			} else {
+				entries.push([jsonPath, cssVar]);
+			}
+		}
+	}
+	return entries;
 }
 
 function isColorLiteralPath(jsonPath) {
 	return (
 		isBrandSwatchPath(jsonPath) ||
-		/^colors\.status\.(positive|warning|negative|informative)\.(foreground|background|border)$/.test(
-			jsonPath,
-		) ||
-		/^colors\.charts\.chart[1-4]$/.test(jsonPath)
+		isChartSwatchPath(jsonPath) ||
+		SEMANTIC_LITERAL_PATH.test(jsonPath)
 	);
 }
 
 function isColorRolePath(jsonPath) {
 	return (
-		jsonPath === "colors.highlight" ||
-		/^(cover|slide)\.(background|foreground)$/.test(jsonPath) ||
+		/^(cover|slide)\.canvas\.(background|foreground)$/.test(jsonPath) ||
 		/^(cover|slide)\.surface\.(background|foreground|border)$/.test(jsonPath)
 	);
 }
@@ -297,26 +368,19 @@ function withOpacity(colorValue, opacity) {
 }
 
 function resolvePalettePath(refName) {
-	if (BRAND_SWATCH_KEY_SET.has(refName)) {
-		return `colors.brand.${refName}`;
+	if (BRAND_SWATCH_KEY_SET.has(refName) || /^chart[1-4]$/.test(refName)) {
+		return `colorBrand.${refName}`;
 	}
-	if (
-		/^status\.(positive|warning|negative|informative)\.(foreground|background|border)$/.test(
-			refName,
-		)
-	) {
-		return `colors.${refName}`;
-	}
-	if (/^charts\.chart[1-4]$/.test(refName)) {
-		return `colors.${refName}`;
+	if (SEMANTIC_PALETTE_REF.test(refName)) {
+		return `colorSemantic.${refName}`;
 	}
 	return null;
 }
 
 /**
  * Resolve a color role ref against the extended palette
- * (`colors.brand.*`, `colors.status.*`, `colors.charts.*`).
- * Accepts `"brand1"` / `"status.positive.foreground"` or
+ * (`colorBrand.*`, `colorSemantic.*`).
+ * Accepts `"brand1"` / `"positiveQuiet.foreground.strong"` / `"chart1"` or
  * `{ "color": "brand1", "opacity": 0.18 }`.
  */
 function resolveColorRef(brand, raw, jsonPath) {
@@ -347,7 +411,7 @@ function resolveColorRef(brand, raw, jsonPath) {
 	const palettePath = resolvePalettePath(refName);
 	if (!palettePath) {
 		throw new Error(
-			`${jsonPath} unknown palette ref "${refName}" (use brand1–brand6, status.*.*, or charts.chart*)`,
+			`${jsonPath} unknown palette ref "${refName}" (use brand1–brand6, chart1–chart4, or defaultQuiet.foreground.strong / warningEmphasis.background.base / …)`,
 		);
 	}
 
@@ -368,51 +432,37 @@ function resolveColorRef(brand, raw, jsonPath) {
 }
 
 const TOKEN_MAP = [
-	["colors.brand.brand1", "--color-brand-1", "brand"],
-	["colors.brand.brand2", "--color-brand-2"],
-	["colors.brand.brand3", "--color-brand-3"],
-	["colors.brand.brand4", "--color-brand-4"],
-	["colors.brand.brand5", "--color-brand-5"],
-	["colors.brand.brand6", "--color-brand-6"],
+	["colorBrand.brand1", "--color-brand-brand1", "colorBrand"],
+	["colorBrand.brand2", "--color-brand-brand2"],
+	["colorBrand.brand3", "--color-brand-brand3"],
+	["colorBrand.brand4", "--color-brand-brand4"],
+	["colorBrand.brand5", "--color-brand-brand5"],
+	["colorBrand.brand6", "--color-brand-brand6"],
+	["colorBrand.chart1", "--color-brand-chart1"],
+	["colorBrand.chart2", "--color-brand-chart2"],
+	["colorBrand.chart3", "--color-brand-chart3"],
+	["colorBrand.chart4", "--color-brand-chart4"],
 
-	["colors.highlight", "--color-highlight", "highlight"],
+	...semanticColorTokenMapEntries(),
 
-	["colors.status.positive.foreground", "--color-positive", "status"],
-	["colors.status.positive.background", "--color-positive-bg"],
-	["colors.status.positive.border", "--color-positive-border"],
-	["colors.status.warning.foreground", "--color-warning"],
-	["colors.status.warning.background", "--color-warning-bg"],
-	["colors.status.warning.border", "--color-warning-border"],
-	["colors.status.negative.foreground", "--color-negative"],
-	["colors.status.negative.background", "--color-negative-bg"],
-	["colors.status.negative.border", "--color-negative-border"],
-	["colors.status.informative.foreground", "--color-informative"],
-	["colors.status.informative.background", "--color-informative-bg"],
-	["colors.status.informative.border", "--color-informative-border"],
+	["font.family.display", "--font-family-display", "font — family"],
+	["font.family.base", "--font-family-base"],
 
-	["colors.charts.chart1", "--color-chart-1", "charts"],
-	["colors.charts.chart2", "--color-chart-2"],
-	["colors.charts.chart3", "--color-chart-3"],
-	["colors.charts.chart4", "--color-chart-4"],
+	["font.weight.regular", "--font-weight-regular", "font — weight"],
+	["font.weight.medium", "--font-weight-medium"],
+	["font.weight.bold", "--font-weight-bold"],
 
-	["fonts.families.display", "--font-family-display", "fonts — families"],
-	["fonts.families.base", "--font-family-base"],
+	["font.paragraphTitle.family", "--paragraph-title-font-family", "font — paragraph title"],
+	["font.paragraphTitle.weight", "--paragraph-title-font-weight"],
+	["font.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
+	["font.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
+	["font.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
 
-	["fonts.weights.regular", "--font-weight-regular", "fonts — weights"],
-	["fonts.weights.medium", "--font-weight-medium"],
-	["fonts.weights.bold", "--font-weight-bold"],
-
-	["fonts.paragraphTitle.family", "--paragraph-title-font-family", "fonts — paragraph title"],
-	["fonts.paragraphTitle.weight", "--paragraph-title-font-weight"],
-	["fonts.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
-	["fonts.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
-	["fonts.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
-
-	["fonts.body.family", "--body-font-family", "fonts — body"],
-	["fonts.body.weight", "--body-font-weight"],
-	["fonts.body.sizeSm", "--body-size-sm"],
-	["fonts.body.sizeMd", "--body-size-md"],
-	["fonts.body.sizeLg", "--body-size-lg"],
+	["font.body.family", "--body-font-family", "font — body"],
+	["font.body.weight", "--body-font-weight"],
+	["font.body.sizeSm", "--body-size-sm"],
+	["font.body.sizeMd", "--body-size-md"],
+	["font.body.sizeLg", "--body-size-lg"],
 
 	["border.radius.none", "--border-radius-none", "border — radius"],
 	["border.radius.sm", "--border-radius-sm"],
@@ -424,16 +474,17 @@ const TOKEN_MAP = [
 	["border.size.sm", "--border-size-sm"],
 	["border.size.md", "--border-size-md"],
 
-	["cover.background", "--color-cover-background", "cover"],
-	["cover.foreground", "--color-cover-foreground"],
+	["cover.canvas.background", "--color-cover-background", "cover"],
+	["cover.canvas.foreground", "--color-cover-foreground"],
 	["cover.surface.background", "--color-cover-surface-background"],
 	["cover.surface.foreground", "--color-cover-surface-foreground"],
 	["cover.surface.border", "--color-cover-surface-border"],
 	["cover.title.family", "--cover-title-font-family"],
 	["cover.title.weight", "--cover-title-font-weight"],
 
-	["slide.background", "--color-slide-background", "slide"],
-	["slide.foreground", "--color-slide-foreground"],
+	["slide.canvas.background", "--color-slide-background", "slide"],
+	["slide.canvas.foreground", "--color-slide-foreground"],
+	["slide.canvas.maxWidth", "--slide-max-width"],
 	["slide.surface.background", "--color-slide-surface-background"],
 	["slide.surface.foreground", "--color-slide-surface-foreground"],
 	["slide.surface.border", "--color-slide-surface-border"],
@@ -451,7 +502,6 @@ const TOKEN_MAP = [
 	["slide.subtitle.family", "--slide-subtitle-font-family"],
 	["slide.subtitle.weight", "--slide-subtitle-font-weight"],
 	["slide.subtitle.size", "--slide-subtitle-size"],
-	["slide.maxWidth", "--slide-max-width"],
 	["slide.header.paddingTop", "--slide-header-padding-top"],
 	["slide.header.paddingRight", "--slide-header-padding-right"],
 	["slide.header.paddingBottom", "--slide-header-padding-bottom"],
@@ -465,17 +515,17 @@ const TOKEN_MAP = [
 	["slide.footer.paddingBottom", "--slide-footer-padding-bottom"],
 	["slide.footer.paddingLeft", "--slide-footer-padding-left"],
 
-	["card.paddingSm", "--card-padding-sm", "card"],
-	["card.paddingMd", "--card-padding-md"],
-	["card.paddingLg", "--card-padding-lg"],
-	["card.gapSm", "--card-gap-sm"],
-	["card.gapMd", "--card-gap-md"],
-	["card.gapLg", "--card-gap-lg"],
-	["card.borderRadius", "--card-border-radius"],
-	["card.borderSize.top", "--card-border-size-top"],
-	["card.borderSize.bottom", "--card-border-size-bottom"],
-	["card.borderSize.left", "--card-border-size-left"],
-	["card.borderSize.right", "--card-border-size-right"],
+	["card.padding.sm", "--card-padding-sm", "card"],
+	["card.padding.md", "--card-padding-md"],
+	["card.padding.lg", "--card-padding-lg"],
+	["card.gap.sm", "--card-gap-sm"],
+	["card.gap.md", "--card-gap-md"],
+	["card.gap.lg", "--card-gap-lg"],
+	["card.border.radius", "--card-border-radius"],
+	["card.border.sizeTop", "--card-border-size-top"],
+	["card.border.sizeBottom", "--card-border-size-bottom"],
+	["card.border.sizeLeft", "--card-border-size-left"],
+	["card.border.sizeRight", "--card-border-size-right"],
 	["card.title.family", "--card-title-font-family"],
 	["card.title.weight", "--card-title-font-weight"],
 	["card.title.sizeSm", "--card-title-size-sm"],
@@ -486,21 +536,11 @@ const TOKEN_MAP = [
 	["card.pretitle.uppercase", "--card-pretitle-text-transform"],
 	["card.pretitle.letterSpacing", "--card-pretitle-letter-spacing"],
 	["card.pretitle.size", "--card-pretitle-size"],
-	["card.metaPaddingTop", "--card-meta-padding-top"],
+	["card.meta.paddingTop", "--card-meta-padding-top"],
 
-	["alert.paddingSm", "--alert-padding-sm", "alert"],
-	["alert.paddingMd", "--alert-padding-md"],
-	["alert.paddingLg", "--alert-padding-lg"],
-	["alert.gap", "--alert-gap"],
-	["alert.borderRadius", "--alert-border-radius"],
-	["alert.borderSize.top", "--alert-border-size-top"],
-	["alert.borderSize.bottom", "--alert-border-size-bottom"],
-	["alert.borderSize.left", "--alert-border-size-left"],
-	["alert.borderSize.right", "--alert-border-size-right"],
-
-	["stack.gapSm", "--stack-gap-sm", "stack"],
-	["stack.gapMd", "--stack-gap-md"],
-	["stack.gapLg", "--stack-gap-lg"],
+	["stack.gap.sm", "--stack-gap-sm", "stack"],
+	["stack.gap.md", "--stack-gap-md"],
+	["stack.gap.lg", "--stack-gap-lg"],
 ];
 
 function getPath(obj, dottedPath) {
@@ -540,7 +580,7 @@ function toCssValue(jsonPath, value, brand) {
 	if (isFontRoleFamilyPath(jsonPath)) {
 		if (!isFontFamilyName(value)) {
 			throw new Error(
-				`${jsonPath} must be a named family (${FONT_FAMILY_NAMES.join(", ")}) from fonts.families (got ${JSON.stringify(value)})`,
+				`${jsonPath} must be a named family (${FONT_FAMILY_NAMES.join(", ")}) from font.family (got ${JSON.stringify(value)})`,
 			);
 		}
 		return `var(--font-family-${value})`;
@@ -556,7 +596,7 @@ function toCssValue(jsonPath, value, brand) {
 	if (isFontRoleWeightPath(jsonPath)) {
 		if (!isFontWeightName(value)) {
 			throw new Error(
-				`${jsonPath} must be a named weight (${FONT_WEIGHT_NAMES.join(", ")}) from fonts.weights (got ${JSON.stringify(value)})`,
+				`${jsonPath} must be a named weight (${FONT_WEIGHT_NAMES.join(", ")}) from font.weight (got ${JSON.stringify(value)})`,
 			);
 		}
 		return `var(--font-weight-${value})`;
@@ -625,7 +665,7 @@ function buildBrandCss(brand) {
 		lines.push(`\t${cssVar}: ${value};`);
 	}
 
-	const brandName = brand.name || "brand";
+	const brandName = (brand.basics && brand.basics.name) || "brand";
 	return [
 		`/* AUTO-GENERATED from ${BRAND_FILENAME} for "${brandName}" — do not edit by hand. */`,
 		`/* Regenerate: npm run generate-brand -- brands/<name> */`,
@@ -671,6 +711,10 @@ module.exports = {
 	FONT_WEIGHT_NAMES,
 	FONT_FAMILY_NAMES,
 	BRAND_SWATCH_KEYS,
+	SEMANTIC_COLOR_VARIANTS,
+	SEMANTIC_COLOR_TONES,
+	SEMANTIC_COLOR_FAMILIES,
+	semanticFamilyKey,
 	resolveColorRef,
 	isColorRolePath,
 	isColorLiteralPath,

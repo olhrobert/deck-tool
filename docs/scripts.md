@@ -42,7 +42,7 @@ Rebuilds registered component instances in deck slide HTML from their canonical 
 
 **What it updates**
 
-Alert, Slide Title, Card, and Attribution Box — listed in `design-system/components/registry.json`. `<body-copy>` outside composite slots and layout wrappers are left alone. Primitive `<text>` (cover title, attribution, page numbers) is also left alone. Optional slots the slide never had (subtitle, card text/meta, footer page number) stay omitted.
+Slide Title, Card, and Attribution Box — listed in `design-system/components/registry.json`. `<body-copy>` outside composite slots and layout wrappers are left alone. Primitive `<text>` (cover title, attribution, page numbers) is also left alone. Optional slots the slide never had (subtitle, card text/meta, footer page number) stay omitted.
 
 **Usage**
 
@@ -123,7 +123,7 @@ Then edit `brand-settings.json` / `{slug}-logo.svg` and run `validate-brand.js`.
 
 ## `validate-brand.js`
 
-Checks `TOKEN_MAP` keys, type-scale and spacing-scale steps, `slide.maxWidth` as a pixel integer, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
+Checks `TOKEN_MAP` keys, type-scale and spacing-scale steps, `slide.canvas.maxWidth` as a pixel integer, color parse, WCAG AA for slide/cover/surface foreground-on-background pairs, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
 
 ```bash
 node scripts/validate-brand.js brands/riverton

@@ -565,38 +565,6 @@ function walk(node, warnings) {
 		};
 	}
 
-	if (node.tag === "slide") {
-		const frame = parseUtilityLayout(node);
-		frame.name = "Alert";
-		frame.layout = "VERTICAL";
-		frame.fill = "color/slide-surface-background";
-		frame.strokeColor = attr(node, "variant")
-			? `color/${attr(node, "variant")}`
-			: "color/highlight";
-		frame.children = (node.children || []).map((child) => {
-			if (child.tag === "alert-title") {
-				return {
-					type: "text",
-					name: "Alert title",
-					characters: collapseText(collectText(child)),
-					typography: typeTokens({ family: "heading", weight: "bold", size: "500" }),
-					color: "color/slide-surface-foreground-strong",
-				};
-			}
-			if (child.tag === "alert-description") {
-				return {
-					type: "text",
-					name: "Alert description",
-					characters: collapseText(collectText(child)),
-					typography: typeTokens({ family: "body", weight: "regular", size: "400" }),
-					color: "color/slide-surface-foreground-base",
-				};
-			}
-			return walk(child, warnings);
-		}).filter(Boolean);
-		return frame;
-	}
-
 	if (isListItemRow(node)) {
 		return {
 			type: "instance",

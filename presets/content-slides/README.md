@@ -8,16 +8,16 @@ Use the same footer preset across every content slide in a deck.
 
 | File                    | Layout                                                                 |
 | ----------------------- | ---------------------------------------------------------------------- |
-| `content-slide-01.html` | Header + content + footer. Fact row, paragraph title, body, alert. Uses `footer-01`. |
+| `content-slide-01.html` | Header + content + footer. Fact row, paragraph title, body, full-width card. Uses `footer-01`. |
 
 ## Placeholders to replace
 
 - Slide title pre / main / sub
 - Quick-fact card labels, values, and meta
 - Paragraph title and body copy
-- Alert title and description
+- Full-width callout card
 - Footer disclaimer and slide number
 
 ## Example prompt
 
-> Create `decks/q3-review/`. Copy `presets/content-slides/content-slide-01.html` to `02.html`. Title: "Project overview". Fill the three fact cards, then replace body and alert copy.
+> Create `decks/q3-review/`. Copy `presets/content-slides/content-slide-01.html` to `02.html`. Title: "Project overview". Fill the three fact cards, then replace body and callout copy.

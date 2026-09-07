@@ -13,10 +13,7 @@
 @import "card/presets/card-meta.css";
 @import "attribution-box/attribution-box.css";
 @import "attribution-box/attribution-box-separator.css";
-@import "alert/alert.css";
 @import "shared/fill-hug-sizing.css";
-@import "alert/alert-title.css";
-@import "alert/alert-description.css";
 @import "layout/stack.css";
 @import "layout/slot.css";
 @import "layout/slide-header.css";

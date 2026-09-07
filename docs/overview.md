@@ -13,8 +13,8 @@ HTML is the source of truth. Brands override tokens. The Figma file instances th
 
 | Piece | Where | Job |
 | --- | --- | --- |
-| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.maxWidth` (pixels on the generic `border.radius` / `border.size` scales and the slide canvas cap). |
-| Components | `design-system/components/` (HTML fragments + CSS + `registry.json`) | Slide chrome, type, Card, Alert, Attribution, … |
+| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.canvas.maxWidth` (pixels on the generic `border.radius` / `border.size` scales and the slide canvas cap). |
+| Components | `design-system/components/` (HTML fragments + CSS + `registry.json`) | Slide chrome, type, Card, Attribution, … |
 | Presets | `presets/` | Starting-point title slides, content slides, footers. A copied slide may diverge. |
 | Showcase | `design-system/showcase/showcase.html` | Workbench: `fetch()` of live component and preset files, brand switcher |
 | Decks | `decks/{name}/` | Real slides; compiled `index.html` via `scripts/compile-deck.js` |
@@ -56,8 +56,8 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slide
 ### Done
 
 - Showcase `fetch()`es live component fragments and presets (no inlined fork).
-- `registry.json` + `refresh-components.js` restamp Alert, Slide Title, Card, and Attribution in a deck without wiping unique layout.
-- Title presets (01–04), footers (01–02), one content slide (`content-slide-01`: header, fact row, section + body, alert, footer-01).
+- `registry.json` + `refresh-components.js` restamp Slide Title, Card, and Attribution in a deck without wiping unique layout.
+- Title presets (01–04), footers (01–02), one content slide (`content-slide-01`: header, fact row, section + body, card, footer-01).
 - Card component lives at `design-system/components/card/card.html`.
 - Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution, page numbers). Semantic type tags are presets of `<text>` (`color`, `size`, `uppercase`, `context`). `<copy>` is gone.
 - Cover ink uses role classes (`.color-cover-foreground-*`). Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
@@ -65,7 +65,7 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton), Slide
 
 ### Still open
 
-- **More content-slide presets** — only `content-slide-01.html` exists. Add body patterns (two-column copy, title + body + alert variants) in `presets/content-slides/` before inventing new chrome.
+- **More content-slide presets** — only `content-slide-01.html` exists. Add body patterns (two-column copy, title + body + card variants) in `presets/content-slides/` before inventing new chrome.
 - **Kept for later:** `.bg-cover-surface` and `<stack>` (plus unused utilities). Do not remove them; they are for upcoming presets.
 - **New components only when a preset needs them** — candidates, not a backlog: list item, generic card body patterns, charts (tokens exist, no component). Every new piece gets a fragment the showcase can load.
 
@@ -85,7 +85,7 @@ Out of scope until then: rewriting skills around missing presets, cleaning sampl
 
 **Goal:** Compiled HTML instances the Figma library in the deck brand’s Primitives mode.
 
-Expected work: realign Figma variables with the current token roles (cover/slide, five font families, weights), add missing library pieces (Alert, …), then fine-tune `html-to-ir.js` and `push-to-figma`. CSS/Figma defaultVariant mismatches stay a mapping concern, not a reason to change HTML in Phase 1–2.
+Expected work: realign Figma variables with the current token roles (cover/slide, five font families, weights), then fine-tune `html-to-ir.js` and `push-to-figma`. CSS/Figma defaultVariant mismatches stay a mapping concern, not a reason to change HTML in Phase 1–2.
 
 ---
 

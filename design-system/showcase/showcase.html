@@ -136,25 +136,101 @@
 			[data-section="layout"] slide-footer {
 				border: 1px solid var(--color-slide-surface-border);
 			}
+
+			.card-matrix {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-4);
+			}
+
+			.card-matrix-row {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: var(--spacing-3);
+			}
+
+			.card-matrix-row card {
+				flex: 1 1 auto;
+			}
+
+			.brand-settings-table {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
+				border: 1px solid var(--color-semantic-default-quiet-border-subtle);
+				border-radius: var(--card-border-radius);
+				overflow: hidden;
+				background: var(--color-semantic-default-quiet-background-base);
+				max-width: 40rem;
+			}
+
+			.brand-settings-branch {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-4);
+			}
+
+			.brand-settings-row {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: var(--spacing-4);
+				align-items: center;
+				padding: var(--spacing-3) var(--spacing-4);
+				border-top: 1px solid var(--color-semantic-default-quiet-border-subtle);
+				font-family: system-ui, sans-serif;
+				font-size: var(--text-size-300);
+			}
+
+			.brand-settings-row:first-child {
+				border-top: none;
+			}
+
+			.brand-settings-key {
+				color: var(--color-semantic-default-quiet-foreground-strong);
+				font-weight: 500;
+				word-break: break-word;
+			}
+
+			.brand-settings-value {
+				color: var(--color-semantic-default-quiet-foreground-base);
+				word-break: break-word;
+				font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+				font-size: 12px;
+				min-width: 0;
+			}
+
+			.brand-settings-value-swatch {
+				align-items: center;
+				min-width: 0;
+			}
+
+			.brand-swatch-chip {
+				width: 16px;
+				height: 16px;
+				border-radius: var(--border-radius-full);
+				flex: 0 0 auto;
+				box-sizing: border-box;
+				border: 1px solid var(--color-semantic-default-quiet-border-subtle);
+			}
 		</style>
 	</head>
 	<body>
 		<div class="showcase">
 			<div class="showcase-filter">
 				<a
-					href="#slides"
-					data-filter="slides"
-					>Slides</a
-				>
-				<a
-					href="#components"
-					data-filter="components"
-					>Comps</a
+					href="#brand"
+					data-filter="brand"
+					>Brand</a
 				>
 				<a
 					href="#typography"
 					data-filter="typography"
 					>Type</a
+				>
+				<a
+					href="#components"
+					data-filter="components"
+					>Comps</a
 				>
 				<a
 					href="#layout"
@@ -175,6 +251,14 @@
 					>Riverton</a
 				>
 			</div>
+
+			<!-- === BRAND === -->
+
+			<div
+				class="showcase-group"
+				data-section="brand"
+				id="brand-showcase"
+			></div>
 
 			<!-- === SLIDES === -->
 
@@ -281,53 +365,8 @@
 						>components/card/card.html</text
 					>
 					<div
-						data-preset="fragment"
-						data-src="../components/card/card.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/alert/alert.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/alert/alert.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/alert/alert-positive.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/alert/alert-positive.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/alert/alert-warning.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/alert/alert-warning.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/alert/alert-negative.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/alert/alert-negative.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/alert/alert-informative.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/alert/alert-informative.html"
+						class="card-matrix"
+						id="card-showcase"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
@@ -631,6 +670,244 @@
 				});
 			}
 
+			const SEMANTIC_VARIANTS = [
+				"default",
+				"positive",
+				"warning",
+				"negative",
+				"informative",
+			];
+			/* quiet/basic, emphasis/basic, quiet/stripe, emphasis/stripe */
+			const CARD_COMBOS = [
+				{ emphasis: "false", label: "quiet", chrome: "basic" },
+				{ emphasis: "true", label: "emphasis", chrome: "basic" },
+				{ emphasis: "false", label: "quiet", chrome: "stripe" },
+				{ emphasis: "true", label: "emphasis", chrome: "stripe" },
+			];
+
+			function titleCase(value) {
+				return String(value).replace(/^\w/, (char) => char.toUpperCase());
+			}
+
+			function renderShowcaseCard(variant, combo) {
+				const meta = [
+					titleCase(variant),
+					titleCase(combo.label),
+					titleCase(combo.chrome),
+				].join(" · ");
+				return `
+					<card
+						class="flex-1 min-w-0"
+						variant="${variant}"
+						emphasis="${combo.emphasis}"
+						chrome="${combo.chrome}"
+						padding="md"
+						gap="sm"
+					>
+						<card-pretitle color="subtle" context="surface">Optional pretitle.</card-pretitle>
+						<card-title color="strong" context="surface">Card title</card-title>
+						<body-copy size="sm" color="base" context="surface">Description copy on this card.</body-copy>
+						<card-meta color="subtle" context="surface">${meta}</card-meta>
+					</card>
+				`;
+			}
+
+			function renderCardShowcase() {
+				const root = document.getElementById("card-showcase");
+				if (!root) return;
+				root.innerHTML = SEMANTIC_VARIANTS.map(
+					(variant) => `
+						<div class="card-matrix-row">
+							${CARD_COMBOS.map((combo) =>
+								renderShowcaseCard(variant, combo),
+							).join("")}
+						</div>
+					`,
+				).join("");
+			}
+
+			function escapeHtml(value) {
+				return String(value)
+					.replace(/&/g, "&amp;")
+					.replace(/</g, "&lt;")
+					.replace(/>/g, "&gt;")
+					.replace(/"/g, "&quot;");
+			}
+
+			function formatSettingLabel(key) {
+				return String(key).charAt(0).toUpperCase() + String(key).slice(1);
+			}
+
+			function formatSettingValue(value) {
+				if (value === null || value === undefined) return "";
+				if (typeof value === "object") return JSON.stringify(value);
+				return String(value);
+			}
+
+			function isColorLiteral(value) {
+				return (
+					typeof value === "string" &&
+					(/^rgba?\(/i.test(value) || /^#[0-9a-f]{6}$/i.test(value))
+				);
+			}
+
+			function parseColorChannels(value) {
+				if (typeof value !== "string") return null;
+				const rgb = value.match(
+					/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i,
+				);
+				if (rgb) {
+					return {
+						r: Number(rgb[1]),
+						g: Number(rgb[2]),
+						b: Number(rgb[3]),
+						a: rgb[4] === undefined ? 1 : Number(rgb[4]),
+					};
+				}
+				const hex = value.match(/^#([0-9a-f]{6})$/i);
+				if (hex) {
+					const n = parseInt(hex[1], 16);
+					return {
+						r: (n >> 16) & 255,
+						g: (n >> 8) & 255,
+						b: n & 255,
+						a: 1,
+					};
+				}
+				return null;
+			}
+
+			function withOpacity(colorValue, opacity) {
+				const channels = parseColorChannels(colorValue);
+				if (!channels) return null;
+				return `rgba(${channels.r}, ${channels.g}, ${channels.b}, ${opacity})`;
+			}
+
+			function getPath(obj, dottedPath) {
+				return dottedPath.split(".").reduce((acc, key) => {
+					return acc && typeof acc === "object" ? acc[key] : undefined;
+				}, obj);
+			}
+
+			function resolvePaletteLiteral(brand, refName) {
+				if (!refName || typeof refName !== "string") return null;
+				if (/^brand[1-6]$/.test(refName) || /^chart[1-4]$/.test(refName)) {
+					const literal = getPath(brand, `colorBrand.${refName}`);
+					return isColorLiteral(literal) ? literal : null;
+				}
+				const literal = getPath(brand, `colorSemantic.${refName}`);
+				return isColorLiteral(literal) ? literal : null;
+			}
+
+			function resolveSwatchFill(brand, raw) {
+				if (isColorLiteral(raw)) return raw;
+				if (typeof raw === "string") {
+					return resolvePaletteLiteral(brand, raw);
+				}
+				if (raw && typeof raw === "object" && typeof raw.color === "string") {
+					const base = resolvePaletteLiteral(brand, raw.color);
+					if (!base) return null;
+					if (typeof raw.opacity === "number") {
+						return withOpacity(base, raw.opacity);
+					}
+					return base;
+				}
+				return null;
+			}
+
+			function isColorSetting(brand, raw) {
+				return Boolean(resolveSwatchFill(brand, raw));
+			}
+
+			function isSettingsLeaf(node) {
+				if (node === null || node === undefined) return true;
+				if (typeof node !== "object" || Array.isArray(node)) return true;
+				return (
+					typeof node.color === "string" &&
+					Object.keys(node).every((key) => key === "color" || key === "opacity")
+				);
+			}
+
+			function paragraphTitleSize(depth) {
+				if (depth <= 1) return "lg";
+				if (depth === 2) return "md";
+				return "sm";
+			}
+
+			function renderSettingsRow(title, displayValue, fill) {
+				const valueCell = fill
+					? `<stack class="brand-settings-value-swatch" direction="row" gap="sm">
+							<div
+								class="brand-swatch-chip"
+								style="background-color:${fill}"
+								aria-hidden="true"
+							></div>
+							<div class="brand-settings-value">${escapeHtml(displayValue)}</div>
+						</stack>`
+					: `<div class="brand-settings-value">${escapeHtml(displayValue)}</div>`;
+				return `
+					<div class="brand-settings-row">
+						<div class="brand-settings-key">${escapeHtml(title)}</div>
+						${valueCell}
+					</div>
+				`;
+			}
+
+			function renderBrandBranch(brand, key, value, depth) {
+				if (isSettingsLeaf(value)) return "";
+
+				const size = paragraphTitleSize(depth);
+				const heading = `<paragraph-title size="${size}" color="strong" context="slide">${escapeHtml(formatSettingLabel(key))}</paragraph-title>`;
+				const entries = Object.entries(value);
+				const leaves = entries.filter(([, child]) => isSettingsLeaf(child));
+				const nests = entries.filter(([, child]) => !isSettingsLeaf(child));
+
+				let body = "";
+				if (leaves.length) {
+					const rows = leaves
+						.map(([leafKey, leafValue]) => {
+							const fill = isColorSetting(brand, leafValue)
+								? resolveSwatchFill(brand, leafValue)
+								: null;
+							return renderSettingsRow(
+								formatSettingLabel(leafKey),
+								formatSettingValue(leafValue),
+								fill,
+							);
+						})
+						.join("");
+					body += `<div class="brand-settings-table">${rows}</div>`;
+				}
+
+				body += nests
+					.map(([childKey, childValue]) =>
+						renderBrandBranch(brand, childKey, childValue, depth + 1),
+					)
+					.join("");
+
+				return `
+					<div class="brand-settings-branch" data-depth="${depth}">
+						${heading}
+						${body}
+					</div>
+				`;
+			}
+
+			function renderBrandShowcase(brand) {
+				const root = document.getElementById("brand-showcase");
+				if (!root || !brand) return;
+
+				root.innerHTML = Object.entries(brand)
+					.map(([group, value]) => renderBrandBranch(brand, group, value, 1))
+					.join("");
+			}
+
+			async function loadBrandSettings(brand) {
+				const res = await fetch(`../../brands/${brand}/brand-settings.json`);
+				if (!res.ok) throw new Error(String(res.status));
+				return res.json();
+			}
+
 			let brandApplyId = 0;
 
 			function applyBrand(brand = currentBrand) {
@@ -641,9 +918,20 @@
 					currentBrand = brand;
 					setBrandInUrl(brand);
 					syncBrandTabs(brand);
-					const finish = () => {
+					const finish = async () => {
 						if (applyId !== brandApplyId) return;
 						applyLogos(brand);
+						renderCardShowcase();
+						try {
+							const settings = await loadBrandSettings(brand);
+							if (applyId !== brandApplyId) return;
+							renderBrandShowcase(settings);
+						} catch (error) {
+							const root = document.getElementById("brand-showcase");
+							if (root) {
+								root.innerHTML = `<div class="showcase-label" style="color:var(--color-semantic-negative-quiet-foreground-strong)">Failed to load brand settings</div>`;
+							}
+						}
 						resolve();
 					};
 
@@ -704,7 +992,7 @@
 							} catch (e) {
 								slot.insertAdjacentHTML(
 									"beforeend",
-									`<div class="showcase-label" style="color:var(--color-negative)">Failed to load ${src}</div>`,
+									`<div class="showcase-label" style="color:var(--color-semantic-negative-quiet-foreground-strong)">Failed to load ${src}</div>`,
 								);
 								slot.dataset.loaded = "true";
 								slot.removeAttribute("data-src");
@@ -746,7 +1034,12 @@
 
 			// --- Filter tabs ---
 
-			const VALID_FILTERS = ["slides", "components", "typography", "layout"];
+			const VALID_FILTERS = [
+				"brand",
+				"typography",
+				"components",
+				"layout",
+			];
 			const filterLinks = document.querySelectorAll(".showcase-filter a");
 			const sections = document.querySelectorAll(
 				".showcase-group[data-section]",
@@ -754,7 +1047,7 @@
 
 			function filterFromHash() {
 				const hash = location.hash.replace(/^#/, "");
-				return VALID_FILTERS.includes(hash) ? hash : "slides";
+				return VALID_FILTERS.includes(hash) ? hash : "brand";
 			}
 
 			function applyFilter(active) {
@@ -775,8 +1068,8 @@
 				syncBrandTabs(currentBrand);
 			});
 
-			if (!location.hash) {
-				history.replaceState(null, "", "#slides");
+			if (!location.hash || location.hash === "#slides") {
+				history.replaceState(null, "", "#brand");
 			}
 
 			applyFilter(filterFromHash());

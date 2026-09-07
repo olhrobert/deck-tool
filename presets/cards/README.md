@@ -8,6 +8,16 @@ Copy that file into a slide and replace placeholder text only. Do not change ele
 
 Styles live in `design-system/components/card/presets/`.
 
+## Axes
+
+| Attribute | Values | Default |
+|---|---|---|
+| `variant` | `default`, `positive`, `warning`, `negative`, `informative` | `default` |
+| `emphasis` | `true`, `false` | `false` |
+| `chrome` | `basic`, `stripe` | `basic` |
+
+Paint comes from `colorSemantic.{variant}{Quiet|Emphasis}.*`. Letter case, spacing, and type sizes stay on the brand `card.*` tokens.
+
 ## Structure
 
 ```

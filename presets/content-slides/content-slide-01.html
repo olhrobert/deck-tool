@@ -94,12 +94,17 @@
 								roles together.
 							</body-copy>
 						</div>
-						<alert padding="md">
-							<alert-title data-slot="title" color="strong" context="surface">Alert title</alert-title>
-							<alert-description data-slot="description" color="base" context="surface">
-								Alert description with placeholder copy.
-							</alert-description>
-						</alert>
+						<card padding="md" gap="sm">
+							<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+								>Note</card-pretitle
+							>
+							<card-title data-slot="title" color="strong" context="surface"
+								>Callout title</card-title
+							>
+							<body-copy data-slot="text" size="md" weight="regular" color="base" context="surface">
+								Supporting copy on a full-width card.
+							</body-copy>
+						</card>
 					</div>
 				</slide-content>
 				<slide-footer>

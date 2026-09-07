@@ -1,19 +1,6 @@
 {
 	"components": [
 		{
-			"id": "alert",
-			"tag": "alert",
-			"template": "alert/alert.html",
-			"slots": [
-				{ "name": "title", "tag": "alert-title", "required": true },
-				{
-					"name": "description",
-					"tag": "alert-description",
-					"required": false
-				}
-			]
-		},
-		{
 			"id": "slide-title",
 			"tag": "slide-title-group",
 			"template": "slide-title/slide-title-group-md.html",

@@ -13,7 +13,7 @@ Machine-readable IDs and property names: [`figma/library.json`](../figma/library
 | Primitives | one per brand | Brand role values, scopes `[]` — colors (`cover-background`, `slide-foreground`, …) **and** `font-family/heading`, `font-family/body` |
 | Color | `Value` | Opacity variants and aliases (`color/slide-foreground-strong`, `color/cover-background`, …) |
 | Spacing | `Value` | `spacing/0` … `spacing/40`, plus `0-25`, `0-5`, `1-5`, `2-5` |
-| Radius | `Value` | including `radius/card`, `radius/alert` |
+| Radius | `Value` | including `radius/card` |
 | Typography | `Value` | `family/heading` and `family/body` alias the primitive families; shared size / weight / line-height / letter-spacing |
 
 A new brand is a new Primitives **mode**, then set that mode on the deck page. Color and typeface aliases follow the selected primitive mode.

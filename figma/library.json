@@ -177,7 +177,6 @@
 		"svg brand/placeholder logo": "instance component/logo-{brand} or placeholder. Gratia deck mark is component/logo-gratia-brand (monochrome); img gratia-logo.svg stays the two-color lockup.",
 		"flex-row + check/close icon + text": "instance componentset/list-item",
 		"div.flex": "anonymous auto-layout frame",
-		"text / copy": "text node + bind family/weight/size; PERCENT lineHeight/letterSpacing from tokens; color variable",
-		"alert": "frame (no Figma component yet) + Alert type tokens"
+		"text / copy": "text node + bind family/weight/size; PERCENT lineHeight/letterSpacing from tokens; color variable"
 	}
 }
