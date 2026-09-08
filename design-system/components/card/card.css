@@ -13,12 +13,12 @@ card {
 	min-width: 0;
 	box-sizing: border-box;
 
-	--_card-ink-strong: var(--color-semantic-default-quiet-foreground-strong);
-	--_card-ink-base: var(--color-semantic-default-quiet-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-default-quiet-foreground-subtle);
-	--_card-bg: var(--color-semantic-default-quiet-background-base);
-	--_card-border: var(--color-semantic-default-quiet-border-subtle);
-	--_card-border-strong: var(--color-semantic-default-quiet-border-strong);
+	--_card-ink-strong: var(--color-default-quiet-foreground-strong);
+	--_card-ink-base: var(--color-default-quiet-foreground-base);
+	--_card-ink-subtle: var(--color-default-quiet-foreground-subtle);
+	--_card-bg: var(--color-default-quiet-background-base);
+	--_card-border: var(--color-default-quiet-border-subtle);
+	--_card-border-strong: var(--color-default-quiet-border-strong);
 
 	background-color: var(--_card-bg);
 	border-style: solid;
@@ -61,88 +61,88 @@ card
 /* --- emphasis (default variant) --- */
 
 card[emphasis="true"] {
-	--_card-ink-strong: var(--color-semantic-default-emphasis-foreground-strong);
-	--_card-ink-base: var(--color-semantic-default-emphasis-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-default-emphasis-foreground-subtle);
-	--_card-bg: var(--color-semantic-default-emphasis-background-base);
-	--_card-border: var(--color-semantic-default-emphasis-border-subtle);
-	--_card-border-strong: var(--color-semantic-default-emphasis-border-strong);
+	--_card-ink-strong: var(--color-default-emphasis-foreground-strong);
+	--_card-ink-base: var(--color-default-emphasis-foreground-base);
+	--_card-ink-subtle: var(--color-default-emphasis-foreground-subtle);
+	--_card-bg: var(--color-default-emphasis-background-base);
+	--_card-border: var(--color-default-emphasis-border-subtle);
+	--_card-border-strong: var(--color-default-emphasis-border-strong);
 }
 
 /* --- variant: quiet --- */
 
 card[variant="positive"] {
-	--_card-ink-strong: var(--color-semantic-positive-quiet-foreground-strong);
-	--_card-ink-base: var(--color-semantic-positive-quiet-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-positive-quiet-foreground-subtle);
-	--_card-bg: var(--color-semantic-positive-quiet-background-base);
-	--_card-border: var(--color-semantic-positive-quiet-border-subtle);
-	--_card-border-strong: var(--color-semantic-positive-quiet-border-strong);
+	--_card-ink-strong: var(--color-positive-quiet-foreground-strong);
+	--_card-ink-base: var(--color-positive-quiet-foreground-base);
+	--_card-ink-subtle: var(--color-positive-quiet-foreground-subtle);
+	--_card-bg: var(--color-positive-quiet-background-base);
+	--_card-border: var(--color-positive-quiet-border-subtle);
+	--_card-border-strong: var(--color-positive-quiet-border-strong);
 }
 
 card[variant="warning"] {
-	--_card-ink-strong: var(--color-semantic-warning-quiet-foreground-strong);
-	--_card-ink-base: var(--color-semantic-warning-quiet-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-warning-quiet-foreground-subtle);
-	--_card-bg: var(--color-semantic-warning-quiet-background-base);
-	--_card-border: var(--color-semantic-warning-quiet-border-subtle);
-	--_card-border-strong: var(--color-semantic-warning-quiet-border-strong);
+	--_card-ink-strong: var(--color-warning-quiet-foreground-strong);
+	--_card-ink-base: var(--color-warning-quiet-foreground-base);
+	--_card-ink-subtle: var(--color-warning-quiet-foreground-subtle);
+	--_card-bg: var(--color-warning-quiet-background-base);
+	--_card-border: var(--color-warning-quiet-border-subtle);
+	--_card-border-strong: var(--color-warning-quiet-border-strong);
 }
 
 card[variant="negative"] {
-	--_card-ink-strong: var(--color-semantic-negative-quiet-foreground-strong);
-	--_card-ink-base: var(--color-semantic-negative-quiet-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-negative-quiet-foreground-subtle);
-	--_card-bg: var(--color-semantic-negative-quiet-background-base);
-	--_card-border: var(--color-semantic-negative-quiet-border-subtle);
-	--_card-border-strong: var(--color-semantic-negative-quiet-border-strong);
+	--_card-ink-strong: var(--color-negative-quiet-foreground-strong);
+	--_card-ink-base: var(--color-negative-quiet-foreground-base);
+	--_card-ink-subtle: var(--color-negative-quiet-foreground-subtle);
+	--_card-bg: var(--color-negative-quiet-background-base);
+	--_card-border: var(--color-negative-quiet-border-subtle);
+	--_card-border-strong: var(--color-negative-quiet-border-strong);
 }
 
 card[variant="informative"] {
-	--_card-ink-strong: var(--color-semantic-informative-quiet-foreground-strong);
-	--_card-ink-base: var(--color-semantic-informative-quiet-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-informative-quiet-foreground-subtle);
-	--_card-bg: var(--color-semantic-informative-quiet-background-base);
-	--_card-border: var(--color-semantic-informative-quiet-border-subtle);
-	--_card-border-strong: var(--color-semantic-informative-quiet-border-strong);
+	--_card-ink-strong: var(--color-informative-quiet-foreground-strong);
+	--_card-ink-base: var(--color-informative-quiet-foreground-base);
+	--_card-ink-subtle: var(--color-informative-quiet-foreground-subtle);
+	--_card-bg: var(--color-informative-quiet-background-base);
+	--_card-border: var(--color-informative-quiet-border-subtle);
+	--_card-border-strong: var(--color-informative-quiet-border-strong);
 }
 
 /* --- variant + emphasis --- */
 
 card[variant="positive"][emphasis="true"] {
-	--_card-ink-strong: var(--color-semantic-positive-emphasis-foreground-strong);
-	--_card-ink-base: var(--color-semantic-positive-emphasis-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-positive-emphasis-foreground-subtle);
-	--_card-bg: var(--color-semantic-positive-emphasis-background-base);
-	--_card-border: var(--color-semantic-positive-emphasis-border-subtle);
-	--_card-border-strong: var(--color-semantic-positive-emphasis-border-strong);
+	--_card-ink-strong: var(--color-positive-emphasis-foreground-strong);
+	--_card-ink-base: var(--color-positive-emphasis-foreground-base);
+	--_card-ink-subtle: var(--color-positive-emphasis-foreground-subtle);
+	--_card-bg: var(--color-positive-emphasis-background-base);
+	--_card-border: var(--color-positive-emphasis-border-subtle);
+	--_card-border-strong: var(--color-positive-emphasis-border-strong);
 }
 
 card[variant="warning"][emphasis="true"] {
-	--_card-ink-strong: var(--color-semantic-warning-emphasis-foreground-strong);
-	--_card-ink-base: var(--color-semantic-warning-emphasis-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-warning-emphasis-foreground-subtle);
-	--_card-bg: var(--color-semantic-warning-emphasis-background-base);
-	--_card-border: var(--color-semantic-warning-emphasis-border-subtle);
-	--_card-border-strong: var(--color-semantic-warning-emphasis-border-strong);
+	--_card-ink-strong: var(--color-warning-emphasis-foreground-strong);
+	--_card-ink-base: var(--color-warning-emphasis-foreground-base);
+	--_card-ink-subtle: var(--color-warning-emphasis-foreground-subtle);
+	--_card-bg: var(--color-warning-emphasis-background-base);
+	--_card-border: var(--color-warning-emphasis-border-subtle);
+	--_card-border-strong: var(--color-warning-emphasis-border-strong);
 }
 
 card[variant="negative"][emphasis="true"] {
-	--_card-ink-strong: var(--color-semantic-negative-emphasis-foreground-strong);
-	--_card-ink-base: var(--color-semantic-negative-emphasis-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-negative-emphasis-foreground-subtle);
-	--_card-bg: var(--color-semantic-negative-emphasis-background-base);
-	--_card-border: var(--color-semantic-negative-emphasis-border-subtle);
-	--_card-border-strong: var(--color-semantic-negative-emphasis-border-strong);
+	--_card-ink-strong: var(--color-negative-emphasis-foreground-strong);
+	--_card-ink-base: var(--color-negative-emphasis-foreground-base);
+	--_card-ink-subtle: var(--color-negative-emphasis-foreground-subtle);
+	--_card-bg: var(--color-negative-emphasis-background-base);
+	--_card-border: var(--color-negative-emphasis-border-subtle);
+	--_card-border-strong: var(--color-negative-emphasis-border-strong);
 }
 
 card[variant="informative"][emphasis="true"] {
-	--_card-ink-strong: var(--color-semantic-informative-emphasis-foreground-strong);
-	--_card-ink-base: var(--color-semantic-informative-emphasis-foreground-base);
-	--_card-ink-subtle: var(--color-semantic-informative-emphasis-foreground-subtle);
-	--_card-bg: var(--color-semantic-informative-emphasis-background-base);
-	--_card-border: var(--color-semantic-informative-emphasis-border-subtle);
-	--_card-border-strong: var(--color-semantic-informative-emphasis-border-strong);
+	--_card-ink-strong: var(--color-informative-emphasis-foreground-strong);
+	--_card-ink-base: var(--color-informative-emphasis-foreground-base);
+	--_card-ink-subtle: var(--color-informative-emphasis-foreground-subtle);
+	--_card-bg: var(--color-informative-emphasis-background-base);
+	--_card-border: var(--color-informative-emphasis-border-subtle);
+	--_card-border-strong: var(--color-informative-emphasis-border-strong);
 }
 
 /* --- chrome: stripe (left accent) --- */

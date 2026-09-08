@@ -49,12 +49,14 @@ function isFontFamilyName(value) {
  * type, chrome), nested by group (`cover.canvas.background`,
  * `cover.surface.background`, `slide.pretitle.family`,
  * `slide.header.paddingLeft`). Top-level groups, in
- * order: `basics`, `colorBrand`, `colorSemantic`, `font`, `border`, `cover`,
- * `slide`, `stack`, `card`. Hard-coded RGB lives on `colorBrand` (brand1–brand6,
- * chart1–chart4) and `colorSemantic` (`defaultQuiet.foreground.strong`, …);
- * every leaf in a group sits at the same depth (`background.base` matches
- * `foreground.base`). Cover/slide color roles ref that palette (`"brand2"` or
- * `{ "color": "brand1", "opacity": 0.18 }`). Remaining component tokens are
+ * order: `basic`, `palette`, `colorDefault`, `colorPositive`,
+ * `colorWarning`, `colorNegative`, `colorInformative`, `font`, `border`,
+ * `cover`, `slide`, `stack`, `card`. Hard-coded RGB lives on `palette`
+ * (`brand.1`–`brand.6`, `chart.1`–`chart.4`) and each semantic group
+ * (`colorDefault.quiet.foregroundStrong`, …); every leaf in a quiet/emphasis
+ * group sits at the same depth. Cover/slide
+ * color roles ref that palette (`"brand.2"` or
+ * `{ "color": "brand.1", "opacity": 0.18 }`). Remaining component tokens are
  * grouped by component (`card`, …) and named component-leading
  * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
  */
@@ -236,15 +238,18 @@ function isPretitleLetterSpacing(value) {
 	return typeof value === "string" && /^\d+(\.\d+)?%$/.test(value);
 }
 
-const BRAND_SWATCH_KEYS = ["brand1", "brand2", "brand3", "brand4", "brand5", "brand6"];
-const BRAND_SWATCH_KEY_SET = new Set(BRAND_SWATCH_KEYS);
+const BRAND_SWATCH_INDICES = ["1", "2", "3", "4", "5", "6"];
+const CHART_SWATCH_INDICES = ["1", "2", "3", "4"];
+const BRAND_SWATCH_KEYS = BRAND_SWATCH_INDICES.map((i) => `brand.${i}`);
+const CHART_SWATCH_KEYS = CHART_SWATCH_INDICES.map((i) => `chart.${i}`);
+const PALETTE_REF_SET = new Set([...BRAND_SWATCH_KEYS, ...CHART_SWATCH_KEYS]);
 
 function isBrandSwatchPath(jsonPath) {
-	return /^colorBrand\.brand[1-6]$/.test(jsonPath);
+	return /^palette\.brand\.[1-6]$/.test(jsonPath);
 }
 
 function isChartSwatchPath(jsonPath) {
-	return /^colorBrand\.chart[1-4]$/.test(jsonPath);
+	return /^palette\.chart\.[1-4]$/.test(jsonPath);
 }
 
 function camelToKebab(value) {
@@ -255,8 +260,8 @@ function jsonPathToCssVar(jsonPath) {
 	return `--${jsonPath.split(".").map(camelToKebab).join("-")}`;
 }
 
-function semanticFamilyKey(variant, tone) {
-	return `${variant}${tone.charAt(0).toUpperCase()}${tone.slice(1)}`;
+function semanticColorGroupKey(variant) {
+	return `color${variant.charAt(0).toUpperCase()}${variant.slice(1)}`;
 }
 
 const SEMANTIC_COLOR_VARIANTS = [
@@ -267,40 +272,43 @@ const SEMANTIC_COLOR_VARIANTS = [
 	"informative",
 ];
 const SEMANTIC_COLOR_TONES = ["quiet", "emphasis"];
-const SEMANTIC_COLOR_FAMILIES = SEMANTIC_COLOR_VARIANTS.flatMap((variant) =>
-	SEMANTIC_COLOR_TONES.map((tone) => semanticFamilyKey(variant, tone)),
-);
-const SEMANTIC_FAMILY_GROUP = SEMANTIC_COLOR_FAMILIES.join("|");
+const SEMANTIC_COLOR_GROUP_KEYS = SEMANTIC_COLOR_VARIANTS.map(semanticColorGroupKey);
+const SEMANTIC_VARIANT_GROUP = SEMANTIC_COLOR_VARIANTS.join("|");
+const SEMANTIC_TONE_GROUP = SEMANTIC_COLOR_TONES.join("|");
+const SEMANTIC_GROUP_KEY_GROUP = SEMANTIC_COLOR_GROUP_KEYS.join("|");
 const SEMANTIC_LEAF_GROUP =
-	"(background\\.base|foreground\\.(strong|base|subtle)|border\\.(subtle|strong))";
+	"(foregroundStrong|foregroundBase|foregroundSubtle|backgroundBase|borderSubtle|borderStrong)";
 const SEMANTIC_LITERAL_PATH = new RegExp(
-	`^colorSemantic\\.(${SEMANTIC_FAMILY_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
+	`^(${SEMANTIC_GROUP_KEY_GROUP})\\.(${SEMANTIC_TONE_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
 );
 const SEMANTIC_PALETTE_REF = new RegExp(
-	`^(${SEMANTIC_FAMILY_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
+	`^(${SEMANTIC_VARIANT_GROUP})\\.(${SEMANTIC_TONE_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
 );
 
 const SEMANTIC_TOKEN_LEAVES = [
-	"foreground.strong",
-	"foreground.base",
-	"foreground.subtle",
-	"background.base",
-	"border.subtle",
-	"border.strong",
+	"foregroundStrong",
+	"foregroundBase",
+	"foregroundSubtle",
+	"backgroundBase",
+	"borderSubtle",
+	"borderStrong",
 ];
 
 function semanticColorTokenMapEntries() {
 	const entries = [];
-	let first = true;
-	for (const family of SEMANTIC_COLOR_FAMILIES) {
-		for (const jsonSuffix of SEMANTIC_TOKEN_LEAVES) {
-			const jsonPath = `colorSemantic.${family}.${jsonSuffix}`;
-			const cssVar = jsonPathToCssVar(jsonPath);
-			if (first) {
-				entries.push([jsonPath, cssVar, "colorSemantic"]);
-				first = false;
-			} else {
-				entries.push([jsonPath, cssVar]);
+	for (const variant of SEMANTIC_COLOR_VARIANTS) {
+		const group = semanticColorGroupKey(variant);
+		let firstInGroup = true;
+		for (const tone of SEMANTIC_COLOR_TONES) {
+			for (const jsonSuffix of SEMANTIC_TOKEN_LEAVES) {
+				const jsonPath = `${group}.${tone}.${jsonSuffix}`;
+				const cssVar = jsonPathToCssVar(jsonPath);
+				if (firstInGroup) {
+					entries.push([jsonPath, cssVar, group]);
+					firstInGroup = false;
+				} else {
+					entries.push([jsonPath, cssVar]);
+				}
 			}
 		}
 	}
@@ -368,20 +376,22 @@ function withOpacity(colorValue, opacity) {
 }
 
 function resolvePalettePath(refName) {
-	if (BRAND_SWATCH_KEY_SET.has(refName) || /^chart[1-4]$/.test(refName)) {
-		return `colorBrand.${refName}`;
+	if (PALETTE_REF_SET.has(refName)) {
+		return `palette.${refName}`;
 	}
 	if (SEMANTIC_PALETTE_REF.test(refName)) {
-		return `colorSemantic.${refName}`;
+		const variant = refName.split(".")[0];
+		const rest = refName.slice(variant.length + 1);
+		return `${semanticColorGroupKey(variant)}.${rest}`;
 	}
 	return null;
 }
 
 /**
  * Resolve a color role ref against the extended palette
- * (`colorBrand.*`, `colorSemantic.*`).
- * Accepts `"brand1"` / `"positiveQuiet.foreground.strong"` / `"chart1"` or
- * `{ "color": "brand1", "opacity": 0.18 }`.
+ * (`palette.brand.*`, `palette.chart.*`, `colorDefault.*`, …).
+ * Accepts `"brand.1"` / `"positive.quiet.foregroundStrong"` / `"chart.1"` or
+ * `{ "color": "brand.1", "opacity": 0.18 }`.
  */
 function resolveColorRef(brand, raw, jsonPath) {
 	let refName;
@@ -411,7 +421,7 @@ function resolveColorRef(brand, raw, jsonPath) {
 	const palettePath = resolvePalettePath(refName);
 	if (!palettePath) {
 		throw new Error(
-			`${jsonPath} unknown palette ref "${refName}" (use brand1–brand6, chart1–chart4, or defaultQuiet.foreground.strong / warningEmphasis.background.base / …)`,
+			`${jsonPath} unknown palette ref "${refName}" (use brand.1–brand.6, chart.1–chart.4, or default.quiet.foregroundStrong / warning.emphasis.backgroundBase / …)`,
 		);
 	}
 
@@ -432,16 +442,16 @@ function resolveColorRef(brand, raw, jsonPath) {
 }
 
 const TOKEN_MAP = [
-	["colorBrand.brand1", "--color-brand-brand1", "colorBrand"],
-	["colorBrand.brand2", "--color-brand-brand2"],
-	["colorBrand.brand3", "--color-brand-brand3"],
-	["colorBrand.brand4", "--color-brand-brand4"],
-	["colorBrand.brand5", "--color-brand-brand5"],
-	["colorBrand.brand6", "--color-brand-brand6"],
-	["colorBrand.chart1", "--color-brand-chart1"],
-	["colorBrand.chart2", "--color-brand-chart2"],
-	["colorBrand.chart3", "--color-brand-chart3"],
-	["colorBrand.chart4", "--color-brand-chart4"],
+	["palette.brand.1", "--color-palette-brand-1", "palette"],
+	["palette.brand.2", "--color-palette-brand-2"],
+	["palette.brand.3", "--color-palette-brand-3"],
+	["palette.brand.4", "--color-palette-brand-4"],
+	["palette.brand.5", "--color-palette-brand-5"],
+	["palette.brand.6", "--color-palette-brand-6"],
+	["palette.chart.1", "--color-palette-chart-1"],
+	["palette.chart.2", "--color-palette-chart-2"],
+	["palette.chart.3", "--color-palette-chart-3"],
+	["palette.chart.4", "--color-palette-chart-4"],
 
 	...semanticColorTokenMapEntries(),
 
@@ -665,7 +675,7 @@ function buildBrandCss(brand) {
 		lines.push(`\t${cssVar}: ${value};`);
 	}
 
-	const brandName = (brand.basics && brand.basics.name) || "brand";
+	const brandName = (brand.basic && brand.basic.name) || "brand";
 	return [
 		`/* AUTO-GENERATED from ${BRAND_FILENAME} for "${brandName}" — do not edit by hand. */`,
 		`/* Regenerate: npm run generate-brand -- brands/<name> */`,
@@ -713,9 +723,10 @@ module.exports = {
 	BRAND_SWATCH_KEYS,
 	SEMANTIC_COLOR_VARIANTS,
 	SEMANTIC_COLOR_TONES,
-	SEMANTIC_COLOR_FAMILIES,
-	semanticFamilyKey,
+	SEMANTIC_COLOR_GROUP_KEYS,
+	semanticColorGroupKey,
 	resolveColorRef,
+	resolvePalettePath,
 	isColorRolePath,
 	isColorLiteralPath,
 	isColorLiteral,

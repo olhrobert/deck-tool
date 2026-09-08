@@ -1332,137 +1332,137 @@
 .color-black {
 	color: var(--color-black);
 }
-.color-semantic-default-quiet-foreground-strong {
-	color: var(--color-semantic-default-quiet-foreground-strong);
+.color-default-quiet-foreground-strong {
+	color: var(--color-default-quiet-foreground-strong);
 }
-.color-semantic-default-quiet-foreground-base {
-	color: var(--color-semantic-default-quiet-foreground-base);
+.color-default-quiet-foreground-base {
+	color: var(--color-default-quiet-foreground-base);
 }
-.color-semantic-default-quiet-foreground-subtle {
-	color: var(--color-semantic-default-quiet-foreground-subtle);
+.color-default-quiet-foreground-subtle {
+	color: var(--color-default-quiet-foreground-subtle);
 }
-.color-semantic-default-emphasis-foreground-strong {
-	color: var(--color-semantic-default-emphasis-foreground-strong);
+.color-default-emphasis-foreground-strong {
+	color: var(--color-default-emphasis-foreground-strong);
 }
-.color-semantic-default-emphasis-foreground-base {
-	color: var(--color-semantic-default-emphasis-foreground-base);
+.color-default-emphasis-foreground-base {
+	color: var(--color-default-emphasis-foreground-base);
 }
-.color-semantic-default-emphasis-foreground-subtle {
-	color: var(--color-semantic-default-emphasis-foreground-subtle);
+.color-default-emphasis-foreground-subtle {
+	color: var(--color-default-emphasis-foreground-subtle);
 }
-.color-semantic-positive-quiet-foreground-strong {
-	color: var(--color-semantic-positive-quiet-foreground-strong);
+.color-positive-quiet-foreground-strong {
+	color: var(--color-positive-quiet-foreground-strong);
 }
-.color-semantic-positive-quiet-foreground-base {
-	color: var(--color-semantic-positive-quiet-foreground-base);
+.color-positive-quiet-foreground-base {
+	color: var(--color-positive-quiet-foreground-base);
 }
-.color-semantic-positive-quiet-foreground-subtle {
-	color: var(--color-semantic-positive-quiet-foreground-subtle);
+.color-positive-quiet-foreground-subtle {
+	color: var(--color-positive-quiet-foreground-subtle);
 }
-.color-semantic-positive-emphasis-foreground-strong {
-	color: var(--color-semantic-positive-emphasis-foreground-strong);
+.color-positive-emphasis-foreground-strong {
+	color: var(--color-positive-emphasis-foreground-strong);
 }
-.color-semantic-positive-emphasis-foreground-base {
-	color: var(--color-semantic-positive-emphasis-foreground-base);
+.color-positive-emphasis-foreground-base {
+	color: var(--color-positive-emphasis-foreground-base);
 }
-.color-semantic-positive-emphasis-foreground-subtle {
-	color: var(--color-semantic-positive-emphasis-foreground-subtle);
+.color-positive-emphasis-foreground-subtle {
+	color: var(--color-positive-emphasis-foreground-subtle);
 }
-.color-semantic-warning-quiet-foreground-strong {
-	color: var(--color-semantic-warning-quiet-foreground-strong);
+.color-warning-quiet-foreground-strong {
+	color: var(--color-warning-quiet-foreground-strong);
 }
-.color-semantic-warning-quiet-foreground-base {
-	color: var(--color-semantic-warning-quiet-foreground-base);
+.color-warning-quiet-foreground-base {
+	color: var(--color-warning-quiet-foreground-base);
 }
-.color-semantic-warning-quiet-foreground-subtle {
-	color: var(--color-semantic-warning-quiet-foreground-subtle);
+.color-warning-quiet-foreground-subtle {
+	color: var(--color-warning-quiet-foreground-subtle);
 }
-.color-semantic-warning-emphasis-foreground-strong {
-	color: var(--color-semantic-warning-emphasis-foreground-strong);
+.color-warning-emphasis-foreground-strong {
+	color: var(--color-warning-emphasis-foreground-strong);
 }
-.color-semantic-warning-emphasis-foreground-base {
-	color: var(--color-semantic-warning-emphasis-foreground-base);
+.color-warning-emphasis-foreground-base {
+	color: var(--color-warning-emphasis-foreground-base);
 }
-.color-semantic-warning-emphasis-foreground-subtle {
-	color: var(--color-semantic-warning-emphasis-foreground-subtle);
+.color-warning-emphasis-foreground-subtle {
+	color: var(--color-warning-emphasis-foreground-subtle);
 }
-.color-semantic-negative-quiet-foreground-strong {
-	color: var(--color-semantic-negative-quiet-foreground-strong);
+.color-negative-quiet-foreground-strong {
+	color: var(--color-negative-quiet-foreground-strong);
 }
-.color-semantic-negative-quiet-foreground-base {
-	color: var(--color-semantic-negative-quiet-foreground-base);
+.color-negative-quiet-foreground-base {
+	color: var(--color-negative-quiet-foreground-base);
 }
-.color-semantic-negative-quiet-foreground-subtle {
-	color: var(--color-semantic-negative-quiet-foreground-subtle);
+.color-negative-quiet-foreground-subtle {
+	color: var(--color-negative-quiet-foreground-subtle);
 }
-.color-semantic-negative-emphasis-foreground-strong {
-	color: var(--color-semantic-negative-emphasis-foreground-strong);
+.color-negative-emphasis-foreground-strong {
+	color: var(--color-negative-emphasis-foreground-strong);
 }
-.color-semantic-negative-emphasis-foreground-base {
-	color: var(--color-semantic-negative-emphasis-foreground-base);
+.color-negative-emphasis-foreground-base {
+	color: var(--color-negative-emphasis-foreground-base);
 }
-.color-semantic-negative-emphasis-foreground-subtle {
-	color: var(--color-semantic-negative-emphasis-foreground-subtle);
+.color-negative-emphasis-foreground-subtle {
+	color: var(--color-negative-emphasis-foreground-subtle);
 }
-.color-semantic-informative-quiet-foreground-strong {
-	color: var(--color-semantic-informative-quiet-foreground-strong);
+.color-informative-quiet-foreground-strong {
+	color: var(--color-informative-quiet-foreground-strong);
 }
-.color-semantic-informative-quiet-foreground-base {
-	color: var(--color-semantic-informative-quiet-foreground-base);
+.color-informative-quiet-foreground-base {
+	color: var(--color-informative-quiet-foreground-base);
 }
-.color-semantic-informative-quiet-foreground-subtle {
-	color: var(--color-semantic-informative-quiet-foreground-subtle);
+.color-informative-quiet-foreground-subtle {
+	color: var(--color-informative-quiet-foreground-subtle);
 }
-.color-semantic-informative-emphasis-foreground-strong {
-	color: var(--color-semantic-informative-emphasis-foreground-strong);
+.color-informative-emphasis-foreground-strong {
+	color: var(--color-informative-emphasis-foreground-strong);
 }
-.color-semantic-informative-emphasis-foreground-base {
-	color: var(--color-semantic-informative-emphasis-foreground-base);
+.color-informative-emphasis-foreground-base {
+	color: var(--color-informative-emphasis-foreground-base);
 }
-.color-semantic-informative-emphasis-foreground-subtle {
-	color: var(--color-semantic-informative-emphasis-foreground-subtle);
+.color-informative-emphasis-foreground-subtle {
+	color: var(--color-informative-emphasis-foreground-subtle);
 }
 .bg-semantic-default-quiet {
-	background-color: var(--color-semantic-default-quiet-background-base);
+	background-color: var(--color-default-quiet-background-base);
 }
 .bg-semantic-default-emphasis {
-	background-color: var(--color-semantic-default-emphasis-background-base);
+	background-color: var(--color-default-emphasis-background-base);
 }
 .bg-semantic-positive-quiet {
-	background-color: var(--color-semantic-positive-quiet-background-base);
+	background-color: var(--color-positive-quiet-background-base);
 }
 .bg-semantic-positive-emphasis {
-	background-color: var(--color-semantic-positive-emphasis-background-base);
+	background-color: var(--color-positive-emphasis-background-base);
 }
 .bg-semantic-warning-quiet {
-	background-color: var(--color-semantic-warning-quiet-background-base);
+	background-color: var(--color-warning-quiet-background-base);
 }
 .bg-semantic-warning-emphasis {
-	background-color: var(--color-semantic-warning-emphasis-background-base);
+	background-color: var(--color-warning-emphasis-background-base);
 }
 .bg-semantic-negative-quiet {
-	background-color: var(--color-semantic-negative-quiet-background-base);
+	background-color: var(--color-negative-quiet-background-base);
 }
 .bg-semantic-negative-emphasis {
-	background-color: var(--color-semantic-negative-emphasis-background-base);
+	background-color: var(--color-negative-emphasis-background-base);
 }
 .bg-semantic-informative-quiet {
-	background-color: var(--color-semantic-informative-quiet-background-base);
+	background-color: var(--color-informative-quiet-background-base);
 }
 .bg-semantic-informative-emphasis {
-	background-color: var(--color-semantic-informative-emphasis-background-base);
+	background-color: var(--color-informative-emphasis-background-base);
 }
-.color-brand-chart1 {
-	color: var(--color-brand-chart1);
+.color-palette-chart-1 {
+	color: var(--color-palette-chart-1);
 }
-.color-brand-chart2 {
-	color: var(--color-brand-chart2);
+.color-palette-chart-2 {
+	color: var(--color-palette-chart-2);
 }
-.color-brand-chart3 {
-	color: var(--color-brand-chart3);
+.color-palette-chart-3 {
+	color: var(--color-palette-chart-3);
 }
-.color-brand-chart4 {
-	color: var(--color-brand-chart4);
+.color-palette-chart-4 {
+	color: var(--color-palette-chart-4);
 }
 
 /* Typography */

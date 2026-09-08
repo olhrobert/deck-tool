@@ -32,16 +32,16 @@
 				padding: var(--spacing-10);
 				padding-top: var(--spacing-20);
 				padding-bottom: var(--spacing-20);
-				max-width: calc(
-					var(--slide-max-width, 1280px) + 2 * var(--spacing-10)
-				);
+				max-width: 1280px;
+				width: 100%;
 				margin: 0 auto;
+				box-sizing: border-box;
 			}
 
 			.showcase-group {
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-10);
+				gap: var(--spacing-20);
 			}
 
 			.showcase-subgroup {
@@ -65,7 +65,7 @@
 			}
 
 			.showcase-deck slide {
-				margin: 0;
+				margin: 0 auto;
 				border: 1px solid var(--color-slide-surface-border);
 			}
 
@@ -153,21 +153,44 @@
 				flex: 1 1 auto;
 			}
 
+			.showcase-group[data-section="brand"],
+			.showcase-group[data-section="typography"],
+			.showcase-group[data-section="components"] {
+				max-width: 800px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.showcase-group[data-section="layout"] {
+				max-width: 1280px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
 			.brand-settings-table {
 				display: flex;
 				flex-direction: column;
 				gap: 0;
-				border: 1px solid var(--color-semantic-default-quiet-border-subtle);
+				width: 100%;
+				border: 1px solid
+					var(--color-default-quiet-border-subtle);
 				border-radius: var(--card-border-radius);
 				overflow: hidden;
-				background: var(--color-semantic-default-quiet-background-base);
-				max-width: 40rem;
+				background: var(--color-default-quiet-background-base);
 			}
 
-			.brand-settings-branch {
+			.brand-settings-group {
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-4);
+				gap: var(--spacing-5);
+				width: 100%;
+			}
+
+			.brand-settings-block {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-2);
+				width: 100%;
 			}
 
 			.brand-settings-row {
@@ -176,32 +199,21 @@
 				gap: var(--spacing-4);
 				align-items: center;
 				padding: var(--spacing-3) var(--spacing-4);
-				border-top: 1px solid var(--color-semantic-default-quiet-border-subtle);
-				font-family: system-ui, sans-serif;
-				font-size: var(--text-size-300);
+				border-top: 1px solid
+					var(--color-default-quiet-border-subtle);
 			}
 
 			.brand-settings-row:first-child {
 				border-top: none;
 			}
 
-			.brand-settings-key {
-				color: var(--color-semantic-default-quiet-foreground-strong);
-				font-weight: 500;
-				word-break: break-word;
-			}
-
-			.brand-settings-value {
-				color: var(--color-semantic-default-quiet-foreground-base);
-				word-break: break-word;
-				font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-				font-size: 12px;
+			.brand-settings-row > text,
+			.brand-settings-value-swatch {
 				min-width: 0;
 			}
 
 			.brand-settings-value-swatch {
 				align-items: center;
-				min-width: 0;
 			}
 
 			.brand-swatch-chip {
@@ -210,7 +222,8 @@
 				border-radius: var(--border-radius-full);
 				flex: 0 0 auto;
 				box-sizing: border-box;
-				border: 1px solid var(--color-semantic-default-quiet-border-subtle);
+				border: 1px solid
+					var(--color-default-quiet-border-subtle);
 			}
 		</style>
 	</head>
@@ -686,7 +699,9 @@
 			];
 
 			function titleCase(value) {
-				return String(value).replace(/^\w/, (char) => char.toUpperCase());
+				return String(value).replace(/^\w/, (char) =>
+					char.toUpperCase(),
+				);
 			}
 
 			function renderShowcaseCard(variant, combo) {
@@ -718,9 +733,7 @@
 				root.innerHTML = SEMANTIC_VARIANTS.map(
 					(variant) => `
 						<div class="card-matrix-row">
-							${CARD_COMBOS.map((combo) =>
-								renderShowcaseCard(variant, combo),
-							).join("")}
+							${CARD_COMBOS.map((combo) => renderShowcaseCard(variant, combo)).join("")}
 						</div>
 					`,
 				).join("");
@@ -735,7 +748,10 @@
 			}
 
 			function formatSettingLabel(key) {
-				return String(key).charAt(0).toUpperCase() + String(key).slice(1);
+				const spaced = String(key)
+					.replace(/([a-z])([A-Z])/g, "$1 $2")
+					.replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2");
+				return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 			}
 
 			function formatSettingValue(value) {
@@ -785,17 +801,33 @@
 
 			function getPath(obj, dottedPath) {
 				return dottedPath.split(".").reduce((acc, key) => {
-					return acc && typeof acc === "object" ? acc[key] : undefined;
+					return acc && typeof acc === "object"
+						? acc[key]
+						: undefined;
 				}, obj);
 			}
 
 			function resolvePaletteLiteral(brand, refName) {
 				if (!refName || typeof refName !== "string") return null;
-				if (/^brand[1-6]$/.test(refName) || /^chart[1-4]$/.test(refName)) {
-					const literal = getPath(brand, `colorBrand.${refName}`);
+				if (
+					/^brand\.[1-6]$/.test(refName) ||
+					/^chart\.[1-4]$/.test(refName)
+				) {
+					const literal = getPath(brand, `palette.${refName}`);
 					return isColorLiteral(literal) ? literal : null;
 				}
-				const literal = getPath(brand, `colorSemantic.${refName}`);
+				const semantic = refName.match(
+					/^(default|positive|warning|negative|informative)\.(quiet|emphasis)\.(.+)$/,
+				);
+				if (!semantic) return null;
+				const group =
+					"color" +
+					semantic[1].charAt(0).toUpperCase() +
+					semantic[1].slice(1);
+				const literal = getPath(
+					brand,
+					`${group}.${semantic[2]}.${semantic[3]}`,
+				);
 				return isColorLiteral(literal) ? literal : null;
 			}
 
@@ -804,7 +836,11 @@
 				if (typeof raw === "string") {
 					return resolvePaletteLiteral(brand, raw);
 				}
-				if (raw && typeof raw === "object" && typeof raw.color === "string") {
+				if (
+					raw &&
+					typeof raw === "object" &&
+					typeof raw.color === "string"
+				) {
 					const base = resolvePaletteLiteral(brand, raw.color);
 					if (!base) return null;
 					if (typeof raw.opacity === "number") {
@@ -821,20 +857,31 @@
 
 			function isSettingsLeaf(node) {
 				if (node === null || node === undefined) return true;
-				if (typeof node !== "object" || Array.isArray(node)) return true;
+				if (typeof node !== "object" || Array.isArray(node))
+					return true;
 				return (
 					typeof node.color === "string" &&
-					Object.keys(node).every((key) => key === "color" || key === "opacity")
+					Object.keys(node).every(
+						(key) => key === "color" || key === "opacity",
+					)
 				);
 			}
 
 			function paragraphTitleSize(depth) {
 				if (depth <= 1) return "lg";
-				if (depth === 2) return "md";
-				return "sm";
+				return "md";
+			}
+
+			function renderBrandGroupHeading(key, depth) {
+				const label = escapeHtml(formatSettingLabel(key));
+				if (depth <= 1) {
+					return `<paragraph-title size="${paragraphTitleSize(depth)}" color="strong" context="slide">${label}</paragraph-title>`;
+				}
+				return `<text size="400" weight="regular" color="subtle" context="slide">${label}</text>`;
 			}
 
 			function renderSettingsRow(title, displayValue, fill) {
+				const valueText = `<text size="350" color="subtle" context="slide">${escapeHtml(displayValue)}</text>`;
 				const valueCell = fill
 					? `<stack class="brand-settings-value-swatch" direction="row" gap="sm">
 							<div
@@ -842,53 +889,99 @@
 								style="background-color:${fill}"
 								aria-hidden="true"
 							></div>
-							<div class="brand-settings-value">${escapeHtml(displayValue)}</div>
+							${valueText}
 						</stack>`
-					: `<div class="brand-settings-value">${escapeHtml(displayValue)}</div>`;
+					: valueText;
 				return `
 					<div class="brand-settings-row">
-						<div class="brand-settings-key">${escapeHtml(title)}</div>
+						<text size="350" weight="medium" color="strong" context="slide">${escapeHtml(title)}</text>
 						${valueCell}
 					</div>
 				`;
 			}
 
-			function renderBrandBranch(brand, key, value, depth) {
+			function collectLeafRows(value, nameParts = []) {
+				if (isSettingsLeaf(value)) {
+					return [
+						{
+							title: nameParts
+								.map((part) => formatSettingLabel(part))
+								.join(" "),
+							value,
+						},
+					];
+				}
+				return Object.entries(value).flatMap(([childKey, childValue]) =>
+					collectLeafRows(childValue, [...nameParts, childKey]),
+				);
+			}
+
+			function renderSettingsTable(brand, rows) {
+				if (!rows.length) return "";
+				const html = rows
+					.map(({ title, value }) => {
+						const fill = isColorSetting(brand, value)
+							? resolveSwatchFill(brand, value)
+							: null;
+						return renderSettingsRow(
+							title,
+							formatSettingValue(value),
+							fill,
+						);
+					})
+					.join("");
+				return `<div class="brand-settings-table">${html}</div>`;
+			}
+
+			function renderSettingsBlock(headingHtml, tableHtml) {
+				if (!tableHtml) return "";
+				return `
+					<div class="brand-settings-block">
+						${headingHtml || ""}
+						${tableHtml}
+					</div>
+				`;
+			}
+
+			function renderBrandGroup(brand, key, value) {
 				if (isSettingsLeaf(value)) return "";
 
-				const size = paragraphTitleSize(depth);
-				const heading = `<paragraph-title size="${size}" color="strong" context="slide">${escapeHtml(formatSettingLabel(key))}</paragraph-title>`;
 				const entries = Object.entries(value);
-				const leaves = entries.filter(([, child]) => isSettingsLeaf(child));
-				const nests = entries.filter(([, child]) => !isSettingsLeaf(child));
+				const leaves = entries.filter(([, child]) =>
+					isSettingsLeaf(child),
+				);
+				const nests = entries.filter(
+					([, child]) => !isSettingsLeaf(child),
+				);
 
-				let body = "";
-				if (leaves.length) {
-					const rows = leaves
-						.map(([leafKey, leafValue]) => {
-							const fill = isColorSetting(brand, leafValue)
-								? resolveSwatchFill(brand, leafValue)
-								: null;
-							return renderSettingsRow(
-								formatSettingLabel(leafKey),
-								formatSettingValue(leafValue),
-								fill,
+				if (nests.length) {
+					const blocks = nests
+						.map(([childKey, childValue]) => {
+							const rows = collectLeafRows(childValue);
+							return renderSettingsBlock(
+								renderBrandGroupHeading(childKey, 2),
+								renderSettingsTable(brand, rows),
 							);
 						})
 						.join("");
-					body += `<div class="brand-settings-table">${rows}</div>`;
+					return `
+						<div class="brand-settings-group">
+							${renderBrandGroupHeading(key, 1)}
+							${blocks}
+						</div>
+					`;
 				}
 
-				body += nests
-					.map(([childKey, childValue]) =>
-						renderBrandBranch(brand, childKey, childValue, depth + 1),
-					)
-					.join("");
-
+				const rows = leaves.map(([leafKey, leafValue]) => ({
+					title: formatSettingLabel(leafKey),
+					value: leafValue,
+				}));
 				return `
-					<div class="brand-settings-branch" data-depth="${depth}">
-						${heading}
-						${body}
+					<div class="brand-settings-group">
+						${renderSettingsBlock(
+							renderBrandGroupHeading(key, 1),
+							renderSettingsTable(brand, rows),
+						)}
 					</div>
 				`;
 			}
@@ -898,12 +991,16 @@
 				if (!root || !brand) return;
 
 				root.innerHTML = Object.entries(brand)
-					.map(([group, value]) => renderBrandBranch(brand, group, value, 1))
+					.map(([group, value]) =>
+						renderBrandGroup(brand, group, value),
+					)
 					.join("");
 			}
 
 			async function loadBrandSettings(brand) {
-				const res = await fetch(`../../brands/${brand}/brand-settings.json`);
+				const res = await fetch(
+					`../../brands/${brand}/brand-settings.json`,
+				);
 				if (!res.ok) throw new Error(String(res.status));
 				return res.json();
 			}
@@ -927,9 +1024,10 @@
 							if (applyId !== brandApplyId) return;
 							renderBrandShowcase(settings);
 						} catch (error) {
-							const root = document.getElementById("brand-showcase");
+							const root =
+								document.getElementById("brand-showcase");
 							if (root) {
-								root.innerHTML = `<div class="showcase-label" style="color:var(--color-semantic-negative-quiet-foreground-strong)">Failed to load brand settings</div>`;
+								root.innerHTML = `<div class="showcase-label" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load brand settings</div>`;
 							}
 						}
 						resolve();
@@ -992,7 +1090,7 @@
 							} catch (e) {
 								slot.insertAdjacentHTML(
 									"beforeend",
-									`<div class="showcase-label" style="color:var(--color-semantic-negative-quiet-foreground-strong)">Failed to load ${src}</div>`,
+									`<div class="showcase-label" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load ${src}</div>`,
 								);
 								slot.dataset.loaded = "true";
 								slot.removeAttribute("data-src");

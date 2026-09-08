@@ -16,7 +16,7 @@ Styles live in `design-system/components/card/presets/`.
 | `emphasis` | `true`, `false` | `false` |
 | `chrome` | `basic`, `stripe` | `basic` |
 
-Paint comes from `colorSemantic.{variant}{Quiet|Emphasis}.*`. Letter case, spacing, and type sizes stay on the brand `card.*` tokens.
+Paint comes from `color{Variant}.{quiet|emphasis}.*` (e.g. `colorPositive.quiet`). Letter case, spacing, and type sizes stay on the brand `card.*` tokens.
 
 ## Structure
 

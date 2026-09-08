@@ -33,11 +33,11 @@ Then edit `brand-settings.json` (start from the Riverton copy the scaffold write
 
 ## `brand-settings.json` fields
 
-Cover and slide settings live under top-level `cover` and `slide` (colors, type, chrome), nested by group (`cover.canvas.background`, `slide.pretitle.family`, `slide.header.paddingLeft`). Top-level groups, in order: `basics` (`name`, `logo`), `colorBrand`, `colorSemantic`, `font`, `border`, `cover`, `slide`, `stack`, `card`. Shared tokens under `colorBrand` / `colorSemantic` / `font` / `border`; other component tokens (`card`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `border.radius` / `border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.canvas.maxWidth` (canvas cap, default `1280`).
+Cover and slide settings live under top-level `cover` and `slide` (colors, type, chrome), nested by group (`cover.canvas.background`, `slide.pretitle.family`, `slide.header.paddingLeft`). Top-level groups, in order: `basic` (`name`, `logo`), `palette`, `colorDefault`, `colorPositive`, `colorWarning`, `colorNegative`, `colorInformative`, `font`, `border`, `cover`, `slide`, `stack`, `card`. Shared tokens under `palette` / semantic color groups / `font` / `border`; other component tokens (`card`, …) keep padding, type, radius, and stroke together. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `border.radius` / `border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `slide.canvas.maxWidth` (canvas cap, default `1280`).
 
-`design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`) for cover/slide foregrounds. Brand identity and chart swatches live under `colorBrand.brand1`…`brand6` and `colorBrand.chart1`…`chart4` (omit unused brand slots).
+`design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`) for cover/slide foregrounds. Brand identity and chart swatches live under `palette.brand.1`…`6` and `palette.chart.1`…`4` (omit unused brand slots).
 
-**Color layers:** hard-coded RGB/RGBA lives only on the extended palette — `colorBrand.*` and `colorSemantic.*`. Every leaf in a group sits at the same depth (`foreground.base` and `background.base`). Cover/slide color fields **reference** that palette: a string (`"brand2"`, `"positiveQuiet.foreground.strong"`, `"chart1"`) or `{ "color": "brand1", "opacity": 0.18 }` when alpha differs. The generator bakes refs into concrete `rgb`/`rgba` in `brand.css`. `validate-brand.js` resolves the same way before WCAG AA checks on cover/slide (and surface) foreground/background pairs, plus each semantic `foreground.strong` on its `background.base`.
+**Color layers:** hard-coded RGB/RGBA lives only on the extended palette — `palette.*` and `colorDefault` / `colorPositive` / `colorWarning` / `colorNegative` / `colorInformative`. Every leaf under a tone sits at the same depth (`foregroundBase`, `backgroundBase`, …). Cover/slide color fields **reference** that palette: a string (`"brand.2"`, `"positive.quiet.foregroundStrong"`, `"chart.1"`) or `{ "color": "brand.1", "opacity": 0.18 }` when alpha differs. The generator bakes refs into concrete `rgb`/`rgba` in `brand.css`. `validate-brand.js` resolves the same way before WCAG AA checks on cover/slide (and surface) foreground/background pairs, plus each semantic `foregroundStrong` on its `backgroundBase`.
 
 ### Cover
 
@@ -45,11 +45,11 @@ Title/cover canvas plus cover title type.
 
 | `brand-settings.json` | CSS | What you see |
 |---|---|---|
-| `cover.canvas.background` | `--color-cover-background` | Title/cover fill. Ref a palette color (e.g. `"brand2"`). `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
+| `cover.canvas.background` | `--color-cover-background` | Title/cover fill. Ref a palette color (e.g. `"brand.2"`). `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
 | `cover.canvas.foreground` | `--color-cover-foreground` | Ink on the cover. Palette ref. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
 | `cover.surface.background` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). Palette ref. |
 | `cover.surface.foreground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. Palette ref. |
-| `cover.surface.border` | `--color-cover-surface-border` | Card stroke on a cover surface. Often `{ "color": "brand1", "opacity": 0.18 }`. |
+| `cover.surface.border` | `--color-cover-surface-border` | Card stroke on a cover surface. Often `{ "color": "brand.1", "opacity": 0.18 }`. |
 | `cover.title.family` | `--cover-title-font-family` → `var(--font-family-*)` | `family="cover-title"` |
 | `cover.title.weight` | `--cover-title-font-weight` → `var(--font-weight-*)` | default if `weight` is omitted |
 
@@ -89,13 +89,13 @@ Content-slide canvas, title stack type, and chrome padding.
 
 | `brand-settings.json` | CSS | What you see |
 |---|---|---|
-| `colorBrand.brand1`…`brand6` | `--color-brand-brand1` … `--color-brand-brand6` | Hard-coded identity swatches (omit unused). Role colors ref these by name (`"brand2"`). |
-| `colorSemantic.defaultQuiet` / `defaultEmphasis` / `positiveQuiet` / … | `--color-semantic-{family}-*` | Hard-coded semantic families. Variant and tone are one key (`warningQuiet`). Foreground steps: `strong` (title/icon), `base` (description), `subtle` (metadata). Background: `base` (quiet tint vs emphasis solid). Borders: `subtle` (box), `strong` (left accent). Default emphasis is the former highlight / on-highlight pair. |
-| `colorBrand.chart1`…`chart4` | `--color-brand-chart1` … `--color-brand-chart4` | Hard-coded chart palette. `.color-brand-chart*` utilities. Roles may ref (`"chart1"`). |
+| `palette.brand.1`…`6` | `--color-palette-brand-1` … `--color-palette-brand-6` | Hard-coded identity swatches (omit unused). Role colors ref these by name (`"brand.2"`). |
+| `colorDefault` / `colorPositive` / `colorWarning` / `colorNegative` / `colorInformative` | `--color-{variant}-{tone}-*` | Hard-coded semantic groups. Each has `quiet` and `emphasis` with flat leaves: `foregroundStrong` / `foregroundBase` / `foregroundSubtle`, `backgroundBase`, `borderSubtle` / `borderStrong`. Quiet tint vs emphasis solid on `backgroundBase`; stripe chrome uses quiet `borderStrong`. |
+| `palette.chart.1`…`4` | `--color-palette-chart-1` … `--color-palette-chart-4` | Hard-coded chart palette. `.color-palette-chart-*` utilities. Roles may ref (`"chart.1"`). |
 
-Semantic path shape: `colorSemantic.{variant}{Tone}.{role}.{step}`. Families are `defaultQuiet`, `defaultEmphasis`, `positiveQuiet`, `positiveEmphasis`, `warningQuiet`, `warningEmphasis`, `negativeQuiet`, `negativeEmphasis`, `informativeQuiet`, `informativeEmphasis`. Roles may also ref these (`"positiveEmphasis.background.base"`).
+Semantic path shape: `color{Variant}.{tone}.{leaf}` (e.g. `colorWarning.quiet.foregroundStrong`). Palette refs drop the `color` prefix: `"warning.quiet.foregroundStrong"`, `"positive.emphasis.backgroundBase"`.
 
-**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; quiet default cards → `colorSemantic.defaultQuiet.*` (same look as `slide.surface.*`); emphasis default fill/ink → `colorSemantic.defaultEmphasis.*`; stripe chrome → quiet `border.strong`.
+**Typical mapping:** title slide → `cover.*`; content slides → `slide.*`; quiet default cards → `colorDefault.quiet.*` (same look as `slide.surface.*`); emphasis default fill/ink → `colorDefault.emphasis.*`; stripe chrome → quiet `borderStrong`.
 
 ### Font tokens
 
