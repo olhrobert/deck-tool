@@ -247,6 +247,7 @@
 	--card-padding-sm: var(--spacing-3);
 	--card-padding-md: var(--spacing-4);
 	--card-padding-lg: var(--spacing-6);
+	--card-gap-none: var(--spacing-0);
 	--card-gap-sm: var(--spacing-2);
 	--card-gap-md: var(--spacing-3);
 	--card-gap-lg: var(--spacing-4);
@@ -267,7 +268,23 @@
 	--card-pretitle-size: var(--text-size-300);
 	--card-meta-padding-top: var(--spacing-0-5);
 
+	/* callout */
+	--callout-title-size: var(--text-size-400);
+	--callout-description-size: var(--text-size-350);
+	--callout-border-size: var(--border-size-sm);
+
+	/* badge */
+	--badge-text-size: var(--text-size-300);
+	--badge-border-color: transparent;
+	--badge-border-radius: var(--border-radius-none);
+
+	/* slide-footer */
+	--slide-footer-text-size: var(--text-size-300);
+	--slide-footer-logo-height: var(--spacing-3);
+	--slide-footer-gap: var(--spacing-2);
+
 	/* stack */
+	--stack-gap-none: var(--spacing-0);
 	--stack-gap-sm: var(--spacing-2);
 	--stack-gap-md: var(--spacing-3);
 	--stack-gap-lg: var(--spacing-4);

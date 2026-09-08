@@ -1,0 +1,11 @@
+/* Callout-description preset of base typography.
+   Defaults: color=base, context=surface. Size is brand-only. */
+
+callout-description {
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-weight: var(--body-font-weight);
+	line-height: 1.2;
+	font-size: var(--callout-description-size);
+	letter-spacing: 0%;
+	color: var(--_ink-base);
+}

@@ -97,6 +97,20 @@
 	--card-meta-lineheight: 1.2;
 	--card-meta-size: var(--text-size-300);
 
+	/* callout type — brands set callout.titleSize / callout.descriptionSize */
+	--callout-title-size: var(--text-size-400);
+	--callout-description-size: var(--text-size-350);
+	--callout-border-size: var(--border-size-sm);
+
+	/* badge type — brands set badge.textSize */
+	--badge-text-size: var(--text-size-300);
+	--badge-border-radius: var(--border-radius-med);
+
+	/* slide footer — brands set slideFooter.textSize / logoHeight / gap */
+	--slide-footer-text-size: var(--text-size-300);
+	--slide-footer-logo-height: var(--spacing-3);
+	--slide-footer-gap: var(--spacing-2);
+
 	/* attribution box type — same steps html-to-ir forces on slot text */
 	--attribution-box-text-size-title: var(--text-size-300);
 }

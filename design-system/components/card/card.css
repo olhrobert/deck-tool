@@ -170,6 +170,10 @@ card[padding="lg"] {
 	padding: var(--card-padding-lg);
 }
 
+card[gap="none"] {
+	gap: var(--card-gap-none);
+}
+
 card[gap="sm"] {
 	gap: var(--card-gap-sm);
 }

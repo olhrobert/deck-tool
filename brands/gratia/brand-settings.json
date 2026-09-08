@@ -13,10 +13,10 @@
 				"5": "rgb(255, 255, 255)"
 			},
 			"semantic": {
-				"positiveQuiet": "rgb(8, 120, 85)",
-				"positiveEmphasis": "rgb(4, 80, 56)",
-				"negativeQuiet": "rgb(180, 30, 65)",
-				"negativeEmphasis": "rgb(130, 20, 48)",
+				"positiveQuiet": "rgb(6, 122, 58)",
+				"positiveEmphasis": "rgb(4, 82, 38)",
+				"negativeQuiet": "rgb(190, 32, 36)",
+				"negativeEmphasis": "rgb(135, 20, 24)",
 				"warningQuiet": "rgb(150, 80, 8)",
 				"warningEmphasis": "rgb(110, 55, 4)",
 				"informativeQuiet": "rgb(25, 80, 170)",
@@ -143,6 +143,7 @@
 		},
 		"stack": {
 			"gap": {
+				"none": 0,
 				"sm": 2,
 				"md": 3,
 				"lg": 4
@@ -350,6 +351,7 @@
 				"lg": 6
 			},
 			"gap": {
+				"none": 0,
 				"sm": 2,
 				"md": 3,
 				"lg": 4
@@ -378,6 +380,21 @@
 			"meta": {
 				"paddingTop": "0-5"
 			}
+		},
+		"callout": {
+			"titleSize": 400,
+			"descriptionSize": 350,
+			"borderSize": "sm"
+		},
+		"badge": {
+			"textSize": 300,
+			"borderColor": "card",
+			"borderRadius": "med"
+		},
+		"slideFooter": {
+			"textSize": 300,
+			"logoHeight": 3,
+			"gap": 2
 		}
 	}
 }

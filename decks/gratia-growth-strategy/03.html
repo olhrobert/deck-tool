@@ -23,38 +23,27 @@
 	<body>
 		<deck>
 			<slide>
-				<slide-header>
+				<header-container>
 					<slide-title data-slot="main">Footer preset preview</slide-title>
-				</slide-header>
-				<slide-content>
+				</header-container>
+				<content-container>
 					<div class="box-border min-w-0 flex flex-col gap-6">
 						<body-copy size="md" weight="regular" color="base" lineheight="lg">
-							This slide uses footer-01: logo left, slide number right.
+							This slide uses slide-footer: logo left, optional notes, deck title, chapter, and page.
 						</body-copy>
 					</div>
-				</slide-content>
-				<slide-footer>
-					<div class="flex items-center w-full">
-						<div class="flex-1 flex justify-start min-w-0">
-							<img
-								src="gratia-logo.svg"
-								alt="Gratia"
-								data-logo="slide"
-								class="shrink-0 block"
-								style="height: 12px; width: auto"
-							/>
-						</div>
-						<div class="flex-1 flex justify-end min-w-0">
-							<text
-								size="200"
-								color="subtle"
-								context="slide"
-							>
-								03
-							</text>
-						</div>
-					</div>
-				</slide-footer>
+				</content-container>
+				<footer-container>
+					<slide-footer context="slide">
+						<img data-logo src="gratia-logo.svg" alt="Gratia" class="shrink-0 block" data-slot="logo" />
+						<slide-footer-notes color="subtle" data-slot="notes">Add notes or sources here.</slide-footer-notes>
+						<slide-footer-meta>
+							<slide-footer-title color="subtle" data-slot="deck-title">Gratia Growth Strategy</slide-footer-title>
+							<slide-footer-chapter color="subtle" data-slot="chapter">Growth</slide-footer-chapter>
+							<slide-footer-page color="subtle" data-slot="page">03</slide-footer-page>
+						</slide-footer-meta>
+					</slide-footer>
+				</footer-container>
 			</slide>
 		</deck>
 	</body>

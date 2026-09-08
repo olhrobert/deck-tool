@@ -8,12 +8,16 @@ Use the same footer preset across every content slide in a deck.
 
 | File           | Layout                                      |
 | -------------- | ------------------------------------------- |
-| `footer-01.html` | Logo left; slide number right               |
+| `footer-01.html` | `<slide-footer>` inside `<footer-container>`: logo left, optional notes center, deck title \| chapter \| page right |
 
 ## Placeholders to replace
 
-- Slide number (`01`) — set per slide (`02`, `03`, …)
-- Logo `<img data-logo>` — point at a deck-local logo when provided (see [presets/README.md](../README.md#logos))
+- Notes (`Add notes or sources here.`) — omit the `<slide-footer-notes>` slot if unused
+- Deck title, chapter — omit those slots if unused
+- Page (`01`) — set per slide (`02`, `03`, …)
+- Logo `<img data-slot="logo" data-logo>` — point at a deck-local logo; leave `data-logo` valueless so it follows `context="slide"` (see [presets/README.md](../README.md#logos))
+
+On title/cover slides, copy the inner `<slide-footer context="cover">` (not `<footer-container>`) to the bottom of the cover layout.
 
 ## Example prompt
 

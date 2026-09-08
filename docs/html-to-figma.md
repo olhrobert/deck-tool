@@ -17,13 +17,16 @@ Node types: `frame`, `instance`, `text`, `slot`.
 
 | HTML | IR |
 |---|---|
-| `<slide>` without header/content/footer | cover frame |
-| `<slide>` with chrome | Slide instance, `surface` from `.bg-cover` (Figma variant is still `surface=primary`) |
+| `<slide>` without header/content/footer containers | cover frame |
+| `<slide>` with chrome (`<header-container>` / `<content-container>` / `<footer-container>`) | Slide instance, `surface` from `.bg-cover` (Figma variant is still `surface=primary`) |
 | `<slide-title>` | Slide Title instance (headline); always set `size` (`md` if omitted) |
 | `<slide-title-group>` | Slide Title instance with pretitle + title + subtitle slots |
 | `<paragraph-title>` | Paragraph Title instance |
 | `<card>` | Card instance (pretitle, title, optional text, meta) |
 | `<card>` otherwise | Card instance; set `padding`/`gap` (`md`/`md` if omitted) |
+| `<callout>` | vertical frame (no library component yet); title + description as text |
+| `<badge>` | hug frame (no library component yet); label as text |
+| `<slide-footer>` | horizontal frame (no library component yet); logo + optional notes + meta |
 | `<attribution-box>` | Attribution Box; `slot` is filled separately |
 | `<attribution-box-separator>` | separator instance |
 | `img[gratia-logo.svg]` | `__Logo/Gratia` |
@@ -31,11 +34,15 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | flex row + check/close path + text | List Item `kind=in-scope\|out-of-scope` |
 | `div.flex` | auto-layout frame (gap/padding/justify/align/fill from utilities) |
 | `<body-copy>` | text + `typography` variables (`family/body`, `weight`, `size` from `sm|md|lg`, …) + color variable |
+| `<callout-title>` | text (`family/paragraph-title`, size `400` unless overridden) |
+| `<callout-description>` | text (`family/body`, size `350` unless overridden) |
+| `<badge-text>` | text (`family/body`, size `300` unless overridden) |
+| `<slide-footer-notes>` / `<slide-footer-title>` / `<slide-footer-chapter>` / `<slide-footer-page>` | text (`family/body`, size `300`); color from footer `context` |
 | `<text>` | primitive — raw `size` step, `family`, etc. |
 
 Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/slide-surface-border`.
 
-`<body-copy size="sm|md|lg">` maps to `--body-size-sm|md|lg` (brand type-scale steps; default `md` = `--text-size-400`). Primitive `<text size="350">` still resolves to `--text-size-*`. `text[color="strong|subtle|base"]` plus `context="slide|surface"` maps to `color/slide-foreground-*` or `color/slide-surface-foreground-*`. Attribution slot text is forced to `size/300` to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
+`<body-copy size="sm|md|lg">` maps to `--body-size-sm|md|lg` (brand type-scale steps; default `md` = `--text-size-400`). Primitive `<text size="350">` still resolves to `--text-size-*`. `text[color="strong|subtle|base"]` plus `context="slide|surface|cover"` maps to `color/slide-foreground-*`, `color/slide-surface-foreground-*`, or `color/cover-foreground-*`. Attribution slot text is forced to `size/300` to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
 
 ## Push sequence
 

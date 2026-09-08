@@ -291,6 +291,20 @@ function slotName(node) {
 	return node.attrs["data-slot"];
 }
 
+function hasIncludedDescendantSlot(node, included) {
+	if (!node || node.type !== "element") return false;
+	if (isSlotNode(node) && included.has(slotName(node))) return true;
+	return (node.children || []).some((child) =>
+		hasIncludedDescendantSlot(child, included),
+	);
+}
+
+function containsUsedSlot(node, used) {
+	if (!node || node.type !== "element") return false;
+	if (used.has(node)) return true;
+	return (node.children || []).some((child) => containsUsedSlot(child, used));
+}
+
 function templateElementChildren(node) {
 	return (node.children || []).filter((child) => child.type === "element");
 }
@@ -306,6 +320,7 @@ function includedSlotNames(spec, instanceSlots) {
 function keepTemplateChild(templateChildren, index, included) {
 	const child = templateChildren[index];
 	if (isSlotNode(child)) return included.has(slotName(child));
+	if (hasIncludedDescendantSlot(child, included)) return true;
 
 	let before;
 	let after;
@@ -367,25 +382,52 @@ function rebuildHost(instance, spec, templateHost, warnings) {
 		tag: templateHost.tag,
 		attrs: { ...(instance.attrs || {}) },
 		attrOrder: [...(instance.attrOrder || [])],
-		children: [],
+		children: rebuildTemplateChildren(templateHost, instanceSlots, included),
 		selfClosing: false,
 	};
 	delete host.attrs["data-slot"];
 	host.attrOrder = host.attrOrder.filter((name) => name !== "data-slot");
 
-	const templateChildren = templateElementChildren(templateHost);
+	for (const child of elementChildren(instance)) {
+		if (used.has(child)) continue;
+		if (containsUsedSlot(child, used)) continue;
+		if (child.tag === "attribution-box-separator") continue;
+		host.children.push(cloneNode(child));
+	}
+
+	return host;
+}
+
+function rebuildTemplateChildren(templateParent, instanceSlots, included) {
+	const out = [];
+	const templateChildren = templateElementChildren(templateParent);
 	templateChildren.forEach((tChild, index) => {
 		if (!keepTemplateChild(templateChildren, index, included)) return;
 
 		if (!isSlotNode(tChild)) {
-			host.children.push(cloneNode(tChild));
+			if (hasIncludedDescendantSlot(tChild, included)) {
+				out.push({
+					type: "element",
+					tag: tChild.tag,
+					attrs: { ...(tChild.attrs || {}) },
+					attrOrder: [...(tChild.attrOrder || [])],
+					children: rebuildTemplateChildren(
+						tChild,
+						instanceSlots,
+						included,
+					),
+					selfClosing: tChild.selfClosing,
+				});
+			} else {
+				out.push(cloneNode(tChild));
+			}
 			return;
 		}
 
 		const name = slotName(tChild);
 		const instanceSlot = instanceSlots[name];
 		const { attrs, attrOrder } = mergeSlotAttrs(instanceSlot, tChild);
-		host.children.push({
+		out.push({
 			type: "element",
 			tag: tChild.tag,
 			attrs,
@@ -396,14 +438,7 @@ function rebuildHost(instance, spec, templateHost, warnings) {
 			selfClosing: tChild.selfClosing,
 		});
 	});
-
-	for (const child of elementChildren(instance)) {
-		if (used.has(child)) continue;
-		if (child.tag === "attribution-box-separator") continue;
-		host.children.push(cloneNode(child));
-	}
-
-	return host;
+	return out;
 }
 
 function escapeAttr(value) {

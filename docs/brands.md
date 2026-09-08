@@ -33,7 +33,7 @@ Then edit `brand-settings.json` (start from the Riverton copy the scaffold write
 
 ## `brand-settings.json` fields
 
-Cover and slide settings live under `components.cover` and `components.slide` (colors, type, chrome), nested by group (`components.cover.canvas.background`, `components.slide.pretitle.family`, `components.slide.header.paddingLeft`). Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `font`, `border`) then `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`, `card`). Shared tokens under `foundations.color` / `foundations.font` / `foundations.border`; component type roles keep their own groups under `components`. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `components.slide.canvas.maxWidth` (canvas cap, default `1280`).
+Cover and slide settings live under `components.cover` and `components.slide` (colors, type, chrome), nested by group (`components.cover.canvas.background`, `components.slide.pretitle.family`, `components.slide.header.paddingLeft`). Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `font`, `border`) then `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`, `card`, `callout`, `badge`, `slideFooter`). Shared tokens under `foundations.color` / `foundations.font` / `foundations.border`; component type roles keep their own groups under `components`. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `components.slide.canvas.maxWidth` (canvas cap, default `1280`).
 
 `design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`) for cover/slide foregrounds. Brand identity, status hues, and chart swatches live under `foundations.color.brand.1`…`6`, `foundations.color.semantic.*`, and `foundations.color.chart.1`…`4` (omit unused brand slots).
 
@@ -46,7 +46,7 @@ Title/cover canvas plus cover title type.
 | `brand-settings.json` | CSS | What you see |
 |---|---|---|
 | `components.cover.canvas.background` | `--color-cover-background` | Title/cover fill. Ref a palette color (e.g. `"brand.2"`). `<slide class="bg-cover">` in every `presets/deck-titles/*.html`. |
-| `components.cover.canvas.foreground` | `--color-cover-foreground` | Ink on the cover. Palette ref. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `.color-cover-foreground-*`. |
+| `components.cover.canvas.foreground` | `--color-cover-foreground` | Ink on the cover. Palette ref. Opacity variants: `-strong` (100%), `-base` (70%), `-subtle` (50%). Use `context="cover"` with `color="strong\|base\|subtle"`. |
 | `components.cover.surface.background` | `--color-cover-surface-background` | Card fill on a cover (`.bg-cover-surface`). Palette ref. |
 | `components.cover.surface.foreground` | `--color-cover-surface-foreground` | Ink on a card that sits on the cover. Palette ref. |
 | `components.cover.surface.border` | `--color-cover-surface-border` | Card stroke on a cover surface. Often `{ "color": "brand.1", "opacity": 0.18 }`. |
@@ -77,9 +77,9 @@ Content-slide canvas, title stack type, and chrome padding.
 | `components.slide.subtitle.family` | `--slide-subtitle-font-family` → `var(--font-family-*)` | `<slide-subtitle>` |
 | `components.slide.subtitle.weight` | `--slide-subtitle-font-weight` | |
 | `components.slide.subtitle.size` | `--slide-subtitle-size` → `var(--text-size-*)` | |
-| `components.slide.header.paddingTop/Right/Bottom/Left` | `--slide-header-padding-*` | `<slide-header>` |
-| `components.slide.content.paddingTop/Right/Bottom/Left` | `--slide-content-padding-*` | `<slide-content>` |
-| `components.slide.footer.paddingTop/Right/Bottom/Left` | `--slide-footer-padding-*` | `<slide-footer>` |
+| `components.slide.header.paddingTop/Right/Bottom/Left` | `--slide-header-padding-*` | `<header-container>` |
+| `components.slide.content.paddingTop/Right/Bottom/Left` | `--slide-content-padding-*` | `<content-container>` |
+| `components.slide.footer.paddingTop/Right/Bottom/Left` | `--slide-footer-padding-*` | `<footer-container>` |
 
 `<slide>` fills its container up to `canvas.maxWidth`. Cover slides (`<slide class="bg-cover">`) do not use this chrome. Defaults: maxWidth 1280, header 16/20/0/20, content 10/20/0/20, footer 4/4/4/4 (top/right/bottom/left).
 
@@ -189,7 +189,7 @@ CSS custom properties are component-leading (`--slide-pretitle-font-family`, not
 
 Slide and card pretitles use separate token groups (`components.slide.pretitle` vs `components.card.pretitle`). Duplicate family, weight, uppercase, and letter-spacing between them when both contexts should match; only `size` typically differs (e.g. slide step `350`, card step `300`).
 
-Context and color are set in markup: `context="slide|surface"` and `color="subtle|base|strong"`.
+Context and color are set in markup: `context="slide|surface|cover"` and `color="subtle|base|strong"`. Title/cover type uses `context="cover"` (not `.color-cover-foreground-*`). Attribution on a cover still uses `context="surface"` because it sits on the attribution box.
 
 #### Card
 
@@ -200,7 +200,7 @@ Paint axes on `<card>` (omit for today's quiet default box): `variant="default|p
 | `components.card.layout` | `--card-layout` | default `<card>` layout when the attribute is omitted |
 | `components.card.defaultQuiet` / `defaultEmphasis` / `positiveQuiet` / … | `--card-{family}-*` (also `--color-{variant}-{tone}-*`) | Card paint. Default families ref `brand.*` + opacity; status families ref `semantic.*` (and `brand` / `chart`) with opacity. |
 | `components.card.padding.sm/md/lg` | `--card-padding-*` | `<card padding>` |
-| `components.card.gap.sm/md/lg` | `--card-gap-*` | `<card gap>` |
+| `components.card.gap.none/sm/md/lg` | `--card-gap-*` | `<card gap>` (`none` → spacing `0` / 0px) |
 | `components.card.border.radius` | `--card-border-radius` → `var(--border-radius-*)` | `<card layout="basic">` |
 | `components.card.border.sizeTop/Bottom/Left/Right` | `--card-border-size-*` → `var(--border-size-*)` | basic stroke; stripe uses left `md` + `foundations.border.radius.none` |
 | `components.card.title.family` | `--card-title-font-family` → `var(--font-family-*)` | `<card-title>` |
@@ -208,11 +208,46 @@ Paint axes on `<card>` (omit for today's quiet default box): `variant="default|p
 | `components.card.title.sizeSm/Md/Lg` | `--card-title-size-sm/md/lg` → `var(--text-size-*)` | `size="lg"` etc. Default is `md`. |
 | `components.card.meta.paddingTop` | `--card-meta-padding-top` | `<card-meta>` |
 
+#### Callout
+
+`<callout>` is a left-rule note with stacked title + description. Semantic variants only: `variant="default|positive|warning|negative|informative"` (no emphasis). Padding, gap, border color, and type ink reuse quiet **card** tokens (`borderSubtle`, `foregroundStrong` on the title, `foregroundBase` on the description). Nested `context="surface"` ink follows the callout variant.
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `components.callout.titleSize` | `--callout-title-size` → `var(--text-size-*)` | `<callout-title>` (brand-only; no `size` attribute) |
+| `components.callout.descriptionSize` | `--callout-description-size` → `var(--text-size-*)` | `<callout-description>` |
+| `components.callout.borderSize` | `--callout-border-size` → `var(--border-size-*)` | left border width |
+| *(reuse)* `components.card.padding.sm/md/lg` | `--card-padding-*` | `<callout padding>` |
+| *(reuse)* `components.card.gap.none/sm/md/lg` | `--card-gap-*` | `<callout gap>` (default `sm`) |
+| *(reuse)* `components.card.{variant}Quiet.borderSubtle` | `--card-{variant}-quiet-border-subtle` | left border color |
+| *(reuse)* `components.card.{variant}Quiet.foregroundStrong/Base` | `--card-{variant}-quiet-foreground-*` | title / description ink |
+
+#### Badge
+
+`<badge>` is a hugging label. Paint axes match card: `variant="default|positive|warning|negative|informative"`, `emphasis="true|false"`. Fill, ink, and (when `borderColor` is `card`) stroke follow quiet/emphasis **card** tokens. Nested `context="surface"` ink follows the badge variant.
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `components.badge.textSize` | `--badge-text-size` → `var(--text-size-*)` | `<badge-text>` (brand-only; no `size` attribute) |
+| `components.badge.borderColor` | `--badge-border-color` | `card` omits the var (stroke follows variant `borderSubtle`); `none` → `transparent` |
+| `components.badge.borderRadius` | `--badge-border-radius` → `var(--border-radius-*)` | badge corner |
+| *(reuse)* `components.card.{family}.*` | `--card-{family}-*` | fill, foreground, and (if `card`) border paint |
+
+#### Slide footer
+
+`<slide-footer>` is the chrome bar (logo, optional notes, deck title / chapter / page). It lives inside `<footer-container>` on content slides, or at the bottom of a cover layout. `context="slide"` (default) or `context="cover"` sets nested type ink from that canvas’s foreground tokens and is the logo surface when `data-logo` has no value. Nested type omits `context`. Do not hardcode white/black. Optional slots (notes, deck-title, chapter, logo) may be omitted; `|` separators hide when a neighbor is missing. Page is required.
+
+| JSON | CSS | HTML |
+|---|---|---|
+| `components.slideFooter.textSize` | `--slide-footer-text-size` → `var(--text-size-*)` | notes / deck title / chapter / page (brand-only; no `size` attribute) |
+| `components.slideFooter.logoHeight` | `--slide-footer-logo-height` → `var(--spacing-*)` | `<img data-slot="logo">` height |
+| `components.slideFooter.gap` | `--slide-footer-gap` → `var(--spacing-*)` | space around `|` between meta items |
+
 #### Stack
 
 | JSON | CSS | HTML |
 |---|---|---|
-| `components.stack.gap.sm/md/lg` | `--stack-gap-*` | `<stack>` |
+| `components.stack.gap.none/sm/md/lg` | `--stack-gap-*` | `<stack gap>` (`none` → spacing `0` / 0px) |
 
 `<attribution-box>` is brand-agnostic — see `.cursor/skills/attribution-box/SKILL.md`. Do not add `attributionBox` keys to `brand-settings.json`.
 
@@ -225,7 +260,7 @@ Each brand ships two standalone SVGs with **baked fills** (no `currentColor`, no
 | `{slug}-logo.svg` | Default lockup on light backgrounds |
 | `{slug}-logo-inverted.svg` | Light lockup on dark backgrounds |
 
-Presets use `<img data-logo="cover|slide|slide-surface">`. The showcase (and later deck generation) picks default vs inverted from the luminance of that surface token. Do not wrap brand logos in `color-*` classes.
+Presets use `<img data-logo="cover|slide|slide-surface">`. Inside `<slide-footer>`, omit the `data-logo` value (keep the attribute) so the logo follows the footer’s `context`. The showcase (and later deck generation) picks default vs inverted from the luminance of that surface token. Do not wrap brand logos in `color-*` classes.
 
 The Gratia mark inside `<attribution-box>` is a separate prepared-by lockup (`<img data-slot="logo">`); leave it alone.
 

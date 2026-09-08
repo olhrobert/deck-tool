@@ -23,52 +23,34 @@
 	<body>
 		<deck>
 			<slide class="bg-cover">
-				<div class="box-border w-full h-full flex">
-					<div
-						class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
-					>
+				<div
+					class="box-border w-full h-full flex items-center justify-center"
+				>
+					<div class="flex flex-col items-center gap-10">
 						<img
 							src="../../assets/logos/placeholder-logo.svg"
 							alt="Logo"
 							data-logo="cover"
 							class="shrink-0 block"
-							style="height: 24px; width: auto"
+							style="height: 40px; width: auto"
 						/>
-
-						<div>
+						<div class="flex flex-col items-center gap-8">
 							<text
 								family="cover-title"
-								size="4000"
-								lineheight="single"
+								size="2400"
+								lineheight="sm"
+								class="text-center"
 								color="strong"
 								context="cover"
 							>
 								Title of the deck
 							</text>
-						</div>
-					</div>
-
-					<div
-						class="box-border h-full shrink-0 flex flex-col justify-between p-0"
-					>
-						<attribution-box variant="title">
-							<text
-								data-slot="credit"
-								size="300"
-								color="base"
-								context="surface"
+							<body-copy
+								size="sm"
+								class="text-center"
+								color="subtle"
+								context="cover"
 							>
-								Sanitized excerpt prepared by
-							</text>
-							<img
-								data-slot="logo"
-								src="../../assets/logos/gratia-logo.svg"
-								alt="Gratia"
-							/>
-						</attribution-box>
-
-						<div class="flex pb-10 pr-6 w-full">
-							<body-copy size="sm" class="text-left grow" color="subtle" context="cover">
 								Optional subtitle. Can be one or two sentences
 								long.
 							</body-copy>

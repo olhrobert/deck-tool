@@ -36,6 +36,9 @@ const {
 	isCardLayoutPath,
 	isCardLayoutName,
 	CARD_LAYOUT_NAMES,
+	isBadgeBorderColorPath,
+	isBadgeBorderColorName,
+	BADGE_BORDER_COLOR_NAMES,
 	isBrandSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
@@ -297,6 +300,17 @@ function validateBrand(brandDir) {
 		if (!isCardLayoutName(raw)) {
 			errors.push(
 				`${jsonPathKey} must be ${CARD_LAYOUT_NAMES.join(" or ")} (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isBadgeBorderColorPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isBadgeBorderColorName(raw)) {
+			errors.push(
+				`${jsonPathKey} must be ${BADGE_BORDER_COLOR_NAMES.join(" or ")} (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}

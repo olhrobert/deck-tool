@@ -39,7 +39,7 @@ Presets use a shared placeholder at `assets/logos/placeholder-logo.svg` (light b
 />
 ```
 
-`data-logo` names the surface whose background decides default vs inverted: `cover`, `slide`, or `slide-surface`.
+`data-logo` names the surface whose background decides default vs inverted: `cover`, `slide`, or `slide-surface`. Inside `<slide-footer>`, keep `data-logo` with no value so the logo follows the footer’s `context` (`slide` or `cover`).
 
 When creating a deck for a specific brand:
 

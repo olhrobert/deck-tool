@@ -1,22 +1,23 @@
-<slide-footer>
-	<div class="flex items-center w-full">
-		<div class="flex-1 flex justify-start min-w-0">
-			<img
-				src="../../assets/logos/placeholder-logo.svg"
-				alt="Logo"
-				data-logo="slide"
-				class="shrink-0 block"
-				style="height: 12px; width: auto"
-			/>
-		</div>
-		<div class="flex-1 flex justify-end min-w-0">
-			<text
-				size="200"
-				color="subtle"
-				context="slide"
+<footer-container>
+	<slide-footer context="slide">
+		<img
+			data-slot="logo"
+			data-logo
+			src="../../assets/logos/placeholder-logo.svg"
+			alt="Logo"
+			class="shrink-0 block"
+		/>
+		<slide-footer-notes data-slot="notes" color="subtle"
+			>Add notes or sources here.</slide-footer-notes
+		>
+		<slide-footer-meta>
+			<slide-footer-title data-slot="deck-title" color="subtle"
+				>Deck title</slide-footer-title
 			>
-				01
-			</text>
-		</div>
-	</div>
-</slide-footer>
+			<slide-footer-chapter data-slot="chapter" color="subtle"
+				>Chapter</slide-footer-chapter
+			>
+			<slide-footer-page data-slot="page" color="subtle">01</slide-footer-page>
+		</slide-footer-meta>
+	</slide-footer>
+</footer-container>

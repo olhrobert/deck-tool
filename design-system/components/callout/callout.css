@@ -1,0 +1,108 @@
+/* Callout
+   Axes:
+     variant="default|positive|warning|negative|informative"  default default
+   Padding / gap reuse card tokens. No emphasis axis.
+*/
+
+callout {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0%;
+	min-width: 0;
+	box-sizing: border-box;
+
+	--_callout-ink-strong: var(--card-default-quiet-foreground-strong);
+	--_callout-ink-base: var(--card-default-quiet-foreground-base);
+	--_callout-border: var(--card-default-quiet-border-subtle);
+
+	border-style: solid;
+	border-color: var(--_callout-border);
+	border-top-width: var(--border-size-none);
+	border-bottom-width: var(--border-size-none);
+	border-right-width: var(--border-size-none);
+	border-left-width: var(--callout-border-size);
+	border-radius: var(--border-radius-none);
+	padding: var(--card-padding-md);
+	gap: var(--card-gap-sm);
+}
+
+callout
+	:is(
+		.text,
+		text,
+		callout-title,
+		callout-description,
+		body-copy,
+		paragraph-title
+	),
+callout
+	:is(
+		.text,
+		text,
+		callout-title,
+		callout-description,
+		body-copy,
+		paragraph-title
+	)[context="surface"] {
+	--_ink-strong: var(--_callout-ink-strong);
+	--_ink-base: var(--_callout-ink-base);
+	--_ink-subtle: var(--_callout-ink-base);
+}
+
+callout[variant="default"] {
+	--_callout-ink-strong: var(--card-default-quiet-foreground-strong);
+	--_callout-ink-base: var(--card-default-quiet-foreground-base);
+	--_callout-border: var(--card-default-quiet-border-subtle);
+}
+
+callout[variant="positive"] {
+	--_callout-ink-strong: var(--card-positive-quiet-foreground-strong);
+	--_callout-ink-base: var(--card-positive-quiet-foreground-base);
+	--_callout-border: var(--card-positive-quiet-border-subtle);
+}
+
+callout[variant="warning"] {
+	--_callout-ink-strong: var(--card-warning-quiet-foreground-strong);
+	--_callout-ink-base: var(--card-warning-quiet-foreground-base);
+	--_callout-border: var(--card-warning-quiet-border-subtle);
+}
+
+callout[variant="negative"] {
+	--_callout-ink-strong: var(--card-negative-quiet-foreground-strong);
+	--_callout-ink-base: var(--card-negative-quiet-foreground-base);
+	--_callout-border: var(--card-negative-quiet-border-subtle);
+}
+
+callout[variant="informative"] {
+	--_callout-ink-strong: var(--card-informative-quiet-foreground-strong);
+	--_callout-ink-base: var(--card-informative-quiet-foreground-base);
+	--_callout-border: var(--card-informative-quiet-border-subtle);
+}
+
+callout[padding="sm"] {
+	padding: var(--card-padding-sm);
+}
+
+callout[padding="md"] {
+	padding: var(--card-padding-md);
+}
+
+callout[padding="lg"] {
+	padding: var(--card-padding-lg);
+}
+
+callout[gap="none"] {
+	gap: var(--card-gap-none);
+}
+
+callout[gap="sm"] {
+	gap: var(--card-gap-sm);
+}
+
+callout[gap="md"] {
+	gap: var(--card-gap-md);
+}
+
+callout[gap="lg"] {
+	gap: var(--card-gap-lg);
+}

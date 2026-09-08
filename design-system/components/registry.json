@@ -38,6 +38,55 @@
 			]
 		},
 		{
+			"id": "callout",
+			"tag": "callout",
+			"template": "callout/callout.html",
+			"slots": [
+				{
+					"name": "title",
+					"tag": "callout-title",
+					"required": true
+				},
+				{
+					"name": "description",
+					"tag": "callout-description",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "badge",
+			"tag": "badge",
+			"template": "badge/badge.html",
+			"slots": [
+				{
+					"name": "label",
+					"tag": "badge-text",
+					"required": true
+				}
+			]
+		},
+		{
+			"id": "slide-footer",
+			"tag": "slide-footer",
+			"template": "slide-footer/slide-footer.html",
+			"slots": [
+				{ "name": "logo", "tag": "img", "required": false },
+				{ "name": "notes", "tag": "slide-footer-notes", "required": false },
+				{
+					"name": "deck-title",
+					"tag": "slide-footer-title",
+					"required": false
+				},
+				{
+					"name": "chapter",
+					"tag": "slide-footer-chapter",
+					"required": false
+				},
+				{ "name": "page", "tag": "slide-footer-page", "required": true }
+			]
+		},
+		{
 			"id": "attribution-box-title",
 			"tag": "attribution-box",
 			"match": { "attrs": { "variant": "title" } },

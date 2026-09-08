@@ -6,7 +6,7 @@
      color="subtle|base|strong"     default base
      size="<type-scale step>"       raw scale (e.g. 200, 300, 1600)
      uppercase="true|false"         default false
-     context="slide|surface"        default slide
+     context="slide|surface|cover"  default slide
 
    Extra on <text> only: family, weight, lineheight, letterspacing.
 */
@@ -22,7 +22,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 ) {
 	display: block;
 	margin: 0;
@@ -53,7 +60,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[context="slide"] {
 	--_ink-strong: var(--color-slide-foreground-strong);
 	--_ink-base: var(--color-slide-foreground-base);
@@ -70,11 +84,42 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[context="surface"] {
 	--_ink-strong: var(--color-slide-surface-foreground-strong);
 	--_ink-base: var(--color-slide-surface-foreground-base);
 	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
+}
+
+:is(
+	.text,
+	text,
+	slide-pretitle,
+	card-pretitle,
+	slide-title,
+	slide-subtitle,
+	card-title,
+	card-meta,
+	paragraph-title,
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
+)[context="cover"] {
+	--_ink-strong: var(--color-cover-foreground-strong);
+	--_ink-base: var(--color-cover-foreground-base);
+	--_ink-subtle: var(--color-cover-foreground-subtle);
 }
 
 /* color */
@@ -88,7 +133,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[color="strong"] {
 	color: var(--_ink-strong);
 }
@@ -103,7 +155,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[color="base"] {
 	color: var(--_ink-base);
 }
@@ -118,7 +177,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[color="subtle"] {
 	color: var(--_ink-subtle);
 }
@@ -134,7 +200,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[uppercase="true"] {
 	text-transform: uppercase;
 }
@@ -149,7 +222,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[uppercase="false"] {
 	text-transform: none;
 }
@@ -165,7 +245,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="4000"] {
 	font-size: var(--text-size-4000);
 }
@@ -180,7 +267,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="3400"] {
 	font-size: var(--text-size-3400);
 }
@@ -195,7 +289,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="3000"] {
 	font-size: var(--text-size-3000);
 }
@@ -210,7 +311,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="2400"] {
 	font-size: var(--text-size-2400);
 }
@@ -225,7 +333,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="2000"] {
 	font-size: var(--text-size-2000);
 }
@@ -240,7 +355,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="1600"] {
 	font-size: var(--text-size-1600);
 }
@@ -255,7 +377,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="1200"] {
 	font-size: var(--text-size-1200);
 }
@@ -270,7 +399,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="1000"] {
 	font-size: var(--text-size-1000);
 }
@@ -285,7 +421,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="800"] {
 	font-size: var(--text-size-800);
 }
@@ -300,7 +443,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="700"] {
 	font-size: var(--text-size-700);
 }
@@ -315,7 +465,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="600"] {
 	font-size: var(--text-size-600);
 }
@@ -330,7 +487,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="550"] {
 	font-size: var(--text-size-550);
 }
@@ -345,7 +509,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="500"] {
 	font-size: var(--text-size-500);
 }
@@ -360,7 +531,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="450"] {
 	font-size: var(--text-size-450);
 }
@@ -375,7 +553,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="400"] {
 	font-size: var(--text-size-400);
 }
@@ -390,7 +575,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="350"] {
 	font-size: var(--text-size-350);
 }
@@ -405,7 +597,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="300"] {
 	font-size: var(--text-size-300);
 }
@@ -420,7 +619,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="275"] {
 	font-size: var(--text-size-275);
 }
@@ -435,7 +641,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="250"] {
 	font-size: var(--text-size-250);
 }
@@ -450,7 +663,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="225"] {
 	font-size: var(--text-size-225);
 }
@@ -465,7 +685,14 @@
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[size="200"] {
 	font-size: var(--text-size-200);
 }
@@ -475,7 +702,6 @@
 text[family="cover-title"] {
 	font-family: var(--cover-title-font-family, system-ui, sans-serif);
 	font-weight: var(--cover-title-font-weight, 700);
-	color: var(--color-cover-foreground);
 }
 
 .text-family-slide-title,
@@ -519,7 +745,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[weight="regular"] {
 	font-weight: var(--font-weight-regular);
 }
@@ -535,7 +768,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[weight="medium"] {
 	font-weight: var(--font-weight-medium);
 }
@@ -551,7 +791,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[weight="bold"] {
 	font-weight: var(--font-weight-bold);
 }
@@ -568,7 +815,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[lineheight="single"] {
 	line-height: 1;
 }
@@ -584,7 +838,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[lineheight="sm"] {
 	line-height: 1.1;
 }
@@ -600,7 +861,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[lineheight="md"] {
 	line-height: 1.2;
 }
@@ -616,7 +884,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[lineheight="lg"] {
 	line-height: 1.5;
 }
@@ -633,7 +908,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[letterspacing="base"] {
 	letter-spacing: 0%;
 }
@@ -649,7 +931,14 @@ text[family="heading"] {
 	card-title,
 	card-meta,
 	paragraph-title,
-	body-copy
+	body-copy,
+	callout-title,
+	callout-description,
+	badge-text,
+	slide-footer-notes,
+	slide-footer-title,
+	slide-footer-chapter,
+	slide-footer-page
 )[letterspacing="loose"] {
 	letter-spacing: 2%;
 }

@@ -232,15 +232,19 @@ function parseUtilityLayout(node) {
 	return layout;
 }
 
-function colorFromNode(node) {
+function colorFromNode(node, inkContext) {
 	const classes = classList(node);
 	for (const cls of classes) {
 		if (cls.startsWith("color-")) return cls.replace(/^color-/, "color/").replace(/_/g, "-");
 	}
 	const color = attr(node, "color");
-	const context = attr(node, "context", "slide");
+	const context = attr(node, "context", inkContext || "slide");
 	const prefix =
-		context === "surface" ? "color/slide-surface-foreground" : "color/slide-foreground";
+		context === "cover"
+			? "color/cover-foreground"
+			: context === "surface"
+				? "color/slide-surface-foreground"
+				: "color/slide-foreground";
 	if (color === "strong") return `${prefix}-strong`;
 	if (color === "subtle") return `${prefix}-subtle`;
 	if (color === "base") return `${prefix}-base`;
@@ -364,11 +368,15 @@ function logoFromSvg(node, warnings) {
 	};
 }
 
-function logoFromImg(node, warnings) {
+function logoFromImg(node, warnings, env) {
 	const src = String(attr(node, "src", ""));
 	const style = String(attr(node, "style", ""));
 	const heightMatch = style.match(/height:\s*([\d.]+)px/i);
-	const height = heightMatch ? Number(heightMatch[1]) : 24;
+	const height = heightMatch
+		? Number(heightMatch[1])
+		: env && env.inSlideFooter
+			? 12
+			: 24;
 	let component = "component/logo-placeholder";
 	if (/riverton-logo/.test(src)) component = "component/logo-riverton";
 	else if (/gratia-logo/.test(src)) component = "component/logo-gratia";
@@ -385,10 +393,18 @@ function logoFromImg(node, warnings) {
 	};
 }
 
-function walk(node, warnings) {
+const FOOTER_TEXT_TAGS = {
+	"slide-footer-notes": "Slide footer notes",
+	"slide-footer-title": "Slide footer title",
+	"slide-footer-chapter": "Slide footer chapter",
+	"slide-footer-page": "Slide footer page",
+};
+
+function walk(node, warnings, env) {
+	if (!env) env = {};
 	if (!node || node.type === "text") return null;
 	if (SKIP_TAGS.has(node.tag)) {
-		const kids = (node.children || []).map((child) => walk(child, warnings)).filter(Boolean);
+		const kids = (node.children || []).map((child) => walk(child, warnings, env)).filter(Boolean);
 		if (kids.length === 1) return kids[0];
 		if (!kids.length) return null;
 		return { type: "frame", name: node.tag, layout: "VERTICAL", children: kids };
@@ -402,7 +418,71 @@ function walk(node, warnings) {
 			name: "Body copy",
 			characters,
 			typography: typeFromBodyCopyNode(node),
-			color: colorFromNode(node),
+			color: colorFromNode(node, env.inkContext),
+		};
+	}
+
+	if (FOOTER_TEXT_TAGS[node.tag]) {
+		const characters = collapseText(collectText(node));
+		if (!characters) return null;
+		return {
+			type: "text",
+			name: FOOTER_TEXT_TAGS[node.tag],
+			characters,
+			typography: typeTokens({
+				family: "body",
+				weight: attr(node, "weight", "regular"),
+				size: attr(node, "size", "300"),
+			}),
+			color: colorFromNode(node, env.inkContext),
+		};
+	}
+
+	if (node.tag === "callout-title") {
+		const characters = collapseText(collectText(node));
+		if (!characters) return null;
+		return {
+			type: "text",
+			name: "Callout title",
+			characters,
+			typography: typeTokens({
+				family: "paragraph-title",
+				weight: attr(node, "weight", "medium"),
+				size: attr(node, "size", "400"),
+			}),
+			color: colorFromNode(node, env.inkContext),
+		};
+	}
+
+	if (node.tag === "callout-description") {
+		const characters = collapseText(collectText(node));
+		if (!characters) return null;
+		return {
+			type: "text",
+			name: "Callout description",
+			characters,
+			typography: typeTokens({
+				family: "body",
+				weight: attr(node, "weight", "regular"),
+				size: attr(node, "size", "350"),
+			}),
+			color: colorFromNode(node, env.inkContext),
+		};
+	}
+
+	if (node.tag === "badge-text") {
+		const characters = collapseText(collectText(node));
+		if (!characters) return null;
+		return {
+			type: "text",
+			name: "Badge text",
+			characters,
+			typography: typeTokens({
+				family: "body",
+				weight: attr(node, "weight", "regular"),
+				size: attr(node, "size", "300"),
+			}),
+			color: colorFromNode(node, env.inkContext),
 		};
 	}
 
@@ -414,7 +494,7 @@ function walk(node, warnings) {
 			name: "Text",
 			characters,
 			typography: typeFromTextNode(node),
-			color: colorFromNode(node),
+			color: colorFromNode(node, env.inkContext),
 		};
 	}
 
@@ -426,7 +506,7 @@ function walk(node, warnings) {
 			name: "Copy",
 			characters,
 			typography: typeFromCopyNode(node),
-			color: colorFromNode(node),
+			color: colorFromNode(node, env.inkContext),
 		};
 	}
 
@@ -445,8 +525,8 @@ function walk(node, warnings) {
 
 	if (node.tag === "img") {
 		const src = String(attr(node, "src", ""));
-		if (attr(node, "data-logo")) {
-			return logoFromImg(node, warnings);
+		if (attr(node, "data-logo") || (env.inSlideFooter && attr(node, "data-slot") === "logo")) {
+			return logoFromImg(node, warnings, env);
 		}
 		if (/gratia-logo/.test(src)) {
 			return { type: "instance", component: "component/logo-gratia", name: "Gratia" };
@@ -519,7 +599,7 @@ function walk(node, warnings) {
 
 	if (node.tag === "attribution-box") {
 		const variant = attr(node, "variant", "title");
-		const slot = (node.children || []).map((child) => walk(child, warnings)).filter(Boolean);
+		const slot = (node.children || []).map((child) => walk(child, warnings, env)).filter(Boolean);
 		for (const child of slot) {
 			if (child.type === "text") {
 				child.typography = typeTokens({
@@ -539,6 +619,86 @@ function walk(node, warnings) {
 			layoutSizingHorizontal: "HUG",
 			layoutSizingVertical: "HUG",
 			note: "Fill slot on a top-level instance, then reparent into the footer/cover. Do not remove() nested slot children.",
+		};
+	}
+
+	if (node.tag === "slide-footer") {
+		const inkContext = attr(node, "context", "slide") || "slide";
+		const nested = { ...env, inkContext, inSlideFooter: true };
+		return {
+			type: "frame",
+			name: "Slide footer",
+			layout: "HORIZONTAL",
+			children: (node.children || [])
+				.map((child) => walk(child, warnings, nested))
+				.filter(Boolean),
+			layoutSizingHorizontal: "FILL",
+			layoutSizingVertical: "HUG",
+			note: "No Figma Slide Footer component yet; emit a frame with logo + optional notes + meta.",
+		};
+	}
+
+	if (node.tag === "slide-footer-meta") {
+		const kids = (node.children || [])
+			.map((child) => walk(child, warnings, env))
+			.filter(Boolean);
+		const children = [];
+		kids.forEach((kid, index) => {
+			if (index > 0) {
+				children.push({
+					type: "text",
+					name: "Separator",
+					characters: "|",
+					typography: typeTokens({
+						family: "body",
+						weight: "regular",
+						size: "300",
+					}),
+					color: colorFromNode(
+						{ attrs: { color: "subtle" } },
+						env.inkContext,
+					),
+				});
+			}
+			children.push(kid);
+		});
+		return {
+			type: "frame",
+			name: "Slide footer meta",
+			layout: "HORIZONTAL",
+			children,
+			layoutSizingHorizontal: "HUG",
+			layoutSizingVertical: "HUG",
+		};
+	}
+
+	if (node.tag === "callout") {
+		return {
+			type: "frame",
+			name: "Callout",
+			layout: "VERTICAL",
+			children: (node.children || [])
+				.map((child) => walk(child, warnings, env))
+				.filter(Boolean),
+			layoutSizingHorizontal:
+				attr(node, "width", "fill") === "fill" ? "FILL" : "HUG",
+			layoutSizingVertical: "HUG",
+			note: "No Figma Callout component yet; emit a frame with title + description text.",
+		};
+	}
+
+	if (node.tag === "badge") {
+		return {
+			type: "frame",
+			name: "Badge",
+			layout: "HORIZONTAL",
+			children: (node.children || [])
+				.map((child) => walk(child, warnings, env))
+				.filter(Boolean),
+			layoutSizingHorizontal:
+				attr(node, "width", "fill") === "fill" ? "FILL" : "HUG",
+			layoutSizingVertical: "HUG",
+			note: "No Figma Badge component yet; emit a hug frame with label text.",
 		};
 	}
 
@@ -586,23 +746,23 @@ function walk(node, warnings) {
 	}
 
 	if (node.tag === "slide") {
-		const kids = (node.children || []).map((child) => walk(child, warnings)).filter(Boolean);
+		const kids = (node.children || []).map((child) => walk(child, warnings, env)).filter(Boolean);
 		if (kids.length === 1) return kids[0];
 		return { type: "frame", name: "Slide root", layout: "VERTICAL", children: kids };
 	}
 
-	if (node.tag === "slide-header" || node.tag === "slide-content" || node.tag === "slide-footer") {
-		const slotName = node.tag.replace("slide-", "");
+	if (node.tag === "header-container" || node.tag === "content-container" || node.tag === "footer-container") {
+		const slotName = node.tag.replace(/-container$/, "");
 		return {
 			type: "slot",
 			name: slotName.charAt(0).toUpperCase() + slotName.slice(1),
-			children: (node.children || []).map((child) => walk(child, warnings)).filter(Boolean),
+			children: (node.children || []).map((child) => walk(child, warnings, env)).filter(Boolean),
 		};
 	}
 
 	const frame = parseUtilityLayout(node);
 	frame.children = (node.children || [])
-		.map((child) => walk(child, warnings))
+		.map((child) => walk(child, warnings, env))
 		.filter(Boolean);
 	if (!frame.children.length && frame.layout === "NONE") return null;
 	if (frame.children.length === 1 && frame.layout === "NONE" && !frame.itemSpacing && !frame.paddingTop) {
@@ -624,7 +784,7 @@ function parseSlide(html, source, warnings) {
 	}
 	const slide = slides[0];
 	const hasChrome = (slide.children || []).some((child) =>
-		["slide-header", "slide-content", "slide-footer"].includes(child.tag),
+		["header-container", "content-container", "footer-container"].includes(child.tag),
 	);
 	const isCover = hasClass(slide, "bg-cover");
 	const ir = {

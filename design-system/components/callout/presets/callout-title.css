@@ -1,0 +1,11 @@
+/* Callout-title preset of base typography.
+   Defaults: color=strong, context=surface. Size is brand-only. */
+
+callout-title {
+	font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
+	font-weight: var(--paragraph-title-font-weight);
+	line-height: 1.2;
+	font-size: var(--callout-title-size);
+	letter-spacing: 0%;
+	color: var(--_ink-strong);
+}

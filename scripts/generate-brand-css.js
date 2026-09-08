@@ -51,7 +51,7 @@ function isFontFamilyName(value) {
  * `slide.header.paddingLeft`). Top-level groups, in
  * order: `foundations` (`basic`, `color`, `font`, `border`) then
  * `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`,
- * `card`). Hard-coded RGB lives on `foundations.color` (`brand.1`–
+ * `card`, `callout`). Hard-coded RGB lives on `foundations.color` (`brand.1`–
  * `brand.6`, `semantic.positiveQuiet`…, `chart.1`–`chart.4`). Card
  * paint and cover/slide roles ref that palette (`"semantic.positiveQuiet"`
  * or `{ "color": "brand.1", "opacity": 0.18 }`). Remaining
@@ -143,15 +143,17 @@ function isSpacingScaleStep(value) {
 function isFontSizePath(jsonPath) {
 	return (
 		/\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPath) ||
-		/(pretitle|title|subtitle)Size(Lg|Md|Sm)?$/.test(jsonPath)
+		/(pretitle|title|subtitle|description|text)Size(Lg|Md|Sm)?$/.test(jsonPath)
 	);
 }
 
 function isSpacingStepPath(jsonPath) {
 	return (
-		/\.(padding|gap)\.(sm|md|lg)$/i.test(jsonPath) ||
+		/\.(padding|gap)\.(none|sm|md|lg)$/i.test(jsonPath) ||
 		/\.padding(Top|Right|Bottom|Left)$/i.test(jsonPath) ||
 		/\.title\.gap$/i.test(jsonPath) ||
+		jsonPath === "components.slideFooter.gap" ||
+		jsonPath === "components.slideFooter.logoHeight" ||
 		/(padding(Sm|Md|Lg)|gap(Sm|Md|Lg)|metaPaddingTop|titleGap)$/i.test(jsonPath)
 	);
 }
@@ -200,6 +202,7 @@ function isBorderSizeStep(value) {
 
 function isBorderSizeRolePath(jsonPath) {
 	return (
+		jsonPath === "components.callout.borderSize" ||
 		/\.borderSize\.(top|bottom|left|right)$/.test(jsonPath) ||
 		/\.border\.size(Top|Bottom|Left|Right)$/.test(jsonPath)
 	);
@@ -245,6 +248,17 @@ function isCardLayoutPath(jsonPath) {
 
 function isCardLayoutName(value) {
 	return CARD_LAYOUT_NAME_SET.has(String(value));
+}
+
+const BADGE_BORDER_COLOR_NAMES = ["card", "none"];
+const BADGE_BORDER_COLOR_NAME_SET = new Set(BADGE_BORDER_COLOR_NAMES);
+
+function isBadgeBorderColorPath(jsonPath) {
+	return jsonPath === "components.badge.borderColor";
+}
+
+function isBadgeBorderColorName(value) {
+	return BADGE_BORDER_COLOR_NAME_SET.has(String(value));
 }
 
 const CARD_STRIPE_LAYOUT_CSS = [
@@ -597,6 +611,7 @@ const TOKEN_MAP = [
 	["components.card.padding.sm", "--card-padding-sm"],
 	["components.card.padding.md", "--card-padding-md"],
 	["components.card.padding.lg", "--card-padding-lg"],
+	["components.card.gap.none", "--card-gap-none"],
 	["components.card.gap.sm", "--card-gap-sm"],
 	["components.card.gap.md", "--card-gap-md"],
 	["components.card.gap.lg", "--card-gap-lg"],
@@ -617,7 +632,20 @@ const TOKEN_MAP = [
 	["components.card.pretitle.size", "--card-pretitle-size"],
 	["components.card.meta.paddingTop", "--card-meta-padding-top"],
 
-	["components.stack.gap.sm", "--stack-gap-sm", "stack"],
+	["components.callout.titleSize", "--callout-title-size", "callout"],
+	["components.callout.descriptionSize", "--callout-description-size"],
+	["components.callout.borderSize", "--callout-border-size"],
+
+	["components.badge.textSize", "--badge-text-size", "badge"],
+	["components.badge.borderColor", "--badge-border-color"],
+	["components.badge.borderRadius", "--badge-border-radius"],
+
+	["components.slideFooter.textSize", "--slide-footer-text-size", "slide-footer"],
+	["components.slideFooter.logoHeight", "--slide-footer-logo-height"],
+	["components.slideFooter.gap", "--slide-footer-gap"],
+
+	["components.stack.gap.none", "--stack-gap-none", "stack"],
+	["components.stack.gap.sm", "--stack-gap-sm"],
 	["components.stack.gap.md", "--stack-gap-md"],
 	["components.stack.gap.lg", "--stack-gap-lg"],
 ];
@@ -736,6 +764,15 @@ function toCssValue(jsonPath, value, brand) {
 		}
 		return String(value);
 	}
+	if (isBadgeBorderColorPath(jsonPath)) {
+		if (!isBadgeBorderColorName(value)) {
+			throw new Error(
+				`${jsonPath} must be ${BADGE_BORDER_COLOR_NAMES.join(" or ")} (got ${JSON.stringify(value)})`,
+			);
+		}
+		if (value === "none") return "transparent";
+		return null;
+	}
 	return value;
 }
 
@@ -745,6 +782,7 @@ function buildBrandCss(brand) {
 		const raw = getPath(brand, jsonPath);
 		if (raw === undefined || raw === null) continue;
 		const value = toCssValue(jsonPath, raw, brand);
+		if (value === null) continue;
 		if (group) {
 			if (lines.length > 0) lines.push("");
 			lines.push(`\t/* ${group} */`);
@@ -843,6 +881,9 @@ module.exports = {
 	isCardLayoutPath,
 	isCardLayoutName,
 	CARD_LAYOUT_NAMES,
+	isBadgeBorderColorPath,
+	isBadgeBorderColorName,
+	BADGE_BORDER_COLOR_NAMES,
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	BRAND_FILENAME,

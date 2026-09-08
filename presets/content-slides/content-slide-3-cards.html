@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Slide title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide>
+				<header-container>
+					<slide-title-group>
+						<slide-pretitle data-slot="pre" color="subtle" context="slide"
+							>Optional pre-title</slide-pretitle
+						>
+						<slide-title data-slot="main" size="md" color="strong" context="slide"
+							>Slide title</slide-title
+						>
+						<slide-subtitle data-slot="sub" color="base" context="slide"
+							>Optional subtitle</slide-subtitle
+						>
+					</slide-title-group>
+				</header-container>
+				<content-container>
+					<div class="box-border min-w-0 flex flex-row gap-2">
+						<card
+							class="flex-1 min-w-0"
+							padding="md"
+							gap="sm"
+						>
+							<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+								>Label</card-pretitle
+							>
+							<card-title data-slot="title" color="strong" context="surface"
+								>Value</card-title
+							>
+							<card-meta data-slot="meta" color="subtle" context="surface"
+								>Optional supporting
+								detail</card-meta
+							>
+						</card>
+						<card
+							class="flex-1 min-w-0"
+							padding="md"
+							gap="sm"
+						>
+							<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+								>Label</card-pretitle
+							>
+							<card-title data-slot="title" color="strong" context="surface"
+								>Value</card-title
+							>
+							<card-meta data-slot="meta" color="subtle" context="surface"
+								>Optional supporting
+								detail</card-meta
+							>
+						</card>
+						<card
+							class="flex-1 min-w-0"
+							padding="md"
+							gap="sm"
+						>
+							<card-pretitle data-slot="pretitle" color="subtle" context="surface"
+								>Label</card-pretitle
+							>
+							<card-title data-slot="title" color="strong" context="surface"
+								>Value</card-title
+							>
+							<card-meta data-slot="meta" color="subtle" context="surface"
+								>Optional supporting
+								detail</card-meta
+							>
+						</card>
+					</div>
+				</content-container>
+				<footer-container>
+					<slide-footer context="slide">
+						<img
+							data-slot="logo"
+							data-logo
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							class="shrink-0 block"
+						/>
+						<slide-footer-notes data-slot="notes" color="subtle"
+							>Add notes or sources here.</slide-footer-notes
+						>
+						<slide-footer-meta>
+							<slide-footer-title data-slot="deck-title" color="subtle"
+								>Deck title</slide-footer-title
+							>
+							<slide-footer-chapter data-slot="chapter" color="subtle"
+								>Chapter</slide-footer-chapter
+							>
+							<slide-footer-page data-slot="page" color="subtle"
+								>01</slide-footer-page
+							>
+						</slide-footer-meta>
+					</slide-footer>
+				</footer-container>
+			</slide>
+		</deck>
+	</body>
+</html>

@@ -142,6 +142,7 @@
 		},
 		"stack": {
 			"gap": {
+				"none": 0,
 				"sm": 2,
 				"md": 3,
 				"lg": 4
@@ -352,6 +353,7 @@
 				"lg": 6
 			},
 			"gap": {
+				"none": 0,
 				"sm": 2,
 				"md": 3,
 				"lg": 4
@@ -380,6 +382,21 @@
 			"meta": {
 				"paddingTop": "0-5"
 			}
+		},
+		"callout": {
+			"titleSize": 400,
+			"descriptionSize": 350,
+			"borderSize": "sm"
+		},
+		"badge": {
+			"textSize": 300,
+			"borderColor": "none",
+			"borderRadius": "none"
+		},
+		"slideFooter": {
+			"textSize": 300,
+			"logoHeight": 3,
+			"gap": 2
 		}
 	}
 }

@@ -1,0 +1,9 @@
+footer-container {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	padding-top: var(--slide-footer-padding-top);
+	padding-right: var(--slide-footer-padding-right);
+	padding-bottom: var(--slide-footer-padding-bottom);
+	padding-left: var(--slide-footer-padding-left);
+}

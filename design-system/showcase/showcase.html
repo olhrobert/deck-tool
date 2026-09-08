@@ -94,6 +94,12 @@
 				overflow: hidden;
 			}
 
+			.showcase-footer-cover {
+				background-color: var(--color-cover-background);
+				border-radius: var(--card-border-radius);
+				padding: var(--spacing-6) var(--spacing-8);
+			}
+
 			.showcase-toolbar {
 				display: flex;
 				align-items: center;
@@ -111,8 +117,26 @@
 				display: flex;
 				flex-direction: column;
 				align-items: stretch;
-				gap: 4px;
+				gap: var(--spacing-6);
 				width: 100%;
+				overflow-y: auto;
+			}
+
+			.showcase-filter-group {
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				gap: 0;
+				width: 100%;
+			}
+
+			.showcase-filter-heading {
+				font-family: system-ui, sans-serif;
+				font-size: 12px;
+				font-weight: 600;
+				color: var(--color-slide-foreground-subtle);
+				padding: 0 10px;
+				margin-bottom: var(--spacing-1);
 			}
 
 			.showcase-toolbar a,
@@ -142,15 +166,26 @@
 				text-align: left;
 			}
 
-			.showcase-toolbar a:hover,
-			.showcase-filter a:hover {
+			.showcase-toolbar a:hover {
 				background-color: var(--color-slide-surface-border);
 			}
 
-			.showcase-toolbar a.is-active,
-			.showcase-filter a.is-active {
+			.showcase-toolbar a.is-active {
 				background-color: var(--color-cover-background);
 				color: var(--color-cover-foreground);
+			}
+
+			.showcase-filter a:hover {
+				background-color: rgb(
+					from var(--color-cover-background) r g b / 0.1
+				);
+			}
+
+			.showcase-filter a.is-active {
+				background-color: rgb(
+					from var(--color-cover-background) r g b / 0.2
+				);
+				color: var(--color-slide-foreground-strong);
 			}
 
 			[data-section="typography"] text[family="cover-title"] {
@@ -158,8 +193,8 @@
 			}
 
 			[data-section="layout"] slide,
-			[data-section="layout"] slide-header,
-			[data-section="layout"] slide-footer {
+			[data-section="layout"] header-container,
+			[data-section="layout"] footer-container {
 				border: 1px solid var(--color-slide-surface-border);
 			}
 
@@ -180,15 +215,46 @@
 				min-width: 0;
 			}
 
+			.callout-matrix {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-4);
+			}
+
+			.callout-matrix callout {
+				width: 100%;
+				min-width: 0;
+				flex: 0 0 auto;
+			}
+
+			.badge-matrix {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-4);
+			}
+
+			.badge-matrix-row {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: var(--spacing-3);
+			}
+
 			.showcase-group[data-section="brand"],
 			.showcase-group[data-section="typography"],
-			.showcase-group[data-section="components"] {
+			.showcase-group[data-section="attribution-box"],
+			.showcase-group[data-section="badge"],
+			.showcase-group[data-section="callout"],
+			.showcase-group[data-section="card"],
+			.showcase-group[data-section="slide-title"] {
 				max-width: 800px;
 				width: 100%;
 				margin: 0 auto;
 			}
 
-			.showcase-group[data-section="layout"] {
+			.showcase-group[data-section="layout"],
+			.showcase-group[data-section="title-slides"],
+			.showcase-group[data-section="content-slides"] {
 				max-width: 1280px;
 				width: 100%;
 				margin: 0 auto;
@@ -283,26 +349,70 @@
 				>
 			</div>
 			<div class="showcase-filter">
-				<a
-					href="#brand"
-					data-filter="brand"
-					>Brand</a
-				>
-				<a
-					href="#typography"
-					data-filter="typography"
-					>Type</a
-				>
-				<a
-					href="#components"
-					data-filter="components"
-					>Comps</a
-				>
-				<a
-					href="#layout"
-					data-filter="layout"
-					>Layout</a
-				>
+				<div class="showcase-filter-group">
+					<div class="showcase-filter-heading">Foundations</div>
+					<a
+						href="#brand"
+						data-filter="brand"
+						>Brand</a
+					>
+					<a
+						href="#typography"
+						data-filter="typography"
+						>Type</a
+					>
+					<a
+						href="#layout"
+						data-filter="layout"
+						>Layout</a
+					>
+				</div>
+				<div class="showcase-filter-group">
+					<div class="showcase-filter-heading">Components</div>
+					<a
+						href="#attribution-box"
+						data-filter="attribution-box"
+						>Attribution box</a
+					>
+					<a
+						href="#badge"
+						data-filter="badge"
+						>Badge</a
+					>
+					<a
+						href="#callout"
+						data-filter="callout"
+						>Callout</a
+					>
+					<a
+						href="#card"
+						data-filter="card"
+						>Card</a
+					>
+					<a
+						href="#slide-footer"
+						data-filter="slide-footer"
+						>Slide footer</a
+					>
+					<a
+						href="#slide-title"
+						data-filter="slide-title"
+						>Slide title</a
+					>
+				</div>
+				<div class="showcase-filter-group">
+					<div class="showcase-filter-heading">Slide presets</div>
+					<a
+						href="#title-slides"
+						data-filter="title-slides"
+						>Title slides</a
+					>
+					<a
+						href="#content-slides"
+						data-filter="content-slides"
+						>Content slides</a
+					>
+				</div>
 			</div>
 		</aside>
 		<div class="showcase">
@@ -315,11 +425,11 @@
 				id="brand-showcase"
 			></div>
 
-			<!-- === SLIDES === -->
+			<!-- === TITLE SLIDES === -->
 
 			<div
 				class="showcase-group"
-				data-section="slides"
+				data-section="title-slides"
 			>
 				<div
 					class="showcase-subgroup showcase-deck"
@@ -364,10 +474,27 @@
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
-					data-src="../../presets/content-slides/content-slide-01.html"
+					data-src="../../presets/deck-titles/deck-title-05.html"
 				>
 					<text class="showcase-label"
-						>presets/content-slides/content-slide-01.html</text
+						>presets/deck-titles/deck-title-05.html</text
+					>
+				</div>
+			</div>
+
+			<!-- === CONTENT SLIDES === -->
+
+			<div
+				class="showcase-group"
+				data-section="content-slides"
+			>
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/content-slides/content-slide-3-cards.html"
+				>
+					<text class="showcase-label"
+						>presets/content-slides/content-slide-3-cards.html</text
 					>
 				</div>
 
@@ -382,11 +509,111 @@
 				</div>
 			</div>
 
-			<!-- === COMPONENTS === -->
+			<!-- === SLIDE FOOTER === -->
 
 			<div
 				class="showcase-group"
-				data-section="components"
+				data-section="slide-footer"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/slide-footer/slide-footer.html
+						context="slide"</text
+					>
+					<div
+						class="showcase-footer"
+						style="padding: var(--spacing-6) var(--spacing-8)"
+						data-preset="fragment"
+						data-src="../components/slide-footer/slide-footer.html"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/slide-footer/slide-footer.html
+						context="cover"</text
+					>
+					<div
+						class="showcase-footer-cover"
+						data-preset="fragment"
+						data-src="../components/slide-footer/slide-footer.html"
+						data-footer-context="cover"
+					></div>
+				</div>
+			</div>
+
+			<!-- === ATTRIBUTION BOX === -->
+
+			<div
+				class="showcase-group"
+				data-section="attribution-box"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/attribution-box/attribution-box.html</text
+					>
+					<div
+						data-preset="fragment"
+						data-src="../components/attribution-box/attribution-box.html"
+					></div>
+				</div>
+			</div>
+
+			<!-- === BADGE === -->
+
+			<div
+				class="showcase-group"
+				data-section="badge"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/badge/badge.html</text
+					>
+					<div
+						class="badge-matrix"
+						id="badge-showcase"
+					></div>
+				</div>
+			</div>
+
+			<!-- === CALLOUT === -->
+
+			<div
+				class="showcase-group"
+				data-section="callout"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/callout/callout.html</text
+					>
+					<div
+						class="callout-matrix"
+						id="callout-showcase"
+					></div>
+				</div>
+			</div>
+
+			<!-- === CARD === -->
+
+			<div
+				class="showcase-group"
+				data-section="card"
+			>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/card/card.html</text
+					>
+					<div
+						class="card-matrix"
+						id="card-showcase"
+					></div>
+				</div>
+			</div>
+
+			<!-- === SLIDE TITLE === -->
+
+			<div
+				class="showcase-group"
+				data-section="slide-title"
 			>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
@@ -413,24 +640,6 @@
 					<div
 						data-preset="fragment"
 						data-src="../components/slide-title/slide-title-group-sm.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/card/card.html</text
-					>
-					<div
-						class="card-matrix"
-						id="card-showcase"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/attribution-box/attribution-box.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/attribution-box/attribution-box.html"
 					></div>
 				</div>
 			</div>
@@ -461,29 +670,29 @@
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/layout/slide-header.html</text
+						>components/layout/header-container.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/layout/slide-header.html"
+						data-src="../components/layout/header-container.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/layout/slide-content.html</text
+						>components/layout/content-container.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/layout/slide-content.html"
+						data-src="../components/layout/content-container.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/layout/slide-footer.html</text
+						>components/layout/footer-container.html</text
 					>
 					<div
 						data-preset="fragment"
-						data-src="../components/layout/slide-footer.html"
+						data-src="../components/layout/footer-container.html"
 					></div>
 				</div>
 				<div class="showcase-subgroup">
@@ -715,14 +924,24 @@
 
 			function applyLogos(brand) {
 				const files = BRAND_LOGOS[brand] || BRAND_LOGOS[""];
-				document.querySelectorAll("img[data-logo]").forEach((img) => {
-					const surface = img.getAttribute("data-logo");
-					const cssVar =
-						LOGO_SURFACES[surface] || LOGO_SURFACES.slide;
-					img.src = isDarkBackground(cssVar)
-						? files.inverted
-						: files.default;
-				});
+				document
+					.querySelectorAll(
+						"img[data-logo], slide-footer img[data-slot='logo']",
+					)
+					.forEach((img) => {
+						if (img.closest("attribution-box")) return;
+						const explicit = img.getAttribute("data-logo");
+						const footer = img.closest("slide-footer");
+						const surface =
+							explicit ||
+							(footer && footer.getAttribute("context")) ||
+							"slide";
+						const cssVar =
+							LOGO_SURFACES[surface] || LOGO_SURFACES.slide;
+						img.src = isDarkBackground(cssVar)
+							? files.inverted
+							: files.default;
+					});
 			}
 
 			const SEMANTIC_VARIANTS = [
@@ -788,6 +1007,52 @@
 				).join("");
 			}
 
+			function renderShowcaseCallout(variant) {
+				return `
+					<callout
+						variant="${variant}"
+						padding="md"
+						gap="sm"
+					>
+						<callout-title color="strong" context="surface">${titleCase(variant)} title</callout-title>
+						<callout-description color="base" context="surface">Description copy on this callout.</callout-description>
+					</callout>
+				`;
+			}
+
+			function renderCalloutShowcase() {
+				const root = document.getElementById("callout-showcase");
+				if (!root) return;
+				root.innerHTML = SEMANTIC_VARIANTS.map(renderShowcaseCallout).join("");
+			}
+
+			function renderShowcaseBadge(variant, combo) {
+				return `
+					<badge
+						variant="${variant}"
+						emphasis="${combo.emphasis}"
+					>
+						<badge-text color="strong" context="surface">${titleCase(variant)} · ${titleCase(combo.label)}</badge-text>
+					</badge>
+				`;
+			}
+
+			function renderBadgeShowcase() {
+				const root = document.getElementById("badge-showcase");
+				if (!root) return;
+				const combos = [
+					{ emphasis: "false", label: "quiet" },
+					{ emphasis: "true", label: "emphasis" },
+				];
+				root.innerHTML = SEMANTIC_VARIANTS.map(
+					(variant) => `
+						<div class="badge-matrix-row">
+							${combos.map((combo) => renderShowcaseBadge(variant, combo)).join("")}
+						</div>
+					`,
+				).join("");
+			}
+
 			function escapeHtml(value) {
 				return String(value)
 					.replace(/&/g, "&amp;")
@@ -805,6 +1070,13 @@
 
 			function formatSettingValue(value) {
 				if (value === null || value === undefined) return "";
+				if (
+					typeof value === "object" &&
+					typeof value.color === "string" &&
+					typeof value.opacity === "number"
+				) {
+					return `${value.color} at ${value.opacity} opacity`;
+				}
 				if (typeof value === "object") return JSON.stringify(value);
 				return String(value);
 			}
@@ -1081,9 +1353,13 @@
 							const settings = await loadBrandSettings(brand);
 							if (applyId !== brandApplyId) return;
 							renderCardShowcase(settings);
+							renderCalloutShowcase();
+							renderBadgeShowcase();
 							renderBrandShowcase(settings);
 						} catch (error) {
 							renderCardShowcase();
+							renderCalloutShowcase();
+							renderBadgeShowcase();
 							const root =
 								document.getElementById("brand-showcase");
 							if (root) {
@@ -1124,7 +1400,7 @@
 
 			function extractFooterInner(html) {
 				const match = html.match(
-					/<slide-footer[\s\S]*?>([\s\S]*)<\/slide-footer>/i,
+					/<footer-container[\s\S]*?>([\s\S]*)<\/footer-container>/i,
 				);
 				return match ? match[1] : html;
 			}
@@ -1167,7 +1443,7 @@
 							} else if (type === "footer") {
 								if (
 									slot.tagName.toLowerCase() ===
-									"slide-footer"
+									"footer-container"
 								) {
 									slot.innerHTML = extractFooterInner(html);
 								} else {
@@ -1178,6 +1454,17 @@
 								}
 							} else {
 								slot.insertAdjacentHTML("beforeend", html);
+							}
+
+							if (slot.dataset.footerContext) {
+								slot.querySelectorAll("slide-footer").forEach(
+									(el) => {
+										el.setAttribute(
+											"context",
+											slot.dataset.footerContext,
+										);
+									},
+								);
 							}
 
 							slot.dataset.loaded = "true";
@@ -1195,8 +1482,15 @@
 			const VALID_FILTERS = [
 				"brand",
 				"typography",
-				"components",
 				"layout",
+				"attribution-box",
+				"badge",
+				"callout",
+				"card",
+				"slide-footer",
+				"slide-title",
+				"title-slides",
+				"content-slides",
 			];
 			const filterLinks = document.querySelectorAll(".showcase-filter a");
 			const sections = document.querySelectorAll(
@@ -1226,7 +1520,7 @@
 				syncBrandTabs(currentBrand);
 			});
 
-			if (!location.hash || location.hash === "#slides") {
+			if (!location.hash) {
 				history.replaceState(null, "", "#brand");
 			}
 

@@ -10,6 +10,7 @@ Copy one file into `decks/{deck-name}/` and replace placeholder text only. Do no
 | `deck-title-02.html` | Oversized title at bottom; logos in top corners                  |
 | `deck-title-03.html` | Split column; title left, subtitle in the right column           |
 | `deck-title-04.html` | Centered title; logo top-center; badge bottom-center             |
+| `deck-title-05.html` | Centered stack: logo, title, and subtitle                        |
 
 ## Placeholders to replace
 

@@ -1,0 +1,11 @@
+content-container {
+	display: block;
+	box-sizing: border-box;
+	flex: 1;
+	width: 100%;
+	min-height: 0;
+	padding-top: var(--slide-content-padding-top);
+	padding-right: var(--slide-content-padding-right);
+	padding-bottom: var(--slide-content-padding-bottom);
+	padding-left: var(--slide-content-padding-left);
+}

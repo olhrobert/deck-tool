@@ -5,14 +5,20 @@
  */
 
 card[width="hug"],
+callout[width="hug"],
+badge[width="hug"],
 attribution-box[width="hug"],
+slide-footer[width="hug"],
 stack[width="hug"],
 slot[width="hug"] {
 	flex: 0 0 auto;
 }
 
 card[width="fill"],
+callout[width="fill"],
+badge[width="fill"],
 attribution-box[width="fill"],
+slide-footer[width="fill"],
 stack[width="fill"],
 slot[width="fill"] {
 	flex: 1 1 0%;
@@ -20,7 +26,10 @@ slot[width="fill"] {
 }
 
 card[height="fill"],
+callout[height="fill"],
+badge[height="fill"],
 attribution-box[height="fill"],
+slide-footer[height="fill"],
 stack[height="fill"],
 slot[height="fill"] {
 	align-self: stretch;
@@ -28,14 +37,20 @@ slot[height="fill"] {
 }
 
 .flex-col > card[height="fill"]:not([width="fill"]),
+.flex-col > callout[height="fill"]:not([width="fill"]),
+.flex-col > badge[height="fill"]:not([width="fill"]),
 .flex-col > attribution-box[height="fill"]:not([width="fill"]),
+.flex-col > slide-footer[height="fill"]:not([width="fill"]),
 .flex-col > stack[height="fill"]:not([width="fill"]),
 .flex-col > slot[height="fill"]:not([width="fill"]) {
 	flex: 1 1 0%;
 }
 
 card[height="hug"],
+callout[height="hug"],
+badge[height="hug"],
 attribution-box[height="hug"],
+slide-footer[height="hug"],
 stack[height="hug"],
 slot[height="hug"] {
 	align-self: auto;

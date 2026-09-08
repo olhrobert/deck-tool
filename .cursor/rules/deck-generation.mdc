@@ -27,7 +27,7 @@ decks/{deck-name}/
 ## Presets that exist
 
 - Title: `presets/deck-titles/deck-title-01.html` … `deck-title-04.html`
-- Content: `presets/content-slides/content-slide-01.html`
+- Content: `presets/content-slides/content-slide-3-cards.html`
 - Footer: `presets/content-footers/footer-01.html`
 - Card fragment: `design-system/components/card/card.html`
 

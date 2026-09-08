@@ -1,0 +1,104 @@
+/* Slide footer
+   Axes:
+     context="slide|cover"  default slide
+   Nested type omits context; ink follows this attribute.
+   Logo without data-logo value inherits the same surface.
+*/
+
+slide-footer {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+	grid-template-areas: "logo notes meta";
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+
+	--_footer-ink-strong: var(--color-slide-foreground-strong);
+	--_footer-ink-base: var(--color-slide-foreground-base);
+	--_footer-ink-subtle: var(--color-slide-foreground-subtle);
+}
+
+slide-footer[context="cover"] {
+	--_footer-ink-strong: var(--color-cover-foreground-strong);
+	--_footer-ink-base: var(--color-cover-foreground-base);
+	--_footer-ink-subtle: var(--color-cover-foreground-subtle);
+}
+
+slide-footer
+	:is(
+		.text,
+		text,
+		slide-footer-notes,
+		slide-footer-title,
+		slide-footer-chapter,
+		slide-footer-page,
+		body-copy
+	),
+slide-footer
+	:is(
+		.text,
+		text,
+		slide-footer-notes,
+		slide-footer-title,
+		slide-footer-chapter,
+		slide-footer-page,
+		body-copy
+	)[context="slide"],
+slide-footer
+	:is(
+		.text,
+		text,
+		slide-footer-notes,
+		slide-footer-title,
+		slide-footer-chapter,
+		slide-footer-page,
+		body-copy
+	)[context="cover"],
+slide-footer
+	:is(
+		.text,
+		text,
+		slide-footer-notes,
+		slide-footer-title,
+		slide-footer-chapter,
+		slide-footer-page,
+		body-copy
+	)[context="surface"] {
+	--_ink-strong: var(--_footer-ink-strong);
+	--_ink-base: var(--_footer-ink-base);
+	--_ink-subtle: var(--_footer-ink-subtle);
+}
+
+slide-footer > img[data-slot="logo"] {
+	grid-area: logo;
+	justify-self: start;
+	height: var(--slide-footer-logo-height);
+	width: auto;
+	display: block;
+	flex-shrink: 0;
+}
+
+slide-footer-notes {
+	grid-area: notes;
+	justify-self: center;
+	text-align: center;
+	min-width: 0;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+slide-footer-meta {
+	grid-area: meta;
+	display: flex;
+	align-items: center;
+	justify-self: end;
+	min-width: 0;
+}
+
+slide-footer-meta > * + *::before {
+	content: "|";
+	margin-inline: var(--slide-footer-gap);
+	color: currentColor;
+}

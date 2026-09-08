@@ -1,0 +1,17 @@
+/* Slide-footer type presets of base typography.
+   Size is brand-only. Defaults: notes and meta color=subtle. */
+
+slide-footer-notes,
+slide-footer-title,
+slide-footer-chapter,
+slide-footer-page {
+	display: flex;
+	align-items: center;
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-weight: var(--body-font-weight);
+	line-height: 1.2;
+	font-size: var(--slide-footer-text-size);
+	letter-spacing: 0%;
+	white-space: nowrap;
+	color: var(--_ink-subtle);
+}
