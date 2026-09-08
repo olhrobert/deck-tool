@@ -54,11 +54,12 @@ function main() {
 	}
 
 	const template = JSON.parse(fs.readFileSync(TEMPLATE_JSON, "utf8"));
-	if (!template.basic) template.basic = {};
-	template.basic.name = name || titleCaseSlug(slug);
+	if (!template.foundations) template.foundations = {};
+	if (!template.foundations.basic) template.foundations.basic = {};
+	template.foundations.basic.name = name || titleCaseSlug(slug);
 	const logoFile = `${slug}-logo.svg`;
 	const logoInvertedFile = `${slug}-logo-inverted.svg`;
-	template.basic.logo = logoFile;
+	template.foundations.basic.logo = logoFile;
 
 	fs.mkdirSync(destDir, { recursive: true });
 	fs.writeFileSync(

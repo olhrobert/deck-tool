@@ -27,17 +27,20 @@ const {
 	BORDER_SIZE_STEPS,
 	FONT_WEIGHT_NAMES,
 	FONT_FAMILY_NAMES,
-	SEMANTIC_COLOR_VARIANTS,
-	SEMANTIC_COLOR_TONES,
-	semanticColorGroupKey,
+	CARD_COLOR_FAMILY_KEYS,
+	STATUS_SEMANTIC_FAMILY_KEYS,
 	isPretitleUppercasePath,
 	isPretitleUppercaseBoolean,
 	isPretitleLetterSpacingPath,
 	isPretitleLetterSpacing,
+	isCardLayoutPath,
+	isCardLayoutName,
+	CARD_LAYOUT_NAMES,
 	isBrandSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
 	isColorRolePath,
+	isColorRefPath,
 	resolveColorRef,
 	BRAND_FILENAME,
 } = require("./generate-brand-css.js");
@@ -109,10 +112,11 @@ function validateBrand(brandDir) {
 	if (errors.length) return { errors, warnings };
 
 	const brand = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
-	if (!brand.basic || !brand.basic.name) {
-		errors.push(`${BRAND_FILENAME} is missing basic.name`);
+	const basic = brand.foundations && brand.foundations.basic;
+	if (!basic || !basic.name) {
+		errors.push(`${BRAND_FILENAME} is missing foundations.basic.name`);
 	}
-	const logoFile = (brand.basic && brand.basic.logo) || `${slug}-logo.svg`;
+	const logoFile = (basic && basic.logo) || `${slug}-logo.svg`;
 	const logoInvertedFile = logoFile.replace(/\.svg$/i, "-inverted.svg");
 	const logoPath = path.join(resolved, logoFile);
 	const logoInvertedPath = path.join(resolved, logoInvertedFile);
@@ -124,13 +128,24 @@ function validateBrand(brandDir) {
 		}
 	}
 
-	const palette = brand.palette;
-	if (!palette || typeof palette !== "object" || !palette.brand || typeof palette.brand !== "object") {
-		errors.push("Missing palette.brand (need at least one of 1–6)");
+	const color = brand.foundations && brand.foundations.color;
+	if (!color || typeof color !== "object" || !color.brand || typeof color.brand !== "object") {
+		errors.push("Missing foundations.color.brand (need at least one of 1–6)");
 	} else {
-		const present = Object.keys(palette.brand).filter((k) => /^[1-6]$/.test(k));
+		const present = Object.keys(color.brand).filter((k) => /^[1-6]$/.test(k));
 		if (present.length === 0) {
-			errors.push("palette.brand must define at least one of 1–6");
+			errors.push("foundations.color.brand must define at least one of 1–6");
+		}
+	}
+
+	const semantic = color && color.semantic;
+	if (!semantic || typeof semantic !== "object") {
+		errors.push("Missing foundations.color.semantic");
+	} else {
+		for (const key of STATUS_SEMANTIC_FAMILY_KEYS) {
+			if (semantic[key] === undefined) {
+				errors.push(`Missing foundations.color.semantic.${key}`);
+			}
 		}
 	}
 
@@ -146,7 +161,7 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
-		if (!isColorRolePath(jsonPathKey)) continue;
+		if (!isColorRefPath(jsonPathKey)) continue;
 		const raw = getPath(brand, jsonPathKey);
 		if (raw === undefined) continue;
 		try {
@@ -275,11 +290,22 @@ function validateBrand(brandDir) {
 		}
 	}
 
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isCardLayoutPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isCardLayoutName(raw)) {
+			errors.push(
+				`${jsonPathKey} must be ${CARD_LAYOUT_NAMES.join(" or ")} (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
 	const pairs = [
-		["slide.canvas.foreground", "slide.canvas.background", "slide canvas foreground on slide canvas background"],
-		["cover.canvas.foreground", "cover.canvas.background", "cover canvas foreground on cover canvas background"],
-		["slide.surface.foreground", "slide.surface.background", "slide surface foreground on slide surface background"],
-		["cover.surface.foreground", "cover.surface.background", "cover surface foreground on cover surface background"],
+		["components.slide.canvas.foreground", "components.slide.canvas.background", "slide canvas foreground on slide canvas background"],
+		["components.cover.canvas.foreground", "components.cover.canvas.background", "cover canvas foreground on cover canvas background"],
+		["components.slide.surface.foreground", "components.slide.surface.background", "slide surface foreground on slide surface background"],
+		["components.cover.surface.foreground", "components.cover.surface.background", "cover surface foreground on cover surface background"],
 	];
 
 	for (const [fgPath, bgPath, label] of pairs) {
@@ -314,23 +340,42 @@ function validateBrand(brandDir) {
 	try {
 		slideBgResolved = resolveColorRef(
 			brand,
-			getPath(brand, "slide.canvas.background"),
-			"slide.canvas.background",
+			getPath(brand, "components.slide.canvas.background"),
+			"components.slide.canvas.background",
 		);
 	} catch (error) {
 		errors.push(error.message);
 	}
 	const slideBg = parseColor(slideBgResolved);
 
-	for (const variant of SEMANTIC_COLOR_VARIANTS) {
-		for (const tone of SEMANTIC_COLOR_TONES) {
-			const group = semanticColorGroupKey(variant);
-			const fgPath = `${group}.${tone}.foregroundStrong`;
-			const bgPath = `${group}.${tone}.backgroundBase`;
-			const fg = parseColor(getPath(brand, fgPath));
-			const bg = parseColor(getPath(brand, bgPath));
-			if (!fg) errors.push(`${fgPath} is not a parseable color`);
-			if (!bg) errors.push(`${bgPath} is not a parseable color`);
+	const contrastGroups = CARD_COLOR_FAMILY_KEYS.map(
+		(family) => `components.card.${family}`,
+	);
+	for (const group of contrastGroups) {
+			const fgPath = `${group}.foregroundStrong`;
+			const bgPath = `${group}.backgroundBase`;
+			let fg;
+			let bg;
+			try {
+				fg = parseColor(resolveColorRef(brand, getPath(brand, fgPath), fgPath));
+			} catch (error) {
+				errors.push(error.message);
+			}
+			try {
+				bg = parseColor(resolveColorRef(brand, getPath(brand, bgPath), bgPath));
+			} catch (error) {
+				errors.push(error.message);
+			}
+			if (!fg && getPath(brand, fgPath) !== undefined) {
+				/* resolve error already recorded */
+			} else if (!fg) {
+				errors.push(`${fgPath} is not a parseable color`);
+			}
+			if (!bg && getPath(brand, bgPath) !== undefined) {
+				/* resolve error already recorded */
+			} else if (!bg) {
+				errors.push(`${bgPath} is not a parseable color`);
+			}
 			if (fg && bg) {
 				const canvas =
 					bg.a < 1 && slideBg ? slideBg : bg.a < 1 ? { r: 1, g: 1, b: 1, a: 1 } : bg;
@@ -339,11 +384,10 @@ function validateBrand(brandDir) {
 				const ratio = contrast(ink, fill);
 				if (ratio < 4.5) {
 					errors.push(
-						`${group}.${tone} foregroundStrong on backgroundBase contrast ${ratio.toFixed(2)} < 4.5`,
+						`${group} foregroundStrong on backgroundBase contrast ${ratio.toFixed(2)} < 4.5`,
 					);
 				}
 			}
-		}
 	}
 
 	function checkLogoSvg(file, filePath) {
@@ -373,7 +417,7 @@ function main() {
 	const brandDir = process.argv[2];
 	if (!brandDir) usage();
 	const { errors, warnings, brand } = validateBrand(brandDir);
-	if (brand) console.log(`Brand: ${(brand.basic && brand.basic.name) || slug}`);
+	if (brand) console.log(`Brand: ${(brand.foundations && brand.foundations.basic && brand.foundations.basic.name) || slug}`);
 	for (const warning of warnings) console.warn(`warning: ${warning}`);
 	if (errors.length) {
 		for (const error of errors) console.error(`error: ${error}`);

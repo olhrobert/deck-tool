@@ -64,6 +64,6 @@ Open `decks/{deck-name}/index.html`.
 
 - Do not change component structure, classes, or stylesheet links
 - Keep `data-slot` attributes on composite components
-- Use `<card padding="md" gap="sm">` with `<card-pretitle>` (`color="subtle" context="surface"`), card-title, optional `<body-copy>`, and optional card-meta
+- Use `<card padding="md" gap="sm">` with `<card-pretitle>` (`color="subtle" context="surface"`), card-title, optional `<body-copy>`, and optional card-meta. Omit `layout` so the brand `components.card.layout` default applies.
 - Use the same footer preset on every content slide
 - Slide order is filename sort (`01.html` before `02.html`)

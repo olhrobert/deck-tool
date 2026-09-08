@@ -14,9 +14,9 @@ Styles live in `design-system/components/card/presets/`.
 |---|---|---|
 | `variant` | `default`, `positive`, `warning`, `negative`, `informative` | `default` |
 | `emphasis` | `true`, `false` | `false` |
-| `chrome` | `basic`, `stripe` | `basic` |
+| `layout` | `basic`, `stripe` | brand `components.card.layout` |
 
-Paint comes from `color{Variant}.{quiet|emphasis}.*` (e.g. `colorPositive.quiet`). Letter case, spacing, and type sizes stay on the brand `card.*` tokens.
+Paint comes from `components.card.{variant}Quiet` / `{variant}Emphasis` (e.g. `positiveQuiet`), which ref `foundations.color.semantic.*` (and `brand` / `chart`) with opacity. Letter case, spacing, and type sizes stay on the brand `card.*` tokens.
 
 ## Structure
 

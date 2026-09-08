@@ -33,7 +33,7 @@ function isFontFamilyName(value) {
  * global spacing scale, etc.).
  *
  * Font *named families* (`font.family.display|base`) are CSS stacks.
- * Role families (`cover.title.family`, `font.body.family`, …) name one of those
+ * Role families (`cover.title.family`, `body.family`, …) name one of those
  * two. Font *named weights* (`font.weight.regular|medium|bold`) are CSS numbers
  * (400, 500, 600, 700, …) matching `@font-face` in design-system/tokens/fonts.css.
  * Role weights (`slide.title.weight`, `card.title.weight`, …) and `<text weight>`
@@ -49,15 +49,13 @@ function isFontFamilyName(value) {
  * type, chrome), nested by group (`cover.canvas.background`,
  * `cover.surface.background`, `slide.pretitle.family`,
  * `slide.header.paddingLeft`). Top-level groups, in
- * order: `basic`, `palette`, `colorDefault`, `colorPositive`,
- * `colorWarning`, `colorNegative`, `colorInformative`, `font`, `border`,
- * `cover`, `slide`, `stack`, `card`. Hard-coded RGB lives on `palette`
- * (`brand.1`–`brand.6`, `chart.1`–`chart.4`) and each semantic group
- * (`colorDefault.quiet.foregroundStrong`, …); every leaf in a quiet/emphasis
- * group sits at the same depth. Cover/slide
- * color roles ref that palette (`"brand.2"` or
- * `{ "color": "brand.1", "opacity": 0.18 }`). Remaining component tokens are
- * grouped by component (`card`, …) and named component-leading
+ * order: `foundations` (`basic`, `color`, `font`, `border`) then
+ * `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`,
+ * `card`). Hard-coded RGB lives on `foundations.color` (`brand.1`–
+ * `brand.6`, `semantic.positiveQuiet`…, `chart.1`–`chart.4`). Card
+ * paint and cover/slide roles ref that palette (`"semantic.positiveQuiet"`
+ * or `{ "color": "brand.1", "opacity": 0.18 }`). Remaining
+ * component tokens are grouped by component (`card`, …) and named component-leading
  * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
  */
 const TYPE_SCALE_STEPS = [
@@ -159,20 +157,20 @@ function isSpacingStepPath(jsonPath) {
 }
 
 function isFontNamedFamilyPath(jsonPath) {
-	return /^font\.family\.(display|base)$/.test(jsonPath);
+	return /^foundations\.font\.family\.(display|base)$/.test(jsonPath);
 }
 
 function isFontRoleFamilyPath(jsonPath) {
-	if (jsonPath.startsWith("font.family.")) return false;
+	if (jsonPath.startsWith("foundations.font.family.")) return false;
 	return jsonPath.endsWith(".family") || /(title|pretitle|subtitle)Family$/.test(jsonPath);
 }
 
 function isFontNamedWeightPath(jsonPath) {
-	return /^font\.weight\.(regular|medium|bold)$/.test(jsonPath);
+	return /^foundations\.font\.weight\.(regular|medium|bold)$/.test(jsonPath);
 }
 
 function isFontRoleWeightPath(jsonPath) {
-	if (jsonPath.startsWith("font.weight.")) return false;
+	if (jsonPath.startsWith("foundations.font.weight.")) return false;
 	return (
 		jsonPath.endsWith(".weight") ||
 		/(title|pretitle|subtitle)Weight$/.test(jsonPath)
@@ -189,7 +187,7 @@ function isBorderRadiusStep(value) {
 function isBorderRadiusRolePath(jsonPath) {
 	return (
 		(jsonPath.endsWith(".borderRadius") || jsonPath.endsWith(".border.radius")) &&
-		!jsonPath.startsWith("border.radius.")
+		!jsonPath.startsWith("foundations.border.radius.")
 	);
 }
 
@@ -208,7 +206,7 @@ function isBorderSizeRolePath(jsonPath) {
 }
 
 function isPixelDimensionPath(jsonPath) {
-	return jsonPath === "slide.canvas.maxWidth";
+	return jsonPath === "components.slide.canvas.maxWidth";
 }
 
 function isPixelDimension(value) {
@@ -238,18 +236,63 @@ function isPretitleLetterSpacing(value) {
 	return typeof value === "string" && /^\d+(\.\d+)?%$/.test(value);
 }
 
+const CARD_LAYOUT_NAMES = ["basic", "stripe"];
+const CARD_LAYOUT_NAME_SET = new Set(CARD_LAYOUT_NAMES);
+
+function isCardLayoutPath(jsonPath) {
+	return jsonPath === "components.card.layout";
+}
+
+function isCardLayoutName(value) {
+	return CARD_LAYOUT_NAME_SET.has(String(value));
+}
+
+const CARD_STRIPE_LAYOUT_CSS = [
+	"card:not([layout=\"basic\"]) {",
+	"	border-color: var(--_card-border-strong);",
+	"	border-top-width: var(--border-size-none);",
+	"	border-bottom-width: var(--border-size-none);",
+	"	border-right-width: var(--border-size-none);",
+	"	border-left-width: var(--border-size-md);",
+	"	border-radius: var(--border-radius-none);",
+	"}",
+].join("\n");
+
 const BRAND_SWATCH_INDICES = ["1", "2", "3", "4", "5", "6"];
 const CHART_SWATCH_INDICES = ["1", "2", "3", "4"];
 const BRAND_SWATCH_KEYS = BRAND_SWATCH_INDICES.map((i) => `brand.${i}`);
 const CHART_SWATCH_KEYS = CHART_SWATCH_INDICES.map((i) => `chart.${i}`);
-const PALETTE_REF_SET = new Set([...BRAND_SWATCH_KEYS, ...CHART_SWATCH_KEYS]);
+const STATUS_SEMANTIC_FAMILY_KEYS = [
+	"positiveQuiet",
+	"positiveEmphasis",
+	"negativeQuiet",
+	"negativeEmphasis",
+	"warningQuiet",
+	"warningEmphasis",
+	"informativeQuiet",
+	"informativeEmphasis",
+];
+const SEMANTIC_SWATCH_KEYS = STATUS_SEMANTIC_FAMILY_KEYS.map(
+	(key) => `semantic.${key}`,
+);
+const PALETTE_REF_SET = new Set([
+	...BRAND_SWATCH_KEYS,
+	...CHART_SWATCH_KEYS,
+	...SEMANTIC_SWATCH_KEYS,
+]);
 
 function isBrandSwatchPath(jsonPath) {
-	return /^palette\.brand\.[1-6]$/.test(jsonPath);
+	return /^foundations\.color\.brand\.[1-6]$/.test(jsonPath);
 }
 
 function isChartSwatchPath(jsonPath) {
-	return /^palette\.chart\.[1-4]$/.test(jsonPath);
+	return /^foundations\.color\.chart\.[1-4]$/.test(jsonPath);
+}
+
+function isSemanticSwatchPath(jsonPath) {
+	return new RegExp(
+		`^foundations\\.color\\.semantic\\.(${STATUS_SEMANTIC_FAMILY_KEYS.join("|")})$`,
+	).test(jsonPath);
 }
 
 function camelToKebab(value) {
@@ -260,29 +303,29 @@ function jsonPathToCssVar(jsonPath) {
 	return `--${jsonPath.split(".").map(camelToKebab).join("-")}`;
 }
 
-function semanticColorGroupKey(variant) {
-	return `color${variant.charAt(0).toUpperCase()}${variant.slice(1)}`;
+function semanticFamilyKey(variant, tone) {
+	return `${variant}${tone.charAt(0).toUpperCase()}${tone.slice(1)}`;
 }
 
 const SEMANTIC_COLOR_VARIANTS = [
 	"default",
 	"positive",
-	"warning",
 	"negative",
+	"warning",
 	"informative",
 ];
 const SEMANTIC_COLOR_TONES = ["quiet", "emphasis"];
-const SEMANTIC_COLOR_GROUP_KEYS = SEMANTIC_COLOR_VARIANTS.map(semanticColorGroupKey);
-const SEMANTIC_VARIANT_GROUP = SEMANTIC_COLOR_VARIANTS.join("|");
-const SEMANTIC_TONE_GROUP = SEMANTIC_COLOR_TONES.join("|");
-const SEMANTIC_GROUP_KEY_GROUP = SEMANTIC_COLOR_GROUP_KEYS.join("|");
+const DEFAULT_COLOR_FAMILY_KEYS = ["defaultQuiet", "defaultEmphasis"];
+const CARD_COLOR_FAMILY_KEYS = [
+	...DEFAULT_COLOR_FAMILY_KEYS,
+	...STATUS_SEMANTIC_FAMILY_KEYS,
+];
+const SEMANTIC_COLOR_FAMILY_KEYS = CARD_COLOR_FAMILY_KEYS;
+const CARD_FAMILY_GROUP = CARD_COLOR_FAMILY_KEYS.join("|");
 const SEMANTIC_LEAF_GROUP =
 	"(foregroundStrong|foregroundBase|foregroundSubtle|backgroundBase|borderSubtle|borderStrong)";
-const SEMANTIC_LITERAL_PATH = new RegExp(
-	`^(${SEMANTIC_GROUP_KEY_GROUP})\\.(${SEMANTIC_TONE_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
-);
-const SEMANTIC_PALETTE_REF = new RegExp(
-	`^(${SEMANTIC_VARIANT_GROUP})\\.(${SEMANTIC_TONE_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
+const CARD_COLOR_PATH = new RegExp(
+	`^components\\.card\\.(${CARD_FAMILY_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
 );
 
 const SEMANTIC_TOKEN_LEAVES = [
@@ -294,22 +337,32 @@ const SEMANTIC_TOKEN_LEAVES = [
 	"borderStrong",
 ];
 
-function semanticColorTokenMapEntries() {
+function semanticSwatchTokenMapEntries() {
+	return STATUS_SEMANTIC_FAMILY_KEYS.map((key, index) => {
+		const jsonPath = `foundations.color.semantic.${key}`;
+		const cssVar = jsonPathToCssVar(`color.semantic.${key}`);
+		if (index === 0) return [jsonPath, cssVar, "color — semantic"];
+		return [jsonPath, cssVar];
+	});
+}
+
+function cardColorTokenMapEntries() {
 	const entries = [];
-	for (const variant of SEMANTIC_COLOR_VARIANTS) {
-		const group = semanticColorGroupKey(variant);
-		let firstInGroup = true;
-		for (const tone of SEMANTIC_COLOR_TONES) {
-			for (const jsonSuffix of SEMANTIC_TOKEN_LEAVES) {
-				const jsonPath = `${group}.${tone}.${jsonSuffix}`;
-				const cssVar = jsonPathToCssVar(jsonPath);
-				if (firstInGroup) {
-					entries.push([jsonPath, cssVar, group]);
-					firstInGroup = false;
-				} else {
-					entries.push([jsonPath, cssVar]);
-				}
+	for (const family of CARD_COLOR_FAMILY_KEYS) {
+		let firstInFamily = true;
+		for (const jsonSuffix of SEMANTIC_TOKEN_LEAVES) {
+			const jsonPath = `components.card.${family}.${jsonSuffix}`;
+			const cardVar = jsonPathToCssVar(`card.${family}.${jsonSuffix}`);
+			if (firstInFamily) {
+				entries.push([jsonPath, cardVar, `card — ${family}`]);
+				firstInFamily = false;
+			} else {
+				entries.push([jsonPath, cardVar]);
 			}
+			entries.push([
+				jsonPath,
+				jsonPathToCssVar(`color.${family}.${jsonSuffix}`),
+			]);
 		}
 	}
 	return entries;
@@ -319,15 +372,23 @@ function isColorLiteralPath(jsonPath) {
 	return (
 		isBrandSwatchPath(jsonPath) ||
 		isChartSwatchPath(jsonPath) ||
-		SEMANTIC_LITERAL_PATH.test(jsonPath)
+		isSemanticSwatchPath(jsonPath)
 	);
+}
+
+function isCardColorPath(jsonPath) {
+	return CARD_COLOR_PATH.test(jsonPath);
 }
 
 function isColorRolePath(jsonPath) {
 	return (
-		/^(cover|slide)\.canvas\.(background|foreground)$/.test(jsonPath) ||
-		/^(cover|slide)\.surface\.(background|foreground|border)$/.test(jsonPath)
+		/^components\.(cover|slide)\.canvas\.(background|foreground)$/.test(jsonPath) ||
+		/^components\.(cover|slide)\.surface\.(background|foreground|border)$/.test(jsonPath)
 	);
+}
+
+function isColorRefPath(jsonPath) {
+	return isColorRolePath(jsonPath) || isCardColorPath(jsonPath);
 }
 
 function isColorLiteral(value) {
@@ -377,23 +438,23 @@ function withOpacity(colorValue, opacity) {
 
 function resolvePalettePath(refName) {
 	if (PALETTE_REF_SET.has(refName)) {
-		return `palette.${refName}`;
-	}
-	if (SEMANTIC_PALETTE_REF.test(refName)) {
-		const variant = refName.split(".")[0];
-		const rest = refName.slice(variant.length + 1);
-		return `${semanticColorGroupKey(variant)}.${rest}`;
+		return `foundations.color.${refName}`;
 	}
 	return null;
 }
 
 /**
- * Resolve a color role ref against the extended palette
- * (`palette.brand.*`, `palette.chart.*`, `colorDefault.*`, …).
- * Accepts `"brand.1"` / `"positive.quiet.foregroundStrong"` / `"chart.1"` or
- * `{ "color": "brand.1", "opacity": 0.18 }`.
+ * Resolve a color role ref against `foundations.color`
+ * (`brand.1`, `semantic.positiveQuiet`, `chart.1`, …).
+ * Accepts a raw rgb/rgba/# literal, `"brand.1"` /
+ * `"semantic.positiveQuiet"` / `"chart.1"`, or
+ * `{ "color": "semantic.warningQuiet", "opacity": 0.1 }`.
  */
-function resolveColorRef(brand, raw, jsonPath) {
+function resolveColorRef(brand, raw, jsonPath, depth = 0) {
+	if (isColorLiteral(raw)) {
+		return raw;
+	}
+
 	let refName;
 	let opacity;
 
@@ -414,25 +475,30 @@ function resolveColorRef(brand, raw, jsonPath) {
 		}
 	} else {
 		throw new Error(
-			`${jsonPath} must be a palette ref string or { "color", "opacity"? } (got ${JSON.stringify(raw)})`,
+			`${jsonPath} must be a palette ref string, { "color", "opacity"? }, or rgb()/rgba()/#rrggbb (got ${JSON.stringify(raw)})`,
 		);
 	}
 
 	const palettePath = resolvePalettePath(refName);
 	if (!palettePath) {
 		throw new Error(
-			`${jsonPath} unknown palette ref "${refName}" (use brand.1–brand.6, chart.1–chart.4, or default.quiet.foregroundStrong / warning.emphasis.backgroundBase / …)`,
+			`${jsonPath} unknown palette ref "${refName}" (use brand.1–brand.6, chart.1–chart.4, or semantic.positiveQuiet / …)`,
 		);
 	}
 
-	const literal = getPath(brand, palettePath);
-	if (literal === undefined || literal === null) {
+	const resolved = getPath(brand, palettePath);
+	if (resolved === undefined || resolved === null) {
 		throw new Error(`${jsonPath} references missing palette entry ${palettePath}`);
 	}
-	if (!isColorLiteral(literal)) {
-		throw new Error(
-			`${palettePath} must be rgb()/rgba()/#rrggbb (got ${JSON.stringify(literal)})`,
-		);
+
+	let literal;
+	if (isColorLiteral(resolved)) {
+		literal = resolved;
+	} else {
+		if (depth >= 8) {
+			throw new Error(`${jsonPath} color ref cycle or too deep (via ${palettePath})`);
+		}
+		literal = resolveColorRef(brand, resolved, palettePath, depth + 1);
 	}
 
 	if (opacity !== undefined) {
@@ -442,115 +508,118 @@ function resolveColorRef(brand, raw, jsonPath) {
 }
 
 const TOKEN_MAP = [
-	["palette.brand.1", "--color-palette-brand-1", "palette"],
-	["palette.brand.2", "--color-palette-brand-2"],
-	["palette.brand.3", "--color-palette-brand-3"],
-	["palette.brand.4", "--color-palette-brand-4"],
-	["palette.brand.5", "--color-palette-brand-5"],
-	["palette.brand.6", "--color-palette-brand-6"],
-	["palette.chart.1", "--color-palette-chart-1"],
-	["palette.chart.2", "--color-palette-chart-2"],
-	["palette.chart.3", "--color-palette-chart-3"],
-	["palette.chart.4", "--color-palette-chart-4"],
+	["foundations.color.brand.1", "--color-palette-brand-1", "color"],
+	["foundations.color.brand.2", "--color-palette-brand-2"],
+	["foundations.color.brand.3", "--color-palette-brand-3"],
+	["foundations.color.brand.4", "--color-palette-brand-4"],
+	["foundations.color.brand.5", "--color-palette-brand-5"],
+	["foundations.color.brand.6", "--color-palette-brand-6"],
 
-	...semanticColorTokenMapEntries(),
+	...semanticSwatchTokenMapEntries(),
 
-	["font.family.display", "--font-family-display", "font — family"],
-	["font.family.base", "--font-family-base"],
+	["foundations.color.chart.1", "--color-palette-chart-1", "color — chart"],
+	["foundations.color.chart.2", "--color-palette-chart-2"],
+	["foundations.color.chart.3", "--color-palette-chart-3"],
+	["foundations.color.chart.4", "--color-palette-chart-4"],
 
-	["font.weight.regular", "--font-weight-regular", "font — weight"],
-	["font.weight.medium", "--font-weight-medium"],
-	["font.weight.bold", "--font-weight-bold"],
+	["foundations.font.family.display", "--font-family-display", "font — family"],
+	["foundations.font.family.base", "--font-family-base"],
 
-	["font.paragraphTitle.family", "--paragraph-title-font-family", "font — paragraph title"],
-	["font.paragraphTitle.weight", "--paragraph-title-font-weight"],
-	["font.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
-	["font.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
-	["font.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
+	["foundations.font.weight.regular", "--font-weight-regular", "font — weight"],
+	["foundations.font.weight.medium", "--font-weight-medium"],
+	["foundations.font.weight.bold", "--font-weight-bold"],
 
-	["font.body.family", "--body-font-family", "font — body"],
-	["font.body.weight", "--body-font-weight"],
-	["font.body.sizeSm", "--body-size-sm"],
-	["font.body.sizeMd", "--body-size-md"],
-	["font.body.sizeLg", "--body-size-lg"],
+	["foundations.border.radius.none", "--border-radius-none", "border — radius"],
+	["foundations.border.radius.sm", "--border-radius-sm"],
+	["foundations.border.radius.med", "--border-radius-med"],
+	["foundations.border.radius.lg", "--border-radius-lg"],
+	["foundations.border.radius.full", "--border-radius-full"],
 
-	["border.radius.none", "--border-radius-none", "border — radius"],
-	["border.radius.sm", "--border-radius-sm"],
-	["border.radius.med", "--border-radius-med"],
-	["border.radius.lg", "--border-radius-lg"],
-	["border.radius.full", "--border-radius-full"],
+	["foundations.border.size.none", "--border-size-none", "border — size"],
+	["foundations.border.size.sm", "--border-size-sm"],
+	["foundations.border.size.md", "--border-size-md"],
 
-	["border.size.none", "--border-size-none", "border — size"],
-	["border.size.sm", "--border-size-sm"],
-	["border.size.md", "--border-size-md"],
+	["components.cover.canvas.background", "--color-cover-background", "cover"],
+	["components.cover.canvas.foreground", "--color-cover-foreground"],
+	["components.cover.surface.background", "--color-cover-surface-background"],
+	["components.cover.surface.foreground", "--color-cover-surface-foreground"],
+	["components.cover.surface.border", "--color-cover-surface-border"],
+	["components.cover.title.family", "--cover-title-font-family"],
+	["components.cover.title.weight", "--cover-title-font-weight"],
 
-	["cover.canvas.background", "--color-cover-background", "cover"],
-	["cover.canvas.foreground", "--color-cover-foreground"],
-	["cover.surface.background", "--color-cover-surface-background"],
-	["cover.surface.foreground", "--color-cover-surface-foreground"],
-	["cover.surface.border", "--color-cover-surface-border"],
-	["cover.title.family", "--cover-title-font-family"],
-	["cover.title.weight", "--cover-title-font-weight"],
+	["components.slide.canvas.background", "--color-slide-background", "slide"],
+	["components.slide.canvas.foreground", "--color-slide-foreground"],
+	["components.slide.canvas.maxWidth", "--slide-max-width"],
+	["components.slide.surface.background", "--color-slide-surface-background"],
+	["components.slide.surface.foreground", "--color-slide-surface-foreground"],
+	["components.slide.surface.border", "--color-slide-surface-border"],
+	["components.slide.pretitle.family", "--slide-pretitle-font-family"],
+	["components.slide.pretitle.weight", "--slide-pretitle-font-weight"],
+	["components.slide.pretitle.uppercase", "--slide-pretitle-text-transform"],
+	["components.slide.pretitle.letterSpacing", "--slide-pretitle-letter-spacing"],
+	["components.slide.pretitle.size", "--slide-pretitle-size"],
+	["components.slide.title.gap", "--slide-title-gap"],
+	["components.slide.title.family", "--slide-title-font-family"],
+	["components.slide.title.weight", "--slide-title-font-weight"],
+	["components.slide.title.sizeSm", "--slide-title-size-sm"],
+	["components.slide.title.sizeMd", "--slide-title-size-md"],
+	["components.slide.title.sizeLg", "--slide-title-size-lg"],
+	["components.slide.subtitle.family", "--slide-subtitle-font-family"],
+	["components.slide.subtitle.weight", "--slide-subtitle-font-weight"],
+	["components.slide.subtitle.size", "--slide-subtitle-size"],
+	["components.slide.header.paddingTop", "--slide-header-padding-top"],
+	["components.slide.header.paddingRight", "--slide-header-padding-right"],
+	["components.slide.header.paddingBottom", "--slide-header-padding-bottom"],
+	["components.slide.header.paddingLeft", "--slide-header-padding-left"],
+	["components.slide.content.paddingTop", "--slide-content-padding-top"],
+	["components.slide.content.paddingRight", "--slide-content-padding-right"],
+	["components.slide.content.paddingBottom", "--slide-content-padding-bottom"],
+	["components.slide.content.paddingLeft", "--slide-content-padding-left"],
+	["components.slide.footer.paddingTop", "--slide-footer-padding-top"],
+	["components.slide.footer.paddingRight", "--slide-footer-padding-right"],
+	["components.slide.footer.paddingBottom", "--slide-footer-padding-bottom"],
+	["components.slide.footer.paddingLeft", "--slide-footer-padding-left"],
 
-	["slide.canvas.background", "--color-slide-background", "slide"],
-	["slide.canvas.foreground", "--color-slide-foreground"],
-	["slide.canvas.maxWidth", "--slide-max-width"],
-	["slide.surface.background", "--color-slide-surface-background"],
-	["slide.surface.foreground", "--color-slide-surface-foreground"],
-	["slide.surface.border", "--color-slide-surface-border"],
-	["slide.pretitle.family", "--slide-pretitle-font-family"],
-	["slide.pretitle.weight", "--slide-pretitle-font-weight"],
-	["slide.pretitle.uppercase", "--slide-pretitle-text-transform"],
-	["slide.pretitle.letterSpacing", "--slide-pretitle-letter-spacing"],
-	["slide.pretitle.size", "--slide-pretitle-size"],
-	["slide.title.gap", "--slide-title-gap"],
-	["slide.title.family", "--slide-title-font-family"],
-	["slide.title.weight", "--slide-title-font-weight"],
-	["slide.title.sizeSm", "--slide-title-size-sm"],
-	["slide.title.sizeMd", "--slide-title-size-md"],
-	["slide.title.sizeLg", "--slide-title-size-lg"],
-	["slide.subtitle.family", "--slide-subtitle-font-family"],
-	["slide.subtitle.weight", "--slide-subtitle-font-weight"],
-	["slide.subtitle.size", "--slide-subtitle-size"],
-	["slide.header.paddingTop", "--slide-header-padding-top"],
-	["slide.header.paddingRight", "--slide-header-padding-right"],
-	["slide.header.paddingBottom", "--slide-header-padding-bottom"],
-	["slide.header.paddingLeft", "--slide-header-padding-left"],
-	["slide.content.paddingTop", "--slide-content-padding-top"],
-	["slide.content.paddingRight", "--slide-content-padding-right"],
-	["slide.content.paddingBottom", "--slide-content-padding-bottom"],
-	["slide.content.paddingLeft", "--slide-content-padding-left"],
-	["slide.footer.paddingTop", "--slide-footer-padding-top"],
-	["slide.footer.paddingRight", "--slide-footer-padding-right"],
-	["slide.footer.paddingBottom", "--slide-footer-padding-bottom"],
-	["slide.footer.paddingLeft", "--slide-footer-padding-left"],
+	["components.paragraphTitle.family", "--paragraph-title-font-family", "paragraphTitle"],
+	["components.paragraphTitle.weight", "--paragraph-title-font-weight"],
+	["components.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
+	["components.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
+	["components.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
 
-	["card.padding.sm", "--card-padding-sm", "card"],
-	["card.padding.md", "--card-padding-md"],
-	["card.padding.lg", "--card-padding-lg"],
-	["card.gap.sm", "--card-gap-sm"],
-	["card.gap.md", "--card-gap-md"],
-	["card.gap.lg", "--card-gap-lg"],
-	["card.border.radius", "--card-border-radius"],
-	["card.border.sizeTop", "--card-border-size-top"],
-	["card.border.sizeBottom", "--card-border-size-bottom"],
-	["card.border.sizeLeft", "--card-border-size-left"],
-	["card.border.sizeRight", "--card-border-size-right"],
-	["card.title.family", "--card-title-font-family"],
-	["card.title.weight", "--card-title-font-weight"],
-	["card.title.sizeSm", "--card-title-size-sm"],
-	["card.title.sizeMd", "--card-title-size-md"],
-	["card.title.sizeLg", "--card-title-size-lg"],
-	["card.pretitle.family", "--card-pretitle-font-family"],
-	["card.pretitle.weight", "--card-pretitle-font-weight"],
-	["card.pretitle.uppercase", "--card-pretitle-text-transform"],
-	["card.pretitle.letterSpacing", "--card-pretitle-letter-spacing"],
-	["card.pretitle.size", "--card-pretitle-size"],
-	["card.meta.paddingTop", "--card-meta-padding-top"],
+	["components.body.family", "--body-font-family", "body"],
+	["components.body.weight", "--body-font-weight"],
+	["components.body.sizeSm", "--body-size-sm"],
+	["components.body.sizeMd", "--body-size-md"],
+	["components.body.sizeLg", "--body-size-lg"],
 
-	["stack.gap.sm", "--stack-gap-sm", "stack"],
-	["stack.gap.md", "--stack-gap-md"],
-	["stack.gap.lg", "--stack-gap-lg"],
+	["components.card.layout", "--card-layout", "card"],
+	...cardColorTokenMapEntries(),
+	["components.card.padding.sm", "--card-padding-sm"],
+	["components.card.padding.md", "--card-padding-md"],
+	["components.card.padding.lg", "--card-padding-lg"],
+	["components.card.gap.sm", "--card-gap-sm"],
+	["components.card.gap.md", "--card-gap-md"],
+	["components.card.gap.lg", "--card-gap-lg"],
+	["components.card.border.radius", "--card-border-radius"],
+	["components.card.border.sizeTop", "--card-border-size-top"],
+	["components.card.border.sizeBottom", "--card-border-size-bottom"],
+	["components.card.border.sizeLeft", "--card-border-size-left"],
+	["components.card.border.sizeRight", "--card-border-size-right"],
+	["components.card.title.family", "--card-title-font-family"],
+	["components.card.title.weight", "--card-title-font-weight"],
+	["components.card.title.sizeSm", "--card-title-size-sm"],
+	["components.card.title.sizeMd", "--card-title-size-md"],
+	["components.card.title.sizeLg", "--card-title-size-lg"],
+	["components.card.pretitle.family", "--card-pretitle-font-family"],
+	["components.card.pretitle.weight", "--card-pretitle-font-weight"],
+	["components.card.pretitle.uppercase", "--card-pretitle-text-transform"],
+	["components.card.pretitle.letterSpacing", "--card-pretitle-letter-spacing"],
+	["components.card.pretitle.size", "--card-pretitle-size"],
+	["components.card.meta.paddingTop", "--card-meta-padding-top"],
+
+	["components.stack.gap.sm", "--stack-gap-sm", "stack"],
+	["components.stack.gap.md", "--stack-gap-md"],
+	["components.stack.gap.lg", "--stack-gap-lg"],
 ];
 
 function getPath(obj, dottedPath) {
@@ -560,7 +629,7 @@ function getPath(obj, dottedPath) {
 }
 
 function toCssValue(jsonPath, value, brand) {
-	if (isColorRolePath(jsonPath)) {
+	if (isColorRefPath(jsonPath)) {
 		return resolveColorRef(brand, value, jsonPath);
 	}
 	if (isColorLiteralPath(jsonPath)) {
@@ -659,6 +728,14 @@ function toCssValue(jsonPath, value, brand) {
 		}
 		return value;
 	}
+	if (isCardLayoutPath(jsonPath)) {
+		if (!isCardLayoutName(value)) {
+			throw new Error(
+				`${jsonPath} must be ${CARD_LAYOUT_NAMES.join(" or ")} (got ${JSON.stringify(value)})`,
+			);
+		}
+		return String(value);
+	}
 	return value;
 }
 
@@ -675,7 +752,12 @@ function buildBrandCss(brand) {
 		lines.push(`\t${cssVar}: ${value};`);
 	}
 
-	const brandName = (brand.basic && brand.basic.name) || "brand";
+	const brandName = (brand.foundations && brand.foundations.basic && brand.foundations.basic.name) || "brand";
+	const layout = getPath(brand, "components.card.layout");
+	const extra =
+		layout === "stripe"
+			? ["", "/* Default card layout: stripe (omit layout, or layout=\"stripe\") */", CARD_STRIPE_LAYOUT_CSS, ""]
+			: [""];
 	return [
 		`/* AUTO-GENERATED from ${BRAND_FILENAME} for "${brandName}" — do not edit by hand. */`,
 		`/* Regenerate: npm run generate-brand -- brands/<name> */`,
@@ -683,7 +765,7 @@ function buildBrandCss(brand) {
 		":root {",
 		lines.join("\n"),
 		"}",
-		"",
+		...extra,
 	].join("\n");
 }
 
@@ -723,11 +805,17 @@ module.exports = {
 	BRAND_SWATCH_KEYS,
 	SEMANTIC_COLOR_VARIANTS,
 	SEMANTIC_COLOR_TONES,
-	SEMANTIC_COLOR_GROUP_KEYS,
-	semanticColorGroupKey,
+	SEMANTIC_COLOR_FAMILY_KEYS,
+	STATUS_SEMANTIC_FAMILY_KEYS,
+	DEFAULT_COLOR_FAMILY_KEYS,
+	CARD_COLOR_FAMILY_KEYS,
+	semanticFamilyKey,
 	resolveColorRef,
 	resolvePalettePath,
 	isColorRolePath,
+	isColorRefPath,
+	isCardColorPath,
+	isSemanticSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
 	isBrandSwatchPath,
@@ -752,6 +840,9 @@ module.exports = {
 	isPretitleUppercaseBoolean,
 	isPretitleLetterSpacingPath,
 	isPretitleLetterSpacing,
+	isCardLayoutPath,
+	isCardLayoutName,
+	CARD_LAYOUT_NAMES,
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	BRAND_FILENAME,

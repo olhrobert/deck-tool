@@ -35,7 +35,7 @@
 	--font-weight-medium: 500;
 	--font-weight-bold: 700;
 
-	/* Role weights — brands set cover.title.weight / card.title.weight / font.body.weight to regular|medium|bold */
+	/* Role weights — brands set cover.title.weight / card.title.weight / body.weight to regular|medium|bold */
 	--cover-title-font-weight: var(--font-weight-bold);
 	--slide-title-font-weight: var(--font-weight-bold);
 	--slide-subtitle-font-weight: var(--font-weight-regular);
@@ -45,7 +45,7 @@
 	--paragraph-title-font-weight: var(--font-weight-bold);
 	--body-font-weight: var(--font-weight-regular);
 
-	/* body copy — brands set font.body.sizeSm/Md/Lg to type-scale steps */
+	/* body copy — brands set body.sizeSm/Md/Lg to type-scale steps */
 	--body-size-sm: var(--text-size-350);
 	--body-size-md: var(--text-size-400);
 	--body-size-lg: var(--text-size-450);
@@ -69,7 +69,7 @@
 	--slide-subtitle-lineheight: 1.2;
 	--slide-subtitle-size: var(--text-size-350);
 
-	/* paragraph title — driven by font.paragraphTitle in brand-settings.json */
+	/* paragraph title — driven by paragraphTitle in brand-settings.json */
 	--paragraph-title-lineheight: 1.1;
 	--paragraph-title-size-sm: var(--text-size-400);
 	--paragraph-title-size-md: var(--text-size-500);

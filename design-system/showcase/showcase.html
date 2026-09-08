@@ -23,14 +23,33 @@
 			body {
 				margin: 0;
 				background-color: var(--color-slide-background);
+				display: flex;
+				min-height: 100vh;
+			}
+
+			.showcase-sidebar {
+				position: sticky;
+				top: 0;
+				align-self: flex-start;
+				flex: 0 0 180px;
+				width: 180px;
+				height: 100vh;
+				box-sizing: border-box;
+				padding: var(--spacing-4);
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-6);
+				border-right: 1px solid var(--color-slide-surface-border);
+				background-color: var(--color-slide-background);
 			}
 
 			.showcase {
 				display: flex;
 				flex-direction: column;
+				flex: 1 1 auto;
 				gap: var(--spacing-10);
 				padding: var(--spacing-10);
-				padding-top: var(--spacing-20);
+				padding-top: var(--spacing-12);
 				padding-bottom: var(--spacing-20);
 				max-width: 1280px;
 				width: 100%;
@@ -41,7 +60,7 @@
 			.showcase-group {
 				display: flex;
 				flex-direction: column;
-				gap: var(--spacing-20);
+				gap: var(--spacing-12);
 			}
 
 			.showcase-subgroup {
@@ -75,11 +94,7 @@
 				overflow: hidden;
 			}
 
-			.showcase-toolbar,
-			.showcase-filter {
-				position: fixed;
-				top: var(--spacing-4);
-				z-index: 100;
+			.showcase-toolbar {
 				display: flex;
 				align-items: center;
 				gap: 0;
@@ -88,15 +103,16 @@
 				border: 1px solid var(--color-slide-surface-border);
 				border-radius: var(--card-border-radius);
 				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-				width: fit-content;
-			}
-
-			.showcase-toolbar {
-				left: var(--spacing-4);
+				width: 100%;
+				box-sizing: border-box;
 			}
 
 			.showcase-filter {
-				right: var(--spacing-4);
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				gap: 4px;
+				width: 100%;
 			}
 
 			.showcase-toolbar a,
@@ -114,6 +130,16 @@
 				transition:
 					background-color 0.15s,
 					color 0.15s;
+			}
+
+			.showcase-toolbar a {
+				flex: 1 1 0;
+				text-align: center;
+			}
+
+			.showcase-filter a {
+				padding: 8px 10px;
+				text-align: left;
 			}
 
 			.showcase-toolbar a:hover,
@@ -145,12 +171,13 @@
 
 			.card-matrix-row {
 				display: grid;
-				grid-template-columns: repeat(4, minmax(0, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 				gap: var(--spacing-3);
 			}
 
 			.card-matrix-row card {
-				flex: 1 1 auto;
+				width: 100%;
+				min-width: 0;
 			}
 
 			.showcase-group[data-section="brand"],
@@ -183,6 +210,20 @@
 				display: flex;
 				flex-direction: column;
 				gap: var(--spacing-5);
+				width: 100%;
+			}
+
+			.brand-settings-section {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-12);
+				width: 100%;
+			}
+
+			.brand-settings-section-body {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-12);
 				width: 100%;
 			}
 
@@ -228,7 +269,19 @@
 		</style>
 	</head>
 	<body>
-		<div class="showcase">
+		<aside class="showcase-sidebar">
+			<div class="showcase-toolbar">
+				<a
+					href="?brand=gratia"
+					data-brand="gratia"
+					>Gratia</a
+				>
+				<a
+					href="?brand=riverton"
+					data-brand="riverton"
+					>Riverton</a
+				>
+			</div>
 			<div class="showcase-filter">
 				<a
 					href="#brand"
@@ -251,19 +304,8 @@
 					>Layout</a
 				>
 			</div>
-
-			<div class="showcase-toolbar">
-				<a
-					href="?brand=gratia"
-					data-brand="gratia"
-					>Gratia</a
-				>
-				<a
-					href="?brand=riverton"
-					data-brand="riverton"
-					>Riverton</a
-				>
-			</div>
+		</aside>
+		<div class="showcase">
 
 			<!-- === BRAND === -->
 
@@ -690,13 +732,18 @@
 				"negative",
 				"informative",
 			];
-			/* quiet/basic, emphasis/basic, quiet/stripe, emphasis/stripe */
-			const CARD_COMBOS = [
-				{ emphasis: "false", label: "quiet", chrome: "basic" },
-				{ emphasis: "true", label: "emphasis", chrome: "basic" },
-				{ emphasis: "false", label: "quiet", chrome: "stripe" },
-				{ emphasis: "true", label: "emphasis", chrome: "stripe" },
-			];
+
+			function cardLayoutFromSettings(settings) {
+				const layout = settings?.components?.card?.layout;
+				return layout === "stripe" ? "stripe" : "basic";
+			}
+
+			function cardCombosForLayout(layout) {
+				return [
+					{ emphasis: "false", label: "quiet", layout },
+					{ emphasis: "true", label: "emphasis", layout },
+				];
+			}
 
 			function titleCase(value) {
 				return String(value).replace(/^\w/, (char) =>
@@ -708,14 +755,14 @@
 				const meta = [
 					titleCase(variant),
 					titleCase(combo.label),
-					titleCase(combo.chrome),
+					titleCase(combo.layout),
 				].join(" · ");
 				return `
 					<card
 						class="flex-1 min-w-0"
 						variant="${variant}"
 						emphasis="${combo.emphasis}"
-						chrome="${combo.chrome}"
+						layout="${combo.layout}"
 						padding="md"
 						gap="sm"
 					>
@@ -727,13 +774,15 @@
 				`;
 			}
 
-			function renderCardShowcase() {
+			function renderCardShowcase(settings) {
 				const root = document.getElementById("card-showcase");
 				if (!root) return;
+				const layout = cardLayoutFromSettings(settings);
+				const combos = cardCombosForLayout(layout);
 				root.innerHTML = SEMANTIC_VARIANTS.map(
 					(variant) => `
 						<div class="card-matrix-row">
-							${CARD_COMBOS.map((combo) => renderShowcaseCard(variant, combo)).join("")}
+							${combos.map((combo) => renderShowcaseCard(variant, combo)).join("")}
 						</div>
 					`,
 				).join("");
@@ -809,25 +858,7 @@
 
 			function resolvePaletteLiteral(brand, refName) {
 				if (!refName || typeof refName !== "string") return null;
-				if (
-					/^brand\.[1-6]$/.test(refName) ||
-					/^chart\.[1-4]$/.test(refName)
-				) {
-					const literal = getPath(brand, `palette.${refName}`);
-					return isColorLiteral(literal) ? literal : null;
-				}
-				const semantic = refName.match(
-					/^(default|positive|warning|negative|informative)\.(quiet|emphasis)\.(.+)$/,
-				);
-				if (!semantic) return null;
-				const group =
-					"color" +
-					semantic[1].charAt(0).toUpperCase() +
-					semantic[1].slice(1);
-				const literal = getPath(
-					brand,
-					`${group}.${semantic[2]}.${semantic[3]}`,
-				);
+				const literal = getPath(brand, `foundations.color.${refName}`);
 				return isColorLiteral(literal) ? literal : null;
 			}
 
@@ -881,7 +912,7 @@
 			}
 
 			function renderSettingsRow(title, displayValue, fill) {
-				const valueText = `<text size="350" color="subtle" context="slide">${escapeHtml(displayValue)}</text>`;
+				const valueText = `<text size="350" color="base" context="slide">${escapeHtml(displayValue)}</text>`;
 				const valueCell = fill
 					? `<stack class="brand-settings-value-swatch" direction="row" gap="sm">
 							<div
@@ -955,6 +986,18 @@
 				);
 
 				if (nests.length) {
+					const leafBlock = leaves.length
+						? renderSettingsBlock(
+								"",
+								renderSettingsTable(
+									brand,
+									leaves.map(([leafKey, leafValue]) => ({
+										title: formatSettingLabel(leafKey),
+										value: leafValue,
+									})),
+								),
+							)
+						: "";
 					const blocks = nests
 						.map(([childKey, childValue]) => {
 							const rows = collectLeafRows(childValue);
@@ -967,6 +1010,7 @@
 					return `
 						<div class="brand-settings-group">
 							${renderBrandGroupHeading(key, 1)}
+							${leafBlock}
 							${blocks}
 						</div>
 					`;
@@ -990,10 +1034,25 @@
 				const root = document.getElementById("brand-showcase");
 				if (!root || !brand) return;
 
-				root.innerHTML = Object.entries(brand)
-					.map(([group, value]) =>
-						renderBrandGroup(brand, group, value),
-					)
+				const sections = ["foundations", "components"];
+				root.innerHTML = sections
+					.map((sectionKey) => {
+						const section = brand[sectionKey];
+						if (!section || typeof section !== "object") return "";
+						const groups = Object.entries(section)
+							.map(([group, value]) =>
+								renderBrandGroup(brand, group, value),
+							)
+							.join("");
+						return `
+							<div class="brand-settings-section" data-section="${escapeHtml(sectionKey)}">
+								<slide-title size="sm" color="strong" context="slide">${escapeHtml(formatSettingLabel(sectionKey))}</slide-title>
+								<div class="brand-settings-section-body">
+									${groups}
+								</div>
+							</div>
+						`;
+					})
 					.join("");
 			}
 
@@ -1018,12 +1077,13 @@
 					const finish = async () => {
 						if (applyId !== brandApplyId) return;
 						applyLogos(brand);
-						renderCardShowcase();
 						try {
 							const settings = await loadBrandSettings(brand);
 							if (applyId !== brandApplyId) return;
+							renderCardShowcase(settings);
 							renderBrandShowcase(settings);
 						} catch (error) {
+							renderCardShowcase();
 							const root =
 								document.getElementById("brand-showcase");
 							if (root) {
