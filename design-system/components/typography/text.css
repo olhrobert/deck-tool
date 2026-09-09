@@ -3,7 +3,7 @@
    are presets: they inherit these axes and bake brand family/weight/size.
 
    Axes:
-     color="subtle|base|strong"     default base
+     tone="subtle|base|strong"      default base
      size="<type-scale step>"       raw scale (e.g. 200, 300, 1600)
      uppercase="true|false"         default false
      context="slide|surface|cover"  default slide
@@ -141,7 +141,7 @@
 	slide-footer-title,
 	slide-footer-chapter,
 	slide-footer-page
-)[color="strong"] {
+)[tone="strong"] {
 	color: var(--_ink-strong);
 }
 
@@ -163,7 +163,7 @@
 	slide-footer-title,
 	slide-footer-chapter,
 	slide-footer-page
-)[color="base"] {
+)[tone="base"] {
 	color: var(--_ink-base);
 }
 
@@ -185,7 +185,7 @@
 	slide-footer-title,
 	slide-footer-chapter,
 	slide-footer-page
-)[color="subtle"] {
+)[tone="subtle"] {
 	color: var(--_ink-subtle);
 }
 

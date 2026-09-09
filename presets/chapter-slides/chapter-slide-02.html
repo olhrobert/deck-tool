@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Chapter title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-cover">
+				<div class="box-border w-full h-full flex flex-col">
+					<div
+						class="box-border grow min-h-0 flex flex-col justify-between px-20 pt-20 pb-10"
+					>
+						<text
+							family="cover-title"
+							size="1200"
+							lineheight="sm"
+							tone="strong"
+							context="cover"
+						>
+							Chapter title
+						</text>
+						<body-copy
+							size="sm"
+							tone="subtle"
+							context="cover"
+							class="max-w-md"
+						>
+							Engineered for velocity, cost discipline, and linear
+							scalability. React, managed AWS services, and
+							microservice architecture enable rapid iteration
+							with minimal ops overhead.
+						</body-copy>
+					</div>
+					<div class="p-4">
+						<slide-footer context="cover">
+							<img
+								data-slot="logo"
+								data-logo
+								src="../../assets/logos/placeholder-logo.svg"
+								alt="Logo"
+								class="shrink-0 block"
+							/>
+							<slide-footer-notes data-slot="notes" tone="subtle"
+								>Add notes or sources here.</slide-footer-notes
+							>
+							<slide-footer-meta>
+								<slide-footer-title
+									data-slot="deck-title"
+									tone="subtle"
+									>Deck title</slide-footer-title
+								>
+								<slide-footer-chapter
+									data-slot="chapter"
+									tone="subtle"
+									>Chapter</slide-footer-chapter
+								>
+								<slide-footer-page
+									data-slot="page"
+									tone="subtle"
+									>01</slide-footer-page
+								>
+							</slide-footer-meta>
+						</slide-footer>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>

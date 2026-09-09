@@ -2,8 +2,8 @@
    Defaults: color=base, context=surface. Size is brand-only. */
 
 callout-description {
-	font-family: var(--body-font-family, system-ui, sans-serif);
-	font-weight: var(--body-font-weight);
+	font-family: var(--callout-description-font-family, system-ui, sans-serif);
+	font-weight: var(--callout-description-font-weight);
 	line-height: 1.2;
 	font-size: var(--callout-description-size);
 	letter-spacing: 0%;

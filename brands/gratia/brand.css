@@ -10,20 +10,23 @@
 	--color-palette-brand-5: rgb(255, 255, 255);
 
 	/* color — semantic */
-	--color-semantic-positive-quiet: rgb(6, 122, 58);
-	--color-semantic-positive-emphasis: rgb(4, 82, 38);
-	--color-semantic-negative-quiet: rgb(190, 32, 36);
-	--color-semantic-negative-emphasis: rgb(135, 20, 24);
-	--color-semantic-warning-quiet: rgb(150, 80, 8);
-	--color-semantic-warning-emphasis: rgb(110, 55, 4);
-	--color-semantic-informative-quiet: rgb(25, 80, 170);
-	--color-semantic-informative-emphasis: rgb(15, 50, 120);
+	--color-semantic-neutral: rgb(1, 25, 26);
+	--color-semantic-bright: rgb(255, 255, 255);
+	--color-semantic-positive: rgb(6, 122, 58);
+	--color-semantic-negative: rgb(190, 32, 36);
+	--color-semantic-warning: rgb(150, 80, 8);
+	--color-semantic-informative: rgb(25, 80, 170);
 
 	/* color — chart */
 	--color-palette-chart-1: rgba(124, 58, 237, 1);
 	--color-palette-chart-2: rgba(234, 88, 12, 1);
 	--color-palette-chart-3: rgba(234, 179, 8, 1);
 	--color-palette-chart-4: rgba(37, 99, 235, 1);
+
+	/* tone */
+	--tone-strong: 1;
+	--tone-base: 0.7;
+	--tone-subtle: 0.5;
 
 	/* font — family */
 	--font-family-display: "DM Sans", system-ui, sans-serif;
@@ -45,6 +48,7 @@
 	--border-size-none: 0px;
 	--border-size-sm: 1px;
 	--border-size-md: 2px;
+	--border-size-lg: 4px;
 
 	/* cover */
 	--color-cover-background: rgb(4, 56, 58);
@@ -104,147 +108,51 @@
 	--body-size-lg: var(--text-size-450);
 
 	/* card */
-	--card-layout: basic;
+	--card-default-layout: basic;
 
-	/* card — defaultQuiet */
-	--card-default-quiet-foreground-strong: rgb(1, 25, 26);
-	--color-default-quiet-foreground-strong: rgb(1, 25, 26);
-	--card-default-quiet-foreground-base: rgba(1, 25, 26, 0.8);
-	--color-default-quiet-foreground-base: rgba(1, 25, 26, 0.8);
-	--card-default-quiet-foreground-subtle: rgba(1, 25, 26, 0.7);
-	--color-default-quiet-foreground-subtle: rgba(1, 25, 26, 0.7);
-	--card-default-quiet-background-base: rgb(255, 255, 255);
-	--color-default-quiet-background-base: rgb(255, 255, 255);
-	--card-default-quiet-border-subtle: rgba(1, 25, 26, 0.2);
-	--color-default-quiet-border-subtle: rgba(1, 25, 26, 0.2);
-	--card-default-quiet-border-strong: rgb(4, 56, 58);
-	--color-default-quiet-border-strong: rgb(4, 56, 58);
+	/* card — foreground */
+	--card-neutral-quiet-foreground: rgb(1, 25, 26);
+	--color-neutral-quiet-foreground: rgb(1, 25, 26);
+	--card-neutral-emphasis-foreground: rgb(255, 255, 255);
+	--color-neutral-emphasis-foreground: rgb(255, 255, 255);
+	--card-positive-quiet-foreground: rgb(1, 25, 26);
+	--color-positive-quiet-foreground: rgb(1, 25, 26);
+	--card-positive-emphasis-foreground: rgb(255, 255, 255);
+	--color-positive-emphasis-foreground: rgb(255, 255, 255);
+	--card-negative-quiet-foreground: rgb(1, 25, 26);
+	--color-negative-quiet-foreground: rgb(1, 25, 26);
+	--card-negative-emphasis-foreground: rgb(255, 255, 255);
+	--color-negative-emphasis-foreground: rgb(255, 255, 255);
+	--card-warning-quiet-foreground: rgb(1, 25, 26);
+	--color-warning-quiet-foreground: rgb(1, 25, 26);
+	--card-warning-emphasis-foreground: rgb(255, 255, 255);
+	--color-warning-emphasis-foreground: rgb(255, 255, 255);
+	--card-informative-quiet-foreground: rgb(1, 25, 26);
+	--color-informative-quiet-foreground: rgb(1, 25, 26);
+	--card-informative-emphasis-foreground: rgb(255, 255, 255);
+	--color-informative-emphasis-foreground: rgb(255, 255, 255);
 
-	/* card — defaultEmphasis */
-	--card-default-emphasis-foreground-strong: rgb(255, 255, 255);
-	--color-default-emphasis-foreground-strong: rgb(255, 255, 255);
-	--card-default-emphasis-foreground-base: rgba(255, 255, 255, 0.8);
-	--color-default-emphasis-foreground-base: rgba(255, 255, 255, 0.8);
-	--card-default-emphasis-foreground-subtle: rgba(255, 255, 255, 0.7);
-	--color-default-emphasis-foreground-subtle: rgba(255, 255, 255, 0.7);
-	--card-default-emphasis-background-base: rgb(4, 56, 58);
-	--color-default-emphasis-background-base: rgb(4, 56, 58);
-	--card-default-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
-	--color-default-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
-	--card-default-emphasis-border-strong: rgb(35, 221, 156);
-	--color-default-emphasis-border-strong: rgb(35, 221, 156);
-
-	/* card — positiveQuiet */
-	--card-positive-quiet-foreground-strong: rgb(6, 122, 58);
-	--color-positive-quiet-foreground-strong: rgb(6, 122, 58);
-	--card-positive-quiet-foreground-base: rgba(6, 122, 58, 0.7);
-	--color-positive-quiet-foreground-base: rgba(6, 122, 58, 0.7);
-	--card-positive-quiet-foreground-subtle: rgba(6, 122, 58, 0.5);
-	--color-positive-quiet-foreground-subtle: rgba(6, 122, 58, 0.5);
-	--card-positive-quiet-background-base: rgba(35, 221, 156, 0.1);
-	--color-positive-quiet-background-base: rgba(35, 221, 156, 0.1);
-	--card-positive-quiet-border-subtle: rgba(35, 221, 156, 0.25);
-	--color-positive-quiet-border-subtle: rgba(35, 221, 156, 0.25);
-	--card-positive-quiet-border-strong: rgba(35, 221, 156, 0.5);
-	--color-positive-quiet-border-strong: rgba(35, 221, 156, 0.5);
-
-	/* card — positiveEmphasis */
-	--card-positive-emphasis-foreground-strong: rgb(255, 255, 255);
-	--color-positive-emphasis-foreground-strong: rgb(255, 255, 255);
-	--card-positive-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--color-positive-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--card-positive-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--color-positive-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--card-positive-emphasis-background-base: rgb(6, 122, 58);
-	--color-positive-emphasis-background-base: rgb(6, 122, 58);
-	--card-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--color-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--card-positive-emphasis-border-strong: rgb(4, 82, 38);
-	--color-positive-emphasis-border-strong: rgb(4, 82, 38);
-
-	/* card — negativeQuiet */
-	--card-negative-quiet-foreground-strong: rgb(190, 32, 36);
-	--color-negative-quiet-foreground-strong: rgb(190, 32, 36);
-	--card-negative-quiet-foreground-base: rgba(190, 32, 36, 0.7);
-	--color-negative-quiet-foreground-base: rgba(190, 32, 36, 0.7);
-	--card-negative-quiet-foreground-subtle: rgba(190, 32, 36, 0.5);
-	--color-negative-quiet-foreground-subtle: rgba(190, 32, 36, 0.5);
-	--card-negative-quiet-background-base: rgba(190, 32, 36, 0.1);
-	--color-negative-quiet-background-base: rgba(190, 32, 36, 0.1);
-	--card-negative-quiet-border-subtle: rgba(190, 32, 36, 0.25);
-	--color-negative-quiet-border-subtle: rgba(190, 32, 36, 0.25);
-	--card-negative-quiet-border-strong: rgba(190, 32, 36, 0.5);
-	--color-negative-quiet-border-strong: rgba(190, 32, 36, 0.5);
-
-	/* card — negativeEmphasis */
-	--card-negative-emphasis-foreground-strong: rgb(255, 255, 255);
-	--color-negative-emphasis-foreground-strong: rgb(255, 255, 255);
-	--card-negative-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--color-negative-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--card-negative-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--color-negative-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--card-negative-emphasis-background-base: rgb(190, 32, 36);
-	--color-negative-emphasis-background-base: rgb(190, 32, 36);
-	--card-negative-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--color-negative-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--card-negative-emphasis-border-strong: rgb(135, 20, 24);
-	--color-negative-emphasis-border-strong: rgb(135, 20, 24);
-
-	/* card — warningQuiet */
-	--card-warning-quiet-foreground-strong: rgb(150, 80, 8);
-	--color-warning-quiet-foreground-strong: rgb(150, 80, 8);
-	--card-warning-quiet-foreground-base: rgba(150, 80, 8, 0.7);
-	--color-warning-quiet-foreground-base: rgba(150, 80, 8, 0.7);
-	--card-warning-quiet-foreground-subtle: rgba(150, 80, 8, 0.5);
-	--color-warning-quiet-foreground-subtle: rgba(150, 80, 8, 0.5);
-	--card-warning-quiet-background-base: rgba(150, 80, 8, 0.1);
-	--color-warning-quiet-background-base: rgba(150, 80, 8, 0.1);
-	--card-warning-quiet-border-subtle: rgba(150, 80, 8, 0.25);
-	--color-warning-quiet-border-subtle: rgba(150, 80, 8, 0.25);
-	--card-warning-quiet-border-strong: rgba(150, 80, 8, 0.5);
-	--color-warning-quiet-border-strong: rgba(150, 80, 8, 0.5);
-
-	/* card — warningEmphasis */
-	--card-warning-emphasis-foreground-strong: rgb(255, 255, 255);
-	--color-warning-emphasis-foreground-strong: rgb(255, 255, 255);
-	--card-warning-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--color-warning-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--card-warning-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--color-warning-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--card-warning-emphasis-background-base: rgb(150, 80, 8);
-	--color-warning-emphasis-background-base: rgb(150, 80, 8);
-	--card-warning-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--color-warning-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--card-warning-emphasis-border-strong: rgb(110, 55, 4);
-	--color-warning-emphasis-border-strong: rgb(110, 55, 4);
-
-	/* card — informativeQuiet */
-	--card-informative-quiet-foreground-strong: rgb(25, 80, 170);
-	--color-informative-quiet-foreground-strong: rgb(25, 80, 170);
-	--card-informative-quiet-foreground-base: rgba(25, 80, 170, 0.7);
-	--color-informative-quiet-foreground-base: rgba(25, 80, 170, 0.7);
-	--card-informative-quiet-foreground-subtle: rgba(25, 80, 170, 0.5);
-	--color-informative-quiet-foreground-subtle: rgba(25, 80, 170, 0.5);
-	--card-informative-quiet-background-base: rgba(37, 99, 235, 0.1);
-	--color-informative-quiet-background-base: rgba(37, 99, 235, 0.1);
-	--card-informative-quiet-border-subtle: rgba(37, 99, 235, 0.25);
-	--color-informative-quiet-border-subtle: rgba(37, 99, 235, 0.25);
-	--card-informative-quiet-border-strong: rgba(37, 99, 235, 0.5);
-	--color-informative-quiet-border-strong: rgba(37, 99, 235, 0.5);
-
-	/* card — informativeEmphasis */
-	--card-informative-emphasis-foreground-strong: rgb(255, 255, 255);
-	--color-informative-emphasis-foreground-strong: rgb(255, 255, 255);
-	--card-informative-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--color-informative-emphasis-foreground-base: rgba(255, 255, 255, 0.7);
-	--card-informative-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--color-informative-emphasis-foreground-subtle: rgba(255, 255, 255, 0.5);
-	--card-informative-emphasis-background-base: rgb(25, 80, 170);
-	--color-informative-emphasis-background-base: rgb(25, 80, 170);
-	--card-informative-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--color-informative-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
-	--card-informative-emphasis-border-strong: rgb(15, 50, 120);
-	--color-informative-emphasis-border-strong: rgb(15, 50, 120);
+	/* card — background */
+	--card-neutral-quiet-background: rgb(255, 255, 255);
+	--color-neutral-quiet-background: rgb(255, 255, 255);
+	--card-neutral-emphasis-background: rgb(4, 56, 58);
+	--color-neutral-emphasis-background: rgb(4, 56, 58);
+	--card-positive-quiet-background: rgba(6, 122, 58, 0.1);
+	--color-positive-quiet-background: rgba(6, 122, 58, 0.1);
+	--card-positive-emphasis-background: rgb(6, 122, 58);
+	--color-positive-emphasis-background: rgb(6, 122, 58);
+	--card-negative-quiet-background: rgba(190, 32, 36, 0.1);
+	--color-negative-quiet-background: rgba(190, 32, 36, 0.1);
+	--card-negative-emphasis-background: rgb(190, 32, 36);
+	--color-negative-emphasis-background: rgb(190, 32, 36);
+	--card-warning-quiet-background: rgba(150, 80, 8, 0.1);
+	--color-warning-quiet-background: rgba(150, 80, 8, 0.1);
+	--card-warning-emphasis-background: rgb(150, 80, 8);
+	--color-warning-emphasis-background: rgb(150, 80, 8);
+	--card-informative-quiet-background: rgba(25, 80, 170, 0.1);
+	--color-informative-quiet-background: rgba(25, 80, 170, 0.1);
+	--card-informative-emphasis-background: rgb(25, 80, 170);
+	--color-informative-emphasis-background: rgb(25, 80, 170);
 	--card-padding-sm: var(--spacing-3);
 	--card-padding-md: var(--spacing-4);
 	--card-padding-lg: var(--spacing-6);
@@ -257,26 +165,110 @@
 	--card-border-size-bottom: var(--border-size-sm);
 	--card-border-size-left: var(--border-size-sm);
 	--card-border-size-right: var(--border-size-sm);
+
+	/* card — border subtle */
+	--card-neutral-quiet-border-subtle: rgba(1, 25, 26, 0.2);
+	--color-neutral-quiet-border-subtle: rgba(1, 25, 26, 0.2);
+	--card-neutral-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--color-neutral-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--card-positive-quiet-border-subtle: rgba(6, 122, 58, 0.2);
+	--color-positive-quiet-border-subtle: rgba(6, 122, 58, 0.2);
+	--card-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--color-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--card-negative-quiet-border-subtle: rgba(190, 32, 36, 0.2);
+	--color-negative-quiet-border-subtle: rgba(190, 32, 36, 0.2);
+	--card-negative-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--color-negative-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--card-warning-quiet-border-subtle: rgba(150, 80, 8, 0.2);
+	--color-warning-quiet-border-subtle: rgba(150, 80, 8, 0.2);
+	--card-warning-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--color-warning-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--card-informative-quiet-border-subtle: rgba(25, 80, 170, 0.2);
+	--color-informative-quiet-border-subtle: rgba(25, 80, 170, 0.2);
+	--card-informative-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+	--color-informative-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
+
+	/* card — stripe */
+	--card-stripe-width: var(--border-size-md);
+
+	/* card — stripe color */
+	--card-neutral-quiet-stripe: rgb(35, 221, 156);
+	--color-neutral-quiet-stripe: rgb(35, 221, 156);
+	--card-neutral-emphasis-stripe: rgb(35, 221, 156);
+	--color-neutral-emphasis-stripe: rgb(35, 221, 156);
+	--card-positive-quiet-stripe: rgb(6, 122, 58);
+	--color-positive-quiet-stripe: rgb(6, 122, 58);
+	--card-positive-emphasis-stripe: rgb(1, 25, 26);
+	--color-positive-emphasis-stripe: rgb(1, 25, 26);
+	--card-negative-quiet-stripe: rgb(190, 32, 36);
+	--color-negative-quiet-stripe: rgb(190, 32, 36);
+	--card-negative-emphasis-stripe: rgb(1, 25, 26);
+	--color-negative-emphasis-stripe: rgb(1, 25, 26);
+	--card-warning-quiet-stripe: rgb(150, 80, 8);
+	--color-warning-quiet-stripe: rgb(150, 80, 8);
+	--card-warning-emphasis-stripe: rgb(1, 25, 26);
+	--color-warning-emphasis-stripe: rgb(1, 25, 26);
+	--card-informative-quiet-stripe: rgb(25, 80, 170);
+	--color-informative-quiet-stripe: rgb(25, 80, 170);
+	--card-informative-emphasis-stripe: rgb(1, 25, 26);
+	--color-informative-emphasis-stripe: rgb(1, 25, 26);
 	--card-title-font-family: var(--font-family-display);
 	--card-title-font-weight: var(--font-weight-bold);
 	--card-title-size-sm: var(--text-size-600);
 	--card-title-size-md: var(--text-size-700);
 	--card-title-size-lg: var(--text-size-800);
 	--card-pretitle-font-family: var(--font-family-base);
-	--card-pretitle-font-weight: var(--font-weight-regular);
+	--card-pretitle-font-weight: var(--font-weight-medium);
 	--card-pretitle-text-transform: none;
 	--card-pretitle-letter-spacing: 2%;
 	--card-pretitle-size: var(--text-size-300);
 	--card-meta-padding-top: var(--spacing-0-5);
 
-	/* callout */
+	/* callout — background */
+	--callout-neutral-quiet-background: rgba(255, 255, 255, 0);
+	--callout-positive-quiet-background: rgba(6, 122, 58, 0.1);
+	--callout-negative-quiet-background: rgba(190, 32, 36, 0.1);
+	--callout-warning-quiet-background: rgba(150, 80, 8, 0.1);
+	--callout-informative-quiet-background: rgba(25, 80, 170, 0.1);
+
+	/* callout — foreground */
+	--callout-neutral-quiet-foreground: rgb(1, 25, 26);
+	--callout-positive-quiet-foreground: rgb(1, 25, 26);
+	--callout-negative-quiet-foreground: rgb(1, 25, 26);
+	--callout-warning-quiet-foreground: rgb(1, 25, 26);
+	--callout-informative-quiet-foreground: rgb(1, 25, 26);
+
+	/* callout — title */
+	--callout-title-font-family: var(--font-family-display);
+	--callout-title-font-weight: var(--font-weight-medium);
 	--callout-title-size: var(--text-size-400);
+
+	/* callout — description */
+	--callout-description-font-family: var(--font-family-base);
+	--callout-description-font-weight: var(--font-weight-regular);
 	--callout-description-size: var(--text-size-350);
-	--callout-border-size: var(--border-size-sm);
+
+	/* callout — stripe */
+	--callout-stripe-width: var(--border-size-sm);
+
+	/* callout — stripe color */
+	--callout-neutral-quiet-stripe: rgba(1, 25, 26, 0.5);
+	--callout-positive-quiet-stripe: rgba(6, 122, 58, 0.5);
+	--callout-negative-quiet-stripe: rgba(190, 32, 36, 0.5);
+	--callout-warning-quiet-stripe: rgba(150, 80, 8, 0.5);
+	--callout-informative-quiet-stripe: rgba(25, 80, 170, 0.5);
+
+	/* callout — gap */
+	--callout-gap-none: var(--spacing-0);
+	--callout-gap-sm: var(--spacing-1);
+	--callout-gap-md: var(--spacing-3);
+	--callout-gap-lg: var(--spacing-4);
 
 	/* badge */
 	--badge-text-size: var(--text-size-300);
+	--badge-border-width: var(--border-size-none);
 	--badge-border-radius: var(--border-radius-med);
+	--badge-background: rgba(4, 56, 58, 0.1);
 
 	/* slide-footer */
 	--slide-footer-text-size: var(--text-size-300);

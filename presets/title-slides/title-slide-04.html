@@ -23,9 +23,9 @@
 	<body>
 		<deck>
 			<slide class="bg-cover">
-				<div class="box-border w-full h-full flex">
+				<div class="relative box-border w-full h-full">
 					<div
-						class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
+						class="absolute top-0 left-0 right-0 flex justify-center pt-20"
 					>
 						<img
 							src="../../assets/logos/placeholder-logo.svg"
@@ -34,41 +34,23 @@
 							class="shrink-0 block"
 							style="height: 24px; width: auto"
 						/>
+					</div>
 
-						<div>
+					<div
+						class="box-border w-full h-full flex items-center justify-center"
+					>
+						<div class="flex flex-col items-center gap-4">
 							<text
 								family="cover-title"
-								size="4000"
-								lineheight="single"
-								color="strong"
+								size="3000"
+								lineheight="sm"
+								class="text-center"
+								tone="strong"
 								context="cover"
 							>
 								Title of the deck
 							</text>
-						</div>
-					</div>
-
-					<div
-						class="box-border h-full shrink-0 flex flex-col justify-between p-0"
-					>
-						<attribution-box variant="title">
-							<text
-								data-slot="credit"
-								size="300"
-								color="base"
-								context="surface"
-							>
-								Sanitized excerpt prepared by
-							</text>
-							<img
-								data-slot="logo"
-								src="../../assets/logos/gratia-logo.svg"
-								alt="Gratia"
-							/>
-						</attribution-box>
-
-						<div class="flex pb-10 pr-6 w-full">
-							<body-copy size="sm" class="text-left grow" color="subtle" context="cover">
+							<body-copy size="sm" class="text-center" tone="subtle" context="cover">
 								Optional subtitle. Can be one or two sentences
 								long.
 							</body-copy>

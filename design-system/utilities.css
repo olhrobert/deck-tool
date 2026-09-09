@@ -1332,23 +1332,23 @@
 .color-black {
 	color: var(--color-black);
 }
-.color-default-quiet-foreground-strong {
-	color: var(--color-default-quiet-foreground-strong);
+.color-neutral-quiet-foreground-strong {
+	color: var(--color-neutral-quiet-foreground-strong);
 }
-.color-default-quiet-foreground-base {
-	color: var(--color-default-quiet-foreground-base);
+.color-neutral-quiet-foreground-base {
+	color: var(--color-neutral-quiet-foreground-base);
 }
-.color-default-quiet-foreground-subtle {
-	color: var(--color-default-quiet-foreground-subtle);
+.color-neutral-quiet-foreground-subtle {
+	color: var(--color-neutral-quiet-foreground-subtle);
 }
-.color-default-emphasis-foreground-strong {
-	color: var(--color-default-emphasis-foreground-strong);
+.color-neutral-emphasis-foreground-strong {
+	color: var(--color-neutral-emphasis-foreground-strong);
 }
-.color-default-emphasis-foreground-base {
-	color: var(--color-default-emphasis-foreground-base);
+.color-neutral-emphasis-foreground-base {
+	color: var(--color-neutral-emphasis-foreground-base);
 }
-.color-default-emphasis-foreground-subtle {
-	color: var(--color-default-emphasis-foreground-subtle);
+.color-neutral-emphasis-foreground-subtle {
+	color: var(--color-neutral-emphasis-foreground-subtle);
 }
 .color-positive-quiet-foreground-strong {
 	color: var(--color-positive-quiet-foreground-strong);
@@ -1422,35 +1422,35 @@
 .color-informative-emphasis-foreground-subtle {
 	color: var(--color-informative-emphasis-foreground-subtle);
 }
-.bg-semantic-default-quiet {
-	background-color: var(--color-default-quiet-background-base);
+.bg-semantic-neutral-quiet {
+	background-color: var(--color-neutral-quiet-background);
 }
-.bg-semantic-default-emphasis {
-	background-color: var(--color-default-emphasis-background-base);
+.bg-semantic-neutral-emphasis {
+	background-color: var(--color-neutral-emphasis-background);
 }
 .bg-semantic-positive-quiet {
-	background-color: var(--color-positive-quiet-background-base);
+	background-color: var(--color-positive-quiet-background);
 }
 .bg-semantic-positive-emphasis {
-	background-color: var(--color-positive-emphasis-background-base);
+	background-color: var(--color-positive-emphasis-background);
 }
 .bg-semantic-warning-quiet {
-	background-color: var(--color-warning-quiet-background-base);
+	background-color: var(--color-warning-quiet-background);
 }
 .bg-semantic-warning-emphasis {
-	background-color: var(--color-warning-emphasis-background-base);
+	background-color: var(--color-warning-emphasis-background);
 }
 .bg-semantic-negative-quiet {
-	background-color: var(--color-negative-quiet-background-base);
+	background-color: var(--color-negative-quiet-background);
 }
 .bg-semantic-negative-emphasis {
-	background-color: var(--color-negative-emphasis-background-base);
+	background-color: var(--color-negative-emphasis-background);
 }
 .bg-semantic-informative-quiet {
-	background-color: var(--color-informative-quiet-background-base);
+	background-color: var(--color-informative-quiet-background);
 }
 .bg-semantic-informative-emphasis {
-	background-color: var(--color-informative-emphasis-background-base);
+	background-color: var(--color-informative-emphasis-background);
 }
 .color-palette-chart-1 {
 	color: var(--color-palette-chart-1);

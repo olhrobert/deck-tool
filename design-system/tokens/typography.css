@@ -97,14 +97,24 @@
 	--card-meta-lineheight: 1.2;
 	--card-meta-size: var(--text-size-300);
 
-	/* callout type — brands set callout.titleSize / callout.descriptionSize */
+	/* callout type — brands set callout.title / description / gap */
+	--callout-title-font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
+	--callout-title-font-weight: var(--paragraph-title-font-weight);
 	--callout-title-size: var(--text-size-400);
+	--callout-description-font-family: var(--body-font-family, system-ui, sans-serif);
+	--callout-description-font-weight: var(--body-font-weight);
 	--callout-description-size: var(--text-size-350);
-	--callout-border-size: var(--border-size-sm);
+	--callout-stripe-width: var(--border-size-sm);
+	--callout-gap-none: var(--spacing-0);
+	--callout-gap-sm: var(--spacing-1);
+	--callout-gap-md: var(--spacing-3);
+	--callout-gap-lg: var(--spacing-4);
 
-	/* badge type — brands set badge.textSize */
+	/* badge type — brands set badge.textSize / background / border */
 	--badge-text-size: var(--text-size-300);
 	--badge-border-radius: var(--border-radius-med);
+	--badge-border-width: var(--border-size-sm);
+	--badge-background: var(--card-neutral-quiet-background);
 
 	/* slide footer — brands set slideFooter.textSize / logoHeight / gap */
 	--slide-footer-text-size: var(--text-size-300);

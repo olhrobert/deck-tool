@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Deck title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-cover">
+				<div class="relative box-border w-full h-full">
+					<div
+						class="absolute top-0 left-0 right-0 flex justify-center pt-20"
+					>
+						<img
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							data-logo="cover"
+							class="shrink-0 block"
+							style="height: 24px; width: auto"
+						/>
+					</div>
+
+					<div
+						class="box-border w-full h-full flex items-center justify-center"
+					>
+						<div class="flex flex-col items-center gap-4">
+							<text
+								family="cover-title"
+								size="3000"
+								lineheight="sm"
+								class="text-center"
+								tone="strong"
+								context="cover"
+							>
+								Title of the deck
+							</text>
+							<body-copy size="sm" class="text-center" tone="subtle" context="cover">
+								Optional subtitle. Can be one or two sentences
+								long.
+							</body-copy>
+						</div>
+					</div>
+
+					<div
+						class="absolute bottom-0 left-0 right-0 flex justify-center"
+					>
+						<attribution-box variant="title">
+							<text data-slot="credit" size="300" tone="base" context="surface">
+								Sanitized excerpt prepared by
+							</text>
+							<img
+								data-slot="logo"
+								src="../../assets/logos/gratia-logo.svg"
+								alt="Gratia"
+							/>
+						</attribution-box>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>

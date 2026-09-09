@@ -24,37 +24,31 @@
 		<deck>
 			<slide class="bg-cover">
 				<div
-					class="box-border w-full h-full flex items-center justify-center"
+					class="box-border w-full h-full flex flex-col justify-between p-20"
 				>
-					<div class="flex flex-col items-center gap-10">
+					<div class="flex items-start">
 						<img
 							src="../../assets/logos/placeholder-logo.svg"
 							alt="Logo"
 							data-logo="cover"
 							class="shrink-0 block"
-							style="height: 40px; width: auto"
+							style="height: 24px; width: auto"
 						/>
-						<div class="flex flex-col items-center gap-8">
-							<text
-								family="cover-title"
-								size="2400"
-								lineheight="sm"
-								class="text-center"
-								color="strong"
-								context="cover"
-							>
-								Title of the deck
-							</text>
-							<body-copy
-								size="sm"
-								class="text-center"
-								color="subtle"
-								context="cover"
-							>
-								Optional subtitle. Can be one or two sentences
-								long.
-							</body-copy>
-						</div>
+					</div>
+
+					<div class="flex flex-col gap-4">
+						<text
+							family="cover-title"
+							size="3000"
+							lineheight="sm"
+							tone="strong"
+							context="cover"
+						>
+							Title of this deck. Keep it concise.
+						</text>
+							<body-copy size="sm" tone="subtle" context="cover">
+							Optional subtitle. Can be one or two sentences long.
+						</body-copy>
 					</div>
 				</div>
 			</slide>

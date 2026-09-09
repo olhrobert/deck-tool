@@ -254,6 +254,7 @@
 
 			.showcase-group[data-section="layout"],
 			.showcase-group[data-section="title-slides"],
+			.showcase-group[data-section="chapter-slides"],
 			.showcase-group[data-section="content-slides"] {
 				max-width: 1280px;
 				width: 100%;
@@ -266,10 +267,10 @@
 				gap: 0;
 				width: 100%;
 				border: 1px solid
-					var(--color-default-quiet-border-subtle);
+					var(--color-neutral-quiet-border-subtle);
 				border-radius: var(--card-border-radius);
 				overflow: hidden;
-				background: var(--color-default-quiet-background-base);
+				background: var(--color-neutral-quiet-background);
 			}
 
 			.brand-settings-group {
@@ -307,7 +308,7 @@
 				align-items: center;
 				padding: var(--spacing-3) var(--spacing-4);
 				border-top: 1px solid
-					var(--color-default-quiet-border-subtle);
+					var(--color-neutral-quiet-border-subtle);
 			}
 
 			.brand-settings-row:first-child {
@@ -330,7 +331,7 @@
 				flex: 0 0 auto;
 				box-sizing: border-box;
 				border: 1px solid
-					var(--color-default-quiet-border-subtle);
+					var(--color-neutral-quiet-border-subtle);
 			}
 		</style>
 	</head>
@@ -408,6 +409,11 @@
 						>Title slides</a
 					>
 					<a
+						href="#chapter-slides"
+						data-filter="chapter-slides"
+						>Chapter slides</a
+					>
+					<a
 						href="#content-slides"
 						data-filter="content-slides"
 						>Content slides</a
@@ -434,50 +440,127 @@
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
-					data-src="../../presets/deck-titles/deck-title-01.html"
+					data-src="../../presets/title-slides/title-slide-01.html"
 				>
 					<text class="showcase-label"
-						>presets/deck-titles/deck-title-01.html</text
+						>presets/title-slides/title-slide-01.html</text
 					>
 				</div>
 
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
-					data-src="../../presets/deck-titles/deck-title-02.html"
+					data-src="../../presets/title-slides/title-slide-01-with-attribution.html"
 				>
 					<text class="showcase-label"
-						>presets/deck-titles/deck-title-02.html</text
+						>presets/title-slides/title-slide-01-with-attribution.html</text
 					>
 				</div>
 
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
-					data-src="../../presets/deck-titles/deck-title-03.html"
+					data-src="../../presets/title-slides/title-slide-02.html"
 				>
 					<text class="showcase-label"
-						>presets/deck-titles/deck-title-03.html</text
+						>presets/title-slides/title-slide-02.html</text
 					>
 				</div>
 
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
-					data-src="../../presets/deck-titles/deck-title-04.html"
+					data-src="../../presets/title-slides/title-slide-02-with-attribution.html"
 				>
 					<text class="showcase-label"
-						>presets/deck-titles/deck-title-04.html</text
+						>presets/title-slides/title-slide-02-with-attribution.html</text
 					>
 				</div>
 
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
-					data-src="../../presets/deck-titles/deck-title-05.html"
+					data-src="../../presets/title-slides/title-slide-03.html"
 				>
 					<text class="showcase-label"
-						>presets/deck-titles/deck-title-05.html</text
+						>presets/title-slides/title-slide-03.html</text
+					>
+				</div>
+
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/title-slides/title-slide-03-with-attribution.html"
+				>
+					<text class="showcase-label"
+						>presets/title-slides/title-slide-03-with-attribution.html</text
+					>
+				</div>
+
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/title-slides/title-slide-04.html"
+				>
+					<text class="showcase-label"
+						>presets/title-slides/title-slide-04.html</text
+					>
+				</div>
+
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/title-slides/title-slide-04-with-attribution.html"
+				>
+					<text class="showcase-label"
+						>presets/title-slides/title-slide-04-with-attribution.html</text
+					>
+				</div>
+
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/title-slides/title-slide-05.html"
+				>
+					<text class="showcase-label"
+						>presets/title-slides/title-slide-05.html</text
+					>
+				</div>
+
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/title-slides/title-slide-05-with-attribution.html"
+				>
+					<text class="showcase-label"
+						>presets/title-slides/title-slide-05-with-attribution.html</text
+					>
+				</div>
+			</div>
+
+			<!-- === CHAPTER TITLE SLIDES === -->
+
+			<div
+				class="showcase-group"
+				data-section="chapter-slides"
+			>
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/chapter-slides/chapter-slide-01.html"
+				>
+					<text class="showcase-label"
+						>presets/chapter-slides/chapter-slide-01.html</text
+					>
+				</div>
+
+				<div
+					class="showcase-subgroup showcase-deck"
+					data-preset="deck-title"
+					data-src="../../presets/chapter-slides/chapter-slide-02.html"
+				>
+					<text class="showcase-label"
+						>presets/chapter-slides/chapter-slide-02.html</text
 					>
 				</div>
 			</div>
@@ -498,15 +581,6 @@
 					>
 				</div>
 
-				<div
-					class="showcase-subgroup"
-					data-preset="footer"
-					data-src="../../presets/content-footers/footer-01.html"
-				>
-					<text class="showcase-label"
-						>presets/content-footers/footer-01.html</text
-					>
-				</div>
 			</div>
 
 			<!-- === SLIDE FOOTER === -->
@@ -539,6 +613,10 @@
 						data-footer-context="cover"
 					></div>
 				</div>
+				<div
+					class="showcase-subgroup"
+					id="slide-footer-settings"
+				></div>
 			</div>
 
 			<!-- === ATTRIBUTION BOX === -->
@@ -566,13 +644,17 @@
 			>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/badge/badge.html</text
+						>components/badge/badge.html (brand default border)</text
 					>
 					<div
 						class="badge-matrix"
 						id="badge-showcase"
 					></div>
 				</div>
+				<div
+					class="showcase-subgroup"
+					id="badge-settings"
+				></div>
 			</div>
 
 			<!-- === CALLOUT === -->
@@ -590,6 +672,10 @@
 						id="callout-showcase"
 					></div>
 				</div>
+				<div
+					class="showcase-subgroup"
+					id="callout-settings"
+				></div>
 			</div>
 
 			<!-- === CARD === -->
@@ -600,13 +686,26 @@
 			>
 				<div class="showcase-subgroup">
 					<text class="showcase-label"
-						>components/card/card.html</text
+						>components/card/card.html · basic</text
 					>
 					<div
 						class="card-matrix"
-						id="card-showcase"
+						id="card-showcase-basic"
 					></div>
 				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-label"
+						>components/card/card.html · stripe</text
+					>
+					<div
+						class="card-matrix"
+						id="card-showcase-stripe"
+					></div>
+				</div>
+				<div
+					class="showcase-subgroup"
+					id="card-settings"
+				></div>
 			</div>
 
 			<!-- === SLIDE TITLE === -->
@@ -642,6 +741,10 @@
 						data-src="../components/slide-title/slide-title-group-sm.html"
 					></div>
 				</div>
+				<div
+					class="showcase-subgroup"
+					id="slide-title-settings"
+				></div>
 			</div>
 
 			<!-- === LAYOUT === -->
@@ -945,17 +1048,12 @@
 			}
 
 			const SEMANTIC_VARIANTS = [
-				"default",
+				"neutral",
 				"positive",
 				"warning",
 				"negative",
 				"informative",
 			];
-
-			function cardLayoutFromSettings(settings) {
-				const layout = settings?.components?.card?.layout;
-				return layout === "stripe" ? "stripe" : "basic";
-			}
 
 			function cardCombosForLayout(layout) {
 				return [
@@ -985,18 +1083,17 @@
 						padding="md"
 						gap="sm"
 					>
-						<card-pretitle color="subtle" context="surface">Optional pretitle.</card-pretitle>
-						<card-title color="strong" context="surface">Card title</card-title>
-						<body-copy size="sm" color="base" context="surface">Description copy on this card.</body-copy>
-						<card-meta color="subtle" context="surface">${meta}</card-meta>
+						<card-pretitle tone="subtle" context="surface">Optional pretitle.</card-pretitle>
+						<card-title tone="strong" context="surface">Card title</card-title>
+						<body-copy size="sm" tone="base" context="surface">Description copy on this card.</body-copy>
+						<card-meta tone="subtle" context="surface">${meta}</card-meta>
 					</card>
 				`;
 			}
 
-			function renderCardShowcase(settings) {
-				const root = document.getElementById("card-showcase");
+			function renderCardMatrix(rootId, layout) {
+				const root = document.getElementById(rootId);
 				if (!root) return;
-				const layout = cardLayoutFromSettings(settings);
 				const combos = cardCombosForLayout(layout);
 				root.innerHTML = SEMANTIC_VARIANTS.map(
 					(variant) => `
@@ -1007,15 +1104,19 @@
 				).join("");
 			}
 
+			function renderCardShowcase() {
+				renderCardMatrix("card-showcase-basic", "basic");
+				renderCardMatrix("card-showcase-stripe", "stripe");
+			}
+
 			function renderShowcaseCallout(variant) {
 				return `
 					<callout
 						variant="${variant}"
 						padding="md"
-						gap="sm"
 					>
-						<callout-title color="strong" context="surface">${titleCase(variant)} title</callout-title>
-						<callout-description color="base" context="surface">Description copy on this callout.</callout-description>
+						<callout-title tone="strong" context="surface">${titleCase(variant)} title</callout-title>
+						<callout-description tone="base" context="surface">Description copy on this callout.</callout-description>
 					</callout>
 				`;
 			}
@@ -1032,7 +1133,7 @@
 						variant="${variant}"
 						emphasis="${combo.emphasis}"
 					>
-						<badge-text color="strong" context="surface">${titleCase(variant)} · ${titleCase(combo.label)}</badge-text>
+						<badge-text tone="strong" context="surface">${titleCase(variant)} · ${titleCase(combo.label)}</badge-text>
 					</badge>
 				`;
 			}
@@ -1044,6 +1145,7 @@
 					{ emphasis: "false", label: "quiet" },
 					{ emphasis: "true", label: "emphasis" },
 				];
+				// Omit border attr so the brand `components.badge.border` default applies.
 				root.innerHTML = SEMANTIC_VARIANTS.map(
 					(variant) => `
 						<div class="badge-matrix-row">
@@ -1128,10 +1230,15 @@
 				}, obj);
 			}
 
-			function resolvePaletteLiteral(brand, refName) {
-				if (!refName || typeof refName !== "string") return null;
-				const literal = getPath(brand, `foundations.color.${refName}`);
-				return isColorLiteral(literal) ? literal : null;
+			function resolvePaletteLiteral(brand, refName, depth = 0) {
+				if (!refName || typeof refName !== "string" || depth > 8)
+					return null;
+				const value = getPath(brand, `foundations.color.${refName}`);
+				if (isColorLiteral(value)) return value;
+				if (typeof value === "string") {
+					return resolvePaletteLiteral(brand, value, depth + 1);
+				}
+				return null;
 			}
 
 			function resolveSwatchFill(brand, raw) {
@@ -1178,13 +1285,13 @@
 			function renderBrandGroupHeading(key, depth) {
 				const label = escapeHtml(formatSettingLabel(key));
 				if (depth <= 1) {
-					return `<paragraph-title size="${paragraphTitleSize(depth)}" color="strong" context="slide">${label}</paragraph-title>`;
+					return `<paragraph-title size="${paragraphTitleSize(depth)}" tone="strong" context="slide">${label}</paragraph-title>`;
 				}
-				return `<text size="400" weight="regular" color="subtle" context="slide">${label}</text>`;
+				return `<text size="400" weight="regular" tone="subtle" context="slide">${label}</text>`;
 			}
 
 			function renderSettingsRow(title, displayValue, fill) {
-				const valueText = `<text size="350" color="base" context="slide">${escapeHtml(displayValue)}</text>`;
+				const valueText = `<text size="350" tone="base" context="slide">${escapeHtml(displayValue)}</text>`;
 				const valueCell = fill
 					? `<stack class="brand-settings-value-swatch" direction="row" gap="sm">
 							<div
@@ -1197,7 +1304,7 @@
 					: valueText;
 				return `
 					<div class="brand-settings-row">
-						<text size="350" weight="medium" color="strong" context="slide">${escapeHtml(title)}</text>
+						<text size="350" weight="medium" tone="strong" context="slide">${escapeHtml(title)}</text>
 						${valueCell}
 					</div>
 				`;
@@ -1244,6 +1351,40 @@
 						${tableHtml}
 					</div>
 				`;
+			}
+
+			const COMPONENT_SETTINGS = {
+				badge: (brand) => brand.components && brand.components.badge,
+				callout: (brand) =>
+					brand.components && brand.components.callout,
+				card: (brand) => brand.components && brand.components.card,
+				"slide-footer": (brand) =>
+					brand.components && brand.components.slideFooter,
+				"slide-title": (brand) => {
+					const slide = brand.components && brand.components.slide;
+					if (!slide) return null;
+					const picked = {};
+					if (slide.pretitle) picked.pretitle = slide.pretitle;
+					if (slide.title) picked.title = slide.title;
+					if (slide.subtitle) picked.subtitle = slide.subtitle;
+					return picked;
+				},
+			};
+
+			function renderComponentSettings(brand) {
+				Object.entries(COMPONENT_SETTINGS).forEach(
+					([section, getValue]) => {
+						const root = document.getElementById(
+							`${section}-settings`,
+						);
+						if (!root) return;
+						const value = brand ? getValue(brand) : null;
+						root.innerHTML =
+							brand && value
+								? renderBrandGroup(brand, "settings", value)
+								: "";
+					},
+				);
 			}
 
 			function renderBrandGroup(brand, key, value) {
@@ -1318,7 +1459,7 @@
 							.join("");
 						return `
 							<div class="brand-settings-section" data-section="${escapeHtml(sectionKey)}">
-								<slide-title size="sm" color="strong" context="slide">${escapeHtml(formatSettingLabel(sectionKey))}</slide-title>
+								<slide-title size="sm" tone="strong" context="slide">${escapeHtml(formatSettingLabel(sectionKey))}</slide-title>
 								<div class="brand-settings-section-body">
 									${groups}
 								</div>
@@ -1356,10 +1497,12 @@
 							renderCalloutShowcase();
 							renderBadgeShowcase();
 							renderBrandShowcase(settings);
+							renderComponentSettings(settings);
 						} catch (error) {
 							renderCardShowcase();
 							renderCalloutShowcase();
 							renderBadgeShowcase();
+							renderComponentSettings();
 							const root =
 								document.getElementById("brand-showcase");
 							if (root) {
@@ -1490,6 +1633,7 @@
 				"slide-footer",
 				"slide-title",
 				"title-slides",
+				"chapter-slides",
 				"content-slides",
 			];
 			const filterLinks = document.querySelectorAll(".showcase-filter a");

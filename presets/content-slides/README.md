@@ -2,13 +2,13 @@
 
 Copy one file into `decks/{deck-name}/` and replace placeholder text only. Do not change HTML structure, classes, or asset paths.
 
-Use the same footer preset across every content slide in a deck.
+Each content preset includes `<slide-footer>` inside `<footer-container>`. Keep the same footer slots across every content slide in a deck. Canonical footer markup lives at `design-system/components/slide-footer/slide-footer.html`.
 
 ## Presets
 
-| File                    | Layout                                                                 |
-| ----------------------- | ---------------------------------------------------------------------- |
-| `content-slide-3-cards.html` | Header + content + footer. Three identical cards in a row. Uses `<slide-footer>` via `footer-01`. |
+| File                         | Layout                                                                              |
+| ---------------------------- | ----------------------------------------------------------------------------------- |
+| `content-slide-3-cards.html` | Header + content + footer. Three identical cards in a row. Includes `<slide-footer>`. |
 
 ## Placeholders to replace
 

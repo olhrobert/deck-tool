@@ -25,37 +25,7 @@
 			<slide class="bg-cover">
 				<div class="box-border w-full h-full flex">
 					<div
-						class="box-border h-full grow min-w-0 flex flex-col gap-4 p-20 pb-4"
-					>
-						<div class="flex flex-col gap-4 grow">
-							<text
-								family="cover-title"
-								size="1600"
-								lineheight="sm"
-								color="strong"
-								context="cover"
-							>
-								Title of this deck. Keep it concise.
-							</text>
-
-							<body-copy weight="regular" size="lg" lineheight="lg" color="subtle" context="cover">
-								Optional subtitle. Can be one or two sentences
-								long.
-							</body-copy>
-						</div>
-
-						<text
-							weight="regular"
-							size="300"
-							lineheight="lg"
-							color="subtle"
-							context="cover"
-						>
-							Optional metadata. Can be several sentences long.
-						</text>
-					</div>
-					<div
-						class="box-border h-full shrink-0 flex flex-col justify-between items-start pt-24"
+						class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
 					>
 						<img
 							src="../../assets/logos/placeholder-logo.svg"
@@ -64,8 +34,30 @@
 							class="shrink-0 block"
 							style="height: 24px; width: auto"
 						/>
+
+						<div>
+							<text
+								family="cover-title"
+								size="4000"
+								lineheight="single"
+								tone="strong"
+								context="cover"
+							>
+								Title of the deck
+							</text>
+						</div>
+					</div>
+
+					<div
+						class="box-border h-full shrink-0 flex flex-col justify-between p-0"
+					>
 						<attribution-box variant="title">
-							<text data-slot="credit" size="300" color="base" context="surface">
+							<text
+								data-slot="credit"
+								size="300"
+								tone="base"
+								context="surface"
+							>
 								Sanitized excerpt prepared by
 							</text>
 							<img
@@ -74,6 +66,13 @@
 								alt="Gratia"
 							/>
 						</attribution-box>
+
+						<div class="flex pb-10 pr-6 w-full">
+							<body-copy size="sm" class="text-left grow" tone="subtle" context="cover">
+								Optional subtitle. Can be one or two sentences
+								long.
+							</body-copy>
+						</div>
 					</div>
 				</div>
 			</slide>

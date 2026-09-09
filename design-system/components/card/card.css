@@ -1,9 +1,10 @@
 /* Card
    Axes (defaults match today's quiet default box):
-     variant="default|positive|warning|negative|informative"  default default
+     variant="neutral|positive|warning|negative|informative"  default neutral
      emphasis="true|false"                                     default false
-     layout="basic|stripe"                                     brand `card.layout` when omitted
+     layout="basic|stripe"                                     brand `card.defaultLayout` when omitted
    Padding / gap / type are unchanged brand tokens.
+   Ink = family `foreground` hue × foundations.tone.
 */
 
 card {
@@ -13,12 +14,13 @@ card {
 	min-width: 0;
 	box-sizing: border-box;
 
-	--_card-ink-strong: var(--card-default-quiet-foreground-strong);
-	--_card-ink-base: var(--card-default-quiet-foreground-base);
-	--_card-ink-subtle: var(--card-default-quiet-foreground-subtle);
-	--_card-bg: var(--card-default-quiet-background-base);
-	--_card-border: var(--card-default-quiet-border-subtle);
-	--_card-border-strong: var(--card-default-quiet-border-strong);
+	--_card-hue: var(--card-neutral-quiet-foreground);
+	--_card-ink-strong: rgb(from var(--_card-hue) r g b / var(--tone-strong));
+	--_card-ink-base: rgb(from var(--_card-hue) r g b / var(--tone-base));
+	--_card-ink-subtle: rgb(from var(--_card-hue) r g b / var(--tone-subtle));
+	--_card-bg: var(--card-neutral-quiet-background);
+	--_card-border: var(--card-neutral-quiet-border-subtle);
+	--_card-stripe: var(--card-neutral-quiet-stripe);
 
 	background-color: var(--_card-bg);
 	border-style: solid;
@@ -61,98 +63,80 @@ card
 /* --- emphasis (default variant) --- */
 
 card[emphasis="true"] {
-	--_card-ink-strong: var(--card-default-emphasis-foreground-strong);
-	--_card-ink-base: var(--card-default-emphasis-foreground-base);
-	--_card-ink-subtle: var(--card-default-emphasis-foreground-subtle);
-	--_card-bg: var(--card-default-emphasis-background-base);
-	--_card-border: var(--card-default-emphasis-border-subtle);
-	--_card-border-strong: var(--card-default-emphasis-border-strong);
+	--_card-hue: var(--card-neutral-emphasis-foreground);
+	--_card-bg: var(--card-neutral-emphasis-background);
+	--_card-border: var(--card-neutral-emphasis-border-subtle);
+	--_card-stripe: var(--card-neutral-emphasis-stripe);
 }
 
 /* --- variant: quiet --- */
 
 card[variant="positive"] {
-	--_card-ink-strong: var(--card-positive-quiet-foreground-strong);
-	--_card-ink-base: var(--card-positive-quiet-foreground-base);
-	--_card-ink-subtle: var(--card-positive-quiet-foreground-subtle);
-	--_card-bg: var(--card-positive-quiet-background-base);
+	--_card-hue: var(--card-positive-quiet-foreground);
+	--_card-bg: var(--card-positive-quiet-background);
 	--_card-border: var(--card-positive-quiet-border-subtle);
-	--_card-border-strong: var(--card-positive-quiet-border-strong);
+	--_card-stripe: var(--card-positive-quiet-stripe);
 }
 
 card[variant="warning"] {
-	--_card-ink-strong: var(--card-warning-quiet-foreground-strong);
-	--_card-ink-base: var(--card-warning-quiet-foreground-base);
-	--_card-ink-subtle: var(--card-warning-quiet-foreground-subtle);
-	--_card-bg: var(--card-warning-quiet-background-base);
+	--_card-hue: var(--card-warning-quiet-foreground);
+	--_card-bg: var(--card-warning-quiet-background);
 	--_card-border: var(--card-warning-quiet-border-subtle);
-	--_card-border-strong: var(--card-warning-quiet-border-strong);
+	--_card-stripe: var(--card-warning-quiet-stripe);
 }
 
 card[variant="negative"] {
-	--_card-ink-strong: var(--card-negative-quiet-foreground-strong);
-	--_card-ink-base: var(--card-negative-quiet-foreground-base);
-	--_card-ink-subtle: var(--card-negative-quiet-foreground-subtle);
-	--_card-bg: var(--card-negative-quiet-background-base);
+	--_card-hue: var(--card-negative-quiet-foreground);
+	--_card-bg: var(--card-negative-quiet-background);
 	--_card-border: var(--card-negative-quiet-border-subtle);
-	--_card-border-strong: var(--card-negative-quiet-border-strong);
+	--_card-stripe: var(--card-negative-quiet-stripe);
 }
 
 card[variant="informative"] {
-	--_card-ink-strong: var(--card-informative-quiet-foreground-strong);
-	--_card-ink-base: var(--card-informative-quiet-foreground-base);
-	--_card-ink-subtle: var(--card-informative-quiet-foreground-subtle);
-	--_card-bg: var(--card-informative-quiet-background-base);
+	--_card-hue: var(--card-informative-quiet-foreground);
+	--_card-bg: var(--card-informative-quiet-background);
 	--_card-border: var(--card-informative-quiet-border-subtle);
-	--_card-border-strong: var(--card-informative-quiet-border-strong);
+	--_card-stripe: var(--card-informative-quiet-stripe);
 }
 
 /* --- variant + emphasis --- */
 
 card[variant="positive"][emphasis="true"] {
-	--_card-ink-strong: var(--card-positive-emphasis-foreground-strong);
-	--_card-ink-base: var(--card-positive-emphasis-foreground-base);
-	--_card-ink-subtle: var(--card-positive-emphasis-foreground-subtle);
-	--_card-bg: var(--card-positive-emphasis-background-base);
+	--_card-hue: var(--card-positive-emphasis-foreground);
+	--_card-bg: var(--card-positive-emphasis-background);
 	--_card-border: var(--card-positive-emphasis-border-subtle);
-	--_card-border-strong: var(--card-positive-emphasis-border-strong);
+	--_card-stripe: var(--card-positive-emphasis-stripe);
 }
 
 card[variant="warning"][emphasis="true"] {
-	--_card-ink-strong: var(--card-warning-emphasis-foreground-strong);
-	--_card-ink-base: var(--card-warning-emphasis-foreground-base);
-	--_card-ink-subtle: var(--card-warning-emphasis-foreground-subtle);
-	--_card-bg: var(--card-warning-emphasis-background-base);
+	--_card-hue: var(--card-warning-emphasis-foreground);
+	--_card-bg: var(--card-warning-emphasis-background);
 	--_card-border: var(--card-warning-emphasis-border-subtle);
-	--_card-border-strong: var(--card-warning-emphasis-border-strong);
+	--_card-stripe: var(--card-warning-emphasis-stripe);
 }
 
 card[variant="negative"][emphasis="true"] {
-	--_card-ink-strong: var(--card-negative-emphasis-foreground-strong);
-	--_card-ink-base: var(--card-negative-emphasis-foreground-base);
-	--_card-ink-subtle: var(--card-negative-emphasis-foreground-subtle);
-	--_card-bg: var(--card-negative-emphasis-background-base);
+	--_card-hue: var(--card-negative-emphasis-foreground);
+	--_card-bg: var(--card-negative-emphasis-background);
 	--_card-border: var(--card-negative-emphasis-border-subtle);
-	--_card-border-strong: var(--card-negative-emphasis-border-strong);
+	--_card-stripe: var(--card-negative-emphasis-stripe);
 }
 
 card[variant="informative"][emphasis="true"] {
-	--_card-ink-strong: var(--card-informative-emphasis-foreground-strong);
-	--_card-ink-base: var(--card-informative-emphasis-foreground-base);
-	--_card-ink-subtle: var(--card-informative-emphasis-foreground-subtle);
-	--_card-bg: var(--card-informative-emphasis-background-base);
+	--_card-hue: var(--card-informative-emphasis-foreground);
+	--_card-bg: var(--card-informative-emphasis-background);
 	--_card-border: var(--card-informative-emphasis-border-subtle);
-	--_card-border-strong: var(--card-informative-emphasis-border-strong);
+	--_card-stripe: var(--card-informative-emphasis-stripe);
 }
 
 /* --- layout: stripe (left accent) --- */
 
 card[layout="stripe"] {
-	border-color: var(--_card-border-strong);
+	border-color: var(--_card-stripe);
 	border-top-width: var(--border-size-none);
 	border-bottom-width: var(--border-size-none);
 	border-right-width: var(--border-size-none);
-	border-left-width: var(--border-size-md);
+	border-left-width: var(--card-stripe-width);
 	border-radius: var(--border-radius-none);
 }
 

@@ -237,7 +237,7 @@ function colorFromNode(node, inkContext) {
 	for (const cls of classes) {
 		if (cls.startsWith("color-")) return cls.replace(/^color-/, "color/").replace(/_/g, "-");
 	}
-	const color = attr(node, "color");
+	const tone = attr(node, "tone", attr(node, "color"));
 	const context = attr(node, "context", inkContext || "slide");
 	const prefix =
 		context === "cover"
@@ -245,9 +245,9 @@ function colorFromNode(node, inkContext) {
 			: context === "surface"
 				? "color/slide-surface-foreground"
 				: "color/slide-foreground";
-	if (color === "strong") return `${prefix}-strong`;
-	if (color === "subtle") return `${prefix}-subtle`;
-	if (color === "base") return `${prefix}-base`;
+	if (tone === "strong") return `${prefix}-strong`;
+	if (tone === "subtle") return `${prefix}-subtle`;
+	if (tone === "base") return `${prefix}-base`;
 	return `${prefix}-base`;
 }
 

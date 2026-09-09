@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Deck title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide class="bg-cover">
+				<div class="box-border w-full h-full flex">
+					<div
+						class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
+					>
+						<img
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							data-logo="cover"
+							class="shrink-0 block"
+							style="height: 24px; width: auto"
+						/>
+
+						<div>
+							<text
+								family="cover-title"
+								size="4000"
+								lineheight="single"
+								tone="strong"
+								context="cover"
+							>
+								Title of the deck
+							</text>
+						</div>
+					</div>
+
+					<div
+						class="box-border h-full shrink-0 flex flex-col justify-end p-0"
+					>
+						<div class="flex pb-10 pr-6 w-full">
+							<body-copy size="sm" class="text-left grow" tone="subtle" context="cover">
+								Optional subtitle. Can be one or two sentences
+								long.
+							</body-copy>
+						</div>
+					</div>
+				</div>
+			</slide>
+		</deck>
+	</body>
+</html>

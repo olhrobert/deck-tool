@@ -43,19 +43,25 @@ function isFontFamilyName(value) {
  * design-system/tokens/spacing.css — not pixel values.
  * `slide.canvas.maxWidth` is a pixel integer (default 1280) — the slide canvas cap.
  * Component *radius* names a `border.radius` step (`med`, `none`, …).
- * Component *stroke* names a `border.size` step (`none`, `sm`, `md`).
+ * Component *stroke* names a `border.size` step (`none`, `sm`, `md`, `lg`).
  *
  * Cover and slide settings live under top-level `cover` / `slide` (colors,
  * type, chrome), nested by group (`cover.canvas.background`,
  * `cover.surface.background`, `slide.pretitle.family`,
  * `slide.header.paddingLeft`). Top-level groups, in
- * order: `foundations` (`basic`, `color`, `font`, `border`) then
+ * order: `foundations` (`basic`, `color`, `tone`, `font`, `border`) then
  * `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`,
  * `card`, `callout`). Hard-coded RGB lives on `foundations.color` (`brand.1`–
- * `brand.6`, `semantic.positiveQuiet`…, `chart.1`–`chart.4`). Card
- * paint and cover/slide roles ref that palette (`"semantic.positiveQuiet"`
- * or `{ "color": "brand.1", "opacity": 0.18 }`). Remaining
- * component tokens are grouped by component (`card`, …) and named component-leading
+ * `brand.6`, `semantic.positive`…, `chart.1`–`chart.4`). `semantic.neutral`
+ * / `semantic.bright` may ref `brand.*`. `foundations.tone` is Strong / Base /
+ * Subtle opacity. Card paint and cover/slide roles ref that palette
+ * (`"semantic.positive"` or `{ "color": "brand.1", "opacity": 0.18 }`).
+ * Card and callout paint are grouped by role (`card.foreground.{family}`,
+ * `callout.background.{family}`, `card.stripe.color.{family}`); CSS vars stay
+ * family-leading (`--card-positive-quiet-foreground`,
+ * `--callout-neutral-quiet-stripe`). Callout has no emphasis axis, so its
+ * families are quiet-only. Remaining component tokens are grouped by component
+ * (`card`, `callout`, …) and named component-leading
  * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
  */
 const TYPE_SCALE_STEPS = [
@@ -143,7 +149,9 @@ function isSpacingScaleStep(value) {
 function isFontSizePath(jsonPath) {
 	return (
 		/\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPath) ||
-		/(pretitle|title|subtitle|description|text)Size(Lg|Md|Sm)?$/.test(jsonPath)
+		/(pretitle|title|subtitle|description|text)Size(Lg|Md|Sm)?$/.test(
+			jsonPath,
+		)
 	);
 }
 
@@ -154,7 +162,9 @@ function isSpacingStepPath(jsonPath) {
 		/\.title\.gap$/i.test(jsonPath) ||
 		jsonPath === "components.slideFooter.gap" ||
 		jsonPath === "components.slideFooter.logoHeight" ||
-		/(padding(Sm|Md|Lg)|gap(Sm|Md|Lg)|metaPaddingTop|titleGap)$/i.test(jsonPath)
+		/(padding(Sm|Md|Lg)|gap(Sm|Md|Lg)|metaPaddingTop|titleGap)$/i.test(
+			jsonPath,
+		)
 	);
 }
 
@@ -164,7 +174,10 @@ function isFontNamedFamilyPath(jsonPath) {
 
 function isFontRoleFamilyPath(jsonPath) {
 	if (jsonPath.startsWith("foundations.font.family.")) return false;
-	return jsonPath.endsWith(".family") || /(title|pretitle|subtitle)Family$/.test(jsonPath);
+	return (
+		jsonPath.endsWith(".family") ||
+		/(title|pretitle|subtitle)Family$/.test(jsonPath)
+	);
 }
 
 function isFontNamedWeightPath(jsonPath) {
@@ -188,12 +201,13 @@ function isBorderRadiusStep(value) {
 
 function isBorderRadiusRolePath(jsonPath) {
 	return (
-		(jsonPath.endsWith(".borderRadius") || jsonPath.endsWith(".border.radius")) &&
+		(jsonPath.endsWith(".borderRadius") ||
+			jsonPath.endsWith(".border.radius")) &&
 		!jsonPath.startsWith("foundations.border.radius.")
 	);
 }
 
-const BORDER_SIZE_STEPS = ["none", "sm", "md"];
+const BORDER_SIZE_STEPS = ["none", "sm", "md", "lg"];
 const BORDER_SIZE_STEP_SET = new Set(BORDER_SIZE_STEPS);
 
 function isBorderSizeStep(value) {
@@ -202,7 +216,8 @@ function isBorderSizeStep(value) {
 
 function isBorderSizeRolePath(jsonPath) {
 	return (
-		jsonPath === "components.callout.borderSize" ||
+		jsonPath === "components.callout.stripe.width" ||
+		jsonPath === "components.card.stripe.width" ||
 		/\.borderSize\.(top|bottom|left|right)$/.test(jsonPath) ||
 		/\.border\.size(Top|Bottom|Left|Right)$/.test(jsonPath)
 	);
@@ -243,31 +258,28 @@ const CARD_LAYOUT_NAMES = ["basic", "stripe"];
 const CARD_LAYOUT_NAME_SET = new Set(CARD_LAYOUT_NAMES);
 
 function isCardLayoutPath(jsonPath) {
-	return jsonPath === "components.card.layout";
+	return jsonPath === "components.card.defaultLayout";
 }
 
 function isCardLayoutName(value) {
 	return CARD_LAYOUT_NAME_SET.has(String(value));
 }
 
-const BADGE_BORDER_COLOR_NAMES = ["card", "none"];
-const BADGE_BORDER_COLOR_NAME_SET = new Set(BADGE_BORDER_COLOR_NAMES);
-
-function isBadgeBorderColorPath(jsonPath) {
-	return jsonPath === "components.badge.borderColor";
+function isBadgeBorderPath(jsonPath) {
+	return jsonPath === "components.badge.border";
 }
 
-function isBadgeBorderColorName(value) {
-	return BADGE_BORDER_COLOR_NAME_SET.has(String(value));
+function isBadgeBorderBoolean(value) {
+	return typeof value === "boolean";
 }
 
 const CARD_STRIPE_LAYOUT_CSS = [
-	"card:not([layout=\"basic\"]) {",
-	"	border-color: var(--_card-border-strong);",
+	'card:not([layout="basic"]) {',
+	"	border-color: var(--_card-stripe);",
 	"	border-top-width: var(--border-size-none);",
 	"	border-bottom-width: var(--border-size-none);",
 	"	border-right-width: var(--border-size-none);",
-	"	border-left-width: var(--border-size-md);",
+	"	border-left-width: var(--card-stripe-width);",
 	"	border-radius: var(--border-radius-none);",
 	"}",
 ].join("\n");
@@ -276,7 +288,16 @@ const BRAND_SWATCH_INDICES = ["1", "2", "3", "4", "5", "6"];
 const CHART_SWATCH_INDICES = ["1", "2", "3", "4"];
 const BRAND_SWATCH_KEYS = BRAND_SWATCH_INDICES.map((i) => `brand.${i}`);
 const CHART_SWATCH_KEYS = CHART_SWATCH_INDICES.map((i) => `chart.${i}`);
-const STATUS_SEMANTIC_FAMILY_KEYS = [
+const SEMANTIC_HUE_KEYS = [
+	"neutral",
+	"bright",
+	"positive",
+	"negative",
+	"warning",
+	"informative",
+];
+const TONE_KEYS = ["strong", "base", "subtle"];
+const CARD_STATUS_FAMILY_KEYS = [
 	"positiveQuiet",
 	"positiveEmphasis",
 	"negativeQuiet",
@@ -286,9 +307,7 @@ const STATUS_SEMANTIC_FAMILY_KEYS = [
 	"informativeQuiet",
 	"informativeEmphasis",
 ];
-const SEMANTIC_SWATCH_KEYS = STATUS_SEMANTIC_FAMILY_KEYS.map(
-	(key) => `semantic.${key}`,
-);
+const SEMANTIC_SWATCH_KEYS = SEMANTIC_HUE_KEYS.map((key) => `semantic.${key}`);
 const PALETTE_REF_SET = new Set([
 	...BRAND_SWATCH_KEYS,
 	...CHART_SWATCH_KEYS,
@@ -305,12 +324,29 @@ function isChartSwatchPath(jsonPath) {
 
 function isSemanticSwatchPath(jsonPath) {
 	return new RegExp(
-		`^foundations\\.color\\.semantic\\.(${STATUS_SEMANTIC_FAMILY_KEYS.join("|")})$`,
+		`^foundations\\.color\\.semantic\\.(${SEMANTIC_HUE_KEYS.join("|")})$`,
 	).test(jsonPath);
 }
 
+function isTonePath(jsonPath) {
+	return new RegExp(`^foundations\\.tone\\.(${TONE_KEYS.join("|")})$`).test(
+		jsonPath,
+	);
+}
+
+function isToneValue(value) {
+	return (
+		typeof value === "number" &&
+		!Number.isNaN(value) &&
+		value >= 0 &&
+		value <= 1
+	);
+}
+
 function camelToKebab(value) {
-	return String(value).replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+	return String(value)
+		.replace(/([a-z])([A-Z])/g, "$1-$2")
+		.toLowerCase();
 }
 
 function jsonPathToCssVar(jsonPath) {
@@ -322,37 +358,124 @@ function semanticFamilyKey(variant, tone) {
 }
 
 const SEMANTIC_COLOR_VARIANTS = [
-	"default",
+	"neutral",
 	"positive",
 	"negative",
 	"warning",
 	"informative",
 ];
 const SEMANTIC_COLOR_TONES = ["quiet", "emphasis"];
-const DEFAULT_COLOR_FAMILY_KEYS = ["defaultQuiet", "defaultEmphasis"];
+const NEUTRAL_COLOR_FAMILY_KEYS = ["neutralQuiet", "neutralEmphasis"];
 const CARD_COLOR_FAMILY_KEYS = [
-	...DEFAULT_COLOR_FAMILY_KEYS,
-	...STATUS_SEMANTIC_FAMILY_KEYS,
+	...NEUTRAL_COLOR_FAMILY_KEYS,
+	...CARD_STATUS_FAMILY_KEYS,
+];
+const CALLOUT_COLOR_FAMILY_KEYS = [
+	"neutralQuiet",
+	"positiveQuiet",
+	"negativeQuiet",
+	"warningQuiet",
+	"informativeQuiet",
 ];
 const SEMANTIC_COLOR_FAMILY_KEYS = CARD_COLOR_FAMILY_KEYS;
 const CARD_FAMILY_GROUP = CARD_COLOR_FAMILY_KEYS.join("|");
-const SEMANTIC_LEAF_GROUP =
-	"(foregroundStrong|foregroundBase|foregroundSubtle|backgroundBase|borderSubtle|borderStrong)";
+const CALLOUT_FAMILY_GROUP = CALLOUT_COLOR_FAMILY_KEYS.join("|");
 const CARD_COLOR_PATH = new RegExp(
-	`^components\\.card\\.(${CARD_FAMILY_GROUP})\\.${SEMANTIC_LEAF_GROUP}$`,
+	`^components\\.card\\.(foreground|background|border\\.subtle|stripe\\.color)\\.(${CARD_FAMILY_GROUP})$`,
+);
+const CALLOUT_COLOR_PATH = new RegExp(
+	`^components\\.callout\\.(foreground|background|stripe\\.color)\\.(${CALLOUT_FAMILY_GROUP})$`,
 );
 
-const SEMANTIC_TOKEN_LEAVES = [
-	"foregroundStrong",
-	"foregroundBase",
-	"foregroundSubtle",
-	"backgroundBase",
-	"borderSubtle",
-	"borderStrong",
-];
+function cardPaintCssLeaf(role) {
+	if (role === "subtle") return "border-subtle";
+	if (role === "stripe") return "stripe";
+	return role;
+}
+
+function paintTokenMapEntries({
+	component,
+	jsonPrefix,
+	role,
+	groupLabel,
+	familyKeys,
+	aliasColor = false,
+}) {
+	const cssLeaf = cardPaintCssLeaf(role);
+	return familyKeys.flatMap((family, index) => {
+		const jsonPath = `${jsonPrefix}.${family}`;
+		const kebab = camelToKebab(family);
+		const componentVar = `--${component}-${kebab}-${cssLeaf}`;
+		const first =
+			index === 0
+				? [jsonPath, componentVar, groupLabel]
+				: [jsonPath, componentVar];
+		if (!aliasColor) return [first];
+		return [first, [jsonPath, `--color-${kebab}-${cssLeaf}`]];
+	});
+}
+
+function cardPaintTokenMapEntries(jsonPrefix, role, groupLabel) {
+	return paintTokenMapEntries({
+		component: "card",
+		jsonPrefix,
+		role,
+		groupLabel,
+		familyKeys: CARD_COLOR_FAMILY_KEYS,
+		aliasColor: true,
+	});
+}
+
+function calloutPaintTokenMapEntries(jsonPrefix, role, groupLabel) {
+	return paintTokenMapEntries({
+		component: "callout",
+		jsonPrefix,
+		role,
+		groupLabel,
+		familyKeys: CALLOUT_COLOR_FAMILY_KEYS,
+	});
+}
+
+function cardColorTokenMapEntries() {
+	return [
+		...cardPaintTokenMapEntries(
+			"components.card.foreground",
+			"foreground",
+			"card — foreground",
+		),
+		...cardPaintTokenMapEntries(
+			"components.card.background",
+			"background",
+			"card — background",
+		),
+	];
+}
+
+function cardBorderColorTokenMapEntries() {
+	return cardPaintTokenMapEntries(
+		"components.card.border.subtle",
+		"subtle",
+		"card — border subtle",
+	);
+}
+
+function cardStripeTokenMapEntries() {
+	return [
+		[
+			"components.card.stripe.width",
+			"--card-stripe-width",
+			"card — stripe",
+		],
+		...cardPaintTokenMapEntries(
+			"components.card.stripe.color",
+			"stripe",
+			"card — stripe color",
+		),
+	];
+}
 
 function semanticSwatchTokenMapEntries() {
-	return STATUS_SEMANTIC_FAMILY_KEYS.map((key, index) => {
+	return SEMANTIC_HUE_KEYS.map((key, index) => {
 		const jsonPath = `foundations.color.semantic.${key}`;
 		const cssVar = jsonPathToCssVar(`color.semantic.${key}`);
 		if (index === 0) return [jsonPath, cssVar, "color — semantic"];
@@ -360,56 +483,58 @@ function semanticSwatchTokenMapEntries() {
 	});
 }
 
-function cardColorTokenMapEntries() {
-	const entries = [];
-	for (const family of CARD_COLOR_FAMILY_KEYS) {
-		let firstInFamily = true;
-		for (const jsonSuffix of SEMANTIC_TOKEN_LEAVES) {
-			const jsonPath = `components.card.${family}.${jsonSuffix}`;
-			const cardVar = jsonPathToCssVar(`card.${family}.${jsonSuffix}`);
-			if (firstInFamily) {
-				entries.push([jsonPath, cardVar, `card — ${family}`]);
-				firstInFamily = false;
-			} else {
-				entries.push([jsonPath, cardVar]);
-			}
-			entries.push([
-				jsonPath,
-				jsonPathToCssVar(`color.${family}.${jsonSuffix}`),
-			]);
-		}
-	}
-	return entries;
+function toneTokenMapEntries() {
+	return TONE_KEYS.map((key, index) => {
+		const jsonPath = `foundations.tone.${key}`;
+		const cssVar = `--tone-${key}`;
+		if (index === 0) return [jsonPath, cssVar, "tone"];
+		return [jsonPath, cssVar];
+	});
 }
 
 function isColorLiteralPath(jsonPath) {
-	return (
-		isBrandSwatchPath(jsonPath) ||
-		isChartSwatchPath(jsonPath) ||
-		isSemanticSwatchPath(jsonPath)
-	);
+	return isBrandSwatchPath(jsonPath) || isChartSwatchPath(jsonPath);
 }
 
 function isCardColorPath(jsonPath) {
 	return CARD_COLOR_PATH.test(jsonPath);
 }
 
+function isCalloutColorPath(jsonPath) {
+	return CALLOUT_COLOR_PATH.test(jsonPath);
+}
+
 function isColorRolePath(jsonPath) {
 	return (
-		/^components\.(cover|slide)\.canvas\.(background|foreground)$/.test(jsonPath) ||
-		/^components\.(cover|slide)\.surface\.(background|foreground|border)$/.test(jsonPath)
+		/^components\.(cover|slide)\.canvas\.(background|foreground)$/.test(
+			jsonPath,
+		) ||
+		/^components\.(cover|slide)\.surface\.(background|foreground|border)$/.test(
+			jsonPath,
+		)
 	);
 }
 
+function isBadgeBackgroundPath(jsonPath) {
+	return jsonPath === "components.badge.background";
+}
+
 function isColorRefPath(jsonPath) {
-	return isColorRolePath(jsonPath) || isCardColorPath(jsonPath);
+	return (
+		isColorRolePath(jsonPath) ||
+		isCardColorPath(jsonPath) ||
+		isCalloutColorPath(jsonPath) ||
+		isBadgeBackgroundPath(jsonPath) ||
+		isSemanticSwatchPath(jsonPath)
+	);
 }
 
 function isColorLiteral(value) {
 	if (typeof value !== "string") return false;
 	return (
-		/^rgba?\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+(?:\s*,\s*[\d.]+)?\s*\)$/i.test(value) ||
-		/^#[0-9a-f]{6}$/i.test(value)
+		/^rgba?\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+(?:\s*,\s*[\d.]+)?\s*\)$/i.test(
+			value,
+		) || /^#[0-9a-f]{6}$/i.test(value)
 	);
 }
 
@@ -442,10 +567,19 @@ function parseColorChannels(value) {
 function withOpacity(colorValue, opacity) {
 	const channels = parseColorChannels(colorValue);
 	if (!channels) {
-		throw new Error(`Cannot apply opacity to non-color value ${JSON.stringify(colorValue)}`);
+		throw new Error(
+			`Cannot apply opacity to non-color value ${JSON.stringify(colorValue)}`,
+		);
 	}
-	if (typeof opacity !== "number" || Number.isNaN(opacity) || opacity < 0 || opacity > 1) {
-		throw new Error(`opacity must be a number between 0 and 1 (got ${JSON.stringify(opacity)})`);
+	if (
+		typeof opacity !== "number" ||
+		Number.isNaN(opacity) ||
+		opacity < 0 ||
+		opacity > 1
+	) {
+		throw new Error(
+			`opacity must be a number between 0 and 1 (got ${JSON.stringify(opacity)})`,
+		);
 	}
 	return `rgba(${channels.r}, ${channels.g}, ${channels.b}, ${opacity})`;
 }
@@ -459,10 +593,10 @@ function resolvePalettePath(refName) {
 
 /**
  * Resolve a color role ref against `foundations.color`
- * (`brand.1`, `semantic.positiveQuiet`, `chart.1`, …).
+ * (`brand.1`, `semantic.positive`, `chart.1`, …).
  * Accepts a raw rgb/rgba/# literal, `"brand.1"` /
- * `"semantic.positiveQuiet"` / `"chart.1"`, or
- * `{ "color": "semantic.warningQuiet", "opacity": 0.1 }`.
+ * `"semantic.positive"` / `"chart.1"`, or
+ * `{ "color": "semantic.warning", "opacity": 0.1 }`.
  */
 function resolveColorRef(brand, raw, jsonPath, depth = 0) {
 	if (isColorLiteral(raw)) {
@@ -482,7 +616,10 @@ function resolveColorRef(brand, raw, jsonPath, depth = 0) {
 				`${jsonPath} color ref object must include a string "color" (got ${JSON.stringify(raw)})`,
 			);
 		}
-		if (opacity !== undefined && (typeof opacity !== "number" || Number.isNaN(opacity))) {
+		if (
+			opacity !== undefined &&
+			(typeof opacity !== "number" || Number.isNaN(opacity))
+		) {
 			throw new Error(
 				`${jsonPath} opacity must be a number between 0 and 1 (got ${JSON.stringify(opacity)})`,
 			);
@@ -496,13 +633,15 @@ function resolveColorRef(brand, raw, jsonPath, depth = 0) {
 	const palettePath = resolvePalettePath(refName);
 	if (!palettePath) {
 		throw new Error(
-			`${jsonPath} unknown palette ref "${refName}" (use brand.1–brand.6, chart.1–chart.4, or semantic.positiveQuiet / …)`,
+			`${jsonPath} unknown palette ref "${refName}" (use brand.1–brand.6, chart.1–chart.4, or semantic.neutral / semantic.bright / semantic.positive / …)`,
 		);
 	}
 
 	const resolved = getPath(brand, palettePath);
 	if (resolved === undefined || resolved === null) {
-		throw new Error(`${jsonPath} references missing palette entry ${palettePath}`);
+		throw new Error(
+			`${jsonPath} references missing palette entry ${palettePath}`,
+		);
 	}
 
 	let literal;
@@ -510,7 +649,9 @@ function resolveColorRef(brand, raw, jsonPath, depth = 0) {
 		literal = resolved;
 	} else {
 		if (depth >= 8) {
-			throw new Error(`${jsonPath} color ref cycle or too deep (via ${palettePath})`);
+			throw new Error(
+				`${jsonPath} color ref cycle or too deep (via ${palettePath})`,
+			);
 		}
 		literal = resolveColorRef(brand, resolved, palettePath, depth + 1);
 	}
@@ -536,14 +677,28 @@ const TOKEN_MAP = [
 	["foundations.color.chart.3", "--color-palette-chart-3"],
 	["foundations.color.chart.4", "--color-palette-chart-4"],
 
-	["foundations.font.family.display", "--font-family-display", "font — family"],
+	...toneTokenMapEntries(),
+
+	[
+		"foundations.font.family.display",
+		"--font-family-display",
+		"font — family",
+	],
 	["foundations.font.family.base", "--font-family-base"],
 
-	["foundations.font.weight.regular", "--font-weight-regular", "font — weight"],
+	[
+		"foundations.font.weight.regular",
+		"--font-weight-regular",
+		"font — weight",
+	],
 	["foundations.font.weight.medium", "--font-weight-medium"],
 	["foundations.font.weight.bold", "--font-weight-bold"],
 
-	["foundations.border.radius.none", "--border-radius-none", "border — radius"],
+	[
+		"foundations.border.radius.none",
+		"--border-radius-none",
+		"border — radius",
+	],
 	["foundations.border.radius.sm", "--border-radius-sm"],
 	["foundations.border.radius.med", "--border-radius-med"],
 	["foundations.border.radius.lg", "--border-radius-lg"],
@@ -552,6 +707,7 @@ const TOKEN_MAP = [
 	["foundations.border.size.none", "--border-size-none", "border — size"],
 	["foundations.border.size.sm", "--border-size-sm"],
 	["foundations.border.size.md", "--border-size-md"],
+	["foundations.border.size.lg", "--border-size-lg"],
 
 	["components.cover.canvas.background", "--color-cover-background", "cover"],
 	["components.cover.canvas.foreground", "--color-cover-foreground"],
@@ -570,7 +726,10 @@ const TOKEN_MAP = [
 	["components.slide.pretitle.family", "--slide-pretitle-font-family"],
 	["components.slide.pretitle.weight", "--slide-pretitle-font-weight"],
 	["components.slide.pretitle.uppercase", "--slide-pretitle-text-transform"],
-	["components.slide.pretitle.letterSpacing", "--slide-pretitle-letter-spacing"],
+	[
+		"components.slide.pretitle.letterSpacing",
+		"--slide-pretitle-letter-spacing",
+	],
 	["components.slide.pretitle.size", "--slide-pretitle-size"],
 	["components.slide.title.gap", "--slide-title-gap"],
 	["components.slide.title.family", "--slide-title-font-family"],
@@ -587,14 +746,21 @@ const TOKEN_MAP = [
 	["components.slide.header.paddingLeft", "--slide-header-padding-left"],
 	["components.slide.content.paddingTop", "--slide-content-padding-top"],
 	["components.slide.content.paddingRight", "--slide-content-padding-right"],
-	["components.slide.content.paddingBottom", "--slide-content-padding-bottom"],
+	[
+		"components.slide.content.paddingBottom",
+		"--slide-content-padding-bottom",
+	],
 	["components.slide.content.paddingLeft", "--slide-content-padding-left"],
 	["components.slide.footer.paddingTop", "--slide-footer-padding-top"],
 	["components.slide.footer.paddingRight", "--slide-footer-padding-right"],
 	["components.slide.footer.paddingBottom", "--slide-footer-padding-bottom"],
 	["components.slide.footer.paddingLeft", "--slide-footer-padding-left"],
 
-	["components.paragraphTitle.family", "--paragraph-title-font-family", "paragraphTitle"],
+	[
+		"components.paragraphTitle.family",
+		"--paragraph-title-font-family",
+		"paragraphTitle",
+	],
 	["components.paragraphTitle.weight", "--paragraph-title-font-weight"],
 	["components.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
 	["components.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
@@ -606,7 +772,7 @@ const TOKEN_MAP = [
 	["components.body.sizeMd", "--body-size-md"],
 	["components.body.sizeLg", "--body-size-lg"],
 
-	["components.card.layout", "--card-layout", "card"],
+	["components.card.defaultLayout", "--card-default-layout", "card"],
 	...cardColorTokenMapEntries(),
 	["components.card.padding.sm", "--card-padding-sm"],
 	["components.card.padding.md", "--card-padding-md"],
@@ -620,6 +786,8 @@ const TOKEN_MAP = [
 	["components.card.border.sizeBottom", "--card-border-size-bottom"],
 	["components.card.border.sizeLeft", "--card-border-size-left"],
 	["components.card.border.sizeRight", "--card-border-size-right"],
+	...cardBorderColorTokenMapEntries(),
+	...cardStripeTokenMapEntries(),
 	["components.card.title.family", "--card-title-font-family"],
 	["components.card.title.weight", "--card-title-font-weight"],
 	["components.card.title.sizeSm", "--card-title-size-sm"],
@@ -628,19 +796,65 @@ const TOKEN_MAP = [
 	["components.card.pretitle.family", "--card-pretitle-font-family"],
 	["components.card.pretitle.weight", "--card-pretitle-font-weight"],
 	["components.card.pretitle.uppercase", "--card-pretitle-text-transform"],
-	["components.card.pretitle.letterSpacing", "--card-pretitle-letter-spacing"],
+	[
+		"components.card.pretitle.letterSpacing",
+		"--card-pretitle-letter-spacing",
+	],
 	["components.card.pretitle.size", "--card-pretitle-size"],
 	["components.card.meta.paddingTop", "--card-meta-padding-top"],
 
-	["components.callout.titleSize", "--callout-title-size", "callout"],
-	["components.callout.descriptionSize", "--callout-description-size"],
-	["components.callout.borderSize", "--callout-border-size"],
+	...calloutPaintTokenMapEntries(
+		"components.callout.background",
+		"background",
+		"callout — background",
+	),
+	...calloutPaintTokenMapEntries(
+		"components.callout.foreground",
+		"foreground",
+		"callout — foreground",
+	),
+	[
+		"components.callout.title.family",
+		"--callout-title-font-family",
+		"callout — title",
+	],
+	["components.callout.title.weight", "--callout-title-font-weight"],
+	["components.callout.title.size", "--callout-title-size"],
+	[
+		"components.callout.description.family",
+		"--callout-description-font-family",
+		"callout — description",
+	],
+	[
+		"components.callout.description.weight",
+		"--callout-description-font-weight",
+	],
+	["components.callout.description.size", "--callout-description-size"],
+	[
+		"components.callout.stripe.width",
+		"--callout-stripe-width",
+		"callout — stripe",
+	],
+	...calloutPaintTokenMapEntries(
+		"components.callout.stripe.color",
+		"stripe",
+		"callout — stripe color",
+	),
+	["components.callout.gap.none", "--callout-gap-none", "callout — gap"],
+	["components.callout.gap.sm", "--callout-gap-sm"],
+	["components.callout.gap.md", "--callout-gap-md"],
+	["components.callout.gap.lg", "--callout-gap-lg"],
 
 	["components.badge.textSize", "--badge-text-size", "badge"],
-	["components.badge.borderColor", "--badge-border-color"],
+	["components.badge.border", "--badge-border-width"],
 	["components.badge.borderRadius", "--badge-border-radius"],
+	["components.badge.background", "--badge-background"],
 
-	["components.slideFooter.textSize", "--slide-footer-text-size", "slide-footer"],
+	[
+		"components.slideFooter.textSize",
+		"--slide-footer-text-size",
+		"slide-footer",
+	],
 	["components.slideFooter.logoHeight", "--slide-footer-logo-height"],
 	["components.slideFooter.gap", "--slide-footer-gap"],
 
@@ -659,6 +873,14 @@ function getPath(obj, dottedPath) {
 function toCssValue(jsonPath, value, brand) {
 	if (isColorRefPath(jsonPath)) {
 		return resolveColorRef(brand, value, jsonPath);
+	}
+	if (isTonePath(jsonPath)) {
+		if (!isToneValue(value)) {
+			throw new Error(
+				`${jsonPath} must be a number between 0 and 1 (got ${JSON.stringify(value)})`,
+			);
+		}
+		return String(value);
 	}
 	if (isColorLiteralPath(jsonPath)) {
 		if (!isColorLiteral(value)) {
@@ -764,14 +986,13 @@ function toCssValue(jsonPath, value, brand) {
 		}
 		return String(value);
 	}
-	if (isBadgeBorderColorPath(jsonPath)) {
-		if (!isBadgeBorderColorName(value)) {
+	if (isBadgeBorderPath(jsonPath)) {
+		if (!isBadgeBorderBoolean(value)) {
 			throw new Error(
-				`${jsonPath} must be ${BADGE_BORDER_COLOR_NAMES.join(" or ")} (got ${JSON.stringify(value)})`,
+				`${jsonPath} must be true or false (got ${JSON.stringify(value)})`,
 			);
 		}
-		if (value === "none") return "transparent";
-		return null;
+		return value ? "var(--border-size-sm)" : "var(--border-size-none)";
 	}
 	return value;
 }
@@ -790,11 +1011,20 @@ function buildBrandCss(brand) {
 		lines.push(`\t${cssVar}: ${value};`);
 	}
 
-	const brandName = (brand.foundations && brand.foundations.basic && brand.foundations.basic.name) || "brand";
-	const layout = getPath(brand, "components.card.layout");
+	const brandName =
+		(brand.foundations &&
+			brand.foundations.basic &&
+			brand.foundations.basic.name) ||
+		"brand";
+	const layout = getPath(brand, "components.card.defaultLayout");
 	const extra =
 		layout === "stripe"
-			? ["", "/* Default card layout: stripe (omit layout, or layout=\"stripe\") */", CARD_STRIPE_LAYOUT_CSS, ""]
+			? [
+					"",
+					'/* Default card layout: stripe (omit layout, or layout="stripe") */',
+					CARD_STRIPE_LAYOUT_CSS,
+					"",
+				]
 			: [""];
 	return [
 		`/* AUTO-GENERATED from ${BRAND_FILENAME} for "${brandName}" — do not edit by hand. */`,
@@ -827,8 +1057,12 @@ function generateBrandCss(brandDir) {
 }
 
 function usage() {
-	console.error("Usage: node scripts/generate-brand-css.js <brand-directory>");
-	console.error("Example: node scripts/generate-brand-css.js brands/riverton");
+	console.error(
+		"Usage: node scripts/generate-brand-css.js <brand-directory>",
+	);
+	console.error(
+		"Example: node scripts/generate-brand-css.js brands/riverton",
+	);
 	process.exit(1);
 }
 
@@ -844,15 +1078,21 @@ module.exports = {
 	SEMANTIC_COLOR_VARIANTS,
 	SEMANTIC_COLOR_TONES,
 	SEMANTIC_COLOR_FAMILY_KEYS,
-	STATUS_SEMANTIC_FAMILY_KEYS,
-	DEFAULT_COLOR_FAMILY_KEYS,
+	SEMANTIC_HUE_KEYS,
+	TONE_KEYS,
+	CARD_STATUS_FAMILY_KEYS,
+	NEUTRAL_COLOR_FAMILY_KEYS,
 	CARD_COLOR_FAMILY_KEYS,
+	CALLOUT_COLOR_FAMILY_KEYS,
 	semanticFamilyKey,
+	isTonePath,
+	isToneValue,
 	resolveColorRef,
 	resolvePalettePath,
 	isColorRolePath,
 	isColorRefPath,
 	isCardColorPath,
+	isCalloutColorPath,
 	isSemanticSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
@@ -881,9 +1121,8 @@ module.exports = {
 	isCardLayoutPath,
 	isCardLayoutName,
 	CARD_LAYOUT_NAMES,
-	isBadgeBorderColorPath,
-	isBadgeBorderColorName,
-	BADGE_BORDER_COLOR_NAMES,
+	isBadgeBorderPath,
+	isBadgeBorderBoolean,
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	BRAND_FILENAME,

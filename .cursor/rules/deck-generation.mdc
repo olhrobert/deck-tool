@@ -26,11 +26,10 @@ decks/{deck-name}/
 
 ## Presets that exist
 
-- Title: `presets/deck-titles/deck-title-01.html` … `deck-title-04.html`
-- Content: `presets/content-slides/content-slide-3-cards.html`
-- Footer: `presets/content-footers/footer-01.html`
+- Title: `presets/title-slides/title-slide-01.html` … `title-slide-05.html` (and matching `*-with-attribution.html`)
+- Chapter: `presets/chapter-slides/chapter-slide-01.html`, `chapter-slide-02.html`
+- Content: `presets/content-slides/content-slide-3-cards.html` (includes `<slide-footer>`)
 - Card fragment: `design-system/components/card/card.html`
-
-There is no `presets/chapter-titles/`.
+- Slide footer fragment: `design-system/components/slide-footer/slide-footer.html`
 
 `slides.json` `title` and `brand` are preserved on compile; `slides` is rewritten from the folder (sorted by filename).

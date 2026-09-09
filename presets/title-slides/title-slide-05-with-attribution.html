@@ -25,35 +25,37 @@
 			<slide class="bg-cover">
 				<div class="relative box-border w-full h-full">
 					<div
-						class="absolute top-0 left-0 right-0 flex justify-center pt-20"
-					>
-						<img
-							src="../../assets/logos/placeholder-logo.svg"
-							alt="Logo"
-							data-logo="cover"
-							class="shrink-0 block"
-							style="height: 24px; width: auto"
-						/>
-					</div>
-
-					<div
 						class="box-border w-full h-full flex items-center justify-center"
 					>
-						<div class="flex flex-col items-center gap-4">
-							<text
-								family="cover-title"
-								size="3000"
-								lineheight="sm"
-								class="text-center"
-								color="strong"
-								context="cover"
-							>
-								Title of the deck
-							</text>
-							<body-copy size="sm" class="text-center" color="subtle" context="cover">
-								Optional subtitle. Can be one or two sentences
-								long.
-							</body-copy>
+						<div class="flex flex-col items-center gap-10">
+							<img
+								src="../../assets/logos/placeholder-logo.svg"
+								alt="Logo"
+								data-logo="cover"
+								class="shrink-0 block"
+								style="height: 40px; width: auto"
+							/>
+							<div class="flex flex-col items-center gap-8">
+								<text
+									family="cover-title"
+									size="2400"
+									lineheight="sm"
+									class="text-center"
+									tone="strong"
+									context="cover"
+								>
+									Title of the deck
+								</text>
+								<body-copy
+									size="sm"
+									class="text-center"
+									tone="subtle"
+									context="cover"
+								>
+									Optional subtitle. Can be one or two sentences
+									long.
+								</body-copy>
+							</div>
 						</div>
 					</div>
 
@@ -61,7 +63,7 @@
 						class="absolute bottom-0 left-0 right-0 flex justify-center"
 					>
 						<attribution-box variant="title">
-							<text data-slot="credit" size="300" color="base" context="surface">
+							<text data-slot="credit" size="300" tone="base" context="surface">
 								Sanitized excerpt prepared by
 							</text>
 							<img

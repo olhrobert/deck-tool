@@ -4,19 +4,18 @@ Ready-made HTML slides for deck generation. **Copy a preset into `decks/{deck-na
 
 ## Preset folders
 
-| Folder             | Use for                                                                          |
-| ------------------ | -------------------------------------------------------------------------------- |
-| `deck-titles/`     | Opening title slide — see [deck-titles/README.md](deck-titles/README.md)         |
-| `content-slides/`  | Content slide chrome — see [content-slides/README.md](content-slides/README.md) |
-| `content-footers/` | Content slide footer — see [content-footers/README.md](content-footers/README.md) |
-| `cards/`           | Card content patterns — see [cards/README.md](cards/README.md)                   |
+| Folder            | Use for                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------ |
+| `title-slides/`   | Opening title slide — see [title-slides/README.md](title-slides/README.md)           |
+| `chapter-slides/` | Chapter opener on cover — see [chapter-slides/README.md](chapter-slides/README.md)   |
+| `content-slides/` | Content slide chrome — see [content-slides/README.md](content-slides/README.md)     |
 
 ## Deck folder convention
 
 ```
 decks/
   my-deck/
-    01.html                  ← copied from deck-titles/
+    01.html                  ← copied from title-slides/
     02.html                  ← copied from content-slides/
     {slug}-logo.svg
     {slug}-logo-inverted.svg
@@ -51,4 +50,4 @@ See [docs/brands.md](../docs/brands.md#logos).
 
 ## Example prompt
 
-> Create `decks/client-pitch/` using `deck-title-03` for the opener and `footer-01` on content slides. Add `client-logo.svg` to the deck folder and swap the placeholder logo. Set `slides.json.brand` to the client brand slug.
+> Create `decks/client-pitch/` using `title-slide-03` for the opener. Content slides already include `<slide-footer>` from the content preset. Add `client-logo.svg` to the deck folder and swap the placeholder logo. Set `slides.json.brand` to the client brand slug.

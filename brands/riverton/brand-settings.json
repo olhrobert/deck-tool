@@ -12,14 +12,12 @@
 				"4": "rgb(255, 255, 255)"
 			},
 			"semantic": {
-				"positiveQuiet": "rgb(16, 110, 60)",
-				"positiveEmphasis": "rgb(10, 72, 38)",
-				"negativeQuiet": "rgb(185, 28, 28)",
-				"negativeEmphasis": "rgb(127, 18, 18)",
-				"warningQuiet": "rgb(160, 60, 8)",
-				"warningEmphasis": "rgb(110, 40, 4)",
-				"informativeQuiet": "rgb(29, 78, 216)",
-				"informativeEmphasis": "rgb(20, 54, 150)"
+				"neutral": "brand.1",
+				"bright": "brand.4",
+				"positive": "rgb(16, 110, 60)",
+				"negative": "rgb(185, 28, 28)",
+				"warning": "rgb(160, 60, 8)",
+				"informative": "rgb(29, 78, 216)"
 			},
 			"chart": {
 				"1": "rgba(147, 51, 234, 1)",
@@ -27,6 +25,11 @@
 				"3": "rgba(30, 58, 95, 1)",
 				"4": "rgba(13, 148, 136, 1)"
 			}
+		},
+		"tone": {
+			"strong": 1,
+			"base": 0.7,
+			"subtle": 0.5
 		},
 		"font": {
 			"family": {
@@ -50,7 +53,8 @@
 			"size": {
 				"none": "0px",
 				"sm": "1px",
-				"md": "2px"
+				"md": "2px",
+				"lg": "4px"
 			}
 		}
 	},
@@ -149,203 +153,42 @@
 			}
 		},
 		"card": {
-			"layout": "stripe",
-			"defaultQuiet": {
-				"foregroundStrong": "brand.1",
-				"foregroundBase": {
-					"color": "brand.1",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "brand.1",
-					"opacity": 0.5
-				},
-				"backgroundBase": "brand.4",
-				"borderSubtle": {
-					"color": "brand.1",
-					"opacity": 0.2
-				},
-				"borderStrong": "brand.2"
+			"defaultLayout": "stripe",
+			"foreground": {
+				"neutralQuiet": "semantic.neutral",
+				"neutralEmphasis": "semantic.neutral",
+				"positiveQuiet": "semantic.positive",
+				"positiveEmphasis": "semantic.bright",
+				"negativeQuiet": "semantic.negative",
+				"negativeEmphasis": "semantic.bright",
+				"warningQuiet": "semantic.warning",
+				"warningEmphasis": "semantic.bright",
+				"informativeQuiet": "semantic.informative",
+				"informativeEmphasis": "semantic.bright"
 			},
-			"defaultEmphasis": {
-				"foregroundStrong": "brand.1",
-				"foregroundBase": {
-					"color": "brand.1",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "brand.1",
-					"opacity": 0.5
-				},
-				"backgroundBase": "brand.2",
-				"borderSubtle": {
-					"color": "brand.1",
-					"opacity": 0.2
-				},
-				"borderStrong": {
-					"color": "brand.2",
-					"opacity": 0.5
-				}
-			},
-			"positiveQuiet": {
-				"foregroundStrong": "semantic.positiveQuiet",
-				"foregroundBase": {
-					"color": "semantic.positiveQuiet",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "semantic.positiveQuiet",
-					"opacity": 0.5
-				},
-				"backgroundBase": {
-					"color": "semantic.positiveQuiet",
+			"background": {
+				"neutralQuiet": "brand.4",
+				"neutralEmphasis": "brand.2",
+				"positiveQuiet": {
+					"color": "semantic.positive",
 					"opacity": 0.1
 				},
-				"borderSubtle": {
-					"color": "semantic.positiveQuiet",
-					"opacity": 0.25
-				},
-				"borderStrong": {
-					"color": "semantic.positiveQuiet",
-					"opacity": 0.5
-				}
-			},
-			"positiveEmphasis": {
-				"foregroundStrong": "brand.4",
-				"foregroundBase": {
-					"color": "brand.4",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "brand.4",
-					"opacity": 0.5
-				},
-				"backgroundBase": "semantic.positiveQuiet",
-				"borderSubtle": {
-					"color": "brand.4",
-					"opacity": 0.18
-				},
-				"borderStrong": "semantic.positiveEmphasis"
-			},
-			"negativeQuiet": {
-				"foregroundStrong": "semantic.negativeQuiet",
-				"foregroundBase": {
-					"color": "semantic.negativeQuiet",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "semantic.negativeQuiet",
-					"opacity": 0.5
-				},
-				"backgroundBase": {
-					"color": "semantic.negativeQuiet",
+				"positiveEmphasis": "semantic.positive",
+				"negativeQuiet": {
+					"color": "semantic.negative",
 					"opacity": 0.1
 				},
-				"borderSubtle": {
-					"color": "semantic.negativeQuiet",
-					"opacity": 0.25
-				},
-				"borderStrong": {
-					"color": "semantic.negativeQuiet",
-					"opacity": 0.5
-				}
-			},
-			"negativeEmphasis": {
-				"foregroundStrong": "brand.4",
-				"foregroundBase": {
-					"color": "brand.4",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "brand.4",
-					"opacity": 0.5
-				},
-				"backgroundBase": "semantic.negativeQuiet",
-				"borderSubtle": {
-					"color": "brand.4",
-					"opacity": 0.18
-				},
-				"borderStrong": "semantic.negativeEmphasis"
-			},
-			"warningQuiet": {
-				"foregroundStrong": "semantic.warningQuiet",
-				"foregroundBase": {
-					"color": "semantic.warningQuiet",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "semantic.warningQuiet",
-					"opacity": 0.5
-				},
-				"backgroundBase": {
-					"color": "semantic.warningQuiet",
+				"negativeEmphasis": "semantic.negative",
+				"warningQuiet": {
+					"color": "semantic.warning",
 					"opacity": 0.1
 				},
-				"borderSubtle": {
-					"color": "semantic.warningQuiet",
-					"opacity": 0.25
-				},
-				"borderStrong": {
-					"color": "semantic.warningQuiet",
-					"opacity": 0.5
-				}
-			},
-			"warningEmphasis": {
-				"foregroundStrong": "brand.4",
-				"foregroundBase": {
-					"color": "brand.4",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "brand.4",
-					"opacity": 0.5
-				},
-				"backgroundBase": "semantic.warningQuiet",
-				"borderSubtle": {
-					"color": "brand.4",
-					"opacity": 0.18
-				},
-				"borderStrong": "semantic.warningEmphasis"
-			},
-			"informativeQuiet": {
-				"foregroundStrong": "semantic.informativeQuiet",
-				"foregroundBase": {
-					"color": "semantic.informativeQuiet",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "semantic.informativeQuiet",
-					"opacity": 0.5
-				},
-				"backgroundBase": {
-					"color": "semantic.informativeQuiet",
+				"warningEmphasis": "semantic.warning",
+				"informativeQuiet": {
+					"color": "semantic.informative",
 					"opacity": 0.1
 				},
-				"borderSubtle": {
-					"color": "semantic.informativeQuiet",
-					"opacity": 0.25
-				},
-				"borderStrong": {
-					"color": "semantic.informativeQuiet",
-					"opacity": 0.5
-				}
-			},
-			"informativeEmphasis": {
-				"foregroundStrong": "brand.4",
-				"foregroundBase": {
-					"color": "brand.4",
-					"opacity": 0.7
-				},
-				"foregroundSubtle": {
-					"color": "brand.4",
-					"opacity": 0.5
-				},
-				"backgroundBase": "semantic.informativeQuiet",
-				"borderSubtle": {
-					"color": "brand.4",
-					"opacity": 0.18
-				},
-				"borderStrong": "semantic.informativeEmphasis"
+				"informativeEmphasis": "semantic.informative"
 			},
 			"padding": {
 				"sm": 3,
@@ -363,7 +206,79 @@
 				"sizeTop": "sm",
 				"sizeBottom": "sm",
 				"sizeLeft": "sm",
-				"sizeRight": "sm"
+				"sizeRight": "sm",
+				"subtle": {
+					"neutralQuiet": {
+						"color": "semantic.neutral",
+						"opacity": 0.2
+					},
+					"neutralEmphasis": {
+						"color": "semantic.neutral",
+						"opacity": 0.2
+					},
+					"positiveQuiet": {
+						"color": "semantic.positive",
+						"opacity": 0.2
+					},
+					"positiveEmphasis": {
+						"color": "semantic.bright",
+						"opacity": 0.2
+					},
+					"negativeQuiet": {
+						"color": "semantic.negative",
+						"opacity": 0.2
+					},
+					"negativeEmphasis": {
+						"color": "semantic.bright",
+						"opacity": 0.2
+					},
+					"warningQuiet": {
+						"color": "semantic.warning",
+						"opacity": 0.2
+					},
+					"warningEmphasis": {
+						"color": "semantic.bright",
+						"opacity": 0.2
+					},
+					"informativeQuiet": {
+						"color": "semantic.informative",
+						"opacity": 0.2
+					},
+					"informativeEmphasis": {
+						"color": "semantic.bright",
+						"opacity": 0.2
+					}
+				}
+			},
+			"stripe": {
+				"width": "md",
+				"color": {
+					"neutralQuiet": "brand.2",
+					"neutralEmphasis": {
+						"color": "brand.2",
+						"opacity": 0.5
+					},
+					"positiveQuiet": {
+						"color": "semantic.positive",
+						"opacity": 0.5
+					},
+					"positiveEmphasis": "semantic.positive",
+					"negativeQuiet": {
+						"color": "semantic.negative",
+						"opacity": 0.5
+					},
+					"negativeEmphasis": "semantic.negative",
+					"warningQuiet": {
+						"color": "semantic.warning",
+						"opacity": 0.5
+					},
+					"warningEmphasis": "semantic.warning",
+					"informativeQuiet": {
+						"color": "semantic.informative",
+						"opacity": 0.5
+					},
+					"informativeEmphasis": "semantic.informative"
+				}
 			},
 			"title": {
 				"family": "display",
@@ -374,24 +289,92 @@
 			},
 			"pretitle": {
 				"family": "base",
-				"weight": "regular",
+				"weight": "medium",
 				"uppercase": true,
 				"letterSpacing": "2%",
-				"size": 300
+				"size": 250
 			},
 			"meta": {
 				"paddingTop": "0-5"
 			}
 		},
 		"callout": {
-			"titleSize": 400,
-			"descriptionSize": 350,
-			"borderSize": "sm"
+			"background": {
+				"neutralQuiet": {
+					"color": "brand.4",
+					"opacity": 0
+				},
+				"positiveQuiet": {
+					"color": "semantic.positive",
+					"opacity": 0
+				},
+				"negativeQuiet": {
+					"color": "semantic.negative",
+					"opacity": 0
+				},
+				"warningQuiet": {
+					"color": "semantic.warning",
+					"opacity": 0
+				},
+				"informativeQuiet": {
+					"color": "semantic.informative",
+					"opacity": 0
+				}
+			},
+			"foreground": {
+				"neutralQuiet": "semantic.neutral",
+				"positiveQuiet": "semantic.positive",
+				"negativeQuiet": "semantic.negative",
+				"warningQuiet": "semantic.warning",
+				"informativeQuiet": "semantic.informative"
+			},
+			"title": {
+				"family": "display",
+				"weight": "medium",
+				"size": 450
+			},
+			"description": {
+				"family": "base",
+				"weight": "regular",
+				"size": 350
+			},
+			"stripe": {
+				"width": "sm",
+				"color": {
+					"neutralQuiet": {
+						"color": "semantic.neutral",
+						"opacity": 0.2
+					},
+					"positiveQuiet": {
+						"color": "semantic.positive",
+						"opacity": 0.2
+					},
+					"negativeQuiet": {
+						"color": "semantic.negative",
+						"opacity": 0.2
+					},
+					"warningQuiet": {
+						"color": "semantic.warning",
+						"opacity": 0.2
+					},
+					"informativeQuiet": {
+						"color": "semantic.informative",
+						"opacity": 0.2
+					}
+				}
+			},
+			"gap": {
+				"none": 0,
+				"sm": 1,
+				"md": 3,
+				"lg": 4
+			}
 		},
 		"badge": {
 			"textSize": 300,
-			"borderColor": "none",
-			"borderRadius": "none"
+			"border": true,
+			"borderRadius": "none",
+			"background": "brand.4"
 		},
 		"slideFooter": {
 			"textSize": 300,

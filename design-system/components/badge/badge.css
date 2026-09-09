@@ -1,8 +1,12 @@
 /* Badge
    Axes:
-     variant="default|positive|warning|negative|informative"  default default
+     variant="neutral|positive|warning|negative|informative"  default neutral
      emphasis="true|false"                                     default false
-   Paint reuses card tokens. Size / radius / border-color mode are brand tokens.
+     border="true|false"                                       brand `badge.border` when omitted
+   Default quiet fill is brand `badge.background`. Other paint reuses card tokens.
+   With border, stroke always follows the matching card `borderSubtle`.
+   Ink = family `foreground` hue × foundations.tone.
+   Size / radius / default border are brand tokens.
 */
 
 badge {
@@ -15,18 +19,27 @@ badge {
 	box-sizing: border-box;
 	white-space: nowrap;
 
-	--_badge-ink-strong: var(--card-default-quiet-foreground-strong);
-	--_badge-ink-base: var(--card-default-quiet-foreground-base);
-	--_badge-ink-subtle: var(--card-default-quiet-foreground-subtle);
-	--_badge-bg: var(--card-default-quiet-background-base);
-	--_badge-border-paint: var(--card-default-quiet-border-subtle);
+	--_badge-hue: var(--card-neutral-quiet-foreground);
+	--_badge-ink-strong: rgb(from var(--_badge-hue) r g b / var(--tone-strong));
+	--_badge-ink-base: rgb(from var(--_badge-hue) r g b / var(--tone-base));
+	--_badge-ink-subtle: rgb(from var(--_badge-hue) r g b / var(--tone-subtle));
+	--_badge-bg: var(--badge-background);
+	--_badge-border-paint: var(--card-neutral-quiet-border-subtle);
 
 	background-color: var(--_badge-bg);
 	border-style: solid;
-	border-color: var(--badge-border-color, var(--_badge-border-paint));
-	border-width: var(--border-size-sm);
+	border-color: var(--_badge-border-paint);
+	border-width: var(--badge-border-width);
 	border-radius: var(--badge-border-radius);
 	padding: var(--spacing-1) var(--spacing-2);
+}
+
+badge[border="true"] {
+	border-width: var(--border-size-sm);
+}
+
+badge[border="false"] {
+	border-width: var(--border-size-none);
 }
 
 badge
@@ -41,77 +54,59 @@ badge
 /* --- emphasis (default variant) --- */
 
 badge[emphasis="true"] {
-	--_badge-ink-strong: var(--card-default-emphasis-foreground-strong);
-	--_badge-ink-base: var(--card-default-emphasis-foreground-base);
-	--_badge-ink-subtle: var(--card-default-emphasis-foreground-subtle);
-	--_badge-bg: var(--card-default-emphasis-background-base);
-	--_badge-border-paint: var(--card-default-emphasis-border-subtle);
+	--_badge-hue: var(--card-neutral-emphasis-foreground);
+	--_badge-bg: var(--card-neutral-emphasis-background);
+	--_badge-border-paint: var(--card-neutral-emphasis-border-subtle);
 }
 
 /* --- variant: quiet --- */
 
 badge[variant="positive"] {
-	--_badge-ink-strong: var(--card-positive-quiet-foreground-strong);
-	--_badge-ink-base: var(--card-positive-quiet-foreground-base);
-	--_badge-ink-subtle: var(--card-positive-quiet-foreground-subtle);
-	--_badge-bg: var(--card-positive-quiet-background-base);
+	--_badge-hue: var(--card-positive-quiet-foreground);
+	--_badge-bg: var(--card-positive-quiet-background);
 	--_badge-border-paint: var(--card-positive-quiet-border-subtle);
 }
 
 badge[variant="warning"] {
-	--_badge-ink-strong: var(--card-warning-quiet-foreground-strong);
-	--_badge-ink-base: var(--card-warning-quiet-foreground-base);
-	--_badge-ink-subtle: var(--card-warning-quiet-foreground-subtle);
-	--_badge-bg: var(--card-warning-quiet-background-base);
+	--_badge-hue: var(--card-warning-quiet-foreground);
+	--_badge-bg: var(--card-warning-quiet-background);
 	--_badge-border-paint: var(--card-warning-quiet-border-subtle);
 }
 
 badge[variant="negative"] {
-	--_badge-ink-strong: var(--card-negative-quiet-foreground-strong);
-	--_badge-ink-base: var(--card-negative-quiet-foreground-base);
-	--_badge-ink-subtle: var(--card-negative-quiet-foreground-subtle);
-	--_badge-bg: var(--card-negative-quiet-background-base);
+	--_badge-hue: var(--card-negative-quiet-foreground);
+	--_badge-bg: var(--card-negative-quiet-background);
 	--_badge-border-paint: var(--card-negative-quiet-border-subtle);
 }
 
 badge[variant="informative"] {
-	--_badge-ink-strong: var(--card-informative-quiet-foreground-strong);
-	--_badge-ink-base: var(--card-informative-quiet-foreground-base);
-	--_badge-ink-subtle: var(--card-informative-quiet-foreground-subtle);
-	--_badge-bg: var(--card-informative-quiet-background-base);
+	--_badge-hue: var(--card-informative-quiet-foreground);
+	--_badge-bg: var(--card-informative-quiet-background);
 	--_badge-border-paint: var(--card-informative-quiet-border-subtle);
 }
 
 /* --- variant + emphasis --- */
 
 badge[variant="positive"][emphasis="true"] {
-	--_badge-ink-strong: var(--card-positive-emphasis-foreground-strong);
-	--_badge-ink-base: var(--card-positive-emphasis-foreground-base);
-	--_badge-ink-subtle: var(--card-positive-emphasis-foreground-subtle);
-	--_badge-bg: var(--card-positive-emphasis-background-base);
+	--_badge-hue: var(--card-positive-emphasis-foreground);
+	--_badge-bg: var(--card-positive-emphasis-background);
 	--_badge-border-paint: var(--card-positive-emphasis-border-subtle);
 }
 
 badge[variant="warning"][emphasis="true"] {
-	--_badge-ink-strong: var(--card-warning-emphasis-foreground-strong);
-	--_badge-ink-base: var(--card-warning-emphasis-foreground-base);
-	--_badge-ink-subtle: var(--card-warning-emphasis-foreground-subtle);
-	--_badge-bg: var(--card-warning-emphasis-background-base);
+	--_badge-hue: var(--card-warning-emphasis-foreground);
+	--_badge-bg: var(--card-warning-emphasis-background);
 	--_badge-border-paint: var(--card-warning-emphasis-border-subtle);
 }
 
 badge[variant="negative"][emphasis="true"] {
-	--_badge-ink-strong: var(--card-negative-emphasis-foreground-strong);
-	--_badge-ink-base: var(--card-negative-emphasis-foreground-base);
-	--_badge-ink-subtle: var(--card-negative-emphasis-foreground-subtle);
-	--_badge-bg: var(--card-negative-emphasis-background-base);
+	--_badge-hue: var(--card-negative-emphasis-foreground);
+	--_badge-bg: var(--card-negative-emphasis-background);
 	--_badge-border-paint: var(--card-negative-emphasis-border-subtle);
 }
 
 badge[variant="informative"][emphasis="true"] {
-	--_badge-ink-strong: var(--card-informative-emphasis-foreground-strong);
-	--_badge-ink-base: var(--card-informative-emphasis-foreground-base);
-	--_badge-ink-subtle: var(--card-informative-emphasis-foreground-subtle);
-	--_badge-bg: var(--card-informative-emphasis-background-base);
+	--_badge-hue: var(--card-informative-emphasis-foreground);
+	--_badge-bg: var(--card-informative-emphasis-background);
 	--_badge-border-paint: var(--card-informative-emphasis-border-subtle);
 }

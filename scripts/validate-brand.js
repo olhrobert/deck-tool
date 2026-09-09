@@ -28,7 +28,10 @@ const {
 	FONT_WEIGHT_NAMES,
 	FONT_FAMILY_NAMES,
 	CARD_COLOR_FAMILY_KEYS,
-	STATUS_SEMANTIC_FAMILY_KEYS,
+	CALLOUT_COLOR_FAMILY_KEYS,
+	SEMANTIC_HUE_KEYS,
+	isTonePath,
+	isToneValue,
 	isPretitleUppercasePath,
 	isPretitleUppercaseBoolean,
 	isPretitleLetterSpacingPath,
@@ -36,9 +39,8 @@ const {
 	isCardLayoutPath,
 	isCardLayoutName,
 	CARD_LAYOUT_NAMES,
-	isBadgeBorderColorPath,
-	isBadgeBorderColorName,
-	BADGE_BORDER_COLOR_NAMES,
+	isBadgeBorderPath,
+	isBadgeBorderBoolean,
 	isBrandSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
@@ -62,7 +64,9 @@ function getPath(obj, dottedPath) {
 
 function parseColor(value) {
 	if (typeof value !== "string") return null;
-	const rgb = value.match(/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i);
+	const rgb = value.match(
+		/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i,
+	);
 	if (rgb) {
 		return {
 			r: Number(rgb[1]) / 255,
@@ -74,7 +78,12 @@ function parseColor(value) {
 	const hex = value.match(/^#([0-9a-f]{6})$/i);
 	if (hex) {
 		const n = parseInt(hex[1], 16);
-		return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255, a: 1 };
+		return {
+			r: ((n >> 16) & 255) / 255,
+			g: ((n >> 8) & 255) / 255,
+			b: (n & 255) / 255,
+			a: 1,
+		};
 	}
 	return null;
 }
@@ -132,12 +141,23 @@ function validateBrand(brandDir) {
 	}
 
 	const color = brand.foundations && brand.foundations.color;
-	if (!color || typeof color !== "object" || !color.brand || typeof color.brand !== "object") {
-		errors.push("Missing foundations.color.brand (need at least one of 1–6)");
+	if (
+		!color ||
+		typeof color !== "object" ||
+		!color.brand ||
+		typeof color.brand !== "object"
+	) {
+		errors.push(
+			"Missing foundations.color.brand (need at least one of 1–6)",
+		);
 	} else {
-		const present = Object.keys(color.brand).filter((k) => /^[1-6]$/.test(k));
+		const present = Object.keys(color.brand).filter((k) =>
+			/^[1-6]$/.test(k),
+		);
 		if (present.length === 0) {
-			errors.push("foundations.color.brand must define at least one of 1–6");
+			errors.push(
+				"foundations.color.brand must define at least one of 1–6",
+			);
 		}
 	}
 
@@ -145,11 +165,16 @@ function validateBrand(brandDir) {
 	if (!semantic || typeof semantic !== "object") {
 		errors.push("Missing foundations.color.semantic");
 	} else {
-		for (const key of STATUS_SEMANTIC_FAMILY_KEYS) {
+		for (const key of SEMANTIC_HUE_KEYS) {
 			if (semantic[key] === undefined) {
 				errors.push(`Missing foundations.color.semantic.${key}`);
 			}
 		}
+	}
+
+	const tone = brand.foundations && brand.foundations.tone;
+	if (!tone || typeof tone !== "object") {
+		errors.push("Missing foundations.tone");
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
@@ -305,21 +330,48 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
-		if (!isBadgeBorderColorPath(jsonPathKey)) continue;
+		if (!isBadgeBorderPath(jsonPathKey)) continue;
 		const raw = getPath(brand, jsonPathKey);
 		if (raw === undefined) continue;
-		if (!isBadgeBorderColorName(raw)) {
+		if (!isBadgeBorderBoolean(raw)) {
 			errors.push(
-				`${jsonPathKey} must be ${BADGE_BORDER_COLOR_NAMES.join(" or ")} (got ${JSON.stringify(raw)})`,
+				`${jsonPathKey} must be true or false (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isTonePath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isToneValue(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a number between 0 and 1 (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}
 
 	const pairs = [
-		["components.slide.canvas.foreground", "components.slide.canvas.background", "slide canvas foreground on slide canvas background"],
-		["components.cover.canvas.foreground", "components.cover.canvas.background", "cover canvas foreground on cover canvas background"],
-		["components.slide.surface.foreground", "components.slide.surface.background", "slide surface foreground on slide surface background"],
-		["components.cover.surface.foreground", "components.cover.surface.background", "cover surface foreground on cover surface background"],
+		[
+			"components.slide.canvas.foreground",
+			"components.slide.canvas.background",
+			"slide canvas foreground on slide canvas background",
+		],
+		[
+			"components.cover.canvas.foreground",
+			"components.cover.canvas.background",
+			"cover canvas foreground on cover canvas background",
+		],
+		[
+			"components.slide.surface.foreground",
+			"components.slide.surface.background",
+			"slide surface foreground on slide surface background",
+		],
+		[
+			"components.cover.surface.foreground",
+			"components.cover.surface.background",
+			"cover surface foreground on cover surface background",
+		],
 	];
 
 	for (const [fgPath, bgPath, label] of pairs) {
@@ -339,8 +391,10 @@ function validateBrand(brandDir) {
 		}
 		const fg = parseColor(fgResolved);
 		const bg = parseColor(bgResolved);
-		if (fgResolved && !fg) errors.push(`${fgPath} resolved to non-color: ${fgResolved}`);
-		if (bgResolved && !bg) errors.push(`${bgPath} resolved to non-color: ${bgResolved}`);
+		if (fgResolved && !fg)
+			errors.push(`${fgPath} resolved to non-color: ${fgResolved}`);
+		if (bgResolved && !bg)
+			errors.push(`${bgPath} resolved to non-color: ${bgResolved}`);
 		if (fg && bg) {
 			const ink = compositeOn(fg, bg);
 			const ratio = contrast(ink, bg);
@@ -361,24 +415,30 @@ function validateBrand(brandDir) {
 		errors.push(error.message);
 	}
 	const slideBg = parseColor(slideBgResolved);
+	const toneStrong = getPath(brand, "foundations.tone.strong");
 
-	const contrastGroups = CARD_COLOR_FAMILY_KEYS.map(
-		(family) => `components.card.${family}`,
-	);
-	for (const group of contrastGroups) {
-			const fgPath = `${group}.foregroundStrong`;
-			const bgPath = `${group}.backgroundBase`;
+	function checkSurfaceContrast(component, familyKeys) {
+		for (const family of familyKeys) {
+			const fgPath = `components.${component}.foreground.${family}`;
+			const bgPath = `components.${component}.background.${family}`;
 			let fg;
 			let bg;
 			try {
-				fg = parseColor(resolveColorRef(brand, getPath(brand, fgPath), fgPath));
+				fg = parseColor(
+					resolveColorRef(brand, getPath(brand, fgPath), fgPath),
+				);
 			} catch (error) {
 				errors.push(error.message);
 			}
 			try {
-				bg = parseColor(resolveColorRef(brand, getPath(brand, bgPath), bgPath));
+				bg = parseColor(
+					resolveColorRef(brand, getPath(brand, bgPath), bgPath),
+				);
 			} catch (error) {
 				errors.push(error.message);
+			}
+			if (fg && typeof toneStrong === "number" && toneStrong < 1) {
+				fg = { ...fg, a: (fg.a === undefined ? 1 : fg.a) * toneStrong };
 			}
 			if (!fg && getPath(brand, fgPath) !== undefined) {
 				/* resolve error already recorded */
@@ -392,17 +452,25 @@ function validateBrand(brandDir) {
 			}
 			if (fg && bg) {
 				const canvas =
-					bg.a < 1 && slideBg ? slideBg : bg.a < 1 ? { r: 1, g: 1, b: 1, a: 1 } : bg;
+					bg.a < 1 && slideBg
+						? slideBg
+						: bg.a < 1
+							? { r: 1, g: 1, b: 1, a: 1 }
+							: bg;
 				const fill = compositeOn(bg, canvas);
 				const ink = compositeOn(fg, fill);
 				const ratio = contrast(ink, fill);
 				if (ratio < 4.5) {
 					errors.push(
-						`${group} foregroundStrong on backgroundBase contrast ${ratio.toFixed(2)} < 4.5`,
+						`${fgPath} on background contrast ${ratio.toFixed(2)} < 4.5`,
 					);
 				}
 			}
+		}
 	}
+
+	checkSurfaceContrast("card", CARD_COLOR_FAMILY_KEYS);
+	checkSurfaceContrast("callout", CALLOUT_COLOR_FAMILY_KEYS);
 
 	function checkLogoSvg(file, filePath) {
 		if (!fs.existsSync(filePath)) {
@@ -411,13 +479,19 @@ function validateBrand(brandDir) {
 		}
 		const svg = fs.readFileSync(filePath, "utf8");
 		if (!/<svg[^>]*viewBox=/i.test(svg)) {
-			errors.push(`${file} needs a viewBox on the root <svg> so it can be used as an <img>.`);
+			errors.push(
+				`${file} needs a viewBox on the root <svg> so it can be used as an <img>.`,
+			);
 		}
 		if (/currentColor/.test(svg)) {
-			warnings.push(`${file} uses currentColor; bake fills so brand colors are not overwritten.`);
+			warnings.push(
+				`${file} uses currentColor; bake fills so brand colors are not overwritten.`,
+			);
 		}
 		if (/<symbol[\s\S]*id=/.test(svg)) {
-			warnings.push(`${file} is a <symbol> sprite; use a standalone SVG with baked fills.`);
+			warnings.push(
+				`${file} is a <symbol> sprite; use a standalone SVG with baked fills.`,
+			);
 		}
 	}
 
@@ -431,7 +505,10 @@ function main() {
 	const brandDir = process.argv[2];
 	if (!brandDir) usage();
 	const { errors, warnings, brand } = validateBrand(brandDir);
-	if (brand) console.log(`Brand: ${(brand.foundations && brand.foundations.basic && brand.foundations.basic.name) || slug}`);
+	if (brand)
+		console.log(
+			`Brand: ${(brand.foundations && brand.foundations.basic && brand.foundations.basic.name) || slug}`,
+		);
 	for (const warning of warnings) console.warn(`warning: ${warning}`);
 	if (errors.length) {
 		for (const error of errors) console.error(`error: ${error}`);

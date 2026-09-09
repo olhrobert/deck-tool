@@ -42,7 +42,7 @@ Node types: `frame`, `instance`, `text`, `slot`.
 
 Utility class → token examples: `gap-10` → `spacing/10`, `p-20` + `pb-4` → padding 20 then bottom 4, `flex-1` / `grow` / `w-full` → FILL, `border-t` → top stroke `color/slide-surface-border`.
 
-`<body-copy size="sm|md|lg">` maps to `--body-size-sm|md|lg` (brand type-scale steps; default `md` = `--text-size-400`). Primitive `<text size="350">` still resolves to `--text-size-*`. `text[color="strong|subtle|base"]` plus `context="slide|surface|cover"` maps to `color/slide-foreground-*`, `color/slide-surface-foreground-*`, or `color/cover-foreground-*`. Attribution slot text is forced to `size/300` to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
+`<body-copy size="sm|md|lg">` maps to `--body-size-sm|md|lg` (brand type-scale steps; default `md` = `--text-size-400`). Primitive `<text size="350">` still resolves to `--text-size-*`. `text[tone="strong|subtle|base"]` plus `context="slide|surface|cover"` maps to `color/slide-foreground-*`, `color/slide-surface-foreground-*`, or `color/cover-foreground-*`. Attribution slot text is forced to `size/300` to match CSS, even if the markup omits `size`. Bind IR `typography.family/weight/size`. Apply `lineHeight` and `letterSpacing` as `{ unit: "PERCENT", value }` (CSS × 100). Do not apply text styles.
 
 ## Push sequence
 

@@ -43,7 +43,7 @@ Showcase always reflects the current state of the library. Decks contain a **cop
 
 **Status:** Done.
 
-The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Foundations (Brand / Type / Layout), Components (Attribution box / Badge / Callout / Card / Slide footer / Slide title), and Slide presets (Title / Content) in the sidebar; full slide chrome (width fills up to `--slide-max-width`, height 800). Token roles are cover / slide / surface — not primary / secondary.
+The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Foundations (Brand / Type / Layout), Components (Attribution box / Badge / Callout / Card / Slide footer / Slide title), and Slide presets (Title / Chapter / Content) in the sidebar; full slide chrome (width fills up to `--slide-max-width`, height 800). Token roles are cover / slide / surface — not primary / secondary.
 
 ---
 
@@ -57,10 +57,10 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Found
 
 - Showcase `fetch()`es live component fragments and presets (no inlined fork).
 - `registry.json` + `refresh-components.js` restamp Slide Title, Card, Callout, Badge, Slide Footer, and Attribution in a deck without wiping unique layout.
-- Title presets (01–05), footers (`footer-01` wrapping `<slide-footer>`), one content slide (`content-slide-3-cards`: header, three-card row, slide-footer).
+- Title presets (`title-slide-01`…`05`, each with and without attribution), chapter slides (`chapter-slide-01` mid stack, `chapter-slide-02` split), one content slide (`content-slide-3-cards`: header, three-card row, slide-footer). Slide footer lives as a component only (`design-system/components/slide-footer/`).
 - Card component lives at `design-system/components/card/card.html`. Callout lives at `design-system/components/callout/callout.html`. Badge lives at `design-system/components/badge/badge.html`. Slide footer lives at `design-system/components/slide-footer/slide-footer.html`.
-- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution). Semantic type tags are presets of `<text>` (`color`, `size`, `uppercase`, `context`). `<copy>` is gone.
-- Cover ink uses `context="cover"` with `color="strong|base|subtle"`. Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`). `<copy>` is gone.
+- Cover ink uses `context="cover"` with `tone="strong|base|subtle"`. Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 
 ### Still open
