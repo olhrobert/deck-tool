@@ -159,6 +159,21 @@ function spacingToken(value) {
 	return `spacing/${value}`;
 }
 
+const STAMP_DEFAULT_SIZE = "6";
+const STAMP_ICON_SCALE = 0.6;
+const STAMP_TEXT_SCALE = 0.6;
+
+function spacingStepPx(step) {
+	const key = String(step == null ? STAMP_DEFAULT_SIZE : step);
+	if (key === "0") return 0;
+	if (key === "0-25") return 1;
+	if (key === "0-5") return 2;
+	if (key === "1-5") return 6;
+	if (key === "2-5") return 10;
+	const n = Number(key);
+	return Number.isFinite(n) ? n * 4 : 24;
+}
+
 function parseUtilityLayout(node) {
 	const classes = classList(node);
 	const layout = {
@@ -571,7 +586,8 @@ function walk(node, warnings, env) {
 	}
 
 	if (node.tag === "slide-title-group") {
-		const pre = findChild(node, "slide-pretitle");
+		const pre =
+			findChild(node, "slide-pretitle") || findChild(node, "badge");
 		const title = findChild(node, "slide-title");
 		const sub = findChild(node, "slide-subtitle");
 		const size = attr(title, "size", attr(node, "size", "md"));
@@ -589,7 +605,7 @@ function walk(node, warnings, env) {
 			},
 			layoutSizingHorizontal: "FILL",
 			layoutSizingVertical: "HUG",
-			note: "Always set size; Figma defaultVariant is lg, CSS default is md.",
+			note: "Always set size; Figma defaultVariant is lg, CSS default is md. Pretitle may be <slide-pretitle> or <badge>.",
 		};
 	}
 
@@ -687,6 +703,73 @@ function walk(node, warnings, env) {
 		};
 	}
 
+	if (node.tag === "stamp-icon") {
+		const icon = attr(node, "icon", "");
+		const box = Math.round(
+			(env.stampPx || spacingStepPx(STAMP_DEFAULT_SIZE)) * STAMP_ICON_SCALE,
+		);
+		return {
+			type: "frame",
+			name: icon ? `Stamp icon/${icon}` : "Stamp icon",
+			width: box,
+			height: box,
+			layoutSizingHorizontal: "FIXED",
+			layoutSizingVertical: "FIXED",
+			note: "No Figma Stamp Icon component yet; emit a sized frame for the Remix-style mark.",
+		};
+	}
+
+	if (node.tag === "stamp-text") {
+		const characters = collapseText(collectText(node));
+		if (!characters) return null;
+		const stampPx = env.stampPx || spacingStepPx(STAMP_DEFAULT_SIZE);
+		return {
+			type: "text",
+			name: "Stamp text",
+			characters,
+			typography: typeTokens({
+				family: "body",
+				weight: attr(node, "weight", "medium"),
+				size: "300",
+			}),
+			fontSizePx: Math.round(stampPx * STAMP_TEXT_SCALE),
+			color: colorFromNode(node, env.inkContext),
+			note: "Stamp type is brand text.scale × stamp size, not a type-scale step.",
+		};
+	}
+
+	if (node.tag === "stamp") {
+		const sizeStep = attr(node, "size", STAMP_DEFAULT_SIZE);
+		const stampPx = spacingStepPx(sizeStep);
+		const nextEnv = { ...env, stampPx };
+		return {
+			type: "frame",
+			name: "Stamp",
+			layout: "HORIZONTAL",
+			width: stampPx,
+			height: stampPx,
+			children: (node.children || [])
+				.map((child) => walk(child, warnings, nextEnv))
+				.filter(Boolean),
+			layoutSizingHorizontal: "FIXED",
+			layoutSizingVertical: "FIXED",
+			note: "No Figma Stamp component yet; emit a fixed square. Occupant is stamp-text or stamp-icon.",
+		};
+	}
+
+	if (node.tag === "badge-icon") {
+		const icon = attr(node, "icon", "");
+		return {
+			type: "frame",
+			name: icon ? `Badge icon/${icon}` : "Badge icon",
+			width: 12,
+			height: 12,
+			layoutSizingHorizontal: "FIXED",
+			layoutSizingVertical: "FIXED",
+			note: "No Figma Badge Icon component yet; emit a sized frame for the Remix-style mark.",
+		};
+	}
+
 	if (node.tag === "badge") {
 		return {
 			type: "frame",
@@ -698,7 +781,7 @@ function walk(node, warnings, env) {
 			layoutSizingHorizontal:
 				attr(node, "width", "fill") === "fill" ? "FILL" : "HUG",
 			layoutSizingVertical: "HUG",
-			note: "No Figma Badge component yet; emit a hug frame with label text.",
+			note: "No Figma Badge component yet; emit a hug frame with optional icons + label text.",
 		};
 	}
 

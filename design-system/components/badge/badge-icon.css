@@ -1,0 +1,22 @@
+/* Badge icon
+   Optional leading / trailing mark. `icon` is an assets/icons filename
+   without `.svg`. Paint follows badge text ink via mask + currentColor.
+*/
+
+badge-icon {
+	display: none;
+	flex: 0 0 auto;
+	width: var(--badge-icon-size);
+	height: var(--badge-icon-size);
+	color: var(--_ink-strong, var(--_badge-ink-strong));
+	background-color: currentColor;
+	-webkit-mask: var(--_icon) center / contain no-repeat;
+	mask: var(--_icon) center / contain no-repeat;
+	-webkit-mask-source-type: alpha;
+	mask-mode: alpha;
+	pointer-events: none;
+}
+
+badge-icon[icon] {
+	display: block;
+}

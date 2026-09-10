@@ -63,17 +63,47 @@
 				gap: var(--spacing-12);
 			}
 
+			.showcase-h1,
+			.showcase-h2,
+			.showcase-h3,
+			.showcase-h4 {
+				margin: 0;
+				display: block;
+			}
+
+			.showcase-h1,
+			.showcase-h2,
+			.showcase-h3 {
+				font-family: var(--body-font-family, system-ui, sans-serif);
+				font-weight: var(--font-weight-bold);
+				line-height: 1.2;
+				letter-spacing: 0%;
+			}
+
+			.showcase-h1 {
+				font-size: var(--text-size-800);
+			}
+
+			.showcase-h2 {
+				font-size: var(--text-size-600);
+			}
+
+			.showcase-h3 {
+				font-size: var(--text-size-500);
+			}
+
+			.showcase-h4 {
+				font-family: var(--body-font-family, system-ui, sans-serif);
+				font-weight: var(--font-weight-regular);
+				font-size: var(--text-size-300);
+				line-height: 1.2;
+				letter-spacing: 0%;
+			}
+
 			.showcase-subgroup {
 				display: flex;
 				flex-direction: column;
 				gap: var(--spacing-4);
-			}
-
-			.showcase-label {
-				font-family: system-ui, sans-serif;
-				font-weight: var(--body-font-weight);
-				font-size: var(--text-size-300);
-				color: var(--color-slide-foreground-subtle);
 			}
 
 			.showcase-deck deck {
@@ -240,10 +270,42 @@
 				gap: var(--spacing-3);
 			}
 
+			.stamp-matrix {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-4);
+			}
+
+			.stamp-matrix-row {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: var(--spacing-3);
+			}
+
+			.stamp-card-row {
+				display: flex;
+				gap: var(--spacing-4);
+				align-items: stretch;
+			}
+
+			.stamp-list {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-3);
+			}
+
+			.stamp-list-row {
+				display: flex;
+				align-items: center;
+				gap: var(--spacing-3);
+			}
+
 			.showcase-group[data-section="brand"],
 			.showcase-group[data-section="typography"],
 			.showcase-group[data-section="attribution-box"],
 			.showcase-group[data-section="badge"],
+			.showcase-group[data-section="stamp"],
 			.showcase-group[data-section="callout"],
 			.showcase-group[data-section="card"],
 			.showcase-group[data-section="slide-title"] {
@@ -381,6 +443,11 @@
 						>Badge</a
 					>
 					<a
+						href="#stamp"
+						data-filter="stamp"
+						>Stamp</a
+					>
+					<a
 						href="#callout"
 						data-filter="callout"
 						>Callout</a
@@ -428,8 +495,15 @@
 			<div
 				class="showcase-group"
 				data-section="brand"
-				id="brand-showcase"
-			></div>
+			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Brand</text
+				>
+				<div id="brand-showcase"></div>
+			</div>
 
 			<!-- === TITLE SLIDES === -->
 
@@ -437,12 +511,18 @@
 				class="showcase-group"
 				data-section="title-slides"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Title slides</text
+				>
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-01.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-01.html</text
 					>
 				</div>
@@ -452,7 +532,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-01-with-attribution.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-01-with-attribution.html</text
 					>
 				</div>
@@ -462,7 +542,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-02.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-02.html</text
 					>
 				</div>
@@ -472,7 +552,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-02-with-attribution.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-02-with-attribution.html</text
 					>
 				</div>
@@ -482,7 +562,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-03.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-03.html</text
 					>
 				</div>
@@ -492,7 +572,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-03-with-attribution.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-03-with-attribution.html</text
 					>
 				</div>
@@ -502,7 +582,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-04.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-04.html</text
 					>
 				</div>
@@ -512,28 +592,8 @@
 					data-preset="deck-title"
 					data-src="../../presets/title-slides/title-slide-04-with-attribution.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/title-slides/title-slide-04-with-attribution.html</text
-					>
-				</div>
-
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-05.html"
-				>
-					<text class="showcase-label"
-						>presets/title-slides/title-slide-05.html</text
-					>
-				</div>
-
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-05-with-attribution.html"
-				>
-					<text class="showcase-label"
-						>presets/title-slides/title-slide-05-with-attribution.html</text
 					>
 				</div>
 			</div>
@@ -544,12 +604,18 @@
 				class="showcase-group"
 				data-section="chapter-slides"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Chapter slides</text
+				>
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
 					data-src="../../presets/chapter-slides/chapter-slide-01.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/chapter-slides/chapter-slide-01.html</text
 					>
 				</div>
@@ -559,7 +625,7 @@
 					data-preset="deck-title"
 					data-src="../../presets/chapter-slides/chapter-slide-02.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/chapter-slides/chapter-slide-02.html</text
 					>
 				</div>
@@ -571,12 +637,18 @@
 				class="showcase-group"
 				data-section="content-slides"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Content slides</text
+				>
 				<div
 					class="showcase-subgroup showcase-deck"
 					data-preset="deck-title"
 					data-src="../../presets/content-slides/content-slide-3-cards.html"
 				>
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>presets/content-slides/content-slide-3-cards.html</text
 					>
 				</div>
@@ -589,8 +661,14 @@
 				class="showcase-group"
 				data-section="slide-footer"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Slide footer</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-footer/slide-footer.html
 						context="slide"</text
 					>
@@ -602,7 +680,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-footer/slide-footer.html
 						context="cover"</text
 					>
@@ -625,8 +703,14 @@
 				class="showcase-group"
 				data-section="attribution-box"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Attribution box</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/attribution-box/attribution-box.html</text
 					>
 					<div
@@ -642,18 +726,96 @@
 				class="showcase-group"
 				data-section="badge"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Badge</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
-						>components/badge/badge.html (brand default border)</text
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>components/badge/badge.html · text only</text
 					>
 					<div
 						class="badge-matrix"
-						id="badge-showcase"
+						id="badge-showcase-text"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>components/badge/badge.html · with icons</text
+					>
+					<div
+						class="badge-matrix"
+						id="badge-showcase-icons"
 					></div>
 				</div>
 				<div
 					class="showcase-subgroup"
 					id="badge-settings"
+				></div>
+			</div>
+
+			<!-- === STAMP === -->
+
+			<div
+				class="showcase-group"
+				data-section="stamp"
+			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Stamp</text
+				>
+				<div class="showcase-subgroup">
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>components/stamp/stamp.html · numbers (omit size = brand default)</text
+					>
+					<div
+						class="stamp-matrix"
+						id="stamp-showcase-numbers"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>components/stamp/stamp.html · icons</text
+					>
+					<div
+						class="stamp-matrix"
+						id="stamp-showcase-icons"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>size="4" … "16" (icon and type scale with the square)</text
+					>
+					<div
+						class="stamp-matrix-row"
+						id="stamp-showcase-sizes"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>In a card row</text
+					>
+					<div
+						class="stamp-card-row"
+						id="stamp-showcase-cards"
+					></div>
+				</div>
+				<div class="showcase-subgroup">
+					<text class="showcase-h4" tone="subtle" context="slide"
+						>In a numbered list</text
+					>
+					<div
+						class="stamp-list"
+						id="stamp-showcase-list"
+					></div>
+				</div>
+				<div
+					class="showcase-subgroup"
+					id="stamp-settings"
 				></div>
 			</div>
 
@@ -663,8 +825,14 @@
 				class="showcase-group"
 				data-section="callout"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Callout</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/callout/callout.html</text
 					>
 					<div
@@ -684,8 +852,14 @@
 				class="showcase-group"
 				data-section="card"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Card</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/card/card.html · basic</text
 					>
 					<div
@@ -694,7 +868,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/card/card.html · stripe</text
 					>
 					<div
@@ -714,8 +888,14 @@
 				class="showcase-group"
 				data-section="slide-title"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Slide title</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-title-group-lg.html</text
 					>
 					<div
@@ -724,7 +904,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-title-group-md.html</text
 					>
 					<div
@@ -733,7 +913,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-title-group-sm.html</text
 					>
 					<div
@@ -753,8 +933,14 @@
 				class="showcase-group"
 				data-section="layout"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Layout</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/layout/slot.html</text
 					>
 					<div
@@ -763,7 +949,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/layout/stack.html</text
 					>
 					<div
@@ -772,7 +958,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/layout/header-container.html</text
 					>
 					<div
@@ -781,7 +967,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/layout/content-container.html</text
 					>
 					<div
@@ -790,7 +976,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/layout/footer-container.html</text
 					>
 					<div
@@ -799,7 +985,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/layout/slide.html</text
 					>
 					<div
@@ -815,8 +1001,14 @@
 				class="showcase-group"
 				data-section="typography"
 			>
+				<text
+					class="showcase-h1"
+					tone="strong"
+					context="slide"
+					>Type</text
+				>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/cover-title.html</text
 					>
 					<div
@@ -825,7 +1017,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-title-lg.html</text
 					>
 					<div
@@ -834,7 +1026,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-title-md.html</text
 					>
 					<div
@@ -843,7 +1035,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-title-sm.html</text
 					>
 					<div
@@ -852,7 +1044,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-pretitle.html</text
 					>
 					<div
@@ -861,7 +1053,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/card/presets/card-pretitle.html</text
 					>
 					<div
@@ -870,7 +1062,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/slide-title/slide-subtitle.html</text
 					>
 					<div
@@ -879,7 +1071,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/paragraph-title-lg.html</text
 					>
 					<div
@@ -888,7 +1080,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/paragraph-title-md.html</text
 					>
 					<div
@@ -897,7 +1089,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/paragraph-title-sm.html</text
 					>
 					<div
@@ -906,7 +1098,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/body-copy-lg.html</text
 					>
 					<div
@@ -915,7 +1107,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/body-copy-md.html</text
 					>
 					<div
@@ -924,7 +1116,7 @@
 					></div>
 				</div>
 				<div class="showcase-subgroup">
-					<text class="showcase-label"
+					<text class="showcase-h4" tone="subtle" context="slide"
 						>components/typography/body-copy-sm.html</text
 					>
 					<div
@@ -963,6 +1155,7 @@
 			}
 
 			let currentBrand = brandFromUrl();
+			let currentBrandSettings = null;
 			syncBrandTabs(currentBrand);
 			if (!new URLSearchParams(location.search).has("brand")) {
 				setBrandInUrl(currentBrand);
@@ -1055,11 +1248,19 @@
 				"informative",
 			];
 
-			function cardCombosForLayout(layout) {
-				return [
+			function cardCombosForLayout(layout, variant) {
+				const combos = [
 					{ emphasis: "false", label: "quiet", layout },
 					{ emphasis: "true", label: "emphasis", layout },
 				];
+				if (variant === "neutral") {
+					combos.push({
+						emphasis: "inverted",
+						label: "inverted",
+						layout,
+					});
+				}
+				return combos;
 			}
 
 			function titleCase(value) {
@@ -1094,14 +1295,14 @@
 			function renderCardMatrix(rootId, layout) {
 				const root = document.getElementById(rootId);
 				if (!root) return;
-				const combos = cardCombosForLayout(layout);
-				root.innerHTML = SEMANTIC_VARIANTS.map(
-					(variant) => `
+				root.innerHTML = SEMANTIC_VARIANTS.map((variant) => {
+					const combos = cardCombosForLayout(layout, variant);
+					return `
 						<div class="card-matrix-row">
 							${combos.map((combo) => renderShowcaseCard(variant, combo)).join("")}
 						</div>
-					`,
-				).join("");
+					`;
+				}).join("");
 			}
 
 			function renderCardShowcase() {
@@ -1127,32 +1328,192 @@
 				root.innerHTML = SEMANTIC_VARIANTS.map(renderShowcaseCallout).join("");
 			}
 
-			function renderShowcaseBadge(variant, combo) {
+			function renderShowcaseBadge(variant, combo, withIcons) {
+				const label = `${titleCase(variant)} · ${titleCase(combo.label)}`;
+				const icons = withIcons
+					? `
+						<badge-icon data-slot="leading" icon="checkbox-circle-fill" aria-hidden="true"></badge-icon>
+						<badge-text tone="strong" context="surface">${label}</badge-text>
+						<badge-icon data-slot="trailing" icon="arrow-right-s-line" aria-hidden="true"></badge-icon>
+					`
+					: `
+						<badge-text tone="strong" context="surface">${label}</badge-text>
+					`;
 				return `
 					<badge
 						variant="${variant}"
 						emphasis="${combo.emphasis}"
-					>
-						<badge-text tone="strong" context="surface">${titleCase(variant)} · ${titleCase(combo.label)}</badge-text>
-					</badge>
+					>${icons}</badge>
 				`;
 			}
 
-			function renderBadgeShowcase() {
-				const root = document.getElementById("badge-showcase");
-				if (!root) return;
+			function emphasisCombosForVariant(variant) {
 				const combos = [
-					{ emphasis: "false", label: "quiet" },
-					{ emphasis: "true", label: "emphasis" },
+					{ emphasis: "false", label: "quiet", number: "1" },
+					{ emphasis: "true", label: "emphasis", number: "2" },
 				];
-				// Omit border attr so the brand `components.badge.border` default applies.
-				root.innerHTML = SEMANTIC_VARIANTS.map(
-					(variant) => `
-						<div class="badge-matrix-row">
-							${combos.map((combo) => renderShowcaseBadge(variant, combo)).join("")}
+				if (variant === "neutral") {
+					combos.push({
+						emphasis: "inverted",
+						label: "inverted",
+						number: "3",
+					});
+				}
+				return combos;
+			}
+
+			function renderBadgeShowcase() {
+				// Omit border attr so the brand `components.badge.border.hasBorderByDefault` applies.
+				function renderMatrix(rootId, withIcons) {
+					const root = document.getElementById(rootId);
+					if (!root) return;
+					root.innerHTML = SEMANTIC_VARIANTS.map((variant) => {
+						const combos = emphasisCombosForVariant(variant);
+						return `
+							<div class="badge-matrix-row">
+								${combos.map((combo) => renderShowcaseBadge(variant, combo, withIcons)).join("")}
+							</div>
+						`;
+					}).join("");
+				}
+				renderMatrix("badge-showcase-text", false);
+				renderMatrix("badge-showcase-icons", true);
+			}
+
+			const STAMP_ICONS = {
+				neutral: "star-fill",
+				positive: "checkbox-circle-fill",
+				warning: "error-warning-fill",
+				negative: "close-circle-fill",
+				informative: "information-fill",
+			};
+
+			function renderShowcaseStamp(variant, combo, kind, size) {
+				const sizeAttr = size ? ` size="${size}"` : "";
+				const occupant =
+					kind === "icon"
+						? `<stamp-icon data-slot="mark" icon="${STAMP_ICONS[variant]}" aria-hidden="true"></stamp-icon>`
+						: `<stamp-text data-slot="mark">${combo.number}</stamp-text>`;
+				return `
+					<stamp
+						variant="${variant}"
+						emphasis="${combo.emphasis}"${sizeAttr}
+					>${occupant}</stamp>
+				`;
+			}
+
+			function renderStampShowcase() {
+				const numbersRoot = document.getElementById(
+					"stamp-showcase-numbers",
+				);
+				if (numbersRoot) {
+					numbersRoot.innerHTML = SEMANTIC_VARIANTS.map((variant) => {
+						const combos = emphasisCombosForVariant(variant);
+						return `
+							<div class="stamp-matrix-row">
+								${combos.map((combo) => renderShowcaseStamp(variant, combo, "number")).join("")}
+							</div>
+						`;
+					}).join("");
+				}
+				const iconsRoot = document.getElementById(
+					"stamp-showcase-icons",
+				);
+				if (iconsRoot) {
+					iconsRoot.innerHTML = SEMANTIC_VARIANTS.map((variant) => {
+						const combos = emphasisCombosForVariant(variant);
+						return `
+							<div class="stamp-matrix-row">
+								${combos.map((combo) => renderShowcaseStamp(variant, combo, "icon")).join("")}
+							</div>
+						`;
+					}).join("");
+				}
+				const sizesRoot = document.getElementById(
+					"stamp-showcase-sizes",
+				);
+				if (sizesRoot) {
+					const steps = ["4", "6", "8", "12", "16"];
+					sizesRoot.innerHTML = [
+						...steps.map((size, index) =>
+							renderShowcaseStamp(
+								"neutral",
+								{ emphasis: "false", number: String(index + 1) },
+								"number",
+								size,
+							),
+						),
+						...steps.map((size) =>
+							renderShowcaseStamp(
+								"informative",
+								{ emphasis: "true", number: "1" },
+								"icon",
+								size,
+							),
+						),
+					].join("");
+				}
+				const cardsRoot = document.getElementById(
+					"stamp-showcase-cards",
+				);
+				if (cardsRoot) {
+					const cards = [
+						{
+							variant: "positive",
+							icon: "checkbox-circle-fill",
+							title: "On track",
+						},
+						{
+							variant: "warning",
+							icon: "error-warning-fill",
+							title: "At risk",
+						},
+						{
+							variant: "informative",
+							icon: "information-fill",
+							title: "Watch",
+						},
+					];
+					cardsRoot.innerHTML = cards
+						.map(
+							(card) => `
+						<card
+							class="flex-1 min-w-0"
+							variant="neutral"
+							emphasis="false"
+							padding="md"
+							gap="sm"
+						>
+							<stamp variant="${card.variant}" emphasis="true" size="8">
+								<stamp-icon data-slot="mark" icon="${card.icon}" aria-hidden="true"></stamp-icon>
+							</stamp>
+							<card-title tone="strong" context="surface">${card.title}</card-title>
+							<body-copy size="sm" tone="base" context="surface">Stamp at the top of the card.</body-copy>
+						</card>
+					`,
+						)
+						.join("");
+				}
+				const listRoot = document.getElementById("stamp-showcase-list");
+				if (listRoot) {
+					const items = [
+						"Confirm the scope with the client",
+						"Map the current process",
+						"Identify the first intervention",
+					];
+					listRoot.innerHTML = items
+						.map(
+							(label, index) => `
+						<div class="stamp-list-row">
+							<stamp variant="neutral" emphasis="true">
+								<stamp-text data-slot="mark">${index + 1}</stamp-text>
+							</stamp>
+							<body-copy size="md" tone="base" context="slide">${label}</body-copy>
 						</div>
 					`,
-				).join("");
+						)
+						.join("");
+				}
 			}
 
 			function escapeHtml(value) {
@@ -1277,17 +1638,12 @@
 				);
 			}
 
-			function paragraphTitleSize(depth) {
-				if (depth <= 1) return "lg";
-				return "md";
-			}
-
 			function renderBrandGroupHeading(key, depth) {
 				const label = escapeHtml(formatSettingLabel(key));
 				if (depth <= 1) {
-					return `<paragraph-title size="${paragraphTitleSize(depth)}" tone="strong" context="slide">${label}</paragraph-title>`;
+					return `<text class="showcase-h3" tone="strong" context="slide">${label}</text>`;
 				}
-				return `<text size="400" weight="regular" tone="subtle" context="slide">${label}</text>`;
+				return `<text class="showcase-h4" tone="subtle" context="slide">${label}</text>`;
 			}
 
 			function renderSettingsRow(title, displayValue, fill) {
@@ -1355,6 +1711,7 @@
 
 			const COMPONENT_SETTINGS = {
 				badge: (brand) => brand.components && brand.components.badge,
+				stamp: (brand) => brand.components && brand.components.stamp,
 				callout: (brand) =>
 					brand.components && brand.components.callout,
 				card: (brand) => brand.components && brand.components.card,
@@ -1459,7 +1816,7 @@
 							.join("");
 						return `
 							<div class="brand-settings-section" data-section="${escapeHtml(sectionKey)}">
-								<slide-title size="sm" tone="strong" context="slide">${escapeHtml(formatSettingLabel(sectionKey))}</slide-title>
+								<text class="showcase-h2" tone="strong" context="slide">${escapeHtml(formatSettingLabel(sectionKey))}</text>
 								<div class="brand-settings-section-body">
 									${groups}
 								</div>
@@ -1467,6 +1824,49 @@
 						`;
 					})
 					.join("");
+			}
+
+			function slidePretitleDefault(settings) {
+				const value =
+					settings &&
+					settings.components &&
+					settings.components.slide &&
+					settings.components.slide.pretitle &&
+					settings.components.slide.pretitle.default;
+				return value === "badge" ? "badge" : "text";
+			}
+
+			function pretitleLabelFromNode(node) {
+				if (!node) return "";
+				const badgeText = node.querySelector
+					? node.querySelector("badge-text")
+					: null;
+				return (badgeText || node).textContent.replace(/\s+/g, " ").trim();
+			}
+
+			function badgePretitleMarkup(label) {
+				return `<badge data-slot="pre" variant="neutral" emphasis="false"><badge-text data-slot="label" tone="strong" context="surface">${escapeHtml(label)}</badge-text></badge>`;
+			}
+
+			function textPretitleMarkup(label, context) {
+				return `<slide-pretitle data-slot="pre" tone="subtle" context="${escapeHtml(context)}">${escapeHtml(label)}</slide-pretitle>`;
+			}
+
+			function applySlidePretitleDefault(settings = currentBrandSettings) {
+				const kind = slidePretitleDefault(settings);
+				document.querySelectorAll("slide-title-group").forEach((group) => {
+					const pre = group.querySelector(':scope > [data-slot="pre"]');
+					if (!pre) return;
+					const tag = pre.tagName.toLowerCase();
+					const label = pretitleLabelFromNode(pre) || "Pre-title";
+					const cover = Boolean(group.closest("slide.bg-cover"));
+					const context = cover ? "cover" : "slide";
+					if (kind === "badge" && tag === "slide-pretitle") {
+						pre.outerHTML = badgePretitleMarkup(label);
+					} else if (kind === "text" && tag === "badge") {
+						pre.outerHTML = textPretitleMarkup(label, context);
+					}
+				});
 			}
 
 			async function loadBrandSettings(brand) {
@@ -1493,20 +1893,25 @@
 						try {
 							const settings = await loadBrandSettings(brand);
 							if (applyId !== brandApplyId) return;
+							currentBrandSettings = settings;
 							renderCardShowcase(settings);
 							renderCalloutShowcase();
 							renderBadgeShowcase();
+							renderStampShowcase();
 							renderBrandShowcase(settings);
 							renderComponentSettings(settings);
+							applySlidePretitleDefault(settings);
 						} catch (error) {
+							currentBrandSettings = null;
 							renderCardShowcase();
 							renderCalloutShowcase();
 							renderBadgeShowcase();
+							renderStampShowcase();
 							renderComponentSettings();
 							const root =
 								document.getElementById("brand-showcase");
 							if (root) {
-								root.innerHTML = `<div class="showcase-label" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load brand settings</div>`;
+								root.innerHTML = `<div class="showcase-h4" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load brand settings</div>`;
 							}
 						}
 						resolve();
@@ -1569,7 +1974,7 @@
 							} catch (e) {
 								slot.insertAdjacentHTML(
 									"beforeend",
-									`<div class="showcase-label" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load ${src}</div>`,
+									`<div class="showcase-h4" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load ${src}</div>`,
 								);
 								slot.dataset.loaded = "true";
 								slot.removeAttribute("data-src");
@@ -1618,6 +2023,7 @@
 				}
 
 				applyLogos(currentBrand);
+				applySlidePretitleDefault(currentBrandSettings);
 			}
 
 			// --- Filter tabs ---
@@ -1628,6 +2034,7 @@
 				"layout",
 				"attribution-box",
 				"badge",
+				"stamp",
 				"callout",
 				"card",
 				"slide-footer",

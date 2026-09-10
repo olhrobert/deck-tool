@@ -1,0 +1,16 @@
+/* Stamp-text occupant. Family / weight / scale are brand tokens. Size is
+   `--stamp-text-scale` × the stamp square (not a type-scale step). */
+
+stamp-text {
+	display: block;
+	margin: 0;
+	font-family: var(--stamp-text-font-family, system-ui, sans-serif);
+	font-weight: var(--stamp-text-font-weight);
+	font-size: calc(var(--stamp-text-scale) * 1em);
+	line-height: 1;
+	letter-spacing: 0%;
+	font-variant-numeric: tabular-nums;
+	text-align: center;
+	white-space: nowrap;
+	color: var(--_ink-strong, var(--_stamp-ink-strong));
+}

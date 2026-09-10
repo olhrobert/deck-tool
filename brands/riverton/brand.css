@@ -65,6 +65,7 @@
 	--color-slide-surface-background: rgb(255, 255, 255);
 	--color-slide-surface-foreground: rgb(12, 12, 15);
 	--color-slide-surface-border: rgba(12, 12, 15, 0.2);
+	--slide-pretitle-default: text;
 	--slide-pretitle-font-family: var(--font-family-base);
 	--slide-pretitle-font-weight: var(--font-weight-regular);
 	--slide-pretitle-text-transform: uppercase;
@@ -114,6 +115,8 @@
 	--color-neutral-quiet-foreground: rgb(12, 12, 15);
 	--card-neutral-emphasis-foreground: rgb(12, 12, 15);
 	--color-neutral-emphasis-foreground: rgb(12, 12, 15);
+	--card-neutral-inverted-foreground: rgb(255, 255, 255);
+	--color-neutral-inverted-foreground: rgb(255, 255, 255);
 	--card-positive-quiet-foreground: rgb(16, 110, 60);
 	--color-positive-quiet-foreground: rgb(16, 110, 60);
 	--card-positive-emphasis-foreground: rgb(255, 255, 255);
@@ -136,6 +139,8 @@
 	--color-neutral-quiet-background: rgb(255, 255, 255);
 	--card-neutral-emphasis-background: rgb(160, 203, 50);
 	--color-neutral-emphasis-background: rgb(160, 203, 50);
+	--card-neutral-inverted-background: rgb(12, 12, 15);
+	--color-neutral-inverted-background: rgb(12, 12, 15);
 	--card-positive-quiet-background: rgba(16, 110, 60, 0.1);
 	--color-positive-quiet-background: rgba(16, 110, 60, 0.1);
 	--card-positive-emphasis-background: rgb(16, 110, 60);
@@ -170,6 +175,8 @@
 	--color-neutral-quiet-border-subtle: rgba(12, 12, 15, 0.2);
 	--card-neutral-emphasis-border-subtle: rgba(12, 12, 15, 0.2);
 	--color-neutral-emphasis-border-subtle: rgba(12, 12, 15, 0.2);
+	--card-neutral-inverted-border-subtle: rgba(12, 12, 15, 0.2);
+	--color-neutral-inverted-border-subtle: rgba(12, 12, 15, 0.2);
 	--card-positive-quiet-border-subtle: rgba(16, 110, 60, 0.2);
 	--color-positive-quiet-border-subtle: rgba(16, 110, 60, 0.2);
 	--card-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
@@ -195,6 +202,8 @@
 	--color-neutral-quiet-stripe: rgb(160, 203, 50);
 	--card-neutral-emphasis-stripe: rgba(160, 203, 50, 0.5);
 	--color-neutral-emphasis-stripe: rgba(160, 203, 50, 0.5);
+	--card-neutral-inverted-stripe: rgba(160, 203, 50, 0.5);
+	--color-neutral-inverted-stripe: rgba(160, 203, 50, 0.5);
 	--card-positive-quiet-stripe: rgba(16, 110, 60, 0.5);
 	--color-positive-quiet-stripe: rgba(16, 110, 60, 0.5);
 	--card-positive-emphasis-stripe: rgb(16, 110, 60);
@@ -263,11 +272,101 @@
 	--callout-gap-md: var(--spacing-3);
 	--callout-gap-lg: var(--spacing-4);
 
-	/* badge */
+	/* badge — background */
+	--badge-neutral-quiet-background: rgb(255, 255, 255);
+	--badge-neutral-emphasis-background: rgb(160, 203, 50);
+	--badge-neutral-inverted-background: rgb(12, 12, 15);
+	--badge-positive-quiet-background: rgba(16, 110, 60, 0.1);
+	--badge-positive-emphasis-background: rgb(16, 110, 60);
+	--badge-negative-quiet-background: rgba(185, 28, 28, 0.1);
+	--badge-negative-emphasis-background: rgb(185, 28, 28);
+	--badge-warning-quiet-background: rgba(160, 60, 8, 0.1);
+	--badge-warning-emphasis-background: rgb(160, 60, 8);
+	--badge-informative-quiet-background: rgba(29, 78, 216, 0.1);
+	--badge-informative-emphasis-background: rgb(29, 78, 216);
+
+	/* badge — foreground */
+	--badge-neutral-quiet-foreground: rgb(12, 12, 15);
+	--badge-neutral-emphasis-foreground: rgb(12, 12, 15);
+	--badge-neutral-inverted-foreground: rgb(255, 255, 255);
+	--badge-positive-quiet-foreground: rgb(16, 110, 60);
+	--badge-positive-emphasis-foreground: rgb(255, 255, 255);
+	--badge-negative-quiet-foreground: rgb(185, 28, 28);
+	--badge-negative-emphasis-foreground: rgb(255, 255, 255);
+	--badge-warning-quiet-foreground: rgb(160, 60, 8);
+	--badge-warning-emphasis-foreground: rgb(255, 255, 255);
+	--badge-informative-quiet-foreground: rgb(29, 78, 216);
+	--badge-informative-emphasis-foreground: rgb(255, 255, 255);
+
+	/* badge — text */
+	--badge-text-font-family: var(--font-family-base);
+	--badge-text-font-weight: var(--font-weight-regular);
 	--badge-text-size: var(--text-size-300);
-	--badge-border-width: var(--border-size-sm);
+
+	/* badge — icon */
+	--badge-icon-size: var(--spacing-3);
+
+	/* badge — border */
+	--badge-border-width: var(--border-size-none);
 	--badge-border-radius: var(--border-radius-none);
-	--badge-background: rgb(255, 255, 255);
+	--badge-border-size: var(--border-size-sm);
+
+	/* badge — border color */
+	--badge-neutral-quiet-border: rgba(12, 12, 15, 0.2);
+	--badge-neutral-emphasis-border: rgba(12, 12, 15, 0.2);
+	--badge-neutral-inverted-border: rgba(12, 12, 15, 0.2);
+	--badge-positive-quiet-border: rgba(16, 110, 60, 0.2);
+	--badge-positive-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-negative-quiet-border: rgba(185, 28, 28, 0.2);
+	--badge-negative-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-warning-quiet-border: rgba(160, 60, 8, 0.2);
+	--badge-warning-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-informative-quiet-border: rgba(29, 78, 216, 0.2);
+	--badge-informative-emphasis-border: rgba(255, 255, 255, 0.2);
+
+	/* badge — padding */
+	--badge-padding-block: var(--spacing-1);
+	--badge-padding-inline: var(--spacing-1-5);
+
+	/* stamp — background */
+	--stamp-neutral-quiet-background: rgb(255, 255, 255);
+	--stamp-neutral-emphasis-background: rgb(160, 203, 50);
+	--stamp-neutral-inverted-background: rgb(12, 12, 15);
+	--stamp-positive-quiet-background: rgba(16, 110, 60, 0.1);
+	--stamp-positive-emphasis-background: rgb(16, 110, 60);
+	--stamp-negative-quiet-background: rgba(185, 28, 28, 0.1);
+	--stamp-negative-emphasis-background: rgb(185, 28, 28);
+	--stamp-warning-quiet-background: rgba(160, 60, 8, 0.1);
+	--stamp-warning-emphasis-background: rgb(160, 60, 8);
+	--stamp-informative-quiet-background: rgba(29, 78, 216, 0.1);
+	--stamp-informative-emphasis-background: rgb(29, 78, 216);
+
+	/* stamp — foreground */
+	--stamp-neutral-quiet-foreground: rgb(12, 12, 15);
+	--stamp-neutral-emphasis-foreground: rgb(12, 12, 15);
+	--stamp-neutral-inverted-foreground: rgb(255, 255, 255);
+	--stamp-positive-quiet-foreground: rgb(16, 110, 60);
+	--stamp-positive-emphasis-foreground: rgb(255, 255, 255);
+	--stamp-negative-quiet-foreground: rgb(185, 28, 28);
+	--stamp-negative-emphasis-foreground: rgb(255, 255, 255);
+	--stamp-warning-quiet-foreground: rgb(160, 60, 8);
+	--stamp-warning-emphasis-foreground: rgb(255, 255, 255);
+	--stamp-informative-quiet-foreground: rgb(29, 78, 216);
+	--stamp-informative-emphasis-foreground: rgb(255, 255, 255);
+
+	/* stamp — size */
+	--stamp-default-size: var(--spacing-6);
+
+	/* stamp — icon */
+	--stamp-icon-scale: 0.6;
+
+	/* stamp — text */
+	--stamp-text-font-family: var(--font-family-base);
+	--stamp-text-font-weight: var(--font-weight-regular);
+	--stamp-text-scale: 0.6;
+
+	/* stamp — border */
+	--stamp-border-radius: var(--border-radius-none);
 
 	/* slide-footer */
 	--slide-footer-text-size: var(--text-size-300);

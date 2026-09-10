@@ -253,9 +253,10 @@ function extractSlotsByTag(node, spec) {
 	const slots = {};
 	const used = new Set();
 	for (const slot of spec.slots || []) {
+		const allowed = slotTags(slot);
 		const match = findFirstDescendant(
 			node,
-			(child) => child.tag === slot.tag,
+			(child) => allowed.includes(child.tag),
 			used,
 		);
 		if (match) {
@@ -264,6 +265,15 @@ function extractSlotsByTag(node, spec) {
 		}
 	}
 	return slots;
+}
+
+function slotTags(slot) {
+	if (Array.isArray(slot.tags) && slot.tags.length) return slot.tags;
+	return slot.tag ? [slot.tag] : [];
+}
+
+function slotSpecByName(spec, name) {
+	return (spec.slots || []).find((slot) => slot.name === name);
 }
 
 function extractAttributionTitle(node) {
@@ -361,7 +371,25 @@ function mergeSlotAttrs(instanceSlot, templateSlot) {
 				: [...templateSlot.attrOrder, "data-slot"],
 		};
 	}
+	if (instanceSlot.tag !== templateSlot.tag) {
+		return {
+			attrs: {
+				...(instanceSlot.attrs || {}),
+				"data-slot": templateSlot.attrs["data-slot"],
+			},
+			attrOrder,
+		};
+	}
 	return { attrs, attrOrder };
+}
+
+function resolveSlotTag(instanceSlot, templateSlot, spec) {
+	const slot = slotSpecByName(spec, slotName(templateSlot));
+	const allowed = slot ? slotTags(slot) : [templateSlot.tag];
+	if (instanceSlot && allowed.includes(instanceSlot.tag)) {
+		return instanceSlot.tag;
+	}
+	return templateSlot.tag;
 }
 
 function rebuildHost(instance, spec, templateHost, warnings) {
@@ -382,7 +410,12 @@ function rebuildHost(instance, spec, templateHost, warnings) {
 		tag: templateHost.tag,
 		attrs: { ...(instance.attrs || {}) },
 		attrOrder: [...(instance.attrOrder || [])],
-		children: rebuildTemplateChildren(templateHost, instanceSlots, included),
+		children: rebuildTemplateChildren(
+			templateHost,
+			instanceSlots,
+			included,
+			spec,
+		),
 		selfClosing: false,
 	};
 	delete host.attrs["data-slot"];
@@ -398,7 +431,7 @@ function rebuildHost(instance, spec, templateHost, warnings) {
 	return host;
 }
 
-function rebuildTemplateChildren(templateParent, instanceSlots, included) {
+function rebuildTemplateChildren(templateParent, instanceSlots, included, spec) {
 	const out = [];
 	const templateChildren = templateElementChildren(templateParent);
 	templateChildren.forEach((tChild, index) => {
@@ -415,6 +448,7 @@ function rebuildTemplateChildren(templateParent, instanceSlots, included) {
 						tChild,
 						instanceSlots,
 						included,
+						spec,
 					),
 					selfClosing: tChild.selfClosing,
 				});
@@ -429,13 +463,15 @@ function rebuildTemplateChildren(templateParent, instanceSlots, included) {
 		const { attrs, attrOrder } = mergeSlotAttrs(instanceSlot, tChild);
 		out.push({
 			type: "element",
-			tag: tChild.tag,
+			tag: resolveSlotTag(instanceSlot, tChild, spec),
 			attrs,
 			attrOrder,
 			children: instanceSlot
 				? (instanceSlot.children || []).map(cloneNode)
 				: (tChild.children || []).map(cloneNode),
-			selfClosing: tChild.selfClosing,
+			selfClosing: Boolean(
+				instanceSlot ? instanceSlot.selfClosing : tChild.selfClosing,
+			),
 		});
 	});
 	return out;

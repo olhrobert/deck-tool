@@ -39,8 +39,13 @@ const {
 	isCardLayoutPath,
 	isCardLayoutName,
 	CARD_LAYOUT_NAMES,
+	isSlidePretitleDefaultPath,
+	isSlidePretitleDefaultName,
+	SLIDE_PRETITLE_DEFAULT_NAMES,
 	isBadgeBorderPath,
 	isBadgeBorderBoolean,
+	isStampScalePath,
+	isStampScaleValue,
 	isBrandSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
@@ -330,12 +335,34 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isSlidePretitleDefaultPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isSlidePretitleDefaultName(raw)) {
+			errors.push(
+				`${jsonPathKey} must be ${SLIDE_PRETITLE_DEFAULT_NAMES.join(" or ")} (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
 		if (!isBadgeBorderPath(jsonPathKey)) continue;
 		const raw = getPath(brand, jsonPathKey);
 		if (raw === undefined) continue;
 		if (!isBadgeBorderBoolean(raw)) {
 			errors.push(
 				`${jsonPathKey} must be true or false (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isStampScalePath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isStampScaleValue(raw)) {
+			errors.push(
+				`${jsonPathKey} must be a number greater than 0 and at most 1 (got ${JSON.stringify(raw)})`,
 			);
 		}
 	}
@@ -471,6 +498,8 @@ function validateBrand(brandDir) {
 
 	checkSurfaceContrast("card", CARD_COLOR_FAMILY_KEYS);
 	checkSurfaceContrast("callout", CALLOUT_COLOR_FAMILY_KEYS);
+	checkSurfaceContrast("badge", CARD_COLOR_FAMILY_KEYS);
+	checkSurfaceContrast("stamp", CARD_COLOR_FAMILY_KEYS);
 
 	function checkLogoSvg(file, filePath) {
 		if (!fs.existsSync(filePath)) {

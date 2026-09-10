@@ -51,17 +51,19 @@ function isFontFamilyName(value) {
  * `slide.header.paddingLeft`). Top-level groups, in
  * order: `foundations` (`basic`, `color`, `tone`, `font`, `border`) then
  * `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`,
- * `card`, `callout`). Hard-coded RGB lives on `foundations.color` (`brand.1`–
- * `brand.6`, `semantic.positive`…, `chart.1`–`chart.4`). `semantic.neutral`
- * / `semantic.bright` may ref `brand.*`. `foundations.tone` is Strong / Base /
- * Subtle opacity. Card paint and cover/slide roles ref that palette
- * (`"semantic.positive"` or `{ "color": "brand.1", "opacity": 0.18 }`).
- * Card and callout paint are grouped by role (`card.foreground.{family}`,
- * `callout.background.{family}`, `card.stripe.color.{family}`); CSS vars stay
- * family-leading (`--card-positive-quiet-foreground`,
- * `--callout-neutral-quiet-stripe`). Callout has no emphasis axis, so its
+ * `card`, `callout`, `badge`, `stamp`). Hard-coded RGB lives on `foundations.color`
+ * (`brand.1`–`brand.6`, `semantic.positive`…, `chart.1`–`chart.4`).
+ * `semantic.neutral` / `semantic.bright` may ref `brand.*`. `foundations.tone`
+ * is Strong / Base / Subtle opacity. Card paint and cover/slide roles ref that
+ * palette (`"semantic.positive"` or `{ "color": "brand.1", "opacity": 0.18 }`).
+ * Card, callout, badge, and stamp paint are grouped by role
+ * (`card.foreground.{family}`, `callout.background.{family}`,
+ * `badge.border.color.{family}`, `stamp.foreground.{family}`); CSS vars stay family-leading
+ * (`--card-positive-quiet-foreground`, `--callout-neutral-quiet-stripe`,
+ * `--badge-neutral-quiet-border`, `--stamp-neutral-quiet-background`). Neutral also
+ * has an inverted family (`neutralInverted`). Callout has no emphasis axis, so its
  * families are quiet-only. Remaining component tokens are grouped by component
- * (`card`, `callout`, …) and named component-leading
+ * (`card`, `callout`, `badge`, `stamp`, …) and named component-leading
  * (`--slide-pretitle-font-family`). TOKEN_MAP order is the brand.css order.
  */
 const TYPE_SCALE_STEPS = [
@@ -147,6 +149,8 @@ function isSpacingScaleStep(value) {
 }
 
 function isFontSizePath(jsonPath) {
+	if (jsonPath === "components.badge.icon.size") return false;
+	if (jsonPath === "components.stamp.defaultSize") return false;
 	return (
 		/\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPath) ||
 		/(pretitle|title|subtitle|description|text)Size(Lg|Md|Sm)?$/.test(
@@ -158,10 +162,13 @@ function isFontSizePath(jsonPath) {
 function isSpacingStepPath(jsonPath) {
 	return (
 		/\.(padding|gap)\.(none|sm|md|lg)$/i.test(jsonPath) ||
+		/\.padding\.(block|inline)$/i.test(jsonPath) ||
 		/\.padding(Top|Right|Bottom|Left)$/i.test(jsonPath) ||
 		/\.title\.gap$/i.test(jsonPath) ||
 		jsonPath === "components.slideFooter.gap" ||
 		jsonPath === "components.slideFooter.logoHeight" ||
+		jsonPath === "components.badge.icon.size" ||
+		jsonPath === "components.stamp.defaultSize" ||
 		/(padding(Sm|Md|Lg)|gap(Sm|Md|Lg)|metaPaddingTop|titleGap)$/i.test(
 			jsonPath,
 		)
@@ -218,6 +225,7 @@ function isBorderSizeRolePath(jsonPath) {
 	return (
 		jsonPath === "components.callout.stripe.width" ||
 		jsonPath === "components.card.stripe.width" ||
+		jsonPath === "components.badge.border.width" ||
 		/\.borderSize\.(top|bottom|left|right)$/.test(jsonPath) ||
 		/\.border\.size(Top|Bottom|Left|Right)$/.test(jsonPath)
 	);
@@ -265,12 +273,39 @@ function isCardLayoutName(value) {
 	return CARD_LAYOUT_NAME_SET.has(String(value));
 }
 
+const SLIDE_PRETITLE_DEFAULT_NAMES = ["text", "badge"];
+const SLIDE_PRETITLE_DEFAULT_NAME_SET = new Set(SLIDE_PRETITLE_DEFAULT_NAMES);
+
+function isSlidePretitleDefaultPath(jsonPath) {
+	return jsonPath === "components.slide.pretitle.default";
+}
+
+function isSlidePretitleDefaultName(value) {
+	return SLIDE_PRETITLE_DEFAULT_NAME_SET.has(String(value));
+}
+
 function isBadgeBorderPath(jsonPath) {
-	return jsonPath === "components.badge.border";
+	return jsonPath === "components.badge.border.hasBorderByDefault";
 }
 
 function isBadgeBorderBoolean(value) {
 	return typeof value === "boolean";
+}
+
+function isStampScalePath(jsonPath) {
+	return (
+		jsonPath === "components.stamp.icon.scale" ||
+		jsonPath === "components.stamp.text.scale"
+	);
+}
+
+function isStampScaleValue(value) {
+	return (
+		typeof value === "number" &&
+		!Number.isNaN(value) &&
+		value > 0 &&
+		value <= 1
+	);
 }
 
 const CARD_STRIPE_LAYOUT_CSS = [
@@ -365,7 +400,11 @@ const SEMANTIC_COLOR_VARIANTS = [
 	"informative",
 ];
 const SEMANTIC_COLOR_TONES = ["quiet", "emphasis"];
-const NEUTRAL_COLOR_FAMILY_KEYS = ["neutralQuiet", "neutralEmphasis"];
+const NEUTRAL_COLOR_FAMILY_KEYS = [
+	"neutralQuiet",
+	"neutralEmphasis",
+	"neutralInverted",
+];
 const CARD_COLOR_FAMILY_KEYS = [
 	...NEUTRAL_COLOR_FAMILY_KEYS,
 	...CARD_STATUS_FAMILY_KEYS,
@@ -386,10 +425,17 @@ const CARD_COLOR_PATH = new RegExp(
 const CALLOUT_COLOR_PATH = new RegExp(
 	`^components\\.callout\\.(foreground|background|stripe\\.color)\\.(${CALLOUT_FAMILY_GROUP})$`,
 );
+const BADGE_COLOR_PATH = new RegExp(
+	`^components\\.badge\\.(foreground|background|border\\.color)\\.(${CARD_FAMILY_GROUP})$`,
+);
+const STAMP_COLOR_PATH = new RegExp(
+	`^components\\.stamp\\.(foreground|background)\\.(${CARD_FAMILY_GROUP})$`,
+);
 
 function cardPaintCssLeaf(role) {
 	if (role === "subtle") return "border-subtle";
 	if (role === "stripe") return "stripe";
+	if (role === "border") return "border";
 	return role;
 }
 
@@ -433,6 +479,26 @@ function calloutPaintTokenMapEntries(jsonPrefix, role, groupLabel) {
 		role,
 		groupLabel,
 		familyKeys: CALLOUT_COLOR_FAMILY_KEYS,
+	});
+}
+
+function badgePaintTokenMapEntries(jsonPrefix, role, groupLabel) {
+	return paintTokenMapEntries({
+		component: "badge",
+		jsonPrefix,
+		role,
+		groupLabel,
+		familyKeys: CARD_COLOR_FAMILY_KEYS,
+	});
+}
+
+function stampPaintTokenMapEntries(jsonPrefix, role, groupLabel) {
+	return paintTokenMapEntries({
+		component: "stamp",
+		jsonPrefix,
+		role,
+		groupLabel,
+		familyKeys: CARD_COLOR_FAMILY_KEYS,
 	});
 }
 
@@ -504,6 +570,14 @@ function isCalloutColorPath(jsonPath) {
 	return CALLOUT_COLOR_PATH.test(jsonPath);
 }
 
+function isBadgeColorPath(jsonPath) {
+	return BADGE_COLOR_PATH.test(jsonPath);
+}
+
+function isStampColorPath(jsonPath) {
+	return STAMP_COLOR_PATH.test(jsonPath);
+}
+
 function isColorRolePath(jsonPath) {
 	return (
 		/^components\.(cover|slide)\.canvas\.(background|foreground)$/.test(
@@ -515,16 +589,13 @@ function isColorRolePath(jsonPath) {
 	);
 }
 
-function isBadgeBackgroundPath(jsonPath) {
-	return jsonPath === "components.badge.background";
-}
-
 function isColorRefPath(jsonPath) {
 	return (
 		isColorRolePath(jsonPath) ||
 		isCardColorPath(jsonPath) ||
 		isCalloutColorPath(jsonPath) ||
-		isBadgeBackgroundPath(jsonPath) ||
+		isBadgeColorPath(jsonPath) ||
+		isStampColorPath(jsonPath) ||
 		isSemanticSwatchPath(jsonPath)
 	);
 }
@@ -723,6 +794,7 @@ const TOKEN_MAP = [
 	["components.slide.surface.background", "--color-slide-surface-background"],
 	["components.slide.surface.foreground", "--color-slide-surface-foreground"],
 	["components.slide.surface.border", "--color-slide-surface-border"],
+	["components.slide.pretitle.default", "--slide-pretitle-default"],
 	["components.slide.pretitle.family", "--slide-pretitle-font-family"],
 	["components.slide.pretitle.weight", "--slide-pretitle-font-weight"],
 	["components.slide.pretitle.uppercase", "--slide-pretitle-text-transform"],
@@ -845,10 +917,63 @@ const TOKEN_MAP = [
 	["components.callout.gap.md", "--callout-gap-md"],
 	["components.callout.gap.lg", "--callout-gap-lg"],
 
-	["components.badge.textSize", "--badge-text-size", "badge"],
-	["components.badge.border", "--badge-border-width"],
-	["components.badge.borderRadius", "--badge-border-radius"],
-	["components.badge.background", "--badge-background"],
+	...badgePaintTokenMapEntries(
+		"components.badge.background",
+		"background",
+		"badge — background",
+	),
+	...badgePaintTokenMapEntries(
+		"components.badge.foreground",
+		"foreground",
+		"badge — foreground",
+	),
+	[
+		"components.badge.text.family",
+		"--badge-text-font-family",
+		"badge — text",
+	],
+	["components.badge.text.weight", "--badge-text-font-weight"],
+	["components.badge.text.size", "--badge-text-size"],
+	["components.badge.icon.size", "--badge-icon-size", "badge — icon"],
+	[
+		"components.badge.border.hasBorderByDefault",
+		"--badge-border-width",
+		"badge — border",
+	],
+	["components.badge.border.radius", "--badge-border-radius"],
+	["components.badge.border.width", "--badge-border-size"],
+	...badgePaintTokenMapEntries(
+		"components.badge.border.color",
+		"border",
+		"badge — border color",
+	),
+	[
+		"components.badge.padding.block",
+		"--badge-padding-block",
+		"badge — padding",
+	],
+	["components.badge.padding.inline", "--badge-padding-inline"],
+
+	...stampPaintTokenMapEntries(
+		"components.stamp.background",
+		"background",
+		"stamp — background",
+	),
+	...stampPaintTokenMapEntries(
+		"components.stamp.foreground",
+		"foreground",
+		"stamp — foreground",
+	),
+	["components.stamp.defaultSize", "--stamp-default-size", "stamp — size"],
+	["components.stamp.icon.scale", "--stamp-icon-scale", "stamp — icon"],
+	[
+		"components.stamp.text.family",
+		"--stamp-text-font-family",
+		"stamp — text",
+	],
+	["components.stamp.text.weight", "--stamp-text-font-weight"],
+	["components.stamp.text.scale", "--stamp-text-scale"],
+	["components.stamp.border.radius", "--stamp-border-radius", "stamp — border"],
 
 	[
 		"components.slideFooter.textSize",
@@ -944,6 +1069,9 @@ function toCssValue(jsonPath, value, brand) {
 				`${jsonPath} must be a border-radius step (${BORDER_RADIUS_STEPS.join(", ")}) from border.radius (got ${JSON.stringify(value)})`,
 			);
 		}
+		if (jsonPath === "components.stamp.border.radius" && String(value) === "full") {
+			return "50%";
+		}
 		return `var(--border-radius-${value})`;
 	}
 	if (isBorderSizeRolePath(jsonPath)) {
@@ -986,13 +1114,31 @@ function toCssValue(jsonPath, value, brand) {
 		}
 		return String(value);
 	}
+	if (isSlidePretitleDefaultPath(jsonPath)) {
+		if (!isSlidePretitleDefaultName(value)) {
+			throw new Error(
+				`${jsonPath} must be ${SLIDE_PRETITLE_DEFAULT_NAMES.join(" or ")} (got ${JSON.stringify(value)})`,
+			);
+		}
+		return String(value);
+	}
 	if (isBadgeBorderPath(jsonPath)) {
 		if (!isBadgeBorderBoolean(value)) {
 			throw new Error(
 				`${jsonPath} must be true or false (got ${JSON.stringify(value)})`,
 			);
 		}
-		return value ? "var(--border-size-sm)" : "var(--border-size-none)";
+		return value
+			? "var(--badge-border-size)"
+			: "var(--border-size-none)";
+	}
+	if (isStampScalePath(jsonPath)) {
+		if (!isStampScaleValue(value)) {
+			throw new Error(
+				`${jsonPath} must be a number greater than 0 and at most 1 (got ${JSON.stringify(value)})`,
+			);
+		}
+		return String(value);
 	}
 	return value;
 }
@@ -1093,6 +1239,8 @@ module.exports = {
 	isColorRefPath,
 	isCardColorPath,
 	isCalloutColorPath,
+	isBadgeColorPath,
+	isStampColorPath,
 	isSemanticSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
@@ -1121,8 +1269,13 @@ module.exports = {
 	isCardLayoutPath,
 	isCardLayoutName,
 	CARD_LAYOUT_NAMES,
+	isSlidePretitleDefaultPath,
+	isSlidePretitleDefaultName,
+	SLIDE_PRETITLE_DEFAULT_NAMES,
 	isBadgeBorderPath,
 	isBadgeBorderBoolean,
+	isStampScalePath,
+	isStampScaleValue,
 	BORDER_RADIUS_STEPS,
 	BORDER_SIZE_STEPS,
 	BRAND_FILENAME,

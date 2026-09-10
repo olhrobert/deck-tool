@@ -18,12 +18,13 @@ Source of truth is HTML in `decks/{deck-name}/`. Do not design layouts from scra
 
 | Kind | Path |
 |---|---|
-| Title | `presets/title-slides/title-slide-01.html` … `title-slide-05.html` (and matching `*-with-attribution.html`) |
+| Title | `presets/title-slides/title-slide-01.html` … `title-slide-04.html` (and matching `*-with-attribution.html`) |
 | Chapter | `presets/chapter-slides/chapter-slide-01.html`, `chapter-slide-02.html` |
 | Content | `presets/content-slides/content-slide-3-cards.html` |
 | Card fragment | `design-system/components/card/card.html` |
 | Callout fragment | `design-system/components/callout/callout.html` |
 | Badge fragment | `design-system/components/badge/badge.html` |
+| Stamp fragment | `design-system/components/stamp/stamp.html` |
 | Slide footer fragment | `design-system/components/slide-footer/slide-footer.html` |
 
 3. Create `decks/{deck-name}/` with `01.html`, `02.html`, … Copy a title-slide preset into `01.html`. Copy a chapter-slide preset for section openers. Copy `presets/content-slides/content-slide-3-cards.html` for content slides (content presets already include `<slide-footer>` inside `<footer-container>`).
@@ -51,7 +52,7 @@ Source of truth is HTML in `decks/{deck-name}/`. Do not design layouts from scra
 node scripts/compile-deck.js decks/{deck-name}
 ```
 
-If composite component HTML changed (Slide Title, Card, Callout, Badge, Slide Footer, Attribution), refresh instances first:
+If composite component HTML changed (Slide Title, Card, Callout, Badge, Stamp, Slide Footer, Attribution), refresh instances first:
 
 ```bash
 node scripts/refresh-components.js decks/{deck-name}
@@ -66,9 +67,11 @@ Open `decks/{deck-name}/index.html`.
 
 - Do not change component structure, classes, or stylesheet links
 - Keep `data-slot` attributes on composite components
-- Use `<card padding="md" gap="sm">` with `<card-pretitle>` (`tone="subtle" context="surface"`), card-title, optional `<body-copy>`, and optional card-meta. Omit `layout` so the brand `components.card.defaultLayout` default applies.
+- Use `<card padding="md" gap="sm">` with `<card-pretitle>` (`tone="subtle" context="surface"`), card-title, optional `<body-copy>`, and optional card-meta. Omit `layout` so the brand `components.card.defaultLayout` default applies. Variants are `neutral|positive|warning|negative|informative`; `emphasis="true|false"`; for neutral only, `emphasis="inverted"` is also valid.
 - Use `<callout variant="neutral" padding="md">` with `<callout-title>` (`tone="strong" context="surface"`) and `<callout-description>` (`tone="base" context="surface"`). Variants are `neutral|positive|warning|negative|informative` only — no emphasis. Omit `gap` so the brand `components.callout.gap.sm` default applies, or set `gap="none|sm|md|lg"`.
-- Use `<badge variant="neutral" emphasis="false">` with `<badge-text>` (`tone="strong" context="surface"`). Variants match card, including `emphasis="true|false"`. Omit `border` so the brand `components.badge.border` default applies, or set `border="true|false"`.
+- Use `<badge variant="neutral" emphasis="false">` with `<badge-text>` (`tone="strong" context="surface"`). Variants match card, including `emphasis="true|false"` and neutral-only `emphasis="inverted"`. Omit `border` so the brand `components.badge.border.hasBorderByDefault` applies, or set `border="true|false"`. Optional `<badge-icon data-slot="leading" icon="{name}">` and/or `<badge-icon data-slot="trailing" icon="{name}">` — `{name}` is a file in `assets/icons/` without `.svg` (for example `checkbox-circle-fill`). Omit unused icon slots.
+- Use `<stamp variant="neutral" emphasis="false">` with either `<stamp-text data-slot="mark">1</stamp-text>` or `<stamp-icon data-slot="mark" icon="{name}" aria-hidden="true"></stamp-icon>` — not both. Variants match card, including `emphasis="true|false"` and neutral-only `emphasis="inverted"`. Omit `size` for the brand `components.stamp.defaultSize` default, or set `size` to a spacing-scale step (`"6"`, `"12"`, …). Do not set icon size, type size, or padding.
+- On `<slide-title-group>`, set the optional pre slot from `components.slide.pretitle.default` in the brand: `text` → `<slide-pretitle data-slot="pre" tone="subtle" context="slide">…</slide-pretitle>`; `badge` → `<badge data-slot="pre" variant="neutral" emphasis="false"><badge-text data-slot="label" tone="strong" context="surface">…</badge-text></badge>` (omit unused badge icon slots). Override per slide only if the user asks.
 - On `<slide class="bg-cover">`, set type `context="cover"` (and `tone="strong|base|subtle"`). Do not use `.color-cover-foreground-*` on type. Leave attribution slot text as `context="surface"`.
 - Use `<slide-footer context="slide">` inside `<footer-container>` on every content slide (same slots across the deck). Nested type omits `context`; ink follows the footer. Replace notes / deck-title / chapter / page copy; omit unused optional slots (notes, deck-title, chapter, logo). Keep `data-slot` and boolean `data-logo` on the footer logo. Copy footer markup from the content-slide preset or from `design-system/components/slide-footer/slide-footer.html` (wrap in `<footer-container>` on content slides).
 - On title/cover/chapter slides, you may place `<slide-footer context="cover">` at the bottom of the cover layout (not inside `<footer-container>`). Omit the logo slot if the cover already has a lockup.

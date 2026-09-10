@@ -12,7 +12,7 @@
 	/* color — semantic */
 	--color-semantic-neutral: rgb(1, 25, 26);
 	--color-semantic-bright: rgb(255, 255, 255);
-	--color-semantic-positive: rgb(6, 122, 58);
+	--color-semantic-positive: rgb(6, 118, 58);
 	--color-semantic-negative: rgb(190, 32, 36);
 	--color-semantic-warning: rgb(150, 80, 8);
 	--color-semantic-informative: rgb(25, 80, 170);
@@ -66,6 +66,7 @@
 	--color-slide-surface-background: rgb(255, 255, 255);
 	--color-slide-surface-foreground: rgb(1, 25, 26);
 	--color-slide-surface-border: rgba(1, 25, 26, 0.2);
+	--slide-pretitle-default: badge;
 	--slide-pretitle-font-family: var(--font-family-base);
 	--slide-pretitle-font-weight: var(--font-weight-regular);
 	--slide-pretitle-text-transform: none;
@@ -113,8 +114,10 @@
 	/* card — foreground */
 	--card-neutral-quiet-foreground: rgb(1, 25, 26);
 	--color-neutral-quiet-foreground: rgb(1, 25, 26);
-	--card-neutral-emphasis-foreground: rgb(255, 255, 255);
-	--color-neutral-emphasis-foreground: rgb(255, 255, 255);
+	--card-neutral-emphasis-foreground: rgb(1, 25, 26);
+	--color-neutral-emphasis-foreground: rgb(1, 25, 26);
+	--card-neutral-inverted-foreground: rgb(255, 255, 255);
+	--color-neutral-inverted-foreground: rgb(255, 255, 255);
 	--card-positive-quiet-foreground: rgb(1, 25, 26);
 	--color-positive-quiet-foreground: rgb(1, 25, 26);
 	--card-positive-emphasis-foreground: rgb(255, 255, 255);
@@ -135,12 +138,14 @@
 	/* card — background */
 	--card-neutral-quiet-background: rgb(255, 255, 255);
 	--color-neutral-quiet-background: rgb(255, 255, 255);
-	--card-neutral-emphasis-background: rgb(4, 56, 58);
-	--color-neutral-emphasis-background: rgb(4, 56, 58);
-	--card-positive-quiet-background: rgba(6, 122, 58, 0.1);
-	--color-positive-quiet-background: rgba(6, 122, 58, 0.1);
-	--card-positive-emphasis-background: rgb(6, 122, 58);
-	--color-positive-emphasis-background: rgb(6, 122, 58);
+	--card-neutral-emphasis-background: rgb(35, 221, 156);
+	--color-neutral-emphasis-background: rgb(35, 221, 156);
+	--card-neutral-inverted-background: rgb(4, 56, 58);
+	--color-neutral-inverted-background: rgb(4, 56, 58);
+	--card-positive-quiet-background: rgba(6, 118, 58, 0.1);
+	--color-positive-quiet-background: rgba(6, 118, 58, 0.1);
+	--card-positive-emphasis-background: rgb(6, 118, 58);
+	--color-positive-emphasis-background: rgb(6, 118, 58);
 	--card-negative-quiet-background: rgba(190, 32, 36, 0.1);
 	--color-negative-quiet-background: rgba(190, 32, 36, 0.1);
 	--card-negative-emphasis-background: rgb(190, 32, 36);
@@ -171,8 +176,10 @@
 	--color-neutral-quiet-border-subtle: rgba(1, 25, 26, 0.2);
 	--card-neutral-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
 	--color-neutral-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
-	--card-positive-quiet-border-subtle: rgba(6, 122, 58, 0.2);
-	--color-positive-quiet-border-subtle: rgba(6, 122, 58, 0.2);
+	--card-neutral-inverted-border-subtle: rgba(255, 255, 255, 0.2);
+	--color-neutral-inverted-border-subtle: rgba(255, 255, 255, 0.2);
+	--card-positive-quiet-border-subtle: rgba(6, 118, 58, 0.2);
+	--color-positive-quiet-border-subtle: rgba(6, 118, 58, 0.2);
 	--card-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
 	--color-positive-emphasis-border-subtle: rgba(255, 255, 255, 0.2);
 	--card-negative-quiet-border-subtle: rgba(190, 32, 36, 0.2);
@@ -196,8 +203,10 @@
 	--color-neutral-quiet-stripe: rgb(35, 221, 156);
 	--card-neutral-emphasis-stripe: rgb(35, 221, 156);
 	--color-neutral-emphasis-stripe: rgb(35, 221, 156);
-	--card-positive-quiet-stripe: rgb(6, 122, 58);
-	--color-positive-quiet-stripe: rgb(6, 122, 58);
+	--card-neutral-inverted-stripe: rgb(35, 221, 156);
+	--color-neutral-inverted-stripe: rgb(35, 221, 156);
+	--card-positive-quiet-stripe: rgb(6, 118, 58);
+	--color-positive-quiet-stripe: rgb(6, 118, 58);
 	--card-positive-emphasis-stripe: rgb(1, 25, 26);
 	--color-positive-emphasis-stripe: rgb(1, 25, 26);
 	--card-negative-quiet-stripe: rgb(190, 32, 36);
@@ -226,7 +235,7 @@
 
 	/* callout — background */
 	--callout-neutral-quiet-background: rgba(255, 255, 255, 0);
-	--callout-positive-quiet-background: rgba(6, 122, 58, 0.1);
+	--callout-positive-quiet-background: rgba(6, 118, 58, 0.1);
 	--callout-negative-quiet-background: rgba(190, 32, 36, 0.1);
 	--callout-warning-quiet-background: rgba(150, 80, 8, 0.1);
 	--callout-informative-quiet-background: rgba(25, 80, 170, 0.1);
@@ -253,7 +262,7 @@
 
 	/* callout — stripe color */
 	--callout-neutral-quiet-stripe: rgba(1, 25, 26, 0.5);
-	--callout-positive-quiet-stripe: rgba(6, 122, 58, 0.5);
+	--callout-positive-quiet-stripe: rgba(6, 118, 58, 0.5);
 	--callout-negative-quiet-stripe: rgba(190, 32, 36, 0.5);
 	--callout-warning-quiet-stripe: rgba(150, 80, 8, 0.5);
 	--callout-informative-quiet-stripe: rgba(25, 80, 170, 0.5);
@@ -264,11 +273,101 @@
 	--callout-gap-md: var(--spacing-3);
 	--callout-gap-lg: var(--spacing-4);
 
-	/* badge */
+	/* badge — background */
+	--badge-neutral-quiet-background: rgba(4, 56, 58, 0.1);
+	--badge-neutral-emphasis-background: rgb(35, 221, 156);
+	--badge-neutral-inverted-background: rgb(4, 56, 58);
+	--badge-positive-quiet-background: rgba(6, 118, 58, 0.1);
+	--badge-positive-emphasis-background: rgb(6, 118, 58);
+	--badge-negative-quiet-background: rgba(190, 32, 36, 0.1);
+	--badge-negative-emphasis-background: rgb(190, 32, 36);
+	--badge-warning-quiet-background: rgba(150, 80, 8, 0.1);
+	--badge-warning-emphasis-background: rgb(150, 80, 8);
+	--badge-informative-quiet-background: rgba(25, 80, 170, 0.1);
+	--badge-informative-emphasis-background: rgb(25, 80, 170);
+
+	/* badge — foreground */
+	--badge-neutral-quiet-foreground: rgb(1, 25, 26);
+	--badge-neutral-emphasis-foreground: rgb(1, 25, 26);
+	--badge-neutral-inverted-foreground: rgb(255, 255, 255);
+	--badge-positive-quiet-foreground: rgb(6, 118, 58);
+	--badge-positive-emphasis-foreground: rgb(255, 255, 255);
+	--badge-negative-quiet-foreground: rgb(190, 32, 36);
+	--badge-negative-emphasis-foreground: rgb(255, 255, 255);
+	--badge-warning-quiet-foreground: rgb(150, 80, 8);
+	--badge-warning-emphasis-foreground: rgb(255, 255, 255);
+	--badge-informative-quiet-foreground: rgb(25, 80, 170);
+	--badge-informative-emphasis-foreground: rgb(255, 255, 255);
+
+	/* badge — text */
+	--badge-text-font-family: var(--font-family-base);
+	--badge-text-font-weight: var(--font-weight-medium);
 	--badge-text-size: var(--text-size-300);
+
+	/* badge — icon */
+	--badge-icon-size: var(--spacing-3);
+
+	/* badge — border */
 	--badge-border-width: var(--border-size-none);
 	--badge-border-radius: var(--border-radius-med);
-	--badge-background: rgba(4, 56, 58, 0.1);
+	--badge-border-size: var(--border-size-sm);
+
+	/* badge — border color */
+	--badge-neutral-quiet-border: rgba(1, 25, 26, 0.2);
+	--badge-neutral-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-neutral-inverted-border: rgba(255, 255, 255, 0.2);
+	--badge-positive-quiet-border: rgba(6, 118, 58, 0.2);
+	--badge-positive-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-negative-quiet-border: rgba(190, 32, 36, 0.2);
+	--badge-negative-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-warning-quiet-border: rgba(150, 80, 8, 0.2);
+	--badge-warning-emphasis-border: rgba(255, 255, 255, 0.2);
+	--badge-informative-quiet-border: rgba(25, 80, 170, 0.2);
+	--badge-informative-emphasis-border: rgba(255, 255, 255, 0.2);
+
+	/* badge — padding */
+	--badge-padding-block: var(--spacing-1);
+	--badge-padding-inline: var(--spacing-1-5);
+
+	/* stamp — background */
+	--stamp-neutral-quiet-background: rgba(4, 56, 58, 0.1);
+	--stamp-neutral-emphasis-background: rgb(35, 221, 156);
+	--stamp-neutral-inverted-background: rgb(4, 56, 58);
+	--stamp-positive-quiet-background: rgba(6, 118, 58, 0.1);
+	--stamp-positive-emphasis-background: rgb(6, 118, 58);
+	--stamp-negative-quiet-background: rgba(190, 32, 36, 0.1);
+	--stamp-negative-emphasis-background: rgb(190, 32, 36);
+	--stamp-warning-quiet-background: rgba(150, 80, 8, 0.1);
+	--stamp-warning-emphasis-background: rgb(150, 80, 8);
+	--stamp-informative-quiet-background: rgba(25, 80, 170, 0.1);
+	--stamp-informative-emphasis-background: rgb(25, 80, 170);
+
+	/* stamp — foreground */
+	--stamp-neutral-quiet-foreground: rgb(1, 25, 26);
+	--stamp-neutral-emphasis-foreground: rgb(1, 25, 26);
+	--stamp-neutral-inverted-foreground: rgb(255, 255, 255);
+	--stamp-positive-quiet-foreground: rgb(6, 118, 58);
+	--stamp-positive-emphasis-foreground: rgb(255, 255, 255);
+	--stamp-negative-quiet-foreground: rgb(190, 32, 36);
+	--stamp-negative-emphasis-foreground: rgb(255, 255, 255);
+	--stamp-warning-quiet-foreground: rgb(150, 80, 8);
+	--stamp-warning-emphasis-foreground: rgb(255, 255, 255);
+	--stamp-informative-quiet-foreground: rgb(25, 80, 170);
+	--stamp-informative-emphasis-foreground: rgb(255, 255, 255);
+
+	/* stamp — size */
+	--stamp-default-size: var(--spacing-6);
+
+	/* stamp — icon */
+	--stamp-icon-scale: 0.6;
+
+	/* stamp — text */
+	--stamp-text-font-family: var(--font-family-base);
+	--stamp-text-font-weight: var(--font-weight-medium);
+	--stamp-text-scale: 0.6;
+
+	/* stamp — border */
+	--stamp-border-radius: 50%;
 
 	/* slide-footer */
 	--slide-footer-text-size: var(--text-size-300);

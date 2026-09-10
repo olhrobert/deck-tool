@@ -20,12 +20,13 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | `<slide>` without header/content/footer containers | cover frame |
 | `<slide>` with chrome (`<header-container>` / `<content-container>` / `<footer-container>`) | Slide instance, `surface` from `.bg-cover` (Figma variant is still `surface=primary`) |
 | `<slide-title>` | Slide Title instance (headline); always set `size` (`md` if omitted) |
-| `<slide-title-group>` | Slide Title instance with pretitle + title + subtitle slots |
+| `<slide-title-group>` | Slide Title instance with pretitle + title + subtitle slots; pretitle may be `<slide-pretitle>` or `<badge>` |
 | `<paragraph-title>` | Paragraph Title instance |
 | `<card>` | Card instance (pretitle, title, optional text, meta) |
 | `<card>` otherwise | Card instance; set `padding`/`gap` (`md`/`md` if omitted) |
 | `<callout>` | vertical frame (no library component yet); title + description as text |
-| `<badge>` | hug frame (no library component yet); label as text |
+| `<badge>` | hug frame (no library component yet); optional leading/trailing icons + label as text |
+| `<stamp>` | fixed square (no library component yet); occupant is `<stamp-text>` or `<stamp-icon>` |
 | `<slide-footer>` | horizontal frame (no library component yet); logo + optional notes + meta |
 | `<attribution-box>` | Attribution Box; `slot` is filled separately |
 | `<attribution-box-separator>` | separator instance |
@@ -37,6 +38,9 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | `<callout-title>` | text (`family/paragraph-title`, size `400` unless overridden) |
 | `<callout-description>` | text (`family/body`, size `350` unless overridden) |
 | `<badge-text>` | text (`family/body`, size `300` unless overridden) |
+| `<badge-icon>` | sized frame (no library component yet); `icon` is an `assets/icons` filename without `.svg` |
+| `<stamp-text>` | text; computed `fontSizePx` is brand `text.scale` × stamp size (not a type-scale step) |
+| `<stamp-icon>` | sized frame (no library component yet); brand `icon.scale` × stamp size; `icon` is an `assets/icons` filename without `.svg` |
 | `<slide-footer-notes>` / `<slide-footer-title>` / `<slide-footer-chapter>` / `<slide-footer-page>` | text (`family/body`, size `300`); color from footer `context` |
 | `<text>` | primitive — raw `size` step, `family`, etc. |
 

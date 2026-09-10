@@ -1,12 +1,13 @@
 /* Badge
    Axes:
      variant="neutral|positive|warning|negative|informative"  default neutral
-     emphasis="true|false"                                     default false
-     border="true|false"                                       brand `badge.border` when omitted
-   Default quiet fill is brand `badge.background`. Other paint reuses card tokens.
-   With border, stroke always follows the matching card `borderSubtle`.
-   Ink = family `foreground` hue × foundations.tone.
-   Size / radius / default border are brand tokens.
+     emphasis="true|false|inverted"                            default false
+       inverted is neutral-only (quiet / emphasis / inverted)
+     border="true|false"                                       brand `badge.border.hasBorderByDefault` when omitted
+   Paint is badge tokens (quiet + emphasis families, plus neutral inverted). With border, stroke
+   follows the matching badge `border.color`. Ink = family `foreground` hue
+   × foundations.tone. Size / radius / padding / default border / icon size
+   are brand tokens. Optional leading/trailing `<badge-icon icon="…">`.
 */
 
 badge {
@@ -19,23 +20,24 @@ badge {
 	box-sizing: border-box;
 	white-space: nowrap;
 
-	--_badge-hue: var(--card-neutral-quiet-foreground);
+	--_badge-hue: var(--badge-neutral-quiet-foreground);
 	--_badge-ink-strong: rgb(from var(--_badge-hue) r g b / var(--tone-strong));
 	--_badge-ink-base: rgb(from var(--_badge-hue) r g b / var(--tone-base));
 	--_badge-ink-subtle: rgb(from var(--_badge-hue) r g b / var(--tone-subtle));
-	--_badge-bg: var(--badge-background);
-	--_badge-border-paint: var(--card-neutral-quiet-border-subtle);
+	--_badge-bg: var(--badge-neutral-quiet-background);
+	--_badge-border-paint: var(--badge-neutral-quiet-border);
 
 	background-color: var(--_badge-bg);
 	border-style: solid;
 	border-color: var(--_badge-border-paint);
 	border-width: var(--badge-border-width);
 	border-radius: var(--badge-border-radius);
-	padding: var(--spacing-1) var(--spacing-2);
+	padding: var(--badge-padding-block) var(--badge-padding-inline);
+	gap: var(--spacing-1);
 }
 
 badge[border="true"] {
-	border-width: var(--border-size-sm);
+	border-width: var(--badge-border-size);
 }
 
 badge[border="false"] {
@@ -43,9 +45,9 @@ badge[border="false"] {
 }
 
 badge
-	:is(.text, text, badge-text, body-copy),
+	:is(.text, text, badge-text, body-copy, badge-icon),
 badge
-	:is(.text, text, badge-text, body-copy)[context="surface"] {
+	:is(.text, text, badge-text, body-copy, badge-icon)[context="surface"] {
 	--_ink-strong: var(--_badge-ink-strong);
 	--_ink-base: var(--_badge-ink-base);
 	--_ink-subtle: var(--_badge-ink-subtle);
@@ -54,59 +56,66 @@ badge
 /* --- emphasis (default variant) --- */
 
 badge[emphasis="true"] {
-	--_badge-hue: var(--card-neutral-emphasis-foreground);
-	--_badge-bg: var(--card-neutral-emphasis-background);
-	--_badge-border-paint: var(--card-neutral-emphasis-border-subtle);
+	--_badge-hue: var(--badge-neutral-emphasis-foreground);
+	--_badge-bg: var(--badge-neutral-emphasis-background);
+	--_badge-border-paint: var(--badge-neutral-emphasis-border);
+}
+
+badge:not([variant])[emphasis="inverted"],
+badge[variant="neutral"][emphasis="inverted"] {
+	--_badge-hue: var(--badge-neutral-inverted-foreground);
+	--_badge-bg: var(--badge-neutral-inverted-background);
+	--_badge-border-paint: var(--badge-neutral-inverted-border);
 }
 
 /* --- variant: quiet --- */
 
 badge[variant="positive"] {
-	--_badge-hue: var(--card-positive-quiet-foreground);
-	--_badge-bg: var(--card-positive-quiet-background);
-	--_badge-border-paint: var(--card-positive-quiet-border-subtle);
+	--_badge-hue: var(--badge-positive-quiet-foreground);
+	--_badge-bg: var(--badge-positive-quiet-background);
+	--_badge-border-paint: var(--badge-positive-quiet-border);
 }
 
 badge[variant="warning"] {
-	--_badge-hue: var(--card-warning-quiet-foreground);
-	--_badge-bg: var(--card-warning-quiet-background);
-	--_badge-border-paint: var(--card-warning-quiet-border-subtle);
+	--_badge-hue: var(--badge-warning-quiet-foreground);
+	--_badge-bg: var(--badge-warning-quiet-background);
+	--_badge-border-paint: var(--badge-warning-quiet-border);
 }
 
 badge[variant="negative"] {
-	--_badge-hue: var(--card-negative-quiet-foreground);
-	--_badge-bg: var(--card-negative-quiet-background);
-	--_badge-border-paint: var(--card-negative-quiet-border-subtle);
+	--_badge-hue: var(--badge-negative-quiet-foreground);
+	--_badge-bg: var(--badge-negative-quiet-background);
+	--_badge-border-paint: var(--badge-negative-quiet-border);
 }
 
 badge[variant="informative"] {
-	--_badge-hue: var(--card-informative-quiet-foreground);
-	--_badge-bg: var(--card-informative-quiet-background);
-	--_badge-border-paint: var(--card-informative-quiet-border-subtle);
+	--_badge-hue: var(--badge-informative-quiet-foreground);
+	--_badge-bg: var(--badge-informative-quiet-background);
+	--_badge-border-paint: var(--badge-informative-quiet-border);
 }
 
 /* --- variant + emphasis --- */
 
 badge[variant="positive"][emphasis="true"] {
-	--_badge-hue: var(--card-positive-emphasis-foreground);
-	--_badge-bg: var(--card-positive-emphasis-background);
-	--_badge-border-paint: var(--card-positive-emphasis-border-subtle);
+	--_badge-hue: var(--badge-positive-emphasis-foreground);
+	--_badge-bg: var(--badge-positive-emphasis-background);
+	--_badge-border-paint: var(--badge-positive-emphasis-border);
 }
 
 badge[variant="warning"][emphasis="true"] {
-	--_badge-hue: var(--card-warning-emphasis-foreground);
-	--_badge-bg: var(--card-warning-emphasis-background);
-	--_badge-border-paint: var(--card-warning-emphasis-border-subtle);
+	--_badge-hue: var(--badge-warning-emphasis-foreground);
+	--_badge-bg: var(--badge-warning-emphasis-background);
+	--_badge-border-paint: var(--badge-warning-emphasis-border);
 }
 
 badge[variant="negative"][emphasis="true"] {
-	--_badge-hue: var(--card-negative-emphasis-foreground);
-	--_badge-bg: var(--card-negative-emphasis-background);
-	--_badge-border-paint: var(--card-negative-emphasis-border-subtle);
+	--_badge-hue: var(--badge-negative-emphasis-foreground);
+	--_badge-bg: var(--badge-negative-emphasis-background);
+	--_badge-border-paint: var(--badge-negative-emphasis-border);
 }
 
 badge[variant="informative"][emphasis="true"] {
-	--_badge-hue: var(--card-informative-emphasis-foreground);
-	--_badge-bg: var(--card-informative-emphasis-background);
-	--_badge-border-paint: var(--card-informative-emphasis-border-subtle);
+	--_badge-hue: var(--badge-informative-emphasis-foreground);
+	--_badge-bg: var(--badge-informative-emphasis-background);
+	--_badge-border-paint: var(--badge-informative-emphasis-border);
 }

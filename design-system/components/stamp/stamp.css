@@ -1,0 +1,237 @@
+/* Stamp
+   Axes:
+     variant="neutral|positive|warning|negative|informative"  default neutral
+     emphasis="true|false|inverted"                            default false
+       inverted is neutral-only (quiet / emphasis / inverted)
+     size="<spacing-scale step>"                               brand `stamp.defaultSize` when omitted
+   Paint is stamp tokens (quiet + emphasis families, plus neutral inverted). Size is one outer
+   square; icon and type use brand `--stamp-icon-scale` /
+   `--stamp-text-scale` × that square (em). Radius is a brand token
+   (`full` → 50% so it stays circular at every size). One occupant:
+   `<stamp-text>` or `<stamp-icon icon="…">`.
+*/
+
+stamp {
+	--_stamp-size: var(--stamp-default-size);
+	--_stamp-hue: var(--stamp-neutral-quiet-foreground);
+	--_stamp-ink-strong: rgb(from var(--_stamp-hue) r g b / var(--tone-strong));
+	--_stamp-ink-base: rgb(from var(--_stamp-hue) r g b / var(--tone-base));
+	--_stamp-ink-subtle: rgb(from var(--_stamp-hue) r g b / var(--tone-subtle));
+	--_stamp-bg: var(--stamp-neutral-quiet-background);
+
+	box-sizing: border-box;
+	display: inline-flex;
+	flex: 0 0 var(--_stamp-size);
+	align-self: flex-start;
+	align-items: center;
+	justify-content: center;
+	width: var(--_stamp-size);
+	height: var(--_stamp-size);
+	overflow: hidden;
+	font-size: var(--_stamp-size);
+	line-height: 1;
+	background-color: var(--_stamp-bg);
+	border-radius: var(--stamp-border-radius);
+}
+
+stamp :is(stamp-text, stamp-icon),
+stamp :is(stamp-text, stamp-icon)[context="surface"] {
+	--_ink-strong: var(--_stamp-ink-strong);
+	--_ink-base: var(--_stamp-ink-base);
+	--_ink-subtle: var(--_stamp-ink-subtle);
+}
+
+/* --- emphasis (default variant) --- */
+
+stamp[emphasis="true"] {
+	--_stamp-hue: var(--stamp-neutral-emphasis-foreground);
+	--_stamp-bg: var(--stamp-neutral-emphasis-background);
+}
+
+stamp:not([variant])[emphasis="inverted"],
+stamp[variant="neutral"][emphasis="inverted"] {
+	--_stamp-hue: var(--stamp-neutral-inverted-foreground);
+	--_stamp-bg: var(--stamp-neutral-inverted-background);
+}
+
+/* --- variant: quiet --- */
+
+stamp[variant="positive"] {
+	--_stamp-hue: var(--stamp-positive-quiet-foreground);
+	--_stamp-bg: var(--stamp-positive-quiet-background);
+}
+
+stamp[variant="warning"] {
+	--_stamp-hue: var(--stamp-warning-quiet-foreground);
+	--_stamp-bg: var(--stamp-warning-quiet-background);
+}
+
+stamp[variant="negative"] {
+	--_stamp-hue: var(--stamp-negative-quiet-foreground);
+	--_stamp-bg: var(--stamp-negative-quiet-background);
+}
+
+stamp[variant="informative"] {
+	--_stamp-hue: var(--stamp-informative-quiet-foreground);
+	--_stamp-bg: var(--stamp-informative-quiet-background);
+}
+
+/* --- variant + emphasis --- */
+
+stamp[variant="positive"][emphasis="true"] {
+	--_stamp-hue: var(--stamp-positive-emphasis-foreground);
+	--_stamp-bg: var(--stamp-positive-emphasis-background);
+}
+
+stamp[variant="warning"][emphasis="true"] {
+	--_stamp-hue: var(--stamp-warning-emphasis-foreground);
+	--_stamp-bg: var(--stamp-warning-emphasis-background);
+}
+
+stamp[variant="negative"][emphasis="true"] {
+	--_stamp-hue: var(--stamp-negative-emphasis-foreground);
+	--_stamp-bg: var(--stamp-negative-emphasis-background);
+}
+
+stamp[variant="informative"][emphasis="true"] {
+	--_stamp-hue: var(--stamp-informative-emphasis-foreground);
+	--_stamp-bg: var(--stamp-informative-emphasis-background);
+}
+
+/* --- size (spacing-scale steps; omitted uses brand --stamp-default-size) --- */
+
+stamp[size="0"] {
+	--_stamp-size: var(--spacing-0);
+}
+stamp[size="0-25"] {
+	--_stamp-size: var(--spacing-0-25);
+}
+stamp[size="0-5"] {
+	--_stamp-size: var(--spacing-0-5);
+}
+stamp[size="1"] {
+	--_stamp-size: var(--spacing-1);
+}
+stamp[size="1-5"] {
+	--_stamp-size: var(--spacing-1-5);
+}
+stamp[size="2"] {
+	--_stamp-size: var(--spacing-2);
+}
+stamp[size="2-5"] {
+	--_stamp-size: var(--spacing-2-5);
+}
+stamp[size="3"] {
+	--_stamp-size: var(--spacing-3);
+}
+stamp[size="4"] {
+	--_stamp-size: var(--spacing-4);
+}
+stamp[size="5"] {
+	--_stamp-size: var(--spacing-5);
+}
+stamp[size="6"] {
+	--_stamp-size: var(--spacing-6);
+}
+stamp[size="7"] {
+	--_stamp-size: var(--spacing-7);
+}
+stamp[size="8"] {
+	--_stamp-size: var(--spacing-8);
+}
+stamp[size="9"] {
+	--_stamp-size: var(--spacing-9);
+}
+stamp[size="10"] {
+	--_stamp-size: var(--spacing-10);
+}
+stamp[size="11"] {
+	--_stamp-size: var(--spacing-11);
+}
+stamp[size="12"] {
+	--_stamp-size: var(--spacing-12);
+}
+stamp[size="13"] {
+	--_stamp-size: var(--spacing-13);
+}
+stamp[size="14"] {
+	--_stamp-size: var(--spacing-14);
+}
+stamp[size="15"] {
+	--_stamp-size: var(--spacing-15);
+}
+stamp[size="16"] {
+	--_stamp-size: var(--spacing-16);
+}
+stamp[size="17"] {
+	--_stamp-size: var(--spacing-17);
+}
+stamp[size="18"] {
+	--_stamp-size: var(--spacing-18);
+}
+stamp[size="19"] {
+	--_stamp-size: var(--spacing-19);
+}
+stamp[size="20"] {
+	--_stamp-size: var(--spacing-20);
+}
+stamp[size="21"] {
+	--_stamp-size: var(--spacing-21);
+}
+stamp[size="22"] {
+	--_stamp-size: var(--spacing-22);
+}
+stamp[size="23"] {
+	--_stamp-size: var(--spacing-23);
+}
+stamp[size="24"] {
+	--_stamp-size: var(--spacing-24);
+}
+stamp[size="25"] {
+	--_stamp-size: var(--spacing-25);
+}
+stamp[size="26"] {
+	--_stamp-size: var(--spacing-26);
+}
+stamp[size="27"] {
+	--_stamp-size: var(--spacing-27);
+}
+stamp[size="28"] {
+	--_stamp-size: var(--spacing-28);
+}
+stamp[size="29"] {
+	--_stamp-size: var(--spacing-29);
+}
+stamp[size="30"] {
+	--_stamp-size: var(--spacing-30);
+}
+stamp[size="31"] {
+	--_stamp-size: var(--spacing-31);
+}
+stamp[size="32"] {
+	--_stamp-size: var(--spacing-32);
+}
+stamp[size="33"] {
+	--_stamp-size: var(--spacing-33);
+}
+stamp[size="34"] {
+	--_stamp-size: var(--spacing-34);
+}
+stamp[size="35"] {
+	--_stamp-size: var(--spacing-35);
+}
+stamp[size="36"] {
+	--_stamp-size: var(--spacing-36);
+}
+stamp[size="37"] {
+	--_stamp-size: var(--spacing-37);
+}
+stamp[size="38"] {
+	--_stamp-size: var(--spacing-38);
+}
+stamp[size="39"] {
+	--_stamp-size: var(--spacing-39);
+}
+stamp[size="40"] {
+	--_stamp-size: var(--spacing-40);
+}

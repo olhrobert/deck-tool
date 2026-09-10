@@ -26,7 +26,7 @@ decks/{deck-name}/
 
 ## Presets that exist
 
-- Title: `presets/title-slides/title-slide-01.html` … `title-slide-05.html` (and matching `*-with-attribution.html`)
+- Title: `presets/title-slides/title-slide-01.html` … `title-slide-04.html` (and matching `*-with-attribution.html`)
 - Chapter: `presets/chapter-slides/chapter-slide-01.html`, `chapter-slide-02.html`
 - Content: `presets/content-slides/content-slide-3-cards.html` (includes `<slide-footer>`)
 - Card fragment: `design-system/components/card/card.html`

@@ -1,7 +1,8 @@
 /* Card
    Axes (defaults match today's quiet default box):
      variant="neutral|positive|warning|negative|informative"  default neutral
-     emphasis="true|false"                                     default false
+     emphasis="true|false|inverted"                            default false
+       inverted is neutral-only (quiet / emphasis / inverted)
      layout="basic|stripe"                                     brand `card.defaultLayout` when omitted
    Padding / gap / type are unchanged brand tokens.
    Ink = family `foreground` hue × foundations.tone.
@@ -67,6 +68,14 @@ card[emphasis="true"] {
 	--_card-bg: var(--card-neutral-emphasis-background);
 	--_card-border: var(--card-neutral-emphasis-border-subtle);
 	--_card-stripe: var(--card-neutral-emphasis-stripe);
+}
+
+card:not([variant])[emphasis="inverted"],
+card[variant="neutral"][emphasis="inverted"] {
+	--_card-hue: var(--card-neutral-inverted-foreground);
+	--_card-bg: var(--card-neutral-inverted-background);
+	--_card-border: var(--card-neutral-inverted-border-subtle);
+	--_card-stripe: var(--card-neutral-inverted-stripe);
 }
 
 /* --- variant: quiet --- */

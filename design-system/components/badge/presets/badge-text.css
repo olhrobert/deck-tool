@@ -1,12 +1,14 @@
 /* Badge-text preset of base typography.
-   Defaults: color=strong, context=surface. Size is brand-only. */
+   Defaults: color=strong, context=surface. Family / weight / size are brand-only.
+   Inline padding balances text-only badges with iconed ones (badge chrome is 2px tighter). */
 
 badge-text {
-	font-family: var(--body-font-family, system-ui, sans-serif);
-	font-weight: var(--body-font-weight);
+	font-family: var(--badge-text-font-family, system-ui, sans-serif);
+	font-weight: var(--badge-text-font-weight);
 	line-height: 1.2;
 	font-size: var(--badge-text-size);
 	letter-spacing: 0%;
 	color: var(--_ink-strong);
 	white-space: nowrap;
+	padding-inline: var(--spacing-0-5);
 }

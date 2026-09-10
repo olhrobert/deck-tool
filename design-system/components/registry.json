@@ -5,7 +5,12 @@
 			"tag": "slide-title-group",
 			"template": "slide-title/slide-title-group-md.html",
 			"slots": [
-				{ "name": "pre", "tag": "slide-pretitle", "required": false },
+				{
+					"name": "pre",
+					"tag": "slide-pretitle",
+					"tags": ["slide-pretitle", "badge"],
+					"required": false
+				},
 				{ "name": "main", "tag": "slide-title", "required": true },
 				{ "name": "sub", "tag": "slide-subtitle", "required": false }
 			]
@@ -60,8 +65,30 @@
 			"template": "badge/badge.html",
 			"slots": [
 				{
+					"name": "leading",
+					"tag": "badge-icon",
+					"required": false
+				},
+				{
 					"name": "label",
 					"tag": "badge-text",
+					"required": true
+				},
+				{
+					"name": "trailing",
+					"tag": "badge-icon",
+					"required": false
+				}
+			]
+		},
+		{
+			"id": "stamp",
+			"tag": "stamp",
+			"template": "stamp/stamp.html",
+			"slots": [
+				{
+					"name": "mark",
+					"tags": ["stamp-text", "stamp-icon"],
 					"required": true
 				}
 			]

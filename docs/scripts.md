@@ -42,7 +42,7 @@ Rebuilds registered component instances in deck slide HTML from their canonical 
 
 **What it updates**
 
-Slide Title, Card, Callout, Badge, Slide Footer, and Attribution Box — listed in `design-system/components/registry.json`. `<body-copy>` outside composite slots and layout wrappers are left alone. Primitive `<text>` (cover title, attribution) is also left alone. Optional slots the slide never had (subtitle, card text/meta, callout description, footer notes / deck-title / chapter / logo) stay omitted.
+Slide Title, Card, Callout, Badge, Stamp, Slide Footer, and Attribution Box — listed in `design-system/components/registry.json`. `<body-copy>` outside composite slots and layout wrappers are left alone. Primitive `<text>` (cover title, attribution) is also left alone. Optional slots the slide never had (subtitle, card text/meta, callout description, badge leading/trailing icons, footer notes / deck-title / chapter / logo) stay omitted. Stamp keeps whichever occupant was on the instance (`<stamp-text>` or `<stamp-icon>`).
 
 **Usage**
 
@@ -123,7 +123,7 @@ Then edit `brand-settings.json` / `{slug}-logo.svg` and run `validate-brand.js`.
 
 ## `validate-brand.js`
 
-Checks `TOKEN_MAP` keys, type-scale and spacing-scale steps, `slide.canvas.maxWidth` as a pixel integer, color parse, `foundations.tone` opacities, WCAG AA for slide/cover/surface foreground-on-background pairs and each card `foreground` on `background`, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
+Checks `TOKEN_MAP` keys, type-scale and spacing-scale steps, `slide.canvas.maxWidth` as a pixel integer, color parse, `foundations.tone` opacities, WCAG AA for slide/cover/surface foreground-on-background pairs and each card, callout, badge, and stamp `foreground` on `background`, and that `{slug}-logo.svg` and `{slug}-logo-inverted.svg` exist as standalone SVGs with a root `viewBox`.
 
 ```bash
 node scripts/validate-brand.js brands/riverton
@@ -157,4 +157,15 @@ Rebuild every brand (after editing several `brand-settings.json` files, or befor
 ```bash
 node scripts/generate-all-brands.js
 npm run generate-brand:all
+```
+
+---
+
+## `generate-icon-css.js`
+
+Maps every `assets/icons/*.svg` filename onto `:is(badge-icon, stamp-icon)[icon="{name}"]` CSS so badge and stamp icons resolve from any HTML path. Run after adding or renaming icons.
+
+```bash
+node scripts/generate-icon-css.js
+npm run generate-icons
 ```

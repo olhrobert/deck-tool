@@ -56,6 +56,7 @@
 	--slide-title-size-lg: var(--text-size-1200);
 
 	/* slide pretitle — driven by slide.pretitle in brand-settings.json */
+	--slide-pretitle-default: text;
 	--slide-pretitle-size: var(--text-size-350);
 	--slide-pretitle-text-transform: none;
 	--slide-pretitle-letter-spacing: 2%;
@@ -110,11 +111,25 @@
 	--callout-gap-md: var(--spacing-3);
 	--callout-gap-lg: var(--spacing-4);
 
-	/* badge type — brands set badge.textSize / background / border */
+	/* badge type — brands set badge.text / icon / border / padding */
+	--badge-text-font-family: var(--body-font-family, system-ui, sans-serif);
+	--badge-text-font-weight: var(--body-font-weight);
 	--badge-text-size: var(--text-size-300);
+	--badge-icon-size: var(--spacing-3);
 	--badge-border-radius: var(--border-radius-med);
-	--badge-border-width: var(--border-size-sm);
-	--badge-background: var(--card-neutral-quiet-background);
+	--badge-border-width: var(--border-size-none);
+	--badge-border-size: var(--border-size-sm);
+	--badge-padding-block: var(--spacing-1);
+	--badge-padding-inline: var(--spacing-1-5);
+
+	/* stamp — brands set stamp.defaultSize / icon.scale / text / border.radius.
+	   Occupant size is brand scale × stamp (em). */
+	--stamp-default-size: var(--spacing-6);
+	--stamp-border-radius: 50%;
+	--stamp-icon-scale: 0.6;
+	--stamp-text-font-family: var(--body-font-family, system-ui, sans-serif);
+	--stamp-text-font-weight: var(--font-weight-medium);
+	--stamp-text-scale: 0.6;
 
 	/* slide footer — brands set slideFooter.textSize / logoHeight / gap */
 	--slide-footer-text-size: var(--text-size-300);

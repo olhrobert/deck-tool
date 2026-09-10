@@ -43,6 +43,10 @@
 	--color-neutral-emphasis-background: rgba(30, 41, 59, 1);
 	--color-neutral-emphasis-border-subtle: rgba(255, 255, 255, 0.18);
 	--color-neutral-emphasis-stripe: rgba(71, 85, 105, 1);
+	--color-neutral-inverted-foreground: var(--color-semantic-bright);
+	--color-neutral-inverted-background: rgba(30, 41, 59, 1);
+	--color-neutral-inverted-border-subtle: rgba(255, 255, 255, 0.18);
+	--color-neutral-inverted-stripe: rgba(71, 85, 105, 1);
 
 	--color-positive-quiet-foreground: var(--color-semantic-positive);
 	--color-positive-quiet-background: rgba(22, 163, 74, 0.1);
@@ -98,6 +102,15 @@
 	);
 	--color-neutral-emphasis-foreground-subtle: rgb(
 		from var(--color-neutral-emphasis-foreground) r g b / var(--tone-subtle)
+	);
+	--color-neutral-inverted-foreground-strong: rgb(
+		from var(--color-neutral-inverted-foreground) r g b / var(--tone-strong)
+	);
+	--color-neutral-inverted-foreground-base: rgb(
+		from var(--color-neutral-inverted-foreground) r g b / var(--tone-base)
+	);
+	--color-neutral-inverted-foreground-subtle: rgb(
+		from var(--color-neutral-inverted-foreground) r g b / var(--tone-subtle)
 	);
 	--color-positive-quiet-foreground-strong: rgb(
 		from var(--color-positive-quiet-foreground) r g b / var(--tone-strong)
@@ -216,6 +229,25 @@
 		--color-neutral-emphasis-border-subtle
 	);
 	--card-neutral-emphasis-stripe: var(--color-neutral-emphasis-stripe);
+	--card-neutral-inverted-foreground: var(
+		--color-neutral-inverted-foreground
+	);
+	--card-neutral-inverted-foreground-strong: var(
+		--color-neutral-inverted-foreground-strong
+	);
+	--card-neutral-inverted-foreground-base: var(
+		--color-neutral-inverted-foreground-base
+	);
+	--card-neutral-inverted-foreground-subtle: var(
+		--color-neutral-inverted-foreground-subtle
+	);
+	--card-neutral-inverted-background: var(
+		--color-neutral-inverted-background
+	);
+	--card-neutral-inverted-border-subtle: var(
+		--color-neutral-inverted-border-subtle
+	);
+	--card-neutral-inverted-stripe: var(--color-neutral-inverted-stripe);
 	--card-positive-quiet-foreground: var(--color-positive-quiet-foreground);
 	--card-positive-quiet-foreground-strong: var(
 		--color-positive-quiet-foreground-strong
@@ -380,6 +412,127 @@
 	);
 	--callout-informative-quiet-stripe: var(
 		--color-informative-quiet-border-subtle
+	);
+
+	--badge-neutral-quiet-foreground: var(--color-neutral-quiet-foreground);
+	--badge-neutral-quiet-background: var(--color-neutral-quiet-background);
+	--badge-neutral-quiet-border: var(--color-neutral-quiet-border-subtle);
+	--badge-neutral-emphasis-foreground: var(
+		--color-neutral-emphasis-foreground
+	);
+	--badge-neutral-emphasis-background: var(
+		--color-neutral-emphasis-background
+	);
+	--badge-neutral-emphasis-border: var(--color-neutral-emphasis-border-subtle);
+	--badge-neutral-inverted-foreground: var(
+		--color-neutral-inverted-foreground
+	);
+	--badge-neutral-inverted-background: var(
+		--color-neutral-inverted-background
+	);
+	--badge-neutral-inverted-border: var(--color-neutral-inverted-border-subtle);
+	--badge-positive-quiet-foreground: var(--color-positive-quiet-foreground);
+	--badge-positive-quiet-background: var(--color-positive-quiet-background);
+	--badge-positive-quiet-border: var(--color-positive-quiet-border-subtle);
+	--badge-positive-emphasis-foreground: var(
+		--color-positive-emphasis-foreground
+	);
+	--badge-positive-emphasis-background: var(
+		--color-positive-emphasis-background
+	);
+	--badge-positive-emphasis-border: var(
+		--color-positive-emphasis-border-subtle
+	);
+	--badge-negative-quiet-foreground: var(--color-negative-quiet-foreground);
+	--badge-negative-quiet-background: var(--color-negative-quiet-background);
+	--badge-negative-quiet-border: var(--color-negative-quiet-border-subtle);
+	--badge-negative-emphasis-foreground: var(
+		--color-negative-emphasis-foreground
+	);
+	--badge-negative-emphasis-background: var(
+		--color-negative-emphasis-background
+	);
+	--badge-negative-emphasis-border: var(
+		--color-negative-emphasis-border-subtle
+	);
+	--badge-warning-quiet-foreground: var(--color-warning-quiet-foreground);
+	--badge-warning-quiet-background: var(--color-warning-quiet-background);
+	--badge-warning-quiet-border: var(--color-warning-quiet-border-subtle);
+	--badge-warning-emphasis-foreground: var(
+		--color-warning-emphasis-foreground
+	);
+	--badge-warning-emphasis-background: var(
+		--color-warning-emphasis-background
+	);
+	--badge-warning-emphasis-border: var(--color-warning-emphasis-border-subtle);
+	--badge-informative-quiet-foreground: var(
+		--color-informative-quiet-foreground
+	);
+	--badge-informative-quiet-background: var(
+		--color-informative-quiet-background
+	);
+	--badge-informative-quiet-border: var(
+		--color-informative-quiet-border-subtle
+	);
+	--badge-informative-emphasis-foreground: var(
+		--color-informative-emphasis-foreground
+	);
+	--badge-informative-emphasis-background: var(
+		--color-informative-emphasis-background
+	);
+	--badge-informative-emphasis-border: var(
+		--color-informative-emphasis-border-subtle
+	);
+
+	--stamp-neutral-quiet-foreground: var(--color-neutral-quiet-foreground);
+	--stamp-neutral-quiet-background: var(--color-neutral-quiet-background);
+	--stamp-neutral-emphasis-foreground: var(
+		--color-neutral-emphasis-foreground
+	);
+	--stamp-neutral-emphasis-background: var(
+		--color-neutral-emphasis-background
+	);
+	--stamp-neutral-inverted-foreground: var(
+		--color-neutral-inverted-foreground
+	);
+	--stamp-neutral-inverted-background: var(
+		--color-neutral-inverted-background
+	);
+	--stamp-positive-quiet-foreground: var(--color-positive-quiet-foreground);
+	--stamp-positive-quiet-background: var(--color-positive-quiet-background);
+	--stamp-positive-emphasis-foreground: var(
+		--color-positive-emphasis-foreground
+	);
+	--stamp-positive-emphasis-background: var(
+		--color-positive-emphasis-background
+	);
+	--stamp-negative-quiet-foreground: var(--color-negative-quiet-foreground);
+	--stamp-negative-quiet-background: var(--color-negative-quiet-background);
+	--stamp-negative-emphasis-foreground: var(
+		--color-negative-emphasis-foreground
+	);
+	--stamp-negative-emphasis-background: var(
+		--color-negative-emphasis-background
+	);
+	--stamp-warning-quiet-foreground: var(--color-warning-quiet-foreground);
+	--stamp-warning-quiet-background: var(--color-warning-quiet-background);
+	--stamp-warning-emphasis-foreground: var(
+		--color-warning-emphasis-foreground
+	);
+	--stamp-warning-emphasis-background: var(
+		--color-warning-emphasis-background
+	);
+	--stamp-informative-quiet-foreground: var(
+		--color-informative-quiet-foreground
+	);
+	--stamp-informative-quiet-background: var(
+		--color-informative-quiet-background
+	);
+	--stamp-informative-emphasis-foreground: var(
+		--color-informative-emphasis-foreground
+	);
+	--stamp-informative-emphasis-background: var(
+		--color-informative-emphasis-background
 	);
 
 	--color-white: rgb(255, 255, 255);

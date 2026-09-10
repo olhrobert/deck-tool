@@ -15,7 +15,12 @@
 @import "callout/presets/callout-title.css";
 @import "callout/presets/callout-description.css";
 @import "badge/badge.css";
+@import "badge/badge-icon.css";
+@import "badge/badge-icons.css";
 @import "badge/presets/badge-text.css";
+@import "stamp/stamp.css";
+@import "stamp/stamp-icon.css";
+@import "stamp/presets/stamp-text.css";
 @import "slide-footer/slide-footer.css";
 @import "slide-footer/presets/slide-footer-text.css";
 @import "attribution-box/attribution-box.css";
