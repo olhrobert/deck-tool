@@ -32,13 +32,13 @@ Presets use a shared placeholder at `assets/logos/placeholder-logo.svg` (light b
 <img
 	src="../../assets/logos/placeholder-logo.svg"
 	alt="Logo"
-	data-logo="cover"
+	data-logo
 	class="shrink-0 block"
 	style="height: 24px; width: auto"
 />
 ```
 
-`data-logo` names the surface whose background decides default vs inverted: `cover`, `slide`, or `slide-surface`. Inside `<slide-footer>`, keep `data-logo` with no value so the logo follows the footer’s `context` (`slide` or `cover`).
+`data-logo` (no value), `data-logo="slide"`, and `data-logo="cover"` (alias) all use `--color-slide-background` on the nearest slide. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, keep `data-logo` with no value so the logo follows the slide canvas.
 
 When creating a deck for a specific brand:
 

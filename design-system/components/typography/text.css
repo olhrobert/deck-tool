@@ -6,7 +6,7 @@
      tone="subtle|base|strong"      default base
      size="<type-scale step>"       raw scale (e.g. 200, 300, 1600)
      uppercase="true|false"         default false
-     context="slide|surface|cover"  default slide
+     context="slide|surface"        default slide
 
    Extra on <text> only: family, weight, lineheight, letterspacing.
 */
@@ -96,30 +96,6 @@
 	--_ink-strong: var(--color-slide-surface-foreground-strong);
 	--_ink-base: var(--color-slide-surface-foreground-base);
 	--_ink-subtle: var(--color-slide-surface-foreground-subtle);
-}
-
-:is(
-	.text,
-	text,
-	slide-pretitle,
-	card-pretitle,
-	slide-title,
-	slide-subtitle,
-	card-title,
-	card-meta,
-	paragraph-title,
-	body-copy,
-	callout-title,
-	callout-description,
-	badge-text,
-	slide-footer-notes,
-	slide-footer-title,
-	slide-footer-chapter,
-	slide-footer-page
-)[context="cover"] {
-	--_ink-strong: var(--color-cover-foreground-strong);
-	--_ink-base: var(--color-cover-foreground-base);
-	--_ink-subtle: var(--color-cover-foreground-subtle);
 }
 
 /* color */

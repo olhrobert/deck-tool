@@ -1246,15 +1246,6 @@
 	background-color: var(--color-slide-surface-background);
 }
 
-.bg-cover {
-	background-color: var(--color-cover-background);
-}
-
-.bg-cover-surface {
-	background-color: var(--color-cover-surface-background);
-}
-
-
 /* Border */
 .border {
 	border-width: 1px;
@@ -1275,30 +1266,6 @@
 }
 
 /* Colors */
-.color-cover-background {
-	color: var(--color-cover-background);
-}
-.color-cover-foreground-strong {
-	color: var(--color-cover-foreground-strong);
-}
-.color-cover-foreground-base {
-	color: var(--color-cover-foreground-base);
-}
-.color-cover-foreground-subtle {
-	color: var(--color-cover-foreground-subtle);
-}
-.color-cover-surface-background {
-	color: var(--color-cover-surface-background);
-}
-.color-cover-surface-foreground-strong {
-	color: var(--color-cover-surface-foreground-strong);
-}
-.color-cover-surface-foreground-base {
-	color: var(--color-cover-surface-foreground-base);
-}
-.color-cover-surface-foreground-subtle {
-	color: var(--color-cover-surface-foreground-subtle);
-}
 .color-slide-background {
 	color: var(--color-slide-background);
 }
@@ -1332,125 +1299,65 @@
 .color-black {
 	color: var(--color-black);
 }
-.color-neutral-quiet-foreground-strong {
-	color: var(--color-neutral-quiet-foreground-strong);
+.color-neutral-foreground-strong {
+	color: var(--color-neutral-foreground-strong);
 }
-.color-neutral-quiet-foreground-base {
-	color: var(--color-neutral-quiet-foreground-base);
+.color-neutral-foreground-base {
+	color: var(--color-neutral-foreground-base);
 }
-.color-neutral-quiet-foreground-subtle {
-	color: var(--color-neutral-quiet-foreground-subtle);
+.color-neutral-foreground-subtle {
+	color: var(--color-neutral-foreground-subtle);
 }
-.color-neutral-emphasis-foreground-strong {
-	color: var(--color-neutral-emphasis-foreground-strong);
+.color-positive-foreground-strong {
+	color: var(--color-positive-foreground-strong);
 }
-.color-neutral-emphasis-foreground-base {
-	color: var(--color-neutral-emphasis-foreground-base);
+.color-positive-foreground-base {
+	color: var(--color-positive-foreground-base);
 }
-.color-neutral-emphasis-foreground-subtle {
-	color: var(--color-neutral-emphasis-foreground-subtle);
+.color-positive-foreground-subtle {
+	color: var(--color-positive-foreground-subtle);
 }
-.color-positive-quiet-foreground-strong {
-	color: var(--color-positive-quiet-foreground-strong);
+.color-warning-foreground-strong {
+	color: var(--color-warning-foreground-strong);
 }
-.color-positive-quiet-foreground-base {
-	color: var(--color-positive-quiet-foreground-base);
+.color-warning-foreground-base {
+	color: var(--color-warning-foreground-base);
 }
-.color-positive-quiet-foreground-subtle {
-	color: var(--color-positive-quiet-foreground-subtle);
+.color-warning-foreground-subtle {
+	color: var(--color-warning-foreground-subtle);
 }
-.color-positive-emphasis-foreground-strong {
-	color: var(--color-positive-emphasis-foreground-strong);
+.color-negative-foreground-strong {
+	color: var(--color-negative-foreground-strong);
 }
-.color-positive-emphasis-foreground-base {
-	color: var(--color-positive-emphasis-foreground-base);
+.color-negative-foreground-base {
+	color: var(--color-negative-foreground-base);
 }
-.color-positive-emphasis-foreground-subtle {
-	color: var(--color-positive-emphasis-foreground-subtle);
+.color-negative-foreground-subtle {
+	color: var(--color-negative-foreground-subtle);
 }
-.color-warning-quiet-foreground-strong {
-	color: var(--color-warning-quiet-foreground-strong);
+.color-informative-foreground-strong {
+	color: var(--color-informative-foreground-strong);
 }
-.color-warning-quiet-foreground-base {
-	color: var(--color-warning-quiet-foreground-base);
+.color-informative-foreground-base {
+	color: var(--color-informative-foreground-base);
 }
-.color-warning-quiet-foreground-subtle {
-	color: var(--color-warning-quiet-foreground-subtle);
+.color-informative-foreground-subtle {
+	color: var(--color-informative-foreground-subtle);
 }
-.color-warning-emphasis-foreground-strong {
-	color: var(--color-warning-emphasis-foreground-strong);
+.bg-semantic-neutral {
+	background-color: var(--color-neutral-background);
 }
-.color-warning-emphasis-foreground-base {
-	color: var(--color-warning-emphasis-foreground-base);
+.bg-semantic-positive {
+	background-color: var(--color-positive-background);
 }
-.color-warning-emphasis-foreground-subtle {
-	color: var(--color-warning-emphasis-foreground-subtle);
+.bg-semantic-warning {
+	background-color: var(--color-warning-background);
 }
-.color-negative-quiet-foreground-strong {
-	color: var(--color-negative-quiet-foreground-strong);
+.bg-semantic-negative {
+	background-color: var(--color-negative-background);
 }
-.color-negative-quiet-foreground-base {
-	color: var(--color-negative-quiet-foreground-base);
-}
-.color-negative-quiet-foreground-subtle {
-	color: var(--color-negative-quiet-foreground-subtle);
-}
-.color-negative-emphasis-foreground-strong {
-	color: var(--color-negative-emphasis-foreground-strong);
-}
-.color-negative-emphasis-foreground-base {
-	color: var(--color-negative-emphasis-foreground-base);
-}
-.color-negative-emphasis-foreground-subtle {
-	color: var(--color-negative-emphasis-foreground-subtle);
-}
-.color-informative-quiet-foreground-strong {
-	color: var(--color-informative-quiet-foreground-strong);
-}
-.color-informative-quiet-foreground-base {
-	color: var(--color-informative-quiet-foreground-base);
-}
-.color-informative-quiet-foreground-subtle {
-	color: var(--color-informative-quiet-foreground-subtle);
-}
-.color-informative-emphasis-foreground-strong {
-	color: var(--color-informative-emphasis-foreground-strong);
-}
-.color-informative-emphasis-foreground-base {
-	color: var(--color-informative-emphasis-foreground-base);
-}
-.color-informative-emphasis-foreground-subtle {
-	color: var(--color-informative-emphasis-foreground-subtle);
-}
-.bg-semantic-neutral-quiet {
-	background-color: var(--color-neutral-quiet-background);
-}
-.bg-semantic-neutral-emphasis {
-	background-color: var(--color-neutral-emphasis-background);
-}
-.bg-semantic-positive-quiet {
-	background-color: var(--color-positive-quiet-background);
-}
-.bg-semantic-positive-emphasis {
-	background-color: var(--color-positive-emphasis-background);
-}
-.bg-semantic-warning-quiet {
-	background-color: var(--color-warning-quiet-background);
-}
-.bg-semantic-warning-emphasis {
-	background-color: var(--color-warning-emphasis-background);
-}
-.bg-semantic-negative-quiet {
-	background-color: var(--color-negative-quiet-background);
-}
-.bg-semantic-negative-emphasis {
-	background-color: var(--color-negative-emphasis-background);
-}
-.bg-semantic-informative-quiet {
-	background-color: var(--color-informative-quiet-background);
-}
-.bg-semantic-informative-emphasis {
-	background-color: var(--color-informative-emphasis-background);
+.bg-semantic-informative {
+	background-color: var(--color-informative-background);
 }
 .color-palette-chart-1 {
 	color: var(--color-palette-chart-1);

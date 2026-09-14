@@ -869,7 +869,8 @@ function parseSlide(html, source, warnings) {
 	const hasChrome = (slide.children || []).some((child) =>
 		["header-container", "content-container", "footer-container"].includes(child.tag),
 	);
-	const isCover = hasClass(slide, "bg-cover");
+	const isCover =
+		hasClass(slide, "bg-cover") || attr(slide, "kind") === "cover";
 	const ir = {
 		source,
 		surface: isCover ? "cover" : "default",

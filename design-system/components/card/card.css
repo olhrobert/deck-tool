@@ -1,10 +1,10 @@
 /* Card
-   Axes (defaults match today's quiet default box):
+   Axes:
      variant="neutral|positive|warning|negative|informative"  default neutral
-     emphasis="true|false|inverted"                            default false
-       inverted is neutral-only (quiet / emphasis / inverted)
+     emphasis="inverted"                                       neutral-only extra recipe
      layout="basic|stripe"                                     brand `card.defaultLayout` when omitted
-   Padding / gap / type are unchanged brand tokens.
+     color-theme="light|dark"                                  inherits; remaps paint
+   Padding / gap / type are brand tokens.
    Ink = family `foreground` hue × foundations.tone.
 */
 
@@ -15,13 +15,13 @@ card {
 	min-width: 0;
 	box-sizing: border-box;
 
-	--_card-hue: var(--card-neutral-quiet-foreground);
+	--_card-hue: var(--card-neutral-foreground);
 	--_card-ink-strong: rgb(from var(--_card-hue) r g b / var(--tone-strong));
 	--_card-ink-base: rgb(from var(--_card-hue) r g b / var(--tone-base));
 	--_card-ink-subtle: rgb(from var(--_card-hue) r g b / var(--tone-subtle));
-	--_card-bg: var(--card-neutral-quiet-background);
-	--_card-border: var(--card-neutral-quiet-border-subtle);
-	--_card-stripe: var(--card-neutral-quiet-stripe);
+	--_card-bg: var(--card-neutral-background);
+	--_card-border: var(--card-neutral-border-subtle);
+	--_card-stripe: var(--card-neutral-stripe);
 
 	background-color: var(--_card-bg);
 	border-style: solid;
@@ -61,15 +61,6 @@ card
 	--_ink-subtle: var(--_card-ink-subtle);
 }
 
-/* --- emphasis (default variant) --- */
-
-card[emphasis="true"] {
-	--_card-hue: var(--card-neutral-emphasis-foreground);
-	--_card-bg: var(--card-neutral-emphasis-background);
-	--_card-border: var(--card-neutral-emphasis-border-subtle);
-	--_card-stripe: var(--card-neutral-emphasis-stripe);
-}
-
 card:not([variant])[emphasis="inverted"],
 card[variant="neutral"][emphasis="inverted"] {
 	--_card-hue: var(--card-neutral-inverted-foreground);
@@ -78,64 +69,32 @@ card[variant="neutral"][emphasis="inverted"] {
 	--_card-stripe: var(--card-neutral-inverted-stripe);
 }
 
-/* --- variant: quiet --- */
-
 card[variant="positive"] {
-	--_card-hue: var(--card-positive-quiet-foreground);
-	--_card-bg: var(--card-positive-quiet-background);
-	--_card-border: var(--card-positive-quiet-border-subtle);
-	--_card-stripe: var(--card-positive-quiet-stripe);
+	--_card-hue: var(--card-positive-foreground);
+	--_card-bg: var(--card-positive-background);
+	--_card-border: var(--card-positive-border-subtle);
+	--_card-stripe: var(--card-positive-stripe);
 }
 
 card[variant="warning"] {
-	--_card-hue: var(--card-warning-quiet-foreground);
-	--_card-bg: var(--card-warning-quiet-background);
-	--_card-border: var(--card-warning-quiet-border-subtle);
-	--_card-stripe: var(--card-warning-quiet-stripe);
+	--_card-hue: var(--card-warning-foreground);
+	--_card-bg: var(--card-warning-background);
+	--_card-border: var(--card-warning-border-subtle);
+	--_card-stripe: var(--card-warning-stripe);
 }
 
 card[variant="negative"] {
-	--_card-hue: var(--card-negative-quiet-foreground);
-	--_card-bg: var(--card-negative-quiet-background);
-	--_card-border: var(--card-negative-quiet-border-subtle);
-	--_card-stripe: var(--card-negative-quiet-stripe);
+	--_card-hue: var(--card-negative-foreground);
+	--_card-bg: var(--card-negative-background);
+	--_card-border: var(--card-negative-border-subtle);
+	--_card-stripe: var(--card-negative-stripe);
 }
 
 card[variant="informative"] {
-	--_card-hue: var(--card-informative-quiet-foreground);
-	--_card-bg: var(--card-informative-quiet-background);
-	--_card-border: var(--card-informative-quiet-border-subtle);
-	--_card-stripe: var(--card-informative-quiet-stripe);
-}
-
-/* --- variant + emphasis --- */
-
-card[variant="positive"][emphasis="true"] {
-	--_card-hue: var(--card-positive-emphasis-foreground);
-	--_card-bg: var(--card-positive-emphasis-background);
-	--_card-border: var(--card-positive-emphasis-border-subtle);
-	--_card-stripe: var(--card-positive-emphasis-stripe);
-}
-
-card[variant="warning"][emphasis="true"] {
-	--_card-hue: var(--card-warning-emphasis-foreground);
-	--_card-bg: var(--card-warning-emphasis-background);
-	--_card-border: var(--card-warning-emphasis-border-subtle);
-	--_card-stripe: var(--card-warning-emphasis-stripe);
-}
-
-card[variant="negative"][emphasis="true"] {
-	--_card-hue: var(--card-negative-emphasis-foreground);
-	--_card-bg: var(--card-negative-emphasis-background);
-	--_card-border: var(--card-negative-emphasis-border-subtle);
-	--_card-stripe: var(--card-negative-emphasis-stripe);
-}
-
-card[variant="informative"][emphasis="true"] {
-	--_card-hue: var(--card-informative-emphasis-foreground);
-	--_card-bg: var(--card-informative-emphasis-background);
-	--_card-border: var(--card-informative-emphasis-border-subtle);
-	--_card-stripe: var(--card-informative-emphasis-stripe);
+	--_card-hue: var(--card-informative-foreground);
+	--_card-bg: var(--card-informative-background);
+	--_card-border: var(--card-informative-border-subtle);
+	--_card-stripe: var(--card-informative-stripe);
 }
 
 /* --- layout: stripe (left accent) --- */

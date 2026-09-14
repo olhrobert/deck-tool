@@ -24,7 +24,8 @@
 				margin: 0;
 				background-color: var(--color-slide-background);
 				display: flex;
-				min-height: 100vh;
+				height: 100vh;
+				overflow: hidden;
 			}
 
 			.showcase-sidebar {
@@ -47,17 +48,62 @@
 				display: flex;
 				flex-direction: column;
 				flex: 1 1 auto;
-				gap: var(--spacing-10);
-				padding: var(--spacing-10);
-				padding-top: var(--spacing-12);
-				padding-bottom: var(--spacing-20);
-				max-width: 1280px;
-				width: 100%;
-				margin: 0 auto;
+				min-width: 0;
+				height: 100vh;
+				overflow-y: auto;
 				box-sizing: border-box;
 			}
 
 			.showcase-group {
+				display: flex;
+				flex-direction: column;
+				min-height: 100%;
+			}
+
+			.showcase-header {
+				box-sizing: border-box;
+				display: flex;
+				align-items: center;
+				padding: var(--spacing-4);
+				border-bottom: 1px solid var(--color-slide-surface-border);
+				background-color: var(--color-slide-background);
+				flex: 0 0 auto;
+			}
+
+			.showcase-body {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-12);
+				padding: var(--spacing-8);
+				box-sizing: border-box;
+				flex: 1 0 auto;
+			}
+
+			.showcase-themes {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 0;
+				padding: 0;
+				flex: 1 0 auto;
+				align-items: stretch;
+			}
+
+			.showcase-theme-pane {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-4);
+				min-width: 0;
+				min-height: 100%;
+				padding: var(--spacing-8);
+				box-sizing: border-box;
+				background-color: var(--color-slide-background);
+			}
+
+			.showcase-theme-pane[color-theme="dark"] {
+				border-left: 1px solid var(--color-slide-surface-border);
+			}
+
+			.showcase-theme-content {
 				display: flex;
 				flex-direction: column;
 				gap: var(--spacing-12);
@@ -81,7 +127,7 @@
 			}
 
 			.showcase-h1 {
-				font-size: var(--text-size-800);
+				font-size: var(--text-size-400);
 			}
 
 			.showcase-h2 {
@@ -122,12 +168,6 @@
 				border: 1px solid var(--color-slide-surface-border);
 				border-radius: var(--card-border-radius);
 				overflow: hidden;
-			}
-
-			.showcase-footer-cover {
-				background-color: var(--color-cover-background);
-				border-radius: var(--card-border-radius);
-				padding: var(--spacing-6) var(--spacing-8);
 			}
 
 			.showcase-toolbar {
@@ -201,19 +241,19 @@
 			}
 
 			.showcase-toolbar a.is-active {
-				background-color: var(--color-cover-background);
-				color: var(--color-cover-foreground);
+				background-color: var(--color-slide-background-dark);
+				color: var(--color-slide-foreground-dark);
 			}
 
 			.showcase-filter a:hover {
 				background-color: rgb(
-					from var(--color-cover-background) r g b / 0.1
+					from var(--color-slide-background-dark) r g b / 0.1
 				);
 			}
 
 			.showcase-filter a.is-active {
 				background-color: rgb(
-					from var(--color-cover-background) r g b / 0.2
+					from var(--color-slide-background-dark) r g b / 0.2
 				);
 				color: var(--color-slide-foreground-strong);
 			}
@@ -301,23 +341,17 @@
 				gap: var(--spacing-3);
 			}
 
-			.showcase-group[data-section="brand"],
-			.showcase-group[data-section="typography"],
-			.showcase-group[data-section="attribution-box"],
-			.showcase-group[data-section="badge"],
-			.showcase-group[data-section="stamp"],
-			.showcase-group[data-section="callout"],
-			.showcase-group[data-section="card"],
-			.showcase-group[data-section="slide-title"] {
+			.showcase-group[data-section="brand"] .showcase-body,
+			.showcase-group[data-section="typography"] .showcase-body {
 				max-width: 800px;
 				width: 100%;
 				margin: 0 auto;
 			}
 
-			.showcase-group[data-section="layout"],
-			.showcase-group[data-section="title-slides"],
-			.showcase-group[data-section="chapter-slides"],
-			.showcase-group[data-section="content-slides"] {
+			.showcase-group[data-section="layout"] .showcase-body,
+			.showcase-group[data-section="title-slides"] .showcase-body,
+			.showcase-group[data-section="chapter-slides"] .showcase-body,
+			.showcase-group[data-section="content-slides"] .showcase-body {
 				max-width: 1280px;
 				width: 100%;
 				margin: 0 auto;
@@ -328,11 +362,17 @@
 				flex-direction: column;
 				gap: 0;
 				width: 100%;
-				border: 1px solid
-					var(--color-neutral-quiet-border-subtle);
+				border: 1px solid var(--color-slide-surface-border);
 				border-radius: var(--card-border-radius);
 				overflow: hidden;
-				background: var(--color-neutral-quiet-background);
+				background: var(--color-slide-surface-background);
+			}
+
+			#brand-showcase {
+				display: flex;
+				flex-direction: column;
+				gap: var(--spacing-12);
+				width: 100%;
 			}
 
 			.brand-settings-group {
@@ -369,8 +409,7 @@
 				gap: var(--spacing-4);
 				align-items: center;
 				padding: var(--spacing-3) var(--spacing-4);
-				border-top: 1px solid
-					var(--color-neutral-quiet-border-subtle);
+				border-top: 1px solid var(--color-slide-surface-border);
 			}
 
 			.brand-settings-row:first-child {
@@ -392,8 +431,7 @@
 				border-radius: var(--border-radius-full);
 				flex: 0 0 auto;
 				box-sizing: border-box;
-				border: 1px solid
-					var(--color-neutral-quiet-border-subtle);
+				border: 1px solid var(--color-slide-surface-border);
 			}
 		</style>
 	</head>
@@ -489,20 +527,23 @@
 			</div>
 		</aside>
 		<div class="showcase">
-
 			<!-- === BRAND === -->
 
 			<div
 				class="showcase-group"
 				data-section="brand"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Brand</text
-				>
-				<div id="brand-showcase"></div>
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Brand</text
+					>
+				</header>
+				<div class="showcase-body">
+					<div id="brand-showcase"></div>
+				</div>
 			</div>
 
 			<!-- === TITLE SLIDES === -->
@@ -511,90 +552,118 @@
 				class="showcase-group"
 				data-section="title-slides"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Title slides</text
-				>
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-01.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-01.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Title slides</text
 					>
-				</div>
+				</header>
+				<div class="showcase-body">
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-01.html"
+					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-01.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-01-with-attribution.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-01-with-attribution.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-01-with-attribution.html"
 					>
-				</div>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-01-with-attribution.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-02.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-02.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-02.html"
 					>
-				</div>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-02.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-02-with-attribution.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-02-with-attribution.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-02-with-attribution.html"
 					>
-				</div>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-02-with-attribution.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-03.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-03.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-03.html"
 					>
-				</div>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-03.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-03-with-attribution.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-03-with-attribution.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-03-with-attribution.html"
 					>
-				</div>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-03-with-attribution.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-04.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-04.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-04.html"
 					>
-				</div>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-04.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/title-slides/title-slide-04-with-attribution.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/title-slides/title-slide-04-with-attribution.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/title-slides/title-slide-04-with-attribution.html"
 					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/title-slides/title-slide-04-with-attribution.html</text
+						>
+					</div>
 				</div>
 			</div>
 
@@ -604,30 +673,40 @@
 				class="showcase-group"
 				data-section="chapter-slides"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Chapter slides</text
-				>
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/chapter-slides/chapter-slide-01.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/chapter-slides/chapter-slide-01.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Chapter slides</text
 					>
-				</div>
+				</header>
+				<div class="showcase-body">
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/chapter-slides/chapter-slide-01.html"
+					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/chapter-slides/chapter-slide-01.html</text
+						>
+					</div>
 
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/chapter-slides/chapter-slide-02.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/chapter-slides/chapter-slide-02.html</text
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/chapter-slides/chapter-slide-02.html"
 					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/chapter-slides/chapter-slide-02.html</text
+						>
+					</div>
 				</div>
 			</div>
 
@@ -637,22 +716,56 @@
 				class="showcase-group"
 				data-section="content-slides"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Content slides</text
-				>
-				<div
-					class="showcase-subgroup showcase-deck"
-					data-preset="deck-title"
-					data-src="../../presets/content-slides/content-slide-3-cards.html"
-				>
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>presets/content-slides/content-slide-3-cards.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Content slides</text
 					>
+				</header>
+				<div class="showcase-body">
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/content-slides/content-slide-3-cards.html"
+					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>presets/content-slides/content-slide-3-cards.html</text
+						>
+					</div>
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/content-slides/content-slide-3-cards.html"
+						data-color-theme="dark"
+					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>color-theme="dark"</text
+						>
+					</div>
+					<div
+						class="showcase-subgroup showcase-deck"
+						data-preset="deck-title"
+						data-src="../../presets/content-slides/content-slide-3-cards.html"
+						data-color-theme="dark"
+						data-cards-color-theme="light"
+					>
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>color-theme="dark" with cards
+							color-theme="light"</text
+						>
+					</div>
 				</div>
-
 			</div>
 
 			<!-- === SLIDE FOOTER === -->
@@ -661,40 +774,50 @@
 				class="showcase-group"
 				data-section="slide-footer"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Slide footer</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-footer/slide-footer.html
-						context="slide"</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Slide footer</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						class="showcase-footer"
-						style="padding: var(--spacing-6) var(--spacing-8)"
-						data-preset="fragment"
-						data-src="../components/slide-footer/slide-footer.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-footer/slide-footer.html
-						context="cover"</text
+						class="showcase-theme-pane"
+						color-theme="light"
 					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/slide-footer/slide-footer.html</text
+								>
+								<div
+									class="showcase-footer"
+									style="
+										padding: var(--spacing-6)
+											var(--spacing-8);
+									"
+									data-preset="fragment"
+									data-src="../components/slide-footer/slide-footer.html"
+								></div>
+							</div>
+							<div
+								class="showcase-subgroup"
+								id="slide-footer-settings"
+							></div>
+						</div>
+					</div>
 					<div
-						class="showcase-footer-cover"
-						data-preset="fragment"
-						data-src="../components/slide-footer/slide-footer.html"
-						data-footer-context="cover"
-					></div>
+						class="showcase-theme-pane"
+						color-theme="dark"
+					>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
-				<div
-					class="showcase-subgroup"
-					id="slide-footer-settings"
-				></div>
 			</div>
 
 			<!-- === ATTRIBUTION BOX === -->
@@ -703,20 +826,40 @@
 				class="showcase-group"
 				data-section="attribution-box"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Attribution box</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/attribution-box/attribution-box.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Attribution box</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						data-preset="fragment"
-						data-src="../components/attribution-box/attribution-box.html"
-					></div>
+						class="showcase-theme-pane"
+						color-theme="light"
+					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/attribution-box/attribution-box.html</text
+								>
+								<div
+									data-preset="fragment"
+									data-src="../components/attribution-box/attribution-box.html"
+								></div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="showcase-theme-pane"
+						color-theme="dark"
+					>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
 			</div>
 
@@ -726,34 +869,59 @@
 				class="showcase-group"
 				data-section="badge"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Badge</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/badge/badge.html · text only</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Badge</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						class="badge-matrix"
-						id="badge-showcase-text"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/badge/badge.html · with icons</text
+						class="showcase-theme-pane"
+						color-theme="light"
 					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/badge/badge.html · text
+									only</text
+								>
+								<div
+									class="badge-matrix"
+									id="badge-showcase-text"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/badge/badge.html · with
+									icons</text
+								>
+								<div
+									class="badge-matrix"
+									id="badge-showcase-icons"
+								></div>
+							</div>
+							<div
+								class="showcase-subgroup"
+								id="badge-settings"
+							></div>
+						</div>
+					</div>
 					<div
-						class="badge-matrix"
-						id="badge-showcase-icons"
-					></div>
+						class="showcase-theme-pane"
+						color-theme="dark"
+					>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
-				<div
-					class="showcase-subgroup"
-					id="badge-settings"
-				></div>
 			</div>
 
 			<!-- === STAMP === -->
@@ -762,61 +930,95 @@
 				class="showcase-group"
 				data-section="stamp"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Stamp</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/stamp/stamp.html · numbers (omit size = brand default)</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Stamp</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						class="stamp-matrix"
-						id="stamp-showcase-numbers"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/stamp/stamp.html · icons</text
+						class="showcase-theme-pane"
+						color-theme="light"
 					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/stamp/stamp.html · numbers (omit
+									size = brand default)</text
+								>
+								<div
+									class="stamp-matrix"
+									id="stamp-showcase-numbers"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/stamp/stamp.html · icons</text
+								>
+								<div
+									class="stamp-matrix"
+									id="stamp-showcase-icons"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>size="4" … "16" (icon and type scale with
+									the square)</text
+								>
+								<div
+									class="stamp-matrix-row"
+									id="stamp-showcase-sizes"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>In a card row</text
+								>
+								<div
+									class="stamp-card-row"
+									id="stamp-showcase-cards"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>In a numbered list</text
+								>
+								<div
+									class="stamp-list"
+									id="stamp-showcase-list"
+								></div>
+							</div>
+							<div
+								class="showcase-subgroup"
+								id="stamp-settings"
+							></div>
+						</div>
+					</div>
 					<div
-						class="stamp-matrix"
-						id="stamp-showcase-icons"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>size="4" … "16" (icon and type scale with the square)</text
+						class="showcase-theme-pane"
+						color-theme="dark"
 					>
-					<div
-						class="stamp-matrix-row"
-						id="stamp-showcase-sizes"
-					></div>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>In a card row</text
-					>
-					<div
-						class="stamp-card-row"
-						id="stamp-showcase-cards"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>In a numbered list</text
-					>
-					<div
-						class="stamp-list"
-						id="stamp-showcase-list"
-					></div>
-				</div>
-				<div
-					class="showcase-subgroup"
-					id="stamp-settings"
-				></div>
 			</div>
 
 			<!-- === CALLOUT === -->
@@ -825,25 +1027,45 @@
 				class="showcase-group"
 				data-section="callout"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Callout</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/callout/callout.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Callout</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						class="callout-matrix"
-						id="callout-showcase"
-					></div>
+						class="showcase-theme-pane"
+						color-theme="light"
+					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/callout/callout.html</text
+								>
+								<div
+									class="callout-matrix"
+									id="callout-showcase"
+								></div>
+							</div>
+							<div
+								class="showcase-subgroup"
+								id="callout-settings"
+							></div>
+						</div>
+					</div>
+					<div
+						class="showcase-theme-pane"
+						color-theme="dark"
+					>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
-				<div
-					class="showcase-subgroup"
-					id="callout-settings"
-				></div>
 			</div>
 
 			<!-- === CARD === -->
@@ -852,34 +1074,57 @@
 				class="showcase-group"
 				data-section="card"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Card</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/card/card.html · basic</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Card</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						class="card-matrix"
-						id="card-showcase-basic"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/card/card.html · stripe</text
+						class="showcase-theme-pane"
+						color-theme="light"
 					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/card/card.html · basic</text
+								>
+								<div
+									class="card-matrix"
+									id="card-showcase-basic"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/card/card.html · stripe</text
+								>
+								<div
+									class="card-matrix"
+									id="card-showcase-stripe"
+								></div>
+							</div>
+							<div
+								class="showcase-subgroup"
+								id="card-settings"
+							></div>
+						</div>
+					</div>
 					<div
-						class="card-matrix"
-						id="card-showcase-stripe"
-					></div>
+						class="showcase-theme-pane"
+						color-theme="dark"
+					>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
-				<div
-					class="showcase-subgroup"
-					id="card-settings"
-				></div>
 			</div>
 
 			<!-- === SLIDE TITLE === -->
@@ -888,43 +1133,69 @@
 				class="showcase-group"
 				data-section="slide-title"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Slide title</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-title-group-lg.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Slide title</text
 					>
+				</header>
+				<div class="showcase-body showcase-themes">
 					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-group-lg.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-title-group-md.html</text
+						class="showcase-theme-pane"
+						color-theme="light"
 					>
+						<div class="showcase-theme-content">
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/slide-title/slide-title-group-lg.html</text
+								>
+								<div
+									data-preset="fragment"
+									data-src="../components/slide-title/slide-title-group-lg.html"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/slide-title/slide-title-group-md.html</text
+								>
+								<div
+									data-preset="fragment"
+									data-src="../components/slide-title/slide-title-group-md.html"
+								></div>
+							</div>
+							<div class="showcase-subgroup">
+								<text
+									class="showcase-h4"
+									tone="subtle"
+									context="slide"
+									>components/slide-title/slide-title-group-sm.html</text
+								>
+								<div
+									data-preset="fragment"
+									data-src="../components/slide-title/slide-title-group-sm.html"
+								></div>
+							</div>
+							<div
+								class="showcase-subgroup"
+								id="slide-title-settings"
+							></div>
+						</div>
+					</div>
 					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-group-md.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-title-group-sm.html</text
+						class="showcase-theme-pane"
+						color-theme="dark"
 					>
-					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-group-sm.html"
-					></div>
+						<div class="showcase-theme-content"></div>
+					</div>
 				</div>
-				<div
-					class="showcase-subgroup"
-					id="slide-title-settings"
-				></div>
 			</div>
 
 			<!-- === LAYOUT === -->
@@ -933,65 +1204,87 @@
 				class="showcase-group"
 				data-section="layout"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Layout</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/layout/slot.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Layout</text
 					>
-					<div
-						data-preset="fragment"
-						data-src="../components/layout/slot.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/layout/stack.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/layout/stack.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/layout/header-container.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/layout/header-container.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/layout/content-container.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/layout/content-container.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/layout/footer-container.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/layout/footer-container.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/layout/slide.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/layout/slide.html"
-					></div>
+				</header>
+				<div class="showcase-body">
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/layout/slot.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/layout/slot.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/layout/stack.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/layout/stack.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/layout/header-container.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/layout/header-container.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/layout/content-container.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/layout/content-container.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/layout/footer-container.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/layout/footer-container.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/layout/slide.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/layout/slide.html"
+						></div>
+					</div>
 				</div>
 			</div>
 
@@ -1001,128 +1294,171 @@
 				class="showcase-group"
 				data-section="typography"
 			>
-				<text
-					class="showcase-h1"
-					tone="strong"
-					context="slide"
-					>Type</text
-				>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/cover-title.html</text
+				<header class="showcase-header">
+					<text
+						class="showcase-h1"
+						tone="strong"
+						context="slide"
+						>Type</text
 					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/cover-title.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-title-lg.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-lg.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-title-md.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-md.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-title-sm.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-title-sm.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-pretitle.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-pretitle.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/card/presets/card-pretitle.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/card/presets/card-pretitle.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/slide-title/slide-subtitle.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/slide-title/slide-subtitle.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/paragraph-title-lg.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/paragraph-title-lg.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/paragraph-title-md.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/paragraph-title-md.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/paragraph-title-sm.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/paragraph-title-sm.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/body-copy-lg.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/body-copy-lg.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/body-copy-md.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/body-copy-md.html"
-					></div>
-				</div>
-				<div class="showcase-subgroup">
-					<text class="showcase-h4" tone="subtle" context="slide"
-						>components/typography/body-copy-sm.html</text
-					>
-					<div
-						data-preset="fragment"
-						data-src="../components/typography/body-copy-sm.html"
-					></div>
+				</header>
+				<div class="showcase-body">
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/cover-title.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/cover-title.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/slide-title/slide-title-lg.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/slide-title/slide-title-lg.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/slide-title/slide-title-md.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/slide-title/slide-title-md.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/slide-title/slide-title-sm.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/slide-title/slide-title-sm.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/slide-title/slide-pretitle.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/slide-title/slide-pretitle.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/card/presets/card-pretitle.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/card/presets/card-pretitle.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/slide-title/slide-subtitle.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/slide-title/slide-subtitle.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/paragraph-title-lg.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/paragraph-title-lg.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/paragraph-title-md.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/paragraph-title-md.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/paragraph-title-sm.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/paragraph-title-sm.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/body-copy-lg.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/body-copy-lg.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/body-copy-md.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/body-copy-md.html"
+						></div>
+					</div>
+					<div class="showcase-subgroup">
+						<text
+							class="showcase-h4"
+							tone="subtle"
+							context="slide"
+							>components/typography/body-copy-sm.html</text
+						>
+						<div
+							data-preset="fragment"
+							data-src="../components/typography/body-copy-sm.html"
+						></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -1162,10 +1498,10 @@
 			}
 
 			const LOGO_SURFACES = {
-				cover: "--color-cover-background",
+				cover: "--color-slide-background",
 				slide: "--color-slide-background",
 				"slide-surface": "--color-slide-surface-background",
-				"cover-surface": "--color-cover-surface-background",
+				"cover-surface": "--color-slide-surface-background",
 			};
 
 			const BRAND_LOGOS = {
@@ -1209,10 +1545,8 @@
 				);
 			}
 
-			function isDarkBackground(cssVar) {
-				const raw = getComputedStyle(
-					document.documentElement,
-				).getPropertyValue(cssVar);
+			function isDarkBackground(el, cssVar) {
+				const raw = getComputedStyle(el).getPropertyValue(cssVar);
 				const rgb = parseCssRgb(raw);
 				if (!rgb) return false;
 				return relativeLuminance(rgb) < 0.45;
@@ -1227,14 +1561,13 @@
 					.forEach((img) => {
 						if (img.closest("attribution-box")) return;
 						const explicit = img.getAttribute("data-logo");
-						const footer = img.closest("slide-footer");
-						const surface =
-							explicit ||
-							(footer && footer.getAttribute("context")) ||
-							"slide";
+						const host =
+							img.closest("slide") ||
+							img.closest("[color-theme]") ||
+							document.documentElement;
 						const cssVar =
-							LOGO_SURFACES[surface] || LOGO_SURFACES.slide;
-						img.src = isDarkBackground(cssVar)
+							LOGO_SURFACES[explicit] || LOGO_SURFACES.slide;
+						img.src = isDarkBackground(host, cssVar)
 							? files.inverted
 							: files.default;
 					});
@@ -1249,10 +1582,7 @@
 			];
 
 			function cardCombosForLayout(layout, variant) {
-				const combos = [
-					{ emphasis: "false", label: "quiet", layout },
-					{ emphasis: "true", label: "emphasis", layout },
-				];
+				const combos = [{ label: layout, layout }];
 				if (variant === "neutral") {
 					combos.push({
 						emphasis: "inverted",
@@ -1272,14 +1602,17 @@
 			function renderShowcaseCard(variant, combo) {
 				const meta = [
 					titleCase(variant),
-					titleCase(combo.label),
+					combo.emphasis === "inverted" ? "Inverted" : null,
 					titleCase(combo.layout),
-				].join(" · ");
+				]
+					.filter(Boolean)
+					.join(" · ");
+				const invertedAttr =
+					combo.emphasis === "inverted" ? ` emphasis="inverted"` : "";
 				return `
 					<card
 						class="flex-1 min-w-0"
-						variant="${variant}"
-						emphasis="${combo.emphasis}"
+						variant="${variant}"${invertedAttr}
 						layout="${combo.layout}"
 						padding="md"
 						gap="sm"
@@ -1325,11 +1658,16 @@
 			function renderCalloutShowcase() {
 				const root = document.getElementById("callout-showcase");
 				if (!root) return;
-				root.innerHTML = SEMANTIC_VARIANTS.map(renderShowcaseCallout).join("");
+				root.innerHTML = SEMANTIC_VARIANTS.map(
+					renderShowcaseCallout,
+				).join("");
 			}
 
 			function renderShowcaseBadge(variant, combo, withIcons) {
-				const label = `${titleCase(variant)} · ${titleCase(combo.label)}`;
+				const label =
+					combo.emphasis === "inverted"
+						? `${titleCase(variant)} · Inverted`
+						: titleCase(variant);
 				const icons = withIcons
 					? `
 						<badge-icon data-slot="leading" icon="checkbox-circle-fill" aria-hidden="true"></badge-icon>
@@ -1339,24 +1677,22 @@
 					: `
 						<badge-text tone="strong" context="surface">${label}</badge-text>
 					`;
+				const invertedAttr =
+					combo.emphasis === "inverted" ? ` emphasis="inverted"` : "";
 				return `
 					<badge
-						variant="${variant}"
-						emphasis="${combo.emphasis}"
+						variant="${variant}"${invertedAttr}
 					>${icons}</badge>
 				`;
 			}
 
 			function emphasisCombosForVariant(variant) {
-				const combos = [
-					{ emphasis: "false", label: "quiet", number: "1" },
-					{ emphasis: "true", label: "emphasis", number: "2" },
-				];
+				const combos = [{ label: "default", number: "1" }];
 				if (variant === "neutral") {
 					combos.push({
 						emphasis: "inverted",
 						label: "inverted",
-						number: "3",
+						number: "2",
 					});
 				}
 				return combos;
@@ -1394,10 +1730,11 @@
 					kind === "icon"
 						? `<stamp-icon data-slot="mark" icon="${STAMP_ICONS[variant]}" aria-hidden="true"></stamp-icon>`
 						: `<stamp-text data-slot="mark">${combo.number}</stamp-text>`;
+				const invertedAttr =
+					combo.emphasis === "inverted" ? ` emphasis="inverted"` : "";
 				return `
 					<stamp
-						variant="${variant}"
-						emphasis="${combo.emphasis}"${sizeAttr}
+						variant="${variant}"${invertedAttr}${sizeAttr}
 					>${occupant}</stamp>
 				`;
 			}
@@ -1438,7 +1775,7 @@
 						...steps.map((size, index) =>
 							renderShowcaseStamp(
 								"neutral",
-								{ emphasis: "false", number: String(index + 1) },
+								{ number: String(index + 1) },
 								"number",
 								size,
 							),
@@ -1446,7 +1783,7 @@
 						...steps.map((size) =>
 							renderShowcaseStamp(
 								"informative",
-								{ emphasis: "true", number: "1" },
+								{ number: "1" },
 								"icon",
 								size,
 							),
@@ -1480,11 +1817,10 @@
 						<card
 							class="flex-1 min-w-0"
 							variant="neutral"
-							emphasis="false"
 							padding="md"
 							gap="sm"
 						>
-							<stamp variant="${card.variant}" emphasis="true" size="8">
+							<stamp variant="${card.variant}" size="8">
 								<stamp-icon data-slot="mark" icon="${card.icon}" aria-hidden="true"></stamp-icon>
 							</stamp>
 							<card-title tone="strong" context="surface">${card.title}</card-title>
@@ -1505,7 +1841,7 @@
 						.map(
 							(label, index) => `
 						<div class="stamp-list-row">
-							<stamp variant="neutral" emphasis="true">
+							<stamp variant="neutral">
 								<stamp-text data-slot="mark">${index + 1}</stamp-text>
 							</stamp>
 							<body-copy size="md" tone="base" context="slide">${label}</body-copy>
@@ -1647,7 +1983,7 @@
 			}
 
 			function renderSettingsRow(title, displayValue, fill) {
-				const valueText = `<text size="350" tone="base" context="slide">${escapeHtml(displayValue)}</text>`;
+				const valueText = `<text size="350" tone="base" context="surface">${escapeHtml(displayValue)}</text>`;
 				const valueCell = fill
 					? `<stack class="brand-settings-value-swatch" direction="row" gap="sm">
 							<div
@@ -1660,7 +1996,7 @@
 					: valueText;
 				return `
 					<div class="brand-settings-row">
-						<text size="350" weight="medium" tone="strong" context="slide">${escapeHtml(title)}</text>
+						<text size="350" weight="medium" tone="strong" context="surface">${escapeHtml(title)}</text>
 						${valueCell}
 					</div>
 				`;
@@ -1804,25 +2140,16 @@
 				const root = document.getElementById("brand-showcase");
 				if (!root || !brand) return;
 
-				const sections = ["foundations", "components"];
-				root.innerHTML = sections
-					.map((sectionKey) => {
-						const section = brand[sectionKey];
-						if (!section || typeof section !== "object") return "";
-						const groups = Object.entries(section)
-							.map(([group, value]) =>
-								renderBrandGroup(brand, group, value),
-							)
-							.join("");
-						return `
-							<div class="brand-settings-section" data-section="${escapeHtml(sectionKey)}">
-								<text class="showcase-h2" tone="strong" context="slide">${escapeHtml(formatSettingLabel(sectionKey))}</text>
-								<div class="brand-settings-section-body">
-									${groups}
-								</div>
-							</div>
-						`;
-					})
+				const foundations = brand.foundations;
+				if (!foundations || typeof foundations !== "object") {
+					root.innerHTML = "";
+					return;
+				}
+
+				root.innerHTML = Object.entries(foundations)
+					.map(([group, value]) =>
+						renderBrandGroup(brand, group, value),
+					)
 					.join("");
 			}
 
@@ -1841,32 +2168,39 @@
 				const badgeText = node.querySelector
 					? node.querySelector("badge-text")
 					: null;
-				return (badgeText || node).textContent.replace(/\s+/g, " ").trim();
+				return (badgeText || node).textContent
+					.replace(/\s+/g, " ")
+					.trim();
 			}
 
 			function badgePretitleMarkup(label) {
-				return `<badge data-slot="pre" variant="neutral" emphasis="false"><badge-text data-slot="label" tone="strong" context="surface">${escapeHtml(label)}</badge-text></badge>`;
+				return `<badge data-slot="pre" variant="neutral"><badge-text data-slot="label" tone="strong" context="surface">${escapeHtml(label)}</badge-text></badge>`;
 			}
 
 			function textPretitleMarkup(label, context) {
 				return `<slide-pretitle data-slot="pre" tone="subtle" context="${escapeHtml(context)}">${escapeHtml(label)}</slide-pretitle>`;
 			}
 
-			function applySlidePretitleDefault(settings = currentBrandSettings) {
+			function applySlidePretitleDefault(
+				settings = currentBrandSettings,
+			) {
 				const kind = slidePretitleDefault(settings);
-				document.querySelectorAll("slide-title-group").forEach((group) => {
-					const pre = group.querySelector(':scope > [data-slot="pre"]');
-					if (!pre) return;
-					const tag = pre.tagName.toLowerCase();
-					const label = pretitleLabelFromNode(pre) || "Pre-title";
-					const cover = Boolean(group.closest("slide.bg-cover"));
-					const context = cover ? "cover" : "slide";
-					if (kind === "badge" && tag === "slide-pretitle") {
-						pre.outerHTML = badgePretitleMarkup(label);
-					} else if (kind === "text" && tag === "badge") {
-						pre.outerHTML = textPretitleMarkup(label, context);
-					}
-				});
+				document
+					.querySelectorAll("slide-title-group")
+					.forEach((group) => {
+						const pre = group.querySelector(
+							':scope > [data-slot="pre"]',
+						);
+						if (!pre) return;
+						const tag = pre.tagName.toLowerCase();
+						const label = pretitleLabelFromNode(pre) || "Pre-title";
+						const context = "slide";
+						if (kind === "badge" && tag === "slide-pretitle") {
+							pre.outerHTML = badgePretitleMarkup(label);
+						} else if (kind === "text" && tag === "badge") {
+							pre.outerHTML = textPretitleMarkup(label, context);
+						}
+					});
 			}
 
 			async function loadBrandSettings(brand) {
@@ -1875,6 +2209,29 @@
 				);
 				if (!res.ok) throw new Error(String(res.status));
 				return res.json();
+			}
+
+			function syncThemeMirrors() {
+				document.querySelectorAll(".showcase-themes").forEach((row) => {
+					const light = row.querySelector(
+						'.showcase-theme-pane[color-theme="light"] > .showcase-theme-content',
+					);
+					const dark = row.querySelector(
+						'.showcase-theme-pane[color-theme="dark"] > .showcase-theme-content',
+					);
+					if (!light || !dark) return;
+					dark.innerHTML = light.innerHTML;
+					dark.querySelectorAll("[id]").forEach((el) =>
+						el.removeAttribute("id"),
+					);
+					dark.querySelectorAll("[data-src]").forEach((el) => {
+						el.removeAttribute("data-src");
+						el.removeAttribute("data-preset");
+						el.removeAttribute("data-loaded");
+					});
+				});
+				applyLogos(currentBrand);
+				applySlidePretitleDefault(currentBrandSettings);
 			}
 
 			let brandApplyId = 0;
@@ -1901,6 +2258,7 @@
 							renderBrandShowcase(settings);
 							renderComponentSettings(settings);
 							applySlidePretitleDefault(settings);
+							syncThemeMirrors();
 						} catch (error) {
 							currentBrandSettings = null;
 							renderCardShowcase();
@@ -1911,8 +2269,9 @@
 							const root =
 								document.getElementById("brand-showcase");
 							if (root) {
-								root.innerHTML = `<div class="showcase-h4" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load brand settings</div>`;
+								root.innerHTML = `<div class="showcase-h4" style="color:var(--color-negative-foreground-strong)">Failed to load brand settings</div>`;
 							}
+							syncThemeMirrors();
 						}
 						resolve();
 					};
@@ -1974,7 +2333,7 @@
 							} catch (e) {
 								slot.insertAdjacentHTML(
 									"beforeend",
-									`<div class="showcase-h4" style="color:var(--color-negative-quiet-foreground-strong)">Failed to load ${src}</div>`,
+									`<div class="showcase-h4" style="color:var(--color-negative-foreground-strong)">Failed to load ${src}</div>`,
 								);
 								slot.dataset.loaded = "true";
 								slot.removeAttribute("data-src");
@@ -1988,6 +2347,23 @@
 									"beforeend",
 									`<deck>${slideHtml}</deck>`,
 								);
+								const slide = slot.querySelector("slide");
+								if (slide && slot.dataset.colorTheme) {
+									slide.setAttribute(
+										"color-theme",
+										slot.dataset.colorTheme,
+									);
+								}
+								if (slide && slot.dataset.cardsColorTheme) {
+									slide
+										.querySelectorAll("card")
+										.forEach((card) => {
+											card.setAttribute(
+												"color-theme",
+												slot.dataset.cardsColorTheme,
+											);
+										});
+								}
 							} else if (type === "footer") {
 								if (
 									slot.tagName.toLowerCase() ===
@@ -2004,17 +2380,6 @@
 								slot.insertAdjacentHTML("beforeend", html);
 							}
 
-							if (slot.dataset.footerContext) {
-								slot.querySelectorAll("slide-footer").forEach(
-									(el) => {
-										el.setAttribute(
-											"context",
-											slot.dataset.footerContext,
-										);
-									},
-								);
-							}
-
 							slot.dataset.loaded = "true";
 							slot.removeAttribute("data-src");
 							slot.removeAttribute("data-preset");
@@ -2024,6 +2389,7 @@
 
 				applyLogos(currentBrand);
 				applySlidePretitleDefault(currentBrandSettings);
+				syncThemeMirrors();
 			}
 
 			// --- Filter tabs ---

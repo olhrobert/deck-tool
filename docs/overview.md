@@ -60,13 +60,13 @@ The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Found
 - Title presets (`title-slide-01`…`04`, each with and without attribution), chapter slides (`chapter-slide-01` mid stack, `chapter-slide-02` split), one content slide (`content-slide-3-cards`: header, three-card row, slide-footer). Slide footer lives as a component only (`design-system/components/slide-footer/`).
 - Card component lives at `design-system/components/card/card.html`. Callout lives at `design-system/components/callout/callout.html`. Badge lives at `design-system/components/badge/badge.html`. Stamp lives at `design-system/components/stamp/stamp.html`. Slide footer lives at `design-system/components/slide-footer/slide-footer.html`.
 - Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`). `<copy>` is gone.
-- Cover ink uses `context="cover"` with `tone="strong|base|subtle"`. Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
+- Cover ink uses `context="slide"` with `tone="strong|base|subtle"` on `<slide kind="cover">` (canvas follows `foundations.colorTheme.cover`). Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 
 ### Still open
 
 - **More content-slide presets** — only `content-slide-3-cards.html` exists. Add body patterns (two-column copy, title + body + card variants) in `presets/content-slides/` before inventing new chrome.
-- **Kept for later:** `.bg-cover-surface` and `<stack>` (plus unused utilities). Do not remove them; they are for upcoming presets.
+- **Kept for later:** `<stack>` (plus unused utilities). Do not remove them; they are for upcoming presets.
 - **New components only when a preset needs them** — candidates, not a backlog: list item, generic card body patterns, charts (tokens exist, no component). Every new piece gets a fragment the showcase can load.
 
 ---

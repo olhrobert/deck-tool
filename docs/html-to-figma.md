@@ -8,7 +8,7 @@ node scripts/html-to-ir.js decks/{deck-name} --out /tmp/{deck}-ir.json
 
 IR is JSON: `{ title, brand, slides[] }`. Each slide is either:
 
-- `chrome: "cover"` — anonymous 1280×800 tree (`root`). Fill `color/cover-background` or `color/slide-background`
+- `chrome: "cover"` — anonymous 1280×800 tree (`root`). Fill still `color/cover-background` in IR until the Figma Color Light/Dark pass; HTML covers are `<slide kind="cover">`.
 - `chrome: "slide"` — instance `componentset/slide` with `slots.header|content|footer`
 
 Node types: `frame`, `instance`, `text`, `slot`.
@@ -18,7 +18,7 @@ Node types: `frame`, `instance`, `text`, `slot`.
 | HTML | IR |
 |---|---|
 | `<slide>` without header/content/footer containers | cover frame |
-| `<slide>` with chrome (`<header-container>` / `<content-container>` / `<footer-container>`) | Slide instance, `surface` from `.bg-cover` (Figma variant is still `surface=primary`) |
+| `<slide>` with chrome (`<header-container>` / `<content-container>` / `<footer-container>`) | Slide instance, `surface` from `kind="cover"` (Figma variant is still `surface=primary`). HTML `color-theme` Light/Dark is not mapped to Figma Color modes yet. |
 | `<slide-title>` | Slide Title instance (headline); always set `size` (`md` if omitted) |
 | `<slide-title-group>` | Slide Title instance with pretitle + title + subtitle slots; pretitle may be `<slide-pretitle>` or `<badge>` |
 | `<paragraph-title>` | Paragraph Title instance |

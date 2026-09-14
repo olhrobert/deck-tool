@@ -1,8 +1,8 @@
 /* Slide footer
    Axes:
-     context="slide|cover"  default slide
-   Nested type omits context; ink follows this attribute.
-   Logo without data-logo value inherits the same surface.
+     color-theme inherited from the slide (no context attribute)
+   Nested type omits context; ink follows the slide canvas foreground.
+   Logo without data-logo value uses the slide canvas.
 */
 
 slide-footer {
@@ -17,12 +17,6 @@ slide-footer {
 	--_footer-ink-strong: var(--color-slide-foreground-strong);
 	--_footer-ink-base: var(--color-slide-foreground-base);
 	--_footer-ink-subtle: var(--color-slide-foreground-subtle);
-}
-
-slide-footer[context="cover"] {
-	--_footer-ink-strong: var(--color-cover-foreground-strong);
-	--_footer-ink-base: var(--color-cover-foreground-base);
-	--_footer-ink-subtle: var(--color-cover-foreground-subtle);
 }
 
 slide-footer
@@ -45,16 +39,6 @@ slide-footer
 		slide-footer-page,
 		body-copy
 	)[context="slide"],
-slide-footer
-	:is(
-		.text,
-		text,
-		slide-footer-notes,
-		slide-footer-title,
-		slide-footer-chapter,
-		slide-footer-page,
-		body-copy
-	)[context="cover"],
 slide-footer
 	:is(
 		.text,

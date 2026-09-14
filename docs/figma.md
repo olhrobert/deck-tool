@@ -10,7 +10,7 @@ Machine-readable IDs and property names: [`figma/library.json`](../figma/library
 
 | Collection | Modes | Role |
 |---|---|---|
-| Primitives | one per brand | Brand role values, scopes `[]` — colors (`cover-background`, `slide-foreground`, …) **and** `font-family/heading`, `font-family/body` |
+| Primitives | one per brand | Brand role values, scopes `[]` — colors (`slide-foreground`, `cover-background`, …) **and** `font-family/heading`, `font-family/body`. HTML uses `color-theme` Light/Dark on one canvas role; Figma Color Light/Dark modes are a follow-up (until then IR still maps covers to `color/cover-background`). |
 | Color | `Value` | Opacity variants and aliases (`color/slide-foreground-strong`, `color/cover-background`, …) |
 | Spacing | `Value` | `spacing/0` … `spacing/40`, plus `0-25`, `0-5`, `1-5`, `2-5` |
 | Radius | `Value` | including `radius/card` |

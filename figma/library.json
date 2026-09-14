@@ -165,8 +165,8 @@
 		"lineHeight": "Store CSS unitless × 100 (1.2 → 120). Apply as { unit: 'PERCENT', value: 120 }. Do not bind — Figma FLOAT lineHeight/letterSpacing vars are pixels."
 	},
 	"htmlMap": {
-		"slide[bg-cover without chrome]": "custom 1280×800 frame, fill color/cover-background. Do not instance Slide.",
-		"slide with header/content/footer": "instance componentset/slide; surface=default unless class bg-cover (Figma variant still surface=primary)",
+		"slide[kind=cover without chrome]": "custom 1280×800 frame, fill color/cover-background (Figma Color Light/Dark follow-up). Do not instance Slide.",
+		"slide with header/content/footer": "instance componentset/slide; surface=default unless kind=cover (Figma variant still surface=primary). HTML color-theme is not mapped to Color modes yet.",
 		"slide-title": "instance componentset/slide-title; headline or group — always set size (CSS default md, Figma default lg)",
 		"slide-title-group": "instance componentset/slide-title; pre + main + sub slots",
 		"paragraph-title": "instance componentset/paragraph-title",

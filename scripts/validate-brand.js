@@ -46,6 +46,7 @@ const {
 	isBadgeBorderBoolean,
 	isStampScalePath,
 	isStampScaleValue,
+	isColorThemeName,
 	isBrandSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
@@ -378,26 +379,31 @@ function validateBrand(brandDir) {
 		}
 	}
 
+	const colorTheme = brand.foundations && brand.foundations.colorTheme;
+	for (const key of ["cover", "slide"]) {
+		const value = colorTheme && colorTheme[key];
+		if (!isColorThemeName(value)) {
+			errors.push(
+				`foundations.colorTheme.${key} must be light or dark (got ${JSON.stringify(value)})`,
+			);
+		}
+	}
+
 	const pairs = [
 		[
-			"components.slide.canvas.foreground",
-			"components.slide.canvas.background",
-			"slide canvas foreground on slide canvas background",
+			"components.slide.canvas.foreground.light",
+			"components.slide.canvas.background.light",
+			"slide canvas light foreground on light background",
 		],
 		[
-			"components.cover.canvas.foreground",
-			"components.cover.canvas.background",
-			"cover canvas foreground on cover canvas background",
+			"components.slide.canvas.foreground.dark",
+			"components.slide.canvas.background.dark",
+			"slide canvas dark foreground on dark background",
 		],
 		[
 			"components.slide.surface.foreground",
 			"components.slide.surface.background",
 			"slide surface foreground on slide surface background",
-		],
-		[
-			"components.cover.surface.foreground",
-			"components.cover.surface.background",
-			"cover surface foreground on cover surface background",
 		],
 	];
 
@@ -431,18 +437,36 @@ function validateBrand(brandDir) {
 		}
 	}
 
-	let slideBgResolved;
+	let slideBgLight;
+	let slideBgDark;
 	try {
-		slideBgResolved = resolveColorRef(
-			brand,
-			getPath(brand, "components.slide.canvas.background"),
-			"components.slide.canvas.background",
+		slideBgLight = parseColor(
+			resolveColorRef(
+				brand,
+				getPath(brand, "components.slide.canvas.background.light"),
+				"components.slide.canvas.background.light",
+			),
 		);
 	} catch (error) {
 		errors.push(error.message);
 	}
-	const slideBg = parseColor(slideBgResolved);
+	try {
+		slideBgDark = parseColor(
+			resolveColorRef(
+				brand,
+				getPath(brand, "components.slide.canvas.background.dark"),
+				"components.slide.canvas.background.dark",
+			),
+		);
+	} catch (error) {
+		errors.push(error.message);
+	}
 	const toneStrong = getPath(brand, "foundations.tone.strong");
+
+	function canvasForFamily(family) {
+		if (String(family).endsWith(".dark")) return slideBgDark;
+		return slideBgLight;
+	}
 
 	function checkSurfaceContrast(component, familyKeys) {
 		for (const family of familyKeys) {
@@ -478,13 +502,14 @@ function validateBrand(brandDir) {
 				errors.push(`${bgPath} is not a parseable color`);
 			}
 			if (fg && bg) {
-				const canvas =
-					bg.a < 1 && slideBg
-						? slideBg
+				const canvas = canvasForFamily(family);
+				const under =
+					bg.a < 1 && canvas
+						? canvas
 						: bg.a < 1
 							? { r: 1, g: 1, b: 1, a: 1 }
 							: bg;
-				const fill = compositeOn(bg, canvas);
+				const fill = compositeOn(bg, under);
 				const ink = compositeOn(fg, fill);
 				const ratio = contrast(ink, fill);
 				if (ratio < 4.5) {

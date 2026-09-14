@@ -1,10 +1,10 @@
 /* Stamp
    Axes:
      variant="neutral|positive|warning|negative|informative"  default neutral
-     emphasis="true|false|inverted"                            default false
-       inverted is neutral-only (quiet / emphasis / inverted)
+     emphasis="inverted"                                       neutral-only extra recipe
      size="<spacing-scale step>"                               brand `stamp.defaultSize` when omitted
-   Paint is stamp tokens (quiet + emphasis families, plus neutral inverted). Size is one outer
+     color-theme="light|dark"                                  inherits; remaps paint
+   Paint follows the current color-theme (plus inverted). Size is one outer
    square; icon and type use brand `--stamp-icon-scale` /
    `--stamp-text-scale` × that square (em). Radius is a brand token
    (`full` → 50% so it stays circular at every size). One occupant:
@@ -13,11 +13,11 @@
 
 stamp {
 	--_stamp-size: var(--stamp-default-size);
-	--_stamp-hue: var(--stamp-neutral-quiet-foreground);
+	--_stamp-hue: var(--stamp-neutral-foreground);
 	--_stamp-ink-strong: rgb(from var(--_stamp-hue) r g b / var(--tone-strong));
 	--_stamp-ink-base: rgb(from var(--_stamp-hue) r g b / var(--tone-base));
 	--_stamp-ink-subtle: rgb(from var(--_stamp-hue) r g b / var(--tone-subtle));
-	--_stamp-bg: var(--stamp-neutral-quiet-background);
+	--_stamp-bg: var(--stamp-neutral-background);
 
 	box-sizing: border-box;
 	display: inline-flex;
@@ -41,12 +41,7 @@ stamp :is(stamp-text, stamp-icon)[context="surface"] {
 	--_ink-subtle: var(--_stamp-ink-subtle);
 }
 
-/* --- emphasis (default variant) --- */
-
-stamp[emphasis="true"] {
-	--_stamp-hue: var(--stamp-neutral-emphasis-foreground);
-	--_stamp-bg: var(--stamp-neutral-emphasis-background);
-}
+/* --- inverted (neutral-only) --- */
 
 stamp:not([variant])[emphasis="inverted"],
 stamp[variant="neutral"][emphasis="inverted"] {
@@ -54,48 +49,24 @@ stamp[variant="neutral"][emphasis="inverted"] {
 	--_stamp-bg: var(--stamp-neutral-inverted-background);
 }
 
-/* --- variant: quiet --- */
-
 stamp[variant="positive"] {
-	--_stamp-hue: var(--stamp-positive-quiet-foreground);
-	--_stamp-bg: var(--stamp-positive-quiet-background);
+	--_stamp-hue: var(--stamp-positive-foreground);
+	--_stamp-bg: var(--stamp-positive-background);
 }
 
 stamp[variant="warning"] {
-	--_stamp-hue: var(--stamp-warning-quiet-foreground);
-	--_stamp-bg: var(--stamp-warning-quiet-background);
+	--_stamp-hue: var(--stamp-warning-foreground);
+	--_stamp-bg: var(--stamp-warning-background);
 }
 
 stamp[variant="negative"] {
-	--_stamp-hue: var(--stamp-negative-quiet-foreground);
-	--_stamp-bg: var(--stamp-negative-quiet-background);
+	--_stamp-hue: var(--stamp-negative-foreground);
+	--_stamp-bg: var(--stamp-negative-background);
 }
 
 stamp[variant="informative"] {
-	--_stamp-hue: var(--stamp-informative-quiet-foreground);
-	--_stamp-bg: var(--stamp-informative-quiet-background);
-}
-
-/* --- variant + emphasis --- */
-
-stamp[variant="positive"][emphasis="true"] {
-	--_stamp-hue: var(--stamp-positive-emphasis-foreground);
-	--_stamp-bg: var(--stamp-positive-emphasis-background);
-}
-
-stamp[variant="warning"][emphasis="true"] {
-	--_stamp-hue: var(--stamp-warning-emphasis-foreground);
-	--_stamp-bg: var(--stamp-warning-emphasis-background);
-}
-
-stamp[variant="negative"][emphasis="true"] {
-	--_stamp-hue: var(--stamp-negative-emphasis-foreground);
-	--_stamp-bg: var(--stamp-negative-emphasis-background);
-}
-
-stamp[variant="informative"][emphasis="true"] {
-	--_stamp-hue: var(--stamp-informative-emphasis-foreground);
-	--_stamp-bg: var(--stamp-informative-emphasis-background);
+	--_stamp-hue: var(--stamp-informative-foreground);
+	--_stamp-bg: var(--stamp-informative-background);
 }
 
 /* --- size (spacing-scale steps; omitted uses brand --stamp-default-size) --- */

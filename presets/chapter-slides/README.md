@@ -2,7 +2,7 @@
 
 Copy one file into `decks/{deck-name}/` and replace placeholder text only. Do not change HTML structure, classes, or asset paths.
 
-Chapter slides use the cover surface (`bg-cover`) with a cover-context `<slide-footer>` at the bottom (not inside `<footer-container>`).
+Chapter slides use `<slide kind="cover">` with a `<slide-footer>` at the bottom (not inside `<footer-container>`). Canvas follows the brand cover color-theme.
 
 ## Presets
 
