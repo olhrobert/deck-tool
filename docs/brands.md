@@ -19,25 +19,15 @@ node scripts/validate-brand.js brands/acme
 
 Then edit `brand-settings.json` (start from the Riverton copy the scaffold writes) and replace `{slug}-logo.svg` and `{slug}-logo-inverted.svg`.
 
-`slides.json` selects the brand:
-
-```json
-{
-	"title": "Acme Q3 Review",
-	"brand": "acme",
-	"slides": ["01.html"]
-}
-```
-
-`compile-deck.js` regenerates `brand.css` and injects it into `index.html`.
+The showcase brand switcher loads `brands/{slug}/brand.css`. After JSON edits, regenerate with `npm run generate-brand -- brands/{slug}` (or the brand-settings edit hook).
 
 ## `brand-settings.json` fields
 
-Cover and slide settings live under `components.cover` and `components.slide` (cover title type, slide canvas/chrome). Canvas colors are themed: `components.slide.canvas.background.light|dark`. `foundations.colorTheme.cover` / `slide` is `light` or `dark` — covers (`<slide kind="cover">`) use the cover default when `color-theme` is omitted. Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `colorTheme`, `tone`, `font`, `border`) then `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`, `card`, `callout`, `badge`, `stamp`, `slideFooter`). Shared tokens under `foundations.color` / `foundations.colorTheme` / `foundations.tone` / `foundations.font` / `foundations.border`; component type roles keep their own groups under `components`. Only keys in `scripts/generate-brand-css.js` `TOKEN_MAP` become CSS variables. The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `components.slide.canvas.maxWidth` (canvas cap, default `1280`).
+Cover and slide settings live under `components.cover` and `components.slide` (cover title type, slide canvas/chrome). Canvas colors are themed: `components.slide.canvas.background.light|dark`. `foundations.colorTheme.cover` / `slide` is `light` or `dark` — covers (`<slide kind="cover">`) use the cover default when `color-theme` is omitted. Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `colorTheme`, `tone`, `font`, `border`) then `components` (`cover`, `slide`, `paragraphTitle`, `body`, `stack`, `card`, `callout`, `badge`, `stamp`, `slideFooter`). Shared tokens under `foundations.color` / `foundations.colorTheme` / `foundations.tone` / `foundations.font` / `foundations.border`; component type roles keep their own groups under `components`. `TOKEN_MAP` in `scripts/generate-brand-css.js` is the allow-list: keys with a CSS name become variables; `components.card.defaultLayout` is validated only (stripe default is a generated selector). The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `components.slide.canvas.maxWidth` (canvas cap, default `1280`).
 
 `design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`) derived from `foundations.tone`. Brand identity, status hues, and chart swatches live under `foundations.color.brand.1`…`6`, `foundations.color.semantic.*`, and `foundations.color.chart.1`…`4` (omit unused brand slots).
 
-**Color layers:** hard-coded RGB/RGBA lives on `foundations.color` — `brand` / status `semantic` / `chart` swatches. `semantic.neutral` and `semantic.bright` ref `brand.*`. Slide canvas paint is themed (`components.slide.canvas.background.light|dark`). Card/badge/stamp paint is keyed by variant then color-theme (`neutral.light`, `positive.dark`) plus `neutralInverted`. Callout paint stays quiet-only (`neutralQuiet`, …). Palette refs: `"semantic.positive"`, `"brand.3"`, `"chart.1"`, or `{ "color": "brand.1", "opacity": 0.8 }`. A family’s `foreground` is a hue; CSS applies `foundations.tone.strong|base|subtle` as opacity. The generator bakes refs into concrete `rgb`/`rgba` in `brand.css` (`--color-slide-background-light`, `--card-neutral-foreground-dark`, …). `design-system/tokens/color-theme.css` resolves those pairs onto `--color-slide-background` / `--card-neutral-foreground` from the inherited `color-theme` attribute. `validate-brand.js` checks WCAG AA on both canvas themes, slide surface, and each card/callout/badge/stamp `foreground` on its `background`.
+**Color layers:** hard-coded RGB/RGBA lives on `foundations.color` — `brand` / status `semantic` / `chart` swatches. `semantic.neutral` and `semantic.bright` ref `brand.*`. Slide canvas paint is themed (`components.slide.canvas.background.light|dark`). Card/badge/stamp paint is keyed by variant then color-theme (`neutral.light`, `emphasis.dark`, `positive.dark`). Callout paint is themed (`neutral.light|dark`) for background, foreground, and stripe. Palette refs: `"semantic.positive"`, `"brand.3"`, `"chart.1"`, or `{ "color": "brand.1", "opacity": 0.8 }`. A family’s `foreground` is a hue; CSS applies `foundations.tone.strong|base|subtle` as opacity. `design-system/tokens/color-theme.css` is generated (light/dark remaps). Cover default (`slide[kind="cover"]:not([color-theme])`) is emitted in `brand.css` from `foundations.colorTheme.cover`, not hard-coded in the token file. The generator bakes refs into concrete `rgb`/`rgba` in `brand.css`. `validate-brand.js` checks WCAG AA on both canvas themes, slide surface, and each card/callout/badge/stamp `foreground` on its `background`.
 
 ### Cover
 
@@ -47,7 +37,7 @@ Cover is a **layout kind**, not a separate color role. Title/chapter presets use
 | ------------------------------- | ---------------------------------------------------- | ------------------------------------------------- |
 | `foundations.colorTheme.cover`  | `slide[kind="cover"]:not([color-theme])` remaps      | Default canvas theme for cover slides             |
 | `components.cover.title.family` | `--cover-title-font-family` → `var(--font-family-*)` | `family="cover-title"`                            |
-| `components.cover.title.weight` | `--cover-title-font-weight` → `var(--font-weight-*)` | default if `weight` is omitted                    |
+| `components.cover.attributionBox.default` | `--cover-attribution-box-display` (`flex` \| `none`) | Title-slide `<attribution-box>` when `attribution` is omitted. Override with `attribution="true\|false"`. |
 
 ### Slide
 
@@ -193,20 +183,20 @@ Context and tone are set in markup: `context="slide|surface"` and `tone="subtle|
 
 #### Card
 
-Paint axes on `<card>`: `variant="neutral|positive|warning|negative|informative"`, optional `color-theme="light|dark"` (inherits), `emphasis="inverted"` (neutral-only), `layout="basic|stripe"`. Light/dark paint is `components.card.*.{variant}.light|dark`. Omit `layout` to use `components.card.defaultLayout`. Nested `context="surface"` ink follows the card's resolved tokens.
+Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|informative"`, optional `color-theme="light|dark"` (inherits), `layout="basic|stripe"`. Light/dark paint is `components.card.*.{variant}.light|dark`. Omit `layout` to use `components.card.defaultLayout`. Nested `context="surface"` ink follows the card's resolved tokens.
 
 | JSON                                               | CSS                                                               | HTML                                                                                                          |
 | -------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `components.card.defaultLayout`                    | `--card-default-layout`                                           | default `<card>` layout when the attribute is omitted                                                         |
-| `components.card.foreground.{variant}.{theme}`     | `--card-{variant}-foreground-light\|dark` (resolved `--card-{variant}-foreground`) | Ink hue. Variants `neutral\|positive\|…`; theme `light\|dark`. `neutralInverted` is unthemed. |
-| `components.card.background.{variant}.{theme}`     | `--card-{variant}-background-light\|dark` (resolved `--card-{variant}-background`) | Card fill. `neutralInverted` is unthemed (`--card-neutral-inverted-background`). |
+| `components.card.defaultLayout`                    | stripe selector in brand.css when `"stripe"`                      | default `<card>` layout when the attribute is omitted (not a CSS variable)                                    |
+| `components.card.foreground.{variant}.{theme}`     | `--card-{variant}-foreground-light\|dark` (resolved `--card-{variant}-foreground`) | Ink hue. Variants `neutral\|emphasis\|positive\|…`; theme `light\|dark`. |
+| `components.card.background.{variant}.{theme}`     | `--card-{variant}-background-light\|dark` (resolved `--card-{variant}-background`) | Card fill. |
 | `components.card.padding.sm/md/lg`                 | `--card-padding-*`                                                | `<card padding>`                                                                                              |
 | `components.card.gap.none/sm/md/lg`                | `--card-gap-*`                                                    | `<card gap>` (`none` → spacing `0` / 0px)                                                                     |
 | `components.card.border.radius`                    | `--card-border-radius` → `var(--border-radius-*)`                 | `<card layout="basic">`                                                                                       |
 | `components.card.border.sizeTop/Bottom/Left/Right` | `--card-border-size-*` → `var(--border-size-*)`                   | basic stroke                                                                                                  |
-| `components.card.border.subtle.{variant}.{theme}`  | `--card-{variant}-border-subtle-light\|dark` (resolved `--card-{variant}-border-subtle`) | Basic (non-stripe) outline. `neutralInverted` is unthemed. |
+| `components.card.border.subtle.{variant}.{theme}`  | `--card-{variant}-border-subtle-light\|dark` (resolved `--card-{variant}-border-subtle`) | Basic (non-stripe) outline. |
 | `components.card.stripe.width`                     | `--card-stripe-width` → `var(--border-size-*)`                    | Left accent width on `layout="stripe"`.                                                                       |
-| `components.card.stripe.color.{variant}.{theme}`   | `--card-{variant}-stripe-light\|dark` (resolved `--card-{variant}-stripe`) | Stripe accent color. `neutralInverted` is unthemed. |
+| `components.card.stripe.color.{variant}.{theme}`   | `--card-{variant}-stripe-light\|dark` (resolved `--card-{variant}-stripe`) | Stripe accent color. |
 | `components.card.title.family`                     | `--card-title-font-family` → `var(--font-family-*)`               | `<card-title>`                                                                                                |
 | `components.card.title.weight`                     | `--card-title-font-weight`                                        |                                                                                                               |
 | `components.card.title.sizeSm/Md/Lg`               | `--card-title-size-sm/md/lg` → `var(--text-size-*)`               | `size="lg"` etc. Default is `md`.                                                                             |
@@ -214,12 +204,12 @@ Paint axes on `<card>`: `variant="neutral|positive|warning|negative|informative"
 
 #### Callout
 
-`<callout>` is a left-rule note with stacked title + description. Semantic variants only: `variant="neutral|positive|warning|negative|informative"` (no emphasis). Paint lives on quiet-only families (`neutralQuiet`, `positiveQuiet`, …). Title uses `tone="strong"`, description `tone="base"` on the family’s `foreground` hue. Omit `gap` to use `callout.gap.sm`. Nested `context="surface"` ink follows the callout variant. Padding still reuses card.
+`<callout>` is a left-rule note with stacked title + description. Semantic variants only: `variant="neutral|positive|warning|negative|informative"` (no emphasis). Background, foreground, and stripe are themed (`neutral.light|dark`). Title uses `tone="strong"`, description `tone="base"` on the family’s `foreground` hue. Omit `gap` to use `callout.gap.sm`. Nested `context="surface"` ink follows the callout variant (strong / base / subtle). Padding is `components.callout.padding`.
 
 | JSON                                         | CSS                                                          | HTML                                                |
 | -------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-| `components.callout.background.{family}`     | `--callout-{family}-background`                              | Fill per quiet recipe.                              |
-| `components.callout.foreground.{family}`     | `--callout-{family}-foreground`                              | Ink hue; strong/base opacity is `foundations.tone`. |
+| `components.callout.background.{family}.{theme}` | `--callout-{family}-background-light\|dark` (resolved `--callout-{family}-background`) | Fill per variant. |
+| `components.callout.foreground.{family}.{theme}` | `--callout-{family}-foreground-light\|dark` (resolved `--callout-{family}-foreground`) | Ink hue; strong/base opacity is `foundations.tone`. |
 | `components.callout.title.family`            | `--callout-title-font-family` → `var(--font-family-*)`       | `<callout-title>`                                   |
 | `components.callout.title.weight`            | `--callout-title-font-weight`                                |                                                     |
 | `components.callout.title.size`              | `--callout-title-size` → `var(--text-size-*)`                | brand-only; no `size` attribute                     |
@@ -227,36 +217,36 @@ Paint axes on `<card>`: `variant="neutral|positive|warning|negative|informative"
 | `components.callout.description.weight`      | `--callout-description-font-weight`                          |                                                     |
 | `components.callout.description.size`        | `--callout-description-size` → `var(--text-size-*)`          | brand-only; no `size` attribute                     |
 | `components.callout.stripe.width`            | `--callout-stripe-width` → `var(--border-size-*)`            | left accent width                                   |
-| `components.callout.stripe.color.{family}`   | `--callout-{family}-stripe`                                  | left accent color                                   |
+| `components.callout.stripe.color.{family}.{theme}` | `--callout-{family}-stripe-light\|dark` (resolved `--callout-{family}-stripe`) | left accent color |
 | `components.callout.gap.none/sm/md/lg`       | `--callout-gap-*`                                            | `<callout gap>`; omitted uses `sm`                  |
-| _(reuse)_ `components.card.padding.sm/md/lg` | `--card-padding-*`                                           | `<callout padding>`                                 |
+| `components.callout.padding.sm/md/lg`        | `--callout-padding-*`                                        | `<callout padding>`; omitted uses `md`              |
 
 #### Badge
 
-`<badge>` is a hugging label. Paint axes: `variant="neutral|positive|warning|negative|informative"`, optional `color-theme="light|dark"` (inherits), `emphasis="inverted"` (neutral-only), `border="true|false"` (brand `badge.border.hasBorderByDefault` when omitted). Paint uses the same themed families as card plus `neutralInverted`. Nested `context="surface"` ink follows the badge. Optional `<badge-icon data-slot="leading|trailing" icon="…">` marks use filenames from `assets/icons/` (no `.svg`) and paint with the badge text ink.
+`<badge>` is a hugging label. Paint axes: `variant="neutral|emphasis|positive|warning|negative|informative"`, optional `color-theme="light|dark"` (inherits), `border="true|false"` (brand `badge.border.hasBorderByDefault` when omitted). Paint uses the same themed families as card. Nested `context="surface"` ink follows the badge. Optional `<badge-icon data-slot="leading|trailing" icon="…">` marks use filenames from `assets/icons/` (no `.svg`) and paint with the badge text ink.
 
 | JSON                                     | CSS                                                     | HTML                                                                   |
 | ---------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `components.badge.background.{variant}.{theme}` | `--badge-{variant}-background-light\|dark` (resolved `--badge-{variant}-background`) | Fill. `neutralInverted` is unthemed. |
+| `components.badge.background.{variant}.{theme}` | `--badge-{variant}-background-light\|dark` (resolved `--badge-{variant}-background`) | Fill. |
 | `components.badge.foreground.{variant}.{theme}` | `--badge-{variant}-foreground-light\|dark` (resolved `--badge-{variant}-foreground`) | Ink hue; strong/base/subtle opacity is `foundations.tone`. |
 | `components.badge.text.family`           | `--badge-text-font-family` → `var(--font-family-*)`     | `<badge-text>`                                                         |
 | `components.badge.text.weight`           | `--badge-text-font-weight`                              |                                                                        |
 | `components.badge.text.size`             | `--badge-text-size` → `var(--text-size-*)`              | brand-only; no `size` attribute                                        |
 | `components.badge.icon.size`             | `--badge-icon-size` → `var(--spacing-*)`                | `<badge-icon>` width/height                                            |
-| `components.badge.border.hasBorderByDefault` | `--badge-border-width` → `badge.border.width` or `none` | default when `border` is omitted; override with `border="true\|false"` |
+| `components.badge.border.hasBorderByDefault` | `--badge-border-default` → `badge.border.width` or `none` | default when `border` is omitted; override with `border="true\|false"` |
 | `components.badge.border.radius`         | `--badge-border-radius` → `var(--border-radius-*)`      | badge corner                                                           |
-| `components.badge.border.width`          | `--badge-border-size` → `var(--border-size-*)`          | stroke when bordered (`border="true"` or `hasBorderByDefault` is true) |
-| `components.badge.border.color.{variant}.{theme}` | `--badge-{variant}-border-light\|dark` (resolved `--badge-{variant}-border`) | stroke paint when bordered. `neutralInverted` is unthemed. |
+| `components.badge.border.width`          | `--badge-border-width` → `var(--border-size-*)`         | stroke when bordered (`border="true"` or `hasBorderByDefault` is true) |
+| `components.badge.border.color.{variant}.{theme}` | `--badge-{variant}-border-light\|dark` (resolved `--badge-{variant}-border`) | stroke paint when bordered. |
 | `components.badge.padding.block`         | `--badge-padding-block` → `var(--spacing-*)`            | vertical padding                                                       |
 | `components.badge.padding.inline`        | `--badge-padding-inline` → `var(--spacing-*)`           | horizontal padding                                                     |
 
 #### Stamp
 
-`<stamp>` is a fixed square with one occupant — a number (`<stamp-text>`) or an icon (`<stamp-icon icon="…">`). Paint axes: `variant="neutral|positive|warning|negative|informative"`, optional `color-theme="light|dark"` (inherits), `emphasis="inverted"` (neutral-only). `size` is a spacing-scale step (`size="12"` → `--spacing-12`); omit it to use the brand default. Icon and type scale with the square via brand unitless factors (`icon.scale`, `text.scale`) — do not set padding or absolute icon/type sizes. Nested ink follows the stamp variant. `components.stamp.border.radius` of `full` compiles to `50%` so the stamp stays circular at every size; `none` / `sm` / `med` / `lg` keep the brand pixel corner (rectangle).
+`<stamp>` is a fixed square with one occupant — a number (`<stamp-text>`) or an icon (`<stamp-icon icon="…">`). Paint axes: `variant="neutral|emphasis|positive|warning|negative|informative"`, optional `color-theme="light|dark"` (inherits). `size` is a spacing-scale step (`size="12"` → `--spacing-12`); omit it to use the brand default. Icon and type scale with the square via brand unitless factors (`icon.scale`, `text.scale`) — do not set padding or absolute icon/type sizes. Nested ink follows the stamp variant. `components.stamp.border.radius` of `full` compiles to `50%` so the stamp stays circular at every size; `none` / `sm` / `med` / `lg` keep the brand pixel corner (rectangle).
 
 | JSON                                     | CSS                                                     | HTML                                                                   |
 | ---------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `components.stamp.background.{variant}.{theme}` | `--stamp-{variant}-background-light\|dark` (resolved `--stamp-{variant}-background`) | Fill. `neutralInverted` is unthemed. |
+| `components.stamp.background.{variant}.{theme}` | `--stamp-{variant}-background-light\|dark` (resolved `--stamp-{variant}-background`) | Fill. |
 | `components.stamp.foreground.{variant}.{theme}` | `--stamp-{variant}-foreground-light\|dark` (resolved `--stamp-{variant}-foreground`) | Ink hue; strong/base/subtle opacity is `foundations.tone`. |
 | `components.stamp.defaultSize`           | `--stamp-default-size` → `var(--spacing-*)`             | default when `size` is omitted                                         |
 | `components.stamp.icon.scale`            | `--stamp-icon-scale`                                    | `<stamp-icon>` size as fraction of the stamp square (0–1]              |
@@ -281,7 +271,7 @@ Paint axes on `<card>`: `variant="neutral|positive|warning|negative|informative"
 | ------------------------------------ | --------------- | ------------------------------------------ |
 | `components.stack.gap.none/sm/md/lg` | `--stack-gap-*` | `<stack gap>` (`none` → spacing `0` / 0px) |
 
-`<attribution-box>` is brand-agnostic — see `.cursor/skills/attribution-box/SKILL.md`. Do not add `attributionBox` keys to `brand-settings.json`.
+`<attribution-box>` appearance is brand-agnostic — see `.cursor/skills/attribution-box/SKILL.md`. Do not add paint, spacing, or type keys for it. Title slides include the box in markup; `components.cover.attributionBox.default` shows or hides it when `attribution` is omitted (`true` Riverton, `false` Gratia). Override with `attribution="true|false"` on `<slide kind="cover">`.
 
 ## Logos
 
@@ -292,10 +282,6 @@ Each brand ships two standalone SVGs with **baked fills** (no `currentColor`, no
 | `{slug}-logo.svg`          | Default lockup on light backgrounds |
 | `{slug}-logo-inverted.svg` | Light lockup on dark backgrounds    |
 
-Presets use `<img data-logo>` (or `data-logo="slide"`). `data-logo="cover"` is an alias for the same canvas. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, omit the `data-logo` value (keep the attribute) so the logo follows the slide canvas (`color-theme`). The showcase (and later deck generation) picks default vs inverted from the luminance of `--color-slide-background` on that slide. Do not wrap brand logos in `color-*` classes.
+Presets use `<img data-logo>` (or `data-logo="slide"`). `data-logo="cover"` is an alias for the same canvas. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, omit the `data-logo` value (keep the attribute) so the logo follows the slide canvas (`color-theme`). The showcase picks default vs inverted from the luminance of `--color-slide-background` on that slide. Do not wrap brand logos in `color-*` classes.
 
 The Gratia mark inside `<attribution-box>` is a separate prepared-by lockup (`<img data-slot="logo">`); leave it alone.
-
-## Figma
-
-Add a **Primitives** mode named after the brand (see [figma.md](figma.md)). Do not duplicate Color / Spacing / Radius / Typography collections. Write primitive font families (`font-family/display`, `font-family/base`) using the first quoted family from `foundations.font.family` in `brand-settings.json` (e.g. `"Inter"` not the CSS stack). Create `__Logo/{Brand}` from `{slug}-logo.svg` (baked fills; do not bind paths to `color/slide-foreground-strong`). Logo wordmarks are not bound to the family variables.

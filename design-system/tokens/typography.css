@@ -98,7 +98,22 @@
 	--card-meta-lineheight: 1.2;
 	--card-meta-size: var(--text-size-300);
 
-	/* callout type — brands set callout.title / description / gap */
+	/* card spacing — brands set card.padding / gap */
+	--card-padding-sm: var(--spacing-3);
+	--card-padding-md: var(--spacing-4);
+	--card-padding-lg: var(--spacing-6);
+	--card-gap-none: var(--spacing-0);
+	--card-gap-sm: var(--spacing-2);
+	--card-gap-md: var(--spacing-3);
+	--card-gap-lg: var(--spacing-4);
+
+	/* stack — brands set stack.gap */
+	--stack-gap-none: var(--spacing-0);
+	--stack-gap-sm: var(--spacing-2);
+	--stack-gap-md: var(--spacing-3);
+	--stack-gap-lg: var(--spacing-4);
+
+	/* callout type — brands set callout.title / description / padding / gap */
 	--callout-title-font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
 	--callout-title-font-weight: var(--paragraph-title-font-weight);
 	--callout-title-size: var(--text-size-400);
@@ -106,6 +121,9 @@
 	--callout-description-font-weight: var(--body-font-weight);
 	--callout-description-size: var(--text-size-350);
 	--callout-stripe-width: var(--border-size-sm);
+	--callout-padding-sm: var(--spacing-3);
+	--callout-padding-md: var(--spacing-4);
+	--callout-padding-lg: var(--spacing-6);
 	--callout-gap-none: var(--spacing-0);
 	--callout-gap-sm: var(--spacing-1);
 	--callout-gap-md: var(--spacing-3);
@@ -117,8 +135,8 @@
 	--badge-text-size: var(--text-size-300);
 	--badge-icon-size: var(--spacing-3);
 	--badge-border-radius: var(--border-radius-med);
-	--badge-border-width: var(--border-size-none);
-	--badge-border-size: var(--border-size-sm);
+	--badge-border-default: var(--border-size-none);
+	--badge-border-width: var(--border-size-sm);
 	--badge-padding-block: var(--spacing-1);
 	--badge-padding-inline: var(--spacing-1-5);
 
@@ -136,6 +154,6 @@
 	--slide-footer-logo-height: var(--spacing-3);
 	--slide-footer-gap: var(--spacing-2);
 
-	/* attribution box type — same steps html-to-ir forces on slot text */
+	/* attribution box type */
 	--attribution-box-text-size-title: var(--text-size-300);
 }

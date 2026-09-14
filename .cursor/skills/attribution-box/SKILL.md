@@ -2,8 +2,8 @@
 name: attribution-box
 description: >-
   DeckTool attribution box is brand-agnostic. Load when editing
-  attribution-box components, presets with attribution, brand-settings, or
-  deck generation that touches the Gratia credit mark.
+  attribution-box components, presets with attribution, or brand-settings
+  that touch the Gratia credit mark.
 ---
 
 # Attribution box
@@ -12,21 +12,20 @@ description: >-
 
 ## Fixed by design
 
-- **Logo** — always Gratia. Keep `<img data-slot="logo" src="../../assets/logos/gratia-logo.svg" alt="Gratia">` (or the same path relative to the deck). Never swap it for the deck brand logo.
+- **Logo** — always Gratia. Keep `<img data-slot="logo" src="../../assets/logos/gratia-logo.svg" alt="Gratia">`. Never swap it for the active brand logo.
 - **Spacing** — gap and padding are hardcoded in `design-system/components/attribution-box/attribution-box.css`, not in `brand-settings.json`.
 - **Type sizes** — fixed in `design-system/tokens/typography.css` (`--attribution-box-text-size-title`).
 - **Structure** — do not redesign the component, rename slots, or add brand tokens for it.
 
 ## Brand settings
 
-Do **not** add an `attributionBox` section to `brands/{slug}/brand-settings.json`. New brands inherit the same attribution box as Riverton and Gratia.
+Do **not** add paint, spacing, or type keys for the box. Appearance stays hardcoded.
 
-## Deck generation
+`components.cover.attributionBox.default` is the only allowed setting: a boolean for whether title-slide presets show the box when `attribution` is omitted on `<slide kind="cover">`. Gratia is `false`; Riverton is `true`. Override per slide with `attribution="true|false"`.
 
-When copying presets or generating decks:
+## Title presets
 
-1. Leave `<img data-slot="logo">` pointing at `gratia-logo.svg`.
-2. Only `<img data-logo>` marks (deck/client logo elsewhere on the slide) follow the active brand.
+Title-slide presets include the box in markup. Omit `attribution` unless overriding the brand default. Leave `<img data-slot="logo">` pointing at `gratia-logo.svg`. Only `<img data-logo>` marks (brand logo elsewhere on the slide) follow the active brand.
 
 ## Files
 

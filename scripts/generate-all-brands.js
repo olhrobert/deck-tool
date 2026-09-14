@@ -2,7 +2,11 @@
 
 const fs = require("fs");
 const path = require("path");
-const { generateBrandCss, BRAND_FILENAME } = require("./generate-brand-css.js");
+const {
+	generateBrandCss,
+	writeColorThemeCss,
+	BRAND_FILENAME,
+} = require("./generate-brand-css.js");
 
 const ROOT = path.join(__dirname, "..");
 const BRANDS_DIR = path.join(ROOT, "brands");
@@ -29,6 +33,7 @@ function generateAllBrands() {
 	}
 
 	let failed = 0;
+	let brandFailed = 0;
 
 	for (const brandDir of brandDirs) {
 		const slug = path.basename(brandDir);
@@ -38,12 +43,24 @@ function generateAllBrands() {
 			console.log(`${slug}: ${changed ? "updated" : "unchanged"} ${rel}`);
 		} catch (error) {
 			failed += 1;
+			brandFailed += 1;
 			console.error(`${slug}: Failed: ${error.message}`);
 		}
 	}
 
+	try {
+		const theme = writeColorThemeCss();
+		const rel = path.relative(ROOT, theme.outputPath);
+		console.log(
+			`color-theme: ${theme.changed ? "updated" : "unchanged"} ${rel}`,
+		);
+	} catch (error) {
+		failed += 1;
+		console.error(`color-theme: Failed: ${error.message}`);
+	}
+
 	console.log(
-		`\nDone. ${brandDirs.length - failed}/${brandDirs.length} brand(s) generated.`,
+		`\nDone. ${brandDirs.length - brandFailed}/${brandDirs.length} brand(s) generated.`,
 	);
 
 	if (failed > 0) {

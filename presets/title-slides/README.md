@@ -1,28 +1,20 @@
 # Title slide presets
 
-Copy one file into `decks/{deck-name}/` and replace placeholder text only. Do not change HTML structure, classes, or asset paths.
+Layout examples loaded by the showcase. Do not change HTML structure, classes, or asset paths when editing.
 
-Each layout has two files: without attribution (`title-slide-0N.html`) and with the Gratia attribution box (`title-slide-0N-with-attribution.html`).
+Each layout includes `<attribution-box>`. Visibility follows `components.cover.attributionBox.default` unless the slide sets `attribution="true|false"`.
 
 ## Presets
 
-| File                                    | Layout                                                   |
-| --------------------------------------- | -------------------------------------------------------- |
-| `title-slide-01.html`                   | Centered stack: logo, title, and subtitle                |
-| `title-slide-01-with-attribution.html`  | Same, plus attribution bottom-center                     |
-| `title-slide-02.html`                   | Oversized title at bottom; logo top-left                 |
-| `title-slide-02-with-attribution.html`  | Same, plus attribution top-right                         |
-| `title-slide-03.html`                   | Split column; title left, subtitle in the right column   |
-| `title-slide-03-with-attribution.html`  | Same, plus attribution top-right                         |
-| `title-slide-04.html`                   | Centered title; logo top-center                          |
-| `title-slide-04-with-attribution.html`  | Same, plus attribution bottom-center                     |
+| File                  | Sidecar | Layout                                                 |
+| --------------------- | ------- | ------------------------------------------------------ |
+| `title-slide-01.html` | `.md`   | Centered stack: logo, title, and subtitle              |
+| `title-slide-02.html` | `.md`   | Oversized title at bottom; logo top-left               |
+| `title-slide-03.html` | `.md`   | Split column; title left, subtitle in the right column |
+| `title-slide-04.html` | `.md`   | Centered title; logo top-center                        |
 
-## Placeholders to replace
+## Placeholders
 
 - Title text inside `<text>` elements (or split across two `<text>` nodes in `title-slide-03`)
 - `Optional subtitle. Can be one or two sentences long.`
-- Attribution credit text on `*-with-attribution` presets (leave the Gratia logo alone)
-
-## Example prompt
-
-> Create `decks/q3-review/`. Copy `presets/title-slides/title-slide-02-with-attribution.html` to `decks/q3-review/01.html`. Title: "Q3 Product Review". Subtitle: "Acme Corp · October 2025".
+- Attribution credit text (leave the Gratia logo alone)

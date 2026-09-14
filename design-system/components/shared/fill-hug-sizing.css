@@ -1,57 +1,86 @@
 /*
  * Fill/hug sizing for flex children.
- * Mirrored in utilities.css as .w-fill, .w-hug, .h-fill, .h-hug.
- * Use .w-100 / .h-100 for explicit width/height: 100%.
+ * Column stacks (`direction="col"`) grow height="fill" children the way
+ * `.flex-col` does. `<img>` uses object-fit: cover when filling.
  */
 
-card[width="hug"],
-callout[width="hug"],
-badge[width="hug"],
-attribution-box[width="hug"],
-slide-footer[width="hug"],
-stack[width="hug"],
-slot[width="hug"] {
+:is(
+	card,
+	callout,
+	badge,
+	attribution-box,
+	slide-footer,
+	stack,
+	media-slot,
+	img
+)[width="hug"] {
 	flex: 0 0 auto;
 }
 
-card[width="fill"],
-callout[width="fill"],
-badge[width="fill"],
-attribution-box[width="fill"],
-slide-footer[width="fill"],
-stack[width="fill"],
-slot[width="fill"] {
+:is(
+	card,
+	callout,
+	badge,
+	attribution-box,
+	slide-footer,
+	stack,
+	media-slot,
+	img
+)[width="fill"] {
 	flex: 1 1 0%;
 	min-width: 0;
 }
 
-card[height="fill"],
-callout[height="fill"],
-badge[height="fill"],
-attribution-box[height="fill"],
-slide-footer[height="fill"],
-stack[height="fill"],
-slot[height="fill"] {
+:is(
+	card,
+	callout,
+	badge,
+	attribution-box,
+	slide-footer,
+	stack,
+	media-slot,
+	img
+)[height="fill"] {
 	align-self: stretch;
 	min-height: 0;
 }
 
-.flex-col > card[height="fill"]:not([width="fill"]),
-.flex-col > callout[height="fill"]:not([width="fill"]),
-.flex-col > badge[height="fill"]:not([width="fill"]),
-.flex-col > attribution-box[height="fill"]:not([width="fill"]),
-.flex-col > slide-footer[height="fill"]:not([width="fill"]),
-.flex-col > stack[height="fill"]:not([width="fill"]),
-.flex-col > slot[height="fill"]:not([width="fill"]) {
+:is(.flex-col, stack[direction="col"])
+	> :is(
+		card,
+		callout,
+		badge,
+		attribution-box,
+		slide-footer,
+		stack,
+		media-slot,
+		img
+	)[height="fill"]:not([width="fill"]) {
 	flex: 1 1 0%;
 }
 
-card[height="hug"],
-callout[height="hug"],
-badge[height="hug"],
-attribution-box[height="hug"],
-slide-footer[height="hug"],
-stack[height="hug"],
-slot[height="hug"] {
+:is(
+	card,
+	callout,
+	badge,
+	attribution-box,
+	slide-footer,
+	stack,
+	media-slot,
+	img
+)[height="hug"] {
 	align-self: auto;
+}
+
+img[width="fill"],
+img[height="fill"] {
+	object-fit: cover;
+}
+
+img[width="fill"] {
+	width: 100%;
+}
+
+img[height="fill"] {
+	height: 100%;
 }

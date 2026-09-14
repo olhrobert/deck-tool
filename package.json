@@ -2,16 +2,11 @@
 	"name": "decktool",
 	"private": true,
 	"scripts": {
-		"compile": "node scripts/compile-deck.js",
-		"compile:all": "node scripts/compile-all-decks.js",
 		"generate-brand": "node scripts/generate-brand-css.js",
 		"generate-brand:all": "node scripts/generate-all-brands.js",
 		"generate-icons": "node scripts/generate-icon-css.js",
 		"new-brand": "node scripts/new-brand.js",
 		"validate-brand": "node scripts/validate-brand.js",
-		"html-to-ir": "node scripts/html-to-ir.js",
-		"refresh": "node scripts/refresh-components.js",
-		"refresh:all": "node scripts/refresh-components.js --all",
 		"showcase": "python3 -m http.server 8080"
 	}
 }

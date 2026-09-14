@@ -1,98 +1,65 @@
 # DeckTool overview
 
-Generate branded presentation decks from prompts, then push them into Figma for further tweaking.
-
-HTML is the source of truth. Brands override tokens. The Figma file instances the same component library — it is not a second design system.
+HTML/CSS design system for presentation slides. Brands override tokens. The showcase is the workbench.
 
 ## Aim
 
-1. Create presentation decks for various brands through prompts.
-2. Push generated slides into Figma so a designer can keep editing them there.
+Build and QA a component set and slide layouts in the browser, under multiple brands.
 
 ## Pieces
 
 | Piece | Where | Job |
 | --- | --- | --- |
-| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.canvas.maxWidth` (pixels on the generic `border.radius` / `border.size` scales and the slide canvas cap). |
-| Components | `design-system/components/` (HTML fragments + CSS + `registry.json`) | Slide chrome, type, Card, Attribution, … |
-| Presets | `presets/` | Starting-point title slides, content slides, footers. A copied slide may diverge. |
-| Showcase | `design-system/showcase/showcase.html` | Workbench: `fetch()` of live component and preset files, brand switcher |
-| Decks | `decks/{name}/` | Real slides; compiled `index.html` via `scripts/compile-deck.js` |
-| Refresh | `scripts/refresh-components.js` | Restamp registered component HTML in a deck; keep slot copy and unique layout |
-| Skills | `.cursor/skills/` | Prompt workflows: new-brand, generate-deck, push-to-figma |
-| Figma | `figma/library.json` + MCP | Instance the library from HTML IR |
+| Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.canvas.maxWidth`. |
+| Components | `design-system/components/` (HTML fragments + CSS) | Slide chrome, type, Card, Callout, Badge, Stamp, Attribution, … |
+| Presets | `presets/` | Title, chapter, and content slide layouts. Showcase loads the live files. |
+| Showcase | `design-system/showcase/` | Workbench: `showcase.html` loads CSS/JS, `fetch()`es live fragments and presets, brand switcher |
+| Skills | `.cursor/skills/` | Prompt workflows: new-brand, attribution-box |
 
-Work **tokens → showcase → components/presets → deck generation → Figma**. Do not reverse that order.
+Work **tokens → components/presets → showcase**. Do not reverse that order.
 
 The Gratia mark inside `<attribution-box>` is intentional (prepared-by), not a brand leak.
 
 ## How changes propagate
 
-| What changed | Showcase | Decks |
-| --- | --- | --- |
-| Token value or `brand-settings.json` color | Automatic (CSS variables) | Automatic (CSS variables) |
-| Component CSS (padding, radius, type) | Automatic (same stylesheets) | Automatic (same stylesheets) |
-| Component HTML structure (wrappers, slots) | Automatic (`fetch()` loads live files on reload) | Run `npm run refresh -- decks/{name}` then `npm run compile -- decks/{name}` |
-| Preset HTML | Automatic (`fetch()` loads live files on reload) | Only affects new decks that copy the preset; existing decks keep their snapshot |
+| What changed | Showcase |
+| --- | --- |
+| Token value or `brand-settings.json` color | Automatic (CSS variables). Regenerate `brand.css` if you edited JSON (`npm run generate-brand -- brands/{slug}`). |
+| Component CSS (padding, radius, type) | Automatic (same stylesheets) |
+| Component or preset HTML | Automatic (`fetch()` loads live files on reload) |
 
-Showcase always reflects the current state of the library. Decks contain a **copy** of component markup, so structural HTML changes require `refresh-components.js` to update instances in place while preserving slide copy and unique layout.
+Showcase always reflects the current state of the library.
 
----
-
-## Phase 1 — Tokens done; make the showcase the workbench
-
-**Status:** Done.
+## Showcase
 
 The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Foundations (Brand / Type / Layout), Components (Attribution box / Badge / Callout / Card / Slide footer / Slide title), and Slide presets (Title / Chapter / Content) in the sidebar; full slide chrome (width fills up to `--slide-max-width`, height 800). Token roles are cover / slide / surface — not primary / secondary.
 
----
+Serve the repo (`npm run showcase`) and open `design-system/showcase/showcase.html`.
 
-## Phase 2 — Components and presets
+## Components and presets
 
-**Status:** In progress — library and tokens are in good shape. Remaining work is more content-slide presets (and components only if a preset needs them).
+A component set and preset library that can express real decks, with new tokens only when a visual role is missing. Presets are layout examples; keep structure, classes, and stylesheet links when you edit them.
 
-**Goal:** A component set and preset library that can express real decks, with new tokens only when a visual role is missing. Presets are starting points; a real slide may diverge. Showcase always loads the live files.
-
-### Done
+### Library
 
 - Showcase `fetch()`es live component fragments and presets (no inlined fork).
-- `registry.json` + `refresh-components.js` restamp Slide Title, Card, Callout, Badge, Stamp, Slide Footer, and Attribution in a deck without wiping unique layout.
-- Title presets (`title-slide-01`…`04`, each with and without attribution), chapter slides (`chapter-slide-01` mid stack, `chapter-slide-02` split), one content slide (`content-slide-3-cards`: header, three-card row, slide-footer). Slide footer lives as a component only (`design-system/components/slide-footer/`).
-- Card component lives at `design-system/components/card/card.html`. Callout lives at `design-system/components/callout/callout.html`. Badge lives at `design-system/components/badge/badge.html`. Stamp lives at `design-system/components/stamp/stamp.html`. Slide footer lives at `design-system/components/slide-footer/slide-footer.html`.
-- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale** (`--text-size-800` = 32px, …). Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md` = step `400`). Primitive `<text>` remains for raw steps (cover title, attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`). `<copy>` is gone.
-- Cover ink uses `context="slide"` with `tone="strong|base|subtle"` on `<slide kind="cover">` (canvas follows `foundations.colorTheme.cover`). Attribution type sizes use the type scale. Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
-
+- Title presets (`title-slide-01`…`04`) include `<attribution-box>`; visibility follows `components.cover.attributionBox.default` unless the slide sets `attribution="true|false"`.
+- Chapter slides (`chapter-slide-01` mid stack, `chapter-slide-02` split).
+- Content slides: `content-slide-3-cards` (header, three-card row, slide-footer) and `content-slide-story` (copy + photo well). Slide footer lives as a component (`design-system/components/slide-footer/`).
+- Card, Callout, Badge, Stamp, Slide footer fragments live under `design-system/components/`.
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale**. Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md`). Primitive `<text>` remains for raw steps (cover title, attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`).
+- Cover ink uses `context="slide"` with `tone="strong|base|subtle"` on `<slide kind="cover">` (canvas follows `foundations.colorTheme.cover`). Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 ### Still open
 
-- **More content-slide presets** — only `content-slide-3-cards.html` exists. Add body patterns (two-column copy, title + body + card variants) in `presets/content-slides/` before inventing new chrome.
-- **Kept for later:** `<stack>` (plus unused utilities). Do not remove them; they are for upcoming presets.
-- **New components only when a preset needs them** — candidates, not a backlog: list item, generic card body patterns, charts (tokens exist, no component). Every new piece gets a fragment the showcase can load.
+- More content-slide presets (two-column copy, title + body + card variants) before inventing new chrome.
+- New components only when a preset needs them. Candidates, not a backlog: list item, generic card body patterns, charts (tokens exist, no component). Every new piece gets a fragment the showcase can load.
 
----
+## Docs
 
-## Phase 3 — Deck generation
-
-**Goal:** Prompts produce decks by copying presets and replacing copy — not by inventing layout.
-
-Fine-tune `.cursor/skills/generate-deck/`, `presets/README.md`, and `compile-deck.js`. Point the skill at the Phase 2 content-slide presets. Sample decks become fixtures; run `refresh` on them after component HTML changes.
-
-Out of scope until then: rewriting skills around missing presets, cleaning sample-deck structure except as it blocks Phase 2 visuals.
-
----
-
-## Phase 4 — Push to Figma
-
-**Goal:** Compiled HTML instances the Figma library in the deck brand’s Primitives mode.
-
-Expected work: realign Figma variables with the current token roles (cover/slide, five font families, weights), then fine-tune `html-to-ir.js` and `push-to-figma`. CSS/Figma defaultVariant mismatches stay a mapping concern, not a reason to change HTML in Phase 1–2.
-
----
-
-## Docs by phase
-
-| Phase | Read |
+| Topic | Read |
 | --- | --- |
-| 1–2 | [brands.md](brands.md), this file |
-| 3 | [scripts.md](scripts.md), `.cursor/skills/generate-deck/` |
-| 4 | [figma.md](figma.md), [html-to-figma.md](html-to-figma.md), `.cursor/skills/push-to-figma/` |
+| Tokens and color roles | [brands.md](brands.md) |
+| Size / gap / padding / variant | [components.md](components.md) |
+| Brand / icon scripts | [scripts.md](scripts.md) |
+| Agent workflows | `.cursor/skills/new-brand/`, `.cursor/skills/attribution-box/` |

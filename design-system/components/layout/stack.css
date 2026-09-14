@@ -20,7 +20,6 @@ stack[direction="col"] {
 	flex-direction: column;
 }
 
-stack[gap="0"],
 stack[gap="none"] {
 	gap: var(--stack-gap-none);
 }

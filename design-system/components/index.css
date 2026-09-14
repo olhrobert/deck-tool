@@ -27,7 +27,7 @@
 @import "attribution-box/attribution-box-separator.css";
 @import "shared/fill-hug-sizing.css";
 @import "layout/stack.css";
-@import "layout/slot.css";
+@import "layout/media-slot.css";
 @import "layout/header-container.css";
 @import "layout/content-container.css";
 @import "layout/footer-container.css";

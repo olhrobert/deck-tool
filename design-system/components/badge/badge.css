@@ -1,11 +1,10 @@
 /* Badge
    Axes:
-     variant="neutral|positive|warning|negative|informative"  default neutral
-     emphasis="inverted"                                       neutral-only extra recipe
+     variant="neutral|emphasis|positive|warning|negative|informative"  default neutral
      border="true|false"                                       brand `badge.border.hasBorderByDefault` when omitted
      color-theme="light|dark"                                  inherits; remaps paint
-   Paint follows the current color-theme (plus inverted). With border, stroke
-   follows the matching badge `border`. Ink = family `foreground` hue
+   Paint follows the current color-theme. With border,
+   stroke follows the matching badge `border`. Ink = family `foreground` hue
    × foundations.tone. Size / radius / padding / default border / icon size
    are brand tokens. Optional leading/trailing `<badge-icon icon="…">`.
 */
@@ -30,56 +29,55 @@ badge {
 	background-color: var(--_badge-bg);
 	border-style: solid;
 	border-color: var(--_badge-border-paint);
-	border-width: var(--badge-border-width);
+	border-width: var(--badge-border-default);
 	border-radius: var(--badge-border-radius);
 	padding: var(--badge-padding-block) var(--badge-padding-inline);
 	gap: var(--spacing-1);
-}
 
-badge[border="true"] {
-	border-width: var(--badge-border-size);
-}
+	&[border="true"] {
+		border-width: var(--badge-border-width);
+	}
 
-badge[border="false"] {
-	border-width: var(--border-size-none);
+	&[border="false"] {
+		border-width: var(--border-size-none);
+	}
+
+	&[variant="emphasis"] {
+		--_badge-hue: var(--badge-emphasis-foreground);
+		--_badge-bg: var(--badge-emphasis-background);
+		--_badge-border-paint: var(--badge-emphasis-border);
+	}
+
+	&[variant="positive"] {
+		--_badge-hue: var(--badge-positive-foreground);
+		--_badge-bg: var(--badge-positive-background);
+		--_badge-border-paint: var(--badge-positive-border);
+	}
+
+	&[variant="warning"] {
+		--_badge-hue: var(--badge-warning-foreground);
+		--_badge-bg: var(--badge-warning-background);
+		--_badge-border-paint: var(--badge-warning-border);
+	}
+
+	&[variant="negative"] {
+		--_badge-hue: var(--badge-negative-foreground);
+		--_badge-bg: var(--badge-negative-background);
+		--_badge-border-paint: var(--badge-negative-border);
+	}
+
+	&[variant="informative"] {
+		--_badge-hue: var(--badge-informative-foreground);
+		--_badge-bg: var(--badge-informative-background);
+		--_badge-border-paint: var(--badge-informative-border);
+	}
 }
 
 badge
-	:is(.text, text, badge-text, body-copy, badge-icon),
+	:is(text, badge-text, body-copy, badge-icon),
 badge
-	:is(.text, text, badge-text, body-copy, badge-icon)[context="surface"] {
+	:is(text, badge-text, body-copy, badge-icon)[context="surface"] {
 	--_ink-strong: var(--_badge-ink-strong);
 	--_ink-base: var(--_badge-ink-base);
 	--_ink-subtle: var(--_badge-ink-subtle);
-}
-
-badge:not([variant])[emphasis="inverted"],
-badge[variant="neutral"][emphasis="inverted"] {
-	--_badge-hue: var(--badge-neutral-inverted-foreground);
-	--_badge-bg: var(--badge-neutral-inverted-background);
-	--_badge-border-paint: var(--badge-neutral-inverted-border);
-}
-
-badge[variant="positive"] {
-	--_badge-hue: var(--badge-positive-foreground);
-	--_badge-bg: var(--badge-positive-background);
-	--_badge-border-paint: var(--badge-positive-border);
-}
-
-badge[variant="warning"] {
-	--_badge-hue: var(--badge-warning-foreground);
-	--_badge-bg: var(--badge-warning-background);
-	--_badge-border-paint: var(--badge-warning-border);
-}
-
-badge[variant="negative"] {
-	--_badge-hue: var(--badge-negative-foreground);
-	--_badge-bg: var(--badge-negative-background);
-	--_badge-border-paint: var(--badge-negative-border);
-}
-
-badge[variant="informative"] {
-	--_badge-hue: var(--badge-informative-foreground);
-	--_badge-bg: var(--badge-informative-background);
-	--_badge-border-paint: var(--badge-informative-border);
 }

@@ -28,9 +28,11 @@ function isFontFamilyName(value) {
 /**
  * Maps brand-settings.json fields to CSS custom properties. This is the single
  * source of truth for which design-system globals a brand is allowed to override.
- * Each entry is a [dotted brand-settings.json path, --css-variable] pair.
- * Anything not listed here stays a shared design-system default (type scale,
- * global spacing scale, etc.).
+ * Each entry is a [dotted brand-settings.json path, --css-variable | null]
+ * pair. `null` means the JSON key is validated but not written as a custom
+ * property (`components.card.defaultLayout` — stripe default is a generated
+ * selector). Anything not listed here stays a shared design-system default
+ * (type scale, global spacing scale, etc.).
  *
  * Font *named families* (`font.family.display|base`) are CSS stacks.
  * Role families (`cover.title.family`, `body.family`, …) name one of those
@@ -45,7 +47,7 @@ function isFontFamilyName(value) {
  * Component *radius* names a `border.radius` step (`med`, `none`, …).
  * Component *stroke* names a `border.size` step (`none`, `sm`, `md`, `lg`).
  *
- * Cover is layout/type only (`cover.title`). Slide canvas colors are themed
+ * Cover is layout/type (`cover.title`) plus `cover.attributionBox.default`. Slide canvas colors are themed
  * (`slide.canvas.background.light|dark`). `foundations.colorTheme.cover|slide`
  * is `light` or `dark` (cover default applies to `<slide kind="cover">`).
  * Top-level groups, in order: `foundations` (`basic`, `color`, `colorTheme`,
@@ -55,11 +57,15 @@ function isFontFamilyName(value) {
  * `semantic.positive`…, `chart.1`–`chart.4`). `semantic.neutral` /
  * `semantic.bright` may ref `brand.*`. `foundations.tone` is Strong / Base /
  * Subtle opacity. Card/badge/stamp paint is keyed by variant then color-theme
- * (`card.foreground.neutral.light`, `card.background.positive.dark`) plus
- * `neutralInverted`. Callout paint stays quiet-only (`neutralQuiet`, …).
+ * (`card.foreground.neutral.light`, `card.background.positive.dark`) including
+ * themed `emphasis`. Callout paint (`foreground`, `background`,
+ * `stripe.color`) is themed (`neutral.light|dark`).
  * CSS pairs are `--card-neutral-foreground-light` / `-dark`; resolved names
- * (`--card-neutral-foreground`) are set in color-theme.css. TOKEN_MAP order
- * is the brand.css order.
+ * (`--card-neutral-foreground`) are set in generated color-theme.css.
+ * Cover default theme is emitted on `slide[kind="cover"]:not([color-theme])`
+ * in brand.css from `foundations.colorTheme.cover`. TOKEN_MAP order is the
+ * brand.css order. `components.card.defaultLayout` is validated but not
+ * written as a CSS variable — stripe default is a generated selector.
  */
 const TYPE_SCALE_STEPS = [
 	"4000",
@@ -287,6 +293,14 @@ function isBadgeBorderBoolean(value) {
 	return typeof value === "boolean";
 }
 
+function isCoverAttributionDefaultPath(jsonPath) {
+	return jsonPath === "components.cover.attributionBox.default";
+}
+
+function isCoverAttributionDefaultBoolean(value) {
+	return typeof value === "boolean";
+}
+
 function isStampScalePath(jsonPath) {
 	return (
 		jsonPath === "components.stamp.icon.scale" ||
@@ -330,9 +344,10 @@ const TONE_KEYS = ["strong", "base", "subtle"];
 const COLOR_THEME_NAMES = ["light", "dark"];
 const THEMED_PAINT_VARIANTS = [
 	"neutral",
+	"emphasis",
 	"positive",
-	"negative",
 	"warning",
+	"negative",
 	"informative",
 ];
 const CARD_STATUS_FAMILY_KEYS = THEMED_PAINT_VARIANTS.filter(
@@ -392,31 +407,32 @@ function semanticFamilyKey(variant, theme) {
 
 const SEMANTIC_COLOR_VARIANTS = THEMED_PAINT_VARIANTS;
 const SEMANTIC_COLOR_TONES = COLOR_THEME_NAMES;
-const NEUTRAL_COLOR_FAMILY_KEYS = [
-	"neutral.light",
-	"neutral.dark",
-	"neutralInverted",
-];
+const NEUTRAL_COLOR_FAMILY_KEYS = ["neutral.light", "neutral.dark"];
 const CARD_COLOR_FAMILY_KEYS = [
 	...NEUTRAL_COLOR_FAMILY_KEYS,
 	...CARD_STATUS_FAMILY_KEYS,
 ];
-const CALLOUT_COLOR_FAMILY_KEYS = [
-	"neutralQuiet",
-	"positiveQuiet",
-	"negativeQuiet",
-	"warningQuiet",
-	"informativeQuiet",
+const CALLOUT_VARIANT_KEYS = [
+	"neutral",
+	"positive",
+	"negative",
+	"warning",
+	"informative",
 ];
+const CALLOUT_THEMED_FAMILY_KEYS = CALLOUT_VARIANT_KEYS.flatMap((family) =>
+	COLOR_THEME_NAMES.map((theme) => `${family}.${theme}`),
+);
+const CALLOUT_COLOR_FAMILY_KEYS = CALLOUT_THEMED_FAMILY_KEYS;
+const CALLOUT_FOREGROUND_FAMILY_KEYS = CALLOUT_THEMED_FAMILY_KEYS;
 const SEMANTIC_COLOR_FAMILY_KEYS = CARD_COLOR_FAMILY_KEYS;
 const THEMED_PAINT_PATH =
-	"(neutralInverted|(?:neutral|positive|negative|warning|informative)\\.(?:light|dark))";
-const CALLOUT_FAMILY_GROUP = CALLOUT_COLOR_FAMILY_KEYS.join("|");
+	"(?:neutral|emphasis|positive|warning|negative|informative)\\.(?:light|dark)";
+const CALLOUT_FAMILY_GROUP = CALLOUT_VARIANT_KEYS.join("|");
 const CARD_COLOR_PATH = new RegExp(
 	`^components\\.card\\.(foreground|background|border\\.subtle|stripe\\.color)\\.${THEMED_PAINT_PATH}$`,
 );
 const CALLOUT_COLOR_PATH = new RegExp(
-	`^components\\.callout\\.(foreground|background|stripe\\.color)\\.(${CALLOUT_FAMILY_GROUP})$`,
+	`^components\\.callout\\.(?:background|foreground|stripe\\.color)\\.(${CALLOUT_FAMILY_GROUP})\\.(?:light|dark)$`,
 );
 const BADGE_COLOR_PATH = new RegExp(
 	`^components\\.badge\\.(foreground|background|border\\.color)\\.${THEMED_PAINT_PATH}$`,
@@ -433,11 +449,8 @@ function cardPaintCssLeaf(role) {
 }
 
 function paintFamilyCssName(family, cssLeaf) {
-	if (family === "neutralInverted") {
-		return `neutral-inverted-${cssLeaf}`;
-	}
 	const [variant, theme] = String(family).split(".");
-	if (theme) return `${variant}-${cssLeaf}-${theme}`;
+	if (theme) return `${camelToKebab(variant)}-${cssLeaf}-${theme}`;
 	return `${camelToKebab(family)}-${cssLeaf}`;
 }
 
@@ -496,7 +509,7 @@ function calloutPaintTokenMapEntries(jsonPrefix, role, groupLabel) {
 		jsonPrefix,
 		role,
 		groupLabel,
-		familyKeys: CALLOUT_COLOR_FAMILY_KEYS,
+		familyKeys: CALLOUT_THEMED_FAMILY_KEYS,
 	});
 }
 
@@ -806,6 +819,10 @@ const TOKEN_MAP = [
 
 	["components.cover.title.family", "--cover-title-font-family", "cover"],
 	["components.cover.title.weight", "--cover-title-font-weight"],
+	[
+		"components.cover.attributionBox.default",
+		"--cover-attribution-box-display",
+	],
 
 	[
 		"components.slide.canvas.background.light",
@@ -878,9 +895,9 @@ const TOKEN_MAP = [
 	["components.body.sizeMd", "--body-size-md"],
 	["components.body.sizeLg", "--body-size-lg"],
 
-	["components.card.defaultLayout", "--card-default-layout", "card"],
+	["components.card.defaultLayout", null, "card"],
 	...cardColorTokenMapEntries(),
-	["components.card.padding.sm", "--card-padding-sm"],
+	["components.card.padding.sm", "--card-padding-sm", "card — padding"],
 	["components.card.padding.md", "--card-padding-md"],
 	["components.card.padding.lg", "--card-padding-lg"],
 	["components.card.gap.none", "--card-gap-none"],
@@ -946,6 +963,13 @@ const TOKEN_MAP = [
 		"stripe",
 		"callout — stripe color",
 	),
+	[
+		"components.callout.padding.sm",
+		"--callout-padding-sm",
+		"callout — padding",
+	],
+	["components.callout.padding.md", "--callout-padding-md"],
+	["components.callout.padding.lg", "--callout-padding-lg"],
 	["components.callout.gap.none", "--callout-gap-none", "callout — gap"],
 	["components.callout.gap.sm", "--callout-gap-sm"],
 	["components.callout.gap.md", "--callout-gap-md"],
@@ -971,11 +995,11 @@ const TOKEN_MAP = [
 	["components.badge.icon.size", "--badge-icon-size", "badge — icon"],
 	[
 		"components.badge.border.hasBorderByDefault",
-		"--badge-border-width",
+		"--badge-border-default",
 		"badge — border",
 	],
 	["components.badge.border.radius", "--badge-border-radius"],
-	["components.badge.border.width", "--badge-border-size"],
+	["components.badge.border.width", "--badge-border-width"],
 	...badgePaintTokenMapEntries(
 		"components.badge.border.color",
 		"border",
@@ -1062,6 +1086,18 @@ function colorThemeRemapLines(theme) {
 		);
 		lines.push(
 			`${indent}--stamp-${variant}-background: var(--stamp-${variant}-background-${theme});`,
+		);
+	}
+	for (const family of CALLOUT_VARIANT_KEYS) {
+		const cssFamily = camelToKebab(family);
+		lines.push(
+			`${indent}--callout-${cssFamily}-foreground: var(--callout-${cssFamily}-foreground-${theme});`,
+		);
+		lines.push(
+			`${indent}--callout-${cssFamily}-background: var(--callout-${cssFamily}-background-${theme});`,
+		);
+		lines.push(
+			`${indent}--callout-${cssFamily}-stripe: var(--callout-${cssFamily}-stripe-${theme});`,
 		);
 	}
 	return lines;
@@ -1190,7 +1226,7 @@ function toCssValue(jsonPath, value, brand) {
 				`${jsonPath} must be ${CARD_LAYOUT_NAMES.join(" or ")} (got ${JSON.stringify(value)})`,
 			);
 		}
-		return String(value);
+		return null;
 	}
 	if (isSlidePretitleDefaultPath(jsonPath)) {
 		if (!isSlidePretitleDefaultName(value)) {
@@ -1207,8 +1243,16 @@ function toCssValue(jsonPath, value, brand) {
 			);
 		}
 		return value
-			? "var(--badge-border-size)"
+			? "var(--badge-border-width)"
 			: "var(--border-size-none)";
+	}
+	if (isCoverAttributionDefaultPath(jsonPath)) {
+		if (!isCoverAttributionDefaultBoolean(value)) {
+			throw new Error(
+				`${jsonPath} must be true or false (got ${JSON.stringify(value)})`,
+			);
+		}
+		return value ? "flex" : "none";
 	}
 	if (isStampScalePath(jsonPath)) {
 		if (!isStampScaleValue(value)) {
@@ -1227,7 +1271,7 @@ function buildBrandCss(brand) {
 		const raw = getPath(brand, jsonPath);
 		if (raw === undefined || raw === null) continue;
 		const value = toCssValue(jsonPath, raw, brand);
-		if (value === null) continue;
+		if (!cssVar || value === null) continue;
 		if (group) {
 			if (lines.length > 0) lines.push("");
 			lines.push(`\t/* ${group} */`);
@@ -1290,6 +1334,40 @@ function generateBrandCss(brandDir) {
 	return { outputPath, changed: previous !== css };
 }
 
+const COLOR_THEME_CSS_PATH = path.join(
+	__dirname,
+	"..",
+	"design-system",
+	"tokens",
+	"color-theme.css",
+);
+
+function buildColorThemeCss() {
+	return [
+		"/* AUTO-GENERATED from scripts/generate-brand-css.js — do not edit by hand. */",
+		"/* Light/dark remaps. Cover default lives in brand.css (foundations.colorTheme.cover). */",
+		"",
+		":root,",
+		'[color-theme="light"] {',
+		...colorThemeRemapLines("light"),
+		"}",
+		"",
+		'[color-theme="dark"] {',
+		...colorThemeRemapLines("dark"),
+		"}",
+		"",
+	].join("\n");
+}
+
+function writeColorThemeCss() {
+	const css = buildColorThemeCss();
+	const previous = fs.existsSync(COLOR_THEME_CSS_PATH)
+		? fs.readFileSync(COLOR_THEME_CSS_PATH, "utf8")
+		: null;
+	fs.writeFileSync(COLOR_THEME_CSS_PATH, css, "utf8");
+	return { outputPath: COLOR_THEME_CSS_PATH, changed: previous !== css };
+}
+
 function usage() {
 	console.error(
 		"Usage: node scripts/generate-brand-css.js <brand-directory>",
@@ -1303,6 +1381,8 @@ function usage() {
 module.exports = {
 	generateBrandCss,
 	buildBrandCss,
+	buildColorThemeCss,
+	writeColorThemeCss,
 	TOKEN_MAP,
 	TYPE_SCALE_STEPS,
 	SPACING_SCALE_STEPS,
@@ -1323,6 +1403,9 @@ module.exports = {
 	NEUTRAL_COLOR_FAMILY_KEYS,
 	CARD_COLOR_FAMILY_KEYS,
 	CALLOUT_COLOR_FAMILY_KEYS,
+	CALLOUT_FOREGROUND_FAMILY_KEYS,
+	CALLOUT_THEMED_FAMILY_KEYS,
+	CALLOUT_VARIANT_KEYS,
 	semanticFamilyKey,
 	isTonePath,
 	isToneValue,
@@ -1367,6 +1450,8 @@ module.exports = {
 	SLIDE_PRETITLE_DEFAULT_NAMES,
 	isBadgeBorderPath,
 	isBadgeBorderBoolean,
+	isCoverAttributionDefaultPath,
+	isCoverAttributionDefaultBoolean,
 	isStampScalePath,
 	isStampScaleValue,
 	BORDER_RADIUS_STEPS,
@@ -1383,6 +1468,11 @@ if (require.main === module) {
 	try {
 		const { outputPath } = generateBrandCss(brandArg);
 		console.log(`Generated ${outputPath}`);
+		const theme = writeColorThemeCss();
+		const rel = path.relative(path.join(__dirname, ".."), theme.outputPath);
+		console.log(
+			`${theme.changed ? "Updated" : "Unchanged"} ${rel}`,
+		);
 	} catch (error) {
 		console.error(error.message);
 		process.exit(1);

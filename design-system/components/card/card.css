@@ -1,10 +1,9 @@
 /* Card
    Axes:
-     variant="neutral|positive|warning|negative|informative"  default neutral
-     emphasis="inverted"                                       neutral-only extra recipe
+     variant="neutral|emphasis|positive|warning|negative|informative"  default neutral
      layout="basic|stripe"                                     brand `card.defaultLayout` when omitted
      color-theme="light|dark"                                  inherits; remaps paint
-   Padding / gap / type are brand tokens.
+   Padding / gap / type are brand tokens. Omit `gap` for `sm`.
    Ink = family `foreground` hue × foundations.tone.
 */
 
@@ -32,13 +31,84 @@ card {
 	border-right-width: var(--card-border-size-right);
 	border-radius: var(--card-border-radius);
 	padding: var(--card-padding-md);
-	gap: var(--card-gap-md);
+	gap: var(--card-gap-sm);
+
+	&[variant="emphasis"] {
+		--_card-hue: var(--card-emphasis-foreground);
+		--_card-bg: var(--card-emphasis-background);
+		--_card-border: var(--card-emphasis-border-subtle);
+		--_card-stripe: var(--card-emphasis-stripe);
+	}
+
+	&[variant="positive"] {
+		--_card-hue: var(--card-positive-foreground);
+		--_card-bg: var(--card-positive-background);
+		--_card-border: var(--card-positive-border-subtle);
+		--_card-stripe: var(--card-positive-stripe);
+	}
+
+	&[variant="warning"] {
+		--_card-hue: var(--card-warning-foreground);
+		--_card-bg: var(--card-warning-background);
+		--_card-border: var(--card-warning-border-subtle);
+		--_card-stripe: var(--card-warning-stripe);
+	}
+
+	&[variant="negative"] {
+		--_card-hue: var(--card-negative-foreground);
+		--_card-bg: var(--card-negative-background);
+		--_card-border: var(--card-negative-border-subtle);
+		--_card-stripe: var(--card-negative-stripe);
+	}
+
+	&[variant="informative"] {
+		--_card-hue: var(--card-informative-foreground);
+		--_card-bg: var(--card-informative-background);
+		--_card-border: var(--card-informative-border-subtle);
+		--_card-stripe: var(--card-informative-stripe);
+	}
+
+	&[layout="stripe"] {
+		border-color: var(--_card-stripe);
+		border-top-width: var(--border-size-none);
+		border-bottom-width: var(--border-size-none);
+		border-right-width: var(--border-size-none);
+		border-left-width: var(--card-stripe-width);
+		border-radius: var(--border-radius-none);
+	}
+
+	&[padding="sm"] {
+		padding: var(--card-padding-sm);
+	}
+
+	&[padding="md"] {
+		padding: var(--card-padding-md);
+	}
+
+	&[padding="lg"] {
+		padding: var(--card-padding-lg);
+	}
+
+	&[gap="none"] {
+		gap: var(--card-gap-none);
+	}
+
+	&[gap="sm"] {
+		gap: var(--card-gap-sm);
+	}
+
+	&[gap="md"] {
+		gap: var(--card-gap-md);
+	}
+
+	&[gap="lg"] {
+		gap: var(--card-gap-lg);
+	}
 }
 
 /* Nested type reads the card's ink tokens (beats context="surface"). */
 card
 	:is(
-		.text,
 		text,
 		card-pretitle,
 		card-title,
@@ -48,7 +118,6 @@ card
 	),
 card
 	:is(
-		.text,
 		text,
 		card-pretitle,
 		card-title,
@@ -59,81 +128,4 @@ card
 	--_ink-strong: var(--_card-ink-strong);
 	--_ink-base: var(--_card-ink-base);
 	--_ink-subtle: var(--_card-ink-subtle);
-}
-
-card:not([variant])[emphasis="inverted"],
-card[variant="neutral"][emphasis="inverted"] {
-	--_card-hue: var(--card-neutral-inverted-foreground);
-	--_card-bg: var(--card-neutral-inverted-background);
-	--_card-border: var(--card-neutral-inverted-border-subtle);
-	--_card-stripe: var(--card-neutral-inverted-stripe);
-}
-
-card[variant="positive"] {
-	--_card-hue: var(--card-positive-foreground);
-	--_card-bg: var(--card-positive-background);
-	--_card-border: var(--card-positive-border-subtle);
-	--_card-stripe: var(--card-positive-stripe);
-}
-
-card[variant="warning"] {
-	--_card-hue: var(--card-warning-foreground);
-	--_card-bg: var(--card-warning-background);
-	--_card-border: var(--card-warning-border-subtle);
-	--_card-stripe: var(--card-warning-stripe);
-}
-
-card[variant="negative"] {
-	--_card-hue: var(--card-negative-foreground);
-	--_card-bg: var(--card-negative-background);
-	--_card-border: var(--card-negative-border-subtle);
-	--_card-stripe: var(--card-negative-stripe);
-}
-
-card[variant="informative"] {
-	--_card-hue: var(--card-informative-foreground);
-	--_card-bg: var(--card-informative-background);
-	--_card-border: var(--card-informative-border-subtle);
-	--_card-stripe: var(--card-informative-stripe);
-}
-
-/* --- layout: stripe (left accent) --- */
-
-card[layout="stripe"] {
-	border-color: var(--_card-stripe);
-	border-top-width: var(--border-size-none);
-	border-bottom-width: var(--border-size-none);
-	border-right-width: var(--border-size-none);
-	border-left-width: var(--card-stripe-width);
-	border-radius: var(--border-radius-none);
-}
-
-/* --- padding / gap (unchanged) --- */
-
-card[padding="sm"] {
-	padding: var(--card-padding-sm);
-}
-
-card[padding="md"] {
-	padding: var(--card-padding-md);
-}
-
-card[padding="lg"] {
-	padding: var(--card-padding-lg);
-}
-
-card[gap="none"] {
-	gap: var(--card-gap-none);
-}
-
-card[gap="sm"] {
-	gap: var(--card-gap-sm);
-}
-
-card[gap="md"] {
-	gap: var(--card-gap-md);
-}
-
-card[gap="lg"] {
-	gap: var(--card-gap-lg);
 }

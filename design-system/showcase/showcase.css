@@ -1,0 +1,312 @@
+body {
+	margin: 0;
+	background-color: var(--color-slide-background);
+	display: flex;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.showcase-sidebar {
+	position: sticky;
+	top: 0;
+	align-self: flex-start;
+	flex: 0 0 180px;
+	width: 180px;
+	height: 100vh;
+	box-sizing: border-box;
+	padding: var(--spacing-4);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-6);
+	border-right: 1px solid var(--color-slide-surface-border);
+	background-color: var(--color-slide-background);
+}
+
+.showcase {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	min-width: 0;
+	height: 100vh;
+	overflow-y: auto;
+	box-sizing: border-box;
+	background-color: var(--color-slide-background);
+}
+
+.showcase-group {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 auto;
+	min-height: 100%;
+	background-color: var(--color-slide-background);
+}
+
+.showcase-header {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--spacing-4);
+	padding: var(--spacing-4);
+	border-bottom: 1px solid var(--color-slide-surface-border);
+	background-color: var(--color-slide-background);
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	flex: 0 0 auto;
+}
+
+.showcase-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-12);
+	padding: var(--spacing-8);
+	padding-bottom: var(--spacing-40);
+	box-sizing: border-box;
+	flex: 0 0 auto;
+	background-color: var(--color-slide-background);
+	max-width: 1280px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.showcase-group-narrow .showcase-body {
+	max-width: 800px;
+}
+
+.showcase-theme-switch {
+	margin-left: auto;
+}
+
+.showcase-h1,
+.showcase-h3,
+.showcase-h4 {
+	margin: 0;
+	display: block;
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	line-height: 1.2;
+	letter-spacing: 0%;
+}
+
+.showcase-h1,
+.showcase-h3 {
+	font-weight: var(--font-weight-bold);
+}
+
+.showcase-h1 {
+	font-size: var(--text-size-600);
+}
+
+.showcase-h3 {
+	font-size: var(--text-size-500);
+}
+
+.showcase-h4 {
+	font-weight: var(--font-weight-regular);
+	font-size: var(--text-size-300);
+}
+
+.showcase-subgroup {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-4);
+}
+
+.showcase-deck deck {
+	display: block;
+	width: 100%;
+	min-height: auto;
+	background-color: transparent;
+}
+
+.showcase-deck slide {
+	margin: 0 auto;
+	border: 1px solid var(--color-slide-surface-border);
+}
+
+.showcase-footer {
+	border: 1px solid var(--color-slide-surface-border);
+	border-radius: var(--card-border-radius);
+	overflow: hidden;
+	padding: var(--spacing-6) var(--spacing-8);
+}
+
+.showcase-brand-switch {
+	width: 100%;
+}
+
+.showcase-brand-switch > button {
+	flex: 1 1 0;
+}
+
+.showcase-filter {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: var(--spacing-6);
+	width: 100%;
+	overflow-y: auto;
+}
+
+.showcase-filter-group {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0;
+	width: 100%;
+}
+
+.showcase-filter-heading {
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-size: var(--text-size-300);
+	font-weight: var(--font-weight-bold);
+	color: var(--color-slide-foreground-subtle);
+	padding: 0 var(--spacing-2);
+	margin-bottom: var(--spacing-1);
+}
+
+.showcase-filter a {
+	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-size: var(--text-size-300);
+	font-weight: var(--font-weight-medium);
+	padding: var(--spacing-2);
+	border: none;
+	border-radius: var(--border-radius-med, 6px);
+	background: transparent;
+	color: var(--color-slide-foreground-base);
+	text-decoration: none;
+	cursor: pointer;
+	text-align: left;
+	transition:
+		background-color 0.15s,
+		color 0.15s;
+}
+
+.showcase-filter a:hover {
+	background-color: rgb(from var(--color-slide-foreground) r g b / 0.1);
+}
+
+.showcase-filter a.is-active {
+	background-color: rgb(from var(--color-slide-foreground) r g b / 0.2);
+	color: var(--color-slide-foreground-strong);
+}
+
+[data-section="typography"] text[family="cover-title"] {
+	color: var(--color-slide-foreground-strong);
+}
+
+[data-section="layout"] slide,
+[data-section="layout"] header-container,
+[data-section="layout"] footer-container {
+	border: 1px solid var(--color-slide-surface-border);
+}
+
+.showcase-matrix {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-4);
+}
+
+.showcase-matrix-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--spacing-3);
+}
+
+.showcase-matrix-stack {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-3);
+}
+
+.showcase-matrix card,
+.showcase-matrix callout {
+	width: 100%;
+	min-width: 0;
+}
+
+.showcase-matrix callout {
+	flex: 0 0 auto;
+}
+
+.showcase-row {
+	display: flex;
+	gap: var(--spacing-4);
+	align-items: stretch;
+}
+
+.showcase-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-3);
+}
+
+.showcase-list-row {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-3);
+}
+
+.brand-settings-table {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	width: 100%;
+	border: 1px solid var(--color-slide-surface-border);
+	border-radius: var(--card-border-radius);
+	overflow: hidden;
+	background: var(--color-slide-surface-background);
+}
+
+#brand-showcase {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-12);
+	width: 100%;
+}
+
+.brand-settings-group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-5);
+	width: 100%;
+}
+
+.brand-settings-block {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-2);
+	width: 100%;
+}
+
+.brand-settings-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--spacing-4);
+	align-items: center;
+	padding: var(--spacing-3) var(--spacing-4);
+	border-top: 1px solid var(--color-slide-surface-border);
+}
+
+.brand-settings-row:first-child {
+	border-top: none;
+}
+
+.brand-settings-row > text,
+.brand-settings-value-swatch {
+	min-width: 0;
+}
+
+.brand-settings-value-swatch {
+	align-items: center;
+}
+
+.brand-swatch-chip {
+	width: var(--spacing-4);
+	height: var(--spacing-4);
+	border-radius: var(--border-radius-full);
+	flex: 0 0 auto;
+	box-sizing: border-box;
+	border: 1px solid var(--color-slide-surface-border);
+}

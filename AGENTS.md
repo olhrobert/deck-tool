@@ -1,14 +1,14 @@
 # DeckTool
 
-HTML/CSS presentation decks with a design system, slide presets, a browser viewer, and a Figma publish target.
+HTML/CSS design system for presentation slides, with brand token overrides and a browser showcase.
 
 When working in this repo:
 
 1. **New brand** — load `.cursor/skills/new-brand/SKILL.md`
-2. **New or edited deck** — load `.cursor/skills/generate-deck/SKILL.md`
-3. **Push a deck to Figma** — load `.cursor/skills/push-to-figma/SKILL.md`
-4. **Attribution box** — load `.cursor/skills/attribution-box/SKILL.md` (brand-agnostic Gratia credit; never tokenize in `brand-settings.json`)
+2. **Attribution box** — load `.cursor/skills/attribution-box/SKILL.md` (brand-agnostic Gratia credit; do not tokenize appearance. `components.cover.attributionBox.default` is the show/hide default only.)
 
-HTML is the source of truth. Brands only override tokens (`brands/{slug}/brand-settings.json`). Figma instances the library in `figma/library.json`; do not rebuild components per deck.
+HTML is the source of truth. Brands only override tokens (`brands/{slug}/brand-settings.json`). Preset and component `.md` sidecars (`use_when` / `not_when`) sit next to the HTML; read them before picking a layout or component.
 
-See `docs/brands.md` (including where each color token lands on slides), `docs/figma.md`, `docs/html-to-figma.md`, and `docs/scripts.md`.
+The showcase (`design-system/showcase/showcase.html`) is the visual QA surface. It `fetch()`es live component fragments and presets.
+
+See `docs/brands.md` (including where each color token lands on slides), `docs/components.md`, and `docs/scripts.md`.

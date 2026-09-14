@@ -76,7 +76,7 @@ function main() {
 	console.log(`  1. Edit brands/${slug}/${BRAND_FILENAME} (colors, fonts, spacing, radii).`);
 	console.log(`  2. Replace brands/${slug}/${logoFile} and ${logoInvertedFile} with baked-fill SVGs.`);
 	console.log(`  3. node scripts/validate-brand.js brands/${slug}`);
-	console.log("  4. Add a Primitives mode in Figma and a __Logo component (skill: new-brand).");
+	console.log("  4. Open the showcase and switch to the new brand.");
 }
 
 if (require.main === module) {

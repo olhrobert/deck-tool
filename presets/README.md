@@ -1,28 +1,16 @@
 # Presets
 
-Ready-made HTML slides for deck generation. **Copy a preset into `decks/{deck-name}/` and replace placeholder text only.** Do not redesign layouts or change CSS/asset paths.
+Ready-made HTML slide layouts for the showcase. Do not redesign layouts or change CSS/asset paths when editing them. Each preset has a sibling `.md` sidecar (`use_when` / `not_when`). Component usage notes live next to fragments in `design-system/components/**/*.md`. See also [docs/components.md](../docs/components.md) for size / gap / padding / variant.
 
 ## Preset folders
 
-| Folder            | Use for                                                                              |
-| ----------------- | ------------------------------------------------------------------------------------ |
-| `title-slides/`   | Opening title slide — see [title-slides/README.md](title-slides/README.md)           |
-| `chapter-slides/` | Chapter opener on cover — see [chapter-slides/README.md](chapter-slides/README.md)   |
-| `content-slides/` | Content slide chrome — see [content-slides/README.md](content-slides/README.md)     |
+| Folder            | Use for                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| `title-slides/`   | Opening title slide — see [title-slides/README.md](title-slides/README.md)         |
+| `chapter-slides/` | Chapter opener on cover — see [chapter-slides/README.md](chapter-slides/README.md) |
+| `content-slides/` | Content slide chrome — see [content-slides/README.md](content-slides/README.md)    |
 
-## Deck folder convention
-
-```
-decks/
-  my-deck/
-    01.html                  ← copied from title-slides/
-    02.html                  ← copied from content-slides/
-    {slug}-logo.svg
-    {slug}-logo-inverted.svg
-    slides.json
-```
-
-Copied files keep `../../design-system/` and `../../assets/` paths — they work from any `decks/{name}/` folder.
+Files keep `../../design-system/` and `../../assets/` paths so they resolve from `presets/{kind}/`.
 
 ## Logos
 
@@ -40,14 +28,6 @@ Presets use a shared placeholder at `assets/logos/placeholder-logo.svg` (light b
 
 `data-logo` (no value), `data-logo="slide"`, and `data-logo="cover"` (alias) all use `--color-slide-background` on the nearest slide. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, keep `data-logo` with no value so the logo follows the slide canvas.
 
-When creating a deck for a specific brand:
-
-1. Copy presets into `decks/{deck-name}/` as usual.
-2. Copy `brands/{slug}/{slug}-logo.svg` and `{slug}-logo-inverted.svg` into the deck folder.
-3. Point each `<img data-logo>` at the matching deck-local file (inverted on dark surfaces). Leave `<img data-slot="logo">` in the attribution box unchanged.
+The showcase swaps placeholder vs brand artwork from the active brand. Leave `<img data-slot="logo">` in the attribution box unchanged (always the Gratia mark).
 
 See [docs/brands.md](../docs/brands.md#logos).
-
-## Example prompt
-
-> Create `decks/client-pitch/` using `title-slide-03` for the opener. Content slides already include `<slide-footer>` from the content preset. Add `client-logo.svg` to the deck folder and swap the placeholder logo. Set `slides.json.brand` to the client brand slug.

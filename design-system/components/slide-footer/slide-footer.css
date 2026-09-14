@@ -21,7 +21,6 @@ slide-footer {
 
 slide-footer
 	:is(
-		.text,
 		text,
 		slide-footer-notes,
 		slide-footer-title,
@@ -31,7 +30,6 @@ slide-footer
 	),
 slide-footer
 	:is(
-		.text,
 		text,
 		slide-footer-notes,
 		slide-footer-title,
@@ -41,7 +39,6 @@ slide-footer
 	)[context="slide"],
 slide-footer
 	:is(
-		.text,
 		text,
 		slide-footer-notes,
 		slide-footer-title,

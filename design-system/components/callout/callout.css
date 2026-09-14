@@ -1,8 +1,8 @@
 /* Callout
    Axes:
      variant="neutral|positive|warning|negative|informative"  default neutral
-   Padding reuses card tokens. Default gap is brand `callout.gap.sm`.
-   No emphasis axis. Paint is quiet-only callout tokens.
+   Padding / gap are brand tokens. Default gap is `callout.gap.sm`.
+   No emphasis axis. Background, foreground, and stripe follow color-theme.
    Ink = family `foreground` hue × foundations.tone.
 */
 
@@ -13,11 +13,12 @@ callout {
 	min-width: 0;
 	box-sizing: border-box;
 
-	--_callout-hue: var(--callout-neutral-quiet-foreground);
+	--_callout-hue: var(--callout-neutral-foreground);
 	--_callout-ink-strong: rgb(from var(--_callout-hue) r g b / var(--tone-strong));
 	--_callout-ink-base: rgb(from var(--_callout-hue) r g b / var(--tone-base));
-	--_callout-bg: var(--callout-neutral-quiet-background);
-	--_callout-stripe: var(--callout-neutral-quiet-stripe);
+	--_callout-ink-subtle: rgb(from var(--_callout-hue) r g b / var(--tone-subtle));
+	--_callout-bg: var(--callout-neutral-background);
+	--_callout-stripe: var(--callout-neutral-stripe);
 
 	background-color: var(--_callout-bg);
 	border-style: solid;
@@ -27,13 +28,70 @@ callout {
 	border-right-width: var(--border-size-none);
 	border-left-width: var(--callout-stripe-width);
 	border-radius: var(--border-radius-none);
-	padding: var(--card-padding-md);
+	padding: var(--callout-padding-md);
 	gap: var(--callout-gap-sm);
+
+	&[variant="neutral"] {
+		--_callout-hue: var(--callout-neutral-foreground);
+		--_callout-bg: var(--callout-neutral-background);
+		--_callout-stripe: var(--callout-neutral-stripe);
+	}
+
+	&[variant="positive"] {
+		--_callout-hue: var(--callout-positive-foreground);
+		--_callout-bg: var(--callout-positive-background);
+		--_callout-stripe: var(--callout-positive-stripe);
+	}
+
+	&[variant="warning"] {
+		--_callout-hue: var(--callout-warning-foreground);
+		--_callout-bg: var(--callout-warning-background);
+		--_callout-stripe: var(--callout-warning-stripe);
+	}
+
+	&[variant="negative"] {
+		--_callout-hue: var(--callout-negative-foreground);
+		--_callout-bg: var(--callout-negative-background);
+		--_callout-stripe: var(--callout-negative-stripe);
+	}
+
+	&[variant="informative"] {
+		--_callout-hue: var(--callout-informative-foreground);
+		--_callout-bg: var(--callout-informative-background);
+		--_callout-stripe: var(--callout-informative-stripe);
+	}
+
+	&[padding="sm"] {
+		padding: var(--callout-padding-sm);
+	}
+
+	&[padding="md"] {
+		padding: var(--callout-padding-md);
+	}
+
+	&[padding="lg"] {
+		padding: var(--callout-padding-lg);
+	}
+
+	&[gap="none"] {
+		gap: var(--callout-gap-none);
+	}
+
+	&[gap="sm"] {
+		gap: var(--callout-gap-sm);
+	}
+
+	&[gap="md"] {
+		gap: var(--callout-gap-md);
+	}
+
+	&[gap="lg"] {
+		gap: var(--callout-gap-lg);
+	}
 }
 
 callout
 	:is(
-		.text,
 		text,
 		callout-title,
 		callout-description,
@@ -42,7 +100,6 @@ callout
 	),
 callout
 	:is(
-		.text,
 		text,
 		callout-title,
 		callout-description,
@@ -51,63 +108,5 @@ callout
 	)[context="surface"] {
 	--_ink-strong: var(--_callout-ink-strong);
 	--_ink-base: var(--_callout-ink-base);
-	--_ink-subtle: var(--_callout-ink-base);
-}
-
-callout[variant="neutral"] {
-	--_callout-hue: var(--callout-neutral-quiet-foreground);
-	--_callout-bg: var(--callout-neutral-quiet-background);
-	--_callout-stripe: var(--callout-neutral-quiet-stripe);
-}
-
-callout[variant="positive"] {
-	--_callout-hue: var(--callout-positive-quiet-foreground);
-	--_callout-bg: var(--callout-positive-quiet-background);
-	--_callout-stripe: var(--callout-positive-quiet-stripe);
-}
-
-callout[variant="warning"] {
-	--_callout-hue: var(--callout-warning-quiet-foreground);
-	--_callout-bg: var(--callout-warning-quiet-background);
-	--_callout-stripe: var(--callout-warning-quiet-stripe);
-}
-
-callout[variant="negative"] {
-	--_callout-hue: var(--callout-negative-quiet-foreground);
-	--_callout-bg: var(--callout-negative-quiet-background);
-	--_callout-stripe: var(--callout-negative-quiet-stripe);
-}
-
-callout[variant="informative"] {
-	--_callout-hue: var(--callout-informative-quiet-foreground);
-	--_callout-bg: var(--callout-informative-quiet-background);
-	--_callout-stripe: var(--callout-informative-quiet-stripe);
-}
-
-callout[padding="sm"] {
-	padding: var(--card-padding-sm);
-}
-
-callout[padding="md"] {
-	padding: var(--card-padding-md);
-}
-
-callout[padding="lg"] {
-	padding: var(--card-padding-lg);
-}
-
-callout[gap="none"] {
-	gap: var(--callout-gap-none);
-}
-
-callout[gap="sm"] {
-	gap: var(--callout-gap-sm);
-}
-
-callout[gap="md"] {
-	gap: var(--callout-gap-md);
-}
-
-callout[gap="lg"] {
-	gap: var(--callout-gap-lg);
+	--_ink-subtle: var(--_callout-ink-subtle);
 }

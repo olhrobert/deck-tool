@@ -29,6 +29,7 @@ const {
 	FONT_FAMILY_NAMES,
 	CARD_COLOR_FAMILY_KEYS,
 	CALLOUT_COLOR_FAMILY_KEYS,
+	CALLOUT_FOREGROUND_FAMILY_KEYS,
 	SEMANTIC_HUE_KEYS,
 	isTonePath,
 	isToneValue,
@@ -44,6 +45,8 @@ const {
 	SLIDE_PRETITLE_DEFAULT_NAMES,
 	isBadgeBorderPath,
 	isBadgeBorderBoolean,
+	isCoverAttributionDefaultPath,
+	isCoverAttributionDefaultBoolean,
 	isStampScalePath,
 	isStampScaleValue,
 	isColorThemeName,
@@ -358,6 +361,17 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
+		if (!isCoverAttributionDefaultPath(jsonPathKey)) continue;
+		const raw = getPath(brand, jsonPathKey);
+		if (raw === undefined) continue;
+		if (!isCoverAttributionDefaultBoolean(raw)) {
+			errors.push(
+				`${jsonPathKey} must be true or false (got ${JSON.stringify(raw)})`,
+			);
+		}
+	}
+
+	for (const [jsonPathKey] of TOKEN_MAP) {
 		if (!isStampScalePath(jsonPathKey)) continue;
 		const raw = getPath(brand, jsonPathKey);
 		if (raw === undefined) continue;
@@ -522,7 +536,7 @@ function validateBrand(brandDir) {
 	}
 
 	checkSurfaceContrast("card", CARD_COLOR_FAMILY_KEYS);
-	checkSurfaceContrast("callout", CALLOUT_COLOR_FAMILY_KEYS);
+	checkSurfaceContrast("callout", CALLOUT_FOREGROUND_FAMILY_KEYS);
 	checkSurfaceContrast("badge", CARD_COLOR_FAMILY_KEYS);
 	checkSurfaceContrast("stamp", CARD_COLOR_FAMILY_KEYS);
 

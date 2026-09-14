@@ -13,6 +13,7 @@
 	--color-slide-surface-background: rgba(255, 255, 255, 1);
 	--color-slide-surface-foreground: rgb(15, 23, 42);
 	--color-slide-surface-border: rgba(0, 0, 0, 0.2);
+	--cover-attribution-box-display: none;
 
 	--color-palette-brand-1: rgb(15, 23, 42);
 	--color-palette-brand-2: rgb(30, 41, 59);
@@ -39,6 +40,14 @@
 	--color-neutral-border-subtle-dark: rgba(255, 255, 255, 0.18);
 	--color-neutral-stripe-light: rgba(30, 41, 59, 1);
 	--color-neutral-stripe-dark: rgba(71, 85, 105, 1);
+	--color-emphasis-foreground-light: var(--color-semantic-neutral);
+	--color-emphasis-foreground-dark: var(--color-semantic-neutral);
+	--color-emphasis-background-light: rgba(30, 41, 59, 1);
+	--color-emphasis-background-dark: rgba(30, 41, 59, 1);
+	--color-emphasis-border-subtle-light: rgba(15, 23, 42, 0.2);
+	--color-emphasis-border-subtle-dark: rgba(255, 255, 255, 0.18);
+	--color-emphasis-stripe-light: rgba(71, 85, 105, 1);
+	--color-emphasis-stripe-dark: rgba(71, 85, 105, 1);
 	--color-positive-foreground-light: var(--color-semantic-positive);
 	--color-positive-foreground-dark: var(--color-semantic-bright);
 	--color-positive-background-light: rgba(22, 163, 74, 0.1);
@@ -72,11 +81,6 @@
 	--color-informative-stripe-light: rgba(37, 99, 235, 0.5);
 	--color-informative-stripe-dark: var(--color-semantic-informative);
 
-	--color-neutral-inverted-foreground: var(--color-semantic-bright);
-	--color-neutral-inverted-background: rgba(30, 41, 59, 1);
-	--color-neutral-inverted-border-subtle: rgba(255, 255, 255, 0.18);
-	--color-neutral-inverted-stripe: rgba(71, 85, 105, 1);
-
 	/* Foreground strong/base/subtle = resolved hue × foundations.tone. */
 	--color-slide-foreground-strong: rgb(from var(--color-slide-foreground) r g b / var(--tone-strong));
 	--color-slide-foreground-base: rgb(from var(--color-slide-foreground) r g b / var(--tone-base));
@@ -87,6 +91,9 @@
 	--color-neutral-foreground-strong: rgb(from var(--color-neutral-foreground) r g b / var(--tone-strong));
 	--color-neutral-foreground-base: rgb(from var(--color-neutral-foreground) r g b / var(--tone-base));
 	--color-neutral-foreground-subtle: rgb(from var(--color-neutral-foreground) r g b / var(--tone-subtle));
+	--color-emphasis-foreground-strong: rgb(from var(--color-emphasis-foreground) r g b / var(--tone-strong));
+	--color-emphasis-foreground-base: rgb(from var(--color-emphasis-foreground) r g b / var(--tone-base));
+	--color-emphasis-foreground-subtle: rgb(from var(--color-emphasis-foreground) r g b / var(--tone-subtle));
 	--color-positive-foreground-strong: rgb(from var(--color-positive-foreground) r g b / var(--tone-strong));
 	--color-positive-foreground-base: rgb(from var(--color-positive-foreground) r g b / var(--tone-base));
 	--color-positive-foreground-subtle: rgb(from var(--color-positive-foreground) r g b / var(--tone-subtle));
@@ -99,9 +106,6 @@
 	--color-informative-foreground-strong: rgb(from var(--color-informative-foreground) r g b / var(--tone-strong));
 	--color-informative-foreground-base: rgb(from var(--color-informative-foreground) r g b / var(--tone-base));
 	--color-informative-foreground-subtle: rgb(from var(--color-informative-foreground) r g b / var(--tone-subtle));
-	--color-neutral-inverted-foreground-strong: rgb(from var(--color-neutral-inverted-foreground) r g b / var(--tone-strong));
-	--color-neutral-inverted-foreground-base: rgb(from var(--color-neutral-inverted-foreground) r g b / var(--tone-base));
-	--color-neutral-inverted-foreground-subtle: rgb(from var(--color-neutral-inverted-foreground) r g b / var(--tone-subtle));
 
 	--card-stripe-width: var(--border-size-md);
 	--card-neutral-foreground-light: var(--color-neutral-foreground-light);
@@ -112,6 +116,14 @@
 	--card-neutral-border-subtle-dark: var(--color-neutral-border-subtle-dark);
 	--card-neutral-stripe-light: var(--color-neutral-stripe-light);
 	--card-neutral-stripe-dark: var(--color-neutral-stripe-dark);
+	--card-emphasis-foreground-light: var(--color-emphasis-foreground-light);
+	--card-emphasis-foreground-dark: var(--color-emphasis-foreground-dark);
+	--card-emphasis-background-light: var(--color-emphasis-background-light);
+	--card-emphasis-background-dark: var(--color-emphasis-background-dark);
+	--card-emphasis-border-subtle-light: var(--color-emphasis-border-subtle-light);
+	--card-emphasis-border-subtle-dark: var(--color-emphasis-border-subtle-dark);
+	--card-emphasis-stripe-light: var(--color-emphasis-stripe-light);
+	--card-emphasis-stripe-dark: var(--color-emphasis-stripe-dark);
 	--card-positive-foreground-light: var(--color-positive-foreground-light);
 	--card-positive-foreground-dark: var(--color-positive-foreground-dark);
 	--card-positive-background-light: var(--color-positive-background-light);
@@ -144,27 +156,38 @@
 	--card-informative-border-subtle-dark: var(--color-informative-border-subtle-dark);
 	--card-informative-stripe-light: var(--color-informative-stripe-light);
 	--card-informative-stripe-dark: var(--color-informative-stripe-dark);
-	--card-neutral-inverted-foreground: var(--color-neutral-inverted-foreground);
-	--card-neutral-inverted-background: var(--color-neutral-inverted-background);
-	--card-neutral-inverted-border-subtle: var(--color-neutral-inverted-border-subtle);
-	--card-neutral-inverted-stripe: var(--color-neutral-inverted-stripe);
 
 	--callout-stripe-width: var(--border-size-sm);
-	--callout-neutral-quiet-foreground: var(--color-neutral-foreground-light);
-	--callout-neutral-quiet-background: var(--color-neutral-background-light);
-	--callout-neutral-quiet-stripe: var(--color-neutral-border-subtle-light);
-	--callout-positive-quiet-foreground: var(--color-positive-foreground-light);
-	--callout-positive-quiet-background: var(--color-positive-background-light);
-	--callout-positive-quiet-stripe: var(--color-positive-border-subtle-light);
-	--callout-negative-quiet-foreground: var(--color-negative-foreground-light);
-	--callout-negative-quiet-background: var(--color-negative-background-light);
-	--callout-negative-quiet-stripe: var(--color-negative-border-subtle-light);
-	--callout-warning-quiet-foreground: var(--color-warning-foreground-light);
-	--callout-warning-quiet-background: var(--color-warning-background-light);
-	--callout-warning-quiet-stripe: var(--color-warning-border-subtle-light);
-	--callout-informative-quiet-foreground: var(--color-informative-foreground-light);
-	--callout-informative-quiet-background: var(--color-informative-background-light);
-	--callout-informative-quiet-stripe: var(--color-informative-border-subtle-light);
+	--callout-neutral-foreground-light: var(--color-neutral-foreground-light);
+	--callout-neutral-foreground-dark: var(--color-neutral-foreground-dark);
+	--callout-neutral-background-light: var(--color-neutral-background-light);
+	--callout-neutral-background-dark: var(--color-neutral-background-dark);
+	--callout-neutral-stripe-light: var(--color-neutral-border-subtle-light);
+	--callout-neutral-stripe-dark: rgba(255, 255, 255, 0.5);
+	--callout-positive-foreground-light: var(--color-positive-foreground-light);
+	--callout-positive-foreground-dark: var(--color-positive-foreground-dark);
+	--callout-positive-background-light: var(--color-positive-background-light);
+	--callout-positive-background-dark: var(--color-positive-background-dark);
+	--callout-positive-stripe-light: var(--color-positive-border-subtle-light);
+	--callout-positive-stripe-dark: rgba(255, 255, 255, 0.5);
+	--callout-negative-foreground-light: var(--color-negative-foreground-light);
+	--callout-negative-foreground-dark: var(--color-negative-foreground-dark);
+	--callout-negative-background-light: var(--color-negative-background-light);
+	--callout-negative-background-dark: var(--color-negative-background-dark);
+	--callout-negative-stripe-light: var(--color-negative-border-subtle-light);
+	--callout-negative-stripe-dark: rgba(255, 255, 255, 0.5);
+	--callout-warning-foreground-light: var(--color-warning-foreground-light);
+	--callout-warning-foreground-dark: var(--color-warning-foreground-dark);
+	--callout-warning-background-light: var(--color-warning-background-light);
+	--callout-warning-background-dark: var(--color-warning-background-dark);
+	--callout-warning-stripe-light: var(--color-warning-border-subtle-light);
+	--callout-warning-stripe-dark: rgba(255, 255, 255, 0.5);
+	--callout-informative-foreground-light: var(--color-informative-foreground-light);
+	--callout-informative-foreground-dark: var(--color-informative-foreground-dark);
+	--callout-informative-background-light: var(--color-informative-background-light);
+	--callout-informative-background-dark: var(--color-informative-background-dark);
+	--callout-informative-stripe-light: var(--color-informative-border-subtle-light);
+	--callout-informative-stripe-dark: rgba(255, 255, 255, 0.5);
 
 	--badge-neutral-foreground-light: var(--color-neutral-foreground-light);
 	--badge-neutral-background-light: var(--color-neutral-background-light);
@@ -176,6 +199,16 @@
 	--badge-neutral-border-dark: var(--color-neutral-border-subtle-dark);
 	--stamp-neutral-foreground-dark: var(--color-neutral-foreground-dark);
 	--stamp-neutral-background-dark: var(--color-neutral-background-dark);
+	--badge-emphasis-foreground-light: var(--color-emphasis-foreground-light);
+	--badge-emphasis-background-light: var(--color-emphasis-background-light);
+	--badge-emphasis-border-light: var(--color-emphasis-border-subtle-light);
+	--stamp-emphasis-foreground-light: var(--color-emphasis-foreground-light);
+	--stamp-emphasis-background-light: var(--color-emphasis-background-light);
+	--badge-emphasis-foreground-dark: var(--color-emphasis-foreground-dark);
+	--badge-emphasis-background-dark: var(--color-emphasis-background-dark);
+	--badge-emphasis-border-dark: var(--color-emphasis-border-subtle-dark);
+	--stamp-emphasis-foreground-dark: var(--color-emphasis-foreground-dark);
+	--stamp-emphasis-background-dark: var(--color-emphasis-background-dark);
 	--badge-positive-foreground-light: var(--color-positive-foreground-light);
 	--badge-positive-background-light: var(--color-positive-background-light);
 	--badge-positive-border-light: var(--color-positive-border-subtle-light);
@@ -216,11 +249,6 @@
 	--badge-informative-border-dark: var(--color-informative-border-subtle-dark);
 	--stamp-informative-foreground-dark: var(--color-informative-foreground-dark);
 	--stamp-informative-background-dark: var(--color-informative-background-dark);
-	--badge-neutral-inverted-foreground: var(--color-neutral-inverted-foreground);
-	--badge-neutral-inverted-background: var(--color-neutral-inverted-background);
-	--badge-neutral-inverted-border: var(--color-neutral-inverted-border-subtle);
-	--stamp-neutral-inverted-foreground: var(--color-neutral-inverted-foreground);
-	--stamp-neutral-inverted-background: var(--color-neutral-inverted-background);
 
 	--color-white: rgb(255, 255, 255);
 	--color-black: rgb(0, 0, 0);

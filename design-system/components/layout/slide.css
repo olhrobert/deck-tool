@@ -9,3 +9,15 @@ slide {
 	padding: var(--spacing-0);
 	background-color: var(--color-slide-background);
 }
+
+slide[kind="cover"]:not([attribution]) attribution-box {
+	display: var(--cover-attribution-box-display);
+}
+
+slide[kind="cover"][attribution="true"] attribution-box {
+	display: flex;
+}
+
+slide[kind="cover"][attribution="false"] attribution-box {
+	display: none;
+}

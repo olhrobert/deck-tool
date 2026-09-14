@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Slide title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide>
+				<content-container class="flex">
+					<stack
+						direction="row"
+						gap="lg"
+						width="fill"
+						height="fill"
+						class="items-center"
+					>
+						<stack
+							direction="col"
+							gap="md"
+							width="fill"
+						>
+							<slide-title-group>
+								<slide-title
+									data-slot="main"
+									size="md"
+									tone="strong"
+									context="slide"
+									>Story headline</slide-title
+								>
+							</slide-title-group>
+							<body-copy
+								size="md"
+								tone="base"
+								context="slide"
+								>Keep this to a short narrative, not a metric or a
+								list.</body-copy
+							>
+							<stack
+								direction="col"
+								gap="none"
+								width="fill"
+							>
+								<body-copy
+									size="md"
+									tone="strong"
+									context="slide"
+									>Name</body-copy
+								>
+								<body-copy
+									size="md"
+									tone="subtle"
+									context="slide"
+									>Role or affiliation</body-copy
+								>
+							</stack>
+						</stack>
+						<media-slot
+							data-slot="image"
+							width="fill"
+							class="aspect-square"
+						>
+							<body-copy
+								context="slide"
+								tone="base"
+								>Photo</body-copy
+							>
+						</media-slot>
+					</stack>
+				</content-container>
+				<footer-container>
+					<slide-footer>
+						<img
+							data-slot="logo"
+							data-logo
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							class="shrink-0 block"
+						/>
+						<slide-footer-notes data-slot="notes" tone="subtle"
+							>Add notes or sources here.</slide-footer-notes
+						>
+						<slide-footer-meta>
+							<slide-footer-title data-slot="deck-title" tone="subtle"
+								>Deck title</slide-footer-title
+							>
+							<slide-footer-chapter data-slot="chapter" tone="subtle"
+								>Chapter</slide-footer-chapter
+							>
+							<slide-footer-page data-slot="page" tone="subtle"
+								>01</slide-footer-page
+							>
+						</slide-footer-meta>
+					</slide-footer>
+				</footer-container>
+			</slide>
+		</deck>
+	</body>
+</html>
