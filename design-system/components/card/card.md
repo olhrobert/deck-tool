@@ -12,7 +12,7 @@ not_when:
 
 # Card
 
-Use `<card padding="md">` with `<card-pretitle>` (`tone="subtle" context="surface"`), `<card-title>`, optional `<body-copy data-slot="text">`, and optional `<card-meta>`. Omit `gap` so `sm` applies. Omit `layout` so `components.card.defaultLayout` applies.
+Use `<card padding="md">` with `<card-pretitle>` (`tone="subtle" context="surface"`), `<card-title>`, optional `<body-copy data-slot="text" size="sm" tone="base" context="surface">`, and optional `<card-meta>`. Omit `gap` so `sm` applies. Omit `layout` so `components.card.defaultLayout` applies.
 
 Variants: `neutral|emphasis|positive|warning|negative|informative`. Paint follows inherited `color-theme`. For a light card on a dark slide set `color-theme="light"`.
 

@@ -35,10 +35,10 @@ function isFontFamilyName(value) {
  * (type scale, global spacing scale, etc.).
  *
  * Font *named families* (`font.family.display|base`) are CSS stacks.
- * Role families (`cover.title.family`, `body.family`, …) name one of those
+ * Role families (`coverTitle.family`, `bodyCopy.family`, …) name one of those
  * two. Font *named weights* (`font.weight.regular|medium|bold`) are CSS numbers
  * (400, 500, 600, 700, …) matching `@font-face` in design-system/tokens/fonts.css.
- * Role weights (`slide.title.weight`, `card.title.weight`, …) and `<text weight>`
+ * Role weights (`slideTitle.title.weight`, `card.title.weight`, …) and `<text weight>`
  * name one of those three. Font *sizes* are type-scale steps (800, 600, 400, …)
  * from design-system/tokens/typography.css — not pixel values.
  * Semantic *spacing* is a spacing-scale step (20, 16, "0-5", …) from
@@ -47,12 +47,12 @@ function isFontFamilyName(value) {
  * Component *radius* names a `border.radius` step (`med`, `none`, …).
  * Component *stroke* names a `border.size` step (`none`, `sm`, `md`, `lg`).
  *
- * Cover is layout/type (`cover.title`) plus `cover.attributionBox.default`. Slide canvas colors are themed
- * (`slide.canvas.background.light|dark`). `foundations.colorTheme.cover|slide`
+ * Each HTML component is its own `components.*` group (`coverTitle`, `slideTitle`,
+ * `bodyCopy`, `attributionBox.default`, chrome containers). Slide canvas colors
+ * are themed (`slide.canvas.background.light|dark`). `foundations.colorTheme.cover|slide`
  * is `light` or `dark` (cover default applies to `<slide kind="cover">`).
  * Top-level groups, in order: `foundations` (`basic`, `color`, `colorTheme`,
- * `tone`, `font`, `border`) then `components` (`cover`, `slide`,
- * `paragraphTitle`, `body`, `stack`, `card`, `callout`, `badge`, `stamp`).
+ * `tone`, `font`, `border`) then `components` (one group per component tag).
  * Hard-coded RGB lives on `foundations.color` (`brand.1`–`brand.6`,
  * `semantic.positive`…, `chart.1`–`chart.4`). `semantic.neutral` /
  * `semantic.bright` may ref `brand.*`. `foundations.tone` is Strong / Base /
@@ -153,7 +153,7 @@ function isFontSizePath(jsonPath) {
 	if (jsonPath === "components.badge.icon.size") return false;
 	if (jsonPath === "components.stamp.defaultSize") return false;
 	return (
-		/\.(size|sizeLg|sizeMd|sizeSm)$/.test(jsonPath) ||
+		/\.(size|sizeXl|sizeLg|sizeMd|sizeSm)$/.test(jsonPath) ||
 		/(pretitle|title|subtitle|description|text)Size(Lg|Md|Sm)?$/.test(
 			jsonPath,
 		)
@@ -278,7 +278,7 @@ const SLIDE_PRETITLE_DEFAULT_NAMES = ["text", "badge"];
 const SLIDE_PRETITLE_DEFAULT_NAME_SET = new Set(SLIDE_PRETITLE_DEFAULT_NAMES);
 
 function isSlidePretitleDefaultPath(jsonPath) {
-	return jsonPath === "components.slide.pretitle.default";
+	return jsonPath === "components.slideTitle.pretitle.default";
 }
 
 function isSlidePretitleDefaultName(value) {
@@ -293,11 +293,11 @@ function isBadgeBorderBoolean(value) {
 	return typeof value === "boolean";
 }
 
-function isCoverAttributionDefaultPath(jsonPath) {
-	return jsonPath === "components.cover.attributionBox.default";
+function isAttributionBoxDefaultPath(jsonPath) {
+	return jsonPath === "components.attributionBox.default";
 }
 
-function isCoverAttributionDefaultBoolean(value) {
+function isAttributionBoxDefaultBoolean(value) {
 	return typeof value === "boolean";
 }
 
@@ -817,12 +817,18 @@ const TOKEN_MAP = [
 	["foundations.border.size.md", "--border-size-md"],
 	["foundations.border.size.lg", "--border-size-lg"],
 
-	["components.cover.title.family", "--cover-title-font-family", "cover"],
-	["components.cover.title.weight", "--cover-title-font-weight"],
 	[
-		"components.cover.attributionBox.default",
-		"--cover-attribution-box-display",
+		"components.attributionBox.default",
+		"--attribution-box-display",
+		"attributionBox",
 	],
+
+	["components.coverTitle.family", "--cover-title-font-family", "coverTitle"],
+	["components.coverTitle.weight", "--cover-title-font-weight"],
+	["components.coverTitle.sizeSm", "--cover-title-size-sm"],
+	["components.coverTitle.sizeMd", "--cover-title-size-md"],
+	["components.coverTitle.sizeLg", "--cover-title-size-lg"],
+	["components.coverTitle.sizeXl", "--cover-title-size-xl"],
 
 	[
 		"components.slide.canvas.background.light",
@@ -845,39 +851,69 @@ const TOKEN_MAP = [
 	["components.slide.surface.background", "--color-slide-surface-background"],
 	["components.slide.surface.foreground", "--color-slide-surface-foreground"],
 	["components.slide.surface.border", "--color-slide-surface-border"],
-	["components.slide.pretitle.default", "--slide-pretitle-default"],
-	["components.slide.pretitle.family", "--slide-pretitle-font-family"],
-	["components.slide.pretitle.weight", "--slide-pretitle-font-weight"],
-	["components.slide.pretitle.uppercase", "--slide-pretitle-text-transform"],
+
 	[
-		"components.slide.pretitle.letterSpacing",
+		"components.slideTitle.pretitle.default",
+		"--slide-pretitle-default",
+		"slideTitle",
+	],
+	["components.slideTitle.pretitle.family", "--slide-pretitle-font-family"],
+	["components.slideTitle.pretitle.weight", "--slide-pretitle-font-weight"],
+	[
+		"components.slideTitle.pretitle.uppercase",
+		"--slide-pretitle-text-transform",
+	],
+	[
+		"components.slideTitle.pretitle.letterSpacing",
 		"--slide-pretitle-letter-spacing",
 	],
-	["components.slide.pretitle.size", "--slide-pretitle-size"],
-	["components.slide.title.gap", "--slide-title-gap"],
-	["components.slide.title.family", "--slide-title-font-family"],
-	["components.slide.title.weight", "--slide-title-font-weight"],
-	["components.slide.title.sizeSm", "--slide-title-size-sm"],
-	["components.slide.title.sizeMd", "--slide-title-size-md"],
-	["components.slide.title.sizeLg", "--slide-title-size-lg"],
-	["components.slide.subtitle.family", "--slide-subtitle-font-family"],
-	["components.slide.subtitle.weight", "--slide-subtitle-font-weight"],
-	["components.slide.subtitle.size", "--slide-subtitle-size"],
-	["components.slide.header.paddingTop", "--slide-header-padding-top"],
-	["components.slide.header.paddingRight", "--slide-header-padding-right"],
-	["components.slide.header.paddingBottom", "--slide-header-padding-bottom"],
-	["components.slide.header.paddingLeft", "--slide-header-padding-left"],
-	["components.slide.content.paddingTop", "--slide-content-padding-top"],
-	["components.slide.content.paddingRight", "--slide-content-padding-right"],
+	["components.slideTitle.pretitle.size", "--slide-pretitle-size"],
+	["components.slideTitle.title.gap", "--slide-title-gap"],
+	["components.slideTitle.title.family", "--slide-title-font-family"],
+	["components.slideTitle.title.weight", "--slide-title-font-weight"],
+	["components.slideTitle.title.sizeSm", "--slide-title-size-sm"],
+	["components.slideTitle.title.sizeMd", "--slide-title-size-md"],
+	["components.slideTitle.title.sizeLg", "--slide-title-size-lg"],
+	["components.slideTitle.subtitle.family", "--slide-subtitle-font-family"],
+	["components.slideTitle.subtitle.weight", "--slide-subtitle-font-weight"],
+	["components.slideTitle.subtitle.size", "--slide-subtitle-size"],
+
 	[
-		"components.slide.content.paddingBottom",
+		"components.headerContainer.paddingTop",
+		"--slide-header-padding-top",
+		"headerContainer",
+	],
+	["components.headerContainer.paddingRight", "--slide-header-padding-right"],
+	[
+		"components.headerContainer.paddingBottom",
+		"--slide-header-padding-bottom",
+	],
+	["components.headerContainer.paddingLeft", "--slide-header-padding-left"],
+	[
+		"components.contentContainer.paddingTop",
+		"--slide-content-padding-top",
+		"contentContainer",
+	],
+	[
+		"components.contentContainer.paddingRight",
+		"--slide-content-padding-right",
+	],
+	[
+		"components.contentContainer.paddingBottom",
 		"--slide-content-padding-bottom",
 	],
-	["components.slide.content.paddingLeft", "--slide-content-padding-left"],
-	["components.slide.footer.paddingTop", "--slide-footer-padding-top"],
-	["components.slide.footer.paddingRight", "--slide-footer-padding-right"],
-	["components.slide.footer.paddingBottom", "--slide-footer-padding-bottom"],
-	["components.slide.footer.paddingLeft", "--slide-footer-padding-left"],
+	["components.contentContainer.paddingLeft", "--slide-content-padding-left"],
+	[
+		"components.footerContainer.paddingTop",
+		"--slide-footer-padding-top",
+		"footerContainer",
+	],
+	["components.footerContainer.paddingRight", "--slide-footer-padding-right"],
+	[
+		"components.footerContainer.paddingBottom",
+		"--slide-footer-padding-bottom",
+	],
+	["components.footerContainer.paddingLeft", "--slide-footer-padding-left"],
 
 	[
 		"components.paragraphTitle.family",
@@ -889,11 +925,11 @@ const TOKEN_MAP = [
 	["components.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
 	["components.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
 
-	["components.body.family", "--body-font-family", "body"],
-	["components.body.weight", "--body-font-weight"],
-	["components.body.sizeSm", "--body-size-sm"],
-	["components.body.sizeMd", "--body-size-md"],
-	["components.body.sizeLg", "--body-size-lg"],
+	["components.bodyCopy.family", "--body-font-family", "bodyCopy"],
+	["components.bodyCopy.weight", "--body-font-weight"],
+	["components.bodyCopy.sizeSm", "--body-size-sm"],
+	["components.bodyCopy.sizeMd", "--body-size-md"],
+	["components.bodyCopy.sizeLg", "--body-size-lg"],
 
 	["components.card.defaultLayout", null, "card"],
 	...cardColorTokenMapEntries(),
@@ -1246,8 +1282,8 @@ function toCssValue(jsonPath, value, brand) {
 			? "var(--badge-border-width)"
 			: "var(--border-size-none)";
 	}
-	if (isCoverAttributionDefaultPath(jsonPath)) {
-		if (!isCoverAttributionDefaultBoolean(value)) {
+	if (isAttributionBoxDefaultPath(jsonPath)) {
+		if (!isAttributionBoxDefaultBoolean(value)) {
 			throw new Error(
 				`${jsonPath} must be true or false (got ${JSON.stringify(value)})`,
 			);
@@ -1450,8 +1486,8 @@ module.exports = {
 	SLIDE_PRETITLE_DEFAULT_NAMES,
 	isBadgeBorderPath,
 	isBadgeBorderBoolean,
-	isCoverAttributionDefaultPath,
-	isCoverAttributionDefaultBoolean,
+	isAttributionBoxDefaultPath,
+	isAttributionBoxDefaultBoolean,
 	isStampScalePath,
 	isStampScaleValue,
 	BORDER_RADIUS_STEPS,

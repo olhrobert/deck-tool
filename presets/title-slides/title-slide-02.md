@@ -12,4 +12,4 @@ not_when:
 
 # Title slide 02
 
-Logo and attribution on the top row; large cover title (`size="3000"`) and subtitle at the bottom. Omit `attribution` unless overriding the brand default.
+Logo and attribution on the top row; large cover title (`size="lg"`) and subtitle at the bottom. Omit `attribution` unless overriding the brand default.

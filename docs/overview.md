@@ -32,7 +32,7 @@ Showcase always reflects the current state of the library.
 
 ## Showcase
 
-The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Foundations (Brand / Type / Layout), Components (Attribution box / Badge / Callout / Card / Slide footer / Slide title), and Slide presets (Title / Chapter / Content) in the sidebar; full slide chrome (width fills up to `--slide-max-width`, height 800). Token roles are cover / slide / surface — not primary / secondary.
+The showcase is the visual QA surface: brand switcher (Gratia / Riverton); Foundations (Brand), Components (type, chrome, and former layout primitives such as slide, stack, and media slot), and Slide presets (Title / Chapter / Content) in the sidebar; full slide chrome (width fills up to `--slide-max-width`, height 800). Token roles are cover / slide / surface — not primary / secondary.
 
 Serve the repo (`npm run showcase`) and open `design-system/showcase/showcase.html`.
 
@@ -43,11 +43,11 @@ A component set and preset library that can express real decks, with new tokens 
 ### Library
 
 - Showcase `fetch()`es live component fragments and presets (no inlined fork).
-- Title presets (`title-slide-01`…`04`) include `<attribution-box>`; visibility follows `components.cover.attributionBox.default` unless the slide sets `attribution="true|false"`.
+- Title presets (`title-slide-01`…`04`) include `<attribution-box>`; visibility follows `components.attributionBox.default` unless the slide sets `attribution="true|false"`.
 - Chapter slides (`chapter-slide-01` mid stack, `chapter-slide-02` split).
 - Content slides: `content-slide-3-cards` (header, three-card row, slide-footer) and `content-slide-story` (copy + photo well). Slide footer lives as a component (`design-system/components/slide-footer/`).
 - Card, Callout, Badge, Stamp, Slide footer fragments live under `design-system/components/`.
-- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale**. Brand `sizeSm` / `sizeMd` / `sizeLg` pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md`). Primitive `<text>` remains for raw steps (cover title, attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`).
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale**. Brand `sizeSm` / `sizeMd` / `sizeLg` (and cover-title `sizeXl`) pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md`, tone `subtle`). Cover titles use `<cover-title size="sm|md|lg|xl">` (default `md`, tone `strong`). Primitive `<text>` remains for raw steps (attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`).
 - Cover ink uses `context="slide"` with `tone="strong|base|subtle"` on `<slide kind="cover">` (canvas follows `foundations.colorTheme.cover`). Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 ### Still open

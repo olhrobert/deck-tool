@@ -10,6 +10,6 @@ not_when:
 
 # Header container
 
-Padding comes from `components.slide.header`. Put `<slide-title-group>` here on chrome layouts. Do not restyle the container.
+Padding comes from `components.headerContainer`. Put `<slide-title-group>` here on chrome layouts. Do not restyle the container.
 
-Canonical markup: `design-system/components/layout/header-container.html`.
+Canonical markup: `design-system/components/header-container/header-container.html`.

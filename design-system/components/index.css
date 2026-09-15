@@ -1,8 +1,9 @@
-@import "layout/deck.css";
-@import "layout/slide.css";
+@import "deck/deck.css";
+@import "slide/slide.css";
 @import "typography/text.css";
-@import "typography/body-copy.css";
-@import "typography/paragraph-title.css";
+@import "body-copy/body-copy.css";
+@import "paragraph-title/paragraph-title.css";
+@import "cover-title/cover-title.css";
 @import "slide-title/slide-pretitle.css";
 @import "slide-title/slide-title-group.css";
 @import "slide-title/slide-title.css";
@@ -26,8 +27,8 @@
 @import "attribution-box/attribution-box.css";
 @import "attribution-box/attribution-box-separator.css";
 @import "shared/fill-hug-sizing.css";
-@import "layout/stack.css";
-@import "layout/media-slot.css";
-@import "layout/header-container.css";
-@import "layout/content-container.css";
-@import "layout/footer-container.css";
+@import "stack/stack.css";
+@import "media-slot/media-slot.css";
+@import "header-container/header-container.css";
+@import "content-container/content-container.css";
+@import "footer-container/footer-container.css";

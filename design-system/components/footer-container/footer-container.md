@@ -9,6 +9,6 @@ not_when:
 
 # Footer container
 
-Padding comes from `components.slide.footer`. Always wrap content-slide footers with this. Do not restyle the container.
+Padding comes from `components.footerContainer`. Always wrap content-slide footers with this. Do not restyle the container.
 
-Canonical markup: `design-system/components/layout/footer-container.html`.
+Canonical markup: `design-system/components/footer-container/footer-container.html`.

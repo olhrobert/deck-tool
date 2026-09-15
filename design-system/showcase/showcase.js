@@ -14,22 +14,16 @@ function pick(obj, keys) {
 	return Object.keys(picked).length ? picked : null;
 }
 
-function slideChrome(brand) {
-	const slide = brand.components && brand.components.slide;
-	const stack = brand.components && brand.components.stack;
-	const picked = {};
-	if (slide) {
-		if (slide.header) picked.header = slide.header;
-		if (slide.content) picked.content = slide.content;
-		if (slide.footer) picked.footer = slide.footer;
-	}
-	if (stack) picked.stack = stack;
-	return Object.keys(picked).length ? picked : null;
+function slideTitleSettings(brand) {
+	return brand.components
+		? pick(brand.components, ["slideTitle"])
+		: null;
 }
 
-function slideTitleSettings(brand) {
-	const slide = brand.components && brand.components.slide;
-	return slide ? pick(slide, ["pretitle", "title", "subtitle"]) : null;
+function coverTitleSettings(brand) {
+	return brand.components
+		? pick(brand.components, ["coverTitle"])
+		: null;
 }
 
 function slideCanvasSettings(brand) {
@@ -37,40 +31,16 @@ function slideCanvasSettings(brand) {
 	return slide ? pick(slide, ["canvas", "surface"]) : null;
 }
 
+function componentSettings(key) {
+	return (brand) =>
+		brand.components ? pick(brand.components, [key]) : null;
+}
+
 const PAGE_GROUPS = [
 	{
 		heading: "Foundations",
 		pages: [
 			{ id: "brand", label: "Brand", width: "narrow", kind: "brand" },
-			{
-				id: "typography",
-				label: "Type",
-				width: "narrow",
-				settings: (brand) =>
-					pick(brand.components, ["paragraphTitle", "body"]),
-				fragments: [
-					"typography/cover-title.html",
-					"typography/paragraph-title-lg.html",
-					"typography/paragraph-title-md.html",
-					"typography/paragraph-title-sm.html",
-					"typography/body-copy-lg.html",
-					"typography/body-copy-md.html",
-					"typography/body-copy-sm.html",
-				],
-			},
-			{
-				id: "layout",
-				label: "Layout",
-				settings: slideChrome,
-				fragments: [
-					"layout/media-slot.html",
-					"layout/stack.html",
-					"layout/header-container.html",
-					"layout/content-container.html",
-					"layout/footer-container.html",
-					"layout/slide.html",
-				],
-			},
 		],
 	},
 	{
@@ -80,6 +50,7 @@ const PAGE_GROUPS = [
 				id: "attribution-box",
 				label: "Attribution box",
 				theme: true,
+				settings: componentSettings("attributionBox"),
 				fragments: ["attribution-box/attribution-box.html"],
 			},
 			{
@@ -136,6 +107,17 @@ const PAGE_GROUPS = [
 				],
 			},
 			{
+				id: "body-copy",
+				label: "Body copy",
+				theme: true,
+				settings: componentSettings("bodyCopy"),
+				fragments: [
+					"body-copy/body-copy-lg.html",
+					"body-copy/body-copy-md.html",
+					"body-copy/body-copy-sm.html",
+				],
+			},
+			{
 				id: "callout",
 				label: "Callout",
 				theme: true,
@@ -162,6 +144,58 @@ const PAGE_GROUPS = [
 						className: "showcase-matrix",
 					},
 				],
+			},
+			{
+				id: "content-container",
+				label: "Content container",
+				settings: componentSettings("contentContainer"),
+				fragments: ["content-container/content-container.html"],
+			},
+			{
+				id: "cover-title",
+				label: "Cover title",
+				theme: true,
+				settings: coverTitleSettings,
+				fragments: [
+					"cover-title/cover-title-xl.html",
+					"cover-title/cover-title-lg.html",
+					"cover-title/cover-title-md.html",
+					"cover-title/cover-title-sm.html",
+				],
+			},
+			{
+				id: "footer-container",
+				label: "Footer container",
+				settings: componentSettings("footerContainer"),
+				fragments: ["footer-container/footer-container.html"],
+			},
+			{
+				id: "header-container",
+				label: "Header container",
+				settings: componentSettings("headerContainer"),
+				fragments: ["header-container/header-container.html"],
+			},
+			{
+				id: "media-slot",
+				label: "Media slot",
+				fragments: ["media-slot/media-slot.html"],
+			},
+			{
+				id: "paragraph-title",
+				label: "Paragraph title",
+				theme: true,
+				settings: componentSettings("paragraphTitle"),
+				fragments: [
+					"paragraph-title/paragraph-title-lg.html",
+					"paragraph-title/paragraph-title-md.html",
+					"paragraph-title/paragraph-title-sm.html",
+				],
+			},
+			{
+				id: "slide",
+				label: "Slide",
+				settings: slideCanvasSettings,
+				fragments: ["slide/slide.html"],
 			},
 			{
 				id: "slide-footer",
@@ -192,6 +226,12 @@ const PAGE_GROUPS = [
 					"slide-title/slide-subtitle.html",
 				],
 			},
+			{
+				id: "stack",
+				label: "Stack",
+				settings: (brand) => brand.components && brand.components.stack,
+				fragments: ["stack/stack.html"],
+			},
 		],
 	},
 ];
@@ -200,7 +240,10 @@ const PRESET_GROUPS = [
 	{
 		id: "title-slides",
 		heading: "Title slides",
-		settings: (brand) => brand.components && brand.components.cover,
+		settings: (brand) =>
+			brand.components
+				? pick(brand.components, ["coverTitle", "attributionBox"])
+				: null,
 		presets: [
 			{
 				id: "title-slide-01",
@@ -227,7 +270,10 @@ const PRESET_GROUPS = [
 	{
 		id: "chapter-slides",
 		heading: "Chapter slides",
-		settings: (brand) => brand.components && brand.components.cover,
+		settings: (brand) =>
+			brand.components
+				? pick(brand.components, ["coverTitle"])
+				: null,
 		presets: [
 			{
 				id: "chapter-slide-01",
@@ -274,9 +320,13 @@ const PRESET_GROUPS = [
 	},
 ];
 
-const FILTER_ALIASES = Object.fromEntries(
-	PRESET_GROUPS.map((group) => [group.id, group.presets[0].id]),
-);
+const FILTER_ALIASES = {
+	layout: "content-container",
+	typography: "cover-title",
+	...Object.fromEntries(
+		PRESET_GROUPS.map((group) => [group.id, group.presets[0].id]),
+	),
+};
 
 const SETTINGS = [
 	...PAGE_GROUPS.flatMap((group) =>
@@ -938,9 +988,9 @@ function slidePretitleDefault(settings) {
 	const value =
 		settings &&
 		settings.components &&
-		settings.components.slide &&
-		settings.components.slide.pretitle &&
-		settings.components.slide.pretitle.default;
+		settings.components.slideTitle &&
+		settings.components.slideTitle.pretitle &&
+		settings.components.slideTitle.pretitle.default;
 	return value === "badge" ? "badge" : "text";
 }
 

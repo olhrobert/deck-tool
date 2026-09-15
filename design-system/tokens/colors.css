@@ -13,7 +13,7 @@
 	--color-slide-surface-background: rgba(255, 255, 255, 1);
 	--color-slide-surface-foreground: rgb(15, 23, 42);
 	--color-slide-surface-border: rgba(0, 0, 0, 0.2);
-	--cover-attribution-box-display: none;
+	--attribution-box-display: none;
 
 	--color-palette-brand-1: rgb(15, 23, 42);
 	--color-palette-brand-2: rgb(30, 41, 59);

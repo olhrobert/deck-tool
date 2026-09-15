@@ -1,0 +1,27 @@
+/* Cover-title preset of base typography.
+   Defaults: color=strong, context=slide, size=md (brand). */
+
+cover-title {
+	font-family: var(--cover-title-font-family, system-ui, sans-serif);
+	font-weight: var(--cover-title-font-weight);
+	line-height: var(--cover-title-lineheight);
+	font-size: var(--cover-title-size-md);
+	letter-spacing: 0%;
+	color: var(--_ink-strong);
+}
+
+cover-title[size="xl"] {
+	font-size: var(--cover-title-size-xl);
+}
+
+cover-title[size="lg"] {
+	font-size: var(--cover-title-size-lg);
+}
+
+cover-title[size="md"] {
+	font-size: var(--cover-title-size-md);
+}
+
+cover-title[size="sm"] {
+	font-size: var(--cover-title-size-sm);
+}

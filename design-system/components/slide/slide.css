@@ -11,7 +11,7 @@ slide {
 }
 
 slide[kind="cover"]:not([attribution]) attribution-box {
-	display: var(--cover-attribution-box-display);
+	display: var(--attribution-box-display);
 }
 
 slide[kind="cover"][attribution="true"] attribution-box {

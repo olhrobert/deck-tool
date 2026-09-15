@@ -13,4 +13,4 @@ not_when:
 
 # Title slide 04
 
-Logo top-center, cover title (`size="2400"`) and subtitle in the middle, attribution at the bottom. Omit `attribution` unless overriding the brand default.
+Logo top-center, cover title (`size="lg"`) and subtitle in the middle, attribution at the bottom. Omit `attribution` unless overriding the brand default.

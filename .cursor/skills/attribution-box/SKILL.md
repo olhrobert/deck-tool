@@ -21,7 +21,7 @@ description: >-
 
 Do **not** add paint, spacing, or type keys for the box. Appearance stays hardcoded.
 
-`components.cover.attributionBox.default` is the only allowed setting: a boolean for whether title-slide presets show the box when `attribution` is omitted on `<slide kind="cover">`. Gratia is `false`; Riverton is `true`. Override per slide with `attribution="true|false"`.
+`components.attributionBox.default` is the only allowed setting: a boolean for whether title-slide presets show the box when `attribution` is omitted on `<slide kind="cover">`. Gratia is `false`; Riverton is `true`. Override per slide with `attribution="true|false"`.
 
 ## Title presets
 

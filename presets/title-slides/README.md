@@ -2,7 +2,7 @@
 
 Layout examples loaded by the showcase. Do not change HTML structure, classes, or asset paths when editing.
 
-Each layout includes `<attribution-box>`. Visibility follows `components.cover.attributionBox.default` unless the slide sets `attribution="true|false"`.
+Each layout includes `<attribution-box>`. Visibility follows `components.attributionBox.default` unless the slide sets `attribution="true|false"`.
 
 ## Presets
 

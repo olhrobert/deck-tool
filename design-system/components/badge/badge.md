@@ -15,6 +15,6 @@ Use `<badge variant="neutral">` with `<badge-text>` (`tone="strong" context="sur
 
 Optional `<badge-icon data-slot="leading" icon="{name}">` and/or `<badge-icon data-slot="trailing" icon="{name}">`. `{name}` is a file in `assets/icons/` without `.svg`. Omit unused icon slots.
 
-On `<slide-title-group>`, the brand `components.slide.pretitle.default` of `badge` uses this as `data-slot="pre"`.
+On `<slide-title-group>`, the brand `components.slideTitle.pretitle.default` of `badge` uses this as `data-slot="pre"`.
 
 Canonical markup: `design-system/components/badge/badge.html`.

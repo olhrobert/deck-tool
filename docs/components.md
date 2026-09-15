@@ -7,9 +7,9 @@ One table for size, gap, padding, and variant. Brand tokens pick the actual step
 | Element | Attribute | Values | Default |
 | --- | --- | --- | --- |
 | `<body-copy>`, `<paragraph-title>`, `<slide-title>` | `size` | `sm` \| `md` \| `lg` | `md` |
-| `<text>` (cover title, attribution) | `size` | type-scale step (`200`…`4000`) | `400` |
+| `<cover-title>` | `size` | `sm` \| `md` \| `lg` \| `xl` | `md` |
+| `<text>` (attribution) | `size` | type-scale step (`200`…`4000`) | `400` |
 | `<stamp>` | `size` | spacing-scale step (`0`…`40`, `0-5`, …) | brand `stamp.defaultSize` |
-| Cover title in presets | `size` on `<text family="cover-title">` | per layout (`2400`/`3000`/`4000` title, `1200` chapter). The Type fragment uses `1600` as a specimen. | — |
 
 Do not put `size` on badge, callout title/description, or card/callout padding axes.
 

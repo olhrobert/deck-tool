@@ -12,4 +12,4 @@ not_when:
 
 # Title slide 01
 
-Centered stack: brand logo, cover title (`size="2400"`), optional subtitle. Attribution box at the bottom. Omit `attribution` unless overriding `components.cover.attributionBox.default`.
+Centered stack: brand logo, cover title (`size="md"`), optional subtitle. Attribution box at the bottom. Omit `attribution` unless overriding `components.attributionBox.default`.

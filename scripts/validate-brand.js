@@ -45,8 +45,8 @@ const {
 	SLIDE_PRETITLE_DEFAULT_NAMES,
 	isBadgeBorderPath,
 	isBadgeBorderBoolean,
-	isCoverAttributionDefaultPath,
-	isCoverAttributionDefaultBoolean,
+	isAttributionBoxDefaultPath,
+	isAttributionBoxDefaultBoolean,
 	isStampScalePath,
 	isStampScaleValue,
 	isColorThemeName,
@@ -361,10 +361,10 @@ function validateBrand(brandDir) {
 	}
 
 	for (const [jsonPathKey] of TOKEN_MAP) {
-		if (!isCoverAttributionDefaultPath(jsonPathKey)) continue;
+		if (!isAttributionBoxDefaultPath(jsonPathKey)) continue;
 		const raw = getPath(brand, jsonPathKey);
 		if (raw === undefined) continue;
-		if (!isCoverAttributionDefaultBoolean(raw)) {
+		if (!isAttributionBoxDefaultBoolean(raw)) {
 			errors.push(
 				`${jsonPathKey} must be true or false (got ${JSON.stringify(raw)})`,
 			);

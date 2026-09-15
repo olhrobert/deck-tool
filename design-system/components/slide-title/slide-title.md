@@ -6,13 +6,13 @@ use_when:
   - Content-slide chrome in `<header-container>`, or a column headline (story preset)
 not_when:
   - In-body section headings (use paragraph-title)
-  - Cover titles on `<slide kind="cover">` (use `family="cover-title"` on `<text>`)
+  - Cover titles on `<slide kind="cover">` (use cover-title)
 ---
 
 # Slide title
 
-Use `<slide-title-group>` with `<slide-title data-slot="main" size="md" tone="strong" context="slide">`. Size `sm|md|lg` maps to brand `components.slide.title.size*`.
+Use `<slide-title-group>` with `<slide-title data-slot="main" size="md" tone="strong" context="slide">`. Size `sm|md|lg` maps to brand `components.slideTitle.title.size*`.
 
-Optional pre slot from `components.slide.pretitle.default`: `text` → `<slide-pretitle data-slot="pre" tone="subtle" context="slide">`; `badge` → `<badge data-slot="pre" variant="neutral"><badge-text data-slot="label" tone="strong" context="surface">`. Override per slide only if the user asks. Optional `<slide-subtitle data-slot="sub">`. Omit unused optional slots.
+Optional pre slot from `components.slideTitle.pretitle.default`: `text` → `<slide-pretitle data-slot="pre" tone="subtle" context="slide">`; `badge` → `<badge data-slot="pre" variant="neutral"><badge-text data-slot="label" tone="strong" context="surface">`. Override per slide only if the user asks. Optional `<slide-subtitle data-slot="sub">`. Omit unused optional slots.
 
 Canonical markup: `design-system/components/slide-title/slide-title-group-md.html`.

@@ -13,4 +13,4 @@ not_when:
 
 `<stack direction="row|col" gap="none|sm|md|lg" width="fill|hug">`. Gap comes from `components.stack` (`none`, not `0`). Row children that are stacks share width; other children need `width="fill"` to share the row. Prefer copying a preset that already uses stack over inventing a new split.
 
-Canonical markup: `design-system/components/layout/stack.html`.
+Canonical markup: `design-system/components/stack/stack.html`.

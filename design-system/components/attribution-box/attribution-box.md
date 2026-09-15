@@ -2,7 +2,7 @@
 id: attribution-box
 kind: component
 use_when:
-  - Title slides, following `components.cover.attributionBox.default`
+  - Title slides, following `components.attributionBox.default`
   - When the user asks to show or hide the Gratia prepared-by mark (`attribution="true|false"`)
 not_when:
   - Speaker name/role on a story slide (plain body-copy)

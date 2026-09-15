@@ -16,4 +16,4 @@ not_when:
 
 On `content-slide-story`, keep `<media-slot data-slot="image" width="fill" class="aspect-square">` until a photo is provided, then replace the element (keep `data-slot="image"`, `width="fill"`, and `class="aspect-square"`).
 
-Canonical markup: `design-system/components/layout/media-slot.html`.
+Canonical markup: `design-system/components/media-slot/media-slot.html`.

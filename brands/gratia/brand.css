@@ -51,10 +51,16 @@
 	--border-size-md: 2px;
 	--border-size-lg: 4px;
 
-	/* cover */
+	/* attributionBox */
+	--attribution-box-display: none;
+
+	/* coverTitle */
 	--cover-title-font-family: var(--font-family-display);
 	--cover-title-font-weight: var(--font-weight-bold);
-	--cover-attribution-box-display: none;
+	--cover-title-size-sm: var(--text-size-1200);
+	--cover-title-size-md: var(--text-size-2400);
+	--cover-title-size-lg: var(--text-size-3000);
+	--cover-title-size-xl: var(--text-size-4000);
 
 	/* slide */
 	--color-slide-background-light: rgb(242, 245, 245);
@@ -65,6 +71,8 @@
 	--color-slide-surface-background: rgb(255, 255, 255);
 	--color-slide-surface-foreground: rgb(1, 25, 26);
 	--color-slide-surface-border: rgba(1, 25, 26, 0.2);
+
+	/* slideTitle */
 	--slide-pretitle-default: badge;
 	--slide-pretitle-font-family: var(--font-family-base);
 	--slide-pretitle-font-weight: var(--font-weight-regular);
@@ -80,14 +88,20 @@
 	--slide-subtitle-font-family: var(--font-family-base);
 	--slide-subtitle-font-weight: var(--font-weight-regular);
 	--slide-subtitle-size: var(--text-size-350);
+
+	/* headerContainer */
 	--slide-header-padding-top: var(--spacing-16);
 	--slide-header-padding-right: var(--spacing-20);
 	--slide-header-padding-bottom: var(--spacing-0);
 	--slide-header-padding-left: var(--spacing-20);
+
+	/* contentContainer */
 	--slide-content-padding-top: var(--spacing-10);
 	--slide-content-padding-right: var(--spacing-20);
 	--slide-content-padding-bottom: var(--spacing-0);
 	--slide-content-padding-left: var(--spacing-20);
+
+	/* footerContainer */
 	--slide-footer-padding-top: var(--spacing-4);
 	--slide-footer-padding-right: var(--spacing-4);
 	--slide-footer-padding-bottom: var(--spacing-4);
@@ -100,7 +114,7 @@
 	--paragraph-title-size-md: var(--text-size-500);
 	--paragraph-title-size-lg: var(--text-size-600);
 
-	/* body */
+	/* bodyCopy */
 	--body-font-family: var(--font-family-base);
 	--body-font-weight: var(--font-weight-regular);
 	--body-size-sm: var(--text-size-350);

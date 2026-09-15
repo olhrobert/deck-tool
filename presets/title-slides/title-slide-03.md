@@ -12,4 +12,4 @@ not_when:
 
 # Title slide 03
 
-Two columns. Left: logo + cover title (`size="4000"`). Right: attribution box and subtitle. Omit `attribution` unless overriding the brand default.
+Two columns. Left: logo + cover title (`size="xl"`). Right: attribution box and subtitle. Omit `attribution` unless overriding the brand default.
