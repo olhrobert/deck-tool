@@ -74,9 +74,9 @@ badge {
 }
 
 badge
-	:is(text, badge-text, body-copy, badge-icon),
+	:is(text, badge-text, badge-icon),
 badge
-	:is(text, badge-text, body-copy, badge-icon)[context="surface"] {
+	:is(text, badge-text, badge-icon)[context="surface"] {
 	--_ink-strong: var(--_badge-ink-strong);
 	--_ink-base: var(--_badge-ink-base);
 	--_ink-subtle: var(--_badge-ink-subtle);

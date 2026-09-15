@@ -91,21 +91,9 @@ callout {
 }
 
 callout
-	:is(
-		text,
-		callout-title,
-		callout-description,
-		body-copy,
-		paragraph-title
-	),
+	:is(text, callout-title, callout-description),
 callout
-	:is(
-		text,
-		callout-title,
-		callout-description,
-		body-copy,
-		paragraph-title
-	)[context="surface"] {
+	:is(text, callout-title, callout-description)[context="surface"] {
 	--_ink-strong: var(--_callout-ink-strong);
 	--_ink-base: var(--_callout-ink-base);
 	--_ink-subtle: var(--_callout-ink-subtle);

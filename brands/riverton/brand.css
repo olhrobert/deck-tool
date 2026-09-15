@@ -60,6 +60,11 @@
 	--cover-title-size-lg: var(--text-size-3000);
 	--cover-title-size-xl: var(--text-size-4000);
 
+	/* divider */
+	--divider-color-light: rgba(12, 12, 15, 0.2);
+	--divider-color-dark: rgba(12, 12, 15, 0.2);
+	--divider-width: 1px;
+
 	/* slide */
 	--color-slide-background-light: rgb(234, 239, 227);
 	--color-slide-background-dark: rgb(160, 203, 50);
@@ -105,19 +110,9 @@
 	--slide-footer-padding-bottom: var(--spacing-4);
 	--slide-footer-padding-left: var(--spacing-4);
 
-	/* paragraphTitle */
-	--paragraph-title-font-family: var(--font-family-display);
-	--paragraph-title-font-weight: var(--font-weight-medium);
-	--paragraph-title-size-sm: var(--text-size-400);
-	--paragraph-title-size-md: var(--text-size-500);
-	--paragraph-title-size-lg: var(--text-size-600);
-
 	/* bodyCopy */
 	--body-font-family: var(--font-family-base);
 	--body-font-weight: var(--font-weight-regular);
-	--body-size-sm: var(--text-size-350);
-	--body-size-md: var(--text-size-400);
-	--body-size-lg: var(--text-size-450);
 
 	/* card — foreground */
 	--card-neutral-foreground-light: rgb(12, 12, 15);
@@ -416,12 +411,6 @@
 	--slide-footer-text-size: var(--text-size-300);
 	--slide-footer-logo-height: var(--spacing-3);
 	--slide-footer-gap: var(--spacing-2);
-
-	/* stack */
-	--stack-gap-none: var(--spacing-0);
-	--stack-gap-sm: var(--spacing-2);
-	--stack-gap-md: var(--spacing-3);
-	--stack-gap-lg: var(--spacing-4);
 }
 
 /* Default card layout: stripe (omit layout, or layout="stripe") */
@@ -441,6 +430,7 @@ slide[kind="cover"]:not([color-theme]) {
 	--color-slide-foreground-strong: rgb(from var(--color-slide-foreground-dark) r g b / var(--tone-strong));
 	--color-slide-foreground-base: rgb(from var(--color-slide-foreground-dark) r g b / var(--tone-base));
 	--color-slide-foreground-subtle: rgb(from var(--color-slide-foreground-dark) r g b / var(--tone-subtle));
+	--divider-color: var(--divider-color-dark);
 	--color-neutral-foreground-strong: rgb(from var(--color-neutral-foreground-dark) r g b / var(--tone-strong));
 	--color-neutral-foreground-base: rgb(from var(--color-neutral-foreground-dark) r g b / var(--tone-base));
 	--color-neutral-foreground-subtle: rgb(from var(--color-neutral-foreground-dark) r g b / var(--tone-subtle));

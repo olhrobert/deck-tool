@@ -23,7 +23,7 @@ The showcase brand switcher loads `brands/{slug}/brand.css`. After JSON edits, r
 
 ## `brand-settings.json` fields
 
-Each HTML component is its own group under `components` (`coverTitle`, `slideTitle`, `bodyCopy`, `attributionBox`, `headerContainer`, …). Canvas colors are themed: `components.slide.canvas.background.light|dark`. `foundations.colorTheme.cover` / `slide` is `light` or `dark` — covers (`<slide kind="cover">`) use the cover default when `color-theme` is omitted. Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `colorTheme`, `tone`, `font`, `border`) then `components` (one group per component tag). Shared tokens under `foundations.color` / `foundations.colorTheme` / `foundations.tone` / `foundations.font` / `foundations.border`. `TOKEN_MAP` in `scripts/generate-brand-css.js` is the allow-list: keys with a CSS name become variables; `components.card.defaultLayout` is validated only (stripe default is a generated selector). The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales and on `components.slide.canvas.maxWidth` (canvas cap, default `1280`).
+Each HTML component is its own group under `components` (`coverTitle`, `slideTitle`, `bodyCopy`, `attributionBox`, `headerContainer`, …). Canvas colors are themed: `components.slide.canvas.background.light|dark`. `foundations.colorTheme.cover` / `slide` is `light` or `dark` — covers (`<slide kind="cover">`) use the cover default when `color-theme` is omitted. Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `colorTheme`, `tone`, `font`, `border`) then `components` (one group per component tag). Shared tokens under `foundations.color` / `foundations.colorTheme` / `foundations.tone` / `foundations.font` / `foundations.border`. `TOKEN_MAP` in `scripts/generate-brand-css.js` is the allow-list: keys with a CSS name become variables; `components.card.defaultLayout` is validated only (stripe default is a generated selector). The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales, on `components.slide.canvas.maxWidth` (canvas cap, default `1280`), and on `components.divider.width` (hairline stroke, typically `1`).
 
 `design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`) derived from `foundations.tone`. Brand identity, status hues, and chart swatches live under `foundations.color.brand.1`…`6`, `foundations.color.semantic.*`, and `foundations.color.chart.1`…`4` (omit unused brand slots).
 
@@ -72,7 +72,7 @@ Cover is a **layout kind**, not a component group. Title/chapter presets use `<s
 
 `<slide>` fills its container up to `canvas.maxWidth`. Cover slides (`<slide kind="cover">`) do not use this chrome. Defaults: maxWidth 1280, header 16/20/0/20, content 10/20/0/20, footer 4/4/4/4 (top/right/bottom/left). Set `color-theme="dark"` on a content slide to use the dark canvas (and dark card/badge/stamp paint). Nested `color-theme="light"` on a card restores light (quiet) paint.
 
-The optional pre slot on `<slide-title-group>` is either `<slide-pretitle>` (`default: "text"`) or a quiet neutral `<badge data-slot="pre">` with `<badge-text>` (`default: "badge"`). Brand `components.slideTitle.pretitle.default` picks which to use when authoring; decks may still override per slide. Gratia defaults to `badge`; Riverton to `text`. Text pretitles: `tone` is `subtle`, `context="slide"`. No markup size variants — one type-scale step per brand via `components.slideTitle.pretitle.size`.
+The optional pre slot on `<slide-title-group>` is either `<slide-pretitle>` (`default: "text"`) or a quiet neutral `<badge data-slot="pre">` with `<badge-text>` (`default: "badge"`). Brand `components.slideTitle.pretitle.default` picks which to use when authoring; decks may still override per slide. Gratia defaults to `badge`; Riverton to `text`. Text pretitles: `tone` is `subtle`, `context="slide"`. No markup size variants — one type-scale step per brand via `components.slideTitle.pretitle.size`. `align="left|center|right"` on the group (default `left`) aligns the stack; set `align="center"` on split-media presets.
 
 ### Shared color tokens
 
@@ -108,18 +108,12 @@ Named families (`display`, `base`) live under `foundations.font.family` as CSS s
 | `foundations.font.weight.regular`        | `--font-weight-regular`                                  | `<text weight="regular">`         |
 | `foundations.font.weight.medium`         | `--font-weight-medium`                                   | `<text weight="medium">`          |
 | `foundations.font.weight.bold`           | `--font-weight-bold`                                     | `<text weight="bold">`            |
-| `components.bodyCopy.family`                 | `--body-font-family` → `var(--font-family-*)`            | `<body-copy>` / `<text family="body">` |
-| `components.bodyCopy.weight`                 | `--body-font-weight`                                     | default body ink weight           |
-| `components.bodyCopy.sizeSm`                 | `--body-size-sm` → `var(--text-size-*)`                  | `<body-copy size="sm">`           |
-| `components.bodyCopy.sizeMd`                 | `--body-size-md` → `var(--text-size-*)`                  | `<body-copy size="md">` (default) |
-| `components.bodyCopy.sizeLg`                 | `--body-size-lg` → `var(--text-size-*)`                  | `<body-copy size="lg">`           |
-| `components.paragraphTitle.family`       | `--paragraph-title-font-family` → `var(--font-family-*)` | `<paragraph-title>`               |
-| `components.paragraphTitle.weight`       | `--paragraph-title-font-weight`                          |                                   |
-| `components.paragraphTitle.sizeSm/Md/Lg` | `--paragraph-title-size-sm/md/lg` → `var(--text-size-*)` | `size="lg"` etc.                  |
+| `components.bodyCopy.family`                 | `--body-font-family` → `var(--font-family-*)`            | `<text>` default / `<text family="body">` |
+| `components.bodyCopy.weight`                 | `--body-font-weight`                                     | default `<text>` weight           |
 
-Body copy uses **`<body-copy size="sm|md|lg">`** (brand-mapped). Default size is `md` (Gratia/Riverton: step `400` / 16px); default tone is `subtle`. Use primitive `<text>` with a raw type-scale step for one-offs (`size="300"` for attribution). Cover titles use **`<cover-title size="sm|md|lg|xl">`** (brand-mapped `components.coverTitle.size*`). Omit `weight` on a role so the brand role weight applies; set `weight="regular|medium|bold"` only to override it.
+Canvas copy uses **`<text size="<scale-step>">`**. Default size is `400` (16px); default tone is `base`; default family/weight come from `components.bodyCopy`. Use `family="display"` for in-body headings. Cover titles use **`<cover-title size="sm|md|lg|xl">`** (brand-mapped `components.coverTitle.size*`). Omit `weight` on a role so the brand role weight applies; set `weight="regular|medium|bold"` only to override it.
 
-`<text>` is the base typography primitive. Axes: `tone`, raw `size`, `uppercase`, `context`, plus `family`, `weight`, `lineheight`, `letterspacing`. Semantic tags (`<body-copy>`, `<cover-title>`, `<slide-pretitle>`, `<card-pretitle>`, `<slide-title>`, `<slide-subtitle>`, `<paragraph-title>`, …) are presets that inherit shared axes and bake brand family/weight/size. Default tone is `strong` on `<cover-title>` and `<paragraph-title>`, `subtle` on `<body-copy>`. Use `<slide-title-group>` when stacking pretitle + title + subtitle.
+`<text>` is the canvas typography primitive. Axes: `tone`, raw `size`, `uppercase`, `context`, plus `family`, `weight`, `lineheight`, `letterspacing`. Semantic tags (`<cover-title>`, `<slide-pretitle>`, `<card-pretitle>`, `<slide-title>`, `<slide-subtitle>`, …) are presets that inherit shared axes and bake brand family/weight/size. Default tone is `strong` on `<cover-title>`. Use `<slide-title-group>` when stacking pretitle + title + subtitle.
 
 Example — Gratia-style named weights, then make slide-title `lg` use scale 800 (32px):
 
@@ -137,10 +131,7 @@ Example — Gratia-style named weights, then make slide-title `lg` use scale 800
 },
 "bodyCopy": {
   "family": "base",
-  "weight": "regular",
-  "sizeSm": 350,
-  "sizeMd": 400,
-  "sizeLg": 450
+  "weight": "regular"
 },
 "slideTitle": {
   "title": {
@@ -272,9 +263,19 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 
 #### Stack
 
-| JSON                                 | CSS             | HTML                                       |
-| ------------------------------------ | --------------- | ------------------------------------------ |
-| `components.stack.gap.none/sm/md/lg` | `--stack-gap-*` | `<stack gap>` (`none` → spacing `0` / 0px) |
+`<stack gap>` is a spacing-scale step from `design-system/tokens/spacing.css` (`0`…`40`, `0-5`, …), not a brand token. Default is `4` (16px). Use `gap="0"` for none. Do not add `components.stack`.
+
+#### Divider
+
+`<divider>` is a full-width hairline. Color is themed (`light` | `dark`); width is a pixel integer, not a border.size step.
+
+| JSON                              | CSS                      | HTML         |
+| --------------------------------- | ------------------------ | ------------ |
+| `components.divider.color.light`  | `--divider-color-light`  | light stroke |
+| `components.divider.color.dark`   | `--divider-color-dark`   | dark stroke  |
+| `components.divider.width`        | `--divider-width`        | stroke in px |
+
+Resolved `--divider-color` follows `color-theme` (and the cover default).
 
 `<attribution-box>` appearance is brand-agnostic — see `.cursor/skills/attribution-box/SKILL.md`. Do not add paint, spacing, or type keys for it. Title slides include the box in markup; `components.attributionBox.default` shows or hides it when `attribution` is omitted (`true` Riverton, `false` Gratia). Override with `attribution="true|false"` on `<slide kind="cover">`.
 

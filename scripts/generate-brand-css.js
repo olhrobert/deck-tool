@@ -44,6 +44,8 @@ function isFontFamilyName(value) {
  * Semantic *spacing* is a spacing-scale step (20, 16, "0-5", …) from
  * design-system/tokens/spacing.css — not pixel values.
  * `slide.canvas.maxWidth` is a pixel integer (default 1280) — the slide canvas cap.
+ * `divider.width` is a pixel integer (hairline stroke). `divider.color` is
+ * themed (`light` | `dark`).
  * Component *radius* names a `border.radius` step (`med`, `none`, …).
  * Component *stroke* names a `border.size` step (`none`, `sm`, `md`, `lg`).
  *
@@ -233,7 +235,10 @@ function isBorderSizeRolePath(jsonPath) {
 }
 
 function isPixelDimensionPath(jsonPath) {
-	return jsonPath === "components.slide.canvas.maxWidth";
+	return (
+		jsonPath === "components.slide.canvas.maxWidth" ||
+		jsonPath === "components.divider.width"
+	);
 }
 
 function isPixelDimension(value) {
@@ -614,7 +619,9 @@ function isColorRolePath(jsonPath) {
 		) ||
 		/^components\.slide\.surface\.(background|foreground|border)$/.test(
 			jsonPath,
-		)
+		) ||
+		jsonPath === "components.divider.color.light" ||
+		jsonPath === "components.divider.color.dark"
 	);
 }
 
@@ -830,6 +837,10 @@ const TOKEN_MAP = [
 	["components.coverTitle.sizeLg", "--cover-title-size-lg"],
 	["components.coverTitle.sizeXl", "--cover-title-size-xl"],
 
+	["components.divider.color.light", "--divider-color-light", "divider"],
+	["components.divider.color.dark", "--divider-color-dark"],
+	["components.divider.width", "--divider-width"],
+
 	[
 		"components.slide.canvas.background.light",
 		"--color-slide-background-light",
@@ -915,21 +926,8 @@ const TOKEN_MAP = [
 	],
 	["components.footerContainer.paddingLeft", "--slide-footer-padding-left"],
 
-	[
-		"components.paragraphTitle.family",
-		"--paragraph-title-font-family",
-		"paragraphTitle",
-	],
-	["components.paragraphTitle.weight", "--paragraph-title-font-weight"],
-	["components.paragraphTitle.sizeSm", "--paragraph-title-size-sm"],
-	["components.paragraphTitle.sizeMd", "--paragraph-title-size-md"],
-	["components.paragraphTitle.sizeLg", "--paragraph-title-size-lg"],
-
 	["components.bodyCopy.family", "--body-font-family", "bodyCopy"],
 	["components.bodyCopy.weight", "--body-font-weight"],
-	["components.bodyCopy.sizeSm", "--body-size-sm"],
-	["components.bodyCopy.sizeMd", "--body-size-md"],
-	["components.bodyCopy.sizeLg", "--body-size-lg"],
 
 	["components.card.defaultLayout", null, "card"],
 	...cardColorTokenMapEntries(),
@@ -1076,11 +1074,6 @@ const TOKEN_MAP = [
 	],
 	["components.slideFooter.logoHeight", "--slide-footer-logo-height"],
 	["components.slideFooter.gap", "--slide-footer-gap"],
-
-	["components.stack.gap.none", "--stack-gap-none", "stack"],
-	["components.stack.gap.sm", "--stack-gap-sm"],
-	["components.stack.gap.md", "--stack-gap-md"],
-	["components.stack.gap.lg", "--stack-gap-lg"],
 ];
 
 function colorThemeRemapLines(theme) {
@@ -1091,6 +1084,7 @@ function colorThemeRemapLines(theme) {
 		`${indent}--color-slide-foreground-strong: rgb(from var(--color-slide-foreground-${theme}) r g b / var(--tone-strong));`,
 		`${indent}--color-slide-foreground-base: rgb(from var(--color-slide-foreground-${theme}) r g b / var(--tone-base));`,
 		`${indent}--color-slide-foreground-subtle: rgb(from var(--color-slide-foreground-${theme}) r g b / var(--tone-subtle));`,
+		`${indent}--divider-color: var(--divider-color-${theme});`,
 	];
 	for (const variant of THEMED_PAINT_VARIANTS) {
 		lines.push(

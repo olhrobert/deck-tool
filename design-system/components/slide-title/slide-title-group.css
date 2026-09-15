@@ -1,6 +1,23 @@
 slide-title-group {
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 	gap: var(--slide-title-gap);
 	margin: 0;
+	text-align: left;
+}
+
+slide-title-group[align="left"] {
+	align-items: flex-start;
+	text-align: left;
+}
+
+slide-title-group[align="center"] {
+	align-items: center;
+	text-align: center;
+}
+
+slide-title-group[align="right"] {
+	align-items: flex-end;
+	text-align: right;
 }

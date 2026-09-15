@@ -8,6 +8,7 @@
 	--color-slide-foreground-strong: rgb(from var(--color-slide-foreground-light) r g b / var(--tone-strong));
 	--color-slide-foreground-base: rgb(from var(--color-slide-foreground-light) r g b / var(--tone-base));
 	--color-slide-foreground-subtle: rgb(from var(--color-slide-foreground-light) r g b / var(--tone-subtle));
+	--divider-color: var(--divider-color-light);
 	--color-neutral-foreground-strong: rgb(from var(--color-neutral-foreground-light) r g b / var(--tone-strong));
 	--color-neutral-foreground-base: rgb(from var(--color-neutral-foreground-light) r g b / var(--tone-base));
 	--color-neutral-foreground-subtle: rgb(from var(--color-neutral-foreground-light) r g b / var(--tone-subtle));
@@ -127,6 +128,7 @@
 	--color-slide-foreground-strong: rgb(from var(--color-slide-foreground-dark) r g b / var(--tone-strong));
 	--color-slide-foreground-base: rgb(from var(--color-slide-foreground-dark) r g b / var(--tone-base));
 	--color-slide-foreground-subtle: rgb(from var(--color-slide-foreground-dark) r g b / var(--tone-subtle));
+	--divider-color: var(--divider-color-dark);
 	--color-neutral-foreground-strong: rgb(from var(--color-neutral-foreground-dark) r g b / var(--tone-strong));
 	--color-neutral-foreground-base: rgb(from var(--color-neutral-foreground-dark) r g b / var(--tone-base));
 	--color-neutral-foreground-subtle: rgb(from var(--color-neutral-foreground-dark) r g b / var(--tone-subtle));

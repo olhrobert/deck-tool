@@ -13,6 +13,10 @@
 	--color-slide-surface-background: rgba(255, 255, 255, 1);
 	--color-slide-surface-foreground: rgb(15, 23, 42);
 	--color-slide-surface-border: rgba(0, 0, 0, 0.2);
+	--divider-color-light: rgba(15, 23, 42, 0.2);
+	--divider-color-dark: rgba(255, 255, 255, 0.2);
+	--divider-color: var(--divider-color-light);
+	--divider-width: 1px;
 	--attribution-box-display: none;
 
 	--color-palette-brand-1: rgb(15, 23, 42);

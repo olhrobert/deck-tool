@@ -227,6 +227,14 @@ body {
 	flex: 0 0 auto;
 }
 
+.showcase-analyst analyst {
+	width: 320px;
+}
+
+.showcase-analyst-sm analyst {
+	width: 248px;
+}
+
 .showcase-row {
 	display: flex;
 	gap: var(--spacing-4);

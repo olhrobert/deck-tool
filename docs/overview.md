@@ -45,9 +45,9 @@ A component set and preset library that can express real decks, with new tokens 
 - Showcase `fetch()`es live component fragments and presets (no inlined fork).
 - Title presets (`title-slide-01`…`04`) include `<attribution-box>`; visibility follows `components.attributionBox.default` unless the slide sets `attribution="true|false"`.
 - Chapter slides (`chapter-slide-01` mid stack, `chapter-slide-02` split).
-- Content slides: `content-slide-3-cards` (header, three-card row, slide-footer) and `content-slide-story` (copy + photo well). Slide footer lives as a component (`design-system/components/slide-footer/`).
-- Card, Callout, Badge, Stamp, Slide footer fragments live under `design-system/components/`.
-- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale**. Brand `sizeSm` / `sizeMd` / `sizeLg` (and cover-title `sizeXl`) pick a scale step (e.g. `800`), not a pixel value. Body copy uses `<body-copy size="sm|md|lg">` (default `md`, tone `subtle`). Cover titles use `<cover-title size="sm|md|lg|xl">` (default `md`, tone `strong`). Primitive `<text>` remains for raw steps (attribution). Semantic type tags are presets of `<text>` (`tone`, `size`, `uppercase`, `context`).
+- Content slides: `content-slide-3-cards` (header, three-card row, slide-footer), `content-slide-split-media` (centered header, copy \| media \| copy), and `content-slide-story` (copy + photo well). Slide footer lives as a component (`design-system/components/slide-footer/`).
+- Card, Analyst, Callout, Badge, Stamp, Divider, Slide footer fragments live under `design-system/components/`.
+- Tokens: cover / slide / surface colors; named weights (`regular` / `medium` / `bold`) plus per-role families that pick those names; shared **type scale**. Brand `sizeSm` / `sizeMd` / `sizeLg` (and cover-title `sizeXl`) pick a scale step (e.g. `800`), not a pixel value. Canvas copy uses `<text size="<scale-step>">` (default `400`, tone `base`). In-body headings add `family="display"`. Cover titles use `<cover-title size="sm|md|lg|xl">` (default `md`, tone `strong`). Semantic type tags (`<cover-title>`, `<slide-title>`, …) are presets of `<text>` (`tone`, `size`, `uppercase`, `context`).
 - Cover ink uses `context="slide"` with `tone="strong|base|subtle"` on `<slide kind="cover">` (canvas follows `foundations.colorTheme.cover`). Logos are a baked pair (default + inverted) with `data-logo` luminance switching in the showcase.
 
 ### Still open

@@ -2,7 +2,7 @@
 id: header-container
 kind: component
 use_when:
-  - Content slides whose headline sits in the top chrome (3-cards and similar)
+  - Content slides whose headline sits in the top chrome (3-cards, split-media, and similar)
 not_when:
   - Story slides that put the title in the content column
   - Cover/title/chapter presets that use a custom cover layout

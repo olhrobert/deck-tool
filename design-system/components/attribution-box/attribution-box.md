@@ -5,7 +5,7 @@ use_when:
   - Title slides, following `components.attributionBox.default`
   - When the user asks to show or hide the Gratia prepared-by mark (`attribution="true|false"`)
 not_when:
-  - Speaker name/role on a story slide (plain body-copy)
+  - Speaker name/role on a story slide (plain text)
   - The deck/client logo (that is `data-logo`, not this component)
 ---
 

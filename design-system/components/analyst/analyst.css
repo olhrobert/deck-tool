@@ -1,18 +1,18 @@
-/* Card
-   Axes:
-     variant="neutral|emphasis|positive|warning|negative|informative"  default neutral
-     layout="basic|stripe"                                     brand `card.defaultLayout` when omitted
-     color-theme="light|dark"                                  inherits; remaps paint
-   Padding / gap / type are brand tokens. Omit `gap` for `sm`.
-   Ink = family `foreground` hue × foundations.tone.
+/* Analyst
+   A people card: square photo, optional specialization badge on the photo,
+   name/role, optional logo well, location, tags.
+   `size="sm|lg"` (omit for lg). Paint follows card tokens. Optional
+   `color-theme="light|dark"` remaps like card. Optional `variant` matches card.
 */
 
-card {
+analyst {
 	display: flex;
 	flex-direction: column;
-	flex: 1 1 0%;
+	flex: 0 0 auto;
+	width: 100%;
 	min-width: 0;
 	box-sizing: border-box;
+	overflow: hidden;
 
 	--_card-hue: var(--card-neutral-foreground);
 	--_card-ink-strong: rgb(from var(--_card-hue) r g b / var(--tone-strong));
@@ -20,7 +20,6 @@ card {
 	--_card-ink-subtle: rgb(from var(--_card-hue) r g b / var(--tone-subtle));
 	--_card-bg: var(--card-neutral-background);
 	--_card-border: var(--card-neutral-border-subtle);
-	--_card-stripe: var(--card-neutral-stripe);
 
 	background-color: var(--_card-bg);
 	border-style: solid;
@@ -30,87 +29,65 @@ card {
 	border-left-width: var(--card-border-size-left);
 	border-right-width: var(--card-border-size-right);
 	border-radius: var(--card-border-radius);
-	padding: var(--card-padding-md);
-	gap: var(--card-gap-sm);
 
 	&[variant="emphasis"] {
 		--_card-hue: var(--card-emphasis-foreground);
 		--_card-bg: var(--card-emphasis-background);
 		--_card-border: var(--card-emphasis-border-subtle);
-		--_card-stripe: var(--card-emphasis-stripe);
 	}
 
 	&[variant="positive"] {
 		--_card-hue: var(--card-positive-foreground);
 		--_card-bg: var(--card-positive-background);
 		--_card-border: var(--card-positive-border-subtle);
-		--_card-stripe: var(--card-positive-stripe);
 	}
 
 	&[variant="warning"] {
 		--_card-hue: var(--card-warning-foreground);
 		--_card-bg: var(--card-warning-background);
 		--_card-border: var(--card-warning-border-subtle);
-		--_card-stripe: var(--card-warning-stripe);
 	}
 
 	&[variant="negative"] {
 		--_card-hue: var(--card-negative-foreground);
 		--_card-bg: var(--card-negative-background);
 		--_card-border: var(--card-negative-border-subtle);
-		--_card-stripe: var(--card-negative-stripe);
 	}
 
 	&[variant="informative"] {
 		--_card-hue: var(--card-informative-foreground);
 		--_card-bg: var(--card-informative-background);
 		--_card-border: var(--card-informative-border-subtle);
-		--_card-stripe: var(--card-informative-stripe);
-	}
-
-	&[layout="stripe"] {
-		border-color: var(--_card-stripe);
-		border-top-width: var(--border-size-none);
-		border-bottom-width: var(--border-size-none);
-		border-right-width: var(--border-size-none);
-		border-left-width: var(--card-stripe-width);
-		border-radius: var(--border-radius-none);
-	}
-
-	&[padding="sm"] {
-		padding: var(--card-padding-sm);
-	}
-
-	&[padding="md"] {
-		padding: var(--card-padding-md);
-	}
-
-	&[padding="lg"] {
-		padding: var(--card-padding-lg);
-	}
-
-	&[gap="none"] {
-		gap: var(--card-gap-none);
-	}
-
-	&[gap="sm"] {
-		gap: var(--card-gap-sm);
-	}
-
-	&[gap="md"] {
-		gap: var(--card-gap-md);
-	}
-
-	&[gap="lg"] {
-		gap: var(--card-gap-lg);
 	}
 }
 
-/* Nested type reads the card's ink tokens (beats context="surface"). */
-card
-	:is(text, card-pretitle, card-title, card-meta),
-card
-	:is(text, card-pretitle, card-title, card-meta)[context="surface"] {
+analyst [data-slot="cover"] {
+	position: relative;
+}
+
+analyst [data-slot="specialization"] {
+	position: absolute;
+	inset-inline-start: var(--spacing-4);
+	inset-block-end: var(--spacing-4);
+	z-index: 1;
+}
+
+analyst [data-slot="body"] {
+	padding: var(--card-padding-md);
+}
+
+analyst[size="sm"] [data-slot="body"] {
+	padding: var(--card-padding-sm);
+}
+
+analyst [data-slot="location-row"] {
+	padding-bottom: var(--spacing-1);
+}
+
+analyst [data-slot="body"]
+	:is(text, badge-text, badge-icon),
+analyst [data-slot="body"]
+	:is(text, badge-text, badge-icon)[context="surface"] {
 	--_ink-strong: var(--_card-ink-strong);
 	--_ink-base: var(--_card-ink-base);
 	--_ink-subtle: var(--_card-ink-subtle);

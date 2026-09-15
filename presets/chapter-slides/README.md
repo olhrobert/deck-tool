@@ -14,5 +14,5 @@ Chapter slides use `<slide kind="cover">` with a `<slide-footer>` at the bottom 
 ## Placeholders
 
 - `Chapter title`
-- Body copy under the title
+- Supporting copy under the title
 - Footer notes / deck title / chapter / page

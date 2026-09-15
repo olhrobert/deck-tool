@@ -2,36 +2,76 @@ stack {
 	display: flex;
 	flex-direction: column;
 	flex: 0 0 auto;
+	align-items: stretch;
 	box-sizing: border-box;
 	min-width: 0;
-	gap: var(--stack-gap-md);
+	gap: var(--spacing-4);
 }
 
 stack[direction="row"] {
 	flex-direction: row;
-}
-
-stack[direction="row"] > stack {
-	flex: 1 1 0%;
-	min-width: 0;
+	align-items: flex-start;
 }
 
 stack[direction="col"] {
 	flex-direction: column;
+	align-items: stretch;
 }
 
-stack[gap="none"] {
-	gap: var(--stack-gap-none);
+stack.items-start {
+	align-items: flex-start;
 }
 
-stack[gap="sm"] {
-	gap: var(--stack-gap-sm);
+stack.items-center {
+	align-items: center;
 }
 
-stack[gap="md"] {
-	gap: var(--stack-gap-md);
+stack[wrap="true"] {
+	flex-wrap: wrap;
 }
 
-stack[gap="lg"] {
-	gap: var(--stack-gap-lg);
-}
+stack[gap="0"] { gap: var(--spacing-0); }
+stack[gap="0-25"] { gap: var(--spacing-0-25); }
+stack[gap="0-5"] { gap: var(--spacing-0-5); }
+stack[gap="1"] { gap: var(--spacing-1); }
+stack[gap="1-5"] { gap: var(--spacing-1-5); }
+stack[gap="2"] { gap: var(--spacing-2); }
+stack[gap="2-5"] { gap: var(--spacing-2-5); }
+stack[gap="3"] { gap: var(--spacing-3); }
+stack[gap="4"] { gap: var(--spacing-4); }
+stack[gap="5"] { gap: var(--spacing-5); }
+stack[gap="6"] { gap: var(--spacing-6); }
+stack[gap="7"] { gap: var(--spacing-7); }
+stack[gap="8"] { gap: var(--spacing-8); }
+stack[gap="9"] { gap: var(--spacing-9); }
+stack[gap="10"] { gap: var(--spacing-10); }
+stack[gap="11"] { gap: var(--spacing-11); }
+stack[gap="12"] { gap: var(--spacing-12); }
+stack[gap="13"] { gap: var(--spacing-13); }
+stack[gap="14"] { gap: var(--spacing-14); }
+stack[gap="15"] { gap: var(--spacing-15); }
+stack[gap="16"] { gap: var(--spacing-16); }
+stack[gap="17"] { gap: var(--spacing-17); }
+stack[gap="18"] { gap: var(--spacing-18); }
+stack[gap="19"] { gap: var(--spacing-19); }
+stack[gap="20"] { gap: var(--spacing-20); }
+stack[gap="21"] { gap: var(--spacing-21); }
+stack[gap="22"] { gap: var(--spacing-22); }
+stack[gap="23"] { gap: var(--spacing-23); }
+stack[gap="24"] { gap: var(--spacing-24); }
+stack[gap="25"] { gap: var(--spacing-25); }
+stack[gap="26"] { gap: var(--spacing-26); }
+stack[gap="27"] { gap: var(--spacing-27); }
+stack[gap="28"] { gap: var(--spacing-28); }
+stack[gap="29"] { gap: var(--spacing-29); }
+stack[gap="30"] { gap: var(--spacing-30); }
+stack[gap="31"] { gap: var(--spacing-31); }
+stack[gap="32"] { gap: var(--spacing-32); }
+stack[gap="33"] { gap: var(--spacing-33); }
+stack[gap="34"] { gap: var(--spacing-34); }
+stack[gap="35"] { gap: var(--spacing-35); }
+stack[gap="36"] { gap: var(--spacing-36); }
+stack[gap="37"] { gap: var(--spacing-37); }
+stack[gap="38"] { gap: var(--spacing-38); }
+stack[gap="39"] { gap: var(--spacing-39); }
+stack[gap="40"] { gap: var(--spacing-40); }

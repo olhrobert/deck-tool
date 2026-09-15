@@ -25,8 +25,7 @@ slide-footer
 		slide-footer-notes,
 		slide-footer-title,
 		slide-footer-chapter,
-		slide-footer-page,
-		body-copy
+		slide-footer-page
 	),
 slide-footer
 	:is(
@@ -34,8 +33,7 @@ slide-footer
 		slide-footer-notes,
 		slide-footer-title,
 		slide-footer-chapter,
-		slide-footer-page,
-		body-copy
+		slide-footer-page
 	)[context="slide"],
 slide-footer
 	:is(
@@ -43,8 +41,7 @@ slide-footer
 		slide-footer-notes,
 		slide-footer-title,
 		slide-footer-chapter,
-		slide-footer-page,
-		body-copy
+		slide-footer-page
 	)[context="surface"] {
 	--_ink-strong: var(--_footer-ink-strong);
 	--_ink-base: var(--_footer-ink-base);

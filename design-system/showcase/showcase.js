@@ -47,6 +47,21 @@ const PAGE_GROUPS = [
 		heading: "Components",
 		pages: [
 			{
+				id: "analyst",
+				label: "Analyst",
+				theme: true,
+				fragments: [
+					{
+						src: "analyst/analyst.html",
+						className: "showcase-analyst",
+					},
+					{
+						src: "analyst/analyst-sm.html",
+						className: "showcase-analyst-sm",
+					},
+				],
+			},
+			{
 				id: "attribution-box",
 				label: "Attribution box",
 				theme: true,
@@ -107,17 +122,6 @@ const PAGE_GROUPS = [
 				],
 			},
 			{
-				id: "body-copy",
-				label: "Body copy",
-				theme: true,
-				settings: componentSettings("bodyCopy"),
-				fragments: [
-					"body-copy/body-copy-lg.html",
-					"body-copy/body-copy-md.html",
-					"body-copy/body-copy-sm.html",
-				],
-			},
-			{
 				id: "callout",
 				label: "Callout",
 				theme: true,
@@ -164,6 +168,13 @@ const PAGE_GROUPS = [
 				],
 			},
 			{
+				id: "divider",
+				label: "Divider",
+				theme: true,
+				settings: componentSettings("divider"),
+				fragments: ["divider/divider.html"],
+			},
+			{
 				id: "footer-container",
 				label: "Footer container",
 				settings: componentSettings("footerContainer"),
@@ -179,17 +190,6 @@ const PAGE_GROUPS = [
 				id: "media-slot",
 				label: "Media slot",
 				fragments: ["media-slot/media-slot.html"],
-			},
-			{
-				id: "paragraph-title",
-				label: "Paragraph title",
-				theme: true,
-				settings: componentSettings("paragraphTitle"),
-				fragments: [
-					"paragraph-title/paragraph-title-lg.html",
-					"paragraph-title/paragraph-title-md.html",
-					"paragraph-title/paragraph-title-sm.html",
-				],
 			},
 			{
 				id: "slide",
@@ -219,6 +219,7 @@ const PAGE_GROUPS = [
 					"slide-title/slide-title-group-lg.html",
 					"slide-title/slide-title-group-md.html",
 					"slide-title/slide-title-group-sm.html",
+					"slide-title/slide-title-group-center.html",
 					"slide-title/slide-title-lg.html",
 					"slide-title/slide-title-md.html",
 					"slide-title/slide-title-sm.html",
@@ -229,8 +230,19 @@ const PAGE_GROUPS = [
 			{
 				id: "stack",
 				label: "Stack",
-				settings: (brand) => brand.components && brand.components.stack,
 				fragments: ["stack/stack.html"],
+			},
+			{
+				id: "text",
+				label: "Text",
+				theme: true,
+				settings: componentSettings("bodyCopy"),
+				fragments: [
+					"typography/text-600.html",
+					"typography/text.html",
+					"typography/text-300.html",
+					"typography/text-display.html",
+				],
 			},
 		],
 	},
@@ -308,6 +320,15 @@ const PRESET_GROUPS = [
 				],
 			},
 			{
+				id: "content-slide-split-media",
+				label: "Split media",
+				src: "../../presets/content-slides/content-slide-split-media.html",
+				variants: [
+					{},
+					{ colorTheme: "dark", caption: 'color-theme="dark"' },
+				],
+			},
+			{
 				id: "content-slide-story",
 				label: "Story",
 				src: "../../presets/content-slides/content-slide-story.html",
@@ -322,7 +343,7 @@ const PRESET_GROUPS = [
 
 const FILTER_ALIASES = {
 	layout: "content-container",
-	typography: "cover-title",
+	typography: "text",
 	...Object.fromEntries(
 		PRESET_GROUPS.map((group) => [group.id, group.presets[0].id]),
 	),
@@ -579,7 +600,7 @@ function renderShowcaseCard(variant, layout) {
 		<card variant="${variant}" padding="md">
 			<card-pretitle data-slot="pretitle" tone="subtle" context="surface">Optional pretitle.</card-pretitle>
 			<card-title data-slot="title" tone="strong" context="surface">Card title</card-title>
-			<body-copy data-slot="text" size="sm" tone="base" context="surface">Description copy on this card.</body-copy>
+			<text data-slot="text" size="350" tone="base" context="surface">Description copy on this card.</text>
 			<card-meta data-slot="meta" tone="subtle" context="surface">${meta}</card-meta>
 		</card>
 	`;
@@ -715,7 +736,7 @@ function renderStampShowcase() {
 					<stamp-icon data-slot="mark" icon="${card.icon}" aria-hidden="true"></stamp-icon>
 				</stamp>
 				<card-title data-slot="title" tone="strong" context="surface">${card.title}</card-title>
-				<body-copy data-slot="text" size="sm" tone="base" context="surface">Stamp at the top of the card.</body-copy>
+				<text data-slot="text" size="350" tone="base" context="surface">Stamp at the top of the card.</text>
 			</card>
 		`,
 			)
@@ -735,7 +756,7 @@ function renderStampShowcase() {
 				<stamp variant="neutral">
 					<stamp-text data-slot="mark">${index + 1}</stamp-text>
 				</stamp>
-				<body-copy size="md" tone="base" context="slide">${label}</body-copy>
+				<text size="400" tone="base" context="slide">${label}</text>
 			</div>
 		`,
 			)
@@ -856,7 +877,7 @@ function renderBrandGroupHeading(key, depth) {
 function renderSettingsRow(title, displayValue, fill) {
 	const valueText = `<text size="350" tone="base" context="surface">${escapeHtml(displayValue)}</text>`;
 	const valueCell = fill
-		? `<stack class="brand-settings-value-swatch" direction="row" gap="sm">
+		? `<stack class="brand-settings-value-swatch" direction="row" gap="2">
 				<div class="brand-swatch-chip" style="background-color:${fill}" aria-hidden="true"></div>
 				${valueText}
 			</stack>`

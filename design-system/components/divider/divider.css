@@ -1,0 +1,17 @@
+/* Divider
+   A hairline rule. Color follows `color-theme` from
+   `components.divider.color.light|dark`; stroke width from `width`.
+*/
+
+divider {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	flex: 0 0 auto;
+	align-self: stretch;
+	border: none;
+	border-top: var(--divider-width) solid var(--divider-color);
+}

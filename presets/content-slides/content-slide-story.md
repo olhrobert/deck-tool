@@ -6,6 +6,7 @@ use_when:
   - One speaker with a name and role under short story copy
   - A photo-led “who we are / why this exists” beat
 not_when:
+  - Copy columns flanking a central image (use content-slide-split-media)
   - Metrics, comparisons, or more than one visual
   - Multiple people, cards, or callouts
   - Chapter openers or title slides
@@ -22,9 +23,9 @@ Two columns: story copy on the left, square image on the right. Title, paragraph
 | Slot | Markup | Replace with |
 | --- | --- | --- |
 | Title | `<slide-title data-slot="main">` | Headline only. Omit pretitle and subtitle unless the user asks. |
-| Body | `<body-copy>` | One short paragraph. Not bullets or stats. |
-| Name | first attribution `<body-copy tone="strong">` | Person’s name. No signature graphic. |
-| Role | second attribution `<body-copy tone="subtle">` | Title or affiliation. |
+| Body | `<text>` | One short paragraph. Not bullets or stats. |
+| Name | first attribution `<text tone="strong">` | Person’s name. No signature graphic. |
+| Role | second attribution `<text tone="subtle">` | Title or affiliation. |
 | Image | `<media-slot data-slot="image">` | Keep the well until a photo exists. Then replace `<media-slot>` with `<img data-slot="image" width="fill" class="aspect-square">` (object-fit cover, square column). |
 
 ## Color theme

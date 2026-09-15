@@ -9,10 +9,11 @@ Each content preset includes `<slide-footer>` inside `<footer-container>`. Canon
 | File                         | Sidecar | Layout                                                                            |
 | ---------------------------- | ------- | --------------------------------------------------------------------------------- |
 | `content-slide-3-cards.html` | `.md`   | Header + content + footer. Three identical cards in a row. Includes `<slide-footer>`. |
+| `content-slide-split-media.html` | `.md` | Centered header, copy \| media \| copy, default `<slide-footer>`. |
 | `content-slide-story.html`   | `.md`   | Copy left, photo well right. No header chrome. Includes `<slide-footer>`.         |
 
 ## Placeholders
 
-- Slide title pre / main / sub (3-cards) or headline + body + name/role (story)
-- Card labels, values, and meta (3-cards) or keep `<media-slot data-slot="image">` until a photo exists (story)
+- Slide title pre / main / sub (3-cards), centered pre / main (split-media), or headline + body + name/role (story)
+- Card labels, values, and meta (3-cards); section labels + item title/text (split-media); or keep `<media-slot data-slot="image">` until a photo exists (story / split-media)
 - Footer notes, deck title, chapter, and slide number

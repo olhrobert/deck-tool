@@ -1,11 +1,15 @@
 /*
- * Fill/hug sizing for flex children.
- * Column stacks (`direction="col"`) grow height="fill" children the way
- * `.flex-col` does. `<img>` uses object-fit: cover when filling.
+ * Fill/hug sizing for flex children. Width and height are independent axes:
+ *   width="fill|hug"  — horizontal only
+ *   height="fill|hug" — vertical only
+ * Omit both to hug. Column stacks stretch children on the cross axis (text
+ * wraps); row stacks hug height unless a child sets height="fill".
+ * `<img>` uses object-fit: cover when filling.
  */
 
 :is(
 	card,
+	analyst,
 	callout,
 	badge,
 	attribution-box,
@@ -14,40 +18,15 @@
 	media-slot,
 	img
 )[width="hug"] {
-	flex: 0 0 auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: auto;
 }
 
-:is(
-	card,
-	callout,
-	badge,
-	attribution-box,
-	slide-footer,
-	stack,
-	media-slot,
-	img
-)[width="fill"] {
-	flex: 1 1 0%;
-	min-width: 0;
-}
-
-:is(
-	card,
-	callout,
-	badge,
-	attribution-box,
-	slide-footer,
-	stack,
-	media-slot,
-	img
-)[height="fill"] {
-	align-self: stretch;
-	min-height: 0;
-}
-
-:is(.flex-col, stack[direction="col"])
+:is(stack:not([direction="row"]), analyst, .flex-col)
 	> :is(
 		card,
+		analyst,
 		callout,
 		badge,
 		attribution-box,
@@ -55,12 +34,79 @@
 		stack,
 		media-slot,
 		img
-	)[height="fill"]:not([width="fill"]) {
+	)[width="hug"] {
+	align-self: flex-start;
+	width: auto;
+}
+
+:is(stack[direction="row"], .flex-row, .flex:not(.flex-col))
+	> :is(
+		card,
+		analyst,
+		callout,
+		badge,
+		attribution-box,
+		slide-footer,
+		stack,
+		media-slot,
+		img
+	)[width="fill"] {
 	flex: 1 1 0%;
+	min-width: 0;
+}
+
+:is(stack:not([direction="row"]), analyst, .flex-col)
+	> :is(
+		card,
+		analyst,
+		callout,
+		badge,
+		attribution-box,
+		slide-footer,
+		stack,
+		media-slot,
+		img
+	)[width="fill"] {
+	align-self: stretch;
+	min-width: 0;
+	width: 100%;
+}
+
+:is(stack:not([direction="row"]), analyst, .flex-col)
+	> :is(
+		card,
+		analyst,
+		callout,
+		badge,
+		attribution-box,
+		slide-footer,
+		stack,
+		media-slot,
+		img
+	)[height="fill"] {
+	flex: 1 1 0%;
+	min-height: 0;
+}
+
+:is(stack[direction="row"], .flex-row, .flex:not(.flex-col))
+	> :is(
+		card,
+		analyst,
+		callout,
+		badge,
+		attribution-box,
+		slide-footer,
+		stack,
+		media-slot,
+		img
+	)[height="fill"] {
+	align-self: stretch;
+	min-height: 0;
 }
 
 :is(
 	card,
+	analyst,
 	callout,
 	badge,
 	attribution-box,
@@ -69,7 +115,24 @@
 	media-slot,
 	img
 )[height="hug"] {
-	align-self: auto;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: auto;
+}
+
+:is(stack[direction="row"], .flex-row, .flex:not(.flex-col))
+	> :is(
+		card,
+		analyst,
+		callout,
+		badge,
+		attribution-box,
+		slide-footer,
+		stack,
+		media-slot,
+		img
+	)[height="hug"] {
+	align-self: flex-start;
 }
 
 img[width="fill"],

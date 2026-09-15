@@ -21,3 +21,15 @@ slide-title[size="md"] {
 slide-title[size="sm"] {
 	font-size: var(--slide-title-size-sm);
 }
+
+slide-title[align="left"] {
+	text-align: left;
+}
+
+slide-title[align="center"] {
+	text-align: center;
+}
+
+slide-title[align="right"] {
+	text-align: right;
+}

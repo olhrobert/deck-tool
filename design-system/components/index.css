@@ -1,13 +1,13 @@
 @import "deck/deck.css";
 @import "slide/slide.css";
 @import "typography/text.css";
-@import "body-copy/body-copy.css";
-@import "paragraph-title/paragraph-title.css";
 @import "cover-title/cover-title.css";
+@import "divider/divider.css";
 @import "slide-title/slide-pretitle.css";
 @import "slide-title/slide-title-group.css";
 @import "slide-title/slide-title.css";
 @import "slide-title/slide-subtitle.css";
+@import "analyst/analyst.css";
 @import "card/card.css";
 @import "card/presets/card-pretitle.css";
 @import "card/presets/card-title.css";

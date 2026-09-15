@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Slide title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide>
+				<header-container>
+					<slide-title-group align="center">
+						<slide-pretitle data-slot="pre" tone="subtle" context="slide"
+							>Pre-title</slide-pretitle
+						>
+						<slide-title data-slot="main" size="md" tone="strong" context="slide"
+							>Slide title</slide-title
+						>
+					</slide-title-group>
+				</header-container>
+				<content-container class="flex">
+					<stack
+						direction="row"
+						gap="10"
+						width="fill"
+						height="fill"
+					>
+						<stack direction="col" gap="3" width="fill">
+							<badge variant="emphasis">
+								<badge-text data-slot="label" tone="strong" context="surface"
+									>Section label</badge-text
+								>
+							</badge>
+							<divider></divider>
+							<stack direction="col" gap="0">
+								<text
+									data-slot="item-title"
+									family="display"
+									size="400"
+									tone="strong"
+									context="slide"
+									>Item title</text
+								>
+								<text
+									data-slot="item-text"
+									size="350"
+									tone="base"
+									context="slide"
+									>Short description, can be a couple sentences
+									long.</text
+								>
+							</stack>
+							<divider></divider>
+							<stack direction="col" gap="0">
+								<text
+									data-slot="item-title"
+									family="display"
+									size="400"
+									tone="strong"
+									context="slide"
+									>Item title</text
+								>
+								<text
+									data-slot="item-text"
+									size="350"
+									tone="base"
+									context="slide"
+									>Short description, can be a couple sentences
+									long.</text
+								>
+							</stack>
+							<divider></divider>
+							<stack direction="col" gap="0">
+								<text
+									data-slot="item-title"
+									family="display"
+									size="400"
+									tone="strong"
+									context="slide"
+									>Item title</text
+								>
+								<text
+									data-slot="item-text"
+									size="350"
+									tone="base"
+									context="slide"
+									>Short description, can be a couple sentences
+									long.</text
+								>
+							</stack>
+							<divider></divider>
+						</stack>
+						<media-slot
+							data-slot="image"
+							width="hug"
+							height="fill"
+							style="width: 440px"
+						>
+							<text size="200" tone="subtle" context="slide">Photo</text>
+						</media-slot>
+						<stack direction="col" gap="3" width="fill">
+							<badge variant="emphasis">
+								<badge-text data-slot="label" tone="strong" context="surface"
+									>Section label</badge-text
+								>
+							</badge>
+							<divider></divider>
+							<stack direction="col" gap="0">
+								<text
+									data-slot="item-title"
+									family="display"
+									size="400"
+									tone="strong"
+									context="slide"
+									>Item title</text
+								>
+								<text
+									data-slot="item-text"
+									size="350"
+									tone="base"
+									context="slide"
+									>Short description, can be a couple sentences
+									long.</text
+								>
+							</stack>
+							<divider></divider>
+							<stack direction="col" gap="0">
+								<text
+									data-slot="item-title"
+									family="display"
+									size="400"
+									tone="strong"
+									context="slide"
+									>Item title</text
+								>
+								<text
+									data-slot="item-text"
+									size="350"
+									tone="base"
+									context="slide"
+									>Short description, can be a couple sentences
+									long.</text
+								>
+							</stack>
+							<divider></divider>
+							<stack direction="col" gap="0">
+								<text
+									data-slot="item-title"
+									family="display"
+									size="400"
+									tone="strong"
+									context="slide"
+									>Item title</text
+								>
+								<text
+									data-slot="item-text"
+									size="350"
+									tone="base"
+									context="slide"
+									>Short description, can be a couple sentences
+									long.</text
+								>
+							</stack>
+							<divider></divider>
+						</stack>
+					</stack>
+				</content-container>
+				<footer-container>
+					<slide-footer>
+						<img
+							data-slot="logo"
+							data-logo
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							class="shrink-0 block"
+						/>
+						<slide-footer-notes data-slot="notes" tone="subtle"
+							>Add notes or sources here.</slide-footer-notes
+						>
+						<slide-footer-meta>
+							<slide-footer-title data-slot="deck-title" tone="subtle"
+								>Deck title</slide-footer-title
+							>
+							<slide-footer-chapter data-slot="chapter" tone="subtle"
+								>Chapter</slide-footer-chapter
+							>
+							<slide-footer-page data-slot="page" tone="subtle"
+								>01</slide-footer-page
+							>
+						</slide-footer-meta>
+					</slide-footer>
+				</footer-container>
+			</slide>
+		</deck>
+	</body>
+</html>

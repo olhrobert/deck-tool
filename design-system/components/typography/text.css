@@ -1,5 +1,5 @@
 /* Base typography.
-   <text> is the primitive. Semantic tags (body-copy, slide-pretitle, card-pretitle, …)
+   <text> is the primitive. Semantic tags (slide-pretitle, card-pretitle, …)
    are presets: they inherit these axes and bake brand family/weight/size.
 
    Axes:
@@ -9,6 +9,7 @@
      context="slide|surface"        default slide
 
    Extra on <text> only: family, weight, lineheight, letterspacing.
+   family="display" picks --font-family-display (in-body headings).
 */
 
 :is(
@@ -20,8 +21,6 @@
 	cover-title,
 	card-title,
 	card-meta,
-	paragraph-title,
-	body-copy,
 	callout-title,
 	callout-description,
 	badge-text,
@@ -129,9 +128,12 @@ text[family="card-title"] {
 	font-weight: var(--card-title-font-weight, 700);
 }
 
-text[family="paragraph-title"] {
-	font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
-	font-weight: var(--paragraph-title-font-weight, 700);
+text[family="display"] {
+	font-family: var(--font-family-display);
+}
+
+text[family="base"] {
+	font-family: var(--font-family-base);
 }
 
 text[family="body"] {

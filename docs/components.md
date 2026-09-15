@@ -6,22 +6,31 @@ One table for size, gap, padding, and variant. Brand tokens pick the actual step
 
 | Element | Attribute | Values | Default |
 | --- | --- | --- | --- |
-| `<body-copy>`, `<paragraph-title>`, `<slide-title>` | `size` | `sm` \| `md` \| `lg` | `md` |
+| `<slide-title>` | `size` | `sm` \| `md` \| `lg` | `md` |
 | `<cover-title>` | `size` | `sm` \| `md` \| `lg` \| `xl` | `md` |
-| `<text>` (attribution) | `size` | type-scale step (`200`…`4000`) | `400` |
-| `<stamp>` | `size` | spacing-scale step (`0`…`40`, `0-5`, …) | brand `stamp.defaultSize` |
+| `<analyst>` | `size` | `sm` \| `lg` | `lg` |
+| `<text>` | `size` | type-scale step (`200`…`4000`) | `400` |
+| `<stamp>`, `<media-slot>` | `size` | spacing-scale step (`0`…`40`, `0-5`, …) | stamp: brand default; media-slot: omit |
 
 Do not put `size` on badge, callout title/description, or card/callout padding axes.
+
+## Align
+
+| Element | Attribute | Values | Default |
+| --- | --- | --- | --- |
+| `<slide-title-group>`, `<slide-title>` | `align` | `left` \| `center` \| `right` | `left` |
+
+Omit `align` for left. Set it on `<slide-title-group>` so pretitles, title, and subtitle share the alignment.
 
 ## Gap
 
 | Element | Attribute | Values | Default when omitted |
 | --- | --- | --- | --- |
-| `<stack>` | `gap` | `none` \| `sm` \| `md` \| `lg` | `md` |
+| `<stack>` | `gap` | spacing-scale step (`0`…`40`, `0-5`, …) | `4` |
 | `<card>` | `gap` | `none` \| `sm` \| `md` \| `lg` | `sm` |
 | `<callout>` | `gap` | `none` \| `sm` \| `md` \| `lg` | `sm` |
 
-`<stack>` has no `gap="0"` alias — use `none`.
+`<stack>` `wrap="true"` lets row children wrap (analyst tags).
 
 ## Padding
 
@@ -29,16 +38,21 @@ Do not put `size` on badge, callout title/description, or card/callout padding a
 | --- | --- | --- | --- |
 | `<card>` | `padding` | `sm` \| `md` \| `lg` | `md` (`components.card.padding`) |
 | `<callout>` | `padding` | `sm` \| `md` \| `lg` | `md` (`components.callout.padding`) |
+| `<media-slot>` | `padding` | `none` \| `sm` \| `md` \| `lg` | `md` |
+
+`<media-slot>` `border="false"` drops the well stroke. `radius="none"` squares the corners. `size` is a spacing-scale square (analyst logo: `size="10"` on lg, `size="7"` on sm).
 
 ## Variant
 
 | Element | `variant` | Notes |
 | --- | --- | --- |
-| `<card>`, `<badge>`, `<stamp>` | `neutral` \| `emphasis` \| `positive` \| `warning` \| `negative` \| `informative` | Default `neutral`. |
+| `<card>`, `<analyst>`, `<badge>`, `<stamp>` | `neutral` \| `emphasis` \| `positive` \| `warning` \| `negative` \| `informative` | Default `neutral`. |
 | `<callout>` | `neutral` \| `positive` \| `warning` \| `negative` \| `informative` | No `emphasis`. |
 
 Paint follows inherited `color-theme` (`light` \| `dark`). Card `layout="basic|stripe"` is omitted so `components.card.defaultLayout` applies.
 
 ## Fill / hug
 
-`width="fill|hug"` and `height="fill|hug"` work on `card`, `callout`, `badge`, `attribution-box`, `slide-footer`, `stack`, `media-slot`, and `img`. Column stacks (`direction="col"`) grow `height="fill"` children. Images use `object-fit: cover`.
+`width="fill|hug"` and `height="fill|hug"` work on `card`, `analyst`, `callout`, `badge`, `attribution-box`, `slide-footer`, `stack`, `media-slot`, and `img`. They are independent axes: `width` is horizontal only, `height` is vertical only. Omit both to hug.
+
+Row `<stack>` hugs children’s height. Set `height="fill"` on a child (media well) to stretch it. Nested stacks do not auto-share a row — set `width="fill"` on each child that should. Column stacks stretch children so copy wraps; `width="fill"` in a column does not grow height. Images use `object-fit: cover`.

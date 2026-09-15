@@ -5,6 +5,7 @@ use_when:
   - Three parallel facts, metrics, or offerings
   - A simple comparison row that still fits on cards
 not_when:
+  - Copy columns flanking a central image (use content-slide-split-media)
   - Narrative plus a portrait (use content-slide-story)
   - One callout or a long body of copy
   - Title or chapter slides

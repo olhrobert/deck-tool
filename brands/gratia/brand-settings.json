@@ -221,10 +221,7 @@
 		},
 		"bodyCopy": {
 			"family": "base",
-			"weight": "regular",
-			"sizeSm": 350,
-			"sizeMd": 400,
-			"sizeLg": 450
+			"weight": "regular"
 		},
 		"callout": {
 			"background": {
@@ -576,6 +573,19 @@
 			"sizeLg": 3000,
 			"sizeXl": 4000
 		},
+		"divider": {
+			"color": {
+				"light": {
+					"color": "semantic.neutral",
+					"opacity": 0.2
+				},
+				"dark": {
+					"color": "brand.5",
+					"opacity": 0.2
+				}
+			},
+			"width": 1
+		},
 		"footerContainer": {
 			"paddingTop": 4,
 			"paddingRight": 4,
@@ -587,13 +597,6 @@
 			"paddingRight": 20,
 			"paddingBottom": 0,
 			"paddingLeft": 20
-		},
-		"paragraphTitle": {
-			"family": "display",
-			"weight": "medium",
-			"sizeSm": 400,
-			"sizeMd": 500,
-			"sizeLg": 600
 		},
 		"slide": {
 			"canvas": {
@@ -642,14 +645,6 @@
 				"family": "base",
 				"weight": "regular",
 				"size": 350
-			}
-		},
-		"stack": {
-			"gap": {
-				"none": 0,
-				"sm": 2,
-				"md": 3,
-				"lg": 4
 			}
 		},
 		"stamp": {

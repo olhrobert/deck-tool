@@ -1,0 +1,96 @@
+<analyst size="sm">
+	<stack data-slot="cover" width="fill">
+		<media-slot
+			data-slot="image"
+			width="fill"
+			padding="none"
+			border="false"
+			radius="none"
+			class="aspect-square"
+		>
+			<text size="200" tone="subtle" context="slide">Photo</text>
+		</media-slot>
+		<badge data-slot="specialization" variant="emphasis" border="false">
+			<badge-icon
+				data-slot="leading"
+				icon="star-fill"
+				aria-hidden="true"
+			></badge-icon>
+			<badge-text data-slot="label" tone="strong" context="surface"
+				>Specialization</badge-text
+			>
+		</badge>
+	</stack>
+	<stack data-slot="body" direction="col" gap="2-5" width="fill">
+		<stack
+			direction="row"
+			gap="4"
+			width="fill"
+			class="items-center"
+		>
+			<stack direction="col" gap="0" width="fill">
+				<text
+					data-slot="name"
+					family="display"
+					size="400"
+					weight="bold"
+					tone="strong"
+					context="surface"
+					>Name</text
+				>
+				<text
+					data-slot="role"
+					size="300"
+					tone="base"
+					context="surface"
+					>Role</text
+				>
+			</stack>
+			<media-slot data-slot="logo" size="7" padding="none">
+				<text size="200" tone="subtle" context="slide">Logo</text>
+			</media-slot>
+		</stack>
+		<stack
+			data-slot="location-row"
+			direction="row"
+			gap="1-5"
+			width="fill"
+			class="items-center"
+		>
+			<badge-icon
+				data-slot="location-icon"
+				icon="earth-fill"
+				aria-hidden="true"
+			></badge-icon>
+			<text
+				data-slot="location"
+				size="300"
+				tone="subtle"
+				context="surface"
+				>Location</text
+			>
+		</stack>
+		<stack data-slot="tags" direction="row" gap="2" wrap="true">
+			<badge variant="neutral" border="false">
+				<badge-text data-slot="tag" tone="strong" context="surface"
+					>Tag</badge-text
+				>
+			</badge>
+			<badge variant="neutral" border="false">
+				<badge-text data-slot="tag" tone="strong" context="surface"
+					>Tag</badge-text
+				>
+			</badge>
+			<badge variant="neutral" border="false">
+				<badge-text data-slot="tag" tone="strong" context="surface"
+					>Tag</badge-text
+				>
+			</badge>
+			<badge variant="neutral" border="false">
+				<badge-text data-slot="tag" tone="strong" context="surface"
+					>Tag</badge-text
+				>
+			</badge>
+		</stack>
+	</stack>
+</analyst>

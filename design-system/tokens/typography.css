@@ -47,13 +47,9 @@
 	--slide-pretitle-font-weight: var(--font-weight-regular);
 	--card-pretitle-font-weight: var(--font-weight-regular);
 	--card-title-font-weight: var(--font-weight-bold);
-	--paragraph-title-font-weight: var(--font-weight-bold);
+	--body-font-family: var(--font-family-base);
 	--body-font-weight: var(--font-weight-regular);
 
-	/* body copy — brands set bodyCopy.sizeSm/Md/Lg to type-scale steps */
-	--body-size-sm: var(--text-size-350);
-	--body-size-md: var(--text-size-400);
-	--body-size-lg: var(--text-size-450);
 	/* slide title — family + sizes driven by slideTitle.title in brand-settings.json */
 	--slide-title-lineheight: 1.2;
 	--slide-title-size-sm: var(--text-size-800);
@@ -74,12 +70,6 @@
 	/* slide subtitle — driven by slideTitle.subtitle in brand-settings.json */
 	--slide-subtitle-lineheight: 1.2;
 	--slide-subtitle-size: var(--text-size-350);
-
-	/* paragraph title — driven by paragraphTitle in brand-settings.json */
-	--paragraph-title-lineheight: 1.1;
-	--paragraph-title-size-sm: var(--text-size-400);
-	--paragraph-title-size-md: var(--text-size-500);
-	--paragraph-title-size-lg: var(--text-size-600);
 
 	/* card title sizes — brands set card.title.sizeSm/Md/Lg to scale steps */
 	--card-title-size-sm: var(--text-size-600);
@@ -112,15 +102,9 @@
 	--card-gap-md: var(--spacing-3);
 	--card-gap-lg: var(--spacing-4);
 
-	/* stack — brands set stack.gap */
-	--stack-gap-none: var(--spacing-0);
-	--stack-gap-sm: var(--spacing-2);
-	--stack-gap-md: var(--spacing-3);
-	--stack-gap-lg: var(--spacing-4);
-
 	/* callout type — brands set callout.title / description / padding / gap */
-	--callout-title-font-family: var(--paragraph-title-font-family, system-ui, sans-serif);
-	--callout-title-font-weight: var(--paragraph-title-font-weight);
+	--callout-title-font-family: var(--font-family-display);
+	--callout-title-font-weight: var(--font-weight-medium);
 	--callout-title-size: var(--text-size-400);
 	--callout-description-font-family: var(--body-font-family, system-ui, sans-serif);
 	--callout-description-font-weight: var(--body-font-weight);
