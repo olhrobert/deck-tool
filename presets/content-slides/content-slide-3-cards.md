@@ -1,12 +1,21 @@
 ---
 id: content-slide-3-cards
 kind: content
+intent: layout
 use_when:
   - Three parallel facts, metrics, or offerings
   - A simple comparison row that still fits on cards
 not_when:
+  - Twelve-card grid starting point (use content-slide-12-cards)
+  - Gratia founder story as-is (use gratia-about)
+  - Gratia service catalog as-is (use gratia-services)
   - Copy columns flanking a central image (use content-slide-split-media)
-  - Narrative plus a portrait (use content-slide-story)
+  - Title stack beside a square image (use content-slide-text-and-image)
+  - Service offering with a case study and featured analyst (use content-slide-service)
+  - Numbered steps next to a screenshot (use content-slide-steps-media)
+  - Project recap with an actions list and result cards (use content-slide-actions-results)
+  - Gratia fundraising opener as-is (use gratia-fundraising)
+  - Gratia contact closer as-is (use gratia-contact)
   - One callout or a long body of copy
   - Title or chapter slides
 color_theme: inherit

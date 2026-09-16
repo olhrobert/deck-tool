@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Slide title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide>
+				<stack
+					direction="row"
+					gap="0"
+					width="fill"
+					class="flex-1"
+				>
+					<stack
+						direction="col"
+						gap="0"
+						width="fill"
+						height="fill"
+						style="padding: var(--spacing-16) var(--spacing-10) 0 var(--spacing-20)"
+					>
+						<content-container class="flex flex-col p-0">
+							<stack
+								direction="col"
+								gap="10"
+								width="fill"
+								height="fill"
+							>
+							<stack direction="col" gap="4" width="fill">
+								<slide-title-group>
+									<slide-title
+										data-slot="main"
+										size="md"
+										tone="strong"
+										context="slide"
+										>Slide title</slide-title
+									>
+									<slide-subtitle
+										data-slot="sub"
+										tone="base"
+										context="slide"
+										>Optional subtitle</slide-subtitle
+									>
+								</slide-title-group>
+								<stack
+									direction="row"
+									gap="4"
+									wrap="true"
+									class="items-center"
+								>
+									<stack
+										direction="row"
+										gap="1-5"
+										class="items-center"
+									>
+										<stamp variant="emphasis" size="4">
+											<stamp-icon
+												data-slot="mark"
+												icon="check-fill"
+												aria-hidden="true"
+											></stamp-icon>
+										</stamp>
+										<text
+											data-slot="service"
+											size="300"
+											tone="base"
+											context="slide"
+											>Service one</text
+										>
+									</stack>
+									<stack
+										direction="row"
+										gap="1-5"
+										class="items-center"
+									>
+										<stamp variant="emphasis" size="4">
+											<stamp-icon
+												data-slot="mark"
+												icon="check-fill"
+												aria-hidden="true"
+											></stamp-icon>
+										</stamp>
+										<text
+											data-slot="service"
+											size="300"
+											tone="base"
+											context="slide"
+											>Service two</text
+										>
+									</stack>
+									<stack
+										direction="row"
+										gap="1-5"
+										class="items-center"
+									>
+										<stamp variant="emphasis" size="4">
+											<stamp-icon
+												data-slot="mark"
+												icon="check-fill"
+												aria-hidden="true"
+											></stamp-icon>
+										</stamp>
+										<text
+											data-slot="service"
+											size="300"
+											tone="base"
+											context="slide"
+											>Service three</text
+										>
+									</stack>
+								</stack>
+							</stack>
+							<stack
+								direction="col"
+								gap="0"
+								width="fill"
+								height="hug"
+								class="border border-color-divider rounded overflow-hidden"
+							>
+								<stack
+									direction="row"
+									gap="4"
+									width="fill"
+									class="items-center p-6"
+								>
+									<stack
+										direction="col"
+										gap="1"
+										width="fill"
+									>
+										<text
+											data-slot="pretitle"
+											family="label"
+											size="300"
+											tone="subtle"
+											context="slide"
+											>Case study</text
+										>
+										<text
+											data-slot="title"
+											family="heading"
+											size="500"
+											tone="strong"
+											context="slide"
+											>Case study title</text
+										>
+										<text
+											data-slot="text"
+											size="300"
+											tone="base"
+											context="slide"
+											>Short description of the engagement and
+											outcome.</text
+										>
+									</stack>
+									<media-slot
+										data-slot="partner"
+										width="hug"
+										padding="none"
+										style="width: 160px; height: 64px"
+									>
+										<text
+											size="200"
+											tone="subtle"
+											context="slide"
+											>Logo</text
+										>
+									</media-slot>
+								</stack>
+								<divider></divider>
+								<stack
+									direction="row"
+									gap="0"
+									width="fill"
+								>
+									<stack
+										direction="col"
+										gap="2"
+										width="fill"
+										class="p-4 px-6"
+									>
+										<text
+											data-slot="column-label"
+											family="heading"
+											size="300"
+											tone="strong"
+											context="slide"
+											>Column label</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+									</stack>
+									<stack
+										direction="col"
+										gap="2"
+										width="fill"
+										class="p-4 px-6"
+									>
+										<text
+											data-slot="column-label"
+											family="heading"
+											size="300"
+											tone="strong"
+											context="slide"
+											>Column label</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+									</stack>
+									<stack
+										direction="col"
+										gap="2"
+										width="fill"
+										class="p-4 px-6"
+									>
+										<text
+											data-slot="column-label"
+											family="heading"
+											size="300"
+											tone="strong"
+											context="slide"
+											>Column label</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+										<text
+											data-slot="column-item"
+											size="250"
+											tone="base"
+											context="slide"
+											>Short supporting point.</text
+										>
+									</stack>
+								</stack>
+								<divider></divider>
+								<stack
+									direction="row"
+									gap="12"
+									width="fill"
+									class="p-6"
+								>
+									<stack
+										direction="col"
+										gap="0"
+										width="fill"
+									>
+										<text
+											data-slot="stat-label"
+											family="heading"
+											size="300"
+											tone="subtle"
+											context="slide"
+											>Stat label</text
+										>
+										<text
+											data-slot="stat-value"
+											family="stat"
+											size="1000"
+											tone="strong"
+											context="slide"
+											>00</text
+										>
+									</stack>
+									<stack
+										direction="col"
+										gap="0"
+										width="fill"
+									>
+										<text
+											data-slot="stat-label"
+											family="heading"
+											size="300"
+											tone="subtle"
+											context="slide"
+											>Stat label</text
+										>
+										<text
+											data-slot="stat-value"
+											family="stat"
+											size="1000"
+											tone="strong"
+											context="slide"
+											>00</text
+										>
+									</stack>
+									<stack
+										direction="col"
+										gap="0"
+										width="fill"
+									>
+										<text
+											data-slot="stat-label"
+											family="heading"
+											size="300"
+											tone="subtle"
+											context="slide"
+											>Stat label</text
+										>
+										<text
+											data-slot="stat-value"
+											family="stat"
+											size="1000"
+											tone="strong"
+											context="slide"
+											>00</text
+										>
+									</stack>
+								</stack>
+							</stack>
+							</stack>
+						</content-container>
+					</stack>
+					<divider orientation="vertical"></divider>
+					<stack
+						direction="col"
+						gap="6"
+						width="hug"
+						height="fill"
+						style="width: 328px; padding: var(--spacing-16) var(--spacing-10) 0 var(--spacing-10)"
+					>
+							<stack direction="col" gap="1" width="fill">
+								<text
+									data-slot="sidebar-title"
+									family="heading"
+									size="500"
+									tone="strong"
+									context="slide"
+									>Featured analyst</text
+								>
+								<text
+									data-slot="sidebar-text"
+									size="300"
+									tone="base"
+									context="slide"
+									>Short bio of the featured analyst.</text
+								>
+							</stack>
+							<analyst color-theme="light">
+								<stack data-slot="cover" width="fill">
+									<media-slot
+										data-slot="image"
+										width="fill"
+										padding="none"
+										border="false"
+										radius="none"
+										class="aspect-square"
+									>
+										<text
+											size="200"
+											tone="subtle"
+											context="slide"
+											>Photo</text
+										>
+									</media-slot>
+									<badge
+										data-slot="specialization"
+										variant="emphasis"
+										border="false"
+									>
+										<badge-icon
+											data-slot="leading"
+											icon="star-fill"
+											aria-hidden="true"
+										></badge-icon>
+										<badge-text
+											data-slot="label"
+											tone="strong"
+											context="surface"
+											>Specialization</badge-text
+										>
+									</badge>
+								</stack>
+								<stack
+									data-slot="body"
+									direction="col"
+									gap="2-5"
+									width="fill"
+								>
+									<stack
+										direction="row"
+										gap="4"
+										width="fill"
+										class="items-center"
+									>
+										<stack
+											direction="col"
+											gap="0"
+											width="fill"
+										>
+											<text
+												data-slot="name"
+												family="heading"
+												size="400"
+												tone="strong"
+												context="surface"
+												>Name</text
+											>
+											<text
+												data-slot="role"
+												size="300"
+												tone="base"
+												context="surface"
+												>Role</text
+											>
+										</stack>
+										<media-slot
+											data-slot="logo"
+											size="10"
+											padding="none"
+										>
+											<text
+												size="200"
+												tone="subtle"
+												context="slide"
+												>Logo</text
+											>
+										</media-slot>
+									</stack>
+									<stack
+										data-slot="location-row"
+										direction="row"
+										gap="1-5"
+										width="fill"
+										class="items-center"
+									>
+										<badge-icon
+											data-slot="location-icon"
+											icon="earth-fill"
+											aria-hidden="true"
+										></badge-icon>
+										<text
+											data-slot="location"
+											size="300"
+											tone="subtle"
+											context="surface"
+											>Location</text
+										>
+									</stack>
+									<stack
+										data-slot="tags"
+										direction="row"
+										gap="2"
+										wrap="true"
+									>
+										<badge variant="neutral" border="false">
+											<badge-text
+												data-slot="tag"
+												tone="strong"
+												context="surface"
+												>Tag</badge-text
+											>
+										</badge>
+										<badge variant="neutral" border="false">
+											<badge-text
+												data-slot="tag"
+												tone="strong"
+												context="surface"
+												>Tag</badge-text
+											>
+										</badge>
+										<badge variant="neutral" border="false">
+											<badge-text
+												data-slot="tag"
+												tone="strong"
+												context="surface"
+												>Tag</badge-text
+											>
+										</badge>
+										<badge variant="neutral" border="false">
+											<badge-text
+												data-slot="tag"
+												tone="strong"
+												context="surface"
+												>Tag</badge-text
+											>
+										</badge>
+									</stack>
+								</stack>
+							</analyst>
+					</stack>
+				</stack>
+				<divider></divider>
+				<footer-container>
+					<slide-footer>
+						<img
+							data-slot="logo"
+							data-logo
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							class="shrink-0 block"
+						/>
+						<slide-footer-notes data-slot="notes" tone="subtle"
+							>Add notes or sources here.</slide-footer-notes
+						>
+						<slide-footer-meta>
+							<slide-footer-title data-slot="deck-title" tone="subtle"
+								>Deck title</slide-footer-title
+							>
+							<slide-footer-chapter data-slot="chapter" tone="subtle"
+								>Chapter</slide-footer-chapter
+							>
+							<slide-footer-page data-slot="page" tone="subtle"
+								>01</slide-footer-page
+							>
+						</slide-footer-meta>
+					</slide-footer>
+				</footer-container>
+			</slide>
+		</deck>
+	</body>
+</html>

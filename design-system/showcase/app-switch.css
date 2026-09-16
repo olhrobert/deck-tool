@@ -7,7 +7,7 @@ app-switch {
 	padding: var(--spacing-1);
 	box-sizing: border-box;
 	background-color: var(--color-slide-surface-background);
-	border: 1px solid var(--color-slide-surface-border);
+	border: 1px solid var(--divider-color);
 	border-radius: var(--card-border-radius, var(--border-radius-med));
 	flex: 0 0 auto;
 }
@@ -15,7 +15,7 @@ app-switch {
 app-switch > button {
 	appearance: none;
 	margin: 0;
-	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-family: var(--font-text-family, system-ui, sans-serif);
 	font-size: var(--text-size-300);
 	font-weight: var(--font-weight-medium);
 	line-height: 1.2;

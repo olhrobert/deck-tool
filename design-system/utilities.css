@@ -70,6 +70,12 @@
 .w-full {
 	width: 100%;
 }
+.w-1-3 {
+	flex: 0 0 33.333%;
+	width: 33.333%;
+	min-width: 0;
+	box-sizing: border-box;
+}
 .min-w-0 {
 	min-width: 0;
 }
@@ -100,6 +106,11 @@
 	padding: var(--spacing-20);
 }
 
+.px-6 {
+	padding-left: var(--spacing-6);
+	padding-right: var(--spacing-6);
+}
+
 .pt-6 {
 	padding-top: var(--spacing-6);
 }
@@ -111,6 +122,9 @@
 }
 .pr-6 {
 	padding-right: var(--spacing-6);
+}
+.pr-0 {
+	padding-right: var(--spacing-0);
 }
 .pb-4 {
 	padding-bottom: var(--spacing-4);
@@ -153,12 +167,31 @@
 	text-align: center;
 }
 
-.border-color-slide-surface {
-	border-color: var(--color-slide-surface-border);
+.bg-slide {
+	background-color: var(--color-slide-background);
+}
+.bg-slide-surface {
+	background-color: var(--color-slide-surface-background);
+}
+
+.border-color-divider {
+	border-color: var(--divider-color);
+}
+.border {
+	border-width: var(--border-size-sm);
+	border-style: solid;
 }
 .border-t {
 	border-top-width: 1px;
 	border-top-style: solid;
+}
+
+.rounded {
+	border-radius: var(--card-border-radius);
+}
+
+.overflow-hidden {
+	overflow: hidden;
 }
 
 .color-slide-foreground-base {

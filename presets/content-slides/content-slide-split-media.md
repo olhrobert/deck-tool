@@ -1,12 +1,21 @@
 ---
 id: content-slide-split-media
 kind: content
+intent: layout
 use_when:
   - Two copy columns flanking a central image, screenshot, or diagram
   - A product or proof visual with matching labeled points on each side
 not_when:
   - Three equal cards (use content-slide-3-cards)
-  - Narrative plus a portrait (use content-slide-story)
+  - Twelve-card grid starting point (use content-slide-12-cards)
+  - Gratia founder story as-is (use gratia-about)
+  - Gratia service catalog as-is (use gratia-services)
+  - Title stack beside a square image (use content-slide-text-and-image)
+  - Service offering with a case study and featured analyst (use content-slide-service)
+  - Numbered steps next to a screenshot (use content-slide-steps-media)
+  - Project recap with an actions list and result cards (use content-slide-actions-results)
+  - Gratia fundraising opener as-is (use gratia-fundraising)
+  - Gratia contact closer as-is (use gratia-contact)
   - Title or chapter slides
 color_theme: inherit
 slots: [pre, main, label, item-title, item-text, image]
@@ -23,7 +32,7 @@ Centered header, three columns (copy | media | copy), default `<slide-footer>`. 
 | Pre | `<slide-pretitle data-slot="pre">` (or badge, per brand default) | Short label. Omit if unused. |
 | Title | `<slide-title data-slot="main" align inherited from group>` | Headline. Keep `align="center"` on the group. |
 | Section label | `<badge variant="emphasis">` | Column heading. Keep emphasis. |
-| Item title / text | `<text family="display">` + `<text>` | Three labeled points per column. Keep the `<divider>` between them. |
+| Item title / text | `<text family="heading">` + `<text>` | Three labeled points per column. Keep the `<divider>` between them. |
 | Image | `<media-slot data-slot="image" width="hug" height="fill" style="width: 440px">` | Keep the well until artwork exists. Then replace with `<img data-slot="image" height="fill" style="width: 440px">`. |
 
 ## Color theme

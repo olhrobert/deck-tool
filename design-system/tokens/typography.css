@@ -35,20 +35,36 @@
 	--font-weight-medium: 500;
 	--font-weight-bold: 700;
 
-	/* Role weights — brands set coverTitle.weight / card.title.weight / bodyCopy.weight to regular|medium|bold */
-	--cover-title-font-weight: var(--font-weight-bold);
+	/* Style roles — brands set font.title|heading|stat|text|label to a named family + weight */
+	--font-title-family: var(--font-family-display);
+	--font-title-weight: var(--font-weight-bold);
+	--font-heading-family: var(--font-family-base);
+	--font-heading-weight: var(--font-weight-bold);
+	--font-stat-family: var(--font-family-display);
+	--font-stat-weight: var(--font-weight-bold);
+	--font-text-family: var(--font-family-base);
+	--font-text-weight: var(--font-weight-regular);
+	--font-label-family: var(--font-family-base);
+	--font-label-weight: var(--font-weight-medium);
+
+	/* Component aliases — brands set coverTitle.font / slideTitle.title.font / … to a style role */
+	--cover-title-font-family: var(--font-title-family);
+	--cover-title-font-weight: var(--font-title-weight);
 	--cover-title-lineheight: 1.1;
 	--cover-title-size-sm: var(--text-size-1200);
 	--cover-title-size-md: var(--text-size-2400);
 	--cover-title-size-lg: var(--text-size-3000);
 	--cover-title-size-xl: var(--text-size-4000);
-	--slide-title-font-weight: var(--font-weight-bold);
-	--slide-subtitle-font-weight: var(--font-weight-regular);
-	--slide-pretitle-font-weight: var(--font-weight-regular);
-	--card-pretitle-font-weight: var(--font-weight-regular);
-	--card-title-font-weight: var(--font-weight-bold);
-	--body-font-family: var(--font-family-base);
-	--body-font-weight: var(--font-weight-regular);
+	--slide-title-font-family: var(--font-title-family);
+	--slide-title-font-weight: var(--font-title-weight);
+	--slide-subtitle-font-family: var(--font-text-family);
+	--slide-subtitle-font-weight: var(--font-text-weight);
+	--slide-pretitle-font-family: var(--font-label-family);
+	--slide-pretitle-font-weight: var(--font-label-weight);
+	--card-pretitle-font-family: var(--font-label-family);
+	--card-pretitle-font-weight: var(--font-label-weight);
+	--card-title-font-family: var(--font-heading-family);
+	--card-title-font-weight: var(--font-heading-weight);
 
 	/* slide title — family + sizes driven by slideTitle.title in brand-settings.json */
 	--slide-title-lineheight: 1.2;
@@ -84,12 +100,10 @@
 	);
 	--card-title-weight: var(--card-title-font-weight);
 	--card-title-lineheight: 1;
-	--card-meta-family: var(
-		--body-font-family,
-		system-ui,
-		sans-serif
-	);
-	--card-meta-weight: var(--body-font-weight);
+	--card-meta-font-family: var(--font-text-family);
+	--card-meta-font-weight: var(--font-text-weight);
+	--card-meta-family: var(--card-meta-font-family);
+	--card-meta-weight: var(--card-meta-font-weight);
 	--card-meta-lineheight: 1.2;
 	--card-meta-size: var(--text-size-300);
 
@@ -97,17 +111,18 @@
 	--card-padding-sm: var(--spacing-3);
 	--card-padding-md: var(--spacing-4);
 	--card-padding-lg: var(--spacing-6);
+	--card-padding-xl: var(--spacing-12);
 	--card-gap-none: var(--spacing-0);
 	--card-gap-sm: var(--spacing-2);
 	--card-gap-md: var(--spacing-3);
 	--card-gap-lg: var(--spacing-4);
 
 	/* callout type — brands set callout.title / description / padding / gap */
-	--callout-title-font-family: var(--font-family-display);
-	--callout-title-font-weight: var(--font-weight-medium);
+	--callout-title-font-family: var(--font-heading-family);
+	--callout-title-font-weight: var(--font-heading-weight);
 	--callout-title-size: var(--text-size-400);
-	--callout-description-font-family: var(--body-font-family, system-ui, sans-serif);
-	--callout-description-font-weight: var(--body-font-weight);
+	--callout-description-font-family: var(--font-text-family);
+	--callout-description-font-weight: var(--font-text-weight);
 	--callout-description-size: var(--text-size-350);
 	--callout-stripe-width: var(--border-size-sm);
 	--callout-padding-sm: var(--spacing-3);
@@ -119,8 +134,8 @@
 	--callout-gap-lg: var(--spacing-4);
 
 	/* badge type — brands set badge.text / icon / border / padding */
-	--badge-text-font-family: var(--body-font-family, system-ui, sans-serif);
-	--badge-text-font-weight: var(--body-font-weight);
+	--badge-text-font-family: var(--font-text-family);
+	--badge-text-font-weight: var(--font-text-weight);
 	--badge-text-size: var(--text-size-300);
 	--badge-icon-size: var(--spacing-3);
 	--badge-border-radius: var(--border-radius-med);
@@ -134,11 +149,13 @@
 	--stamp-default-size: var(--spacing-6);
 	--stamp-border-radius: 50%;
 	--stamp-icon-scale: 0.6;
-	--stamp-text-font-family: var(--body-font-family, system-ui, sans-serif);
-	--stamp-text-font-weight: var(--font-weight-medium);
+	--stamp-text-font-family: var(--font-text-family);
+	--stamp-text-font-weight: var(--font-text-weight);
 	--stamp-text-scale: 0.6;
 
-	/* slide footer — brands set slideFooter.textSize / logoHeight / gap */
+	/* slide footer — brands set slideFooter.font / textSize / logoHeight / gap */
+	--slide-footer-font-family: var(--font-text-family);
+	--slide-footer-font-weight: var(--font-text-weight);
 	--slide-footer-text-size: var(--text-size-300);
 	--slide-footer-logo-height: var(--spacing-3);
 	--slide-footer-gap: var(--spacing-2);

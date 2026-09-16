@@ -2,6 +2,8 @@ header-container {
 	display: block;
 	box-sizing: border-box;
 	width: 100%;
+	min-width: 0;
+	overflow: hidden;
 	padding-top: var(--slide-header-padding-top);
 	padding-right: var(--slide-header-padding-right);
 	padding-bottom: var(--slide-header-padding-bottom);

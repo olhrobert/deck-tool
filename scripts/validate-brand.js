@@ -7,10 +7,13 @@ const {
 	isCssFontWeight,
 	isFontWeightName,
 	isFontFamilyName,
+	isFontStyleRoleName,
 	isFontNamedFamilyPath,
 	isFontRoleFamilyPath,
 	isFontNamedWeightPath,
 	isFontRoleWeightPath,
+	isFontRoleRefPath,
+	FONT_STYLE_ROLE_NAMES,
 	isTypeScaleStep,
 	isFontSizePath,
 	isSpacingStepPath,
@@ -245,6 +248,16 @@ function validateBrand(brandDir) {
 			if (!isFontWeightName(raw)) {
 				errors.push(
 					`${jsonPathKey} must be a named weight (${FONT_WEIGHT_NAMES.join(", ")}) from font.weight (got ${JSON.stringify(raw)})`,
+				);
+			}
+			continue;
+		}
+		if (isFontRoleRefPath(jsonPathKey)) {
+			const raw = getPath(brand, jsonPathKey);
+			if (raw === undefined) continue;
+			if (!isFontStyleRoleName(raw)) {
+				errors.push(
+					`${jsonPathKey} must be a font style role (${FONT_STYLE_ROLE_NAMES.join(", ")}) (got ${JSON.stringify(raw)})`,
 				);
 			}
 		}

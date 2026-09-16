@@ -2,6 +2,8 @@ footer-container {
 	display: block;
 	box-sizing: border-box;
 	width: 100%;
+	min-width: 0;
+	overflow: hidden;
 	padding-top: var(--slide-footer-padding-top);
 	padding-right: var(--slide-footer-padding-right);
 	padding-bottom: var(--slide-footer-padding-bottom);

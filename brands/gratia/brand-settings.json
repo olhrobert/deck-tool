@@ -46,6 +46,26 @@
 				"regular": 400,
 				"medium": 500,
 				"bold": 600
+			},
+			"title": {
+				"family": "display",
+				"weight": "bold"
+			},
+			"heading": {
+				"family": "base",
+				"weight": "bold"
+			},
+			"stat": {
+				"family": "base",
+				"weight": "bold"
+			},
+			"text": {
+				"family": "base",
+				"weight": "regular"
+			},
+			"label": {
+				"family": "base",
+				"weight": "medium"
 			}
 		},
 		"border": {
@@ -140,8 +160,7 @@
 				}
 			},
 			"text": {
-				"family": "base",
-				"weight": "medium",
+				"font": "text",
 				"size": 300
 			},
 			"icon": {
@@ -219,10 +238,6 @@
 				"inline": "1-5"
 			}
 		},
-		"bodyCopy": {
-			"family": "base",
-			"weight": "regular"
-		},
 		"callout": {
 			"background": {
 				"neutral": {
@@ -299,13 +314,11 @@
 				}
 			},
 			"title": {
-				"family": "display",
-				"weight": "medium",
+				"font": "heading",
 				"size": 400
 			},
 			"description": {
-				"family": "base",
-				"weight": "regular",
+				"font": "text",
 				"size": 350
 			},
 			"stripe": {
@@ -435,7 +448,8 @@
 			"padding": {
 				"sm": 3,
 				"md": 4,
-				"lg": 6
+				"lg": 6,
+				"xl": 12
 			},
 			"gap": {
 				"none": 0,
@@ -542,20 +556,19 @@
 				}
 			},
 			"title": {
-				"family": "display",
-				"weight": "bold",
+				"font": "heading",
 				"sizeSm": 600,
 				"sizeMd": 700,
 				"sizeLg": 800
 			},
 			"pretitle": {
-				"family": "base",
-				"weight": "medium",
+				"font": "label",
 				"uppercase": false,
 				"letterSpacing": "2%",
 				"size": 300
 			},
 			"meta": {
+				"font": "text",
 				"paddingTop": "0-5"
 			}
 		},
@@ -566,8 +579,7 @@
 			"paddingLeft": 20
 		},
 		"coverTitle": {
-			"family": "display",
-			"weight": "bold",
+			"font": "title",
 			"sizeSm": 1200,
 			"sizeMd": 2400,
 			"sizeLg": 3000,
@@ -581,7 +593,7 @@
 				},
 				"dark": {
 					"color": "brand.5",
-					"opacity": 0.2
+					"opacity": 0.1
 				}
 			},
 			"width": 1
@@ -612,38 +624,32 @@
 			},
 			"surface": {
 				"background": "brand.5",
-				"foreground": "brand.1",
-				"border": {
-					"color": "brand.1",
-					"opacity": 0.2
-				}
+				"foreground": "brand.1"
 			}
 		},
 		"slideFooter": {
+			"font": "text",
 			"textSize": 300,
 			"logoHeight": 3,
 			"gap": 2
 		},
 		"slideTitle": {
 			"pretitle": {
+				"font": "label",
 				"default": "badge",
-				"family": "base",
-				"weight": "regular",
 				"uppercase": false,
 				"letterSpacing": "2%",
 				"size": 350
 			},
 			"title": {
+				"font": "title",
 				"gap": 2,
-				"family": "display",
-				"weight": "bold",
 				"sizeSm": 800,
 				"sizeMd": 1000,
 				"sizeLg": 1200
 			},
 			"subtitle": {
-				"family": "base",
-				"weight": "regular",
+				"font": "text",
 				"size": 350
 			}
 		},
@@ -723,8 +729,7 @@
 				"scale": 0.6
 			},
 			"text": {
-				"family": "base",
-				"weight": "medium",
+				"font": "text",
 				"scale": 0.6
 			},
 			"border": {

@@ -1,0 +1,96 @@
+/* Media card
+   A card with a flush media header, title + description, and a footered strip.
+   Paint follows card tokens. Optional `color-theme="light|dark"` remaps like
+   card. Optional `variant` matches card.
+*/
+
+media-card {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0%;
+	min-width: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+
+	--_card-hue: var(--card-neutral-foreground);
+	--_card-ink-strong: rgb(from var(--_card-hue) r g b / var(--tone-strong));
+	--_card-ink-base: rgb(from var(--_card-hue) r g b / var(--tone-base));
+	--_card-ink-subtle: rgb(from var(--_card-hue) r g b / var(--tone-subtle));
+	--_card-bg: var(--card-neutral-background);
+	--_card-border: var(--card-neutral-border-subtle);
+
+	background-color: var(--_card-bg);
+	border-style: solid;
+	border-color: var(--_card-border);
+	border-top-width: var(--card-border-size-top);
+	border-bottom-width: var(--card-border-size-bottom);
+	border-left-width: var(--card-border-size-left);
+	border-right-width: var(--card-border-size-right);
+	border-radius: var(--card-border-radius);
+
+	&[variant="emphasis"] {
+		--_card-hue: var(--card-emphasis-foreground);
+		--_card-bg: var(--card-emphasis-background);
+		--_card-border: var(--card-emphasis-border-subtle);
+	}
+
+	&[variant="positive"] {
+		--_card-hue: var(--card-positive-foreground);
+		--_card-bg: var(--card-positive-background);
+		--_card-border: var(--card-positive-border-subtle);
+	}
+
+	&[variant="warning"] {
+		--_card-hue: var(--card-warning-foreground);
+		--_card-bg: var(--card-warning-background);
+		--_card-border: var(--card-warning-border-subtle);
+	}
+
+	&[variant="negative"] {
+		--_card-hue: var(--card-negative-foreground);
+		--_card-bg: var(--card-negative-background);
+		--_card-border: var(--card-negative-border-subtle);
+	}
+
+	&[variant="informative"] {
+		--_card-hue: var(--card-informative-foreground);
+		--_card-bg: var(--card-informative-background);
+		--_card-border: var(--card-informative-border-subtle);
+	}
+}
+
+media-card > :is(media-slot, img)[data-slot="image"] {
+	width: 100%;
+	height: 240px;
+	flex: 0 0 auto;
+	min-height: 0;
+}
+
+media-card > img[data-slot="image"] {
+	object-fit: cover;
+}
+
+media-card [data-slot="body"] {
+	padding: var(--card-padding-lg);
+}
+
+media-card > divider {
+	margin-top: auto;
+}
+
+media-card [data-slot="footer"] {
+	padding: var(--card-padding-md) var(--card-padding-lg);
+}
+
+media-card [data-slot="footer"] card-meta {
+	padding-top: 0;
+}
+
+media-card
+	:is(text, card-pretitle, card-title, card-meta),
+media-card
+	:is(text, card-pretitle, card-title, card-meta)[context="surface"] {
+	--_ink-strong: var(--_card-ink-strong);
+	--_ink-base: var(--_card-ink-base);
+	--_ink-subtle: var(--_card-ink-subtle);
+}

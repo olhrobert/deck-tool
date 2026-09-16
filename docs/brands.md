@@ -23,7 +23,7 @@ The showcase brand switcher loads `brands/{slug}/brand.css`. After JSON edits, r
 
 ## `brand-settings.json` fields
 
-Each HTML component is its own group under `components` (`coverTitle`, `slideTitle`, `bodyCopy`, `attributionBox`, `headerContainer`, …). Canvas colors are themed: `components.slide.canvas.background.light|dark`. `foundations.colorTheme.cover` / `slide` is `light` or `dark` — covers (`<slide kind="cover">`) use the cover default when `color-theme` is omitted. Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `colorTheme`, `tone`, `font`, `border`) then `components` (one group per component tag). Shared tokens under `foundations.color` / `foundations.colorTheme` / `foundations.tone` / `foundations.font` / `foundations.border`. `TOKEN_MAP` in `scripts/generate-brand-css.js` is the allow-list: keys with a CSS name become variables; `components.card.defaultLayout` is validated only (stripe default is a generated selector). The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales, on `components.slide.canvas.maxWidth` (canvas cap, default `1280`), and on `components.divider.width` (hairline stroke, typically `1`).
+Each HTML component is its own group under `components` (`coverTitle`, `slideTitle`, `attributionBox`, `headerContainer`, …). Type style lives on `foundations.font` (`title`, `heading`, `stat`, `text`, `label`); components name one role via `.font`. Canvas colors are themed: `components.slide.canvas.background.light|dark`. `foundations.colorTheme.cover` / `slide` is `light` or `dark` — covers (`<slide kind="cover">`) use the cover default when `color-theme` is omitted. Top-level groups, in order: `foundations` (`basic`, `color` — `brand`, `semantic`, `chart` — then `colorTheme`, `tone`, `font`, `border`) then `components` (one group per component tag). Shared tokens under `foundations.color` / `foundations.colorTheme` / `foundations.tone` / `foundations.font` / `foundations.border`. `TOKEN_MAP` in `scripts/generate-brand-css.js` is the allow-list: keys with a CSS name become variables; `components.card.defaultLayout` is validated only (stripe default is a generated selector). The type scale and the **global** spacing scale (`--spacing-0` … `--spacing-40`) stay in `design-system/tokens/`. Font sizes are type-scale steps (`800`, `400`, …); semantic spacing is a spacing-scale step (`20`, `16`, `"0-5"`, …); component radius and stroke name a `foundations.border.radius` / `foundations.border.size` step (`med`, `sm`, …). Pixels appear on those two generic scales, on `components.slide.canvas.maxWidth` (canvas cap, default `1280`), and on `components.divider.width` (hairline stroke, typically `1`).
 
 `design-system/tokens/colors.css` holds the **same role names** as `brand-settings.json` (a fallback when no `brand.css` is loaded) plus opacity variants (`-strong` / `-base` / `-subtle`) derived from `foundations.tone`. Brand identity, status hues, and chart swatches live under `foundations.color.brand.1`…`6`, `foundations.color.semantic.*`, and `foundations.color.chart.1`…`4` (omit unused brand slots).
 
@@ -36,8 +36,7 @@ Cover is a **layout kind**, not a component group. Title/chapter presets use `<s
 | `brand-settings.json`           | CSS                                                  | What you see                                      |
 | ------------------------------- | ---------------------------------------------------- | ------------------------------------------------- |
 | `foundations.colorTheme.cover`  | `slide[kind="cover"]:not([color-theme])` remaps      | Default canvas theme for cover slides             |
-| `components.coverTitle.family` | `--cover-title-font-family` → `var(--font-family-*)` | `<cover-title>`                                   |
-| `components.coverTitle.weight` | `--cover-title-font-weight` → `var(--font-weight-*)` | default cover-title weight                        |
+| `components.coverTitle.font` | `--cover-title-font-family` / `-weight` → `var(--font-{role}-*)` | style role (`title` typically) |
 | `components.coverTitle.sizeSm/Md/Lg/Xl` | `--cover-title-size-sm/md/lg/xl` → `var(--text-size-*)` | `size="xl"` etc. Default is `md`.            |
 | `components.attributionBox.default` | `--attribution-box-display` (`flex` \| `none`) | Title-slide `<attribution-box>` when `attribution` is omitted. Override with `attribution="true\|false"`. |
 
@@ -52,19 +51,15 @@ Cover is a **layout kind**, not a component group. Title/chapter presets use `<s
 | `components.slide.canvas.maxWidth`                      | `--slide-max-width`                                     | `<slide>` canvas cap (pixels)                                                                                                    |
 | `components.slide.surface.background`                   | `--color-slide-surface-background`                      | Cards, `<attribution-box>` fill. Palette ref. `.bg-slide-surface`.                                                               |
 | `components.slide.surface.foreground`                   | `--color-slide-surface-foreground`                      | Ink on those panels (cards, attribution). Palette ref.                                                                           |
-| `components.slide.surface.border`                       | `--color-slide-surface-border`                          | Card stroke and attribution separator. Palette ref (often with opacity). `.border-color-slide-surface`.                          |
 | `components.slideTitle.pretitle.default`                     | `--slide-pretitle-default` (`text` \| `badge`)      | Brand default for the optional pre slot on `<slide-title-group>`                                                                 |
-| `components.slideTitle.pretitle.family`                      | `--slide-pretitle-font-family` → `var(--font-family-*)` | `<slide-pretitle>` (when `default` is `text`)                                                                                    |
-| `components.slideTitle.pretitle.weight`                      | `--slide-pretitle-font-weight` → `var(--font-weight-*)` |                                                                                                                                  |
+| `components.slideTitle.pretitle.font`                        | `--slide-pretitle-font-family` / `-weight`              | style role (`label` typically)                                                                                                   |
 | `components.slideTitle.pretitle.uppercase`                   | `--slide-pretitle-text-transform`                       | brand default; override with `uppercase="true\|false"`                                                                           |
 | `components.slideTitle.pretitle.letterSpacing`               | `--slide-pretitle-letter-spacing`                       | percentage string, e.g. `"2%"`                                                                                                   |
 | `components.slideTitle.pretitle.size`                        | `--slide-pretitle-size` → `var(--text-size-*)`          | brand-only (no `size` attribute); text pretitles only                                                                            |
 | `components.slideTitle.title.gap`                            | `--slide-title-gap`                                     | `<slide-title-group>`                                                                                                            |
-| `components.slideTitle.title.family`                         | `--slide-title-font-family` → `var(--font-family-*)`    | `<slide-title>`                                                                                                                  |
-| `components.slideTitle.title.weight`                         | `--slide-title-font-weight`                             | default for slide titles                                                                                                         |
+| `components.slideTitle.title.font`                           | `--slide-title-font-family` / `-weight`                 | style role (`title` typically)                                                                                                   |
 | `components.slideTitle.title.sizeSm/Md/Lg`                   | `--slide-title-size-sm/md/lg` → `var(--text-size-*)`    | `size="lg"` etc.                                                                                                                 |
-| `components.slideTitle.subtitle.family`                      | `--slide-subtitle-font-family` → `var(--font-family-*)` | `<slide-subtitle>`                                                                                                               |
-| `components.slideTitle.subtitle.weight`                      | `--slide-subtitle-font-weight`                          |                                                                                                                                  |
+| `components.slideTitle.subtitle.font`                        | `--slide-subtitle-font-family` / `-weight`              | style role (`text` typically)                                                                                                    |
 | `components.slideTitle.subtitle.size`                        | `--slide-subtitle-size` → `var(--text-size-*)`          |                                                                                                                                  |
 | `components.headerContainer.paddingTop/Right/Bottom/Left`  | `--slide-header-padding-*`                              | `<header-container>`                                                                                                             |
 | `components.contentContainer.paddingTop/Right/Bottom/Left` | `--slide-content-padding-*`                             | `<content-container>`                                                                                                            |
@@ -91,7 +86,7 @@ Palette refs drop `foundations.color.`: `"brand.2"`, `"semantic.positive"`, `"se
 
 ### Font tokens
 
-Named families (`display`, `base`) live under `foundations.font.family` as CSS stacks. Role family fields (`components.coverTitle.family`, `components.bodyCopy.family`, …) name one of those two — they do not repeat the stack. Named weights (`regular`, `medium`, `bold`) live under `foundations.font.weight` as CSS numbers matching `@font-face` in `design-system/tokens/fonts.css`. `<text weight="bold">` and `components.slideTitle.title.weight: "bold"` both resolve to `foundations.font.weight.bold`. A brand can map two names to the same number (e.g. medium and bold both 500).
+Named families (`display`, `base`) live under `foundations.font.family` as CSS stacks. Named weights (`regular`, `medium`, `bold`) live under `foundations.font.weight` as CSS numbers matching `@font-face` in `design-system/tokens/fonts.css`. **Style roles** (`title`, `heading`, `stat`, `text`, `label`) each name one family + one weight. Components do not set family/weight — they set `.font` to a role. `<text family="heading">` names a role; `<text weight="bold">` still names a weight and overrides it. A brand can map two weight names to the same number (e.g. medium and bold both 500).
 
 **Sizes are type-scale steps**, not pixels. The scale lives in `design-system/tokens/typography.css` (`--text-size-800` = 32px, `--text-size-400` = 16px, …). `<slide-title size="lg">` uses whatever step `components.slideTitle.title.sizeLg` names.
 
@@ -103,19 +98,22 @@ Named families (`display`, `base`) live under `foundations.font.family` as CSS s
 
 | `brand-settings.json`                    | CSS                                                      | HTML                              |
 | ---------------------------------------- | -------------------------------------------------------- | --------------------------------- |
-| `foundations.font.family.display`        | `--font-family-display`                                  | display stack (titles)            |
-| `foundations.font.family.base`           | `--font-family-base`                                     | base stack (body, pretitles)      |
+| `foundations.font.family.display`        | `--font-family-display`                                  | display stack                     |
+| `foundations.font.family.base`           | `--font-family-base`                                     | base stack                        |
 | `foundations.font.weight.regular`        | `--font-weight-regular`                                  | `<text weight="regular">`         |
 | `foundations.font.weight.medium`         | `--font-weight-medium`                                   | `<text weight="medium">`          |
 | `foundations.font.weight.bold`           | `--font-weight-bold`                                     | `<text weight="bold">`            |
-| `components.bodyCopy.family`                 | `--body-font-family` → `var(--font-family-*)`            | `<text>` default / `<text family="body">` |
-| `components.bodyCopy.weight`                 | `--body-font-weight`                                     | default `<text>` weight           |
+| `foundations.font.title.family` / `weight` | `--font-title-family` / `--font-title-weight`          | `<text family="title">`; `<cover-title>`, `<slide-title>` |
+| `foundations.font.heading.family` / `weight` | `--font-heading-family` / `--font-heading-weight`    | `<text family="heading">`; `<card-title>`, `<callout-title>` |
+| `foundations.font.stat.family` / `weight` | `--font-stat-family` / `--font-stat-weight`             | `<text family="stat">`            |
+| `foundations.font.text.family` / `weight` | `--font-text-family` / `--font-text-weight`             | `<text>` default; subtitle, badge, stamp, footer |
+| `foundations.font.label.family` / `weight` | `--font-label-family` / `--font-label-weight`           | `<text family="label">`; `<slide-pretitle>`, `<card-pretitle>` |
 
-Canvas copy uses **`<text size="<scale-step>">`**. Default size is `400` (16px); default tone is `base`; default family/weight come from `components.bodyCopy`. Use `family="display"` for in-body headings. Cover titles use **`<cover-title size="sm|md|lg|xl">`** (brand-mapped `components.coverTitle.size*`). Omit `weight` on a role so the brand role weight applies; set `weight="regular|medium|bold"` only to override it.
+Canvas copy uses **`<text size="<scale-step>">`**. Default size is `400` (16px); default tone is `base`; default style is `foundations.font.text`. Use `family="heading"` for in-body titles, `family="stat"` for metrics, `family="label"` for pretitles, `family="title"` for cover-scale headlines that are not `<slide-title>` / `<cover-title>`. Style roles are **family + weight only** — size stays on the element. Cover titles use **`<cover-title size="sm|md|lg|xl">`** (`coverTitle.font` plus `size*`). Omit `weight` on a role so the brand role weight applies; set `weight="regular|medium|bold"` only to override it.
 
-`<text>` is the canvas typography primitive. Axes: `tone`, raw `size`, `uppercase`, `context`, plus `family`, `weight`, `lineheight`, `letterspacing`. Semantic tags (`<cover-title>`, `<slide-pretitle>`, `<card-pretitle>`, `<slide-title>`, `<slide-subtitle>`, …) are presets that inherit shared axes and bake brand family/weight/size. Default tone is `strong` on `<cover-title>`. Use `<slide-title-group>` when stacking pretitle + title + subtitle.
+`<text>` is the canvas typography primitive. Axes: `tone`, raw `size`, `uppercase`, `context`, plus `family`, `weight`, `lineheight`, `letterspacing`. Semantic tags (`<cover-title>`, `<slide-pretitle>`, `<card-pretitle>`, `<slide-title>`, `<slide-subtitle>`, …) are presets that inherit shared axes, take style from `.font`, and bake size where the component has size tokens. Default tone is `strong` on `<cover-title>`. Use `<slide-title-group>` when stacking pretitle + title + subtitle.
 
-Example — Gratia-style named weights, then make slide-title `lg` use scale 800 (32px):
+Example — Gratia-style named weights and style roles, then make slide-title `lg` use scale 800 (32px):
 
 ```json
 "font": {
@@ -127,16 +125,16 @@ Example — Gratia-style named weights, then make slide-title `lg` use scale 800
     "regular": 400,
     "medium": 500,
     "bold": 600
-  }
-},
-"bodyCopy": {
-  "family": "base",
-  "weight": "regular"
+  },
+  "title": { "family": "display", "weight": "bold" },
+  "heading": { "family": "base", "weight": "bold" },
+  "stat": { "family": "base", "weight": "bold" },
+  "text": { "family": "base", "weight": "regular" },
+  "label": { "family": "base", "weight": "medium" }
 },
 "slideTitle": {
   "title": {
-    "family": "display",
-    "weight": "bold",
+    "font": "title",
     "sizeSm": 800,
     "sizeMd": 1000,
     "sizeLg": 800
@@ -167,13 +165,12 @@ CSS custom properties are component-leading (`--slide-pretitle-font-family`, not
 
 | JSON                                     | CSS                                                    | HTML                                                   |
 | ---------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| `components.card.pretitle.family`        | `--card-pretitle-font-family` → `var(--font-family-*)` | `<card-pretitle>`                                      |
-| `components.card.pretitle.weight`        | `--card-pretitle-font-weight` → `var(--font-weight-*)` |                                                        |
+| `components.card.pretitle.font`          | `--card-pretitle-font-family` / `-weight`              | style role (`label` typically)                     |
 | `components.card.pretitle.uppercase`     | `--card-pretitle-text-transform`                       | brand default; override with `uppercase="true\|false"` |
 | `components.card.pretitle.letterSpacing` | `--card-pretitle-letter-spacing`                       | percentage string, e.g. `"2%"`                         |
 | `components.card.pretitle.size`          | `--card-pretitle-size` → `var(--text-size-*)`          | brand-only (no `size` attribute)                       |
 
-Slide and card pretitles use separate token groups (`components.slideTitle.pretitle` vs `components.card.pretitle`). Duplicate family, weight, uppercase, and letter-spacing between them when both contexts should match; only `size` typically differs (e.g. slide step `350`, card step `300`).
+Slide and card pretitles use separate token groups (`components.slideTitle.pretitle` vs `components.card.pretitle`). Both typically set `"font": "label"`; uppercase, letter-spacing, and `size` can still differ (e.g. slide step `350`, card step `300`).
 
 Context and tone are set in markup: `context="slide|surface"` and `tone="subtle|base|strong"`. Cover type uses `context="slide"` (canvas ink follows `color-theme`). Attribution still uses `context="surface"` because it sits on the attribution box.
 
@@ -186,16 +183,16 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 | `components.card.defaultLayout`                    | stripe selector in brand.css when `"stripe"`                      | default `<card>` layout when the attribute is omitted (not a CSS variable)                                    |
 | `components.card.foreground.{variant}.{theme}`     | `--card-{variant}-foreground-light\|dark` (resolved `--card-{variant}-foreground`) | Ink hue. Variants `neutral\|emphasis\|positive\|…`; theme `light\|dark`. |
 | `components.card.background.{variant}.{theme}`     | `--card-{variant}-background-light\|dark` (resolved `--card-{variant}-background`) | Card fill. |
-| `components.card.padding.sm/md/lg`                 | `--card-padding-*`                                                | `<card padding>`                                                                                              |
+| `components.card.padding.sm/md/lg/xl`              | `--card-padding-*`                                                | `<card padding>`                                                                                              |
 | `components.card.gap.none/sm/md/lg`                | `--card-gap-*`                                                    | `<card gap>` (`none` → spacing `0` / 0px)                                                                     |
 | `components.card.border.radius`                    | `--card-border-radius` → `var(--border-radius-*)`                 | `<card layout="basic">`                                                                                       |
 | `components.card.border.sizeTop/Bottom/Left/Right` | `--card-border-size-*` → `var(--border-size-*)`                   | basic stroke                                                                                                  |
 | `components.card.border.subtle.{variant}.{theme}`  | `--card-{variant}-border-subtle-light\|dark` (resolved `--card-{variant}-border-subtle`) | Basic (non-stripe) outline. |
 | `components.card.stripe.width`                     | `--card-stripe-width` → `var(--border-size-*)`                    | Left accent width on `layout="stripe"`.                                                                       |
 | `components.card.stripe.color.{variant}.{theme}`   | `--card-{variant}-stripe-light\|dark` (resolved `--card-{variant}-stripe`) | Stripe accent color. |
-| `components.card.title.family`                     | `--card-title-font-family` → `var(--font-family-*)`               | `<card-title>`                                                                                                |
-| `components.card.title.weight`                     | `--card-title-font-weight`                                        |                                                                                                               |
-| `components.card.title.sizeSm/Md/Lg`               | `--card-title-size-sm/md/lg` → `var(--text-size-*)`               | `size="lg"` etc. Default is `md`.                                                                             |
+| `components.card.title.font`                       | `--card-title-font-family` / `-weight`                            | style role (`heading` typically)                                                                              |
+| `components.card.title.sizeSm/Md/Lg`               | `--card-title-size-sm/md/lg` → `var(--text-size-*)`               | `size="lg"` etc. Default is `md`. For a custom scale step, use `<text family="heading" size="…">` instead.   |
+| `components.card.meta.font`                        | `--card-meta-font-family` / `-weight`                             | style role (`text` typically)                                                                                 |
 | `components.card.meta.paddingTop`                  | `--card-meta-padding-top`                                         | `<card-meta>`                                                                                                 |
 
 #### Callout
@@ -206,11 +203,9 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 | -------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------- |
 | `components.callout.background.{family}.{theme}` | `--callout-{family}-background-light\|dark` (resolved `--callout-{family}-background`) | Fill per variant. |
 | `components.callout.foreground.{family}.{theme}` | `--callout-{family}-foreground-light\|dark` (resolved `--callout-{family}-foreground`) | Ink hue; strong/base opacity is `foundations.tone`. |
-| `components.callout.title.family`            | `--callout-title-font-family` → `var(--font-family-*)`       | `<callout-title>`                                   |
-| `components.callout.title.weight`            | `--callout-title-font-weight`                                |                                                     |
+| `components.callout.title.font`              | `--callout-title-font-family` / `-weight`                    | style role (`heading`)                              |
 | `components.callout.title.size`              | `--callout-title-size` → `var(--text-size-*)`                | brand-only; no `size` attribute                     |
-| `components.callout.description.family`      | `--callout-description-font-family` → `var(--font-family-*)` | `<callout-description>`                             |
-| `components.callout.description.weight`      | `--callout-description-font-weight`                          |                                                     |
+| `components.callout.description.font`        | `--callout-description-font-family` / `-weight`              | style role (`text`)                                 |
 | `components.callout.description.size`        | `--callout-description-size` → `var(--text-size-*)`          | brand-only; no `size` attribute                     |
 | `components.callout.stripe.width`            | `--callout-stripe-width` → `var(--border-size-*)`            | left accent width                                   |
 | `components.callout.stripe.color.{family}.{theme}` | `--callout-{family}-stripe-light\|dark` (resolved `--callout-{family}-stripe`) | left accent color |
@@ -225,8 +220,7 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 | ---------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `components.badge.background.{variant}.{theme}` | `--badge-{variant}-background-light\|dark` (resolved `--badge-{variant}-background`) | Fill. |
 | `components.badge.foreground.{variant}.{theme}` | `--badge-{variant}-foreground-light\|dark` (resolved `--badge-{variant}-foreground`) | Ink hue; strong/base/subtle opacity is `foundations.tone`. |
-| `components.badge.text.family`           | `--badge-text-font-family` → `var(--font-family-*)`     | `<badge-text>`                                                         |
-| `components.badge.text.weight`           | `--badge-text-font-weight`                              |                                                                        |
+| `components.badge.text.font`             | `--badge-text-font-family` / `-weight`                  | style role (`text` typically)                                          |
 | `components.badge.text.size`             | `--badge-text-size` → `var(--text-size-*)`              | brand-only; no `size` attribute                                        |
 | `components.badge.icon.size`             | `--badge-icon-size` → `var(--spacing-*)`                | `<badge-icon>` width/height                                            |
 | `components.badge.border.hasBorderByDefault` | `--badge-border-default` → `badge.border.width` or `none` | default when `border` is omitted; override with `border="true\|false"` |
@@ -246,8 +240,7 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 | `components.stamp.foreground.{variant}.{theme}` | `--stamp-{variant}-foreground-light\|dark` (resolved `--stamp-{variant}-foreground`) | Ink hue; strong/base/subtle opacity is `foundations.tone`. |
 | `components.stamp.defaultSize`           | `--stamp-default-size` → `var(--spacing-*)`             | default when `size` is omitted                                         |
 | `components.stamp.icon.scale`            | `--stamp-icon-scale`                                    | `<stamp-icon>` size as fraction of the stamp square (0–1]              |
-| `components.stamp.text.family`           | `--stamp-text-font-family` → `var(--font-family-*)`     | `<stamp-text>`                                                         |
-| `components.stamp.text.weight`           | `--stamp-text-font-weight`                              |                                                                        |
+| `components.stamp.text.font`             | `--stamp-text-font-family` / `-weight`                  | style role (`text` typically)                                          |
 | `components.stamp.text.scale`            | `--stamp-text-scale`                                    | `<stamp-text>` size as fraction of the stamp square (0–1]              |
 | `components.stamp.border.radius`         | `--stamp-border-radius`                                 | `full` → `50%`; otherwise `var(--border-radius-*)`                     |
 
@@ -257,6 +250,7 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 
 | JSON                                | CSS                                               | HTML                                                                  |
 | ----------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------- | -------------------- |
+| `components.slideFooter.font`       | `--slide-footer-font-family` / `-weight`              | style role (`text` typically)                                         |
 | `components.slideFooter.textSize`   | `--slide-footer-text-size` → `var(--text-size-*)` | notes / deck title / chapter / page (brand-only; no `size` attribute) |
 | `components.slideFooter.logoHeight` | `--slide-footer-logo-height` → `var(--spacing-*)` | `<img data-slot="logo">` height                                       |
 | `components.slideFooter.gap`        | `--slide-footer-gap` → `var(--spacing-*)`         | space around `                                                        | ` between meta items |
@@ -267,7 +261,7 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 
 #### Divider
 
-`<divider>` is a full-width hairline. Color is themed (`light` | `dark`); width is a pixel integer, not a border.size step.
+`<divider>` is a hairline. Omit `orientation` for full width; `orientation="vertical"` is full height in a row. Color is themed (`light` | `dark`); width is a pixel integer, not a border.size step.
 
 | JSON                              | CSS                      | HTML         |
 | --------------------------------- | ------------------------ | ------------ |
@@ -275,7 +269,7 @@ Paint axes on `<card>`: `variant="neutral|emphasis|positive|warning|negative|inf
 | `components.divider.color.dark`   | `--divider-color-dark`   | dark stroke  |
 | `components.divider.width`        | `--divider-width`        | stroke in px |
 
-Resolved `--divider-color` follows `color-theme` (and the cover default).
+Resolved `--divider-color` follows `color-theme` (and the cover default). Showcase chrome and `<attribution-box-separator>` use the same stroke. `.border-color-divider` is the utility.
 
 `<attribution-box>` appearance is brand-agnostic — see `.cursor/skills/attribution-box/SKILL.md`. Do not add paint, spacing, or type keys for it. Title slides include the box in markup; `components.attributionBox.default` shows or hides it when `attribution` is omitted (`true` Riverton, `false` Gratia). Override with `attribution="true|false"` on `<slide kind="cover">`.
 
@@ -291,3 +285,5 @@ Each brand ships two standalone SVGs with **baked fills** (no `currentColor`, no
 Presets use `<img data-logo>` (or `data-logo="slide"`). `data-logo="cover"` is an alias for the same canvas. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, omit the `data-logo` value (keep the attribute) so the logo follows the slide canvas (`color-theme`). The showcase picks default vs inverted from the luminance of `--color-slide-background` on that slide. Do not wrap brand logos in `color-*` classes.
 
 The Gratia mark inside `<attribution-box>` is a separate prepared-by lockup (`<img data-slot="logo">`); leave it alone.
+
+Content marks (partners, analyst firms, logo grids) live in `assets/logos/pool/{slug}.svg` plus `{slug}-inverted.svg` (`thoughtworks.png` is the one raster). Do not put `data-logo` on them — that attribute is only for the presenting brand lockup. Add more with `scripts/add-pool-logo.js` (see [scripts.md](scripts.md)).

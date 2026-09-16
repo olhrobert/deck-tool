@@ -21,7 +21,6 @@ stamp {
 	box-sizing: border-box;
 	display: inline-flex;
 	flex: 0 0 var(--_stamp-size);
-	align-self: flex-start;
 	align-items: center;
 	justify-content: center;
 	width: var(--_stamp-size);

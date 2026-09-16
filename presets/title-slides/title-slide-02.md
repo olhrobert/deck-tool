@@ -7,7 +7,8 @@ use_when:
 not_when:
   - Centered or split covers (use title-slide-01 / 03 / 04)
   - Chapter openers
-  - Content slides
+  - Gratia fundraising opener as-is (use gratia-fundraising)
+  - Content or close slides
 ---
 
 # Title slide 02

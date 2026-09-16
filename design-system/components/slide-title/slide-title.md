@@ -3,9 +3,9 @@ id: slide-title
 kind: component
 use_when:
   - The slide’s headline stack (optional pre, title, optional subtitle)
-  - Content-slide chrome in `<header-container>`, or a column headline (story preset)
+  - Content-slide chrome in `<header-container>`, or a column headline (text-and-image / service presets)
 not_when:
-  - In-body section headings (use text family="display")
+  - In-body section headings (use text family="heading")
   - Cover titles on `<slide kind="cover">` (use cover-title)
 ---
 
@@ -17,4 +17,4 @@ Use `<slide-title-group>` with `<slide-title data-slot="main" size="md" tone="st
 
 Optional pre slot from `components.slideTitle.pretitle.default`: `text` → `<slide-pretitle data-slot="pre" tone="subtle" context="slide">`; `badge` → `<badge data-slot="pre" variant="neutral"><badge-text data-slot="label" tone="strong" context="surface">`. Override per slide only if the user asks. Optional `<slide-subtitle data-slot="sub">`. Omit unused optional slots.
 
-Canonical markup: `design-system/components/slide-title/slide-title-group-md.html`. Centered stack: `slide-title-group-center.html`.
+Canonical markup: `design-system/components/slide-title/slide-title-group.html`. Centered stack: `align="center"` on `<slide-title-group>`.

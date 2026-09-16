@@ -10,6 +10,7 @@
 :is(
 	card,
 	analyst,
+	media-card,
 	callout,
 	badge,
 	attribution-box,
@@ -23,10 +24,11 @@
 	flex-basis: auto;
 }
 
-:is(stack:not([direction="row"]), analyst, .flex-col)
+:is(stack:not([direction="row"]), analyst, media-card, .flex-col)
 	> :is(
 		card,
 		analyst,
+		media-card,
 		callout,
 		badge,
 		attribution-box,
@@ -43,6 +45,7 @@
 	> :is(
 		card,
 		analyst,
+		media-card,
 		callout,
 		badge,
 		attribution-box,
@@ -55,10 +58,11 @@
 	min-width: 0;
 }
 
-:is(stack:not([direction="row"]), analyst, .flex-col)
+:is(stack:not([direction="row"]), analyst, media-card, .flex-col)
 	> :is(
 		card,
 		analyst,
+		media-card,
 		callout,
 		badge,
 		attribution-box,
@@ -72,10 +76,11 @@
 	width: 100%;
 }
 
-:is(stack:not([direction="row"]), analyst, .flex-col)
+:is(stack:not([direction="row"]), analyst, media-card, .flex-col)
 	> :is(
 		card,
 		analyst,
+		media-card,
 		callout,
 		badge,
 		attribution-box,
@@ -92,6 +97,7 @@
 	> :is(
 		card,
 		analyst,
+		media-card,
 		callout,
 		badge,
 		attribution-box,
@@ -107,6 +113,7 @@
 :is(
 	card,
 	analyst,
+	media-card,
 	callout,
 	badge,
 	attribution-box,
@@ -124,6 +131,7 @@
 	> :is(
 		card,
 		analyst,
+		media-card,
 		callout,
 		badge,
 		attribution-box,

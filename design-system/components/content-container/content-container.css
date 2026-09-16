@@ -4,6 +4,8 @@ content-container {
 	flex: 1;
 	width: 100%;
 	min-height: 0;
+	min-width: 0;
+	overflow: hidden;
 	padding-top: var(--slide-content-padding-top);
 	padding-right: var(--slide-content-padding-right);
 	padding-bottom: var(--slide-content-padding-bottom);

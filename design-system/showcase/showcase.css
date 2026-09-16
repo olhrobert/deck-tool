@@ -18,7 +18,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-6);
-	border-right: 1px solid var(--color-slide-surface-border);
+	border-right: 1px solid var(--divider-color);
 	background-color: var(--color-slide-background);
 }
 
@@ -48,7 +48,7 @@ body {
 	justify-content: space-between;
 	gap: var(--spacing-4);
 	padding: var(--spacing-4);
-	border-bottom: 1px solid var(--color-slide-surface-border);
+	border-bottom: 1px solid var(--divider-color);
 	background-color: var(--color-slide-background);
 	position: sticky;
 	top: 0;
@@ -83,7 +83,7 @@ body {
 .showcase-h4 {
 	margin: 0;
 	display: block;
-	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-family: var(--font-text-family, system-ui, sans-serif);
 	line-height: 1.2;
 	letter-spacing: 0%;
 }
@@ -121,11 +121,11 @@ body {
 
 .showcase-deck slide {
 	margin: 0 auto;
-	border: 1px solid var(--color-slide-surface-border);
+	border: 1px solid var(--divider-color);
 }
 
 .showcase-footer {
-	border: 1px solid var(--color-slide-surface-border);
+	border: 1px solid var(--divider-color);
 	border-radius: var(--card-border-radius);
 	overflow: hidden;
 	padding: var(--spacing-6) var(--spacing-8);
@@ -146,6 +146,7 @@ body {
 	gap: var(--spacing-6);
 	width: 100%;
 	overflow-y: auto;
+	padding-bottom: var(--spacing-40);
 }
 
 .showcase-filter-group {
@@ -156,8 +157,12 @@ body {
 	width: 100%;
 }
 
+.showcase-filter-group[hidden] {
+	display: none;
+}
+
 .showcase-filter-heading {
-	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-family: var(--font-text-family, system-ui, sans-serif);
 	font-size: var(--text-size-300);
 	font-weight: var(--font-weight-bold);
 	color: var(--color-slide-foreground-subtle);
@@ -166,7 +171,7 @@ body {
 }
 
 .showcase-filter a {
-	font-family: var(--body-font-family, system-ui, sans-serif);
+	font-family: var(--font-text-family, system-ui, sans-serif);
 	font-size: var(--text-size-300);
 	font-weight: var(--font-weight-medium);
 	padding: var(--spacing-2);
@@ -195,7 +200,7 @@ body {
 [data-section="header-container"] header-container,
 [data-section="content-container"] content-container,
 [data-section="footer-container"] footer-container {
-	border: 1px solid var(--color-slide-surface-border);
+	border: 1px solid var(--divider-color);
 }
 
 .showcase-matrix {
@@ -231,6 +236,11 @@ body {
 	width: 320px;
 }
 
+.showcase-media-card media-card {
+	width: 320px;
+	flex: 0 0 auto;
+}
+
 .showcase-analyst-sm analyst {
 	width: 248px;
 }
@@ -258,7 +268,7 @@ body {
 	flex-direction: column;
 	gap: 0;
 	width: 100%;
-	border: 1px solid var(--color-slide-surface-border);
+	border: 1px solid var(--divider-color);
 	border-radius: var(--card-border-radius);
 	overflow: hidden;
 	background: var(--color-slide-surface-background);
@@ -291,7 +301,7 @@ body {
 	gap: var(--spacing-4);
 	align-items: center;
 	padding: var(--spacing-3) var(--spacing-4);
-	border-top: 1px solid var(--color-slide-surface-border);
+	border-top: 1px solid var(--divider-color);
 }
 
 .brand-settings-row:first-child {
@@ -313,5 +323,5 @@ body {
 	border-radius: var(--border-radius-full);
 	flex: 0 0 auto;
 	box-sizing: border-box;
-	border: 1px solid var(--color-slide-surface-border);
+	border: 1px solid var(--divider-color);
 }

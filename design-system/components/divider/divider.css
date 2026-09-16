@@ -1,6 +1,8 @@
 /* Divider
    A hairline rule. Color follows `color-theme` from
    `components.divider.color.light|dark`; stroke width from `width`.
+   Omit `orientation` for a full-width horizontal rule.
+   `orientation="vertical"` is a full-height rule in a row.
 */
 
 divider {
@@ -14,4 +16,11 @@ divider {
 	align-self: stretch;
 	border: none;
 	border-top: var(--divider-width) solid var(--divider-color);
+}
+
+divider[orientation="vertical"] {
+	width: 0;
+	height: auto;
+	border-top: none;
+	border-left: var(--divider-width) solid var(--divider-color);
 }

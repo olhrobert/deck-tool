@@ -3,8 +3,8 @@
 
 card-meta {
 	padding-top: var(--card-meta-padding-top);
-	font-family: var(--body-font-family, system-ui, sans-serif);
-	font-weight: var(--body-font-weight);
+	font-family: var(--card-meta-font-family, var(--font-text-family));
+	font-weight: var(--card-meta-font-weight, var(--font-text-weight));
 	line-height: var(--card-meta-lineheight);
 	font-size: var(--card-meta-size);
 	letter-spacing: 0%;

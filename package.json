@@ -5,6 +5,7 @@
 		"generate-brand": "node scripts/generate-brand-css.js",
 		"generate-brand:all": "node scripts/generate-all-brands.js",
 		"generate-icons": "node scripts/generate-icon-css.js",
+		"add-pool-logo": "node scripts/add-pool-logo.js",
 		"new-brand": "node scripts/new-brand.js",
 		"validate-brand": "node scripts/validate-brand.js",
 		"showcase": "python3 -m http.server 8080"

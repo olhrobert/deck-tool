@@ -7,7 +7,8 @@ use_when:
 not_when:
   - Split or oversized covers (use title-slide-02 / 03 / 04)
   - Chapter openers (use chapter-slide-01 / 02)
-  - Content slides
+  - Gratia fundraising opener as-is (use gratia-fundraising)
+  - Content or close slides
 ---
 
 # Title slide 01

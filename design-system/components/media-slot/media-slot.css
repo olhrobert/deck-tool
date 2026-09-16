@@ -17,7 +17,7 @@ media-slot {
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0.1);
 	border-style: solid;
-	border-color: var(--color-slide-surface-border);
+	border-color: var(--card-neutral-border-subtle);
 	border-top-width: var(--card-border-size-top);
 	border-bottom-width: var(--card-border-size-bottom);
 	border-left-width: var(--card-border-size-left);

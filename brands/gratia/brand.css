@@ -38,6 +38,26 @@
 	--font-weight-medium: 500;
 	--font-weight-bold: 600;
 
+	/* font — title */
+	--font-title-family: var(--font-family-display);
+	--font-title-weight: var(--font-weight-bold);
+
+	/* font — heading */
+	--font-heading-family: var(--font-family-base);
+	--font-heading-weight: var(--font-weight-bold);
+
+	/* font — stat */
+	--font-stat-family: var(--font-family-base);
+	--font-stat-weight: var(--font-weight-bold);
+
+	/* font — text */
+	--font-text-family: var(--font-family-base);
+	--font-text-weight: var(--font-weight-regular);
+
+	/* font — label */
+	--font-label-family: var(--font-family-base);
+	--font-label-weight: var(--font-weight-medium);
+
 	/* border — radius */
 	--border-radius-none: 0px;
 	--border-radius-sm: 4px;
@@ -55,8 +75,8 @@
 	--attribution-box-display: none;
 
 	/* coverTitle */
-	--cover-title-font-family: var(--font-family-display);
-	--cover-title-font-weight: var(--font-weight-bold);
+	--cover-title-font-family: var(--font-title-family);
+	--cover-title-font-weight: var(--font-title-weight);
 	--cover-title-size-sm: var(--text-size-1200);
 	--cover-title-size-md: var(--text-size-2400);
 	--cover-title-size-lg: var(--text-size-3000);
@@ -64,7 +84,7 @@
 
 	/* divider */
 	--divider-color-light: rgba(1, 25, 26, 0.2);
-	--divider-color-dark: rgba(255, 255, 255, 0.2);
+	--divider-color-dark: rgba(255, 255, 255, 0.1);
 	--divider-width: 1px;
 
 	/* slide */
@@ -75,23 +95,22 @@
 	--slide-max-width: 1280px;
 	--color-slide-surface-background: rgb(255, 255, 255);
 	--color-slide-surface-foreground: rgb(1, 25, 26);
-	--color-slide-surface-border: rgba(1, 25, 26, 0.2);
 
 	/* slideTitle */
 	--slide-pretitle-default: badge;
-	--slide-pretitle-font-family: var(--font-family-base);
-	--slide-pretitle-font-weight: var(--font-weight-regular);
+	--slide-pretitle-font-family: var(--font-label-family);
+	--slide-pretitle-font-weight: var(--font-label-weight);
 	--slide-pretitle-text-transform: none;
 	--slide-pretitle-letter-spacing: 2%;
 	--slide-pretitle-size: var(--text-size-350);
 	--slide-title-gap: var(--spacing-2);
-	--slide-title-font-family: var(--font-family-display);
-	--slide-title-font-weight: var(--font-weight-bold);
+	--slide-title-font-family: var(--font-title-family);
+	--slide-title-font-weight: var(--font-title-weight);
 	--slide-title-size-sm: var(--text-size-800);
 	--slide-title-size-md: var(--text-size-1000);
 	--slide-title-size-lg: var(--text-size-1200);
-	--slide-subtitle-font-family: var(--font-family-base);
-	--slide-subtitle-font-weight: var(--font-weight-regular);
+	--slide-subtitle-font-family: var(--font-text-family);
+	--slide-subtitle-font-weight: var(--font-text-weight);
 	--slide-subtitle-size: var(--text-size-350);
 
 	/* headerContainer */
@@ -111,10 +130,6 @@
 	--slide-footer-padding-right: var(--spacing-4);
 	--slide-footer-padding-bottom: var(--spacing-4);
 	--slide-footer-padding-left: var(--spacing-4);
-
-	/* bodyCopy */
-	--body-font-family: var(--font-family-base);
-	--body-font-weight: var(--font-weight-regular);
 
 	/* card — foreground */
 	--card-neutral-foreground-light: rgb(1, 25, 26);
@@ -172,6 +187,7 @@
 	--card-padding-sm: var(--spacing-3);
 	--card-padding-md: var(--spacing-4);
 	--card-padding-lg: var(--spacing-6);
+	--card-padding-xl: var(--spacing-12);
 	--card-gap-none: var(--spacing-0);
 	--card-gap-sm: var(--spacing-2);
 	--card-gap-md: var(--spacing-3);
@@ -236,16 +252,18 @@
 	--color-informative-stripe-light: rgb(25, 80, 170);
 	--card-informative-stripe-dark: rgb(1, 25, 26);
 	--color-informative-stripe-dark: rgb(1, 25, 26);
-	--card-title-font-family: var(--font-family-display);
-	--card-title-font-weight: var(--font-weight-bold);
+	--card-title-font-family: var(--font-heading-family);
+	--card-title-font-weight: var(--font-heading-weight);
 	--card-title-size-sm: var(--text-size-600);
 	--card-title-size-md: var(--text-size-700);
 	--card-title-size-lg: var(--text-size-800);
-	--card-pretitle-font-family: var(--font-family-base);
-	--card-pretitle-font-weight: var(--font-weight-medium);
+	--card-pretitle-font-family: var(--font-label-family);
+	--card-pretitle-font-weight: var(--font-label-weight);
 	--card-pretitle-text-transform: none;
 	--card-pretitle-letter-spacing: 2%;
 	--card-pretitle-size: var(--text-size-300);
+	--card-meta-font-family: var(--font-text-family);
+	--card-meta-font-weight: var(--font-text-weight);
 	--card-meta-padding-top: var(--spacing-0-5);
 
 	/* callout — background */
@@ -273,13 +291,13 @@
 	--callout-informative-foreground-dark: rgb(255, 255, 255);
 
 	/* callout — title */
-	--callout-title-font-family: var(--font-family-display);
-	--callout-title-font-weight: var(--font-weight-medium);
+	--callout-title-font-family: var(--font-heading-family);
+	--callout-title-font-weight: var(--font-heading-weight);
 	--callout-title-size: var(--text-size-400);
 
 	/* callout — description */
-	--callout-description-font-family: var(--font-family-base);
-	--callout-description-font-weight: var(--font-weight-regular);
+	--callout-description-font-family: var(--font-text-family);
+	--callout-description-font-weight: var(--font-text-weight);
 	--callout-description-size: var(--text-size-350);
 
 	/* callout — stripe */
@@ -337,8 +355,8 @@
 	--badge-informative-foreground-dark: rgb(255, 255, 255);
 
 	/* badge — text */
-	--badge-text-font-family: var(--font-family-base);
-	--badge-text-font-weight: var(--font-weight-medium);
+	--badge-text-font-family: var(--font-text-family);
+	--badge-text-font-weight: var(--font-text-weight);
 	--badge-text-size: var(--text-size-300);
 
 	/* badge — icon */
@@ -402,14 +420,16 @@
 	--stamp-icon-scale: 0.6;
 
 	/* stamp — text */
-	--stamp-text-font-family: var(--font-family-base);
-	--stamp-text-font-weight: var(--font-weight-medium);
+	--stamp-text-font-family: var(--font-text-family);
+	--stamp-text-font-weight: var(--font-text-weight);
 	--stamp-text-scale: 0.6;
 
 	/* stamp — border */
 	--stamp-border-radius: 50%;
 
 	/* slide-footer */
+	--slide-footer-font-family: var(--font-text-family);
+	--slide-footer-font-weight: var(--font-text-weight);
 	--slide-footer-text-size: var(--text-size-300);
 	--slide-footer-logo-height: var(--spacing-3);
 	--slide-footer-gap: var(--spacing-2);

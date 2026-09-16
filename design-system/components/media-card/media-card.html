@@ -1,0 +1,28 @@
+<media-card variant="neutral">
+	<media-slot
+		data-slot="image"
+		width="fill"
+		padding="none"
+		border="false"
+		radius="none"
+	>
+		<text size="200" tone="subtle" context="slide">Media</text>
+	</media-slot>
+	<stack data-slot="body" gap="2" width="fill">
+		<card-pretitle data-slot="pretitle" tone="subtle" context="surface"
+			>Label</card-pretitle
+		>
+		<card-title data-slot="title" tone="strong" context="surface"
+			>Value</card-title
+		>
+		<text data-slot="text" size="350" tone="base" context="surface"
+			>Optional body text</text
+		>
+	</stack>
+	<divider></divider>
+	<stack data-slot="footer" gap="0" width="fill">
+		<card-meta data-slot="meta" tone="subtle" context="surface"
+			>Optional supporting detail</card-meta
+		>
+	</stack>
+</media-card>

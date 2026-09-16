@@ -7,7 +7,7 @@ use_when:
 not_when:
   - Title/cover lockups (use title-slide-01…04)
   - Title top / body bottom split (use chapter-slide-02)
-  - Content slides with cards or a story column
+  - Content or close slides with cards or a story column
 ---
 
 # Chapter slide 01

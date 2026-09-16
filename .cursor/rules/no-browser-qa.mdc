@@ -1,0 +1,14 @@
+---
+description: Do not visually QA in the browser or start the showcase server. The user inspects the showcase themselves.
+alwaysApply: true
+---
+
+# No browser QA
+
+Do not visually check work in the browser. Do not start, restart, or wait on `npm run showcase` / `python3 -m http.server`. Do not use browser tools, screenshots, or CDP for visual QA.
+
+The user opens the showcase and will say if something is off.
+
+This overrides the general “verify UI in the browser before declaring the task complete” workflow. Finish from code, then stop.
+
+Only use the browser if the user explicitly asks to open or inspect the showcase.

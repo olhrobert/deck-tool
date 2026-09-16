@@ -7,8 +7,8 @@ slide-footer-chapter,
 slide-footer-page {
 	display: flex;
 	align-items: center;
-	font-family: var(--body-font-family, system-ui, sans-serif);
-	font-weight: var(--body-font-weight);
+	font-family: var(--slide-footer-font-family, var(--font-text-family));
+	font-weight: var(--slide-footer-font-weight, var(--font-text-weight));
 	line-height: 1.2;
 	font-size: var(--slide-footer-text-size);
 	letter-spacing: 0%;

@@ -8,7 +8,8 @@ not_when:
   - Logo-in-the-middle covers (use title-slide-01)
   - Split or oversized covers (use title-slide-02 / 03)
   - Chapter openers
-  - Content slides
+  - Gratia fundraising opener as-is (use gratia-fundraising)
+  - Content or close slides
 ---
 
 # Title slide 04

@@ -89,6 +89,10 @@ card {
 		padding: var(--card-padding-lg);
 	}
 
+	&[padding="xl"] {
+		padding: var(--card-padding-xl);
+	}
+
 	&[gap="none"] {
 		gap: var(--card-gap-none);
 	}

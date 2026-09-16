@@ -26,6 +26,13 @@ function coverTitleSettings(brand) {
 		: null;
 }
 
+function textSettings(brand) {
+	const font = brand.foundations && brand.foundations.font;
+	return font
+		? pick(font, ["title", "heading", "stat", "text", "label"])
+		: null;
+}
+
 function slideCanvasSettings(brand) {
 	const slide = brand.components && brand.components.slide;
 	return slide ? pick(slide, ["canvas", "surface"]) : null;
@@ -50,13 +57,15 @@ const PAGE_GROUPS = [
 				id: "analyst",
 				label: "Analyst",
 				theme: true,
-				fragments: [
+				demos: [
 					{
-						src: "analyst/analyst.html",
+						id: "analyst-showcase",
+						caption: "components/analyst/analyst.html",
 						className: "showcase-analyst",
 					},
 					{
-						src: "analyst/analyst-sm.html",
+						id: "analyst-showcase-sm",
+						caption: 'size="sm"',
 						className: "showcase-analyst-sm",
 					},
 				],
@@ -66,7 +75,12 @@ const PAGE_GROUPS = [
 				label: "Attribution box",
 				theme: true,
 				settings: componentSettings("attributionBox"),
-				fragments: ["attribution-box/attribution-box.html"],
+				demos: [
+					{
+						id: "attribution-box-showcase",
+						caption: "components/attribution-box/attribution-box.html",
+					},
+				],
 			},
 			{
 				id: "badge",
@@ -150,21 +164,40 @@ const PAGE_GROUPS = [
 				],
 			},
 			{
+				id: "media-card",
+				label: "Media card",
+				theme: true,
+				demos: [
+					{
+						id: "media-card-showcase",
+						caption: "components/media-card/media-card.html",
+						className: "showcase-media-card",
+					},
+				],
+			},
+			{
 				id: "content-container",
 				label: "Content container",
 				settings: componentSettings("contentContainer"),
-				fragments: ["content-container/content-container.html"],
+				demos: [
+					{
+						id: "content-container-showcase",
+						caption:
+							"components/content-container/content-container.html",
+					},
+				],
 			},
 			{
 				id: "cover-title",
 				label: "Cover title",
 				theme: true,
 				settings: coverTitleSettings,
-				fragments: [
-					"cover-title/cover-title-xl.html",
-					"cover-title/cover-title-lg.html",
-					"cover-title/cover-title-md.html",
-					"cover-title/cover-title-sm.html",
+				demos: [
+					{
+						id: "cover-title-showcase",
+						caption: "components/cover-title/cover-title.html",
+						className: "showcase-matrix-stack",
+					},
 				],
 			},
 			{
@@ -172,30 +205,57 @@ const PAGE_GROUPS = [
 				label: "Divider",
 				theme: true,
 				settings: componentSettings("divider"),
-				fragments: ["divider/divider.html"],
+				demos: [
+					{
+						id: "divider-showcase",
+						caption: "components/divider/divider.html",
+					},
+				],
 			},
 			{
 				id: "footer-container",
 				label: "Footer container",
 				settings: componentSettings("footerContainer"),
-				fragments: ["footer-container/footer-container.html"],
+				demos: [
+					{
+						id: "footer-container-showcase",
+						caption:
+							"components/footer-container/footer-container.html",
+					},
+				],
 			},
 			{
 				id: "header-container",
 				label: "Header container",
 				settings: componentSettings("headerContainer"),
-				fragments: ["header-container/header-container.html"],
+				demos: [
+					{
+						id: "header-container-showcase",
+						caption:
+							"components/header-container/header-container.html",
+					},
+				],
 			},
 			{
 				id: "media-slot",
 				label: "Media slot",
-				fragments: ["media-slot/media-slot.html"],
+				demos: [
+					{
+						id: "media-slot-showcase",
+						caption: "components/media-slot/media-slot.html",
+					},
+				],
 			},
 			{
 				id: "slide",
 				label: "Slide",
 				settings: slideCanvasSettings,
-				fragments: ["slide/slide.html"],
+				demos: [
+					{
+						id: "slide-showcase",
+						caption: "components/slide/slide.html",
+					},
+				],
 			},
 			{
 				id: "slide-footer",
@@ -203,9 +263,10 @@ const PAGE_GROUPS = [
 				theme: true,
 				settings: (brand) =>
 					brand.components && brand.components.slideFooter,
-				fragments: [
+				demos: [
 					{
-						src: "slide-footer/slide-footer.html",
+						id: "slide-footer-showcase",
+						caption: "components/slide-footer/slide-footer.html",
 						className: "showcase-footer",
 					},
 				],
@@ -215,33 +276,36 @@ const PAGE_GROUPS = [
 				label: "Slide title",
 				theme: true,
 				settings: slideTitleSettings,
-				fragments: [
-					"slide-title/slide-title-group-lg.html",
-					"slide-title/slide-title-group-md.html",
-					"slide-title/slide-title-group-sm.html",
-					"slide-title/slide-title-group-center.html",
-					"slide-title/slide-title-lg.html",
-					"slide-title/slide-title-md.html",
-					"slide-title/slide-title-sm.html",
-					"slide-title/slide-pretitle.html",
-					"slide-title/slide-subtitle.html",
+				demos: [
+					{
+						id: "slide-title-showcase",
+						caption:
+							"components/slide-title/slide-title-group.html",
+						className: "showcase-matrix-stack",
+					},
 				],
 			},
 			{
 				id: "stack",
 				label: "Stack",
-				fragments: ["stack/stack.html"],
+				demos: [
+					{
+						id: "stack-showcase",
+						caption: "components/stack/stack.html",
+					},
+				],
 			},
 			{
 				id: "text",
 				label: "Text",
 				theme: true,
-				settings: componentSettings("bodyCopy"),
-				fragments: [
-					"typography/text-600.html",
-					"typography/text.html",
-					"typography/text-300.html",
-					"typography/text-display.html",
+				settings: textSettings,
+				demos: [
+					{
+						id: "text-showcase",
+						caption: "components/typography/text.html",
+						className: "showcase-matrix-stack",
+					},
 				],
 			},
 		],
@@ -252,10 +316,6 @@ const PRESET_GROUPS = [
 	{
 		id: "title-slides",
 		heading: "Title slides",
-		settings: (brand) =>
-			brand.components
-				? pick(brand.components, ["coverTitle", "attributionBox"])
-				: null,
 		presets: [
 			{
 				id: "title-slide-01",
@@ -282,10 +342,6 @@ const PRESET_GROUPS = [
 	{
 		id: "chapter-slides",
 		heading: "Chapter slides",
-		settings: (brand) =>
-			brand.components
-				? pick(brand.components, ["coverTitle"])
-				: null,
 		presets: [
 			{
 				id: "chapter-slide-01",
@@ -302,7 +358,6 @@ const PRESET_GROUPS = [
 	{
 		id: "content-slides",
 		heading: "Content slides",
-		settings: slideCanvasSettings,
 		presets: [
 			{
 				id: "content-slide-3-cards",
@@ -320,6 +375,15 @@ const PRESET_GROUPS = [
 				],
 			},
 			{
+				id: "content-slide-12-cards",
+				label: "12 cards",
+				src: "../../presets/content-slides/content-slide-12-cards.html",
+				variants: [
+					{},
+					{ colorTheme: "dark", caption: 'color-theme="dark"' },
+				],
+			},
+			{
 				id: "content-slide-split-media",
 				label: "Split media",
 				src: "../../presets/content-slides/content-slide-split-media.html",
@@ -329,9 +393,36 @@ const PRESET_GROUPS = [
 				],
 			},
 			{
-				id: "content-slide-story",
-				label: "Story",
-				src: "../../presets/content-slides/content-slide-story.html",
+				id: "content-slide-text-and-image",
+				label: "Text and image",
+				src: "../../presets/content-slides/content-slide-text-and-image.html",
+				variants: [
+					{},
+					{ colorTheme: "dark", caption: 'color-theme="dark"' },
+				],
+			},
+			{
+				id: "content-slide-service",
+				label: "Service",
+				src: "../../presets/content-slides/content-slide-service.html",
+				variants: [
+					{},
+					{ colorTheme: "dark", caption: 'color-theme="dark"' },
+				],
+			},
+			{
+				id: "content-slide-steps-media",
+				label: "Steps + media",
+				src: "../../presets/content-slides/content-slide-steps-media.html",
+				variants: [
+					{},
+					{ colorTheme: "dark", caption: 'color-theme="dark"' },
+				],
+			},
+			{
+				id: "content-slide-actions-results",
+				label: "Actions + results",
+				src: "../../presets/content-slides/content-slide-actions-results.html",
 				variants: [
 					{},
 					{ colorTheme: "dark", caption: 'color-theme="dark"' },
@@ -341,22 +432,59 @@ const PRESET_GROUPS = [
 	},
 ];
 
+const BRAND_PRESET_GROUPS = [
+	{
+		id: "gratia-slides",
+		heading: "Gratia",
+		brand: "gratia",
+		presets: [
+			{
+				id: "gratia-fundraising",
+				label: "Fundraising",
+				src: "../../presets/brands/gratia/fundraising.html",
+			},
+			{
+				id: "gratia-about",
+				label: "About",
+				src: "../../presets/brands/gratia/about.html",
+			},
+			{
+				id: "gratia-services",
+				label: "Services",
+				src: "../../presets/brands/gratia/services.html",
+			},
+			{
+				id: "gratia-contact",
+				label: "Contact",
+				src: "../../presets/brands/gratia/contact.html",
+			},
+		],
+	},
+];
+
 const FILTER_ALIASES = {
 	layout: "content-container",
 	typography: "text",
+	"content-slide-case-study": "content-slide-service",
+	"content-slide-card-grid": "content-slide-12-cards",
+	"content-slide-story": "content-slide-text-and-image",
+	"content-slide-services": "gratia-services",
+	"content-slide-contact": "gratia-contact",
+	"close-slide-contact": "gratia-contact",
+	"close-slides": "gratia-contact",
 	...Object.fromEntries(
-		PRESET_GROUPS.map((group) => [group.id, group.presets[0].id]),
+		[...PRESET_GROUPS, ...BRAND_PRESET_GROUPS].map((group) => [
+			group.id,
+			group.presets[0].id,
+		]),
 	),
 };
 
-const SETTINGS = [
-	...PAGE_GROUPS.flatMap((group) =>
-		group.pages
-			.filter((page) => page.settings)
-			.map((page) => [page.id, page.settings]),
-	),
-	...PRESET_GROUPS.map((group) => [group.id, group.settings]),
-];
+const SETTINGS = PAGE_GROUPS.flatMap((group) =>
+	group.pages
+		.filter((page) => page.settings)
+		.map((page) => [page.id, page.settings]),
+);
 
 function brandFromUrl() {
 	const brand = new URLSearchParams(location.search).get("brand");
@@ -487,19 +615,11 @@ function captionHtml(text, id) {
 	return `<text class="showcase-h4" tone="subtle" context="slide"${idAttr}>${escapeHtml(text)}</text>`;
 }
 
-function fragmentBlock(item) {
-	const src = typeof item === "string" ? item : item.src;
-	const className = item.className ? ` class="${item.className}"` : "";
-	return `<div class="showcase-subgroup">
-		${captionHtml(`components/${src}`)}
-		<div${className} data-preset="fragment" data-src="../components/${src}"></div>
-	</div>`;
-}
-
 function demoBlock(demo) {
+	const className = demo.className ? ` class="${demo.className}"` : "";
 	return `<div class="showcase-subgroup">
 		${captionHtml(demo.caption, demo.captionId)}
-		<div class="${demo.className}" id="${demo.id}"></div>
+		<div${className} id="${demo.id}"></div>
 	</div>`;
 }
 
@@ -508,7 +628,6 @@ function renderPage(page) {
 	const themeAttr = page.theme ? ` color-theme="light"` : "";
 	const parts = [];
 	if (page.kind === "brand") parts.push('<div id="brand-showcase"></div>');
-	(page.fragments || []).forEach((item) => parts.push(fragmentBlock(item)));
 	(page.demos || []).forEach((demo) => parts.push(demoBlock(demo)));
 	if (page.settings) {
 		parts.push(
@@ -542,31 +661,32 @@ function renderPresetVariant(preset, variant = {}) {
 	</div>`;
 }
 
-function renderPresetPage(group, preset) {
+function renderPresetPage(preset, brand) {
 	const variants =
 		preset.variants && preset.variants.length ? preset.variants : [{}];
 	const decks = variants
 		.map((variant) => renderPresetVariant(preset, variant))
 		.join("");
-	return `<div class="showcase-group showcase-group-deck" data-section="${preset.id}">
+	const brandAttr = brand ? ` data-brand="${brand}"` : "";
+	return `<div class="showcase-group showcase-group-deck" data-section="${preset.id}"${brandAttr}>
 		<header class="showcase-header">
 			<text class="showcase-h1" tone="strong" context="slide">${escapeHtml(preset.label)}</text>
 		</header>
 		<div class="showcase-body">
 			${decks}
-			<div class="showcase-subgroup" data-settings="${group.id}"></div>
 		</div>
 	</div>`;
 }
 
-function renderNavGroup(heading, items) {
+function renderNavGroup(heading, items, brand) {
+	const brandAttr = brand ? ` data-brand="${brand}"` : "";
 	const links = items
 		.map(
 			(item) =>
 				`<a href="#${item.id}" data-filter="${item.id}">${escapeHtml(item.label)}</a>`,
 		)
 		.join("");
-	return `<div class="showcase-filter-group">
+	return `<div class="showcase-filter-group"${brandAttr}>
 		<div class="showcase-filter-heading">${escapeHtml(heading)}</div>
 		${links}
 	</div>`;
@@ -582,26 +702,225 @@ function mountShowcase() {
 		...PRESET_GROUPS.map((group) =>
 			renderNavGroup(group.heading, group.presets),
 		),
+		...BRAND_PRESET_GROUPS.map((group) =>
+			renderNavGroup(group.heading, group.presets, group.brand),
+		),
 	].join("");
 	nav.insertAdjacentHTML("beforeend", navHtml);
 
 	const pageHtml = [
 		...PAGE_GROUPS.flatMap((group) => group.pages.map(renderPage)),
 		...PRESET_GROUPS.flatMap((group) =>
-			group.presets.map((preset) => renderPresetPage(group, preset)),
+			group.presets.map((preset) => renderPresetPage(preset)),
+		),
+		...BRAND_PRESET_GROUPS.flatMap((group) =>
+			group.presets.map((preset) => renderPresetPage(preset, group.brand)),
 		),
 	].join("");
 	pages.innerHTML = pageHtml;
 }
 
-function renderShowcaseCard(variant, layout) {
-	const meta = [titleCase(variant), titleCase(layout)].join(" · ");
+function fillDemo(id, html) {
+	const root = document.getElementById(id);
+	if (root) root.innerHTML = html;
+}
+
+function renderTextShowcase() {
+	fillDemo(
+		"text-showcase",
+		`
+		<text family="title" size="1000" tone="strong" context="slide">Text title</text>
+		<text family="heading" size="500" tone="strong" context="slide">Text heading</text>
+		<text family="stat" size="1000" tone="strong" context="slide">00</text>
+		<text size="400" tone="base" context="slide">Text 400</text>
+		<text family="label" size="300" tone="subtle" context="slide">Text label</text>
+		<text family="display" size="400" tone="strong" context="slide">Text display</text>
+		`,
+	);
+}
+
+function renderShowcaseAnalyst(size) {
+	const sizeAttr = size === "sm" ? ' size="sm"' : "";
+	const logoSize = size === "sm" ? "7" : "10";
+	return `
+		<analyst${sizeAttr}>
+			<stack data-slot="cover" width="fill">
+				<media-slot data-slot="image" width="fill" padding="none" border="false" radius="none" class="aspect-square">
+					<text size="200" tone="subtle" context="slide">Photo</text>
+				</media-slot>
+				<badge data-slot="specialization" variant="emphasis" border="false">
+					<badge-icon data-slot="leading" icon="star-fill" aria-hidden="true"></badge-icon>
+					<badge-text data-slot="label" tone="strong" context="surface">Specialization</badge-text>
+				</badge>
+			</stack>
+			<stack data-slot="body" direction="col" gap="2-5" width="fill">
+				<stack direction="row" gap="4" width="fill" class="items-center">
+					<stack direction="col" gap="0" width="fill">
+						<text data-slot="name" family="heading" size="400" tone="strong" context="surface">Name</text>
+						<text data-slot="role" size="300" tone="base" context="surface">Role</text>
+					</stack>
+					<media-slot data-slot="logo" size="${logoSize}" padding="none">
+						<text size="200" tone="subtle" context="slide">Logo</text>
+					</media-slot>
+				</stack>
+				<stack data-slot="location-row" direction="row" gap="1-5" width="fill" class="items-center">
+					<badge-icon data-slot="location-icon" icon="earth-fill" aria-hidden="true"></badge-icon>
+					<text data-slot="location" size="300" tone="subtle" context="surface">Location</text>
+				</stack>
+				<stack data-slot="tags" direction="row" gap="2" wrap="true">
+					<badge variant="neutral" border="false"><badge-text data-slot="tag" tone="strong" context="surface">Tag</badge-text></badge>
+					<badge variant="neutral" border="false"><badge-text data-slot="tag" tone="strong" context="surface">Tag</badge-text></badge>
+					<badge variant="neutral" border="false"><badge-text data-slot="tag" tone="strong" context="surface">Tag</badge-text></badge>
+					<badge variant="neutral" border="false"><badge-text data-slot="tag" tone="strong" context="surface">Tag</badge-text></badge>
+				</stack>
+			</stack>
+		</analyst>
+	`;
+}
+
+function renderAnalystShowcase() {
+	fillDemo("analyst-showcase", renderShowcaseAnalyst("lg"));
+	fillDemo("analyst-showcase-sm", renderShowcaseAnalyst("sm"));
+}
+
+function renderCoverTitleShowcase() {
+	fillDemo(
+		"cover-title-showcase",
+		["xl", "lg", "md", "sm"]
+			.map(
+				(size) =>
+					`<cover-title size="${size}" tone="strong" context="slide">Cover title ${size}</cover-title>`,
+			)
+			.join(""),
+	);
+}
+
+function renderSlideTitleGroup(size, align) {
+	const alignAttr = align ? ` align="${align}"` : "";
+	return `
+		<slide-title-group${alignAttr}>
+			<slide-pretitle data-slot="pre" tone="subtle" context="slide">Pre-title</slide-pretitle>
+			<slide-title data-slot="main" size="${size}" tone="strong" context="slide">Slide title</slide-title>
+			<slide-subtitle data-slot="sub" tone="base" context="slide">Slide subtitle</slide-subtitle>
+		</slide-title-group>
+	`;
+}
+
+function renderSlideTitleShowcase() {
+	fillDemo(
+		"slide-title-showcase",
+		[
+			renderSlideTitleGroup("lg"),
+			renderSlideTitleGroup("md"),
+			renderSlideTitleGroup("sm"),
+			renderSlideTitleGroup("md", "center"),
+			`<slide-title size="lg" tone="strong" context="slide">Slide title lg</slide-title>`,
+			`<slide-title size="md" tone="strong" context="slide">Slide title md</slide-title>`,
+			`<slide-title size="sm" tone="strong" context="slide">Slide title sm</slide-title>`,
+			`<slide-pretitle tone="subtle" context="slide">Slide pretitle</slide-pretitle>`,
+			`<slide-subtitle tone="base" context="slide">Slide subtitle</slide-subtitle>`,
+		].join(""),
+	);
+}
+
+function renderStaticShowcases() {
+	fillDemo(
+		"attribution-box-showcase",
+		`
+		<attribution-box variant="title">
+			<text data-slot="credit" size="300" tone="base" context="surface">Sanitized excerpt prepared by</text>
+			<img data-slot="logo" src="../../assets/logos/gratia-logo.svg" alt="Gratia" />
+		</attribution-box>
+		`,
+	);
+	fillDemo(
+		"media-card-showcase",
+		`
+		<media-card variant="neutral">
+			<media-slot data-slot="image" width="fill" padding="none" border="false" radius="none">
+				<text size="200" tone="subtle" context="slide">Media</text>
+			</media-slot>
+			<stack data-slot="body" gap="2" width="fill">
+				<card-pretitle data-slot="pretitle" tone="subtle" context="surface">Label</card-pretitle>
+				<card-title data-slot="title" tone="strong" context="surface">Value</card-title>
+				<text data-slot="text" size="350" tone="base" context="surface">Optional body text</text>
+			</stack>
+			<divider></divider>
+			<stack data-slot="footer" gap="0" width="fill">
+				<card-meta data-slot="meta" tone="subtle" context="surface">Optional supporting detail</card-meta>
+			</stack>
+		</media-card>
+		`,
+	);
+	fillDemo(
+		"content-container-showcase",
+		`<slide><content-container><text context="slide" tone="base">Content</text></content-container></slide>`,
+	);
+	fillDemo("divider-showcase", `<divider></divider>`);
+	fillDemo(
+		"footer-container-showcase",
+		`<footer-container><text context="slide" tone="base">Footer</text></footer-container>`,
+	);
+	fillDemo(
+		"header-container-showcase",
+		`<header-container><text context="slide" tone="base">Header</text></header-container>`,
+	);
+	fillDemo("media-slot-showcase", `<media-slot></media-slot>`);
+	fillDemo(
+		"slide-showcase",
+		`
+		<slide>
+			<header-container><text context="slide" tone="base">Header</text></header-container>
+			<content-container><text context="slide" tone="base">Content</text></content-container>
+			<footer-container><text context="slide" tone="base">Footer</text></footer-container>
+		</slide>
+		`,
+	);
+	fillDemo(
+		"slide-footer-showcase",
+		`
+		<slide-footer>
+			<img data-slot="logo" data-logo src="../../assets/logos/placeholder-logo.svg" alt="Logo" class="shrink-0 block" />
+			<slide-footer-notes data-slot="notes" tone="subtle">Add notes or sources here.</slide-footer-notes>
+			<slide-footer-meta>
+				<slide-footer-title data-slot="deck-title" tone="subtle">Deck title</slide-footer-title>
+				<slide-footer-chapter data-slot="chapter" tone="subtle">Chapter</slide-footer-chapter>
+				<slide-footer-page data-slot="page" tone="subtle">01</slide-footer-page>
+			</slide-footer-meta>
+		</slide-footer>
+		`,
+	);
+	fillDemo(
+		"stack-showcase",
+		`
+		<stack direction="row" gap="3" width="fill">
+			<media-slot width="fill"><text context="slide" tone="base">Media</text></media-slot>
+			<media-slot width="fill"><text context="slide" tone="base">Media</text></media-slot>
+			<media-slot width="fill"><text context="slide" tone="base">Media</text></media-slot>
+		</stack>
+		`,
+	);
+}
+
+function renderComponentDemos(settings = currentBrandSettings) {
+	renderTextShowcase();
+	renderAnalystShowcase();
+	renderCoverTitleShowcase();
+	renderSlideTitleShowcase();
+	renderStaticShowcases();
+	renderCardShowcase(settings);
+	renderCalloutShowcase();
+	renderBadgeShowcase();
+	renderStampShowcase();
+}
+
+function renderShowcaseCard(variant) {
 	return `
 		<card variant="${variant}" padding="md">
-			<card-pretitle data-slot="pretitle" tone="subtle" context="surface">Optional pretitle.</card-pretitle>
-			<card-title data-slot="title" tone="strong" context="surface">Card title</card-title>
-			<text data-slot="text" size="350" tone="base" context="surface">Description copy on this card.</text>
-			<card-meta data-slot="meta" tone="subtle" context="surface">${meta}</card-meta>
+			<card-pretitle data-slot="pretitle" tone="subtle" context="surface">Optional pretitle</card-pretitle>
+			<card-title data-slot="title" tone="strong" context="surface">The title of this card</card-title>
+			<text data-slot="text" size="350" tone="base" context="surface">Description copy of this card. Can be several sentences long.</text>
+			<card-meta data-slot="meta" tone="subtle" context="surface">Supporting detail.</card-meta>
 		</card>
 	`;
 }
@@ -622,7 +941,7 @@ function renderCardShowcase(settings = currentBrandSettings) {
 	if (!root) return;
 	root.innerHTML = SEMANTIC_VARIANTS.map(
 		(variant) =>
-			`<div class="showcase-matrix-stack">${renderShowcaseCard(variant, layout)}</div>`,
+			`<div class="showcase-matrix-stack">${renderShowcaseCard(variant)}</div>`,
 	).join("");
 }
 
@@ -1109,27 +1428,23 @@ function applyBrand(brand = currentBrand) {
 		currentBrand = brand;
 		setBrandInUrl(brand);
 		syncBrandTabs(brand);
+		syncBrandPresetNav(brand);
 		const finish = async () => {
 			if (applyId !== brandApplyId) return;
-			applyLogos(brand);
 			try {
 				const settings = await loadBrandSettings(brand);
 				if (applyId !== brandApplyId) return;
 				currentBrandSettings = settings;
-				renderCardShowcase(settings);
-				renderCalloutShowcase();
-				renderBadgeShowcase();
-				renderStampShowcase();
+				renderComponentDemos(settings);
 				renderBrandShowcase(settings);
 				renderComponentSettings(settings);
+				applyLogos(brand);
 				applySlidePretitleDefault(settings);
 			} catch (error) {
 				currentBrandSettings = null;
-				renderCardShowcase();
-				renderCalloutShowcase();
-				renderBadgeShowcase();
-				renderStampShowcase();
+				renderComponentDemos();
 				renderComponentSettings();
+				applyLogos(brand);
 				const root = document.getElementById("brand-showcase");
 				if (root) {
 					root.innerHTML = `<div class="showcase-h4" style="color:var(--color-negative-foreground-strong)">Failed to load brand settings</div>`;
@@ -1215,15 +1530,21 @@ async function loadPresets() {
 	applySlidePretitleDefault(currentBrandSettings);
 }
 
+let applyShowcaseFilter = () => {};
+
 function initFilters() {
 	const filterLinks = document.querySelectorAll(".showcase-filter a");
 	const sections = document.querySelectorAll(".showcase-group[data-section]");
-	const valid = [...sections].map((sec) => sec.dataset.section);
+
+	function sectionAllowed(sec, brand = currentBrand) {
+		return !sec.dataset.brand || sec.dataset.brand === brand;
+	}
 
 	function filterFromHash() {
 		const hash = location.hash.replace(/^#/, "");
 		const mapped = FILTER_ALIASES[hash] || hash;
-		return valid.includes(mapped) ? mapped : "brand";
+		const section = [...sections].find((sec) => sec.dataset.section === mapped);
+		return section && sectionAllowed(section) ? mapped : "brand";
 	}
 
 	function applyFilter(active) {
@@ -1232,15 +1553,17 @@ function initFilters() {
 		});
 		let visible = null;
 		sections.forEach((sec) => {
-			const on = sec.dataset.section === active;
+			const on = sec.dataset.section === active && sectionAllowed(sec);
 			sec.style.display = on ? "" : "none";
 			if (on) visible = sec;
 		});
 		syncScrollThemeFromSection(visible);
 	}
 
+	applyShowcaseFilter = () => applyFilter(filterFromHash());
+
 	window.addEventListener("hashchange", () => {
-		applyFilter(filterFromHash());
+		applyShowcaseFilter();
 		syncBrandTabs(currentBrand);
 	});
 
@@ -1252,7 +1575,24 @@ function initFilters() {
 		if (mapped) history.replaceState(null, "", `#${mapped}`);
 	}
 
-	applyFilter(filterFromHash());
+	syncBrandPresetNav(currentBrand);
+}
+
+function syncBrandPresetNav(brand) {
+	document
+		.querySelectorAll(".showcase-filter-group[data-brand]")
+		.forEach((group) => {
+			group.hidden = group.dataset.brand !== brand;
+		});
+	const hash = location.hash.replace(/^#/, "");
+	const mapped = FILTER_ALIASES[hash] || hash;
+	const section = document.querySelector(
+		`.showcase-group[data-section="${mapped}"]`,
+	);
+	if (section && section.dataset.brand && section.dataset.brand !== brand) {
+		history.replaceState(null, "", `#brand`);
+	}
+	applyShowcaseFilter();
 }
 
 mountShowcase();

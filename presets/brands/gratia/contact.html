@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Let’s work together</title>
+		<link
+			rel="stylesheet"
+			href="../../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide color-theme="dark">
+				<content-container class="flex">
+					<stack
+						direction="row"
+						gap="20"
+						width="fill"
+						height="fill"
+						class="items-center"
+					>
+						<stack
+							direction="col"
+							gap="12"
+							width="fill"
+						>
+							<img
+								data-slot="logo"
+								data-logo
+								src="../../../assets/logos/placeholder-logo.svg"
+								alt="Logo"
+								width="hug"
+								class="shrink-0 block"
+								style="height: 32px; width: auto"
+							/>
+							<text
+								data-slot="main"
+								family="title"
+								size="2000"
+								tone="strong"
+								context="slide"
+								lineheight="single"
+								class="w-full"
+								>Let’s work together</text
+							>
+							<text
+								data-slot="sub"
+								size="400"
+								tone="base"
+								context="slide"
+								class="w-full"
+								>Ready to accelerate your next project? Let's
+								talk.</text
+							>
+						</stack>
+						<card
+							padding="xl"
+							width="fill"
+						>
+							<stack
+								direction="col"
+								gap="2"
+								width="fill"
+							>
+								<text
+									data-slot="label"
+									family="heading"
+									size="400"
+									tone="subtle"
+									context="surface"
+									class="w-full"
+									>Get in touch</text
+								>
+								<text
+									data-slot="email"
+									size="1000"
+									weight="regular"
+									tone="strong"
+									context="surface"
+									class="w-full"
+									>hello@gogratia.com</text
+								>
+							</stack>
+						</card>
+					</stack>
+				</content-container>
+			</slide>
+		</deck>
+	</body>
+</html>

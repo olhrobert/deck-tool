@@ -25,6 +25,13 @@ function isFontFamilyName(value) {
 	return FONT_FAMILY_NAME_SET.has(String(value));
 }
 
+const FONT_STYLE_ROLE_NAMES = ["title", "heading", "stat", "text", "label"];
+const FONT_STYLE_ROLE_NAME_SET = new Set(FONT_STYLE_ROLE_NAMES);
+
+function isFontStyleRoleName(value) {
+	return FONT_STYLE_ROLE_NAME_SET.has(String(value));
+}
+
 /**
  * Maps brand-settings.json fields to CSS custom properties. This is the single
  * source of truth for which design-system globals a brand is allowed to override.
@@ -35,11 +42,12 @@ function isFontFamilyName(value) {
  * (type scale, global spacing scale, etc.).
  *
  * Font *named families* (`font.family.display|base`) are CSS stacks.
- * Role families (`coverTitle.family`, `bodyCopy.family`, …) name one of those
- * two. Font *named weights* (`font.weight.regular|medium|bold`) are CSS numbers
+ * Font *named weights* (`font.weight.regular|medium|bold`) are CSS numbers
  * (400, 500, 600, 700, …) matching `@font-face` in design-system/tokens/fonts.css.
- * Role weights (`slideTitle.title.weight`, `card.title.weight`, …) and `<text weight>`
- * name one of those three. Font *sizes* are type-scale steps (800, 600, 400, …)
+ * Font *style roles* (`font.title|heading|stat|text|label`) each name a family
+ * + weight. Components pick one via `.font` (`coverTitle.font: "title"`).
+ * `<text family="heading">` names a style role; `<text weight>` still names
+ * regular|medium|bold. Font *sizes* are type-scale steps (800, 600, 400, …)
  * from design-system/tokens/typography.css — not pixel values.
  * Semantic *spacing* is a spacing-scale step (20, 16, "0-5", …) from
  * design-system/tokens/spacing.css — not pixel values.
@@ -50,8 +58,10 @@ function isFontFamilyName(value) {
  * Component *stroke* names a `border.size` step (`none`, `sm`, `md`, `lg`).
  *
  * Each HTML component is its own `components.*` group (`coverTitle`, `slideTitle`,
- * `bodyCopy`, `attributionBox.default`, chrome containers). Slide canvas colors
- * are themed (`slide.canvas.background.light|dark`). `foundations.colorTheme.cover|slide`
+ * `attributionBox.default`, chrome containers). Type style lives on
+ * `foundations.font` (`title`, `heading`, `stat`, `text`, `label`); components
+ * reference one role and keep size / uppercase / gap. Slide canvas colors are
+ * themed (`slide.canvas.background.light|dark`). `foundations.colorTheme.cover|slide`
  * is `light` or `dark` (cover default applies to `<slide kind="cover">`).
  * Top-level groups, in order: `foundations` (`basic`, `color`, `colorTheme`,
  * `tone`, `font`, `border`) then `components` (one group per component tag).
@@ -164,7 +174,7 @@ function isFontSizePath(jsonPath) {
 
 function isSpacingStepPath(jsonPath) {
 	return (
-		/\.(padding|gap)\.(none|sm|md|lg)$/i.test(jsonPath) ||
+		/\.(padding|gap)\.(none|sm|md|lg|xl)$/i.test(jsonPath) ||
 		/\.padding\.(block|inline)$/i.test(jsonPath) ||
 		/\.padding(Top|Right|Bottom|Left)$/i.test(jsonPath) ||
 		/\.title\.gap$/i.test(jsonPath) ||
@@ -200,6 +210,10 @@ function isFontRoleWeightPath(jsonPath) {
 		jsonPath.endsWith(".weight") ||
 		/(title|pretitle|subtitle)Weight$/.test(jsonPath)
 	);
+}
+
+function isFontRoleRefPath(jsonPath) {
+	return jsonPath.startsWith("components.") && jsonPath.endsWith(".font");
 }
 
 const BORDER_RADIUS_STEPS = ["none", "sm", "med", "lg", "full"];
@@ -617,7 +631,7 @@ function isColorRolePath(jsonPath) {
 		/^components\.slide\.canvas\.(background|foreground)\.(light|dark)$/.test(
 			jsonPath,
 		) ||
-		/^components\.slide\.surface\.(background|foreground|border)$/.test(
+		/^components\.slide\.surface\.(background|foreground)$/.test(
 			jsonPath,
 		) ||
 		jsonPath === "components.divider.color.light" ||
@@ -810,6 +824,25 @@ const TOKEN_MAP = [
 	["foundations.font.weight.bold", "--font-weight-bold"],
 
 	[
+		"foundations.font.title.family",
+		"--font-title-family",
+		"font — title",
+	],
+	["foundations.font.title.weight", "--font-title-weight"],
+	[
+		"foundations.font.heading.family",
+		"--font-heading-family",
+		"font — heading",
+	],
+	["foundations.font.heading.weight", "--font-heading-weight"],
+	["foundations.font.stat.family", "--font-stat-family", "font — stat"],
+	["foundations.font.stat.weight", "--font-stat-weight"],
+	["foundations.font.text.family", "--font-text-family", "font — text"],
+	["foundations.font.text.weight", "--font-text-weight"],
+	["foundations.font.label.family", "--font-label-family", "font — label"],
+	["foundations.font.label.weight", "--font-label-weight"],
+
+	[
 		"foundations.border.radius.none",
 		"--border-radius-none",
 		"border — radius",
@@ -830,8 +863,7 @@ const TOKEN_MAP = [
 		"attributionBox",
 	],
 
-	["components.coverTitle.family", "--cover-title-font-family", "coverTitle"],
-	["components.coverTitle.weight", "--cover-title-font-weight"],
+	["components.coverTitle.font", "--cover-title-font", "coverTitle"],
 	["components.coverTitle.sizeSm", "--cover-title-size-sm"],
 	["components.coverTitle.sizeMd", "--cover-title-size-md"],
 	["components.coverTitle.sizeLg", "--cover-title-size-lg"],
@@ -861,15 +893,13 @@ const TOKEN_MAP = [
 	["components.slide.canvas.maxWidth", "--slide-max-width"],
 	["components.slide.surface.background", "--color-slide-surface-background"],
 	["components.slide.surface.foreground", "--color-slide-surface-foreground"],
-	["components.slide.surface.border", "--color-slide-surface-border"],
 
 	[
 		"components.slideTitle.pretitle.default",
 		"--slide-pretitle-default",
 		"slideTitle",
 	],
-	["components.slideTitle.pretitle.family", "--slide-pretitle-font-family"],
-	["components.slideTitle.pretitle.weight", "--slide-pretitle-font-weight"],
+	["components.slideTitle.pretitle.font", "--slide-pretitle-font"],
 	[
 		"components.slideTitle.pretitle.uppercase",
 		"--slide-pretitle-text-transform",
@@ -880,13 +910,11 @@ const TOKEN_MAP = [
 	],
 	["components.slideTitle.pretitle.size", "--slide-pretitle-size"],
 	["components.slideTitle.title.gap", "--slide-title-gap"],
-	["components.slideTitle.title.family", "--slide-title-font-family"],
-	["components.slideTitle.title.weight", "--slide-title-font-weight"],
+	["components.slideTitle.title.font", "--slide-title-font"],
 	["components.slideTitle.title.sizeSm", "--slide-title-size-sm"],
 	["components.slideTitle.title.sizeMd", "--slide-title-size-md"],
 	["components.slideTitle.title.sizeLg", "--slide-title-size-lg"],
-	["components.slideTitle.subtitle.family", "--slide-subtitle-font-family"],
-	["components.slideTitle.subtitle.weight", "--slide-subtitle-font-weight"],
+	["components.slideTitle.subtitle.font", "--slide-subtitle-font"],
 	["components.slideTitle.subtitle.size", "--slide-subtitle-size"],
 
 	[
@@ -926,14 +954,12 @@ const TOKEN_MAP = [
 	],
 	["components.footerContainer.paddingLeft", "--slide-footer-padding-left"],
 
-	["components.bodyCopy.family", "--body-font-family", "bodyCopy"],
-	["components.bodyCopy.weight", "--body-font-weight"],
-
 	["components.card.defaultLayout", null, "card"],
 	...cardColorTokenMapEntries(),
 	["components.card.padding.sm", "--card-padding-sm", "card — padding"],
 	["components.card.padding.md", "--card-padding-md"],
 	["components.card.padding.lg", "--card-padding-lg"],
+	["components.card.padding.xl", "--card-padding-xl"],
 	["components.card.gap.none", "--card-gap-none"],
 	["components.card.gap.sm", "--card-gap-sm"],
 	["components.card.gap.md", "--card-gap-md"],
@@ -945,19 +971,18 @@ const TOKEN_MAP = [
 	["components.card.border.sizeRight", "--card-border-size-right"],
 	...cardBorderColorTokenMapEntries(),
 	...cardStripeTokenMapEntries(),
-	["components.card.title.family", "--card-title-font-family"],
-	["components.card.title.weight", "--card-title-font-weight"],
+	["components.card.title.font", "--card-title-font"],
 	["components.card.title.sizeSm", "--card-title-size-sm"],
 	["components.card.title.sizeMd", "--card-title-size-md"],
 	["components.card.title.sizeLg", "--card-title-size-lg"],
-	["components.card.pretitle.family", "--card-pretitle-font-family"],
-	["components.card.pretitle.weight", "--card-pretitle-font-weight"],
+	["components.card.pretitle.font", "--card-pretitle-font"],
 	["components.card.pretitle.uppercase", "--card-pretitle-text-transform"],
 	[
 		"components.card.pretitle.letterSpacing",
 		"--card-pretitle-letter-spacing",
 	],
 	["components.card.pretitle.size", "--card-pretitle-size"],
+	["components.card.meta.font", "--card-meta-font"],
 	["components.card.meta.paddingTop", "--card-meta-padding-top"],
 
 	...calloutPaintTokenMapEntries(
@@ -971,20 +996,15 @@ const TOKEN_MAP = [
 		"callout — foreground",
 	),
 	[
-		"components.callout.title.family",
-		"--callout-title-font-family",
+		"components.callout.title.font",
+		"--callout-title-font",
 		"callout — title",
 	],
-	["components.callout.title.weight", "--callout-title-font-weight"],
 	["components.callout.title.size", "--callout-title-size"],
 	[
-		"components.callout.description.family",
-		"--callout-description-font-family",
+		"components.callout.description.font",
+		"--callout-description-font",
 		"callout — description",
-	],
-	[
-		"components.callout.description.weight",
-		"--callout-description-font-weight",
 	],
 	["components.callout.description.size", "--callout-description-size"],
 	[
@@ -1020,11 +1040,10 @@ const TOKEN_MAP = [
 		"badge — foreground",
 	),
 	[
-		"components.badge.text.family",
-		"--badge-text-font-family",
+		"components.badge.text.font",
+		"--badge-text-font",
 		"badge — text",
 	],
-	["components.badge.text.weight", "--badge-text-font-weight"],
 	["components.badge.text.size", "--badge-text-size"],
 	["components.badge.icon.size", "--badge-icon-size", "badge — icon"],
 	[
@@ -1059,19 +1078,19 @@ const TOKEN_MAP = [
 	["components.stamp.defaultSize", "--stamp-default-size", "stamp — size"],
 	["components.stamp.icon.scale", "--stamp-icon-scale", "stamp — icon"],
 	[
-		"components.stamp.text.family",
-		"--stamp-text-font-family",
+		"components.stamp.text.font",
+		"--stamp-text-font",
 		"stamp — text",
 	],
-	["components.stamp.text.weight", "--stamp-text-font-weight"],
 	["components.stamp.text.scale", "--stamp-text-scale"],
 	["components.stamp.border.radius", "--stamp-border-radius", "stamp — border"],
 
 	[
-		"components.slideFooter.textSize",
-		"--slide-footer-text-size",
+		"components.slideFooter.font",
+		"--slide-footer-font",
 		"slide-footer",
 	],
+	["components.slideFooter.textSize", "--slide-footer-text-size"],
 	["components.slideFooter.logoHeight", "--slide-footer-logo-height"],
 	["components.slideFooter.gap", "--slide-footer-gap"],
 ];
@@ -1292,6 +1311,14 @@ function toCssValue(jsonPath, value, brand) {
 		}
 		return String(value);
 	}
+	if (isFontRoleRefPath(jsonPath)) {
+		if (!isFontStyleRoleName(value)) {
+			throw new Error(
+				`${jsonPath} must be a font style role (${FONT_STYLE_ROLE_NAMES.join(", ")}) (got ${JSON.stringify(value)})`,
+			);
+		}
+		return null;
+	}
 	return value;
 }
 
@@ -1300,6 +1327,21 @@ function buildBrandCss(brand) {
 	for (const [jsonPath, cssVar, group] of TOKEN_MAP) {
 		const raw = getPath(brand, jsonPath);
 		if (raw === undefined || raw === null) continue;
+		if (isFontRoleRefPath(jsonPath)) {
+			if (!isFontStyleRoleName(raw)) {
+				throw new Error(
+					`${jsonPath} must be a font style role (${FONT_STYLE_ROLE_NAMES.join(", ")}) (got ${JSON.stringify(raw)})`,
+				);
+			}
+			if (!cssVar) continue;
+			if (group) {
+				if (lines.length > 0) lines.push("");
+				lines.push(`\t/* ${group} */`);
+			}
+			lines.push(`\t${cssVar}-family: var(--font-${raw}-family);`);
+			lines.push(`\t${cssVar}-weight: var(--font-${raw}-weight);`);
+			continue;
+		}
 		const value = toCssValue(jsonPath, raw, brand);
 		if (!cssVar || value === null) continue;
 		if (group) {
@@ -1454,10 +1496,13 @@ module.exports = {
 	isCssFontWeight,
 	isFontWeightName,
 	isFontFamilyName,
+	isFontStyleRoleName,
 	isFontNamedFamilyPath,
 	isFontRoleFamilyPath,
 	isFontNamedWeightPath,
 	isFontRoleWeightPath,
+	isFontRoleRefPath,
+	FONT_STYLE_ROLE_NAMES,
 	isFontSizePath,
 	isSpacingStepPath,
 	isSpacingScaleStep,

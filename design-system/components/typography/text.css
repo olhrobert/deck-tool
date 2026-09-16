@@ -9,7 +9,9 @@
      context="slide|surface"        default slide
 
    Extra on <text> only: family, weight, lineheight, letterspacing.
-   family="display" picks --font-family-display (in-body headings).
+   family="title|heading|stat|text|label" picks a brand style role (family + weight).
+   family="display|base" picks a named stack (family only).
+   Size always stays on the size attribute — roles do not bake a type-scale step.
 */
 
 :is(
@@ -31,6 +33,8 @@
 ) {
 	display: block;
 	margin: 0;
+	min-width: 0;
+	overflow-wrap: anywhere;
 	line-height: 1.2;
 	--_ink-strong: var(--color-slide-foreground-strong);
 	--_ink-base: var(--color-slide-foreground-base);
@@ -106,11 +110,36 @@
 
 /* Primitive defaults — <text> only. Presets set family/weight in their CSS. */
 text {
-	font-family: var(--body-font-family, system-ui, sans-serif);
-	font-weight: var(--body-font-weight, 400);
+	font-family: var(--font-text-family, system-ui, sans-serif);
+	font-weight: var(--font-text-weight, 400);
 	font-size: var(--text-size-400);
 	letter-spacing: 0%;
 	text-transform: none;
+}
+
+text[family="title"] {
+	font-family: var(--font-title-family, system-ui, sans-serif);
+	font-weight: var(--font-title-weight, 700);
+}
+
+text[family="heading"] {
+	font-family: var(--font-heading-family, system-ui, sans-serif);
+	font-weight: var(--font-heading-weight, 700);
+}
+
+text[family="stat"] {
+	font-family: var(--font-stat-family, system-ui, sans-serif);
+	font-weight: var(--font-stat-weight, 700);
+}
+
+text[family="text"] {
+	font-family: var(--font-text-family, system-ui, sans-serif);
+	font-weight: var(--font-text-weight, 400);
+}
+
+text[family="label"] {
+	font-family: var(--font-label-family, system-ui, sans-serif);
+	font-weight: var(--font-label-weight, 500);
 }
 
 text[family="cover-title"] {
@@ -134,9 +163,4 @@ text[family="display"] {
 
 text[family="base"] {
 	font-family: var(--font-family-base);
-}
-
-text[family="body"] {
-	font-family: var(--body-font-family, system-ui, sans-serif);
-	font-weight: var(--body-font-weight, 400);
 }

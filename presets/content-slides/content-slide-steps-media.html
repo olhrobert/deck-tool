@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Slide title</title>
+		<link
+			rel="stylesheet"
+			href="../../design-system/tokens/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/components/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../../design-system/utilities.css"
+		/>
+	</head>
+	<body>
+		<deck>
+			<slide>
+				<content-container class="flex pr-0">
+					<stack
+						direction="row"
+						gap="20"
+						width="fill"
+						height="fill"
+						class="items-center"
+					>
+						<stack
+							direction="col"
+							gap="8"
+							width="hug"
+							style="width: 480px"
+						>
+							<slide-title-group>
+								<slide-title
+									data-slot="main"
+									size="lg"
+									tone="strong"
+									context="slide"
+									>Slide title</slide-title
+								>
+							</slide-title-group>
+							<stack
+								direction="col"
+								gap="4"
+								width="fill"
+							>
+								<divider></divider>
+								<stack
+									direction="row"
+									gap="6"
+									width="fill"
+									class="items-center"
+								>
+									<stamp
+										variant="neutral"
+										size="10"
+									>
+										<stamp-text data-slot="mark">1</stamp-text>
+									</stamp>
+									<stack
+										direction="col"
+										gap="1"
+										width="fill"
+									>
+										<text
+											data-slot="step-title"
+											family="heading"
+											size="500"
+											tone="strong"
+											context="slide"
+											>Step title</text
+										>
+										<text
+											data-slot="step-text"
+											size="350"
+											tone="base"
+											context="slide"
+											>Short description, can be a couple
+											sentences long.</text
+										>
+									</stack>
+								</stack>
+								<divider></divider>
+								<stack
+									direction="row"
+									gap="6"
+									width="fill"
+									class="items-center"
+								>
+									<stamp
+										variant="neutral"
+										size="10"
+									>
+										<stamp-text data-slot="mark">2</stamp-text>
+									</stamp>
+									<stack
+										direction="col"
+										gap="1"
+										width="fill"
+									>
+										<text
+											data-slot="step-title"
+											family="heading"
+											size="500"
+											tone="strong"
+											context="slide"
+											>Step title</text
+										>
+										<text
+											data-slot="step-text"
+											size="350"
+											tone="base"
+											context="slide"
+											>Short description, can be a couple
+											sentences long.</text
+										>
+									</stack>
+								</stack>
+								<divider></divider>
+								<stack
+									direction="row"
+									gap="6"
+									width="fill"
+									class="items-center"
+								>
+									<stamp
+										variant="neutral"
+										size="10"
+									>
+										<stamp-text data-slot="mark">3</stamp-text>
+									</stamp>
+									<stack
+										direction="col"
+										gap="1"
+										width="fill"
+									>
+										<text
+											data-slot="step-title"
+											family="heading"
+											size="500"
+											tone="strong"
+											context="slide"
+											>Step title</text
+										>
+										<text
+											data-slot="step-text"
+											size="350"
+											tone="base"
+											context="slide"
+											>Short description, can be a couple
+											sentences long.</text
+										>
+									</stack>
+								</stack>
+								<divider></divider>
+								<stack
+									direction="row"
+									gap="6"
+									width="fill"
+									class="items-center"
+								>
+									<stamp
+										variant="neutral"
+										size="10"
+									>
+										<stamp-text data-slot="mark">4</stamp-text>
+									</stamp>
+									<stack
+										direction="col"
+										gap="1"
+										width="fill"
+									>
+										<text
+											data-slot="step-title"
+											family="heading"
+											size="500"
+											tone="strong"
+											context="slide"
+											>Step title</text
+										>
+										<text
+											data-slot="step-text"
+											size="350"
+											tone="base"
+											context="slide"
+											>Short description, can be a couple
+											sentences long.</text
+										>
+									</stack>
+								</stack>
+								<divider></divider>
+							</stack>
+						</stack>
+						<media-slot
+							data-slot="image"
+							width="fill"
+							height="fill"
+						>
+							<text
+								size="200"
+								tone="subtle"
+								context="slide"
+								>Browser</text
+							>
+						</media-slot>
+					</stack>
+				</content-container>
+				<footer-container>
+					<slide-footer>
+						<img
+							data-slot="logo"
+							data-logo
+							src="../../assets/logos/placeholder-logo.svg"
+							alt="Logo"
+							class="shrink-0 block"
+						/>
+						<slide-footer-notes data-slot="notes" tone="subtle"
+							>Add notes or sources here.</slide-footer-notes
+						>
+						<slide-footer-meta>
+							<slide-footer-title data-slot="deck-title" tone="subtle"
+								>Deck title</slide-footer-title
+							>
+							<slide-footer-chapter data-slot="chapter" tone="subtle"
+								>Chapter</slide-footer-chapter
+							>
+							<slide-footer-page data-slot="page" tone="subtle"
+								>01</slide-footer-page
+							>
+						</slide-footer-meta>
+					</slide-footer>
+				</footer-container>
+			</slide>
+		</deck>
+	</body>
+</html>

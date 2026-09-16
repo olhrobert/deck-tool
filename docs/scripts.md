@@ -44,6 +44,20 @@ npm run generate-brand:all
 
 ---
 
+## `add-pool-logo.js`
+
+Downloads the deck logo pool into `assets/logos/pool/` from Wikimedia Commons (wordmark + white inverted pair). Extra slugs can come from Simple Icons. Brandfetch CDN URLs must stay hotlinked — do not scrape them.
+
+```bash
+node scripts/add-pool-logo.js --seed
+node scripts/add-pool-logo.js --file ~/Downloads/acme.svg acme
+npm run add-pool-logo -- --file ~/Downloads/acme.svg acme
+```
+
+`--seed` replaces `assets/logos/pool/` with the current deck set (Wikimedia Commons wordmarks). `--force` overwrites a single Simple Icons add. Use `--file` for a lockup that is not in the seed or Simple Icons.
+
+---
+
 ## `generate-icon-css.js`
 
 Maps every `assets/icons/*.svg` filename onto `:is(badge-icon, stamp-icon)[icon="{name}"]` CSS so badge and stamp icons resolve from any HTML path. Run after adding or renaming icons.
