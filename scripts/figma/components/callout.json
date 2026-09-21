@@ -1,0 +1,164 @@
+{
+	"brand": "gratia",
+	"component": "callout",
+	"name": "Callout",
+	"autoLayout": {
+		"type": "autoLayout",
+		"tag": "callout",
+		"direction": "VERTICAL",
+		"gapStep": "1",
+		"columns": null,
+		"wrap": false,
+		"width": "hug",
+		"height": "hug",
+		"attrs": {
+			"variant": "neutral",
+			"padding": "md"
+		},
+		"children": [
+			{
+				"type": "text",
+				"tag": "callout-title",
+				"attrs": {
+					"data-slot": "title",
+					"tone": "strong",
+					"context": "surface"
+				},
+				"characters": "Title"
+			},
+			{
+				"type": "text",
+				"tag": "callout-description",
+				"attrs": {
+					"data-slot": "description",
+					"tone": "base",
+					"context": "surface"
+				},
+				"characters": "Description"
+			}
+		]
+	},
+	"layout": {
+		"width": 320,
+		"direction": "VERTICAL",
+		"padding": "callout-padding-md",
+		"gap": "callout-gap-sm",
+		"radius": "border-radius-none",
+		"strokeTop": "border-size-none",
+		"strokeBottom": "border-size-none",
+		"strokeLeft": "callout-stripe-width",
+		"strokeRight": "border-size-none",
+		"slots": [
+			{
+				"id": "title",
+				"name": "title",
+				"kind": "text",
+				"fontFamily": "callout-title-font-family",
+				"fontWeight": "callout-title-font-weight",
+				"fontSize": "callout-title-size",
+				"lineHeight": "text-lineheight",
+				"letterSpacing": null,
+				"opacity": "tone-strong",
+				"textCase": "ORIGINAL",
+				"characters": "Title",
+				"textProperty": "Title"
+			},
+			{
+				"id": "description",
+				"name": "description",
+				"kind": "text",
+				"fontFamily": "callout-description-font-family",
+				"fontWeight": "callout-description-font-weight",
+				"fontSize": "callout-description-size",
+				"lineHeight": "text-lineheight",
+				"letterSpacing": null,
+				"opacity": "tone-base",
+				"textCase": "ORIGINAL",
+				"characters": "Description",
+				"textProperty": "Description"
+			}
+		]
+	},
+	"variants": [
+		{
+			"name": "Variant=neutral",
+			"variant": "neutral",
+			"fill": {
+				"variable": "callout-neutral-background",
+				"opacity": 0
+			},
+			"stroke": {
+				"variable": "callout-neutral-stripe",
+				"opacity": 1
+			},
+			"foreground": {
+				"variable": "callout-neutral-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=positive",
+			"variant": "positive",
+			"fill": {
+				"variable": "callout-positive-background",
+				"opacity": 0.1
+			},
+			"stroke": {
+				"variable": "callout-positive-stripe",
+				"opacity": 1
+			},
+			"foreground": {
+				"variable": "callout-positive-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=warning",
+			"variant": "warning",
+			"fill": {
+				"variable": "callout-warning-background",
+				"opacity": 0.1
+			},
+			"stroke": {
+				"variable": "callout-warning-stripe",
+				"opacity": 1
+			},
+			"foreground": {
+				"variable": "callout-warning-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=negative",
+			"variant": "negative",
+			"fill": {
+				"variable": "callout-negative-background",
+				"opacity": 0.1
+			},
+			"stroke": {
+				"variable": "callout-negative-stripe",
+				"opacity": 1
+			},
+			"foreground": {
+				"variable": "callout-negative-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=informative",
+			"variant": "informative",
+			"fill": {
+				"variable": "callout-informative-background",
+				"opacity": 0.1
+			},
+			"stroke": {
+				"variable": "callout-informative-stripe",
+				"opacity": 0.5
+			},
+			"foreground": {
+				"variable": "callout-informative-foreground",
+				"opacity": 1
+			}
+		}
+	]
+}

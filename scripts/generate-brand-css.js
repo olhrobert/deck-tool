@@ -1492,6 +1492,8 @@ module.exports = {
 	isSemanticSwatchPath,
 	isColorLiteralPath,
 	isColorLiteral,
+	parseColorChannels,
+	getPath,
 	isBrandSwatchPath,
 	isCssFontWeight,
 	isFontWeightName,

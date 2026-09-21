@@ -8,6 +8,8 @@
 		"add-pool-logo": "node scripts/add-pool-logo.js",
 		"new-brand": "node scripts/new-brand.js",
 		"validate-brand": "node scripts/validate-brand.js",
+		"figma:sync-variables": "node scripts/figma/sync-brand-variables.js",
+		"figma:build-component": "node scripts/figma/build-component.js",
 		"showcase": "python3 -m http.server 8080"
 	}
 }

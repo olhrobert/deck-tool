@@ -1,0 +1,151 @@
+{
+	"brand": "gratia",
+	"component": "stamp",
+	"name": "Stamp",
+	"autoLayout": {
+		"type": "autoLayout",
+		"tag": "stamp",
+		"direction": "HORIZONTAL",
+		"gapStep": "0",
+		"columns": null,
+		"wrap": false,
+		"width": "hug",
+		"height": "hug",
+		"attrs": {
+			"variant": "neutral"
+		},
+		"children": [
+			{
+				"type": "text",
+				"tag": "stamp-text",
+				"attrs": {
+					"data-slot": "mark"
+				},
+				"characters": "1"
+			}
+		]
+	},
+	"layout": {
+		"direction": "HORIZONTAL",
+		"width": "stamp-default-size",
+		"height": "stamp-default-size",
+		"primaryAxisAlign": "CENTER",
+		"counterAxisAlign": "CENTER",
+		"gap": null,
+		"radius": "stamp-border-radius",
+		"size": "stamp-default-size",
+		"textScale": "stamp-text-scale",
+		"iconScale": "stamp-icon-scale",
+		"slots": [
+			{
+				"id": "mark",
+				"name": "mark",
+				"kind": "text",
+				"fontFamily": "stamp-text-font-family",
+				"fontWeight": "stamp-text-font-weight",
+				"fontSize": null,
+				"lineHeightPercent": 100,
+				"letterSpacing": null,
+				"opacity": "tone-strong",
+				"textCase": "ORIGINAL",
+				"characters": "1",
+				"textProperty": "Mark",
+				"booleanProperty": "Show mark",
+				"booleanDefault": true,
+				"nowrap": true,
+				"align": "CENTER"
+			},
+			{
+				"id": "icon",
+				"name": "icon",
+				"kind": "icon",
+				"icon": "star-fill",
+				"booleanProperty": "Show icon",
+				"booleanDefault": false
+			}
+		]
+	},
+	"variants": [
+		{
+			"name": "Variant=neutral",
+			"variant": "neutral",
+			"fill": {
+				"variable": "stamp-neutral-background",
+				"opacity": 0.1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-neutral-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=emphasis",
+			"variant": "emphasis",
+			"fill": {
+				"variable": "stamp-emphasis-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-emphasis-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=positive",
+			"variant": "positive",
+			"fill": {
+				"variable": "stamp-positive-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-positive-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=warning",
+			"variant": "warning",
+			"fill": {
+				"variable": "stamp-warning-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-warning-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=negative",
+			"variant": "negative",
+			"fill": {
+				"variable": "stamp-negative-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-negative-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=informative",
+			"variant": "informative",
+			"fill": {
+				"variable": "stamp-informative-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-informative-foreground",
+				"opacity": 1
+			}
+		}
+	],
+	"icons": {
+		"star-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z\" fill=\"#04383A\"/>\n</svg>"
+	}
+}

@@ -1,0 +1,41 @@
+{
+	"name": "DeckTool Sync",
+	"id": "com.gratia.decktool.sync",
+	"api": "1.0.0",
+	"main": "code.js",
+	"editorType": ["figma"],
+	"documentAccess": "dynamic-page",
+	"networkAccess": {
+		"allowedDomains": ["none"]
+	},
+	"menu": [
+		{
+			"name": "Sync brand variables",
+			"command": "sync-variables"
+		},
+		{
+			"name": "Build card",
+			"command": "build-card"
+		},
+		{
+			"name": "Build badge",
+			"command": "build-badge"
+		},
+		{
+			"name": "Build stamp",
+			"command": "build-stamp"
+		},
+		{
+			"name": "Build callout",
+			"command": "build-callout"
+		},
+		{
+			"name": "Build analyst",
+			"command": "build-analyst"
+		},
+		{
+			"name": "Sync variables and components",
+			"command": "all"
+		}
+	]
+}

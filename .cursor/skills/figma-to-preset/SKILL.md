@@ -25,6 +25,7 @@ Read sibling preset `.md` sidecars (`use_when` / `not_when`) and pick the closes
 Existing building blocks: `<slide>`, `<header-container>` / `<content-container>` / `<footer-container>`, `<slide-title-group>` / `<slide-title>`, `<stack>`, `<text>`, `<stamp>` / `<stamp-icon>` / `<stamp-text>`, `<card>`, `<media-card>`, `<callout>`, `<badge>`, `<divider>`, `<media-slot>`, `<analyst>`, `<slide-footer>`.
 
 - Map Figma spacing to the nearest `--spacing-*` step via `gap` / `padding` attributes (`24px` → `gap="6"`). Fractional columns use `.w-1-3` (and siblings). Fixed column widths may use inline `style="width: …px"` like existing presets (440, 480).
+- **3-column card catalogs:** read the leftover row in Figma. Cards that stay one column wide (empty third cell) → one `<stack columns="3">` with cards as direct children (`gratia-services`). Cards that stretch to fill a short last row → nested `<stack direction="row">` rows of `<card width="fill">` (`content-slide-12-cards`). Do not add a `pack` attribute. See `design-system/components/stack/stack.md`.
 - Map type to the type scale (`14px` → `size="350"`, `12px` → `size="300"`, `10px` → `size="250"`). Slide headlines use `<slide-title size="sm|md|lg">`, not raw px. In-body titles: `<text family="heading" size="…">`. Metrics: `<text family="stat" size="…">`. Pretitles: `<text family="label" size="…">` or `<slide-pretitle>` / `<card-pretitle>`. Omit `weight` on those roles so the brand style applies.
 - Canvas copy: `context="slide"`. Inside card/callout/badge: `context="surface"`.
 - Hairlines: `<divider>` (horizontal) or `orientation="vertical"` in a row. Do not use `--color-slide-surface-border`.
@@ -47,7 +48,7 @@ Decide **layout** vs **brand slide** before writing:
 
 Copy chrome, stylesheet links, and `<slide-footer>` from an existing content layout (omit the footer on close slides).
 
-**Layout:** match column widths, gaps, alignment (`class="items-center"`), and which blocks are lists vs cards. Do not recreate Figma auto-layout as absolute CSS.
+**Layout:** match column widths, gaps, alignment (`class="items-center"`), and which blocks are lists vs cards. Do not recreate Figma auto-layout as absolute CSS. A Figma grid of cards is `columns="3"`; a Figma auto-layout column of fill rows is nested `direction="row"` stacks.
 
 **Do not:** new components, new utilities unless a preset already needs that class, new brand tokens, Tailwind, restyle `<content-container>` beyond fill utilities (`flex`, `p-0`, `pr-0`) already used by presets.
 

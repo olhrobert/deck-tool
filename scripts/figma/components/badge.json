@@ -1,0 +1,201 @@
+{
+	"brand": "gratia",
+	"component": "badge",
+	"name": "Badge",
+	"autoLayout": {
+		"type": "autoLayout",
+		"tag": "badge",
+		"direction": "HORIZONTAL",
+		"gapStep": "1",
+		"columns": null,
+		"wrap": false,
+		"width": "hug",
+		"height": "hug",
+		"attrs": {
+			"variant": "neutral"
+		},
+		"children": [
+			{
+				"type": "text",
+				"tag": "badge-icon",
+				"attrs": {
+					"data-slot": "leading",
+					"icon": "checkbox-circle-fill",
+					"aria-hidden": "true"
+				},
+				"characters": ""
+			},
+			{
+				"type": "text",
+				"tag": "badge-text",
+				"attrs": {
+					"data-slot": "label",
+					"tone": "strong",
+					"context": "surface"
+				},
+				"characters": "Text"
+			},
+			{
+				"type": "text",
+				"tag": "badge-icon",
+				"attrs": {
+					"data-slot": "trailing",
+					"icon": "arrow-right-s-line",
+					"aria-hidden": "true"
+				},
+				"characters": ""
+			}
+		]
+	},
+	"layout": {
+		"direction": "HORIZONTAL",
+		"width": "hug",
+		"height": "hug",
+		"primaryAxisAlign": "CENTER",
+		"counterAxisAlign": "CENTER",
+		"paddingTop": "badge-padding-block",
+		"paddingBottom": "badge-padding-block",
+		"paddingLeft": "badge-padding-inline",
+		"paddingRight": "badge-padding-inline",
+		"gap": "spacing-1",
+		"radius": "badge-border-radius",
+		"strokeWeight": "border-size-none",
+		"labelPad": "spacing-0-5",
+		"iconSize": "badge-icon-size",
+		"slots": [
+			{
+				"id": "leading",
+				"name": "leading",
+				"kind": "icon",
+				"icon": "checkbox-circle-fill",
+				"booleanProperty": "Show leading",
+				"booleanDefault": true
+			},
+			{
+				"id": "label",
+				"name": "label",
+				"kind": "text",
+				"fontFamily": "badge-text-font-family",
+				"fontWeight": "badge-text-font-weight",
+				"fontSize": "badge-text-size",
+				"lineHeight": "text-lineheight",
+				"letterSpacing": null,
+				"opacity": "tone-strong",
+				"textCase": "ORIGINAL",
+				"characters": "Text",
+				"textProperty": "Label",
+				"nowrap": true
+			},
+			{
+				"id": "trailing",
+				"name": "trailing",
+				"kind": "icon",
+				"icon": "arrow-right-s-line",
+				"booleanProperty": "Show trailing",
+				"booleanDefault": true
+			}
+		]
+	},
+	"variants": [
+		{
+			"name": "Variant=neutral",
+			"variant": "neutral",
+			"fill": {
+				"variable": "badge-neutral-background",
+				"opacity": 0.1
+			},
+			"stroke": {
+				"variable": "badge-neutral-border",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "badge-neutral-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=emphasis",
+			"variant": "emphasis",
+			"fill": {
+				"variable": "badge-emphasis-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "badge-emphasis-border",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "badge-emphasis-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=positive",
+			"variant": "positive",
+			"fill": {
+				"variable": "badge-positive-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "badge-positive-border",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "badge-positive-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=warning",
+			"variant": "warning",
+			"fill": {
+				"variable": "badge-warning-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "badge-warning-border",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "badge-warning-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=negative",
+			"variant": "negative",
+			"fill": {
+				"variable": "badge-negative-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "badge-negative-border",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "badge-negative-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=informative",
+			"variant": "informative",
+			"fill": {
+				"variable": "badge-informative-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "badge-informative-border",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "badge-informative-foreground",
+				"opacity": 1
+			}
+		}
+	],
+	"icons": {
+		"checkbox-circle-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z\" fill=\"#04383A\"/>\n</svg>",
+		"arrow-right-s-line": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z\" fill=\"#04383A\"/>\n</svg>"
+	}
+}

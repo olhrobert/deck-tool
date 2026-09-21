@@ -63,5 +63,5 @@ A component set and preset library that can express real decks, with new tokens 
 | --- | --- |
 | Tokens and color roles | [brands.md](brands.md) |
 | Size / gap / padding / variant | [components.md](components.md) |
-| Brand / icon scripts | [scripts.md](scripts.md) |
+| Brand / icon / Figma scripts | [scripts.md](scripts.md) |
 | Agent workflows | `.cursor/skills/new-brand/`, `.cursor/skills/attribution-box/`, `.cursor/skills/figma-to-preset/` |

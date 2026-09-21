@@ -1,0 +1,3 @@
+# Local Figma target (fileKey). Session-specific, not a secret.
+scripts/figma/.figma-file.json
+scripts/figma/.chunks/

@@ -1,0 +1,231 @@
+{
+	"brand": "gratia",
+	"component": "card",
+	"name": "Card",
+	"brandLayout": "basic",
+	"autoLayout": {
+		"type": "autoLayout",
+		"tag": "card",
+		"direction": "VERTICAL",
+		"gapStep": "2",
+		"columns": null,
+		"wrap": false,
+		"width": "hug",
+		"height": "hug",
+		"attrs": {
+			"variant": "neutral",
+			"padding": "md"
+		},
+		"children": [
+			{
+				"type": "text",
+				"tag": "card-pretitle",
+				"attrs": {
+					"data-slot": "pretitle",
+					"tone": "subtle",
+					"context": "surface"
+				},
+				"characters": "Optional pretitle"
+			},
+			{
+				"type": "text",
+				"tag": "card-title",
+				"attrs": {
+					"data-slot": "title",
+					"tone": "strong",
+					"context": "surface"
+				},
+				"characters": "The title of this card"
+			},
+			{
+				"type": "text",
+				"tag": "text",
+				"attrs": {
+					"data-slot": "text",
+					"size": "350",
+					"tone": "base",
+					"context": "surface"
+				},
+				"characters": "Description copy of this card. Can be several sentences long."
+			},
+			{
+				"type": "text",
+				"tag": "card-meta",
+				"attrs": {
+					"data-slot": "meta",
+					"tone": "subtle",
+					"context": "surface"
+				},
+				"characters": "Supporting detail."
+			}
+		]
+	},
+	"layout": {
+		"width": 320,
+		"direction": "VERTICAL",
+		"padding": "card-padding-md",
+		"gap": "card-gap-sm",
+		"radius": "card-border-radius",
+		"strokeTop": "card-border-size-top",
+		"strokeBottom": "card-border-size-bottom",
+		"strokeLeft": "card-border-size-left",
+		"strokeRight": "card-border-size-right",
+		"metaPaddingTop": "card-meta-padding-top",
+		"slots": [
+			{
+				"id": "pretitle",
+				"name": "pretitle",
+				"fontFamily": "card-pretitle-font-family",
+				"fontWeight": "card-pretitle-font-weight",
+				"fontSize": "card-pretitle-size",
+				"lineHeight": "text-lineheight",
+				"letterSpacing": "card-pretitle-letter-spacing",
+				"opacity": "tone-subtle",
+				"textCase": "ORIGINAL",
+				"characters": "Optional pretitle",
+				"textProperty": "Pretitle",
+				"booleanProperty": "Show pretitle",
+				"booleanDefault": true
+			},
+			{
+				"id": "title",
+				"name": "title",
+				"fontFamily": "card-title-font-family",
+				"fontWeight": "card-title-font-weight",
+				"fontSize": "card-title-size-md",
+				"lineHeight": "card-title-lineheight",
+				"letterSpacing": null,
+				"opacity": "tone-strong",
+				"textCase": "ORIGINAL",
+				"characters": "The title of this card",
+				"textProperty": "Title"
+			},
+			{
+				"id": "text",
+				"name": "text",
+				"fontFamily": "font-text-family",
+				"fontWeight": "font-text-weight",
+				"fontSize": "text-size-350",
+				"lineHeight": "text-lineheight",
+				"letterSpacing": null,
+				"opacity": "tone-base",
+				"textCase": "ORIGINAL",
+				"characters": "Description copy of this card. Can be several sentences long.",
+				"textProperty": "Description"
+			},
+			{
+				"id": "meta",
+				"name": "meta",
+				"fontFamily": "card-meta-font-family",
+				"fontWeight": "card-meta-font-weight",
+				"fontSize": "card-meta-size",
+				"lineHeight": "card-meta-lineheight",
+				"letterSpacing": null,
+				"opacity": "tone-subtle",
+				"textCase": "ORIGINAL",
+				"characters": "Supporting detail.",
+				"textProperty": "Meta",
+				"booleanProperty": "Show meta",
+				"booleanDefault": true
+			}
+		]
+	},
+	"variants": [
+		{
+			"name": "Variant=neutral",
+			"variant": "neutral",
+			"fill": {
+				"variable": "card-neutral-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "card-neutral-border-subtle",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "card-neutral-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=emphasis",
+			"variant": "emphasis",
+			"fill": {
+				"variable": "card-emphasis-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "card-emphasis-border-subtle",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "card-emphasis-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=positive",
+			"variant": "positive",
+			"fill": {
+				"variable": "card-positive-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "card-positive-border-subtle",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "card-positive-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=warning",
+			"variant": "warning",
+			"fill": {
+				"variable": "card-warning-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "card-warning-border-subtle",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "card-warning-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=negative",
+			"variant": "negative",
+			"fill": {
+				"variable": "card-negative-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "card-negative-border-subtle",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "card-negative-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=informative",
+			"variant": "informative",
+			"fill": {
+				"variable": "card-informative-background",
+				"opacity": 1
+			},
+			"stroke": {
+				"variable": "card-informative-border-subtle",
+				"opacity": 0.2
+			},
+			"foreground": {
+				"variable": "card-informative-foreground",
+				"opacity": 1
+			}
+		}
+	]
+}

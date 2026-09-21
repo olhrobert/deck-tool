@@ -1,0 +1,5153 @@
+{
+	"brand": "gratia",
+	"collections": [
+		{
+			"name": "Spacing",
+			"modes": [
+				"Value"
+			],
+			"variables": [
+				{
+					"name": "spacing-0",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-0)"
+					},
+					"alias": null,
+					"value": 0
+				},
+				{
+					"name": "spacing-1",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-1)"
+					},
+					"alias": null,
+					"value": 4
+				},
+				{
+					"name": "spacing-2",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-2)"
+					},
+					"alias": null,
+					"value": 8
+				},
+				{
+					"name": "spacing-3",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-3)"
+					},
+					"alias": null,
+					"value": 12
+				},
+				{
+					"name": "spacing-4",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-4)"
+					},
+					"alias": null,
+					"value": 16
+				},
+				{
+					"name": "spacing-5",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-5)"
+					},
+					"alias": null,
+					"value": 20
+				},
+				{
+					"name": "spacing-6",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-6)"
+					},
+					"alias": null,
+					"value": 24
+				},
+				{
+					"name": "spacing-7",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-7)"
+					},
+					"alias": null,
+					"value": 28
+				},
+				{
+					"name": "spacing-8",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-8)"
+					},
+					"alias": null,
+					"value": 32
+				},
+				{
+					"name": "spacing-9",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-9)"
+					},
+					"alias": null,
+					"value": 36
+				},
+				{
+					"name": "spacing-10",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-10)"
+					},
+					"alias": null,
+					"value": 40
+				},
+				{
+					"name": "spacing-11",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-11)"
+					},
+					"alias": null,
+					"value": 44
+				},
+				{
+					"name": "spacing-12",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-12)"
+					},
+					"alias": null,
+					"value": 48
+				},
+				{
+					"name": "spacing-13",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-13)"
+					},
+					"alias": null,
+					"value": 52
+				},
+				{
+					"name": "spacing-14",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-14)"
+					},
+					"alias": null,
+					"value": 56
+				},
+				{
+					"name": "spacing-15",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-15)"
+					},
+					"alias": null,
+					"value": 60
+				},
+				{
+					"name": "spacing-16",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-16)"
+					},
+					"alias": null,
+					"value": 64
+				},
+				{
+					"name": "spacing-17",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-17)"
+					},
+					"alias": null,
+					"value": 68
+				},
+				{
+					"name": "spacing-18",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-18)"
+					},
+					"alias": null,
+					"value": 72
+				},
+				{
+					"name": "spacing-19",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-19)"
+					},
+					"alias": null,
+					"value": 76
+				},
+				{
+					"name": "spacing-20",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-20)"
+					},
+					"alias": null,
+					"value": 80
+				},
+				{
+					"name": "spacing-21",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-21)"
+					},
+					"alias": null,
+					"value": 84
+				},
+				{
+					"name": "spacing-22",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-22)"
+					},
+					"alias": null,
+					"value": 88
+				},
+				{
+					"name": "spacing-23",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-23)"
+					},
+					"alias": null,
+					"value": 92
+				},
+				{
+					"name": "spacing-24",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-24)"
+					},
+					"alias": null,
+					"value": 96
+				},
+				{
+					"name": "spacing-25",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-25)"
+					},
+					"alias": null,
+					"value": 100
+				},
+				{
+					"name": "spacing-26",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-26)"
+					},
+					"alias": null,
+					"value": 104
+				},
+				{
+					"name": "spacing-27",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-27)"
+					},
+					"alias": null,
+					"value": 108
+				},
+				{
+					"name": "spacing-28",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-28)"
+					},
+					"alias": null,
+					"value": 112
+				},
+				{
+					"name": "spacing-29",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-29)"
+					},
+					"alias": null,
+					"value": 116
+				},
+				{
+					"name": "spacing-30",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-30)"
+					},
+					"alias": null,
+					"value": 120
+				},
+				{
+					"name": "spacing-31",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-31)"
+					},
+					"alias": null,
+					"value": 124
+				},
+				{
+					"name": "spacing-32",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-32)"
+					},
+					"alias": null,
+					"value": 128
+				},
+				{
+					"name": "spacing-33",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-33)"
+					},
+					"alias": null,
+					"value": 132
+				},
+				{
+					"name": "spacing-34",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-34)"
+					},
+					"alias": null,
+					"value": 136
+				},
+				{
+					"name": "spacing-35",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-35)"
+					},
+					"alias": null,
+					"value": 140
+				},
+				{
+					"name": "spacing-36",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-36)"
+					},
+					"alias": null,
+					"value": 144
+				},
+				{
+					"name": "spacing-37",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-37)"
+					},
+					"alias": null,
+					"value": 148
+				},
+				{
+					"name": "spacing-38",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-38)"
+					},
+					"alias": null,
+					"value": 152
+				},
+				{
+					"name": "spacing-39",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-39)"
+					},
+					"alias": null,
+					"value": 156
+				},
+				{
+					"name": "spacing-40",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-40)"
+					},
+					"alias": null,
+					"value": 160
+				},
+				{
+					"name": "spacing-0-25",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-0-25)"
+					},
+					"alias": null,
+					"value": 1
+				},
+				{
+					"name": "spacing-0-5",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-0-5)"
+					},
+					"alias": null,
+					"value": 2
+				},
+				{
+					"name": "spacing-1-5",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-1-5)"
+					},
+					"alias": null,
+					"value": 6
+				},
+				{
+					"name": "spacing-2-5",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP",
+						"WIDTH_HEIGHT",
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--spacing-2-5)"
+					},
+					"alias": null,
+					"value": 10
+				}
+			]
+		},
+		{
+			"name": "Typography",
+			"modes": [
+				"Value"
+			],
+			"variables": [
+				{
+					"name": "text-size-200",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-200)"
+					},
+					"alias": null,
+					"value": 8
+				},
+				{
+					"name": "text-size-225",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-225)"
+					},
+					"alias": null,
+					"value": 9
+				},
+				{
+					"name": "text-size-250",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-250)"
+					},
+					"alias": null,
+					"value": 10
+				},
+				{
+					"name": "text-size-275",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-275)"
+					},
+					"alias": null,
+					"value": 11
+				},
+				{
+					"name": "text-size-300",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-300)"
+					},
+					"alias": null,
+					"value": 12
+				},
+				{
+					"name": "text-size-350",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-350)"
+					},
+					"alias": null,
+					"value": 14
+				},
+				{
+					"name": "text-size-400",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-400)"
+					},
+					"alias": null,
+					"value": 16
+				},
+				{
+					"name": "text-size-450",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-450)"
+					},
+					"alias": null,
+					"value": 18
+				},
+				{
+					"name": "text-size-500",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-500)"
+					},
+					"alias": null,
+					"value": 20
+				},
+				{
+					"name": "text-size-550",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-550)"
+					},
+					"alias": null,
+					"value": 22
+				},
+				{
+					"name": "text-size-600",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-600)"
+					},
+					"alias": null,
+					"value": 24
+				},
+				{
+					"name": "text-size-700",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-700)"
+					},
+					"alias": null,
+					"value": 28
+				},
+				{
+					"name": "text-size-800",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-800)"
+					},
+					"alias": null,
+					"value": 32
+				},
+				{
+					"name": "text-size-1000",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-1000)"
+					},
+					"alias": null,
+					"value": 40
+				},
+				{
+					"name": "text-size-1200",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-1200)"
+					},
+					"alias": null,
+					"value": 48
+				},
+				{
+					"name": "text-size-1600",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-1600)"
+					},
+					"alias": null,
+					"value": 64
+				},
+				{
+					"name": "text-size-2000",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-2000)"
+					},
+					"alias": null,
+					"value": 80
+				},
+				{
+					"name": "text-size-2400",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-2400)"
+					},
+					"alias": null,
+					"value": 96
+				},
+				{
+					"name": "text-size-3000",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-3000)"
+					},
+					"alias": null,
+					"value": 120
+				},
+				{
+					"name": "text-size-3400",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-3400)"
+					},
+					"alias": null,
+					"value": 136
+				},
+				{
+					"name": "text-size-4000",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--text-size-4000)"
+					},
+					"alias": null,
+					"value": 160
+				},
+				{
+					"name": "font-family-display",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-family-display)"
+					},
+					"alias": null,
+					"value": "DM Sans"
+				},
+				{
+					"name": "font-family-base",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-family-base)"
+					},
+					"alias": null,
+					"value": "DM Sans"
+				},
+				{
+					"name": "font-weight-regular",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-weight-regular)"
+					},
+					"alias": null,
+					"value": 400
+				},
+				{
+					"name": "font-weight-medium",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-weight-medium)"
+					},
+					"alias": null,
+					"value": 500
+				},
+				{
+					"name": "font-weight-bold",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-weight-bold)"
+					},
+					"alias": null,
+					"value": 600
+				},
+				{
+					"name": "cover-title-lineheight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LINE_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-lineheight)"
+					},
+					"alias": null,
+					"value": 110
+				},
+				{
+					"name": "slide-title-lineheight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LINE_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-lineheight)"
+					},
+					"alias": null,
+					"value": 120
+				},
+				{
+					"name": "slide-subtitle-lineheight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LINE_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-subtitle-lineheight)"
+					},
+					"alias": null,
+					"value": 120
+				},
+				{
+					"name": "card-title-lineheight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LINE_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-title-lineheight)"
+					},
+					"alias": null,
+					"value": 100
+				},
+				{
+					"name": "card-meta-lineheight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LINE_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-meta-lineheight)"
+					},
+					"alias": null,
+					"value": 120
+				},
+				{
+					"name": "text-lineheight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LINE_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "1.2"
+					},
+					"alias": null,
+					"value": 120
+				}
+			]
+		},
+		{
+			"name": "Shape",
+			"modes": [
+				"Value"
+			],
+			"variables": [
+				{
+					"name": "border-radius-none",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-radius-none)"
+					},
+					"alias": null,
+					"value": 0
+				},
+				{
+					"name": "border-radius-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-radius-sm)"
+					},
+					"alias": null,
+					"value": 4
+				},
+				{
+					"name": "border-radius-med",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-radius-med)"
+					},
+					"alias": null,
+					"value": 8
+				},
+				{
+					"name": "border-radius-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-radius-lg)"
+					},
+					"alias": null,
+					"value": 12
+				},
+				{
+					"name": "border-radius-full",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-radius-full)"
+					},
+					"alias": null,
+					"value": 200
+				},
+				{
+					"name": "border-size-none",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-size-none)"
+					},
+					"alias": null,
+					"value": 0
+				},
+				{
+					"name": "border-size-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-size-sm)"
+					},
+					"alias": null,
+					"value": 1
+				},
+				{
+					"name": "border-size-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-size-md)"
+					},
+					"alias": null,
+					"value": 2
+				},
+				{
+					"name": "border-size-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--border-size-lg)"
+					},
+					"alias": null,
+					"value": 4
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"modes": [
+				"Value"
+			],
+			"variables": [
+				{
+					"name": "color-palette-brand-1",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-brand-1)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.00392156862745098,
+						"g": 0.09803921568627451,
+						"b": 0.10196078431372549,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-brand-2",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-brand-2)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.01568627450980392,
+						"g": 0.2196078431372549,
+						"b": 0.22745098039215686,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-brand-3",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-brand-3)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.13725490196078433,
+						"g": 0.8666666666666667,
+						"b": 0.611764705882353,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-brand-4",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-brand-4)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.9490196078431372,
+						"g": 0.9607843137254902,
+						"b": 0.9607843137254902,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-brand-5",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-brand-5)"
+					},
+					"alias": null,
+					"value": {
+						"r": 1,
+						"g": 1,
+						"b": 1,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-brand-6",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-brand-6)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.011764705882352941,
+						"g": 0.15294117647058825,
+						"b": 0.1607843137254902,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-semantic-neutral",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-semantic-neutral)"
+					},
+					"alias": "color-palette-brand-1",
+					"value": null
+				},
+				{
+					"name": "color-semantic-bright",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-semantic-bright)"
+					},
+					"alias": "color-palette-brand-5",
+					"value": null
+				},
+				{
+					"name": "color-semantic-positive",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-semantic-positive)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.023529411764705882,
+						"g": 0.4627450980392157,
+						"b": 0.22745098039215686,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-semantic-negative",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-semantic-negative)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.7450980392156863,
+						"g": 0.12549019607843137,
+						"b": 0.1411764705882353,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-semantic-warning",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-semantic-warning)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.5882352941176471,
+						"g": 0.3137254901960784,
+						"b": 0.03137254901960784,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-semantic-informative",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-semantic-informative)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.09803921568627451,
+						"g": 0.3137254901960784,
+						"b": 0.6666666666666666,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-chart-1",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-chart-1)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.48627450980392156,
+						"g": 0.22745098039215686,
+						"b": 0.9294117647058824,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-chart-2",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-chart-2)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.9176470588235294,
+						"g": 0.34509803921568627,
+						"b": 0.047058823529411764,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-chart-3",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-chart-3)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.9176470588235294,
+						"g": 0.7019607843137254,
+						"b": 0.03137254901960784,
+						"a": 1
+					}
+				},
+				{
+					"name": "color-palette-chart-4",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-palette-chart-4)"
+					},
+					"alias": null,
+					"value": {
+						"r": 0.1450980392156863,
+						"g": 0.38823529411764707,
+						"b": 0.9215686274509803,
+						"a": 1
+					}
+				},
+				{
+					"name": "tone-strong",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"OPACITY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--tone-strong)"
+					},
+					"alias": null,
+					"value": 100
+				},
+				{
+					"name": "tone-base",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"OPACITY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--tone-base)"
+					},
+					"alias": null,
+					"value": 70
+				},
+				{
+					"name": "tone-subtle",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"OPACITY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--tone-subtle)"
+					},
+					"alias": null,
+					"value": 50
+				},
+				{
+					"name": "font-title-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-title-family)"
+					},
+					"alias": "font-family-display",
+					"value": null
+				},
+				{
+					"name": "font-title-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-title-weight)"
+					},
+					"alias": "font-weight-bold",
+					"value": null
+				},
+				{
+					"name": "font-heading-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-heading-family)"
+					},
+					"alias": "font-family-base",
+					"value": null
+				},
+				{
+					"name": "font-heading-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-heading-weight)"
+					},
+					"alias": "font-weight-bold",
+					"value": null
+				},
+				{
+					"name": "font-stat-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-stat-family)"
+					},
+					"alias": "font-family-base",
+					"value": null
+				},
+				{
+					"name": "font-stat-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-stat-weight)"
+					},
+					"alias": "font-weight-bold",
+					"value": null
+				},
+				{
+					"name": "font-text-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-text-family)"
+					},
+					"alias": "font-family-base",
+					"value": null
+				},
+				{
+					"name": "font-text-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-text-weight)"
+					},
+					"alias": "font-weight-regular",
+					"value": null
+				},
+				{
+					"name": "font-label-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-label-family)"
+					},
+					"alias": "font-family-base",
+					"value": null
+				},
+				{
+					"name": "font-label-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--font-label-weight)"
+					},
+					"alias": "font-weight-medium",
+					"value": null
+				}
+			]
+		},
+		{
+			"name": "Color",
+			"modes": [
+				"Light",
+				"Dark"
+			],
+			"variables": [
+				{
+					"name": "divider-color",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--divider-color)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.00392156862745098,
+								"g": 0.09803921568627451,
+								"b": 0.10196078431372549,
+								"a": 0.2
+							}
+						},
+						"Dark": {
+							"alias": null,
+							"value": {
+								"r": 1,
+								"g": 1,
+								"b": 1,
+								"a": 0.1
+							}
+						}
+					}
+				},
+				{
+					"name": "color-slide-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-slide-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-4",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-2",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-slide-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-slide-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-neutral-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-neutral-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-neutral-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-neutral-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-emphasis-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-emphasis-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-emphasis-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-emphasis-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-positive-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-positive-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-positive-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-positive-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-warning-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-warning-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-warning-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-warning-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-negative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-negative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-negative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-negative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-informative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-informative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-informative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-informative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-neutral-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-neutral-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-6",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-neutral-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-neutral-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-6",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-emphasis-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-emphasis-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-emphasis-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-emphasis-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-positive-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-positive-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.023529411764705882,
+								"g": 0.4627450980392157,
+								"b": 0.22745098039215686,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-positive",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-positive-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-positive-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.023529411764705882,
+								"g": 0.4627450980392157,
+								"b": 0.22745098039215686,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-positive",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-warning-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-warning-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.5882352941176471,
+								"g": 0.3137254901960784,
+								"b": 0.03137254901960784,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-warning",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-warning-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-warning-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.5882352941176471,
+								"g": 0.3137254901960784,
+								"b": 0.03137254901960784,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-warning",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-negative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-negative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.7450980392156863,
+								"g": 0.12549019607843137,
+								"b": 0.1411764705882353,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-negative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-negative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-negative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.7450980392156863,
+								"g": 0.12549019607843137,
+								"b": 0.1411764705882353,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-negative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-informative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-informative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.09803921568627451,
+								"g": 0.3137254901960784,
+								"b": 0.6666666666666666,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-informative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-informative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-informative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.09803921568627451,
+								"g": 0.3137254901960784,
+								"b": 0.6666666666666666,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-informative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-neutral-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-neutral-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "color-neutral-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-neutral-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "card-emphasis-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-emphasis-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-bright",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "color-emphasis-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-emphasis-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-bright",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "card-positive-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-positive-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "color-positive-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-positive-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "card-warning-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-warning-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "color-warning-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-warning-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "card-negative-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-negative-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "color-negative-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-negative-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "card-informative-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-informative-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "color-informative-border-subtle",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-informative-border-subtle)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "card-neutral-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-neutral-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-neutral-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-neutral-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-emphasis-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-emphasis-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-emphasis-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-emphasis-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-positive-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-positive-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-positive-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-positive-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-warning-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-warning-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-warning-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-warning-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-negative-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-negative-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-negative-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-negative-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "card-informative-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-informative-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-informative-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-informative-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-neutral-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-neutral-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					},
+					"paintOpacity": 0
+				},
+				{
+					"name": "callout-positive-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-positive-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-positive",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.1
+				},
+				{
+					"name": "callout-negative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-negative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-negative",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.1
+				},
+				{
+					"name": "callout-warning-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-warning-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-warning",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.1
+				},
+				{
+					"name": "callout-informative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-informative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-informative",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.1
+				},
+				{
+					"name": "callout-neutral-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-neutral-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-positive-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-positive-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-negative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-negative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-warning-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-warning-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-informative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-informative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-neutral-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-neutral-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.00392156862745098,
+								"g": 0.09803921568627451,
+								"b": 0.10196078431372549,
+								"a": 0.5
+							}
+						},
+						"Dark": {
+							"alias": null,
+							"value": {
+								"r": 1,
+								"g": 1,
+								"b": 1,
+								"a": 0.2
+							}
+						}
+					}
+				},
+				{
+					"name": "callout-positive-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-positive-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.023529411764705882,
+								"g": 0.4627450980392157,
+								"b": 0.22745098039215686,
+								"a": 0.5
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-positive",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-negative-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-negative-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.7450980392156863,
+								"g": 0.12549019607843137,
+								"b": 0.1411764705882353,
+								"a": 0.5
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-negative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-warning-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-warning-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.5882352941176471,
+								"g": 0.3137254901960784,
+								"b": 0.03137254901960784,
+								"a": 0.5
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-warning",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "callout-informative-stripe",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-informative-stripe)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.5
+				},
+				{
+					"name": "badge-neutral-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-neutral-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-2",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.1
+				},
+				{
+					"name": "badge-emphasis-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-emphasis-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-positive-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-positive-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.023529411764705882,
+								"g": 0.4627450980392157,
+								"b": 0.22745098039215686,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-positive",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-warning-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-warning-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.5882352941176471,
+								"g": 0.3137254901960784,
+								"b": 0.03137254901960784,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-warning",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-negative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-negative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.7450980392156863,
+								"g": 0.12549019607843137,
+								"b": 0.1411764705882353,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-negative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-informative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-informative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.09803921568627451,
+								"g": 0.3137254901960784,
+								"b": 0.6666666666666666,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-informative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-neutral-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-neutral-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-emphasis-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-emphasis-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-positive-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-positive-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-warning-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-warning-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-negative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-negative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-informative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-informative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "badge-neutral-border",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-neutral-border)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "badge-emphasis-border",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-emphasis-border)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-bright",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "badge-positive-border",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-positive-border)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "badge-warning-border",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-warning-border)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "badge-negative-border",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-negative-border)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "badge-informative-border",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-informative-border)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.2
+				},
+				{
+					"name": "stamp-neutral-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-neutral-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-2",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					},
+					"paintOpacity": 0.1
+				},
+				{
+					"name": "stamp-emphasis-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-emphasis-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-3",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-positive-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-positive-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.023529411764705882,
+								"g": 0.4627450980392157,
+								"b": 0.22745098039215686,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-positive",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-warning-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-warning-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.5882352941176471,
+								"g": 0.3137254901960784,
+								"b": 0.03137254901960784,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-warning",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-negative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-negative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.7450980392156863,
+								"g": 0.12549019607843137,
+								"b": 0.1411764705882353,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-negative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-informative-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-informative-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": null,
+							"value": {
+								"r": 0.09803921568627451,
+								"g": 0.3137254901960784,
+								"b": 0.6666666666666666,
+								"a": 0.1
+							}
+						},
+						"Dark": {
+							"alias": "color-semantic-informative",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-neutral-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-neutral-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-neutral",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-emphasis-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-emphasis-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-positive-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-positive-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-positive",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-warning-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-warning-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-warning",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-negative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-negative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-negative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "stamp-informative-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-informative-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-semantic-informative",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-semantic-bright",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-slide-surface-background",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-slide-surface-background)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-5",
+							"value": null
+						}
+					}
+				},
+				{
+					"name": "color-slide-surface-foreground",
+					"resolvedType": "COLOR",
+					"scopes": [
+						"FRAME_FILL",
+						"SHAPE_FILL",
+						"TEXT_FILL",
+						"STROKE_COLOR"
+					],
+					"codeSyntax": {
+						"WEB": "var(--color-slide-surface-foreground)"
+					},
+					"values": {
+						"Light": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						},
+						"Dark": {
+							"alias": "color-palette-brand-1",
+							"value": null
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Component",
+			"modes": [
+				"Value"
+			],
+			"variables": [
+				{
+					"name": "cover-title-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-font-family)"
+					},
+					"alias": "font-title-family",
+					"value": null
+				},
+				{
+					"name": "cover-title-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-font-weight)"
+					},
+					"alias": "font-title-weight",
+					"value": null
+				},
+				{
+					"name": "cover-title-size-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-size-sm)"
+					},
+					"alias": "text-size-1200",
+					"value": null
+				},
+				{
+					"name": "cover-title-size-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-size-md)"
+					},
+					"alias": "text-size-2400",
+					"value": null
+				},
+				{
+					"name": "cover-title-size-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-size-lg)"
+					},
+					"alias": "text-size-3000",
+					"value": null
+				},
+				{
+					"name": "cover-title-size-xl",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--cover-title-size-xl)"
+					},
+					"alias": "text-size-4000",
+					"value": null
+				},
+				{
+					"name": "divider-width",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"WIDTH_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--divider-width)"
+					},
+					"alias": null,
+					"value": 1
+				},
+				{
+					"name": "slide-max-width",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"WIDTH_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-max-width)"
+					},
+					"alias": null,
+					"value": 1280
+				},
+				{
+					"name": "slide-pretitle-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-pretitle-font-family)"
+					},
+					"alias": "font-label-family",
+					"value": null
+				},
+				{
+					"name": "slide-pretitle-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-pretitle-font-weight)"
+					},
+					"alias": "font-label-weight",
+					"value": null
+				},
+				{
+					"name": "slide-pretitle-letter-spacing",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LETTER_SPACING"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-pretitle-letter-spacing)"
+					},
+					"alias": null,
+					"value": 2
+				},
+				{
+					"name": "slide-pretitle-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-pretitle-size)"
+					},
+					"alias": "text-size-350",
+					"value": null
+				},
+				{
+					"name": "slide-title-gap",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-gap)"
+					},
+					"alias": "spacing-2",
+					"value": null
+				},
+				{
+					"name": "slide-title-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-font-family)"
+					},
+					"alias": "font-title-family",
+					"value": null
+				},
+				{
+					"name": "slide-title-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-font-weight)"
+					},
+					"alias": "font-title-weight",
+					"value": null
+				},
+				{
+					"name": "slide-title-size-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-size-sm)"
+					},
+					"alias": "text-size-800",
+					"value": null
+				},
+				{
+					"name": "slide-title-size-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-size-md)"
+					},
+					"alias": "text-size-1000",
+					"value": null
+				},
+				{
+					"name": "slide-title-size-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-title-size-lg)"
+					},
+					"alias": "text-size-1200",
+					"value": null
+				},
+				{
+					"name": "slide-subtitle-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-subtitle-font-family)"
+					},
+					"alias": "font-text-family",
+					"value": null
+				},
+				{
+					"name": "slide-subtitle-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-subtitle-font-weight)"
+					},
+					"alias": "font-text-weight",
+					"value": null
+				},
+				{
+					"name": "slide-subtitle-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-subtitle-size)"
+					},
+					"alias": "text-size-350",
+					"value": null
+				},
+				{
+					"name": "slide-header-padding-top",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-header-padding-top)"
+					},
+					"alias": "spacing-16",
+					"value": null
+				},
+				{
+					"name": "slide-header-padding-right",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-header-padding-right)"
+					},
+					"alias": "spacing-20",
+					"value": null
+				},
+				{
+					"name": "slide-header-padding-bottom",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-header-padding-bottom)"
+					},
+					"alias": "spacing-0",
+					"value": null
+				},
+				{
+					"name": "slide-header-padding-left",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-header-padding-left)"
+					},
+					"alias": "spacing-20",
+					"value": null
+				},
+				{
+					"name": "slide-content-padding-top",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-content-padding-top)"
+					},
+					"alias": "spacing-10",
+					"value": null
+				},
+				{
+					"name": "slide-content-padding-right",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-content-padding-right)"
+					},
+					"alias": "spacing-20",
+					"value": null
+				},
+				{
+					"name": "slide-content-padding-bottom",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-content-padding-bottom)"
+					},
+					"alias": "spacing-0",
+					"value": null
+				},
+				{
+					"name": "slide-content-padding-left",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-content-padding-left)"
+					},
+					"alias": "spacing-20",
+					"value": null
+				},
+				{
+					"name": "slide-footer-padding-top",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-padding-top)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "slide-footer-padding-right",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-padding-right)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "slide-footer-padding-bottom",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-padding-bottom)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "slide-footer-padding-left",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-padding-left)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "card-padding-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-padding-sm)"
+					},
+					"alias": "spacing-3",
+					"value": null
+				},
+				{
+					"name": "card-padding-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-padding-md)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "card-padding-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-padding-lg)"
+					},
+					"alias": "spacing-6",
+					"value": null
+				},
+				{
+					"name": "card-padding-xl",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-padding-xl)"
+					},
+					"alias": "spacing-12",
+					"value": null
+				},
+				{
+					"name": "card-gap-none",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-gap-none)"
+					},
+					"alias": "spacing-0",
+					"value": null
+				},
+				{
+					"name": "card-gap-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-gap-sm)"
+					},
+					"alias": "spacing-2",
+					"value": null
+				},
+				{
+					"name": "card-gap-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-gap-md)"
+					},
+					"alias": "spacing-3",
+					"value": null
+				},
+				{
+					"name": "card-gap-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-gap-lg)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "card-border-radius",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-border-radius)"
+					},
+					"alias": "border-radius-med",
+					"value": null
+				},
+				{
+					"name": "card-border-size-top",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-border-size-top)"
+					},
+					"alias": "border-size-sm",
+					"value": null
+				},
+				{
+					"name": "card-border-size-bottom",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-border-size-bottom)"
+					},
+					"alias": "border-size-sm",
+					"value": null
+				},
+				{
+					"name": "card-border-size-left",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-border-size-left)"
+					},
+					"alias": "border-size-sm",
+					"value": null
+				},
+				{
+					"name": "card-border-size-right",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-border-size-right)"
+					},
+					"alias": "border-size-sm",
+					"value": null
+				},
+				{
+					"name": "card-stripe-width",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-stripe-width)"
+					},
+					"alias": "border-size-md",
+					"value": null
+				},
+				{
+					"name": "card-title-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-title-font-family)"
+					},
+					"alias": "font-heading-family",
+					"value": null
+				},
+				{
+					"name": "card-title-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-title-font-weight)"
+					},
+					"alias": "font-heading-weight",
+					"value": null
+				},
+				{
+					"name": "card-title-size-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-title-size-sm)"
+					},
+					"alias": "text-size-600",
+					"value": null
+				},
+				{
+					"name": "card-title-size-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-title-size-md)"
+					},
+					"alias": "text-size-700",
+					"value": null
+				},
+				{
+					"name": "card-title-size-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-title-size-lg)"
+					},
+					"alias": "text-size-800",
+					"value": null
+				},
+				{
+					"name": "card-pretitle-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-pretitle-font-family)"
+					},
+					"alias": "font-label-family",
+					"value": null
+				},
+				{
+					"name": "card-pretitle-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-pretitle-font-weight)"
+					},
+					"alias": "font-label-weight",
+					"value": null
+				},
+				{
+					"name": "card-pretitle-letter-spacing",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"LETTER_SPACING"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-pretitle-letter-spacing)"
+					},
+					"alias": null,
+					"value": 2
+				},
+				{
+					"name": "card-pretitle-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-pretitle-size)"
+					},
+					"alias": "text-size-300",
+					"value": null
+				},
+				{
+					"name": "card-meta-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-meta-font-family)"
+					},
+					"alias": "font-text-family",
+					"value": null
+				},
+				{
+					"name": "card-meta-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-meta-font-weight)"
+					},
+					"alias": "font-text-weight",
+					"value": null
+				},
+				{
+					"name": "card-meta-padding-top",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-meta-padding-top)"
+					},
+					"alias": "spacing-0-5",
+					"value": null
+				},
+				{
+					"name": "callout-title-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-title-font-family)"
+					},
+					"alias": "font-heading-family",
+					"value": null
+				},
+				{
+					"name": "callout-title-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-title-font-weight)"
+					},
+					"alias": "font-heading-weight",
+					"value": null
+				},
+				{
+					"name": "callout-title-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-title-size)"
+					},
+					"alias": "text-size-400",
+					"value": null
+				},
+				{
+					"name": "callout-description-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-description-font-family)"
+					},
+					"alias": "font-text-family",
+					"value": null
+				},
+				{
+					"name": "callout-description-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-description-font-weight)"
+					},
+					"alias": "font-text-weight",
+					"value": null
+				},
+				{
+					"name": "callout-description-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-description-size)"
+					},
+					"alias": "text-size-350",
+					"value": null
+				},
+				{
+					"name": "callout-stripe-width",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-stripe-width)"
+					},
+					"alias": "border-size-sm",
+					"value": null
+				},
+				{
+					"name": "callout-padding-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-padding-sm)"
+					},
+					"alias": "spacing-3",
+					"value": null
+				},
+				{
+					"name": "callout-padding-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-padding-md)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "callout-padding-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-padding-lg)"
+					},
+					"alias": "spacing-6",
+					"value": null
+				},
+				{
+					"name": "callout-gap-none",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-gap-none)"
+					},
+					"alias": "spacing-0",
+					"value": null
+				},
+				{
+					"name": "callout-gap-sm",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-gap-sm)"
+					},
+					"alias": "spacing-1",
+					"value": null
+				},
+				{
+					"name": "callout-gap-md",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-gap-md)"
+					},
+					"alias": "spacing-3",
+					"value": null
+				},
+				{
+					"name": "callout-gap-lg",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--callout-gap-lg)"
+					},
+					"alias": "spacing-4",
+					"value": null
+				},
+				{
+					"name": "badge-text-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-text-font-family)"
+					},
+					"alias": "font-text-family",
+					"value": null
+				},
+				{
+					"name": "badge-text-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-text-font-weight)"
+					},
+					"alias": "font-text-weight",
+					"value": null
+				},
+				{
+					"name": "badge-text-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-text-size)"
+					},
+					"alias": "text-size-300",
+					"value": null
+				},
+				{
+					"name": "badge-icon-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"WIDTH_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-icon-size)"
+					},
+					"alias": "spacing-3",
+					"value": null
+				},
+				{
+					"name": "badge-border-radius",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-border-radius)"
+					},
+					"alias": "border-radius-med",
+					"value": null
+				},
+				{
+					"name": "badge-border-width",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"STROKE_FLOAT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-border-width)"
+					},
+					"alias": "border-size-sm",
+					"value": null
+				},
+				{
+					"name": "badge-padding-block",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-padding-block)"
+					},
+					"alias": "spacing-1",
+					"value": null
+				},
+				{
+					"name": "badge-padding-inline",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--badge-padding-inline)"
+					},
+					"alias": "spacing-1-5",
+					"value": null
+				},
+				{
+					"name": "stamp-default-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"WIDTH_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-default-size)"
+					},
+					"alias": "spacing-6",
+					"value": null
+				},
+				{
+					"name": "stamp-icon-scale",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"WIDTH_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-icon-scale)"
+					},
+					"alias": null,
+					"value": 0.6
+				},
+				{
+					"name": "stamp-text-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-text-font-family)"
+					},
+					"alias": "font-text-family",
+					"value": null
+				},
+				{
+					"name": "stamp-text-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-text-font-weight)"
+					},
+					"alias": "font-text-weight",
+					"value": null
+				},
+				{
+					"name": "stamp-text-scale",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"WIDTH_HEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-text-scale)"
+					},
+					"alias": null,
+					"value": 0.6
+				},
+				{
+					"name": "stamp-border-radius",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"CORNER_RADIUS"
+					],
+					"codeSyntax": {
+						"WEB": "var(--stamp-border-radius)"
+					},
+					"alias": "border-radius-full",
+					"value": null
+				},
+				{
+					"name": "slide-footer-font-family",
+					"resolvedType": "STRING",
+					"scopes": [
+						"FONT_FAMILY"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-font-family)"
+					},
+					"alias": "font-text-family",
+					"value": null
+				},
+				{
+					"name": "slide-footer-font-weight",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_WEIGHT"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-font-weight)"
+					},
+					"alias": "font-text-weight",
+					"value": null
+				},
+				{
+					"name": "slide-footer-text-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-text-size)"
+					},
+					"alias": "text-size-300",
+					"value": null
+				},
+				{
+					"name": "slide-footer-logo-height",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-logo-height)"
+					},
+					"alias": "spacing-3",
+					"value": null
+				},
+				{
+					"name": "slide-footer-gap",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"GAP"
+					],
+					"codeSyntax": {
+						"WEB": "var(--slide-footer-gap)"
+					},
+					"alias": "spacing-2",
+					"value": null
+				},
+				{
+					"name": "card-meta-size",
+					"resolvedType": "FLOAT",
+					"scopes": [
+						"FONT_SIZE"
+					],
+					"codeSyntax": {
+						"WEB": "var(--card-meta-size)"
+					},
+					"alias": "text-size-300",
+					"value": null
+				}
+			]
+		}
+	]
+}

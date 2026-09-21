@@ -30,6 +30,12 @@ stack[wrap="true"] {
 	flex-wrap: wrap;
 }
 
+stack[columns="3"] {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	align-items: stretch;
+}
+
 stack[gap="0"] { gap: var(--spacing-0); }
 stack[gap="0-25"] { gap: var(--spacing-0-25); }
 stack[gap="0-5"] { gap: var(--spacing-0-5); }

@@ -66,3 +66,47 @@ Maps every `assets/icons/*.svg` filename onto `:is(badge-icon, stamp-icon)[icon=
 node scripts/generate-icon-css.js
 npm run generate-icons
 ```
+
+---
+
+## Figma sync
+
+Gratia-only. Node emits JSON; a plugin applies it in the target file (Plugin API). The file key lives in `scripts/figma/.figma-file.json` (gitignored). Re-run the extract scripts after brand or component edits; they also regenerate `scripts/figma/plugin/code.js`.
+
+CSS names become Figma names by dropping the `--` (`--spacing-0-5` → `spacing-0-5`, `--slide-pretitle-font-family` → `slide-pretitle-font-family`). Slashes are not used, so Figma does not nest extra groups. Light/dark CSS suffixes become **Color collection modes**, not extra variables.
+
+| Collection | Modes | Contents |
+| --- | --- | --- |
+| Spacing | Value | `--spacing-*` scale |
+| Typography | Value | `--text-size-*`, `--font-family-*`, `--font-weight-*`, line-heights |
+| Shape | Value | `--border-radius-*`, `--border-size-*` |
+| Brand | Value | Palette, semantic, chart, `font-*-family` / `font-*-weight` aliases, and tone. Tone is stored 0–100 in Figma (`1` CSS → `100`) so bound opacity matches; code syntax still uses `var(--tone-*)`. |
+| Color | Light, Dark | Themed paints (`--card-neutral-background`, slide canvas, …). Palette refs stay aliases. If Light and Dark share an extra opacity (e.g. 20% border), that opacity is applied on the layer so the variable can keep the alias; if the two modes differ (e.g. 10% / 100%), the extra opacity is baked into that mode’s `a`. Nested `color-theme="light"` on a dark slide is an instance **mode override** on this collection. |
+
+| Component | Value | Component token aliases (`--card-padding-md` → `spacing-4`, …) |
+
+Skip layout enums, uppercase flags, and other non-bindable settings. `<stack>` is still auto-layout, never a Figma component.
+
+### `sync-brand-variables.js`
+
+Writes `scripts/figma/variables.json` from Gratia `brand-settings.json` plus the shared scales. Default brand is `brands/gratia`.
+
+```bash
+node scripts/figma/sync-brand-variables.js
+node scripts/figma/sync-brand-variables.js brands/gratia
+npm run figma:sync-variables
+```
+
+### `build-component.js`
+
+Walks canonical HTML (`<stack>` and flex roots → auto-layout IR, never a Stack component) and writes `scripts/figma/components/<name>.json`. Supported: `card`, `badge`, `stamp`, `callout`, `analyst` (or `all`). Each is `Variant`-only except analyst, which also has `Size=lg|sm` (body padding + logo well). No Color theme axis — Light/Dark is a Color collection mode override. Fills, strokes, type, opacity, padding, gap, radius, and stroke weights bind to variables. Line-height and letter-spacing are applied as percent from those variables (Figma’s bound FLOAT line-height/tracking is pixels). Card/callout/analyst width `320` stays raw (no CSS token). Stamp mark/icon size is `defaultSize × scale` in px (Figma cannot bind the product). Badge/stamp/analyst icons come from `assets/icons/`. Analyst nests the Badge component for specialization and tags.
+
+```bash
+node scripts/figma/build-component.js card
+node scripts/figma/build-component.js all
+npm run figma:build-component -- analyst
+```
+
+### Apply in Figma
+
+In the DeckTool file: **Plugins → Development → Import plugin from manifest…** and choose [`scripts/figma/plugin/manifest.json`](../scripts/figma/plugin/manifest.json). Run **Sync brand variables**, then **Build card / badge / stamp / callout / analyst** (or **Sync variables and components**). Upserts by name; an existing set with that name is replaced. Analyst requires Badge.

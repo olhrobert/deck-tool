@@ -38,7 +38,7 @@ Omit `orientation` for a full-width hairline. Set `orientation="vertical"` in a 
 | `<card>` | `gap` | `none` \| `sm` \| `md` \| `lg` | `sm` |
 | `<callout>` | `gap` | `none` \| `sm` \| `md` \| `lg` | `sm` |
 
-`<stack>` `wrap="true"` lets row children wrap (analyst tags).
+`<stack>` `wrap="true"` lets row children wrap (analyst tags). `columns="3"` is a 3-column grid so a short last row keeps leftover cards at column width (`gratia-services`). Nested `direction="row"` + `width="fill"` cards stretch a short row (`content-slide-12-cards`). See `stack.md`.
 
 ## Padding
 
