@@ -12,7 +12,9 @@ Build and QA a component set and slide layouts in the browser, under multiple br
 | --- | --- | --- |
 | Tokens | `design-system/tokens/` + `brands/{slug}/brand-settings.json` | Shared color roles, type scale, global spacing scale. Brands pick colors, families, weights, type-scale *steps*, semantic spacing *steps*, named radius/stroke steps, and `slide.canvas.maxWidth`. |
 | Components | `design-system/components/` (canonical HTML + CSS) | Slide chrome, type, Card, Callout, Badge, Stamp, Attribution, … |
-| Presets | `presets/` | Layouts with placeholder copy (`title-slides/`, `chapter-slides/`, `content-slides/`) and brand-locked slides (`brands/{slug}/`). Showcase loads the live files. |
+| Presets | `presets/` | Layouts with placeholder copy (`title-slides/`, `chapter-slides/`, `content-slides/`) and brand-locked slides (`brands/{slug}/`). Showcase loads the live files. Decks copy them into `decks/{slug}/`. |
+| Decks | `decks/{slug}/` | A talk: `01.html`… plus `slides.json` (`title`, `brand`). `compile-deck.js` stitches them into `index.html`. |
+| Admin | `app/` | Local Next.js UI for brands and decks. Not deployable. `pnpm dev` inside `app/`, or `.conductor/run.sh`. |
 | Showcase | `design-system/showcase/` | Workbench: `showcase.html` loads CSS/JS, inlines component demos, `fetch()`es live presets, brand switcher |
 | Skills | `.cursor/skills/` | Prompt workflows: new-brand, attribution-box, figma-to-preset |
 
