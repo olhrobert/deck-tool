@@ -154,3 +154,17 @@ npm run figma:build-template -- all
 In the DeckTool file: **Plugins → Development → Import plugin from manifest…** and choose [`scripts/figma/plugin/manifest.json`](../scripts/figma/plugin/manifest.json). Run **Sync brand variables**, then **Build card / badge / stamp / callout / analyst** (or **Sync variables and components**). Upserts by name; an existing set with that name is replaced. Analyst requires Badge and Media-slot. Rebuilds keep the Components column at x=0 with 200px gaps.
 
 **Templates:** **Build all templates**. Upserts by name onto per-slide pages under TITLE / CHAPTER / CONTENT / GRATIA SLIDES (divider + empty header + one page per preset). Requires the Components-page mains already built. **Sync variables and components** does **not** rebuild templates.
+
+---
+
+## `compile-deck.js`
+
+Stitches `decks/{slug}/*.html` into `decks/{slug}/index.html` using `viewer/deck.html`. Slide order is the numeric filename sort; `slides.json` keeps `title`, `brand`, and any other fields, and its `slides` array is rewritten from disk. Regenerates that brand's `brand.css` from `brand-settings.json`. Preset logos stay placeholders in the HTML; the viewer swaps `data-logo` to the brand pair.
+
+```bash
+node scripts/compile-deck.js decks/test
+npm run compile-deck -- decks/test
+npm run compile-deck:all
+```
+
+Open `decks/{slug}/index.html` from a static server (`npm run showcase`) so the `../../` stylesheets resolve.
