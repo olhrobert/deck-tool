@@ -11,6 +11,7 @@
 		"figma:sync-variables": "node scripts/figma/sync-brand-variables.js",
 		"figma:build-component": "node scripts/figma/build-component.js",
 		"figma:build-template": "node scripts/figma/build-template.js",
+		"figma:diff-template": "node scripts/figma/diff-template.js",
 		"compile-deck": "node scripts/compile-deck.js",
 		"compile-deck:all": "node scripts/compile-all-decks.js",
 		"showcase": "python3 -m http.server 8080"

@@ -141,7 +141,7 @@ Publish each as a component (or component set only if a real axis exists). Defau
 
 ### `build-template.js`
 
-Walks every preset `<slide>` that has HTML into IR at `scripts/figma/templates/<id>.json`, then regenerates the plugin. `<stack>` / layout `<div>` → auto-layout frames; known tags → Components-page instances (`Card`, `Slide-title`, `Slide-footer`, `Cover-title`, `Stamp`, `Badge`, `Divider`, `Media-slot`, `Analyst`, `Attribution-box`, `Brand-logo`, …). Cards whose children are not the catalog slots become tokenized frames (`cardFrame`), because Figma instances cannot gain extra children. Never emits Stack or Text components. Agent workflow: [`.cursor/skills/preset-to-figma/SKILL.md`](../.cursor/skills/preset-to-figma/SKILL.md). Pull remains [`.cursor/skills/figma-to-preset/SKILL.md`](../.cursor/skills/figma-to-preset/SKILL.md).
+Walks every preset `<slide>` that has HTML into IR at `scripts/figma/templates/<id>.json`, then regenerates the plugin. `<stack>` / layout `<div>` → auto-layout frames; known tags → Components-page instances (`Card`, `Slide-title`, `Slide-footer`, `Cover-title`, `Stamp`, `Badge`, `Divider`, `Media-slot`, `Analyst`, `Attribution-box`, `Brand-logo`, …). Cards whose children are not the catalog slots become tokenized frames (`cardFrame`), because Figma instances cannot gain extra children. Never emits Stack or Text components. `<cover-title width="fill|hug">` / `height` map through `horizontalSize` / `verticalSize` (omit to hug). Agent workflow: [`.cursor/skills/preset-to-figma/SKILL.md`](../.cursor/skills/preset-to-figma/SKILL.md). A new slide from a Figma frame still uses [`.cursor/skills/figma-to-preset/SKILL.md`](../.cursor/skills/figma-to-preset/SKILL.md).
 
 ```bash
 node scripts/figma/build-template.js all
@@ -154,6 +154,17 @@ npm run figma:build-template -- all
 In the DeckTool file: **Plugins → Development → Import plugin from manifest…** and choose [`scripts/figma/plugin/manifest.json`](../scripts/figma/plugin/manifest.json). Run **Sync brand variables**, then **Build card / badge / stamp / callout / analyst** (or **Sync variables and components**). Upserts by name; an existing set with that name is replaced. Analyst requires Badge and Media-slot. Rebuilds keep the Components column at x=0 with 200px gaps.
 
 **Templates:** **Build all templates**. Upserts by name onto per-slide pages under TITLE / CHAPTER / CONTENT / GRATIA SLIDES (divider + empty header + one page per preset). Requires the Components-page mains already built. **Sync variables and components** does **not** rebuild templates.
+
+### Pull a template back
+
+Explicit only. Nothing here runs from **Build all templates**. An agent captures the live template component, diffs it against the IR, then edits the preset HTML and [build-template.js](../scripts/figma/build-template.js) so the next build emits that IR. Do not hand-edit `scripts/figma/templates/<id>.json`.
+
+```bash
+node scripts/figma/diff-template.js chapter-slide-02 scripts/figma/pull/out/chapter-slide-02.snapshot.json
+npm run figma:diff-template -- chapter-slide-02 scripts/figma/pull/out/chapter-slide-02.snapshot.json
+```
+
+`--copy` also lists text `characters` differences. Snapshots under `scripts/figma/pull/out/` are gitignored. The walk lives in [scripts/figma/pull/snapshot-walk.js](../scripts/figma/pull/snapshot-walk.js) and runs in Figma (`use_figma`); the plugin cannot write the repo. Components-page mains are out of scope. Agent steps: [`.cursor/skills/figma-pull/SKILL.md`](../.cursor/skills/figma-pull/SKILL.md).
 
 ---
 

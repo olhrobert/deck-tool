@@ -497,8 +497,8 @@ function mapCoverTitle(node) {
 		name: "cover-title",
 		component: "Cover-title",
 		variant: `Size=${node.attrs.size || "md"}, Align=${align}`,
-		layoutSizingHorizontal: "HUG",
-		layoutSizingVertical: "HUG",
+		layoutSizingHorizontal: horizontalSize(node.attrs.width, "HUG"),
+		layoutSizingVertical: verticalSize(node.attrs.height, "HUG"),
 		overrides: [
 			{
 				characters: copy(node),
