@@ -13,4 +13,6 @@ HTML is the source of truth. Brands only override tokens (`brands/{slug}/brand-s
 
 The showcase (`design-system/showcase/showcase.html`) is the visual QA surface. Component samples are inlined in `showcase.js`; canonical HTML stays next to each component’s CSS. The showcase `fetch()`es live presets. Do not start the showcase server or inspect it in the browser; the user does that and will report issues.
 
-See `docs/brands.md` (including where each color token lands on slides), `docs/components.md`, and `docs/scripts.md`.
+**Admin vs design-system work.** New components, presets, and decks usually need no admin code change — the brand editor walks `brand-settings.json`, and the decks UI lists every preset HTML that contains a `<slide>`. Update the admin only when the on-disk contract changes (new value kinds, compile/path rules, or new contrast rules). See `app/docs/architecture.md`.
+
+See `docs/brands.md` (including where each color token lands on slides), `docs/components.md`, `docs/decks.md`, and `docs/scripts.md`.

@@ -1,6 +1,6 @@
 # Brand slides
 
-Finished slides for one brand. Drop them into that brand’s decks as-is. Do not rewrite the copy.
+Finished slides for one brand. Drop them into that brand’s decks as-is (rewrite `../../../` stylesheet paths to `../../` when the file lives under `decks/{slug}/`). Do not rewrite the copy.
 
 Layout starting points live in `presets/title-slides/`, `chapter-slides/`, and `content-slides/`. Token overrides stay in `brands/{slug}/` — this folder is content, not a design-system fork.
 

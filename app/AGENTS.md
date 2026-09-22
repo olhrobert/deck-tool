@@ -12,13 +12,13 @@ Instructions for AI agents working in this codebase.
 
 Always run `pnpm verify` before declaring work complete. It runs lint, typecheck, tests, and a production build. The build uses `NEXT_BUILD_DIR=.next-build` so it won't interfere with a running dev server.
 
-None of that renders a pixel. For anything user-facing, load the page as well — a self-referential CSS variable, a `<symbol>` sprite that draws nothing, and a dynamic `require` that only fails at request time all pass the gate.
+None of that renders a pixel. For anything user-facing, load the page as well — a self-referential CSS variable, a missing logo file, and a dynamic `require` that only fails at request time all pass the gate.
 
-Tests are `src/**/*.test.mts`, run by Node's built-in runner (`pnpm test`). No framework. Use them for pure modules; exercise filesystem and network paths through the running app.
+Tests are `src/**/*.test.mts`, run by Node's built-in runner with `--experimental-strip-types` (`pnpm test`). No framework. Use them for pure modules; exercise filesystem and network paths through the running app.
 
 ## Local only
 
-This app reads and writes the repo working tree and shells out to `scripts/`. It cannot be deployed. Read `docs/architecture.md` before adding anything that touches data.
+This app reads and writes the repo working tree (`brand-settings.json`, `decks/`, `presets/`) and shells out to `scripts/`. It cannot be deployed. Read `docs/architecture.md` before adding anything that touches data. Brand plan: `docs/plans/brands.md`. Deck plan: `docs/plans/decks.md`.
 
 ## File conventions
 

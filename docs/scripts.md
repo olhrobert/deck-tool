@@ -1,6 +1,6 @@
 # Scripts
 
-Node is required. No `npm install` — they use only Node built-ins.
+Root scripts use only Node built-ins — no `npm install` at the repo root. The local admin under `app/` is a separate Next.js package (`pnpm install` inside `app/`).
 
 ## `new-brand.js`
 

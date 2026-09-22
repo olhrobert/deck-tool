@@ -282,7 +282,7 @@ Each brand ships two standalone SVGs with **baked fills** (no `currentColor`, no
 | `{slug}-logo.svg`          | Default lockup on light backgrounds |
 | `{slug}-logo-inverted.svg` | Light lockup on dark backgrounds    |
 
-Presets use `<img data-logo>` (or `data-logo="slide"`). `data-logo="cover"` is an alias for the same canvas. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, omit the `data-logo` value (keep the attribute) so the logo follows the slide canvas (`color-theme`). The showcase picks default vs inverted from the luminance of `--color-slide-background` on that slide. Do not wrap brand logos in `color-*` classes. In Figma, Brand-logo is `Brand=Gratia|Riverton` × `Theme=light|dark` (dark = inverted). Color collection Dark does not invert those baked fills.
+Presets use `<img data-logo>` (or `data-logo="slide"`). `data-logo="cover"` is an alias for the same canvas. `data-logo="slide-surface"` uses `--color-slide-surface-background`. Inside `<slide-footer>`, omit the `data-logo` value (keep the attribute) so the logo follows the slide canvas (`color-theme`). The showcase and compiled decks (`viewer/deck-viewer.js`) pick default vs inverted from the luminance of `--color-slide-background` on that slide. Do not wrap brand logos in `color-*` classes. In Figma, Brand-logo is `Brand=Gratia|Riverton` × `Theme=light|dark` (dark = inverted). Color collection Dark does not invert those baked fills.
 
 The Gratia mark inside `<attribution-box>` is a separate prepared-by lockup (`<img data-slot="logo">`); leave it alone.
 

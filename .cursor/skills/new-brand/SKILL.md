@@ -27,7 +27,7 @@ node scripts/new-brand.js {slug} --name "{Display Name}"
 node scripts/validate-brand.js brands/{slug}
 ```
 
-Fix contrast failures before continuing. Open the showcase and switch to the new brand.
+Fix contrast failures before continuing. Open the showcase and switch to the new brand. The local admin (`cd app && pnpm dev`) also lists the new brand once `brand-settings.json` exists.
 
 ## Do not
 
