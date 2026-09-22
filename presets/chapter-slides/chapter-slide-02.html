@@ -25,26 +25,33 @@
 			<slide kind="cover">
 				<div class="box-border w-full h-full flex flex-col">
 					<div
-						class="box-border grow min-h-0 flex flex-col justify-between px-20 pt-20 pb-10"
+						class="box-border grow min-h-0 flex flex-col px-20 pt-20 pb-10"
 					>
-						<cover-title
-							size="sm"
-							tone="strong"
-							context="slide"
+						<stack
+							direction="col"
+							gap="0"
+							width="fill"
+							height="fill"
+							class="justify-between max-w-md"
 						>
-							Chapter title
-						</cover-title>
-						<text
-							size="350"
-							tone="subtle"
-							context="slide"
-							class="max-w-md"
-						>
-							Engineered for velocity, cost discipline, and linear
-							scalability. React, managed AWS services, and
-							microservice architecture enable rapid iteration
-							with minimal ops overhead.
-						</text>
+							<cover-title
+								size="sm"
+								tone="strong"
+								context="slide"
+							>
+								Chapter title
+							</cover-title>
+							<text
+								size="350"
+								tone="subtle"
+								context="slide"
+							>
+								Engineered for velocity, cost discipline, and linear
+								scalability. React, managed AWS services, and
+								microservice architecture enable rapid iteration
+								with minimal ops overhead.
+							</text>
+						</stack>
 					</div>
 					<div class="p-4">
 						<slide-footer>

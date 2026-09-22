@@ -419,15 +419,6 @@ const PRESET_GROUPS = [
 					{ colorTheme: "dark", caption: 'color-theme="dark"' },
 				],
 			},
-			{
-				id: "content-slide-actions-results",
-				label: "Actions + results",
-				src: "../../presets/content-slides/content-slide-actions-results.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-				],
-			},
 		],
 	},
 ];
@@ -854,25 +845,25 @@ function renderStaticShowcases() {
 	);
 	fillDemo(
 		"content-container-showcase",
-		`<slide><content-container><text context="slide" tone="base">Content</text></content-container></slide>`,
+		`<slide><content-container><media-slot width="fill" height="fill"></media-slot></content-container></slide>`,
 	);
 	fillDemo("divider-showcase", `<divider></divider>`);
 	fillDemo(
 		"footer-container-showcase",
-		`<footer-container><text context="slide" tone="base">Footer</text></footer-container>`,
+		`<footer-container><media-slot width="fill"></media-slot></footer-container>`,
 	);
 	fillDemo(
 		"header-container-showcase",
-		`<header-container><text context="slide" tone="base">Header</text></header-container>`,
+		`<header-container><media-slot width="fill"></media-slot></header-container>`,
 	);
 	fillDemo("media-slot-showcase", `<media-slot></media-slot>`);
 	fillDemo(
 		"slide-showcase",
 		`
 		<slide>
-			<header-container><text context="slide" tone="base">Header</text></header-container>
-			<content-container><text context="slide" tone="base">Content</text></content-container>
-			<footer-container><text context="slide" tone="base">Footer</text></footer-container>
+			<header-container><media-slot width="fill"></media-slot></header-container>
+			<content-container><media-slot width="fill" height="fill"></media-slot></content-container>
+			<footer-container><media-slot width="fill"></media-slot></footer-container>
 		</slide>
 		`,
 	);

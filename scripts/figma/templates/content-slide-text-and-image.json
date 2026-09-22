@@ -1,0 +1,135 @@
+{
+	"brand": "gratia",
+	"id": "content-slide-text-and-image",
+	"name": "content-slide-text-and-image",
+	"page": "content-slide-text-and-image",
+	"intent": "layout",
+	"kind": "content",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-4",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "FILL",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-3",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "instance",
+										"name": "slide-title-group",
+										"component": "Slide-title",
+										"variant": "Size=md, Align=left",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"overrides": [
+											{
+												"name": "pretitle",
+												"swap": {
+													"component": "Slide-pretitle",
+													"variant": "Type=badge"
+												},
+												"characters": "Optional pre-title"
+											},
+											{
+												"name": "title",
+												"characters": "Slide title"
+											},
+											{
+												"name": "subtitle",
+												"characters": "Optional description"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "instance",
+								"name": "image",
+								"component": "Media-slot",
+								"variant": "Type=well",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "FIXED",
+								"aspectSquare": true
+							}
+						],
+						"counterAxisAlignItems": "CENTER"
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "footer",
+				"role": "footer-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-footer-padding-top",
+					"right": "slide-footer-padding-right",
+					"bottom": "slide-footer-padding-bottom",
+					"left": "slide-footer-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-footer",
+						"component": "Slide-footer",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "notes",
+								"characters": "Add notes or sources here."
+							},
+							{
+								"name": "deck-title",
+								"characters": "Deck title"
+							},
+							{
+								"name": "chapter",
+								"characters": "Chapter"
+							},
+							{
+								"name": "page",
+								"characters": "01"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

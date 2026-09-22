@@ -323,8 +323,32 @@ function createAutoFrame(direction) {
 	return frame;
 }
 
+const ICON_GLYPH_TYPES = new Set([
+	"VECTOR",
+	"BOOLEAN_OPERATION",
+	"ELLIPSE",
+	"POLYGON",
+	"STAR",
+	"LINE",
+]);
+
+function clearIconWrapperFills(node) {
+	if (node.type === "FRAME" || node.type === "GROUP") {
+		try {
+			node.fills = [];
+		} catch (error) {
+			// Some SVG wrappers reject fills.
+		}
+	}
+	if ("children" in node) {
+		for (const child of node.children) {
+			clearIconWrapperFills(child);
+		}
+	}
+}
+
 function bindFillsDeep(node, binding, byName) {
-	if ("fills" in node && node.fills !== figma.mixed) {
+	if (ICON_GLYPH_TYPES.has(node.type) && "fills" in node && node.fills !== figma.mixed) {
 		try {
 			node.fills = [bindPaint(binding, byName)];
 		} catch (error) {
@@ -341,6 +365,7 @@ function bindFillsDeep(node, binding, byName) {
 function createIconNode(svg, name, sizePx) {
 	const node = figma.createNodeFromSvg(svg);
 	node.name = name;
+	clearIconWrapperFills(node);
 	node.resize(sizePx, sizePx);
 	node.layoutSizingHorizontal = "FIXED";
 	node.layoutSizingVertical = "FIXED";
@@ -374,6 +399,73 @@ function layoutVariantSet(componentSet, variantOrder, origin, sizeOrder) {
 		maxY = Math.max(maxY, child.y + child.height);
 	}
 	componentSet.resizeWithoutConstraints(maxX + 40, maxY + 40);
+}
+
+const VARIANT_GROUP_PAD = 40;
+const PAGE_COLUMN_GAP = 200;
+const COMPONENT_PAGE_ORDER = [
+	"Card",
+	"Badge",
+	"Stamp",
+	"Callout",
+	"Analyst",
+	"Divider",
+	"Media-slot",
+	"Cover-title",
+	"Slide-pretitle",
+	"Slide-title",
+	"Brand-logo",
+	"Slide-footer",
+	"Attribution-box",
+	"Header-container",
+	"Content-container",
+	"Footer-container",
+	"Slide",
+	"Media-card",
+];
+
+function styleVariantGroup(componentSet, byName) {
+	componentSet.layoutMode = "HORIZONTAL";
+	componentSet.primaryAxisAlignItems = "MIN";
+	componentSet.counterAxisAlignItems =
+		componentSet.name === "Divider" ? "CENTER" : "MIN";
+	componentSet.paddingTop = VARIANT_GROUP_PAD;
+	componentSet.paddingRight = VARIANT_GROUP_PAD;
+	componentSet.paddingBottom = VARIANT_GROUP_PAD;
+	componentSet.paddingLeft = VARIANT_GROUP_PAD;
+	componentSet.itemSpacing = VARIANT_GROUP_PAD;
+	componentSet.fills = [
+		bindPaint({ variable: "color-slide-background", opacity: 1 }, byName),
+	];
+	componentSet.strokes = [];
+	componentSet.clipsContent = false;
+	if (componentSet.name === "Slide-title" || componentSet.name === "Cover-title") {
+		componentSet.layoutWrap = "WRAP";
+		componentSet.counterAxisSpacing = VARIANT_GROUP_PAD;
+		componentSet.layoutSizingHorizontal = "FIXED";
+		componentSet.resize(2080, componentSet.height);
+	} else {
+		componentSet.layoutWrap = "NO_WRAP";
+		componentSet.layoutSizingHorizontal = "HUG";
+	}
+	componentSet.layoutSizingVertical = "HUG";
+}
+
+function layoutComponentsColumn(page) {
+	const children = [...page.children].sort((a, b) => {
+		const ai = COMPONENT_PAGE_ORDER.indexOf(a.name);
+		const bi = COMPONENT_PAGE_ORDER.indexOf(b.name);
+		if (ai === -1 && bi === -1) return a.y - b.y;
+		if (ai === -1) return 1;
+		if (bi === -1) return -1;
+		return ai - bi;
+	});
+	let y = 0;
+	for (const child of children) {
+		child.x = 0;
+		child.y = y;
+		y += child.height + PAGE_COLUMN_GAP;
+	}
 }
 
 function scaledPx(byName, byId, sizeName, scaleName) {
@@ -560,10 +652,10 @@ async function buildCard(payload, variableIds) {
 		components.push(clone);
 	}
 
-	const origin = nextPagePosition(page);
 	const componentSet = figma.combineAsVariants(components, page);
 	componentSet.name = payload.name;
-	layoutVariantSet(componentSet, payload.variants.map((item) => item.variant), origin);
+	styleVariantGroup(componentSet, byName);
+	layoutComponentsColumn(page);
 
 	return {
 		componentSetId: componentSet.id,
@@ -639,16 +731,11 @@ async function loadSlotFonts(payload, byName) {
 	return available.filter((font) => font.fontName.family === family);
 }
 
-function finishVariantSet(page, payload, components, removed) {
-	const origin = nextPagePosition(page);
+function finishVariantSet(page, payload, components, removed, byName) {
 	const componentSet = figma.combineAsVariants(components, page);
 	componentSet.name = payload.name;
-	layoutVariantSet(
-		componentSet,
-		payload.variants.map((item) => item.variant),
-		origin,
-		payload.sizes ? payload.sizes.map((item) => item.name) : null,
-	);
+	if (byName) styleVariantGroup(componentSet, byName);
+	layoutComponentsColumn(page);
 	return {
 		componentSetId: componentSet.id,
 		variantCount: components.length,
@@ -792,7 +879,7 @@ async function buildBadge(payload, variableIds) {
 		}
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
 }
 
 async function createStampVariant(spec, payload, byName, familyFonts) {
@@ -871,7 +958,7 @@ async function buildStamp(payload, variableIds) {
 		}
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
 }
 
 async function createCalloutVariant(spec, payload, byName, familyFonts) {
@@ -941,7 +1028,7 @@ async function buildCallout(payload, variableIds) {
 		}
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
 }
 
 function findComponentSet(name) {
@@ -987,23 +1074,23 @@ function createBadgeInstance(badgeSet, props) {
 	return instance;
 }
 
-async function createAnalystVariant(spec, size, payload, byName, familyFonts, badgeSet) {
+async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet, mediaSet) {
 	const layout = payload.layout;
+	const paint = payload.paint;
 	const byId = localById(byName);
 	const overlay = resolvedModeValue(variableByName(byName, layout.overlay.left), byId);
 	const iconSize = resolvedModeValue(variableByName(byName, layout.iconSize), byId);
-	const logoSize = resolvedModeValue(variableByName(byName, size.logoSize), byId);
 
 	const comp = figma.createComponent();
-	comp.name = `Variant=${spec.variant}, Size=${size.name}`;
+	comp.name = `Size=${size.name}`;
 	comp.layoutMode = "VERTICAL";
 	comp.primaryAxisAlignItems = "MIN";
 	comp.counterAxisAlignItems = "MIN";
 	comp.resize(layout.width, 80);
 	comp.layoutSizingHorizontal = "FIXED";
 	comp.layoutSizingVertical = "HUG";
-	comp.fills = [bindPaint(spec.fill, byName)];
-	comp.strokes = [bindPaint(spec.stroke, byName)];
+	comp.fills = [bindPaint(paint.fill, byName)];
+	comp.strokes = [bindPaint(paint.stroke, byName)];
 	comp.strokeAlign = "INSIDE";
 	comp.clipsContent = true;
 	bindField(comp, "topLeftRadius", layout.radius, byName);
@@ -1023,27 +1110,14 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 	cover.layoutSizingVertical = "FIXED";
 	comp.appendChild(cover);
 
-	const photo = createAutoFrame("VERTICAL");
+	const flush =
+		mediaSet.children.find((child) => child.name === "Type=flush") ||
+		mediaSet.defaultVariant;
+	const photo = flush.createInstance();
 	photo.name = "image";
-	photo.primaryAxisAlignItems = "CENTER";
-	photo.counterAxisAlignItems = "CENTER";
-	photo.fills = [
-		{
-			type: "SOLID",
-			color: {
-				r: layout.photoFill.r,
-				g: layout.photoFill.g,
-				b: layout.photoFill.b,
-			},
-			opacity: layout.photoFill.opacity,
-		},
-	];
 	cover.appendChild(photo);
 	photo.layoutSizingHorizontal = "FILL";
 	photo.layoutSizingVertical = "FILL";
-	const photoText = figma.createText();
-	applyTextSlot(photoText, slotById(payload, "photo"), spec, byName, byId, familyFonts);
-	photo.appendChild(photoText);
 
 	const specialization = createBadgeInstance(badgeSet, {
 		Variant: "emphasis",
@@ -1083,48 +1157,21 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 	names.layoutSizingVertical = "HUG";
 	identity.appendChild(names);
 	const nameText = figma.createText();
-	applyTextSlot(nameText, slotById(payload, "name"), spec, byName, byId, familyFonts);
+	applyTextSlot(nameText, slotById(payload, "name"), paint, byName, byId, familyFonts);
 	names.appendChild(nameText);
 	nameText.layoutSizingHorizontal = "FILL";
 	const roleText = figma.createText();
-	applyTextSlot(roleText, slotById(payload, "role"), spec, byName, byId, familyFonts);
+	applyTextSlot(roleText, slotById(payload, "role"), paint, byName, byId, familyFonts);
 	names.appendChild(roleText);
 	roleText.layoutSizingHorizontal = "FILL";
 
-	const logo = createAutoFrame("VERTICAL");
+	const logoName = size.name === "sm" ? "Type=logo, Size=7" : "Type=logo, Size=10";
+	const logoSource =
+		mediaSet.children.find((child) => child.name === logoName) ||
+		mediaSet.defaultVariant;
+	const logo = logoSource.createInstance();
 	logo.name = "logo";
-	logo.primaryAxisAlignItems = "CENTER";
-	logo.counterAxisAlignItems = "CENTER";
-	logo.resize(logoSize, logoSize);
-	logo.layoutSizingHorizontal = "FIXED";
-	logo.layoutSizingVertical = "FIXED";
-	logo.fills = [
-		{
-			type: "SOLID",
-			color: {
-				r: layout.photoFill.r,
-				g: layout.photoFill.g,
-				b: layout.photoFill.b,
-			},
-			opacity: layout.photoFill.opacity,
-		},
-	];
-	logo.strokes = [bindPaint(layout.logoStroke, byName)];
-	logo.strokeAlign = "INSIDE";
-	bindField(logo, "width", size.logoSize, byName);
-	bindField(logo, "height", size.logoSize, byName);
-	bindField(logo, "topLeftRadius", layout.radius, byName);
-	bindField(logo, "topRightRadius", layout.radius, byName);
-	bindField(logo, "bottomLeftRadius", layout.radius, byName);
-	bindField(logo, "bottomRightRadius", layout.radius, byName);
-	bindField(logo, "strokeTopWeight", layout.strokeTop, byName);
-	bindField(logo, "strokeBottomWeight", layout.strokeBottom, byName);
-	bindField(logo, "strokeLeftWeight", layout.strokeLeft, byName);
-	bindField(logo, "strokeRightWeight", layout.strokeRight, byName);
 	identity.appendChild(logo);
-	const logoText = figma.createText();
-	applyTextSlot(logoText, slotById(payload, "logo-label"), spec, byName, byId, familyFonts);
-	logo.appendChild(logoText);
 
 	const locationRow = createAutoFrame("HORIZONTAL");
 	locationRow.name = "location-row";
@@ -1135,12 +1182,12 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 	bindField(locationRow, "paddingBottom", layout.locationPadBottom, byName);
 	body.appendChild(locationRow);
 	const locIcon = createIconNode(payload.icons["earth-fill"], "location-icon", iconSize);
-	bindFillsDeep(locIcon, spec.foreground, byName);
+	bindFillsDeep(locIcon, paint.foreground, byName);
 	bindField(locIcon, "width", layout.iconSize, byName);
 	bindField(locIcon, "height", layout.iconSize, byName);
 	locationRow.appendChild(locIcon);
 	const locationText = figma.createText();
-	applyTextSlot(locationText, slotById(payload, "location"), spec, byName, byId, familyFonts);
+	applyTextSlot(locationText, slotById(payload, "location"), paint, byName, byId, familyFonts);
 	locationRow.appendChild(locationText);
 	locationText.layoutSizingHorizontal = "FILL";
 
@@ -1180,7 +1227,7 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 }
 
 async function buildAnalyst(payload, variableIds) {
-	if (!payload || !payload.layout || !Array.isArray(payload.variants)) {
+	if (!payload || !payload.layout || !payload.paint || !Array.isArray(payload.sizes)) {
 		throw new Error("components/analyst.json is missing. Run figma:build-component -- analyst.");
 	}
 	const byName = await localsByName(variableIds);
@@ -1189,15 +1236,15 @@ async function buildAnalyst(payload, variableIds) {
 	page.name = "Components";
 	const removed = clearExistingNamed(page, payload.name);
 	const badgeSet = findComponentSet(payload.nested.badge);
+	const mediaSet = findComponentSet(payload.nested.mediaSlot);
 	const firstSize = payload.sizes[0];
-	const first = payload.variants[0];
 	const base = await createAnalystVariant(
-		first,
 		firstSize,
 		payload,
 		byName,
 		familyFonts,
 		badgeSet,
+		mediaSet,
 	);
 	const keys = {};
 	addSlotProperties(base.comp, payload, keys);
@@ -1228,41 +1275,544 @@ async function buildAnalyst(payload, variableIds) {
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
-	const combos = [];
-	for (const size of payload.sizes) {
-		for (const spec of payload.variants) {
-			if (size === firstSize && spec === first) continue;
-			combos.push({ size, spec });
-		}
-	}
-	for (const combo of combos) {
+	for (const size of payload.sizes.slice(1)) {
 		const clone = base.comp.clone();
-		clone.name = `Variant=${combo.spec.variant}, Size=${combo.size.name}`;
-		clone.fills = [bindPaint(combo.spec.fill, byName)];
-		clone.strokes = [bindPaint(combo.spec.stroke, byName)];
+		clone.name = `Size=${size.name}`;
 		const body = clone.findOne((node) => node.name === "body");
 		if (body) {
-			bindField(body, "paddingTop", combo.size.padding, byName);
-			bindField(body, "paddingRight", combo.size.padding, byName);
-			bindField(body, "paddingBottom", combo.size.padding, byName);
-			bindField(body, "paddingLeft", combo.size.padding, byName);
+			bindField(body, "paddingTop", size.padding, byName);
+			bindField(body, "paddingRight", size.padding, byName);
+			bindField(body, "paddingBottom", size.padding, byName);
+			bindField(body, "paddingLeft", size.padding, byName);
 		}
 		const logo = clone.findOne((node) => node.name === "logo");
-		if (logo) {
-			bindField(logo, "width", combo.size.logoSize, byName);
-			bindField(logo, "height", combo.size.logoSize, byName);
+		if (logo && logo.type === "INSTANCE") {
+			const logoName =
+				size.name === "sm" ? "Type=logo, Size=7" : "Type=logo, Size=10";
+			const source = mediaSet.children.find((child) => child.name === logoName);
+			if (source) logo.swapComponent(source);
 		}
-		const named = new Set(["name", "role", "location"]);
-		for (const text of clone.findAll((node) => node.type === "TEXT")) {
-			if (named.has(text.name)) {
-				text.fills = [bindPaint(combo.spec.foreground, byName)];
-			}
-		}
-		const locIcon = clone.findOne((node) => node.name === "location-icon");
-		if (locIcon) bindFillsDeep(locIcon, combo.spec.foreground, byName);
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
+}
+
+function findNamedComponent(name) {
+	for (const page of figma.root.children) {
+		if (page.type !== "PAGE") continue;
+		for (const node of page.children) {
+			if (
+				(node.type === "COMPONENT_SET" || node.type === "COMPONENT") &&
+				node.name === name
+			) {
+				return node;
+			}
+		}
+	}
+	throw new Error(`${name} is missing. Build it on the Components page first.`);
+}
+
+function parseVariantName(name) {
+	const out = {};
+	for (const part of String(name || "").split(",")) {
+		const idx = part.indexOf("=");
+		if (idx === -1) continue;
+		out[part.slice(0, idx).trim()] = part.slice(idx + 1).trim();
+	}
+	return out;
+}
+
+function variantSource(main, variantName) {
+	if (main.type === "COMPONENT") return main;
+	if (variantName) {
+		const exact = main.children.find((child) => child.name === variantName);
+		if (exact) return exact;
+		const wanted = parseVariantName(variantName);
+		const keys = Object.keys(wanted);
+		if (keys.length > 0) {
+			const hit = main.children.find((child) => {
+				const props = child.variantProperties || parseVariantName(child.name);
+				return keys.every((key) => props[key] === wanted[key]);
+			});
+			if (hit) return hit;
+		}
+	}
+	return main.defaultVariant || main.children[0];
+}
+
+async function ensureNamedPage(name) {
+	let page = figma.root.children.find((node) => node.type === "PAGE" && node.name === name);
+	if (!page) {
+		page = figma.createPage();
+		page.name = name;
+	}
+	await figma.setCurrentPageAsync(page);
+	return page;
+}
+
+function layoutTemplatesColumn(page) {
+	const children = [...page.children].sort((a, b) => a.name.localeCompare(b.name));
+	let y = 0;
+	for (const child of children) {
+		child.x = 0;
+		child.y = y;
+		y += child.height + PAGE_COLUMN_GAP;
+	}
+}
+
+function applySizing(node, spec) {
+	if (spec.layoutSizingHorizontal) node.layoutSizingHorizontal = spec.layoutSizingHorizontal;
+	if (spec.layoutSizingVertical) node.layoutSizingVertical = spec.layoutSizingVertical;
+}
+
+function applyPadValue(node, field, value, byName) {
+	if (value == null) return;
+	if (typeof value === "number") {
+		node[field] = value;
+		return;
+	}
+	bindField(node, field, value, byName);
+}
+
+function applyChromePadding(node, padding, byName) {
+	if (!padding) return;
+	applyPadValue(node, "paddingTop", padding.top, byName);
+	applyPadValue(node, "paddingRight", padding.right, byName);
+	applyPadValue(node, "paddingBottom", padding.bottom, byName);
+	applyPadValue(node, "paddingLeft", padding.left, byName);
+}
+
+const TEMPLATE_SECTIONS = [
+	{
+		header: "TITLE SLIDES",
+		match: (id) => String(id).startsWith("title-slide"),
+	},
+	{
+		header: "CHAPTER SLIDES",
+		match: (id) => String(id).startsWith("chapter-slide"),
+	},
+	{
+		header: "CONTENT SLIDES",
+		match: (id) => String(id).startsWith("content-slide"),
+	},
+	{
+		header: "GRATIA SLIDES",
+		match: (id) => String(id).startsWith("gratia-"),
+	},
+];
+
+const LEGACY_TEMPLATE_PAGES = [
+	"Templates",
+	"Title slides",
+	"Chapter slides",
+	"Content slides",
+	"Gratia slides",
+];
+
+function removeEmptyPage(name) {
+	const page = figma.root.children.find((node) => node.type === "PAGE" && node.name === name);
+	if (page && page.children.length === 0) page.remove();
+}
+
+function ensurePageDivider() {
+	if (typeof figma.createPageDivider === "function") {
+		return figma.createPageDivider("---");
+	}
+	const page = figma.createPage();
+	page.name = "---";
+	return page;
+}
+
+function isPageDividerNode(node) {
+	return node.type === "PAGE" && (node.isPageDivider || node.name === "---");
+}
+
+function ensureEmptyNamedPage(name) {
+	let page = figma.root.children.find(
+		(node) => node.type === "PAGE" && node.name === name && !isPageDividerNode(node),
+	);
+	if (!page) {
+		page = figma.createPage();
+		page.name = name;
+	}
+	return page;
+}
+
+function templateIdsBySection() {
+	const ids = Object.keys(TEMPLATES || {}).filter((id) => TEMPLATES[id]).sort();
+	return TEMPLATE_SECTIONS.map((section) => ({
+		header: section.header,
+		ids: ids.filter((id) => section.match(id)),
+	})).filter((section) => section.ids.length > 0);
+}
+
+const PAGE_ORDER_HEADERS = new Set(TEMPLATE_SECTIONS.map((section) => section.header));
+
+function orderRootPages() {
+	const sections = templateIdsBySection();
+	const spareDividers = figma.root.children.filter((node) => isPageDividerNode(node));
+	let dividerIndex = 0;
+	const takeDivider = () => {
+		if (dividerIndex < spareDividers.length) {
+			return spareDividers[dividerIndex++];
+		}
+		return ensurePageDivider();
+	};
+
+	const ordered = [];
+	const components = figma.root.children.find(
+		(node) => node.type === "PAGE" && node.name === "Components" && !isPageDividerNode(node),
+	);
+	if (components) ordered.push(components);
+
+	for (const section of sections) {
+		ordered.push(takeDivider());
+		ordered.push(ensureEmptyNamedPage(section.header));
+		for (const id of section.ids) {
+			ordered.push(ensureEmptyNamedPage(id));
+		}
+	}
+
+	for (let index = 0; index < ordered.length; index += 1) {
+		figma.root.insertChild(index, ordered[index]);
+	}
+
+	for (const name of LEGACY_TEMPLATE_PAGES) {
+		removeEmptyPage(name);
+	}
+
+	const keep = new Set(ordered.map((node) => node.id));
+	for (const node of [...figma.root.children]) {
+		if (node.type !== "PAGE") continue;
+		if (keep.has(node.id)) continue;
+		if (isPageDividerNode(node)) {
+			node.remove();
+			continue;
+		}
+		if (node.children.length === 0 && PAGE_ORDER_HEADERS.has(node.name)) {
+			node.remove();
+		}
+	}
+}
+
+async function applyColorTheme(node, theme) {
+	if (!theme) return;
+	const collections = await figma.variables.getLocalVariableCollectionsAsync();
+	const color = collections.find((item) => item.name === "Color");
+	if (!color) return;
+	const mode = color.modes.find(
+		(item) => item.name.toLowerCase() === String(theme).toLowerCase(),
+	);
+	if (!mode) return;
+	node.setExplicitVariableModeForCollection(color, mode.modeId);
+}
+
+function applyFrameChrome(node, spec, byName) {
+	if (node.type === "TEXT") {
+		if (spec.maxWidth != null && "maxWidth" in node) node.maxWidth = spec.maxWidth;
+		return;
+	}
+	if (spec.fill) node.fills = [bindPaint(spec.fill, byName)];
+	if (spec.stroke) {
+		node.strokes = [bindPaint(spec.stroke, byName)];
+		node.strokeAlign = spec.strokeAlign || "INSIDE";
+	}
+	if (spec.radius) {
+		bindField(node, "topLeftRadius", spec.radius, byName);
+		bindField(node, "topRightRadius", spec.radius, byName);
+		bindField(node, "bottomLeftRadius", spec.radius, byName);
+		bindField(node, "bottomRightRadius", spec.radius, byName);
+	}
+	if (spec.strokeTop) bindField(node, "strokeTopWeight", spec.strokeTop, byName);
+	if (spec.strokeRight) bindField(node, "strokeRightWeight", spec.strokeRight, byName);
+	if (spec.strokeBottom) bindField(node, "strokeBottomWeight", spec.strokeBottom, byName);
+	if (spec.strokeLeft) bindField(node, "strokeLeftWeight", spec.strokeLeft, byName);
+	if (spec.clipsContent) node.clipsContent = true;
+	if (spec.primaryAxisAlignItems) node.primaryAxisAlignItems = spec.primaryAxisAlignItems;
+	if (spec.counterAxisAlignItems) node.counterAxisAlignItems = spec.counterAxisAlignItems;
+	if (spec.layoutWrap === "WRAP") {
+		node.layoutWrap = "WRAP";
+		node.counterAxisSpacing = node.itemSpacing;
+	}
+	if (spec.maxWidth != null) node.maxWidth = spec.maxWidth;
+	if (spec.layoutGrow != null) node.layoutGrow = spec.layoutGrow;
+	if (spec.layoutPositioning === "ABSOLUTE") {
+		node.layoutPositioning = "ABSOLUTE";
+		if (spec.constraints) node.constraints = spec.constraints;
+	}
+	if (spec.widthPx) {
+		node.layoutSizingHorizontal = "FIXED";
+		node.resize(spec.widthPx, node.height);
+	}
+	if (spec.heightPx) {
+		node.layoutSizingVertical = "FIXED";
+		node.resize(node.width, spec.heightPx);
+	}
+	if (spec.columns) node.setPluginData("columns", String(spec.columns));
+	if (spec.aspectSquare) node.setPluginData("aspectSquare", "1");
+	if (spec.aspectRatio) node.setPluginData("aspectRatio", String(spec.aspectRatio));
+	if (spec.fraction) node.setPluginData("fraction", spec.fraction);
+}
+
+function applyColumnsNode(node) {
+	const columns = Number(node.getPluginData("columns") || 0);
+	if (!columns || !("children" in node) || node.children.length === 0) return;
+	node.layoutMode = "HORIZONTAL";
+	node.layoutWrap = "WRAP";
+	node.counterAxisSpacing = node.itemSpacing;
+	const inner = Math.max(
+		0,
+		node.width - (node.paddingLeft || 0) - (node.paddingRight || 0),
+	);
+	const gap = node.itemSpacing || 0;
+	const cell = (inner - gap * (columns - 1)) / columns;
+	for (const child of node.children) {
+		child.layoutSizingHorizontal = "FIXED";
+		child.resize(Math.max(1, cell), child.height);
+	}
+}
+
+function applyFractionRow(node) {
+	if (!("children" in node) || node.layoutMode !== "HORIZONTAL") return;
+	const hasThird = node.children.some((child) => child.getPluginData("fraction") === "1-3");
+	if (!hasThird) return;
+	for (const child of node.children) {
+		child.layoutSizingHorizontal = "FILL";
+		child.layoutGrow = child.getPluginData("fraction") === "1-3" ? 1 : 2;
+	}
+}
+
+function applyAspectNode(node) {
+	if (node.getPluginData("aspectSquare") === "1") {
+		node.layoutSizingVertical = "FIXED";
+		node.resize(Math.max(1, node.width), Math.max(1, node.width));
+	}
+	const ratio = Number(node.getPluginData("aspectRatio") || 0);
+	if (ratio) {
+		node.layoutSizingVertical = "FIXED";
+		node.resize(Math.max(1, node.width), Math.max(1, node.width / ratio));
+	}
+}
+
+function fixAbsolute(parent) {
+	if (!("children" in parent)) return;
+	for (const child of parent.children) {
+		if (child.layoutPositioning === "ABSOLUTE") {
+			const constraints = child.constraints || {};
+			if (constraints.horizontal === "STRETCH") {
+				child.x = 0;
+				child.resize(parent.width, child.height);
+			}
+			if (constraints.vertical === "MAX") child.y = parent.height - child.height;
+			if (constraints.vertical === "MIN") child.y = 0;
+		}
+		fixAbsolute(child);
+	}
+}
+
+function applyTemplateFixes(node) {
+	applyFractionRow(node);
+	applyColumnsNode(node);
+	if ("children" in node) {
+		for (const child of node.children) applyTemplateFixes(child);
+	}
+	applyAspectNode(node);
+}
+
+async function preloadTemplateFonts(byName) {
+	const byId = localById(byName);
+	const families = new Set();
+	for (const variable of byName.values()) {
+		if (!variable.scopes || !variable.scopes.includes("FONT_FAMILY")) continue;
+		const value = resolvedModeValue(variable, byId);
+		if (typeof value === "string") families.add(value);
+	}
+	for (const family of families) {
+		await loadFamilyStyles(family, [400, 500, 600, 700]);
+	}
+}
+
+async function buildTextNode(spec, byName, parent) {
+	const byId = localById(byName);
+	const text = figma.createText();
+	text.name = spec.name || "text";
+	if (parent) parent.appendChild(text);
+	const familyVar = variableByName(byName, spec.fontFamily);
+	const weightVar = variableByName(byName, spec.fontWeight);
+	const family = resolvedModeValue(familyVar, byId);
+	const weight = resolvedModeValue(weightVar, byId);
+	const available = await figma.listAvailableFontsAsync();
+	const familyFonts = available.filter((font) => font.fontName.family === family);
+	text.fontName = styleForWeight(familyFonts, weight);
+	text.characters = spec.characters || "";
+	text.lineHeight = {
+		unit: "PERCENT",
+		value:
+			spec.lineHeightPercent != null
+				? spec.lineHeightPercent
+				: percentFromVariable(byName, byId, spec.lineHeight, 120),
+	};
+	text.textAlignHorizontal = spec.textAlign || "LEFT";
+	text.fills = [bindPaint(spec.fill, byName)];
+	bindField(text, "fontFamily", spec.fontFamily, byName);
+	bindField(text, "fontWeight", spec.fontWeight, byName);
+	if (spec.fontSize) bindField(text, "fontSize", spec.fontSize, byName);
+	if (spec.opacity) bindField(text, "opacity", spec.opacity, byName);
+	text.textAutoResize = "HEIGHT";
+	applySizing(text, spec);
+	applyFrameChrome(text, spec, byName);
+	return text;
+}
+
+async function setTextCharacters(node, chars) {
+	if (!node || node.type !== "TEXT") return;
+	if (node.fontName === figma.mixed) {
+		const fonts = new Map();
+		for (let i = 0; i < node.characters.length; i += 1) {
+			const font = node.getRangeFontName(i, i + 1);
+			fonts.set(JSON.stringify(font), font);
+		}
+		for (const font of fonts.values()) await figma.loadFontAsync(font);
+	} else {
+		await figma.loadFontAsync(node.fontName);
+	}
+	node.characters = chars;
+}
+
+async function applyOverrides(instance, overrides) {
+	if (!overrides) return;
+	for (const override of overrides) {
+		const target = override.name
+			? instance.findOne((node) => node.name === override.name)
+			: instance;
+		if (!target) continue;
+		if (override.swap && target.type === "INSTANCE") {
+			const main = findNamedComponent(override.swap.component);
+			target.swapComponent(variantSource(main, override.swap.variant));
+		}
+		if (override.characters != null) {
+			const text =
+				target.type === "TEXT"
+					? target
+					: target.findOne((node) => node.type === "TEXT");
+			await setTextCharacters(text, override.characters);
+			if (override.textAlign && text) text.textAlignHorizontal = override.textAlign;
+		}
+		if (override.visible === false) target.visible = false;
+		if (override.visible === true) target.visible = true;
+	}
+}
+
+async function buildTemplateNode(spec, byName, parent) {
+	if (spec.type === "text") return buildTextNode(spec, byName, parent);
+	if (spec.type === "instance") {
+		const source = variantSource(
+			findNamedComponent(spec.component),
+			spec.variant,
+		);
+		const instance = source.createInstance();
+		instance.name = spec.name || source.name;
+		if (parent) parent.appendChild(instance);
+		applySizing(instance, spec);
+		applyFrameChrome(instance, spec, byName);
+		if (spec.props) setInstanceProps(instance, spec.props);
+		if (spec.sizeVar) {
+			instance.layoutSizingHorizontal = "FIXED";
+			instance.layoutSizingVertical = "FIXED";
+			bindField(instance, "width", spec.sizeVar, byName);
+			bindField(instance, "height", spec.sizeVar, byName);
+		}
+		if (spec.heightPx) {
+			const ratio = instance.height ? instance.width / instance.height : 1;
+			instance.layoutSizingVertical = "FIXED";
+			instance.layoutSizingHorizontal = "FIXED";
+			instance.resize(Math.max(1, spec.heightPx * ratio), spec.heightPx);
+		}
+		await applyOverrides(instance, spec.overrides);
+		if (spec.tagLabels && spec.tagLabels.length > 0) {
+			const tags = instance.findOne((node) => node.name === "tags");
+			const badges = tags
+				? tags.findAll((node) => node.type === "INSTANCE")
+				: [];
+			for (let index = 0; index < spec.tagLabels.length; index += 1) {
+				if (badges[index]) setInstanceProps(badges[index], { Label: spec.tagLabels[index] });
+			}
+		}
+		if (spec.colorTheme) await applyColorTheme(instance, spec.colorTheme);
+		return instance;
+	}
+	if (spec.type === "autoLayout" || spec.type === "frame") {
+		const frame = createAutoFrame(spec.layoutMode || "VERTICAL");
+		frame.name = spec.name;
+		if (parent) parent.appendChild(frame);
+		applyChromePadding(frame, spec.padding, byName);
+		if (typeof spec.itemSpacing === "string") {
+			bindField(frame, "itemSpacing", spec.itemSpacing, byName);
+		} else if (typeof spec.itemSpacing === "number") {
+			frame.itemSpacing = spec.itemSpacing;
+		}
+		applySizing(frame, spec);
+		applyFrameChrome(frame, spec, byName);
+		for (const child of spec.children || []) {
+			await buildTemplateNode(child, byName, frame);
+		}
+		return frame;
+	}
+	throw new Error(`Unknown template node type ${JSON.stringify(spec.type)}`);
+}
+
+async function buildTemplate(payload, variableIds) {
+	if (!payload || !payload.tree || !payload.name) {
+		throw new Error("templates JSON is missing. Run figma:build-template.");
+	}
+	if (figma.loadAllPagesAsync) await figma.loadAllPagesAsync();
+	const byName = await localsByName(variableIds);
+	await preloadTemplateFonts(byName);
+	const page = await ensureNamedPage(payload.page || payload.name);
+	for (const legacy of LEGACY_TEMPLATE_PAGES) {
+		const leftover = figma.root.children.find(
+			(node) => node.type === "PAGE" && node.name === legacy && !node.isPageDivider,
+		);
+		if (leftover) clearExistingNamed(leftover, payload.name);
+	}
+	const removed = clearExistingNamed(page, payload.name);
+	const spec = payload.tree;
+	const comp = figma.createComponent();
+	comp.name = payload.name;
+	comp.layoutMode = spec.layoutMode || "VERTICAL";
+	comp.itemSpacing = spec.itemSpacing || 0;
+	comp.primaryAxisAlignItems = "MIN";
+	comp.counterAxisAlignItems = "MIN";
+	comp.resize(1280, payload.height || 800);
+	comp.layoutSizingHorizontal = "FIXED";
+	comp.layoutSizingVertical = "FIXED";
+	comp.clipsContent = true;
+	bindField(comp, "width", payload.width, byName);
+	comp.fills = [bindPaint(payload.fill, byName)];
+	if (payload.colorTheme) await applyColorTheme(comp, payload.colorTheme);
+	for (const child of spec.children || []) {
+		await buildTemplateNode(child, byName, comp);
+	}
+	applyTemplateFixes(comp);
+	fixAbsolute(comp);
+	layoutTemplatesColumn(page);
+	orderRootPages();
+	return {
+		componentId: comp.id,
+		name: payload.name,
+		page: page.name,
+		removedIds: removed,
+	};
+}
+
+async function buildNamedTemplate(id, variableIds) {
+	const payload = TEMPLATES[id];
+	if (!payload) {
+		throw new Error(
+			`Unknown template ${JSON.stringify(id)}. Run figma:build-template -- ${id}.`,
+		);
+	}
+	return buildTemplate(payload, variableIds);
 }
 
 const COMPONENT_BUILDERS = {
@@ -1286,6 +1836,19 @@ async function runDeckToolSync(command) {
 	const cmd = command || "all";
 	if (cmd === "sync-variables") {
 		return { command: cmd, variables: await syncAllVariables(VARIABLES) };
+	}
+	if (cmd === "build-templates") {
+		const built = {};
+		for (const id of Object.keys(TEMPLATES)) {
+			if (!TEMPLATES[id]) continue;
+			built[id] = await buildNamedTemplate(id);
+		}
+		orderRootPages();
+		return { command: cmd, templates: built };
+	}
+	if (cmd.startsWith("build-template-")) {
+		const id = cmd.slice("build-template-".length);
+		return { command: cmd, [id]: await buildNamedTemplate(id) };
 	}
 	if (cmd.startsWith("build-")) {
 		const name = cmd.slice("build-".length);

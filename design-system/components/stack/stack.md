@@ -12,6 +12,8 @@ not_when:
 
 # Stack
 
+HTML layout primitive only. In Figma this is an **auto-layout frame**, never a Stack component (push and pull). See `docs/scripts.md` → HTML ↔ Figma primitives.
+
 `<stack direction="row|col" columns="3" gap="<spacing-step>" wrap="true" width="fill|hug" height="fill|hug">`. Gap is a spacing-scale step (`0`…`40`, `0-5`, …) from `design-system/tokens/spacing.css`. Default is `4` (16px). Use `gap="0"` for none. `wrap="true"` allows row children to wrap. Omit `width` / `height` to hug. `width` is horizontal only; `height` is vertical only.
 
 ## Card grids (3 columns)

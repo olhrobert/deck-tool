@@ -15,6 +15,6 @@ Use `<slide-title-group>` with `<slide-title data-slot="main" size="md" tone="st
 
 `align="left|center|right"` on `<slide-title-group>` (and on a standalone `<slide-title>`) sets the stack and text alignment. Default is `left` when omitted.
 
-Optional pre slot from `components.slideTitle.pretitle.default`: `text` → `<slide-pretitle data-slot="pre" tone="subtle" context="slide">`; `badge` → `<badge data-slot="pre" variant="neutral"><badge-text data-slot="label" tone="strong" context="surface">`. Override per slide only if the user asks. Optional `<slide-subtitle data-slot="sub">`. Omit unused optional slots.
+Optional pre slot from `components.slideTitle.pretitle.default`: `text` → `<slide-pretitle data-slot="pre" tone="subtle" context="slide">`; `badge` → `<badge data-slot="pre" variant="neutral"><badge-text data-slot="label" tone="strong" context="surface">`. In Figma the pre slot is the **Slide-pretitle** component (`Type=badge` \| `Type=label`). Override per slide only if the user asks. Optional `<slide-subtitle data-slot="sub">`. Omit unused optional slots.
 
 Canonical markup: `design-system/components/slide-title/slide-title-group.html`. Centered stack: `align="center"` on `<slide-title-group>`.

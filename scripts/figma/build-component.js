@@ -549,36 +549,34 @@ function buildAnalyst(settings) {
 		},
 	];
 
-	const variants = CARD_VARIANTS.map((variant) => ({
-		name: `Variant=${variant}`,
-		variant,
+	const paint = {
 		fill: paintFor(
 			settings,
 			"components.card.background",
-			variant,
-			`--card-${variant}-background`,
+			"neutral",
+			"--card-neutral-background",
 		),
 		stroke: paintFor(
 			settings,
 			"components.card.border.subtle",
-			variant,
-			`--card-${variant}-border-subtle`,
+			"neutral",
+			"--card-neutral-border-subtle",
 		),
 		foreground: paintFor(
 			settings,
 			"components.card.foreground",
-			variant,
-			`--card-${variant}-foreground`,
+			"neutral",
+			"--card-neutral-foreground",
 		),
-	}));
+	};
 
 	return {
 		name: "Analyst",
-		nested: { badge: "Badge" },
+		nested: { badge: "Badge", mediaSlot: "Media-slot" },
 		autoLayout,
 		layout,
 		sizes,
-		variants,
+		paint,
 		icons: { "earth-fill": readIcon("earth-fill") },
 	};
 }

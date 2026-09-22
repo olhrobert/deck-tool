@@ -9,6 +9,6 @@ not_when:
 
 # Footer container
 
-Padding comes from `components.footerContainer`. Always wrap content-slide footers with this. Clips overflow. Do not restyle the container.
+Padding comes from `components.footerContainer`. Always wrap content-slide footers with this. Clips overflow. Do not restyle the container. Canonical sample uses a fill `<media-slot>` as the placeholder child.
 
 Canonical markup: `design-system/components/footer-container/footer-container.html`.

@@ -1,0 +1,112 @@
+{
+	"brand": "gratia",
+	"id": "title-slide-02",
+	"name": "title-slide-02",
+	"page": "title-slide-02",
+	"intent": null,
+	"kind": "title",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "autoLayout",
+				"name": "stack",
+				"layoutMode": "VERTICAL",
+				"itemSpacing": "spacing-0",
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-0",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "instance",
+								"name": "brand-logo",
+								"component": "Brand-logo",
+								"variant": "Brand=Gratia, Theme=light",
+								"layoutSizingHorizontal": "HUG",
+								"layoutSizingVertical": "HUG",
+								"heightPx": 24
+							},
+							{
+								"type": "instance",
+								"name": "attribution-box",
+								"component": "Attribution-box",
+								"layoutSizingHorizontal": "HUG",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"characters": "Sanitized excerpt prepared by"
+									}
+								]
+							}
+						],
+						"primaryAxisAlignItems": "SPACE_BETWEEN",
+						"counterAxisAlignItems": "MIN"
+					},
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "VERTICAL",
+						"itemSpacing": "spacing-4",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "instance",
+								"name": "cover-title",
+								"component": "Cover-title",
+								"variant": "Size=lg, Align=left",
+								"layoutSizingHorizontal": "HUG",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"characters": "Title of this deck. Keep it concise."
+									}
+								]
+							},
+							{
+								"type": "text",
+								"name": "text",
+								"characters": "Optional subtitle. Can be one or two sentences long.",
+								"fontFamily": "font-text-family",
+								"fontWeight": "font-text-weight",
+								"fontSize": "text-size-350",
+								"fill": {
+									"variable": "color-slide-foreground",
+									"opacity": 1
+								},
+								"opacity": "tone-subtle",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"textAlign": "LEFT",
+								"lineHeight": "text-lineheight"
+							}
+						]
+					}
+				],
+				"primaryAxisAlignItems": "SPACE_BETWEEN",
+				"padding": {
+					"top": "spacing-20",
+					"right": "spacing-20",
+					"bottom": "spacing-20",
+					"left": "spacing-20"
+				}
+			}
+		]
+	}
+}

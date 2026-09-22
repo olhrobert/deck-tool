@@ -1,0 +1,1775 @@
+{
+	"brand": "gratia",
+	"id": "content-slide-12-cards",
+	"name": "content-slide-12-cards",
+	"page": "content-slide-12-cards",
+	"intent": "layout",
+	"kind": "content",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "header",
+				"role": "header-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-header-padding-top",
+					"right": "slide-header-padding-right",
+					"bottom": "slide-header-padding-bottom",
+					"left": "slide-header-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-title-group",
+						"component": "Slide-title",
+						"variant": "Size=md, Align=center",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "pretitle",
+								"visible": false
+							},
+							{
+								"name": "title",
+								"characters": "Slide title"
+							},
+							{
+								"name": "subtitle",
+								"visible": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "VERTICAL",
+						"itemSpacing": "spacing-2",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "cards",
+								"layoutMode": "HORIZONTAL",
+								"itemSpacing": "spacing-2",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "cards",
+								"layoutMode": "HORIZONTAL",
+								"itemSpacing": "spacing-2",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "cards",
+								"layoutMode": "HORIZONTAL",
+								"itemSpacing": "spacing-2",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "cards",
+								"layoutMode": "HORIZONTAL",
+								"itemSpacing": "spacing-2",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "card",
+										"role": "cardFrame",
+										"layoutMode": "VERTICAL",
+										"fill": {
+											"variable": "card-neutral-background",
+											"opacity": 1
+										},
+										"stroke": {
+											"variable": "card-neutral-border-subtle",
+											"opacity": 0.2
+										},
+										"strokeAlign": "INSIDE",
+										"radius": "card-border-radius",
+										"strokeTop": "card-border-size-top",
+										"strokeRight": "card-border-size-right",
+										"strokeBottom": "card-border-size-bottom",
+										"strokeLeft": "card-border-size-left",
+										"padding": {
+											"top": "card-padding-md",
+											"right": "card-padding-md",
+											"bottom": "card-padding-md",
+											"left": "card-padding-md"
+										},
+										"itemSpacing": "card-gap-sm",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"clipsContent": true,
+										"children": [
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "HORIZONTAL",
+												"itemSpacing": "spacing-2",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "instance",
+														"name": "stamp",
+														"component": "Stamp",
+														"variant": "Variant=emphasis",
+														"props": {
+															"Show icon": true,
+															"Show mark": false
+														},
+														"sizeVar": "spacing-7",
+														"layoutSizingHorizontal": "FIXED",
+														"layoutSizingVertical": "FIXED"
+													},
+													{
+														"type": "text",
+														"name": "title",
+														"characters": "Card title",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-450",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeight": "text-lineheight"
+													}
+												],
+												"counterAxisAlignItems": "CENTER"
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item one",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item two",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "item",
+														"characters": "Item three",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-300",
+														"fill": {
+															"variable": "color-slide-surface-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-base",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "footer",
+				"role": "footer-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-footer-padding-top",
+					"right": "slide-footer-padding-right",
+					"bottom": "slide-footer-padding-bottom",
+					"left": "slide-footer-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-footer",
+						"component": "Slide-footer",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "notes",
+								"characters": "Add notes or sources here."
+							},
+							{
+								"name": "deck-title",
+								"characters": "Deck title"
+							},
+							{
+								"name": "chapter",
+								"characters": "Chapter"
+							},
+							{
+								"name": "page",
+								"characters": "01"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

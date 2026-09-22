@@ -592,7 +592,7 @@
 			}
 		},
 		"contentContainer": {
-			"paddingTop": 10,
+			"paddingTop": 0,
 			"paddingRight": 10,
 			"paddingBottom": 0,
 			"paddingLeft": 10
@@ -626,7 +626,7 @@
 		"headerContainer": {
 			"paddingTop": 8,
 			"paddingRight": 10,
-			"paddingBottom": 0,
+			"paddingBottom": 10,
 			"paddingLeft": 10
 		},
 		"slide": {

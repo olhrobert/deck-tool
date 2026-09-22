@@ -16,10 +16,9 @@ Brand-locked content (Gratia services catalog, and similar) lives under [brands/
 | `content-slide-text-and-image.html` | `.md` | Pre-title + title + description left, photo well right. No header chrome. Includes `<slide-footer>`. |
 | `content-slide-service.html` | `.md` | Title in the content column, case study stack (copy + stats), featured analyst sidebar. Includes `<slide-footer>`. |
 | `content-slide-steps-media.html` | `.md` | Title + four numbered steps left, tall browser media well right. Includes `<slide-footer>`. |
-| `content-slide-actions-results.html` | `.md` | Title + two intros, then a five-row actions list beside four result cards. Includes `<slide-footer>`. |
 
 ## Placeholders
 
-- Slide title pre / main / sub (3-cards), centered title (12-cards / split-media), pre + title + description beside image (text-and-image), title + subtitle in the content column (service), title + numbered steps (steps-media), or title + intros + action/result rows (actions-results)
-- Card labels, values, and meta (3-cards); stamp + title + three-line list (12-cards); section labels + item title/text (split-media); case study copy + partner well + stats + analyst (service); step title/text + browser well (steps-media); action/result title/text + emphasis stamps (actions-results); or keep `<media-slot data-slot="image">` until a photo exists (text-and-image / split-media / service / steps-media)
+- Slide title pre / main / sub (3-cards), centered title (12-cards / split-media), pre + title + description beside image (text-and-image), title + subtitle in the content column (service), or title + numbered steps (steps-media)
+- Card labels, values, and meta (3-cards); stamp + title + three-line list (12-cards); section labels + item title/text (split-media); case study copy + partner well + stats + analyst (service); step title/text + browser well (steps-media); or keep `<media-slot data-slot="image">` until a photo exists (text-and-image / split-media / service / steps-media)
 - Footer notes, deck title, chapter, and slide number

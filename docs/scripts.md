@@ -85,7 +85,20 @@ CSS names become Figma names by dropping the `--` (`--spacing-0-5` → `spacing-
 
 | Component | Value | Component token aliases (`--card-padding-md` → `spacing-4`, …) |
 
-Skip layout enums, uppercase flags, and other non-bindable settings. `<stack>` is still auto-layout, never a Figma component.
+Skip layout enums, uppercase flags, and other non-bindable settings.
+
+### HTML ↔ Figma primitives
+
+`<stack>` and `<text>` are **HTML-only**. Do not publish them as Figma components — the variant space is wrong (stack: direction × gap × columns × wrap × fill/hug; text: size × tone × family × line-height × letter-spacing), and Figma already has native equivalents.
+
+| HTML | In Figma (author / push) | Pulling a design → HTML |
+| --- | --- | --- |
+| `<stack>` | Auto-layout frame (gap → nearest `--spacing-*`, direction / wrap / fill / hug on the frame) | Free auto-layout frames → `<stack>` (grids → `columns="3"`; nested fill rows → nested `direction="row"` stacks). Do not invent a Stack component. |
+| `<text>` and free canvas type | Text object with family / size / weight / line-height / letter-spacing bound to Typography (and related) variables | Text objects → `<text>` (map px to the type scale; infer `context` from parent surface vs slide). Prefer semantic tags when the role is clear (`<slide-title>`, `<cover-title>`, `<card-title>`, …). Do not invent a Text component. |
+
+Push already follows this: `build-component.js` walks `<stack>` / flex roots into an auto-layout IR and emits text nodes, never Stack or Text components (`scripts/figma/lib/html.js`). Semantic type inside Card / Badge / Stamp / Callout / Analyst stays nested text (or a real component like Badge), not a free Text set.
+
+When pulling, auto-layout **inside** a known component instance stays that component — only free frames become `<stack>`. Figma → preset: [`.cursor/skills/figma-to-preset/SKILL.md`](../.cursor/skills/figma-to-preset/SKILL.md). Preset → Figma: [`.cursor/skills/preset-to-figma/SKILL.md`](../.cursor/skills/preset-to-figma/SKILL.md).
 
 ### `sync-brand-variables.js`
 
@@ -99,7 +112,9 @@ npm run figma:sync-variables
 
 ### `build-component.js`
 
-Walks canonical HTML (`<stack>` and flex roots → auto-layout IR, never a Stack component) and writes `scripts/figma/components/<name>.json`. Supported: `card`, `badge`, `stamp`, `callout`, `analyst` (or `all`). Each is `Variant`-only except analyst, which also has `Size=lg|sm` (body padding + logo well). No Color theme axis — Light/Dark is a Color collection mode override. Fills, strokes, type, opacity, padding, gap, radius, and stroke weights bind to variables. Line-height and letter-spacing are applied as percent from those variables (Figma’s bound FLOAT line-height/tracking is pixels). Card/callout/analyst width `320` stays raw (no CSS token). Stamp mark/icon size is `defaultSize × scale` in px (Figma cannot bind the product). Badge/stamp/analyst icons come from `assets/icons/`. Analyst nests the Badge component for specialization and tags.
+Walks canonical HTML (`<stack>` / flex roots → auto-layout frames; type tags → text objects — never Stack or Text components) and writes `scripts/figma/components/<name>.json`. Supported: `card`, `badge`, `stamp`, `callout`, `analyst` (or `all`). Most are `Variant`-only. Analyst is **Size-only** (`lg` \| `sm`) — no paint `variant` axis; fill follows card neutral. No Color theme axis — Light/Dark is a Color collection mode override. Fills, strokes, type, opacity, padding, gap, radius, and stroke weights bind to variables. Line-height and letter-spacing are applied as percent from those variables (Figma’s bound FLOAT line-height/tracking is pixels). Card/callout/analyst width `320` stays raw (no CSS token). Stamp mark/icon size is `defaultSize × scale` in px (Figma cannot bind the product). Badge/stamp/analyst icons come from `assets/icons/`. `createNodeFromSvg` wraps glyphs in a frame — keep that frame unfilled (`fills = []`); bind paint only to VECTOR / BOOLEAN_OPERATION (and similar glyph nodes), never the icon frame. Analyst nests Badge (specialization/tags) and Media-slot (photo flush, logo Size=10/7).
+
+On the Components page, every component sits at **x=0** in a column with **200px** between them. Multi-variant sets are horizontal auto-layout groups with **40px padding**, **40px gap**, and `color-slide-background` fill — same as Card.
 
 ```bash
 node scripts/figma/build-component.js card
@@ -107,6 +122,35 @@ node scripts/figma/build-component.js all
 npm run figma:build-component -- analyst
 ```
 
+### Template pages
+
+Each slide template is a **page named after its HTML preset id**, with one component of the same name. Groups are separated by a page divider (`---`) and an empty uppercase section header:
+
+| Section header (empty) | Slide pages | HTML |
+| --- | --- | --- |
+| TITLE SLIDES | `title-slide-01` … `title-slide-04` | `presets/title-slides/` |
+| CHAPTER SLIDES | `chapter-slide-01`, `chapter-slide-02` | `presets/chapter-slides/` |
+| CONTENT SLIDES | `content-slide-3-cards`, `content-slide-12-cards`, … | `presets/content-slides/` |
+| GRATIA SLIDES | `gratia-about`, `gratia-contact`, `gratia-fundraising`, `gratia-services` | `presets/brands/gratia/` |
+
+Publish each as a component (or component set only if a real axis exists). Default IR brand is Gratia (same as `build-component.js`). Layout presets keep placeholder copy; brand slides keep HTML copy. Page order: **Components**, then for each section a divider + empty header + that section’s slide pages. Apply removes leftover empty group pages (`Title slides`, `Templates`, …).
+
+**Pretitle:** Figma uses `components.slideTitle.pretitle.default` for the build brand. `badge` → Slide-pretitle `Type=badge`; `text` → `Type=label`. Gratia is badge; Riverton is label. Preset HTML may still use `<slide-pretitle>`; the push resolves the variant unless the markup is an explicit `<badge data-slot="pre">`.
+
+**Brand-logo:** `Brand=Gratia|Riverton` × `Theme=light|dark`. Light is `{slug}-logo.svg`; dark is `{slug}-logo-inverted.svg` (white lockup). Template IR uses `Theme=dark` when the preset slide is `color-theme="dark"` or the `<img data-logo>` src is inverted. Color collection Dark does not invert baked logo fills — pick the Theme variant.
+
+### `build-template.js`
+
+Walks every preset `<slide>` that has HTML into IR at `scripts/figma/templates/<id>.json`, then regenerates the plugin. `<stack>` / layout `<div>` → auto-layout frames; known tags → Components-page instances (`Card`, `Slide-title`, `Slide-footer`, `Cover-title`, `Stamp`, `Badge`, `Divider`, `Media-slot`, `Analyst`, `Attribution-box`, `Brand-logo`, …). Cards whose children are not the catalog slots become tokenized frames (`cardFrame`), because Figma instances cannot gain extra children. Never emits Stack or Text components. Agent workflow: [`.cursor/skills/preset-to-figma/SKILL.md`](../.cursor/skills/preset-to-figma/SKILL.md). Pull remains [`.cursor/skills/figma-to-preset/SKILL.md`](../.cursor/skills/figma-to-preset/SKILL.md).
+
+```bash
+node scripts/figma/build-template.js all
+node scripts/figma/build-template.js content-slide-3-cards
+npm run figma:build-template -- all
+```
+
 ### Apply in Figma
 
-In the DeckTool file: **Plugins → Development → Import plugin from manifest…** and choose [`scripts/figma/plugin/manifest.json`](../scripts/figma/plugin/manifest.json). Run **Sync brand variables**, then **Build card / badge / stamp / callout / analyst** (or **Sync variables and components**). Upserts by name; an existing set with that name is replaced. Analyst requires Badge.
+In the DeckTool file: **Plugins → Development → Import plugin from manifest…** and choose [`scripts/figma/plugin/manifest.json`](../scripts/figma/plugin/manifest.json). Run **Sync brand variables**, then **Build card / badge / stamp / callout / analyst** (or **Sync variables and components**). Upserts by name; an existing set with that name is replaced. Analyst requires Badge and Media-slot. Rebuilds keep the Components column at x=0 with 200px gaps.
+
+**Templates:** **Build all templates**. Upserts by name onto per-slide pages under TITLE / CHAPTER / CONTENT / GRATIA SLIDES (divider + empty header + one page per preset). Requires the Components-page mains already built. **Sync variables and components** does **not** rebuild templates.

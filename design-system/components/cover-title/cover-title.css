@@ -25,3 +25,15 @@ cover-title[size="md"] {
 cover-title[size="sm"] {
 	font-size: var(--cover-title-size-sm);
 }
+
+cover-title[align="left"] {
+	text-align: left;
+}
+
+cover-title[align="center"] {
+	text-align: center;
+}
+
+cover-title[align="right"] {
+	text-align: right;
+}

@@ -13,7 +13,6 @@ not_when:
   - Copy columns flanking a central image (use content-slide-split-media)
   - Title stack beside a square image (use content-slide-text-and-image)
   - Service offering with a case study and featured analyst (use content-slide-service)
-  - Project recap with an actions list and result cards (use content-slide-actions-results)
   - Gratia fundraising opener as-is (use gratia-fundraising)
   - Gratia contact closer as-is (use gratia-contact)
   - Title or chapter slides
@@ -23,7 +22,7 @@ slots: [main, step-title, step-text, image]
 
 # Content slide — steps + media
 
-Title and four numbered steps on the left (copy column 480px), tall browser `<media-slot>` on the right. No `<header-container>` — the headline lives in the left column. Keep `<slide-footer>` inside `<footer-container>`. The row uses `gap="20"` and `class="items-center"` so the copy hugs and sits mid-height while the well is `width="fill"` `height="fill"` and meets the slide’s right edge (`pr-0` on `<content-container>`). Keep four stamp + title/text rows with a `<divider>` above, between, and below them. Stamps inherit the slide `color-theme`. Step rows use `class="items-center"` so each stamp sits in the middle of its title + description.
+Title and four numbered steps on the left, tall browser `<media-slot>` on the right. Both columns are `width="fill"` so they share the row evenly. No `<header-container>` — the headline lives in the left column. Keep `<slide-footer>` inside `<footer-container>`. The row uses `gap="20"` and `class="items-center"` so the copy hugs and sits mid-height while the well is `height="fill"`. `pt-20 pb-20` keep spacing-20 above and below the fill well. Keep four stamp + title/text rows with a `<divider>` above, between, and below them. Stamps inherit the slide `color-theme`. Step rows use `class="items-center"` so each stamp sits in the middle of its title + description.
 
 ## Placeholders
 

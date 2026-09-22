@@ -4316,7 +4316,7 @@
 					"codeSyntax": {
 						"WEB": "var(--slide-header-padding-bottom)"
 					},
-					"alias": "spacing-0",
+					"alias": "spacing-10",
 					"value": null
 				},
 				{
@@ -4340,7 +4340,7 @@
 					"codeSyntax": {
 						"WEB": "var(--slide-content-padding-top)"
 					},
-					"alias": "spacing-10",
+					"alias": "spacing-0",
 					"value": null
 				},
 				{

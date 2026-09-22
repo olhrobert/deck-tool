@@ -12,7 +12,6 @@ not_when:
   - Gratia service catalog as-is (use gratia-services)
   - Service offering with a case study and featured analyst (use content-slide-service)
   - Numbered steps next to a screenshot (use content-slide-steps-media)
-  - Project recap with an actions list and result cards (use content-slide-actions-results)
   - Gratia fundraising opener as-is (use gratia-fundraising)
   - Gratia contact closer as-is (use gratia-contact)
   - Metrics, comparisons, or more than one visual

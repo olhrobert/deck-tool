@@ -16,7 +16,6 @@ not_when:
   - Copy columns flanking a central image (use content-slide-split-media)
   - Service offering with a case study and featured analyst (use content-slide-service)
   - Numbered steps next to a screenshot (use content-slide-steps-media)
-  - Project recap with an actions list and result cards (use content-slide-actions-results)
   - Title or chapter slides
   - Riverton or other non-Gratia decks
 color_theme: inherit

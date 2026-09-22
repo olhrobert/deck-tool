@@ -23,9 +23,18 @@
 	<body>
 		<deck>
 			<slide kind="cover">
-				<div class="box-border w-full h-full flex">
-					<div
-						class="box-border h-full grow min-w-0 flex flex-col justify-between items-start p-6"
+				<stack
+					direction="row"
+					gap="0"
+					width="fill"
+					height="fill"
+				>
+					<stack
+						direction="col"
+						gap="0"
+						width="fill"
+						height="fill"
+						class="justify-between items-start p-6"
 					>
 						<img
 							src="../../assets/logos/placeholder-logo.svg"
@@ -45,10 +54,13 @@
 								Title of the deck
 							</cover-title>
 						</div>
-					</div>
+					</stack>
 
-					<div
-						class="box-border h-full shrink-0 flex flex-col p-0"
+					<stack
+						direction="col"
+						gap="0"
+						height="fill"
+						class="p-0"
 					>
 						<attribution-box variant="title">
 							<text
@@ -72,8 +84,8 @@
 								long.
 							</text>
 						</div>
-					</div>
-				</div>
+					</stack>
+				</stack>
 			</slide>
 		</deck>
 	</body>

@@ -17,7 +17,6 @@ not_when:
   - Twelve-card grid starting point (use content-slide-12-cards)
   - Copy columns flanking a central image (use content-slide-split-media)
   - Service offering with a case study and featured analyst (use content-slide-service)
-  - Project recap with an actions list and result cards (use content-slide-actions-results)
   - Riverton or other non-Gratia decks
 color_theme: dark
 slots: [logo, main, sub, stat-value, stat-label, image]

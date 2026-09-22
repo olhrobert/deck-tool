@@ -4317,7 +4317,7 @@ const VARIABLES = {
 					"codeSyntax": {
 						"WEB": "var(--slide-header-padding-bottom)"
 					},
-					"alias": "spacing-0",
+					"alias": "spacing-10",
 					"value": null
 				},
 				{
@@ -4341,7 +4341,7 @@ const VARIABLES = {
 					"codeSyntax": {
 						"WEB": "var(--slide-content-padding-top)"
 					},
-					"alias": "spacing-10",
+					"alias": "spacing-0",
 					"value": null
 				},
 				{
@@ -5158,7 +5158,8 @@ const COMPONENTS = {
 		"component": "analyst",
 		"name": "Analyst",
 		"nested": {
-			"badge": "Badge"
+			"badge": "Badge",
+			"mediaSlot": "Media-slot"
 		},
 		"autoLayout": {
 			"type": "autoLayout",
@@ -5597,104 +5598,20 @@ const COMPONENTS = {
 				"logoSize": "spacing-7"
 			}
 		],
-		"variants": [
-			{
-				"name": "Variant=neutral",
-				"variant": "neutral",
-				"fill": {
-					"variable": "card-neutral-background",
-					"opacity": 1
-				},
-				"stroke": {
-					"variable": "card-neutral-border-subtle",
-					"opacity": 0.2
-				},
-				"foreground": {
-					"variable": "card-neutral-foreground",
-					"opacity": 1
-				}
+		"paint": {
+			"fill": {
+				"variable": "card-neutral-background",
+				"opacity": 1
 			},
-			{
-				"name": "Variant=emphasis",
-				"variant": "emphasis",
-				"fill": {
-					"variable": "card-emphasis-background",
-					"opacity": 1
-				},
-				"stroke": {
-					"variable": "card-emphasis-border-subtle",
-					"opacity": 0.2
-				},
-				"foreground": {
-					"variable": "card-emphasis-foreground",
-					"opacity": 1
-				}
+			"stroke": {
+				"variable": "card-neutral-border-subtle",
+				"opacity": 0.2
 			},
-			{
-				"name": "Variant=positive",
-				"variant": "positive",
-				"fill": {
-					"variable": "card-positive-background",
-					"opacity": 1
-				},
-				"stroke": {
-					"variable": "card-positive-border-subtle",
-					"opacity": 0.2
-				},
-				"foreground": {
-					"variable": "card-positive-foreground",
-					"opacity": 1
-				}
-			},
-			{
-				"name": "Variant=warning",
-				"variant": "warning",
-				"fill": {
-					"variable": "card-warning-background",
-					"opacity": 1
-				},
-				"stroke": {
-					"variable": "card-warning-border-subtle",
-					"opacity": 0.2
-				},
-				"foreground": {
-					"variable": "card-warning-foreground",
-					"opacity": 1
-				}
-			},
-			{
-				"name": "Variant=negative",
-				"variant": "negative",
-				"fill": {
-					"variable": "card-negative-background",
-					"opacity": 1
-				},
-				"stroke": {
-					"variable": "card-negative-border-subtle",
-					"opacity": 0.2
-				},
-				"foreground": {
-					"variable": "card-negative-foreground",
-					"opacity": 1
-				}
-			},
-			{
-				"name": "Variant=informative",
-				"variant": "informative",
-				"fill": {
-					"variable": "card-informative-background",
-					"opacity": 1
-				},
-				"stroke": {
-					"variable": "card-informative-border-subtle",
-					"opacity": 0.2
-				},
-				"foreground": {
-					"variable": "card-informative-foreground",
-					"opacity": 1
-				}
+			"foreground": {
+				"variable": "card-neutral-foreground",
+				"opacity": 1
 			}
-		],
+		},
 		"icons": {
 			"earth-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM16.0043 12.8777C15.6589 12.3533 15.4097 11.9746 14.4622 12.1248C12.6717 12.409 12.4732 12.7224 12.3877 13.2375L12.3636 13.3943L12.3393 13.5597C12.2416 14.2428 12.2453 14.5012 12.5589 14.8308C13.8241 16.1582 14.582 17.115 14.8116 17.6746C14.9237 17.9484 15.2119 18.7751 15.0136 19.5927C16.2372 19.1066 17.3156 18.3332 18.1653 17.3559C18.2755 16.9821 18.3551 16.5166 18.3551 15.9518V15.8472C18.3551 14.9247 18.3551 14.504 17.7031 14.1314C17.428 13.9751 17.2227 13.881 17.0582 13.8064C16.691 13.6394 16.4479 13.5297 16.1198 13.0499C16.0807 12.9928 16.0425 12.9358 16.0043 12.8777ZM12 3.83333C9.68259 3.83333 7.59062 4.79858 6.1042 6.34896C6.28116 6.47186 6.43537 6.64453 6.54129 6.88256C6.74529 7.34029 6.74529 7.8112 6.74529 8.22764C6.74488 8.55621 6.74442 8.8672 6.84992 9.09302C6.99443 9.40134 7.6164 9.53227 8.16548 9.64736C8.36166 9.68867 8.56395 9.73083 8.74797 9.78176C9.25405 9.92233 9.64554 10.3765 9.95938 10.7412C10.0896 10.8931 10.2819 11.1163 10.3783 11.1717C10.4286 11.1356 10.59 10.9608 10.6699 10.6735C10.7307 10.4547 10.7134 10.2597 10.6239 10.1543C10.0648 9.49445 10.0952 8.2232 10.268 7.75495C10.5402 7.01606 11.3905 7.07058 12.012 7.11097C12.2438 7.12589 12.4626 7.14023 12.6257 7.11976C13.2482 7.04166 13.4396 6.09538 13.575 5.91C13.8671 5.50981 14.7607 4.9071 15.3158 4.53454C14.3025 4.08382 13.1805 3.83333 12 3.83333Z\" fill=\"#04383A\"/>\n</svg>"
 		}
@@ -6447,6 +6364,7234 @@ const COMPONENTS = {
 		}
 	}
 };
+const TEMPLATES = {
+	"chapter-slide-01": {
+		"brand": "gratia",
+		"id": "chapter-slide-01",
+		"name": "chapter-slide-01",
+		"page": "chapter-slide-01",
+		"intent": null,
+		"kind": "chapter",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "frame",
+					"layoutMode": "VERTICAL",
+					"itemSpacing": 0,
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-4",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "cover-title",
+											"component": "Cover-title",
+											"variant": "Size=sm, Align=left",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"overrides": [
+												{
+													"characters": "Chapter title"
+												}
+											]
+										},
+										{
+											"type": "text",
+											"name": "text",
+											"characters": "Engineered for velocity, cost discipline, and linear scalability. React, managed AWS services, and microservice architecture enable rapid iteration with minimal ops overhead.",
+											"fontFamily": "font-text-family",
+											"fontWeight": "font-text-weight",
+											"fontSize": "text-size-350",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-subtle",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeight": "text-lineheight"
+										}
+									],
+									"maxWidth": 600
+								}
+							],
+							"counterAxisAlignItems": "CENTER",
+							"padding": {
+								"left": "spacing-20",
+								"right": "spacing-20"
+							}
+						},
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "slide-footer",
+									"component": "Slide-footer",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"name": "notes",
+											"characters": "Add notes or sources here."
+										},
+										{
+											"name": "deck-title",
+											"characters": "Deck title"
+										},
+										{
+											"name": "chapter",
+											"characters": "Chapter"
+										},
+										{
+											"name": "page",
+											"characters": "01"
+										}
+									]
+								}
+							],
+							"padding": {
+								"top": "spacing-4",
+								"right": "spacing-4",
+								"bottom": "spacing-4",
+								"left": "spacing-4"
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	"chapter-slide-02": {
+		"brand": "gratia",
+		"id": "chapter-slide-02",
+		"name": "chapter-slide-02",
+		"page": "chapter-slide-02",
+		"intent": null,
+		"kind": "chapter",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "frame",
+					"layoutMode": "VERTICAL",
+					"itemSpacing": 0,
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-0",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "FILL",
+									"children": [
+										{
+											"type": "instance",
+											"name": "cover-title",
+											"component": "Cover-title",
+											"variant": "Size=sm, Align=left",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"overrides": [
+												{
+													"characters": "Chapter title"
+												}
+											]
+										},
+										{
+											"type": "text",
+											"name": "text",
+											"characters": "Engineered for velocity, cost discipline, and linear scalability. React, managed AWS services, and microservice architecture enable rapid iteration with minimal ops overhead.",
+											"fontFamily": "font-text-family",
+											"fontWeight": "font-text-weight",
+											"fontSize": "text-size-350",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-subtle",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeight": "text-lineheight"
+										}
+									],
+									"maxWidth": 600,
+									"primaryAxisAlignItems": "SPACE_BETWEEN"
+								}
+							],
+							"padding": {
+								"left": "spacing-20",
+								"right": "spacing-20",
+								"top": "spacing-20",
+								"bottom": "spacing-10"
+							}
+						},
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "slide-footer",
+									"component": "Slide-footer",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"name": "notes",
+											"characters": "Add notes or sources here."
+										},
+										{
+											"name": "deck-title",
+											"characters": "Deck title"
+										},
+										{
+											"name": "chapter",
+											"characters": "Chapter"
+										},
+										{
+											"name": "page",
+											"characters": "01"
+										}
+									]
+								}
+							],
+							"padding": {
+								"top": "spacing-4",
+								"right": "spacing-4",
+								"bottom": "spacing-4",
+								"left": "spacing-4"
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	"content-slide-12-cards": {
+		"brand": "gratia",
+		"id": "content-slide-12-cards",
+		"name": "content-slide-12-cards",
+		"page": "content-slide-12-cards",
+		"intent": "layout",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "header",
+					"role": "header-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-header-padding-top",
+						"right": "slide-header-padding-right",
+						"bottom": "slide-header-padding-bottom",
+						"left": "slide-header-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-title-group",
+							"component": "Slide-title",
+							"variant": "Size=md, Align=center",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "pretitle",
+									"visible": false
+								},
+								{
+									"name": "title",
+									"characters": "Slide title"
+								},
+								{
+									"name": "subtitle",
+									"visible": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": "spacing-2",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "cards",
+									"layoutMode": "HORIZONTAL",
+									"itemSpacing": "spacing-2",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "cards",
+									"layoutMode": "HORIZONTAL",
+									"itemSpacing": "spacing-2",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "cards",
+									"layoutMode": "HORIZONTAL",
+									"itemSpacing": "spacing-2",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "cards",
+									"layoutMode": "HORIZONTAL",
+									"itemSpacing": "spacing-2",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "card",
+											"role": "cardFrame",
+											"layoutMode": "VERTICAL",
+											"fill": {
+												"variable": "card-neutral-background",
+												"opacity": 1
+											},
+											"stroke": {
+												"variable": "card-neutral-border-subtle",
+												"opacity": 0.2
+											},
+											"strokeAlign": "INSIDE",
+											"radius": "card-border-radius",
+											"strokeTop": "card-border-size-top",
+											"strokeRight": "card-border-size-right",
+											"strokeBottom": "card-border-size-bottom",
+											"strokeLeft": "card-border-size-left",
+											"padding": {
+												"top": "card-padding-md",
+												"right": "card-padding-md",
+												"bottom": "card-padding-md",
+												"left": "card-padding-md"
+											},
+											"itemSpacing": "card-gap-sm",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"clipsContent": true,
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-2",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=emphasis",
+															"props": {
+																"Show icon": true,
+																"Show mark": false
+															},
+															"sizeVar": "spacing-7",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "text",
+															"name": "title",
+															"characters": "Card title",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-450",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeight": "text-lineheight"
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item one",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item two",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "item",
+															"characters": "Item three",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-300",
+															"fill": {
+																"variable": "color-slide-surface-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-base",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"content-slide-3-cards": {
+		"brand": "gratia",
+		"id": "content-slide-3-cards",
+		"name": "content-slide-3-cards",
+		"page": "content-slide-3-cards",
+		"intent": "layout",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "header",
+					"role": "header-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-header-padding-top",
+						"right": "slide-header-padding-right",
+						"bottom": "slide-header-padding-bottom",
+						"left": "slide-header-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-title-group",
+							"component": "Slide-title",
+							"variant": "Size=md, Align=left",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "pretitle",
+									"swap": {
+										"component": "Slide-pretitle",
+										"variant": "Type=badge"
+									},
+									"characters": "Optional pre-title"
+								},
+								{
+									"name": "title",
+									"characters": "Slide title"
+								},
+								{
+									"name": "subtitle",
+									"characters": "Optional subtitle"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "cards",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-2",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "card",
+									"component": "Card",
+									"variant": "Variant=neutral",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"name": "pretitle",
+											"characters": "Label"
+										},
+										{
+											"name": "title",
+											"characters": "Value"
+										},
+										{
+											"name": "text",
+											"visible": false
+										},
+										{
+											"name": "meta",
+											"characters": "Optional supporting detail"
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "card",
+									"component": "Card",
+									"variant": "Variant=neutral",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"name": "pretitle",
+											"characters": "Label"
+										},
+										{
+											"name": "title",
+											"characters": "Value"
+										},
+										{
+											"name": "text",
+											"visible": false
+										},
+										{
+											"name": "meta",
+											"characters": "Optional supporting detail"
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "card",
+									"component": "Card",
+									"variant": "Variant=neutral",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"name": "pretitle",
+											"characters": "Label"
+										},
+										{
+											"name": "title",
+											"characters": "Value"
+										},
+										{
+											"name": "text",
+											"visible": false
+										},
+										{
+											"name": "meta",
+											"characters": "Optional supporting detail"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"content-slide-service": {
+		"brand": "gratia",
+		"id": "content-slide-service",
+		"name": "content-slide-service",
+		"page": "content-slide-service",
+		"intent": "layout",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "stack",
+					"layoutMode": "HORIZONTAL",
+					"itemSpacing": "spacing-0",
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": "spacing-0",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "frame",
+									"name": "content",
+									"role": "content-container",
+									"layoutMode": "VERTICAL",
+									"padding": {
+										"top": "spacing-0",
+										"right": "spacing-0",
+										"bottom": "spacing-0",
+										"left": "spacing-0"
+									},
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "FILL",
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-10",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "FILL",
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-4",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "slide-title-group",
+															"component": "Slide-title",
+															"variant": "Size=md, Align=left",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"overrides": [
+																{
+																	"name": "pretitle",
+																	"visible": false
+																},
+																{
+																	"name": "title",
+																	"characters": "Slide title"
+																},
+																{
+																	"name": "subtitle",
+																	"characters": "Optional subtitle"
+																}
+															]
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "HORIZONTAL",
+															"itemSpacing": "spacing-4",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "HORIZONTAL",
+																	"itemSpacing": "spacing-1-5",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "instance",
+																			"name": "stamp",
+																			"component": "Stamp",
+																			"variant": "Variant=emphasis",
+																			"props": {
+																				"Show icon": true,
+																				"Show mark": false
+																			},
+																			"sizeVar": "spacing-4",
+																			"layoutSizingHorizontal": "FIXED",
+																			"layoutSizingVertical": "FIXED"
+																		},
+																		{
+																			"type": "text",
+																			"name": "service",
+																			"characters": "Service one",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	],
+																	"counterAxisAlignItems": "CENTER"
+																},
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "HORIZONTAL",
+																	"itemSpacing": "spacing-1-5",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "instance",
+																			"name": "stamp",
+																			"component": "Stamp",
+																			"variant": "Variant=emphasis",
+																			"props": {
+																				"Show icon": true,
+																				"Show mark": false
+																			},
+																			"sizeVar": "spacing-4",
+																			"layoutSizingHorizontal": "FIXED",
+																			"layoutSizingVertical": "FIXED"
+																		},
+																		{
+																			"type": "text",
+																			"name": "service",
+																			"characters": "Service two",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	],
+																	"counterAxisAlignItems": "CENTER"
+																},
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "HORIZONTAL",
+																	"itemSpacing": "spacing-1-5",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "instance",
+																			"name": "stamp",
+																			"component": "Stamp",
+																			"variant": "Variant=emphasis",
+																			"props": {
+																				"Show icon": true,
+																				"Show mark": false
+																			},
+																			"sizeVar": "spacing-4",
+																			"layoutSizingHorizontal": "FIXED",
+																			"layoutSizingVertical": "FIXED"
+																		},
+																		{
+																			"type": "text",
+																			"name": "service",
+																			"characters": "Service three",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	],
+																	"counterAxisAlignItems": "CENTER"
+																}
+															],
+															"layoutWrap": "WRAP",
+															"counterAxisAlignItems": "CENTER"
+														}
+													]
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "HORIZONTAL",
+															"itemSpacing": "spacing-4",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-1",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "pretitle",
+																			"characters": "Case study",
+																			"fontFamily": "font-label-family",
+																			"fontWeight": "font-label-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-subtle",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "title",
+																			"characters": "Case study title",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-500",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "text",
+																			"characters": "Short description of the engagement and outcome.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	]
+																},
+																{
+																	"type": "instance",
+																	"name": "partner",
+																	"component": "Media-slot",
+																	"variant": "Type=flush",
+																	"layoutSizingHorizontal": "FIXED",
+																	"layoutSizingVertical": "FILL",
+																	"widthPx": 160,
+																	"heightPx": 64
+																}
+															],
+															"counterAxisAlignItems": "CENTER",
+															"padding": {
+																"top": "spacing-6",
+																"right": "spacing-6",
+																"bottom": "spacing-6",
+																"left": "spacing-6"
+															}
+														},
+														{
+															"type": "instance",
+															"name": "divider",
+															"component": "Divider",
+															"variant": "Orientation=horizontal",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "HORIZONTAL",
+															"itemSpacing": "spacing-0",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-2",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "column-label",
+																			"characters": "Column label",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	],
+																	"padding": {
+																		"top": "spacing-4",
+																		"right": "spacing-6",
+																		"bottom": "spacing-4",
+																		"left": "spacing-6"
+																	}
+																},
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-2",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "column-label",
+																			"characters": "Column label",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	],
+																	"padding": {
+																		"top": "spacing-4",
+																		"right": "spacing-6",
+																		"bottom": "spacing-4",
+																		"left": "spacing-6"
+																	}
+																},
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-2",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "column-label",
+																			"characters": "Column label",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "column-item",
+																			"characters": "Short supporting point.",
+																			"fontFamily": "font-text-family",
+																			"fontWeight": "font-text-weight",
+																			"fontSize": "text-size-250",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-base",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	],
+																	"padding": {
+																		"top": "spacing-4",
+																		"right": "spacing-6",
+																		"bottom": "spacing-4",
+																		"left": "spacing-6"
+																	}
+																}
+															]
+														},
+														{
+															"type": "instance",
+															"name": "divider",
+															"component": "Divider",
+															"variant": "Orientation=horizontal",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "HORIZONTAL",
+															"itemSpacing": "spacing-12",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-0",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "stat-label",
+																			"characters": "Stat label",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-subtle",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "stat-value",
+																			"characters": "00",
+																			"fontFamily": "font-stat-family",
+																			"fontWeight": "font-stat-weight",
+																			"fontSize": "text-size-1000",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	]
+																},
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-0",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "stat-label",
+																			"characters": "Stat label",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-subtle",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "stat-value",
+																			"characters": "00",
+																			"fontFamily": "font-stat-family",
+																			"fontWeight": "font-stat-weight",
+																			"fontSize": "text-size-1000",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	]
+																},
+																{
+																	"type": "autoLayout",
+																	"name": "stack",
+																	"layoutMode": "VERTICAL",
+																	"itemSpacing": "spacing-0",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"children": [
+																		{
+																			"type": "text",
+																			"name": "stat-label",
+																			"characters": "Stat label",
+																			"fontFamily": "font-heading-family",
+																			"fontWeight": "font-heading-weight",
+																			"fontSize": "text-size-300",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-subtle",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		},
+																		{
+																			"type": "text",
+																			"name": "stat-value",
+																			"characters": "00",
+																			"fontFamily": "font-stat-family",
+																			"fontWeight": "font-stat-weight",
+																			"fontSize": "text-size-1000",
+																			"fill": {
+																				"variable": "color-slide-foreground",
+																				"opacity": 1
+																			},
+																			"opacity": "tone-strong",
+																			"layoutSizingHorizontal": "FILL",
+																			"layoutSizingVertical": "HUG",
+																			"textAlign": "LEFT",
+																			"lineHeight": "text-lineheight"
+																		}
+																	]
+																}
+															],
+															"padding": {
+																"top": "spacing-6",
+																"right": "spacing-6",
+																"bottom": "spacing-6",
+																"left": "spacing-6"
+															}
+														}
+													],
+													"clipsContent": true,
+													"radius": "card-border-radius",
+													"stroke": {
+														"variable": "divider-color",
+														"opacity": 1
+													},
+													"strokeTop": "border-size-sm",
+													"strokeRight": "border-size-sm",
+													"strokeBottom": "border-size-sm",
+													"strokeLeft": "border-size-sm",
+													"strokeAlign": "INSIDE"
+												}
+											]
+										}
+									]
+								}
+							],
+							"padding": {
+								"top": "spacing-16",
+								"right": "spacing-10",
+								"bottom": 0,
+								"left": "spacing-20"
+							}
+						},
+						{
+							"type": "instance",
+							"name": "divider",
+							"component": "Divider",
+							"variant": "Orientation=vertical",
+							"layoutSizingHorizontal": "HUG",
+							"layoutSizingVertical": "FILL"
+						},
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": "spacing-6",
+							"layoutSizingHorizontal": "HUG",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-1",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "text",
+											"name": "sidebar-title",
+											"characters": "Featured analyst",
+											"fontFamily": "font-heading-family",
+											"fontWeight": "font-heading-weight",
+											"fontSize": "text-size-500",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-strong",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeight": "text-lineheight"
+										},
+										{
+											"type": "text",
+											"name": "sidebar-text",
+											"characters": "Short bio of the featured analyst.",
+											"fontFamily": "font-text-family",
+											"fontWeight": "font-text-weight",
+											"fontSize": "text-size-300",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-base",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeight": "text-lineheight"
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "analyst",
+									"component": "Analyst",
+									"variant": "Size=lg",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"name": "name",
+											"characters": "Name"
+										},
+										{
+											"name": "role",
+											"characters": "Role"
+										},
+										{
+											"name": "location",
+											"characters": "Location"
+										},
+										{
+											"name": "specialization",
+											"characters": "Specialization"
+										}
+									],
+									"tagLabels": [
+										"Tag",
+										"Tag",
+										"Tag",
+										"Tag"
+									],
+									"colorTheme": "light"
+								}
+							],
+							"padding": {
+								"top": "spacing-16",
+								"right": "spacing-10",
+								"bottom": 0,
+								"left": "spacing-10"
+							},
+							"widthPx": 328
+						}
+					]
+				},
+				{
+					"type": "instance",
+					"name": "divider",
+					"component": "Divider",
+					"variant": "Orientation=horizontal",
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG"
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"content-slide-split-media": {
+		"brand": "gratia",
+		"id": "content-slide-split-media",
+		"name": "content-slide-split-media",
+		"page": "content-slide-split-media",
+		"intent": "layout",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "header",
+					"role": "header-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-header-padding-top",
+						"right": "slide-header-padding-right",
+						"bottom": "slide-header-padding-bottom",
+						"left": "slide-header-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-title-group",
+							"component": "Slide-title",
+							"variant": "Size=md, Align=center",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "pretitle",
+									"swap": {
+										"component": "Slide-pretitle",
+										"variant": "Type=badge"
+									},
+									"characters": "Pre-title"
+								},
+								{
+									"name": "title",
+									"characters": "Slide title"
+								},
+								{
+									"name": "subtitle",
+									"visible": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-10",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-3",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "badge",
+											"component": "Badge",
+											"variant": "Variant=emphasis",
+											"props": {
+												"Label": "Section label",
+												"Show leading": false,
+												"Show trailing": false
+											},
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item-title",
+													"characters": "Item title",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "item-text",
+													"characters": "Short description, can be a couple sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item-title",
+													"characters": "Item title",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "item-text",
+													"characters": "Short description, can be a couple sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item-title",
+													"characters": "Item title",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "item-text",
+													"characters": "Short description, can be a couple sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "image",
+									"component": "Media-slot",
+									"variant": "Type=well",
+									"layoutSizingHorizontal": "FIXED",
+									"layoutSizingVertical": "FILL",
+									"widthPx": 440
+								},
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-3",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "badge",
+											"component": "Badge",
+											"variant": "Variant=emphasis",
+											"props": {
+												"Label": "Section label",
+												"Show leading": false,
+												"Show trailing": false
+											},
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item-title",
+													"characters": "Item title",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "item-text",
+													"characters": "Short description, can be a couple sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item-title",
+													"characters": "Item title",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "item-text",
+													"characters": "Short description, can be a couple sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item-title",
+													"characters": "Item title",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "item-text",
+													"characters": "Short description, can be a couple sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										},
+										{
+											"type": "instance",
+											"name": "divider",
+											"component": "Divider",
+											"variant": "Orientation=horizontal",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"content-slide-steps-media": {
+		"brand": "gratia",
+		"id": "content-slide-steps-media",
+		"name": "content-slide-steps-media",
+		"page": "content-slide-steps-media",
+		"intent": "layout",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "spacing-20",
+						"right": "slide-content-padding-right",
+						"bottom": "spacing-20",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-20",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-8",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "slide-title-group",
+											"component": "Slide-title",
+											"variant": "Size=lg, Align=left",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"overrides": [
+												{
+													"name": "pretitle",
+													"visible": false
+												},
+												{
+													"name": "title",
+													"characters": "Slide title"
+												},
+												{
+													"name": "subtitle",
+													"visible": false
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-4",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "divider",
+													"component": "Divider",
+													"variant": "Orientation=horizontal",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-6",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=neutral",
+															"props": {
+																"Show icon": false,
+																"Show mark": true,
+																"Mark": "1"
+															},
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "step-title",
+																	"characters": "Step title",
+																	"fontFamily": "font-heading-family",
+																	"fontWeight": "font-heading-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-strong",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "step-text",
+																	"characters": "Short description, can be a couple sentences long.",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-350",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-base",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																}
+															]
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "instance",
+													"name": "divider",
+													"component": "Divider",
+													"variant": "Orientation=horizontal",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-6",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=neutral",
+															"props": {
+																"Show icon": false,
+																"Show mark": true,
+																"Mark": "2"
+															},
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "step-title",
+																	"characters": "Step title",
+																	"fontFamily": "font-heading-family",
+																	"fontWeight": "font-heading-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-strong",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "step-text",
+																	"characters": "Short description, can be a couple sentences long.",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-350",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-base",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																}
+															]
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "instance",
+													"name": "divider",
+													"component": "Divider",
+													"variant": "Orientation=horizontal",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-6",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=neutral",
+															"props": {
+																"Show icon": false,
+																"Show mark": true,
+																"Mark": "3"
+															},
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "step-title",
+																	"characters": "Step title",
+																	"fontFamily": "font-heading-family",
+																	"fontWeight": "font-heading-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-strong",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "step-text",
+																	"characters": "Short description, can be a couple sentences long.",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-350",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-base",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																}
+															]
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "instance",
+													"name": "divider",
+													"component": "Divider",
+													"variant": "Orientation=horizontal",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG"
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-6",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "instance",
+															"name": "stamp",
+															"component": "Stamp",
+															"variant": "Variant=neutral",
+															"props": {
+																"Show icon": false,
+																"Show mark": true,
+																"Mark": "4"
+															},
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "step-title",
+																	"characters": "Step title",
+																	"fontFamily": "font-heading-family",
+																	"fontWeight": "font-heading-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-strong",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "step-text",
+																	"characters": "Short description, can be a couple sentences long.",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-350",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-base",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																}
+															]
+														}
+													],
+													"counterAxisAlignItems": "CENTER"
+												},
+												{
+													"type": "instance",
+													"name": "divider",
+													"component": "Divider",
+													"variant": "Orientation=horizontal",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "image",
+									"component": "Media-slot",
+									"variant": "Type=well",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "FILL"
+								}
+							],
+							"counterAxisAlignItems": "CENTER"
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"content-slide-text-and-image": {
+		"brand": "gratia",
+		"id": "content-slide-text-and-image",
+		"name": "content-slide-text-and-image",
+		"page": "content-slide-text-and-image",
+		"intent": "layout",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-4",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-3",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "slide-title-group",
+											"component": "Slide-title",
+											"variant": "Size=md, Align=left",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"overrides": [
+												{
+													"name": "pretitle",
+													"swap": {
+														"component": "Slide-pretitle",
+														"variant": "Type=badge"
+													},
+													"characters": "Optional pre-title"
+												},
+												{
+													"name": "title",
+													"characters": "Slide title"
+												},
+												{
+													"name": "subtitle",
+													"characters": "Optional description"
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "image",
+									"component": "Media-slot",
+									"variant": "Type=well",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "FIXED",
+									"aspectSquare": true
+								}
+							],
+							"counterAxisAlignItems": "CENTER"
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"gratia-about": {
+		"brand": "gratia",
+		"id": "gratia-about",
+		"name": "gratia-about",
+		"page": "gratia-about",
+		"intent": "brand",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-20",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-6",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "slide-title-group",
+													"component": "Slide-title",
+													"variant": "Size=md, Align=left",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"overrides": [
+														{
+															"name": "pretitle",
+															"visible": false
+														},
+														{
+															"name": "title",
+															"characters": "The story of Gratia"
+														},
+														{
+															"name": "subtitle",
+															"visible": false
+														}
+													]
+												},
+												{
+													"type": "text",
+													"name": "text",
+													"characters": "AI changed what a small team can deliver, but the way companies access talent didn’t keep up. That left a gap: high-judgment analysts and teams, without the overhead of a big firm or the headache of a mass talent platform.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "text",
+													"characters": "It’s the gap I built Gratia to fill: vetted, nearshore analysts who work in your time zone and deliver outcomes, not slide decks.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "signature",
+													"component": "Media-slot",
+													"variant": "Type=flush",
+													"layoutSizingHorizontal": "HUG",
+													"layoutSizingVertical": "HUG",
+													"heightPx": 21
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "VERTICAL",
+													"itemSpacing": "spacing-0",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"children": [
+														{
+															"type": "text",
+															"name": "name",
+															"characters": "Jackie Churchwell",
+															"fontFamily": "font-heading-family",
+															"fontWeight": "font-heading-weight",
+															"fontSize": "text-size-400",
+															"fill": {
+																"variable": "color-slide-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-strong",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														},
+														{
+															"type": "text",
+															"name": "role",
+															"characters": "CEO and Founder of Gratia",
+															"fontFamily": "font-text-family",
+															"fontWeight": "font-text-weight",
+															"fontSize": "text-size-400",
+															"fill": {
+																"variable": "color-slide-foreground",
+																"opacity": 1
+															},
+															"opacity": "tone-subtle",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "HUG",
+															"textAlign": "LEFT",
+															"lineHeightPercent": 150
+														}
+													]
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "image",
+									"component": "Media-slot",
+									"variant": "Type=flush",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"aspectSquare": true,
+									"clipsContent": true,
+									"radius": "card-border-radius"
+								}
+							],
+							"counterAxisAlignItems": "CENTER"
+						}
+					]
+				}
+			]
+		}
+	},
+	"gratia-contact": {
+		"brand": "gratia",
+		"id": "gratia-contact",
+		"name": "gratia-contact",
+		"page": "gratia-contact",
+		"intent": "brand",
+		"kind": "close",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": "dark",
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-20",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-12",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "logo",
+											"component": "Brand-logo",
+											"variant": "Brand=Gratia, Theme=dark",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"heightPx": 32
+										},
+										{
+											"type": "text",
+											"name": "main",
+											"characters": "Let’s work together",
+											"fontFamily": "font-title-family",
+											"fontWeight": "font-title-weight",
+											"fontSize": "text-size-2000",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-strong",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeightPercent": 100
+										},
+										{
+											"type": "text",
+											"name": "sub",
+											"characters": "Ready to accelerate your next project? Let's talk.",
+											"fontFamily": "font-text-family",
+											"fontWeight": "font-text-weight",
+											"fontSize": "text-size-400",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-base",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeight": "text-lineheight"
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-xl",
+										"right": "card-padding-xl",
+										"bottom": "card-padding-xl",
+										"left": "card-padding-xl"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "label",
+													"characters": "Get in touch",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-400",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-subtle",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												},
+												{
+													"type": "text",
+													"name": "email",
+													"characters": "hello@gogratia.com",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-weight-regular",
+													"fontSize": "text-size-1000",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											]
+										}
+									]
+								}
+							],
+							"counterAxisAlignItems": "CENTER"
+						}
+					]
+				}
+			]
+		}
+	},
+	"gratia-fundraising": {
+		"brand": "gratia",
+		"id": "gratia-fundraising",
+		"name": "gratia-fundraising",
+		"page": "gratia-fundraising",
+		"intent": "brand",
+		"kind": "title",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": "dark",
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "spacing-20",
+						"right": "spacing-0",
+						"bottom": "spacing-20",
+						"left": "spacing-20"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-13",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-0",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "FILL",
+									"children": [
+										{
+											"type": "instance",
+											"name": "logo",
+											"component": "Brand-logo",
+											"variant": "Brand=Gratia, Theme=dark",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"heightPx": 24
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-4",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "FILL",
+											"children": [
+												{
+													"type": "instance",
+													"name": "slide-title-group",
+													"component": "Slide-title",
+													"variant": "Size=lg, Align=left",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"overrides": [
+														{
+															"name": "pretitle",
+															"visible": false
+														},
+														{
+															"name": "title",
+															"characters": "The platform that creates its own supply."
+														},
+														{
+															"name": "subtitle",
+															"visible": false
+														}
+													]
+												},
+												{
+													"type": "text",
+													"name": "sub",
+													"characters": "AI-coached analysts. Enterprise-ready work. Delivered on demand.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											],
+											"primaryAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-4",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "FILL",
+													"children": [
+														{
+															"type": "instance",
+															"name": "divider",
+															"component": "Divider",
+															"variant": "Orientation=vertical",
+															"layoutSizingHorizontal": "HUG",
+															"layoutSizingVertical": "FILL"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "FILL",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "stat-value",
+																	"characters": "$4M",
+																	"fontFamily": "font-stat-family",
+																	"fontWeight": "font-stat-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-palette-brand-3",
+																		"opacity": 1
+																	},
+																	"opacity": null,
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "stat-label",
+																	"characters": "Annualized Run Rate",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-250",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-subtle",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeightPercent": 100
+																}
+															],
+															"primaryAxisAlignItems": "CENTER"
+														}
+													]
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-4",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "FILL",
+													"children": [
+														{
+															"type": "instance",
+															"name": "divider",
+															"component": "Divider",
+															"variant": "Orientation=vertical",
+															"layoutSizingHorizontal": "HUG",
+															"layoutSizingVertical": "FILL"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "FILL",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "stat-value",
+																	"characters": "80+",
+																	"fontFamily": "font-stat-family",
+																	"fontWeight": "font-stat-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-palette-brand-3",
+																		"opacity": 1
+																	},
+																	"opacity": null,
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "stat-label",
+																	"characters": "Active Analysts",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-250",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-subtle",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeightPercent": 100
+																}
+															],
+															"primaryAxisAlignItems": "CENTER"
+														}
+													]
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-4",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "FILL",
+													"children": [
+														{
+															"type": "instance",
+															"name": "divider",
+															"component": "Divider",
+															"variant": "Orientation=vertical",
+															"layoutSizingHorizontal": "HUG",
+															"layoutSizingVertical": "FILL"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "FILL",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "stat-value",
+																	"characters": "85%",
+																	"fontFamily": "font-stat-family",
+																	"fontWeight": "font-stat-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-palette-brand-3",
+																		"opacity": 1
+																	},
+																	"opacity": null,
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "stat-label",
+																	"characters": "Repeat Clients",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-250",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-subtle",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeightPercent": 100
+																}
+															],
+															"primaryAxisAlignItems": "CENTER"
+														}
+													]
+												},
+												{
+													"type": "autoLayout",
+													"name": "stack",
+													"layoutMode": "HORIZONTAL",
+													"itemSpacing": "spacing-4",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "FILL",
+													"children": [
+														{
+															"type": "instance",
+															"name": "divider",
+															"component": "Divider",
+															"variant": "Orientation=vertical",
+															"layoutSizingHorizontal": "HUG",
+															"layoutSizingVertical": "FILL"
+														},
+														{
+															"type": "autoLayout",
+															"name": "stack",
+															"layoutMode": "VERTICAL",
+															"itemSpacing": "spacing-1",
+															"layoutSizingHorizontal": "FILL",
+															"layoutSizingVertical": "FILL",
+															"children": [
+																{
+																	"type": "text",
+																	"name": "stat-value",
+																	"characters": "270+",
+																	"fontFamily": "font-stat-family",
+																	"fontWeight": "font-stat-weight",
+																	"fontSize": "text-size-500",
+																	"fill": {
+																		"variable": "color-palette-brand-3",
+																		"opacity": 1
+																	},
+																	"opacity": null,
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeight": "text-lineheight"
+																},
+																{
+																	"type": "text",
+																	"name": "stat-label",
+																	"characters": "Deployments",
+																	"fontFamily": "font-text-family",
+																	"fontWeight": "font-text-weight",
+																	"fontSize": "text-size-250",
+																	"fill": {
+																		"variable": "color-slide-foreground",
+																		"opacity": 1
+																	},
+																	"opacity": "tone-subtle",
+																	"layoutSizingHorizontal": "FILL",
+																	"layoutSizingVertical": "HUG",
+																	"textAlign": "LEFT",
+																	"lineHeightPercent": 100
+																}
+															],
+															"primaryAxisAlignItems": "CENTER"
+														}
+													]
+												}
+											],
+											"counterAxisAlignItems": "CENTER",
+											"heightPx": 72
+										}
+									]
+								},
+								{
+									"type": "instance",
+									"name": "image",
+									"component": "Media-slot",
+									"variant": "Type=flush",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "FILL",
+									"aspectRatio": 1.2416225749559082
+								}
+							],
+							"counterAxisAlignItems": "CENTER"
+						}
+					]
+				}
+			]
+		}
+	},
+	"gratia-services": {
+		"brand": "gratia",
+		"id": "gratia-services",
+		"name": "gratia-services",
+		"page": "gratia-services",
+		"intent": "brand",
+		"kind": "content",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "frame",
+					"name": "header",
+					"role": "header-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-header-padding-top",
+						"right": "slide-header-padding-right",
+						"bottom": "slide-header-padding-bottom",
+						"left": "slide-header-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-title-group",
+							"component": "Slide-title",
+							"variant": "Size=md, Align=center",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "pretitle",
+									"visible": false
+								},
+								{
+									"name": "title",
+									"characters": "What we help with"
+								},
+								{
+									"name": "subtitle",
+									"visible": false
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "content",
+					"role": "content-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-content-padding-top",
+						"right": "slide-content-padding-right",
+						"bottom": "slide-content-padding-bottom",
+						"left": "slide-content-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "cards",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-2",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Financial Models & Consulting",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Business Planning & Financial Modeling",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Scenario & Forecasting Dashboards",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Company & Asset Valuation",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Market Research & Analysis",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Market Sizing & Opportunity Assessment",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Competitor Analysis & Benchmarking",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Customer Segmentation & Market Analysis",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Data Dashboards & Reporting",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Financial Dashboard Development",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "KPI Reporting & Business Intelligence",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Sales Performance Analytics",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Business Strategy Consulting",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Corporate Strategy & Planning",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Organizational Change Management",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Risk Assessment & Mitigation Planning",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Proposals & Business Cases",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "RFP Response & Strategy",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Business Case Analysis",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Investment & Project Pitch Decks",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Project Management",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Project Planning & Milestone Tracking",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Stakeholder Communication & Reporting",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Change Management & Coordination",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Business Process Optimization",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Workflow Design & Process Mapping",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Business Process Improvement",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "AI Integration & Digital Tools",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Pitch & Consulting Decks",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Investor & Fundraising Pitch Decks",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Board Meeting Presentations",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Executive Strategy Decks",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "RevOps & GTM Enablement",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Sales Process Optimization & CRM Setup",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Go-to-Market Strategy & Planning",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Revenue Growth Planning & Execution",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "Product Development Support",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "AI-enabled MVPs & \"Vibe Coding\"",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "AI-enhanced Process Automation",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Product Development Coordination",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "card",
+									"role": "cardFrame",
+									"layoutMode": "VERTICAL",
+									"fill": {
+										"variable": "card-neutral-background",
+										"opacity": 1
+									},
+									"stroke": {
+										"variable": "card-neutral-border-subtle",
+										"opacity": 0.2
+									},
+									"strokeAlign": "INSIDE",
+									"radius": "card-border-radius",
+									"strokeTop": "card-border-size-top",
+									"strokeRight": "card-border-size-right",
+									"strokeBottom": "card-border-size-bottom",
+									"strokeLeft": "card-border-size-left",
+									"padding": {
+										"top": "card-padding-md",
+										"right": "card-padding-md",
+										"bottom": "card-padding-md",
+										"left": "card-padding-md"
+									},
+									"itemSpacing": "card-gap-sm",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"clipsContent": true,
+									"children": [
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "HORIZONTAL",
+											"itemSpacing": "spacing-2",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "stamp",
+													"component": "Stamp",
+													"variant": "Variant=emphasis",
+													"props": {
+														"Show icon": true,
+														"Show mark": false
+													},
+													"sizeVar": "spacing-7",
+													"layoutSizingHorizontal": "FIXED",
+													"layoutSizingVertical": "FIXED"
+												},
+												{
+													"type": "text",
+													"name": "title",
+													"characters": "AI & Automation Support",
+													"fontFamily": "font-heading-family",
+													"fontWeight": "font-heading-weight",
+													"fontSize": "text-size-450",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-strong",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-0",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "AI Workflow Automation & Tool Integration",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "Low-Code / No-Code Solution Development",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												},
+												{
+													"type": "text",
+													"name": "item",
+													"characters": "PMBA-style Project Coordination & Execution",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-300",
+													"fill": {
+														"variable": "color-slide-surface-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-base",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "LEFT",
+													"lineHeightPercent": 150
+												}
+											]
+										}
+									]
+								}
+							],
+							"layoutWrap": "WRAP",
+							"columns": 3
+						}
+					]
+				},
+				{
+					"type": "frame",
+					"name": "footer",
+					"role": "footer-container",
+					"layoutMode": "VERTICAL",
+					"padding": {
+						"top": "slide-footer-padding-top",
+						"right": "slide-footer-padding-right",
+						"bottom": "slide-footer-padding-bottom",
+						"left": "slide-footer-padding-left"
+					},
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "HUG",
+					"children": [
+						{
+							"type": "instance",
+							"name": "slide-footer",
+							"component": "Slide-footer",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"overrides": [
+								{
+									"name": "notes",
+									"characters": "Add notes or sources here."
+								},
+								{
+									"name": "deck-title",
+									"characters": "Deck title"
+								},
+								{
+									"name": "chapter",
+									"characters": "Chapter"
+								},
+								{
+									"name": "page",
+									"characters": "01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	"title-slide-01": {
+		"brand": "gratia",
+		"id": "title-slide-01",
+		"name": "title-slide-01",
+		"page": "title-slide-01",
+		"intent": null,
+		"kind": "title",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "frame",
+					"layoutMode": "VERTICAL",
+					"itemSpacing": 0,
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-10",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "brand-logo",
+											"component": "Brand-logo",
+											"variant": "Brand=Gratia, Theme=light",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"heightPx": 40
+										},
+										{
+											"type": "autoLayout",
+											"name": "stack",
+											"layoutMode": "VERTICAL",
+											"itemSpacing": "spacing-8",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"children": [
+												{
+													"type": "instance",
+													"name": "cover-title",
+													"component": "Cover-title",
+													"variant": "Size=md, Align=center",
+													"layoutSizingHorizontal": "HUG",
+													"layoutSizingVertical": "HUG",
+													"overrides": [
+														{
+															"characters": "Title of the deck"
+														}
+													]
+												},
+												{
+													"type": "text",
+													"name": "text",
+													"characters": "Optional subtitle. Can be one or two sentences long.",
+													"fontFamily": "font-text-family",
+													"fontWeight": "font-text-weight",
+													"fontSize": "text-size-350",
+													"fill": {
+														"variable": "color-slide-foreground",
+														"opacity": 1
+													},
+													"opacity": "tone-subtle",
+													"layoutSizingHorizontal": "FILL",
+													"layoutSizingVertical": "HUG",
+													"textAlign": "CENTER",
+													"lineHeight": "text-lineheight"
+												}
+											],
+											"counterAxisAlignItems": "CENTER"
+										}
+									],
+									"counterAxisAlignItems": "CENTER"
+								}
+							],
+							"primaryAxisAlignItems": "CENTER",
+							"counterAxisAlignItems": "CENTER"
+						},
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "attribution-box",
+									"component": "Attribution-box",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"characters": "Sanitized excerpt prepared by"
+										}
+									]
+								}
+							],
+							"primaryAxisAlignItems": "CENTER",
+							"layoutPositioning": "ABSOLUTE",
+							"constraints": {
+								"horizontal": "STRETCH",
+								"vertical": "MAX"
+							}
+						}
+					]
+				}
+			]
+		}
+	},
+	"title-slide-02": {
+		"brand": "gratia",
+		"id": "title-slide-02",
+		"name": "title-slide-02",
+		"page": "title-slide-02",
+		"intent": null,
+		"kind": "title",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "stack",
+					"layoutMode": "VERTICAL",
+					"itemSpacing": "spacing-0",
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": "spacing-0",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "brand-logo",
+									"component": "Brand-logo",
+									"variant": "Brand=Gratia, Theme=light",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"heightPx": 24
+								},
+								{
+									"type": "instance",
+									"name": "attribution-box",
+									"component": "Attribution-box",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"characters": "Sanitized excerpt prepared by"
+										}
+									]
+								}
+							],
+							"primaryAxisAlignItems": "SPACE_BETWEEN",
+							"counterAxisAlignItems": "MIN"
+						},
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": "spacing-4",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "cover-title",
+									"component": "Cover-title",
+									"variant": "Size=lg, Align=left",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"characters": "Title of this deck. Keep it concise."
+										}
+									]
+								},
+								{
+									"type": "text",
+									"name": "text",
+									"characters": "Optional subtitle. Can be one or two sentences long.",
+									"fontFamily": "font-text-family",
+									"fontWeight": "font-text-weight",
+									"fontSize": "text-size-350",
+									"fill": {
+										"variable": "color-slide-foreground",
+										"opacity": 1
+									},
+									"opacity": "tone-subtle",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"textAlign": "LEFT",
+									"lineHeight": "text-lineheight"
+								}
+							]
+						}
+					],
+					"primaryAxisAlignItems": "SPACE_BETWEEN",
+					"padding": {
+						"top": "spacing-20",
+						"right": "spacing-20",
+						"bottom": "spacing-20",
+						"left": "spacing-20"
+					}
+				}
+			]
+		}
+	},
+	"title-slide-03": {
+		"brand": "gratia",
+		"id": "title-slide-03",
+		"name": "title-slide-03",
+		"page": "title-slide-03",
+		"intent": null,
+		"kind": "title",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "stack",
+					"layoutMode": "HORIZONTAL",
+					"itemSpacing": "spacing-0",
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": "spacing-0",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "instance",
+									"name": "brand-logo",
+									"component": "Brand-logo",
+									"variant": "Brand=Gratia, Theme=light",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"heightPx": 24
+								},
+								{
+									"type": "autoLayout",
+									"name": "frame",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": 0,
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "cover-title",
+											"component": "Cover-title",
+											"variant": "Size=xl, Align=left",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"overrides": [
+												{
+													"characters": "Title of the deck"
+												}
+											]
+										}
+									]
+								}
+							],
+							"primaryAxisAlignItems": "SPACE_BETWEEN",
+							"counterAxisAlignItems": "MIN",
+							"padding": {
+								"top": "spacing-6",
+								"right": "spacing-6",
+								"bottom": "spacing-6",
+								"left": "spacing-6"
+							}
+						},
+						{
+							"type": "autoLayout",
+							"name": "stack",
+							"layoutMode": "VERTICAL",
+							"itemSpacing": "spacing-0",
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "instance",
+									"name": "attribution-box",
+									"component": "Attribution-box",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"characters": "Sanitized excerpt prepared by"
+										}
+									]
+								},
+								{
+									"type": "autoLayout",
+									"name": "frame",
+									"layoutMode": "HORIZONTAL",
+									"itemSpacing": 0,
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "text",
+											"name": "text",
+											"characters": "Optional subtitle. Can be one or two sentences long.",
+											"fontFamily": "font-text-family",
+											"fontWeight": "font-text-weight",
+											"fontSize": "text-size-350",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-subtle",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "LEFT",
+											"lineHeight": "text-lineheight"
+										}
+									],
+									"padding": {
+										"bottom": "spacing-10",
+										"right": "spacing-6"
+									}
+								}
+							],
+							"padding": {
+								"top": "spacing-0",
+								"right": "spacing-0",
+								"bottom": "spacing-0",
+								"left": "spacing-0"
+							},
+							"primaryAxisAlignItems": "SPACE_BETWEEN"
+						}
+					]
+				}
+			]
+		}
+	},
+	"title-slide-04": {
+		"brand": "gratia",
+		"id": "title-slide-04",
+		"name": "title-slide-04",
+		"page": "title-slide-04",
+		"intent": null,
+		"kind": "title",
+		"width": "slide-max-width",
+		"height": 800,
+		"fill": {
+			"variable": "color-slide-background",
+			"opacity": 1
+		},
+		"colorTheme": null,
+		"tree": {
+			"type": "component",
+			"layoutMode": "VERTICAL",
+			"itemSpacing": 0,
+			"children": [
+				{
+					"type": "autoLayout",
+					"name": "frame",
+					"layoutMode": "VERTICAL",
+					"itemSpacing": 0,
+					"layoutSizingHorizontal": "FILL",
+					"layoutSizingVertical": "FILL",
+					"children": [
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "brand-logo",
+									"component": "Brand-logo",
+									"variant": "Brand=Gratia, Theme=light",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"heightPx": 24
+								}
+							],
+							"primaryAxisAlignItems": "CENTER",
+							"padding": {
+								"top": "spacing-20"
+							},
+							"layoutPositioning": "ABSOLUTE",
+							"constraints": {
+								"horizontal": "STRETCH",
+								"vertical": "MIN"
+							}
+						},
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "FILL",
+							"children": [
+								{
+									"type": "autoLayout",
+									"name": "stack",
+									"layoutMode": "VERTICAL",
+									"itemSpacing": "spacing-4",
+									"layoutSizingHorizontal": "FILL",
+									"layoutSizingVertical": "HUG",
+									"children": [
+										{
+											"type": "instance",
+											"name": "cover-title",
+											"component": "Cover-title",
+											"variant": "Size=lg, Align=center",
+											"layoutSizingHorizontal": "HUG",
+											"layoutSizingVertical": "HUG",
+											"overrides": [
+												{
+													"characters": "Title of the deck"
+												}
+											]
+										},
+										{
+											"type": "text",
+											"name": "text",
+											"characters": "Optional subtitle. Can be one or two sentences long.",
+											"fontFamily": "font-text-family",
+											"fontWeight": "font-text-weight",
+											"fontSize": "text-size-350",
+											"fill": {
+												"variable": "color-slide-foreground",
+												"opacity": 1
+											},
+											"opacity": "tone-subtle",
+											"layoutSizingHorizontal": "FILL",
+											"layoutSizingVertical": "HUG",
+											"textAlign": "CENTER",
+											"lineHeight": "text-lineheight"
+										}
+									],
+									"counterAxisAlignItems": "CENTER"
+								}
+							],
+							"primaryAxisAlignItems": "CENTER",
+							"counterAxisAlignItems": "CENTER"
+						},
+						{
+							"type": "autoLayout",
+							"name": "frame",
+							"layoutMode": "HORIZONTAL",
+							"itemSpacing": 0,
+							"layoutSizingHorizontal": "FILL",
+							"layoutSizingVertical": "HUG",
+							"children": [
+								{
+									"type": "instance",
+									"name": "attribution-box",
+									"component": "Attribution-box",
+									"layoutSizingHorizontal": "HUG",
+									"layoutSizingVertical": "HUG",
+									"overrides": [
+										{
+											"characters": "Sanitized excerpt prepared by"
+										}
+									]
+								}
+							],
+							"primaryAxisAlignItems": "CENTER",
+							"layoutPositioning": "ABSOLUTE",
+							"constraints": {
+								"horizontal": "STRETCH",
+								"vertical": "MAX"
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+};
 const CARD_COMPONENT = COMPONENTS.card || null;
 
 const WEIGHT_STYLES = {
@@ -6774,8 +13919,32 @@ function createAutoFrame(direction) {
 	return frame;
 }
 
+const ICON_GLYPH_TYPES = new Set([
+	"VECTOR",
+	"BOOLEAN_OPERATION",
+	"ELLIPSE",
+	"POLYGON",
+	"STAR",
+	"LINE",
+]);
+
+function clearIconWrapperFills(node) {
+	if (node.type === "FRAME" || node.type === "GROUP") {
+		try {
+			node.fills = [];
+		} catch (error) {
+			// Some SVG wrappers reject fills.
+		}
+	}
+	if ("children" in node) {
+		for (const child of node.children) {
+			clearIconWrapperFills(child);
+		}
+	}
+}
+
 function bindFillsDeep(node, binding, byName) {
-	if ("fills" in node && node.fills !== figma.mixed) {
+	if (ICON_GLYPH_TYPES.has(node.type) && "fills" in node && node.fills !== figma.mixed) {
 		try {
 			node.fills = [bindPaint(binding, byName)];
 		} catch (error) {
@@ -6792,6 +13961,7 @@ function bindFillsDeep(node, binding, byName) {
 function createIconNode(svg, name, sizePx) {
 	const node = figma.createNodeFromSvg(svg);
 	node.name = name;
+	clearIconWrapperFills(node);
 	node.resize(sizePx, sizePx);
 	node.layoutSizingHorizontal = "FIXED";
 	node.layoutSizingVertical = "FIXED";
@@ -6825,6 +13995,73 @@ function layoutVariantSet(componentSet, variantOrder, origin, sizeOrder) {
 		maxY = Math.max(maxY, child.y + child.height);
 	}
 	componentSet.resizeWithoutConstraints(maxX + 40, maxY + 40);
+}
+
+const VARIANT_GROUP_PAD = 40;
+const PAGE_COLUMN_GAP = 200;
+const COMPONENT_PAGE_ORDER = [
+	"Card",
+	"Badge",
+	"Stamp",
+	"Callout",
+	"Analyst",
+	"Divider",
+	"Media-slot",
+	"Cover-title",
+	"Slide-pretitle",
+	"Slide-title",
+	"Brand-logo",
+	"Slide-footer",
+	"Attribution-box",
+	"Header-container",
+	"Content-container",
+	"Footer-container",
+	"Slide",
+	"Media-card",
+];
+
+function styleVariantGroup(componentSet, byName) {
+	componentSet.layoutMode = "HORIZONTAL";
+	componentSet.primaryAxisAlignItems = "MIN";
+	componentSet.counterAxisAlignItems =
+		componentSet.name === "Divider" ? "CENTER" : "MIN";
+	componentSet.paddingTop = VARIANT_GROUP_PAD;
+	componentSet.paddingRight = VARIANT_GROUP_PAD;
+	componentSet.paddingBottom = VARIANT_GROUP_PAD;
+	componentSet.paddingLeft = VARIANT_GROUP_PAD;
+	componentSet.itemSpacing = VARIANT_GROUP_PAD;
+	componentSet.fills = [
+		bindPaint({ variable: "color-slide-background", opacity: 1 }, byName),
+	];
+	componentSet.strokes = [];
+	componentSet.clipsContent = false;
+	if (componentSet.name === "Slide-title" || componentSet.name === "Cover-title") {
+		componentSet.layoutWrap = "WRAP";
+		componentSet.counterAxisSpacing = VARIANT_GROUP_PAD;
+		componentSet.layoutSizingHorizontal = "FIXED";
+		componentSet.resize(2080, componentSet.height);
+	} else {
+		componentSet.layoutWrap = "NO_WRAP";
+		componentSet.layoutSizingHorizontal = "HUG";
+	}
+	componentSet.layoutSizingVertical = "HUG";
+}
+
+function layoutComponentsColumn(page) {
+	const children = [...page.children].sort((a, b) => {
+		const ai = COMPONENT_PAGE_ORDER.indexOf(a.name);
+		const bi = COMPONENT_PAGE_ORDER.indexOf(b.name);
+		if (ai === -1 && bi === -1) return a.y - b.y;
+		if (ai === -1) return 1;
+		if (bi === -1) return -1;
+		return ai - bi;
+	});
+	let y = 0;
+	for (const child of children) {
+		child.x = 0;
+		child.y = y;
+		y += child.height + PAGE_COLUMN_GAP;
+	}
 }
 
 function scaledPx(byName, byId, sizeName, scaleName) {
@@ -7011,10 +14248,10 @@ async function buildCard(payload, variableIds) {
 		components.push(clone);
 	}
 
-	const origin = nextPagePosition(page);
 	const componentSet = figma.combineAsVariants(components, page);
 	componentSet.name = payload.name;
-	layoutVariantSet(componentSet, payload.variants.map((item) => item.variant), origin);
+	styleVariantGroup(componentSet, byName);
+	layoutComponentsColumn(page);
 
 	return {
 		componentSetId: componentSet.id,
@@ -7090,16 +14327,11 @@ async function loadSlotFonts(payload, byName) {
 	return available.filter((font) => font.fontName.family === family);
 }
 
-function finishVariantSet(page, payload, components, removed) {
-	const origin = nextPagePosition(page);
+function finishVariantSet(page, payload, components, removed, byName) {
 	const componentSet = figma.combineAsVariants(components, page);
 	componentSet.name = payload.name;
-	layoutVariantSet(
-		componentSet,
-		payload.variants.map((item) => item.variant),
-		origin,
-		payload.sizes ? payload.sizes.map((item) => item.name) : null,
-	);
+	if (byName) styleVariantGroup(componentSet, byName);
+	layoutComponentsColumn(page);
 	return {
 		componentSetId: componentSet.id,
 		variantCount: components.length,
@@ -7243,7 +14475,7 @@ async function buildBadge(payload, variableIds) {
 		}
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
 }
 
 async function createStampVariant(spec, payload, byName, familyFonts) {
@@ -7322,7 +14554,7 @@ async function buildStamp(payload, variableIds) {
 		}
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
 }
 
 async function createCalloutVariant(spec, payload, byName, familyFonts) {
@@ -7392,7 +14624,7 @@ async function buildCallout(payload, variableIds) {
 		}
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
 }
 
 function findComponentSet(name) {
@@ -7438,23 +14670,23 @@ function createBadgeInstance(badgeSet, props) {
 	return instance;
 }
 
-async function createAnalystVariant(spec, size, payload, byName, familyFonts, badgeSet) {
+async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet, mediaSet) {
 	const layout = payload.layout;
+	const paint = payload.paint;
 	const byId = localById(byName);
 	const overlay = resolvedModeValue(variableByName(byName, layout.overlay.left), byId);
 	const iconSize = resolvedModeValue(variableByName(byName, layout.iconSize), byId);
-	const logoSize = resolvedModeValue(variableByName(byName, size.logoSize), byId);
 
 	const comp = figma.createComponent();
-	comp.name = `Variant=${spec.variant}, Size=${size.name}`;
+	comp.name = `Size=${size.name}`;
 	comp.layoutMode = "VERTICAL";
 	comp.primaryAxisAlignItems = "MIN";
 	comp.counterAxisAlignItems = "MIN";
 	comp.resize(layout.width, 80);
 	comp.layoutSizingHorizontal = "FIXED";
 	comp.layoutSizingVertical = "HUG";
-	comp.fills = [bindPaint(spec.fill, byName)];
-	comp.strokes = [bindPaint(spec.stroke, byName)];
+	comp.fills = [bindPaint(paint.fill, byName)];
+	comp.strokes = [bindPaint(paint.stroke, byName)];
 	comp.strokeAlign = "INSIDE";
 	comp.clipsContent = true;
 	bindField(comp, "topLeftRadius", layout.radius, byName);
@@ -7474,27 +14706,14 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 	cover.layoutSizingVertical = "FIXED";
 	comp.appendChild(cover);
 
-	const photo = createAutoFrame("VERTICAL");
+	const flush =
+		mediaSet.children.find((child) => child.name === "Type=flush") ||
+		mediaSet.defaultVariant;
+	const photo = flush.createInstance();
 	photo.name = "image";
-	photo.primaryAxisAlignItems = "CENTER";
-	photo.counterAxisAlignItems = "CENTER";
-	photo.fills = [
-		{
-			type: "SOLID",
-			color: {
-				r: layout.photoFill.r,
-				g: layout.photoFill.g,
-				b: layout.photoFill.b,
-			},
-			opacity: layout.photoFill.opacity,
-		},
-	];
 	cover.appendChild(photo);
 	photo.layoutSizingHorizontal = "FILL";
 	photo.layoutSizingVertical = "FILL";
-	const photoText = figma.createText();
-	applyTextSlot(photoText, slotById(payload, "photo"), spec, byName, byId, familyFonts);
-	photo.appendChild(photoText);
 
 	const specialization = createBadgeInstance(badgeSet, {
 		Variant: "emphasis",
@@ -7534,48 +14753,21 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 	names.layoutSizingVertical = "HUG";
 	identity.appendChild(names);
 	const nameText = figma.createText();
-	applyTextSlot(nameText, slotById(payload, "name"), spec, byName, byId, familyFonts);
+	applyTextSlot(nameText, slotById(payload, "name"), paint, byName, byId, familyFonts);
 	names.appendChild(nameText);
 	nameText.layoutSizingHorizontal = "FILL";
 	const roleText = figma.createText();
-	applyTextSlot(roleText, slotById(payload, "role"), spec, byName, byId, familyFonts);
+	applyTextSlot(roleText, slotById(payload, "role"), paint, byName, byId, familyFonts);
 	names.appendChild(roleText);
 	roleText.layoutSizingHorizontal = "FILL";
 
-	const logo = createAutoFrame("VERTICAL");
+	const logoName = size.name === "sm" ? "Type=logo, Size=7" : "Type=logo, Size=10";
+	const logoSource =
+		mediaSet.children.find((child) => child.name === logoName) ||
+		mediaSet.defaultVariant;
+	const logo = logoSource.createInstance();
 	logo.name = "logo";
-	logo.primaryAxisAlignItems = "CENTER";
-	logo.counterAxisAlignItems = "CENTER";
-	logo.resize(logoSize, logoSize);
-	logo.layoutSizingHorizontal = "FIXED";
-	logo.layoutSizingVertical = "FIXED";
-	logo.fills = [
-		{
-			type: "SOLID",
-			color: {
-				r: layout.photoFill.r,
-				g: layout.photoFill.g,
-				b: layout.photoFill.b,
-			},
-			opacity: layout.photoFill.opacity,
-		},
-	];
-	logo.strokes = [bindPaint(layout.logoStroke, byName)];
-	logo.strokeAlign = "INSIDE";
-	bindField(logo, "width", size.logoSize, byName);
-	bindField(logo, "height", size.logoSize, byName);
-	bindField(logo, "topLeftRadius", layout.radius, byName);
-	bindField(logo, "topRightRadius", layout.radius, byName);
-	bindField(logo, "bottomLeftRadius", layout.radius, byName);
-	bindField(logo, "bottomRightRadius", layout.radius, byName);
-	bindField(logo, "strokeTopWeight", layout.strokeTop, byName);
-	bindField(logo, "strokeBottomWeight", layout.strokeBottom, byName);
-	bindField(logo, "strokeLeftWeight", layout.strokeLeft, byName);
-	bindField(logo, "strokeRightWeight", layout.strokeRight, byName);
 	identity.appendChild(logo);
-	const logoText = figma.createText();
-	applyTextSlot(logoText, slotById(payload, "logo-label"), spec, byName, byId, familyFonts);
-	logo.appendChild(logoText);
 
 	const locationRow = createAutoFrame("HORIZONTAL");
 	locationRow.name = "location-row";
@@ -7586,12 +14778,12 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 	bindField(locationRow, "paddingBottom", layout.locationPadBottom, byName);
 	body.appendChild(locationRow);
 	const locIcon = createIconNode(payload.icons["earth-fill"], "location-icon", iconSize);
-	bindFillsDeep(locIcon, spec.foreground, byName);
+	bindFillsDeep(locIcon, paint.foreground, byName);
 	bindField(locIcon, "width", layout.iconSize, byName);
 	bindField(locIcon, "height", layout.iconSize, byName);
 	locationRow.appendChild(locIcon);
 	const locationText = figma.createText();
-	applyTextSlot(locationText, slotById(payload, "location"), spec, byName, byId, familyFonts);
+	applyTextSlot(locationText, slotById(payload, "location"), paint, byName, byId, familyFonts);
 	locationRow.appendChild(locationText);
 	locationText.layoutSizingHorizontal = "FILL";
 
@@ -7631,7 +14823,7 @@ async function createAnalystVariant(spec, size, payload, byName, familyFonts, ba
 }
 
 async function buildAnalyst(payload, variableIds) {
-	if (!payload || !payload.layout || !Array.isArray(payload.variants)) {
+	if (!payload || !payload.layout || !payload.paint || !Array.isArray(payload.sizes)) {
 		throw new Error("components/analyst.json is missing. Run figma:build-component -- analyst.");
 	}
 	const byName = await localsByName(variableIds);
@@ -7640,15 +14832,15 @@ async function buildAnalyst(payload, variableIds) {
 	page.name = "Components";
 	const removed = clearExistingNamed(page, payload.name);
 	const badgeSet = findComponentSet(payload.nested.badge);
+	const mediaSet = findComponentSet(payload.nested.mediaSlot);
 	const firstSize = payload.sizes[0];
-	const first = payload.variants[0];
 	const base = await createAnalystVariant(
-		first,
 		firstSize,
 		payload,
 		byName,
 		familyFonts,
 		badgeSet,
+		mediaSet,
 	);
 	const keys = {};
 	addSlotProperties(base.comp, payload, keys);
@@ -7679,41 +14871,544 @@ async function buildAnalyst(payload, variableIds) {
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
-	const combos = [];
-	for (const size of payload.sizes) {
-		for (const spec of payload.variants) {
-			if (size === firstSize && spec === first) continue;
-			combos.push({ size, spec });
-		}
-	}
-	for (const combo of combos) {
+	for (const size of payload.sizes.slice(1)) {
 		const clone = base.comp.clone();
-		clone.name = `Variant=${combo.spec.variant}, Size=${combo.size.name}`;
-		clone.fills = [bindPaint(combo.spec.fill, byName)];
-		clone.strokes = [bindPaint(combo.spec.stroke, byName)];
+		clone.name = `Size=${size.name}`;
 		const body = clone.findOne((node) => node.name === "body");
 		if (body) {
-			bindField(body, "paddingTop", combo.size.padding, byName);
-			bindField(body, "paddingRight", combo.size.padding, byName);
-			bindField(body, "paddingBottom", combo.size.padding, byName);
-			bindField(body, "paddingLeft", combo.size.padding, byName);
+			bindField(body, "paddingTop", size.padding, byName);
+			bindField(body, "paddingRight", size.padding, byName);
+			bindField(body, "paddingBottom", size.padding, byName);
+			bindField(body, "paddingLeft", size.padding, byName);
 		}
 		const logo = clone.findOne((node) => node.name === "logo");
-		if (logo) {
-			bindField(logo, "width", combo.size.logoSize, byName);
-			bindField(logo, "height", combo.size.logoSize, byName);
+		if (logo && logo.type === "INSTANCE") {
+			const logoName =
+				size.name === "sm" ? "Type=logo, Size=7" : "Type=logo, Size=10";
+			const source = mediaSet.children.find((child) => child.name === logoName);
+			if (source) logo.swapComponent(source);
 		}
-		const named = new Set(["name", "role", "location"]);
-		for (const text of clone.findAll((node) => node.type === "TEXT")) {
-			if (named.has(text.name)) {
-				text.fills = [bindPaint(combo.spec.foreground, byName)];
-			}
-		}
-		const locIcon = clone.findOne((node) => node.name === "location-icon");
-		if (locIcon) bindFillsDeep(locIcon, combo.spec.foreground, byName);
 		components.push(clone);
 	}
-	return finishVariantSet(page, payload, components, removed);
+	return finishVariantSet(page, payload, components, removed, byName);
+}
+
+function findNamedComponent(name) {
+	for (const page of figma.root.children) {
+		if (page.type !== "PAGE") continue;
+		for (const node of page.children) {
+			if (
+				(node.type === "COMPONENT_SET" || node.type === "COMPONENT") &&
+				node.name === name
+			) {
+				return node;
+			}
+		}
+	}
+	throw new Error(`${name} is missing. Build it on the Components page first.`);
+}
+
+function parseVariantName(name) {
+	const out = {};
+	for (const part of String(name || "").split(",")) {
+		const idx = part.indexOf("=");
+		if (idx === -1) continue;
+		out[part.slice(0, idx).trim()] = part.slice(idx + 1).trim();
+	}
+	return out;
+}
+
+function variantSource(main, variantName) {
+	if (main.type === "COMPONENT") return main;
+	if (variantName) {
+		const exact = main.children.find((child) => child.name === variantName);
+		if (exact) return exact;
+		const wanted = parseVariantName(variantName);
+		const keys = Object.keys(wanted);
+		if (keys.length > 0) {
+			const hit = main.children.find((child) => {
+				const props = child.variantProperties || parseVariantName(child.name);
+				return keys.every((key) => props[key] === wanted[key]);
+			});
+			if (hit) return hit;
+		}
+	}
+	return main.defaultVariant || main.children[0];
+}
+
+async function ensureNamedPage(name) {
+	let page = figma.root.children.find((node) => node.type === "PAGE" && node.name === name);
+	if (!page) {
+		page = figma.createPage();
+		page.name = name;
+	}
+	await figma.setCurrentPageAsync(page);
+	return page;
+}
+
+function layoutTemplatesColumn(page) {
+	const children = [...page.children].sort((a, b) => a.name.localeCompare(b.name));
+	let y = 0;
+	for (const child of children) {
+		child.x = 0;
+		child.y = y;
+		y += child.height + PAGE_COLUMN_GAP;
+	}
+}
+
+function applySizing(node, spec) {
+	if (spec.layoutSizingHorizontal) node.layoutSizingHorizontal = spec.layoutSizingHorizontal;
+	if (spec.layoutSizingVertical) node.layoutSizingVertical = spec.layoutSizingVertical;
+}
+
+function applyPadValue(node, field, value, byName) {
+	if (value == null) return;
+	if (typeof value === "number") {
+		node[field] = value;
+		return;
+	}
+	bindField(node, field, value, byName);
+}
+
+function applyChromePadding(node, padding, byName) {
+	if (!padding) return;
+	applyPadValue(node, "paddingTop", padding.top, byName);
+	applyPadValue(node, "paddingRight", padding.right, byName);
+	applyPadValue(node, "paddingBottom", padding.bottom, byName);
+	applyPadValue(node, "paddingLeft", padding.left, byName);
+}
+
+const TEMPLATE_SECTIONS = [
+	{
+		header: "TITLE SLIDES",
+		match: (id) => String(id).startsWith("title-slide"),
+	},
+	{
+		header: "CHAPTER SLIDES",
+		match: (id) => String(id).startsWith("chapter-slide"),
+	},
+	{
+		header: "CONTENT SLIDES",
+		match: (id) => String(id).startsWith("content-slide"),
+	},
+	{
+		header: "GRATIA SLIDES",
+		match: (id) => String(id).startsWith("gratia-"),
+	},
+];
+
+const LEGACY_TEMPLATE_PAGES = [
+	"Templates",
+	"Title slides",
+	"Chapter slides",
+	"Content slides",
+	"Gratia slides",
+];
+
+function removeEmptyPage(name) {
+	const page = figma.root.children.find((node) => node.type === "PAGE" && node.name === name);
+	if (page && page.children.length === 0) page.remove();
+}
+
+function ensurePageDivider() {
+	if (typeof figma.createPageDivider === "function") {
+		return figma.createPageDivider("---");
+	}
+	const page = figma.createPage();
+	page.name = "---";
+	return page;
+}
+
+function isPageDividerNode(node) {
+	return node.type === "PAGE" && (node.isPageDivider || node.name === "---");
+}
+
+function ensureEmptyNamedPage(name) {
+	let page = figma.root.children.find(
+		(node) => node.type === "PAGE" && node.name === name && !isPageDividerNode(node),
+	);
+	if (!page) {
+		page = figma.createPage();
+		page.name = name;
+	}
+	return page;
+}
+
+function templateIdsBySection() {
+	const ids = Object.keys(TEMPLATES || {}).filter((id) => TEMPLATES[id]).sort();
+	return TEMPLATE_SECTIONS.map((section) => ({
+		header: section.header,
+		ids: ids.filter((id) => section.match(id)),
+	})).filter((section) => section.ids.length > 0);
+}
+
+const PAGE_ORDER_HEADERS = new Set(TEMPLATE_SECTIONS.map((section) => section.header));
+
+function orderRootPages() {
+	const sections = templateIdsBySection();
+	const spareDividers = figma.root.children.filter((node) => isPageDividerNode(node));
+	let dividerIndex = 0;
+	const takeDivider = () => {
+		if (dividerIndex < spareDividers.length) {
+			return spareDividers[dividerIndex++];
+		}
+		return ensurePageDivider();
+	};
+
+	const ordered = [];
+	const components = figma.root.children.find(
+		(node) => node.type === "PAGE" && node.name === "Components" && !isPageDividerNode(node),
+	);
+	if (components) ordered.push(components);
+
+	for (const section of sections) {
+		ordered.push(takeDivider());
+		ordered.push(ensureEmptyNamedPage(section.header));
+		for (const id of section.ids) {
+			ordered.push(ensureEmptyNamedPage(id));
+		}
+	}
+
+	for (let index = 0; index < ordered.length; index += 1) {
+		figma.root.insertChild(index, ordered[index]);
+	}
+
+	for (const name of LEGACY_TEMPLATE_PAGES) {
+		removeEmptyPage(name);
+	}
+
+	const keep = new Set(ordered.map((node) => node.id));
+	for (const node of [...figma.root.children]) {
+		if (node.type !== "PAGE") continue;
+		if (keep.has(node.id)) continue;
+		if (isPageDividerNode(node)) {
+			node.remove();
+			continue;
+		}
+		if (node.children.length === 0 && PAGE_ORDER_HEADERS.has(node.name)) {
+			node.remove();
+		}
+	}
+}
+
+async function applyColorTheme(node, theme) {
+	if (!theme) return;
+	const collections = await figma.variables.getLocalVariableCollectionsAsync();
+	const color = collections.find((item) => item.name === "Color");
+	if (!color) return;
+	const mode = color.modes.find(
+		(item) => item.name.toLowerCase() === String(theme).toLowerCase(),
+	);
+	if (!mode) return;
+	node.setExplicitVariableModeForCollection(color, mode.modeId);
+}
+
+function applyFrameChrome(node, spec, byName) {
+	if (node.type === "TEXT") {
+		if (spec.maxWidth != null && "maxWidth" in node) node.maxWidth = spec.maxWidth;
+		return;
+	}
+	if (spec.fill) node.fills = [bindPaint(spec.fill, byName)];
+	if (spec.stroke) {
+		node.strokes = [bindPaint(spec.stroke, byName)];
+		node.strokeAlign = spec.strokeAlign || "INSIDE";
+	}
+	if (spec.radius) {
+		bindField(node, "topLeftRadius", spec.radius, byName);
+		bindField(node, "topRightRadius", spec.radius, byName);
+		bindField(node, "bottomLeftRadius", spec.radius, byName);
+		bindField(node, "bottomRightRadius", spec.radius, byName);
+	}
+	if (spec.strokeTop) bindField(node, "strokeTopWeight", spec.strokeTop, byName);
+	if (spec.strokeRight) bindField(node, "strokeRightWeight", spec.strokeRight, byName);
+	if (spec.strokeBottom) bindField(node, "strokeBottomWeight", spec.strokeBottom, byName);
+	if (spec.strokeLeft) bindField(node, "strokeLeftWeight", spec.strokeLeft, byName);
+	if (spec.clipsContent) node.clipsContent = true;
+	if (spec.primaryAxisAlignItems) node.primaryAxisAlignItems = spec.primaryAxisAlignItems;
+	if (spec.counterAxisAlignItems) node.counterAxisAlignItems = spec.counterAxisAlignItems;
+	if (spec.layoutWrap === "WRAP") {
+		node.layoutWrap = "WRAP";
+		node.counterAxisSpacing = node.itemSpacing;
+	}
+	if (spec.maxWidth != null) node.maxWidth = spec.maxWidth;
+	if (spec.layoutGrow != null) node.layoutGrow = spec.layoutGrow;
+	if (spec.layoutPositioning === "ABSOLUTE") {
+		node.layoutPositioning = "ABSOLUTE";
+		if (spec.constraints) node.constraints = spec.constraints;
+	}
+	if (spec.widthPx) {
+		node.layoutSizingHorizontal = "FIXED";
+		node.resize(spec.widthPx, node.height);
+	}
+	if (spec.heightPx) {
+		node.layoutSizingVertical = "FIXED";
+		node.resize(node.width, spec.heightPx);
+	}
+	if (spec.columns) node.setPluginData("columns", String(spec.columns));
+	if (spec.aspectSquare) node.setPluginData("aspectSquare", "1");
+	if (spec.aspectRatio) node.setPluginData("aspectRatio", String(spec.aspectRatio));
+	if (spec.fraction) node.setPluginData("fraction", spec.fraction);
+}
+
+function applyColumnsNode(node) {
+	const columns = Number(node.getPluginData("columns") || 0);
+	if (!columns || !("children" in node) || node.children.length === 0) return;
+	node.layoutMode = "HORIZONTAL";
+	node.layoutWrap = "WRAP";
+	node.counterAxisSpacing = node.itemSpacing;
+	const inner = Math.max(
+		0,
+		node.width - (node.paddingLeft || 0) - (node.paddingRight || 0),
+	);
+	const gap = node.itemSpacing || 0;
+	const cell = (inner - gap * (columns - 1)) / columns;
+	for (const child of node.children) {
+		child.layoutSizingHorizontal = "FIXED";
+		child.resize(Math.max(1, cell), child.height);
+	}
+}
+
+function applyFractionRow(node) {
+	if (!("children" in node) || node.layoutMode !== "HORIZONTAL") return;
+	const hasThird = node.children.some((child) => child.getPluginData("fraction") === "1-3");
+	if (!hasThird) return;
+	for (const child of node.children) {
+		child.layoutSizingHorizontal = "FILL";
+		child.layoutGrow = child.getPluginData("fraction") === "1-3" ? 1 : 2;
+	}
+}
+
+function applyAspectNode(node) {
+	if (node.getPluginData("aspectSquare") === "1") {
+		node.layoutSizingVertical = "FIXED";
+		node.resize(Math.max(1, node.width), Math.max(1, node.width));
+	}
+	const ratio = Number(node.getPluginData("aspectRatio") || 0);
+	if (ratio) {
+		node.layoutSizingVertical = "FIXED";
+		node.resize(Math.max(1, node.width), Math.max(1, node.width / ratio));
+	}
+}
+
+function fixAbsolute(parent) {
+	if (!("children" in parent)) return;
+	for (const child of parent.children) {
+		if (child.layoutPositioning === "ABSOLUTE") {
+			const constraints = child.constraints || {};
+			if (constraints.horizontal === "STRETCH") {
+				child.x = 0;
+				child.resize(parent.width, child.height);
+			}
+			if (constraints.vertical === "MAX") child.y = parent.height - child.height;
+			if (constraints.vertical === "MIN") child.y = 0;
+		}
+		fixAbsolute(child);
+	}
+}
+
+function applyTemplateFixes(node) {
+	applyFractionRow(node);
+	applyColumnsNode(node);
+	if ("children" in node) {
+		for (const child of node.children) applyTemplateFixes(child);
+	}
+	applyAspectNode(node);
+}
+
+async function preloadTemplateFonts(byName) {
+	const byId = localById(byName);
+	const families = new Set();
+	for (const variable of byName.values()) {
+		if (!variable.scopes || !variable.scopes.includes("FONT_FAMILY")) continue;
+		const value = resolvedModeValue(variable, byId);
+		if (typeof value === "string") families.add(value);
+	}
+	for (const family of families) {
+		await loadFamilyStyles(family, [400, 500, 600, 700]);
+	}
+}
+
+async function buildTextNode(spec, byName, parent) {
+	const byId = localById(byName);
+	const text = figma.createText();
+	text.name = spec.name || "text";
+	if (parent) parent.appendChild(text);
+	const familyVar = variableByName(byName, spec.fontFamily);
+	const weightVar = variableByName(byName, spec.fontWeight);
+	const family = resolvedModeValue(familyVar, byId);
+	const weight = resolvedModeValue(weightVar, byId);
+	const available = await figma.listAvailableFontsAsync();
+	const familyFonts = available.filter((font) => font.fontName.family === family);
+	text.fontName = styleForWeight(familyFonts, weight);
+	text.characters = spec.characters || "";
+	text.lineHeight = {
+		unit: "PERCENT",
+		value:
+			spec.lineHeightPercent != null
+				? spec.lineHeightPercent
+				: percentFromVariable(byName, byId, spec.lineHeight, 120),
+	};
+	text.textAlignHorizontal = spec.textAlign || "LEFT";
+	text.fills = [bindPaint(spec.fill, byName)];
+	bindField(text, "fontFamily", spec.fontFamily, byName);
+	bindField(text, "fontWeight", spec.fontWeight, byName);
+	if (spec.fontSize) bindField(text, "fontSize", spec.fontSize, byName);
+	if (spec.opacity) bindField(text, "opacity", spec.opacity, byName);
+	text.textAutoResize = "HEIGHT";
+	applySizing(text, spec);
+	applyFrameChrome(text, spec, byName);
+	return text;
+}
+
+async function setTextCharacters(node, chars) {
+	if (!node || node.type !== "TEXT") return;
+	if (node.fontName === figma.mixed) {
+		const fonts = new Map();
+		for (let i = 0; i < node.characters.length; i += 1) {
+			const font = node.getRangeFontName(i, i + 1);
+			fonts.set(JSON.stringify(font), font);
+		}
+		for (const font of fonts.values()) await figma.loadFontAsync(font);
+	} else {
+		await figma.loadFontAsync(node.fontName);
+	}
+	node.characters = chars;
+}
+
+async function applyOverrides(instance, overrides) {
+	if (!overrides) return;
+	for (const override of overrides) {
+		const target = override.name
+			? instance.findOne((node) => node.name === override.name)
+			: instance;
+		if (!target) continue;
+		if (override.swap && target.type === "INSTANCE") {
+			const main = findNamedComponent(override.swap.component);
+			target.swapComponent(variantSource(main, override.swap.variant));
+		}
+		if (override.characters != null) {
+			const text =
+				target.type === "TEXT"
+					? target
+					: target.findOne((node) => node.type === "TEXT");
+			await setTextCharacters(text, override.characters);
+			if (override.textAlign && text) text.textAlignHorizontal = override.textAlign;
+		}
+		if (override.visible === false) target.visible = false;
+		if (override.visible === true) target.visible = true;
+	}
+}
+
+async function buildTemplateNode(spec, byName, parent) {
+	if (spec.type === "text") return buildTextNode(spec, byName, parent);
+	if (spec.type === "instance") {
+		const source = variantSource(
+			findNamedComponent(spec.component),
+			spec.variant,
+		);
+		const instance = source.createInstance();
+		instance.name = spec.name || source.name;
+		if (parent) parent.appendChild(instance);
+		applySizing(instance, spec);
+		applyFrameChrome(instance, spec, byName);
+		if (spec.props) setInstanceProps(instance, spec.props);
+		if (spec.sizeVar) {
+			instance.layoutSizingHorizontal = "FIXED";
+			instance.layoutSizingVertical = "FIXED";
+			bindField(instance, "width", spec.sizeVar, byName);
+			bindField(instance, "height", spec.sizeVar, byName);
+		}
+		if (spec.heightPx) {
+			const ratio = instance.height ? instance.width / instance.height : 1;
+			instance.layoutSizingVertical = "FIXED";
+			instance.layoutSizingHorizontal = "FIXED";
+			instance.resize(Math.max(1, spec.heightPx * ratio), spec.heightPx);
+		}
+		await applyOverrides(instance, spec.overrides);
+		if (spec.tagLabels && spec.tagLabels.length > 0) {
+			const tags = instance.findOne((node) => node.name === "tags");
+			const badges = tags
+				? tags.findAll((node) => node.type === "INSTANCE")
+				: [];
+			for (let index = 0; index < spec.tagLabels.length; index += 1) {
+				if (badges[index]) setInstanceProps(badges[index], { Label: spec.tagLabels[index] });
+			}
+		}
+		if (spec.colorTheme) await applyColorTheme(instance, spec.colorTheme);
+		return instance;
+	}
+	if (spec.type === "autoLayout" || spec.type === "frame") {
+		const frame = createAutoFrame(spec.layoutMode || "VERTICAL");
+		frame.name = spec.name;
+		if (parent) parent.appendChild(frame);
+		applyChromePadding(frame, spec.padding, byName);
+		if (typeof spec.itemSpacing === "string") {
+			bindField(frame, "itemSpacing", spec.itemSpacing, byName);
+		} else if (typeof spec.itemSpacing === "number") {
+			frame.itemSpacing = spec.itemSpacing;
+		}
+		applySizing(frame, spec);
+		applyFrameChrome(frame, spec, byName);
+		for (const child of spec.children || []) {
+			await buildTemplateNode(child, byName, frame);
+		}
+		return frame;
+	}
+	throw new Error(`Unknown template node type ${JSON.stringify(spec.type)}`);
+}
+
+async function buildTemplate(payload, variableIds) {
+	if (!payload || !payload.tree || !payload.name) {
+		throw new Error("templates JSON is missing. Run figma:build-template.");
+	}
+	if (figma.loadAllPagesAsync) await figma.loadAllPagesAsync();
+	const byName = await localsByName(variableIds);
+	await preloadTemplateFonts(byName);
+	const page = await ensureNamedPage(payload.page || payload.name);
+	for (const legacy of LEGACY_TEMPLATE_PAGES) {
+		const leftover = figma.root.children.find(
+			(node) => node.type === "PAGE" && node.name === legacy && !node.isPageDivider,
+		);
+		if (leftover) clearExistingNamed(leftover, payload.name);
+	}
+	const removed = clearExistingNamed(page, payload.name);
+	const spec = payload.tree;
+	const comp = figma.createComponent();
+	comp.name = payload.name;
+	comp.layoutMode = spec.layoutMode || "VERTICAL";
+	comp.itemSpacing = spec.itemSpacing || 0;
+	comp.primaryAxisAlignItems = "MIN";
+	comp.counterAxisAlignItems = "MIN";
+	comp.resize(1280, payload.height || 800);
+	comp.layoutSizingHorizontal = "FIXED";
+	comp.layoutSizingVertical = "FIXED";
+	comp.clipsContent = true;
+	bindField(comp, "width", payload.width, byName);
+	comp.fills = [bindPaint(payload.fill, byName)];
+	if (payload.colorTheme) await applyColorTheme(comp, payload.colorTheme);
+	for (const child of spec.children || []) {
+		await buildTemplateNode(child, byName, comp);
+	}
+	applyTemplateFixes(comp);
+	fixAbsolute(comp);
+	layoutTemplatesColumn(page);
+	orderRootPages();
+	return {
+		componentId: comp.id,
+		name: payload.name,
+		page: page.name,
+		removedIds: removed,
+	};
+}
+
+async function buildNamedTemplate(id, variableIds) {
+	const payload = TEMPLATES[id];
+	if (!payload) {
+		throw new Error(
+			`Unknown template ${JSON.stringify(id)}. Run figma:build-template -- ${id}.`,
+		);
+	}
+	return buildTemplate(payload, variableIds);
 }
 
 const COMPONENT_BUILDERS = {
@@ -7737,6 +15432,19 @@ async function runDeckToolSync(command) {
 	const cmd = command || "all";
 	if (cmd === "sync-variables") {
 		return { command: cmd, variables: await syncAllVariables(VARIABLES) };
+	}
+	if (cmd === "build-templates") {
+		const built = {};
+		for (const id of Object.keys(TEMPLATES)) {
+			if (!TEMPLATES[id]) continue;
+			built[id] = await buildNamedTemplate(id);
+		}
+		orderRootPages();
+		return { command: cmd, templates: built };
+	}
+	if (cmd.startsWith("build-template-")) {
+		const id = cmd.slice("build-template-".length);
+		return { command: cmd, [id]: await buildNamedTemplate(id) };
 	}
 	if (cmd.startsWith("build-")) {
 		const name = cmd.slice("build-".length);

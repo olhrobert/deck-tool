@@ -1,0 +1,514 @@
+{
+	"brand": "gratia",
+	"id": "content-slide-split-media",
+	"name": "content-slide-split-media",
+	"page": "content-slide-split-media",
+	"intent": "layout",
+	"kind": "content",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "header",
+				"role": "header-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-header-padding-top",
+					"right": "slide-header-padding-right",
+					"bottom": "slide-header-padding-bottom",
+					"left": "slide-header-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-title-group",
+						"component": "Slide-title",
+						"variant": "Size=md, Align=center",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "pretitle",
+								"swap": {
+									"component": "Slide-pretitle",
+									"variant": "Type=badge"
+								},
+								"characters": "Pre-title"
+							},
+							{
+								"name": "title",
+								"characters": "Slide title"
+							},
+							{
+								"name": "subtitle",
+								"visible": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-10",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "FILL",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-3",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "instance",
+										"name": "badge",
+										"component": "Badge",
+										"variant": "Variant=emphasis",
+										"props": {
+											"Label": "Section label",
+											"Show leading": false,
+											"Show trailing": false
+										},
+										"layoutSizingHorizontal": "HUG",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item-title",
+												"characters": "Item title",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "item-text",
+												"characters": "Short description, can be a couple sentences long.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-350",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item-title",
+												"characters": "Item title",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "item-text",
+												"characters": "Short description, can be a couple sentences long.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-350",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item-title",
+												"characters": "Item title",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "item-text",
+												"characters": "Short description, can be a couple sentences long.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-350",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									}
+								]
+							},
+							{
+								"type": "instance",
+								"name": "image",
+								"component": "Media-slot",
+								"variant": "Type=well",
+								"layoutSizingHorizontal": "FIXED",
+								"layoutSizingVertical": "FILL",
+								"widthPx": 440
+							},
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-3",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "instance",
+										"name": "badge",
+										"component": "Badge",
+										"variant": "Variant=emphasis",
+										"props": {
+											"Label": "Section label",
+											"Show leading": false,
+											"Show trailing": false
+										},
+										"layoutSizingHorizontal": "HUG",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item-title",
+												"characters": "Item title",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "item-text",
+												"characters": "Short description, can be a couple sentences long.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-350",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item-title",
+												"characters": "Item title",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "item-text",
+												"characters": "Short description, can be a couple sentences long.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-350",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item-title",
+												"characters": "Item title",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "item-text",
+												"characters": "Short description, can be a couple sentences long.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-350",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									},
+									{
+										"type": "instance",
+										"name": "divider",
+										"component": "Divider",
+										"variant": "Orientation=horizontal",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG"
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "footer",
+				"role": "footer-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-footer-padding-top",
+					"right": "slide-footer-padding-right",
+					"bottom": "slide-footer-padding-bottom",
+					"left": "slide-footer-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-footer",
+						"component": "Slide-footer",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "notes",
+								"characters": "Add notes or sources here."
+							},
+							{
+								"name": "deck-title",
+								"characters": "Deck title"
+							},
+							{
+								"name": "chapter",
+								"characters": "Chapter"
+							},
+							{
+								"name": "page",
+								"characters": "01"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

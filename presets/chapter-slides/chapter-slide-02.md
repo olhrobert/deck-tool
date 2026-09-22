@@ -12,4 +12,4 @@ not_when:
 
 # Chapter slide 02
 
-`<slide kind="cover">` with cover title (`size="sm"`) at the top-left, body at the bottom-left, and `<slide-footer>` at the bottom (not inside `<footer-container>`). Canvas follows `foundations.colorTheme.cover`.
+`<slide kind="cover">` with cover title (`size="sm"`) top-left and body bottom-left in a fill column `<stack>` (`max-w-md` / 600px clamp, `justify-between`), and `<slide-footer>` at the bottom (not inside `<footer-container>`). Canvas follows `foundations.colorTheme.cover`.

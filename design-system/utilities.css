@@ -132,6 +132,9 @@
 .pb-10 {
 	padding-bottom: var(--spacing-10);
 }
+.pb-20 {
+	padding-bottom: var(--spacing-20);
+}
 .px-20 {
 	padding-left: var(--spacing-20);
 	padding-right: var(--spacing-20);

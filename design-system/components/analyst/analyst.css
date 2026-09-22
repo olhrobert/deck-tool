@@ -1,8 +1,8 @@
 /* Analyst
    A people card: square photo, optional specialization badge on the photo,
    name/role, optional logo well, location, tags.
-   `size="sm|lg"` (omit for lg). Paint follows card tokens. Optional
-   `color-theme="light|dark"` remaps like card. Optional `variant` matches card.
+   `size="sm|lg"` (omit for lg). Paint follows card neutral tokens. Optional
+   `color-theme="light|dark"` remaps like card. No `variant` axis.
 */
 
 analyst {
@@ -29,36 +29,6 @@ analyst {
 	border-left-width: var(--card-border-size-left);
 	border-right-width: var(--card-border-size-right);
 	border-radius: var(--card-border-radius);
-
-	&[variant="emphasis"] {
-		--_card-hue: var(--card-emphasis-foreground);
-		--_card-bg: var(--card-emphasis-background);
-		--_card-border: var(--card-emphasis-border-subtle);
-	}
-
-	&[variant="positive"] {
-		--_card-hue: var(--card-positive-foreground);
-		--_card-bg: var(--card-positive-background);
-		--_card-border: var(--card-positive-border-subtle);
-	}
-
-	&[variant="warning"] {
-		--_card-hue: var(--card-warning-foreground);
-		--_card-bg: var(--card-warning-background);
-		--_card-border: var(--card-warning-border-subtle);
-	}
-
-	&[variant="negative"] {
-		--_card-hue: var(--card-negative-foreground);
-		--_card-bg: var(--card-negative-background);
-		--_card-border: var(--card-negative-border-subtle);
-	}
-
-	&[variant="informative"] {
-		--_card-hue: var(--card-informative-foreground);
-		--_card-bg: var(--card-informative-background);
-		--_card-border: var(--card-informative-border-subtle);
-	}
 }
 
 analyst [data-slot="cover"] {

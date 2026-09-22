@@ -1,0 +1,131 @@
+{
+	"brand": "gratia",
+	"id": "chapter-slide-02",
+	"name": "chapter-slide-02",
+	"page": "chapter-slide-02",
+	"intent": null,
+	"kind": "chapter",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "autoLayout",
+				"name": "frame",
+				"layoutMode": "VERTICAL",
+				"itemSpacing": 0,
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "frame",
+						"layoutMode": "VERTICAL",
+						"itemSpacing": 0,
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "FILL",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-0",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "FILL",
+								"children": [
+									{
+										"type": "instance",
+										"name": "cover-title",
+										"component": "Cover-title",
+										"variant": "Size=sm, Align=left",
+										"layoutSizingHorizontal": "HUG",
+										"layoutSizingVertical": "HUG",
+										"overrides": [
+											{
+												"characters": "Chapter title"
+											}
+										]
+									},
+									{
+										"type": "text",
+										"name": "text",
+										"characters": "Engineered for velocity, cost discipline, and linear scalability. React, managed AWS services, and microservice architecture enable rapid iteration with minimal ops overhead.",
+										"fontFamily": "font-text-family",
+										"fontWeight": "font-text-weight",
+										"fontSize": "text-size-350",
+										"fill": {
+											"variable": "color-slide-foreground",
+											"opacity": 1
+										},
+										"opacity": "tone-subtle",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"textAlign": "LEFT",
+										"lineHeight": "text-lineheight"
+									}
+								],
+								"maxWidth": 600,
+								"primaryAxisAlignItems": "SPACE_BETWEEN"
+							}
+						],
+						"padding": {
+							"left": "spacing-20",
+							"right": "spacing-20",
+							"top": "spacing-20",
+							"bottom": "spacing-10"
+						}
+					},
+					{
+						"type": "autoLayout",
+						"name": "frame",
+						"layoutMode": "VERTICAL",
+						"itemSpacing": 0,
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "instance",
+								"name": "slide-footer",
+								"component": "Slide-footer",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"name": "notes",
+										"characters": "Add notes or sources here."
+									},
+									{
+										"name": "deck-title",
+										"characters": "Deck title"
+									},
+									{
+										"name": "chapter",
+										"characters": "Chapter"
+									},
+									{
+										"name": "page",
+										"characters": "01"
+									}
+								]
+							}
+						],
+						"padding": {
+							"top": "spacing-4",
+							"right": "spacing-4",
+							"bottom": "spacing-4",
+							"left": "spacing-4"
+						}
+					}
+				]
+			}
+		]
+	}
+}

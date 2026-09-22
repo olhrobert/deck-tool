@@ -1,0 +1,178 @@
+{
+	"brand": "gratia",
+	"id": "gratia-contact",
+	"name": "gratia-contact",
+	"page": "gratia-contact",
+	"intent": "brand",
+	"kind": "close",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": "dark",
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-20",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "FILL",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-12",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "instance",
+										"name": "logo",
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=dark",
+										"layoutSizingHorizontal": "HUG",
+										"layoutSizingVertical": "HUG",
+										"heightPx": 32
+									},
+									{
+										"type": "text",
+										"name": "main",
+										"characters": "Let’s work together",
+										"fontFamily": "font-title-family",
+										"fontWeight": "font-title-weight",
+										"fontSize": "text-size-2000",
+										"fill": {
+											"variable": "color-slide-foreground",
+											"opacity": 1
+										},
+										"opacity": "tone-strong",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"textAlign": "LEFT",
+										"lineHeightPercent": 100
+									},
+									{
+										"type": "text",
+										"name": "sub",
+										"characters": "Ready to accelerate your next project? Let's talk.",
+										"fontFamily": "font-text-family",
+										"fontWeight": "font-text-weight",
+										"fontSize": "text-size-400",
+										"fill": {
+											"variable": "color-slide-foreground",
+											"opacity": 1
+										},
+										"opacity": "tone-base",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"textAlign": "LEFT",
+										"lineHeight": "text-lineheight"
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-xl",
+									"right": "card-padding-xl",
+									"bottom": "card-padding-xl",
+									"left": "card-padding-xl"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "label",
+												"characters": "Get in touch",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-subtle",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											},
+											{
+												"type": "text",
+												"name": "email",
+												"characters": "hello@gogratia.com",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-weight-regular",
+												"fontSize": "text-size-1000",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										]
+									}
+								]
+							}
+						],
+						"counterAxisAlignItems": "CENTER"
+					}
+				]
+			}
+		]
+	}
+}

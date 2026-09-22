@@ -14,7 +14,6 @@ not_when:
   - Copy columns flanking a central image (use content-slide-split-media)
   - Title stack beside a square image (use content-slide-text-and-image)
   - Numbered steps next to a screenshot (use content-slide-steps-media)
-  - Project recap with an actions list and result cards (use content-slide-actions-results)
   - Gratia fundraising opener as-is (use gratia-fundraising)
   - Gratia contact closer as-is (use gratia-contact)
   - Title or chapter slides

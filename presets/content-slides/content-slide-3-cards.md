@@ -13,7 +13,6 @@ not_when:
   - Title stack beside a square image (use content-slide-text-and-image)
   - Service offering with a case study and featured analyst (use content-slide-service)
   - Numbered steps next to a screenshot (use content-slide-steps-media)
-  - Project recap with an actions list and result cards (use content-slide-actions-results)
   - Gratia fundraising opener as-is (use gratia-fundraising)
   - Gratia contact closer as-is (use gratia-contact)
   - One callout or a long body of copy

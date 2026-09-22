@@ -1,0 +1,1603 @@
+{
+	"brand": "gratia",
+	"id": "gratia-services",
+	"name": "gratia-services",
+	"page": "gratia-services",
+	"intent": "brand",
+	"kind": "content",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "header",
+				"role": "header-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-header-padding-top",
+					"right": "slide-header-padding-right",
+					"bottom": "slide-header-padding-bottom",
+					"left": "slide-header-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-title-group",
+						"component": "Slide-title",
+						"variant": "Size=md, Align=center",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "pretitle",
+								"visible": false
+							},
+							{
+								"name": "title",
+								"characters": "What we help with"
+							},
+							{
+								"name": "subtitle",
+								"visible": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "cards",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-2",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Financial Models & Consulting",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Business Planning & Financial Modeling",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Scenario & Forecasting Dashboards",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Company & Asset Valuation",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Market Research & Analysis",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Market Sizing & Opportunity Assessment",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Competitor Analysis & Benchmarking",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Customer Segmentation & Market Analysis",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Data Dashboards & Reporting",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Financial Dashboard Development",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "KPI Reporting & Business Intelligence",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Sales Performance Analytics",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Business Strategy Consulting",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Corporate Strategy & Planning",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Organizational Change Management",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Risk Assessment & Mitigation Planning",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Proposals & Business Cases",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "RFP Response & Strategy",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Business Case Analysis",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Investment & Project Pitch Decks",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Project Management",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Project Planning & Milestone Tracking",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Stakeholder Communication & Reporting",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Change Management & Coordination",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Business Process Optimization",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Workflow Design & Process Mapping",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Business Process Improvement",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "AI Integration & Digital Tools",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Pitch & Consulting Decks",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Investor & Fundraising Pitch Decks",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Board Meeting Presentations",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Executive Strategy Decks",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "RevOps & GTM Enablement",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Sales Process Optimization & CRM Setup",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Go-to-Market Strategy & Planning",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Revenue Growth Planning & Execution",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "Product Development Support",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "AI-enabled MVPs & \"Vibe Coding\"",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "AI-enhanced Process Automation",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Product Development Coordination",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "autoLayout",
+								"name": "card",
+								"role": "cardFrame",
+								"layoutMode": "VERTICAL",
+								"fill": {
+									"variable": "card-neutral-background",
+									"opacity": 1
+								},
+								"stroke": {
+									"variable": "card-neutral-border-subtle",
+									"opacity": 0.2
+								},
+								"strokeAlign": "INSIDE",
+								"radius": "card-border-radius",
+								"strokeTop": "card-border-size-top",
+								"strokeRight": "card-border-size-right",
+								"strokeBottom": "card-border-size-bottom",
+								"strokeLeft": "card-border-size-left",
+								"padding": {
+									"top": "card-padding-md",
+									"right": "card-padding-md",
+									"bottom": "card-padding-md",
+									"left": "card-padding-md"
+								},
+								"itemSpacing": "card-gap-sm",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"clipsContent": true,
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "HORIZONTAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "stamp",
+												"component": "Stamp",
+												"variant": "Variant=emphasis",
+												"props": {
+													"Show icon": true,
+													"Show mark": false
+												},
+												"sizeVar": "spacing-7",
+												"layoutSizingHorizontal": "FIXED",
+												"layoutSizingVertical": "FIXED"
+											},
+											{
+												"type": "text",
+												"name": "title",
+												"characters": "AI & Automation Support",
+												"fontFamily": "font-heading-family",
+												"fontWeight": "font-heading-weight",
+												"fontSize": "text-size-450",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-strong",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeight": "text-lineheight"
+											}
+										],
+										"counterAxisAlignItems": "CENTER"
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-0",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "AI Workflow Automation & Tool Integration",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "Low-Code / No-Code Solution Development",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "item",
+												"characters": "PMBA-style Project Coordination & Execution",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-300",
+												"fill": {
+													"variable": "color-slide-surface-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									}
+								]
+							}
+						],
+						"layoutWrap": "WRAP",
+						"columns": 3
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "footer",
+				"role": "footer-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-footer-padding-top",
+					"right": "slide-footer-padding-right",
+					"bottom": "slide-footer-padding-bottom",
+					"left": "slide-footer-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-footer",
+						"component": "Slide-footer",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "notes",
+								"characters": "Add notes or sources here."
+							},
+							{
+								"name": "deck-title",
+								"characters": "Deck title"
+							},
+							{
+								"name": "chapter",
+								"characters": "Chapter"
+							},
+							{
+								"name": "page",
+								"characters": "01"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

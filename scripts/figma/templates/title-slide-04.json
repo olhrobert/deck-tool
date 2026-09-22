@@ -1,0 +1,141 @@
+{
+	"brand": "gratia",
+	"id": "title-slide-04",
+	"name": "title-slide-04",
+	"page": "title-slide-04",
+	"intent": null,
+	"kind": "title",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "autoLayout",
+				"name": "frame",
+				"layoutMode": "VERTICAL",
+				"itemSpacing": 0,
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "frame",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": 0,
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "instance",
+								"name": "brand-logo",
+								"component": "Brand-logo",
+								"variant": "Brand=Gratia, Theme=light",
+								"layoutSizingHorizontal": "HUG",
+								"layoutSizingVertical": "HUG",
+								"heightPx": 24
+							}
+						],
+						"primaryAxisAlignItems": "CENTER",
+						"padding": {
+							"top": "spacing-20"
+						},
+						"layoutPositioning": "ABSOLUTE",
+						"constraints": {
+							"horizontal": "STRETCH",
+							"vertical": "MIN"
+						}
+					},
+					{
+						"type": "autoLayout",
+						"name": "frame",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": 0,
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "FILL",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-4",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "instance",
+										"name": "cover-title",
+										"component": "Cover-title",
+										"variant": "Size=lg, Align=center",
+										"layoutSizingHorizontal": "HUG",
+										"layoutSizingVertical": "HUG",
+										"overrides": [
+											{
+												"characters": "Title of the deck"
+											}
+										]
+									},
+									{
+										"type": "text",
+										"name": "text",
+										"characters": "Optional subtitle. Can be one or two sentences long.",
+										"fontFamily": "font-text-family",
+										"fontWeight": "font-text-weight",
+										"fontSize": "text-size-350",
+										"fill": {
+											"variable": "color-slide-foreground",
+											"opacity": 1
+										},
+										"opacity": "tone-subtle",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"textAlign": "CENTER",
+										"lineHeight": "text-lineheight"
+									}
+								],
+								"counterAxisAlignItems": "CENTER"
+							}
+						],
+						"primaryAxisAlignItems": "CENTER",
+						"counterAxisAlignItems": "CENTER"
+					},
+					{
+						"type": "autoLayout",
+						"name": "frame",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": 0,
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "instance",
+								"name": "attribution-box",
+								"component": "Attribution-box",
+								"layoutSizingHorizontal": "HUG",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"characters": "Sanitized excerpt prepared by"
+									}
+								]
+							}
+						],
+						"primaryAxisAlignItems": "CENTER",
+						"layoutPositioning": "ABSOLUTE",
+						"constraints": {
+							"horizontal": "STRETCH",
+							"vertical": "MAX"
+						}
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,209 @@
+{
+	"brand": "gratia",
+	"id": "content-slide-3-cards",
+	"name": "content-slide-3-cards",
+	"page": "content-slide-3-cards",
+	"intent": "layout",
+	"kind": "content",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "header",
+				"role": "header-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-header-padding-top",
+					"right": "slide-header-padding-right",
+					"bottom": "slide-header-padding-bottom",
+					"left": "slide-header-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-title-group",
+						"component": "Slide-title",
+						"variant": "Size=md, Align=left",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "pretitle",
+								"swap": {
+									"component": "Slide-pretitle",
+									"variant": "Type=badge"
+								},
+								"characters": "Optional pre-title"
+							},
+							{
+								"name": "title",
+								"characters": "Slide title"
+							},
+							{
+								"name": "subtitle",
+								"characters": "Optional subtitle"
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "cards",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-2",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"children": [
+							{
+								"type": "instance",
+								"name": "card",
+								"component": "Card",
+								"variant": "Variant=neutral",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"name": "pretitle",
+										"characters": "Label"
+									},
+									{
+										"name": "title",
+										"characters": "Value"
+									},
+									{
+										"name": "text",
+										"visible": false
+									},
+									{
+										"name": "meta",
+										"characters": "Optional supporting detail"
+									}
+								]
+							},
+							{
+								"type": "instance",
+								"name": "card",
+								"component": "Card",
+								"variant": "Variant=neutral",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"name": "pretitle",
+										"characters": "Label"
+									},
+									{
+										"name": "title",
+										"characters": "Value"
+									},
+									{
+										"name": "text",
+										"visible": false
+									},
+									{
+										"name": "meta",
+										"characters": "Optional supporting detail"
+									}
+								]
+							},
+							{
+								"type": "instance",
+								"name": "card",
+								"component": "Card",
+								"variant": "Variant=neutral",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"overrides": [
+									{
+										"name": "pretitle",
+										"characters": "Label"
+									},
+									{
+										"name": "title",
+										"characters": "Value"
+									},
+									{
+										"name": "text",
+										"visible": false
+									},
+									{
+										"name": "meta",
+										"characters": "Optional supporting detail"
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"type": "frame",
+				"name": "footer",
+				"role": "footer-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-footer-padding-top",
+					"right": "slide-footer-padding-right",
+					"bottom": "slide-footer-padding-bottom",
+					"left": "slide-footer-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "HUG",
+				"children": [
+					{
+						"type": "instance",
+						"name": "slide-footer",
+						"component": "Slide-footer",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "HUG",
+						"overrides": [
+							{
+								"name": "notes",
+								"characters": "Add notes or sources here."
+							},
+							{
+								"name": "deck-title",
+								"characters": "Deck title"
+							},
+							{
+								"name": "chapter",
+								"characters": "Chapter"
+							},
+							{
+								"name": "page",
+								"characters": "01"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

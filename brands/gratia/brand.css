@@ -116,11 +116,11 @@
 	/* headerContainer */
 	--slide-header-padding-top: var(--spacing-16);
 	--slide-header-padding-right: var(--spacing-20);
-	--slide-header-padding-bottom: var(--spacing-0);
+	--slide-header-padding-bottom: var(--spacing-10);
 	--slide-header-padding-left: var(--spacing-20);
 
 	/* contentContainer */
-	--slide-content-padding-top: var(--spacing-10);
+	--slide-content-padding-top: var(--spacing-0);
 	--slide-content-padding-right: var(--spacing-20);
 	--slide-content-padding-bottom: var(--spacing-0);
 	--slide-content-padding-left: var(--spacing-20);

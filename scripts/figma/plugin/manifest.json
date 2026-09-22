@@ -34,6 +34,10 @@
 			"command": "build-analyst"
 		},
 		{
+			"name": "Build all templates",
+			"command": "build-templates"
+		},
+		{
 			"name": "Sync variables and components",
 			"command": "all"
 		}

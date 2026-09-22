@@ -20,7 +20,7 @@ On `content-slide-split-media`, keep `<media-slot data-slot="image" width="hug" 
 
 On `content-slide-service`, keep `<media-slot data-slot="partner" width="hug" padding="none" style="width: 160px; height: 64px">` for the case study logo until artwork is provided, then replace with `<img data-slot="partner" style="width: 160px; height: 64px">`. Analyst photo and logo wells follow the `analyst` rules.
 
-On `content-slide-steps-media`, keep `<media-slot data-slot="image" width="fill" height="fill">` until a screenshot is provided, then replace with `<img data-slot="image" width="fill" height="fill">`. The well fills leftover width after the 480px step column and meets the slide’s right edge (`pr-0` on `<content-container>`).
+On `content-slide-steps-media`, keep `<media-slot data-slot="image" width="fill" height="fill">` until a screenshot is provided, then replace with `<img data-slot="image" width="fill" height="fill">`. The well and the step column both use `width="fill"` so they share the row evenly.
 
 On `gratia-fundraising`, keep `<media-slot data-slot="image" width="fill" padding="none" border="false" style="aspect-ratio: 704 / 567; filter: drop-shadow(0px 24px 32px rgba(0, 0, 0, 0.2)) drop-shadow(0px 20px 16px rgba(0, 0, 0, 0.5))">` until a screenshot is provided, then replace with `<img data-slot="image" width="fill">` and keep the aspect-ratio and drop-shadow filter. `filter` is used so overflow clipping on the well does not cut the shadows. Both columns use `width="fill"` so they shrink with the slide.
 

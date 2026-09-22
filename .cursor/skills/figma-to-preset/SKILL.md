@@ -22,14 +22,17 @@ If `get_design_context` errors, stop and read the message. Do not rebuild from t
 
 Read sibling preset `.md` sidecars (`use_when` / `not_when`) and pick the closest layout. Then read the component `.md` files you will use.
 
+**Figma has no Stack or Text components.** Native auto-layout frames and text objects map to HTML `<stack>` / `<text>` on pull (and the reverse on push). See `docs/scripts.md` → HTML ↔ Figma primitives. Do not create Stack/Text component sets in Figma to “match” the HTML tags.
+
 Existing building blocks: `<slide>`, `<header-container>` / `<content-container>` / `<footer-container>`, `<slide-title-group>` / `<slide-title>`, `<stack>`, `<text>`, `<stamp>` / `<stamp-icon>` / `<stamp-text>`, `<card>`, `<media-card>`, `<callout>`, `<badge>`, `<divider>`, `<media-slot>`, `<analyst>`, `<slide-footer>`.
 
-- Map Figma spacing to the nearest `--spacing-*` step via `gap` / `padding` attributes (`24px` → `gap="6"`). Fractional columns use `.w-1-3` (and siblings). Fixed column widths may use inline `style="width: …px"` like existing presets (440, 480).
+- **Auto-layout → `<stack>`:** free auto-layout frames become `<stack>` (`gap` / `direction` / `wrap` / `width` / `height`). Auto-layout that is only the interior of a Card / Badge / Callout / Analyst / etc. instance stays that component — do not unwrap it into a naked stack. Map Figma spacing to the nearest `--spacing-*` step (`24px` → `gap="6"`). Fractional columns use `.w-1-3` (and siblings). Fixed column widths may use inline `style="width: …px"` like existing presets (440, 480).
 - **3-column card catalogs:** read the leftover row in Figma. Cards that stay one column wide (empty third cell) → one `<stack columns="3">` with cards as direct children (`gratia-services`). Cards that stretch to fill a short last row → nested `<stack direction="row">` rows of `<card width="fill">` (`content-slide-12-cards`). Do not add a `pack` attribute. See `design-system/components/stack/stack.md`.
-- Map type to the type scale (`14px` → `size="350"`, `12px` → `size="300"`, `10px` → `size="250"`). Slide headlines use `<slide-title size="sm|md|lg">`, not raw px. In-body titles: `<text family="heading" size="…">`. Metrics: `<text family="stat" size="…">`. Pretitles: `<text family="label" size="…">` or `<slide-pretitle>` / `<card-pretitle>`. Omit `weight` on those roles so the brand style applies.
+- **Text objects → `<text>`:** map px to the type scale (`14px` → `size="350"`, `12px` → `size="300"`, `10px` → `size="250"`). Bindings to `text-size-*` / `font-*-family` win over raw px when present. Prefer semantic tags when the role is clear: slide headlines → `<slide-title size="sm|md|lg">`; cover → `<cover-title align="left|center|right">` (omit for left); in-body titles → `<text family="heading" size="…">`; metrics → `<text family="stat" size="…">`; pretitles → `<text family="label" size="…">` or `<slide-pretitle>` / `<card-pretitle>`. Omit `weight` on those roles so the brand style applies. Never map cover-title alignment to `class="text-center"`.
 - Canvas copy: `context="slide"`. Inside card/callout/badge: `context="surface"`.
 - Hairlines: `<divider>` (horizontal) or `orientation="vertical"` in a row. Do not use `--color-slide-surface-border`.
-- Icons: `<stamp-icon icon="{assets/icons filename without .svg}">`. Never commit Figma MCP asset URLs. Never hand-draw SVGs.
+- Icons: `<stamp-icon icon="{assets/icons filename without .svg}">`. Never commit Figma MCP asset URLs. Never hand-draw SVGs. Figma may show a filled icon *frame* from an old sync — ignore that frame fill; HTML icons have no background.
+- Brand-logo `Theme=dark` is the inverted lockup (`{slug}-logo-inverted.svg`). HTML still uses `<img data-logo>` with the default src; the showcase swaps inverted from canvas luminance.
 - Photos / screenshots: keep `<media-slot data-slot="…">` until real artwork exists.
 - Green circular marks in Gratia comps → `<stamp variant="emphasis">`. Numbered marks → `<stamp-text>`.
 - Paint follows `color-theme`. Omit `color-theme` on `<slide>` (light canvas). Do not force `color-theme="light"` on stamps/cards unless the user asks to pin them.

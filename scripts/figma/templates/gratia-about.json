@@ -1,0 +1,199 @@
+{
+	"brand": "gratia",
+	"id": "gratia-about",
+	"name": "gratia-about",
+	"page": "gratia-about",
+	"intent": "brand",
+	"kind": "content",
+	"width": "slide-max-width",
+	"height": 800,
+	"fill": {
+		"variable": "color-slide-background",
+		"opacity": 1
+	},
+	"colorTheme": null,
+	"tree": {
+		"type": "component",
+		"layoutMode": "VERTICAL",
+		"itemSpacing": 0,
+		"children": [
+			{
+				"type": "frame",
+				"name": "content",
+				"role": "content-container",
+				"layoutMode": "VERTICAL",
+				"padding": {
+					"top": "slide-content-padding-top",
+					"right": "slide-content-padding-right",
+					"bottom": "slide-content-padding-bottom",
+					"left": "slide-content-padding-left"
+				},
+				"layoutSizingHorizontal": "FILL",
+				"layoutSizingVertical": "FILL",
+				"children": [
+					{
+						"type": "autoLayout",
+						"name": "stack",
+						"layoutMode": "HORIZONTAL",
+						"itemSpacing": "spacing-20",
+						"layoutSizingHorizontal": "FILL",
+						"layoutSizingVertical": "FILL",
+						"children": [
+							{
+								"type": "autoLayout",
+								"name": "stack",
+								"layoutMode": "VERTICAL",
+								"itemSpacing": "spacing-6",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"children": [
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "slide-title-group",
+												"component": "Slide-title",
+												"variant": "Size=md, Align=left",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"overrides": [
+													{
+														"name": "pretitle",
+														"visible": false
+													},
+													{
+														"name": "title",
+														"characters": "The story of Gratia"
+													},
+													{
+														"name": "subtitle",
+														"visible": false
+													}
+												]
+											},
+											{
+												"type": "text",
+												"name": "text",
+												"characters": "AI changed what a small team can deliver, but the way companies access talent didn’t keep up. That left a gap: high-judgment analysts and teams, without the overhead of a big firm or the headache of a mass talent platform.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											},
+											{
+												"type": "text",
+												"name": "text",
+												"characters": "It’s the gap I built Gratia to fill: vetted, nearshore analysts who work in your time zone and deliver outcomes, not slide decks.",
+												"fontFamily": "font-text-family",
+												"fontWeight": "font-text-weight",
+												"fontSize": "text-size-400",
+												"fill": {
+													"variable": "color-slide-foreground",
+													"opacity": 1
+												},
+												"opacity": "tone-base",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"textAlign": "LEFT",
+												"lineHeightPercent": 150
+											}
+										]
+									},
+									{
+										"type": "autoLayout",
+										"name": "stack",
+										"layoutMode": "VERTICAL",
+										"itemSpacing": "spacing-2",
+										"layoutSizingHorizontal": "FILL",
+										"layoutSizingVertical": "HUG",
+										"children": [
+											{
+												"type": "instance",
+												"name": "signature",
+												"component": "Media-slot",
+												"variant": "Type=flush",
+												"layoutSizingHorizontal": "HUG",
+												"layoutSizingVertical": "HUG",
+												"heightPx": 21
+											},
+											{
+												"type": "autoLayout",
+												"name": "stack",
+												"layoutMode": "VERTICAL",
+												"itemSpacing": "spacing-0",
+												"layoutSizingHorizontal": "FILL",
+												"layoutSizingVertical": "HUG",
+												"children": [
+													{
+														"type": "text",
+														"name": "name",
+														"characters": "Jackie Churchwell",
+														"fontFamily": "font-heading-family",
+														"fontWeight": "font-heading-weight",
+														"fontSize": "text-size-400",
+														"fill": {
+															"variable": "color-slide-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-strong",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													},
+													{
+														"type": "text",
+														"name": "role",
+														"characters": "CEO and Founder of Gratia",
+														"fontFamily": "font-text-family",
+														"fontWeight": "font-text-weight",
+														"fontSize": "text-size-400",
+														"fill": {
+															"variable": "color-slide-foreground",
+															"opacity": 1
+														},
+														"opacity": "tone-subtle",
+														"layoutSizingHorizontal": "FILL",
+														"layoutSizingVertical": "HUG",
+														"textAlign": "LEFT",
+														"lineHeightPercent": 150
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "instance",
+								"name": "image",
+								"component": "Media-slot",
+								"variant": "Type=flush",
+								"layoutSizingHorizontal": "FILL",
+								"layoutSizingVertical": "HUG",
+								"aspectSquare": true,
+								"clipsContent": true,
+								"radius": "card-border-radius"
+							}
+						],
+						"counterAxisAlignItems": "CENTER"
+					}
+				]
+			}
+		]
+	}
+}

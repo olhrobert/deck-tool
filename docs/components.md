@@ -18,9 +18,9 @@ Do not put `size` on badge, callout title/description, or card/callout padding a
 
 | Element | Attribute | Values | Default |
 | --- | --- | --- | --- |
-| `<slide-title-group>`, `<slide-title>` | `align` | `left` \| `center` \| `right` | `left` |
+| `<slide-title-group>`, `<slide-title>`, `<cover-title>` | `align` | `left` \| `center` \| `right` | `left` |
 
-Omit `align` for left. Set it on `<slide-title-group>` so pretitles, title, and subtitle share the alignment.
+Omit `align` for left. Set it on `<slide-title-group>` so pretitles, title, and subtitle share the alignment. On `<cover-title>`, `align` is the text axis (covers have no title group).
 
 ## Orientation
 
@@ -54,7 +54,7 @@ Omit `orientation` for a full-width hairline. Set `orientation="vertical"` in a 
 
 | Element | `variant` | Notes |
 | --- | --- | --- |
-| `<card>`, `<analyst>`, `<media-card>`, `<badge>`, `<stamp>` | `neutral` \| `emphasis` \| `positive` \| `warning` \| `negative` \| `informative` | Default `neutral`. |
+| `<card>`, `<media-card>`, `<badge>`, `<stamp>` | `neutral` \| `emphasis` \| `positive` \| `warning` \| `negative` \| `informative` | Default `neutral`. |
 | `<callout>` | `neutral` \| `positive` \| `warning` \| `negative` \| `informative` | No `emphasis`. |
 
 Paint follows inherited `color-theme` (`light` \| `dark`). Card `layout="basic|stripe"` is omitted so `components.card.defaultLayout` applies.

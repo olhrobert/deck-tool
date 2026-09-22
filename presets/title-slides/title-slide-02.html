@@ -23,10 +23,19 @@
 	<body>
 		<deck>
 			<slide kind="cover">
-				<div
-					class="box-border w-full h-full flex flex-col justify-between p-20"
+				<stack
+					direction="col"
+					gap="0"
+					width="fill"
+					height="fill"
+					class="justify-between p-20"
 				>
-					<div class="flex justify-between items-start">
+					<stack
+						direction="row"
+						gap="0"
+						width="fill"
+						class="justify-between items-start"
+					>
 						<img
 							src="../../assets/logos/placeholder-logo.svg"
 							alt="Logo"
@@ -45,9 +54,9 @@
 								alt="Gratia"
 							/>
 						</attribution-box>
-					</div>
+					</stack>
 
-					<div class="flex flex-col gap-4">
+					<stack direction="col" gap="4">
 						<cover-title
 							size="lg"
 							tone="strong"
@@ -58,8 +67,8 @@
 						<text size="350" tone="subtle" context="slide">
 							Optional subtitle. Can be one or two sentences long.
 						</text>
-					</div>
-				</div>
+					</stack>
+				</stack>
 			</slide>
 		</deck>
 	</body>
