@@ -10,7 +10,6 @@ const { generatePlugin } = require("./generate-plugin.js");
 const DEFAULT_BRAND = "brands/gratia";
 const ROOT = path.join(__dirname, "..", "..");
 const COMPONENTS_DIR = path.join(ROOT, "design-system", "components");
-const ICONS_DIR = path.join(ROOT, "assets", "icons");
 const OUT_DIR = path.join(__dirname, "components");
 
 const CARD_VARIANTS = [
@@ -38,14 +37,6 @@ function usage() {
 
 function componentHtml(name) {
 	return path.join(COMPONENTS_DIR, name, `${name}.html`);
-}
-
-function readIcon(name) {
-	const filePath = path.join(ICONS_DIR, `${name}.svg`);
-	if (!fs.existsSync(filePath)) {
-		throw new Error(`Missing icon ${filePath}`);
-	}
-	return fs.readFileSync(filePath, "utf8").trim();
 }
 
 function rawOpacity(raw) {
@@ -234,6 +225,7 @@ function buildBadge(settings) {
 				icon: (leading && leading.attrs && leading.attrs.icon) || "checkbox-circle-fill",
 				booleanProperty: "Show leading",
 				booleanDefault: true,
+				swapProperty: "Leading",
 			},
 			{
 				id: "label",
@@ -257,6 +249,7 @@ function buildBadge(settings) {
 				icon: (trailing && trailing.attrs && trailing.attrs.icon) || "arrow-right-s-line",
 				booleanProperty: "Show trailing",
 				booleanDefault: true,
+				swapProperty: "Trailing",
 			},
 		],
 	};
@@ -284,12 +277,7 @@ function buildBadge(settings) {
 		),
 	}));
 
-	const icons = {};
-	for (const slot of layout.slots) {
-		if (slot.kind === "icon") icons[slot.icon] = readIcon(slot.icon);
-	}
-
-	return { name: "Badge", autoLayout, layout, variants, icons };
+	return { name: "Badge", autoLayout, layout, variants };
 }
 
 function buildStamp(settings) {
@@ -322,8 +310,6 @@ function buildStamp(settings) {
 				textCase: "ORIGINAL",
 				characters: textContent(mark) || "1",
 				textProperty: "Mark",
-				booleanProperty: "Show mark",
-				booleanDefault: true,
 				nowrap: true,
 				align: "CENTER",
 			},
@@ -332,36 +318,43 @@ function buildStamp(settings) {
 				name: "icon",
 				kind: "icon",
 				icon: "star-fill",
-				booleanProperty: "Show icon",
-				booleanDefault: false,
+				swapProperty: "Icon",
 			},
 		],
 	};
 
-	const variants = CARD_VARIANTS.map((variant) => ({
-		name: `Variant=${variant}`,
-		variant,
-		fill: paintFor(
-			settings,
-			"components.stamp.background",
-			variant,
-			`--stamp-${variant}-background`,
-		),
-		stroke: null,
-		foreground: paintFor(
-			settings,
-			"components.stamp.foreground",
-			variant,
-			`--stamp-${variant}-foreground`,
-		),
-	}));
+	const types = ["mark", "icon"];
+	const variants = [];
+	for (const type of types) {
+		for (const variant of CARD_VARIANTS) {
+			variants.push({
+				name: `Variant=${variant}, Type=${type}`,
+				variant,
+				type,
+				fill: paintFor(
+					settings,
+					"components.stamp.background",
+					variant,
+					`--stamp-${variant}-background`,
+				),
+				stroke: null,
+				foreground: paintFor(
+					settings,
+					"components.stamp.foreground",
+					variant,
+					`--stamp-${variant}-foreground`,
+				),
+			});
+		}
+	}
 
 	return {
 		name: "Stamp",
 		autoLayout,
 		layout,
 		variants,
-		icons: { "star-fill": readIcon("star-fill") },
+		typeOrder: types,
+		variantOrder: CARD_VARIANTS,
 	};
 }
 
@@ -461,6 +454,7 @@ function buildAnalyst(settings) {
 		locationPadBottom: "spacing-1",
 		tagsGap: "spacing-2",
 		iconSize: cssToFigmaName("--badge-icon-size"),
+		locationIcon: "earth-fill",
 		photoFill: { r: 0, g: 0, b: 0, opacity: 0.1 },
 		logoStroke: {
 			variable: cssToFigmaName("--card-neutral-border-subtle"),
@@ -577,7 +571,6 @@ function buildAnalyst(settings) {
 		layout,
 		sizes,
 		paint,
-		icons: { "earth-fill": readIcon("earth-fill") },
 	};
 }
 

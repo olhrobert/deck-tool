@@ -119,14 +119,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "calculator-line"
 											},
 											{
 												"type": "text",
@@ -253,14 +250,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "user-search-line"
 											},
 											{
 												"type": "text",
@@ -387,14 +381,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "dashboard-3-line"
 											},
 											{
 												"type": "text",
@@ -521,14 +512,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "briefcase-line"
 											},
 											{
 												"type": "text",
@@ -655,14 +643,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "newspaper-line"
 											},
 											{
 												"type": "text",
@@ -789,14 +774,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "swap-2-line"
 											},
 											{
 												"type": "text",
@@ -923,14 +905,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "flow-chart"
 											},
 											{
 												"type": "text",
@@ -1057,14 +1036,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "slideshow-line"
 											},
 											{
 												"type": "text",
@@ -1191,14 +1167,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "line-chart-line"
 											},
 											{
 												"type": "text",
@@ -1325,14 +1298,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "terminal-box-line"
 											},
 											{
 												"type": "text",
@@ -1459,14 +1429,11 @@
 												"type": "instance",
 												"name": "stamp",
 												"component": "Stamp",
-												"variant": "Variant=emphasis",
-												"props": {
-													"Show icon": true,
-													"Show mark": false
-												},
+												"variant": "Variant=emphasis, Type=icon",
 												"sizeVar": "spacing-7",
 												"layoutSizingHorizontal": "FIXED",
-												"layoutSizingVertical": "FIXED"
+												"layoutSizingVertical": "FIXED",
+												"icon": "sparkling-2-line"
 											},
 											{
 												"type": "text",
@@ -1578,6 +1545,13 @@
 						"layoutSizingHorizontal": "FILL",
 						"layoutSizingVertical": "HUG",
 						"overrides": [
+							{
+								"name": "logo",
+								"swap": {
+									"component": "Brand-logo",
+									"variant": "Brand=Gratia, Theme=light"
+								}
+							},
 							{
 								"name": "notes",
 								"characters": "Add notes or sources here."

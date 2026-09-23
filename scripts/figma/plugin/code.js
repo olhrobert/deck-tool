@@ -5152,6 +5152,25 @@ const VARIABLES = {
 		}
 	]
 };
+const ICON_KEYS = {
+	"arrow-right-s-line": "13fe4e6410ccdb8e230a76a0a622ae23fb3e9197",
+	"briefcase-line": "b2a82cebeea8574ee989d7d81d7f9fbef225f987",
+	"calculator-line": "7b60635f65324b4bb62afa2571f5eb67a82d8547",
+	"check-fill": "09190632de85713d4d0df476db74355006694636",
+	"checkbox-circle-fill": "d025a84a15f821de2ba23304d39b9993831074c2",
+	"dashboard-3-line": "84f7db2e9d30c356952aa1df645833af88774e83",
+	"earth-fill": "1177c79e694016224bc463932f7f7e1f0e3da2d2",
+	"flow-chart": "ca6c3a0e10f7156b58753f59c0bdc6bf1bdaf00b",
+	"line-chart-line": "8964f5184f4cb56c520b3f0f32d021b781a1c9e7",
+	"newspaper-line": "c58433eeff3cf2c127279e5a9d4e093e3133cc30",
+	"slideshow-line": "52868041a09f468631b4a36c1196b7c4ad512061",
+	"sparkling-2-line": "73c4819740505cef721a3dcaba0f4fc0513a73ef",
+	"star-fill": "21c63dc74fef76a71dc3237d84ce4a5fcd99dcdc",
+	"star-line": "3467d1418bbf70bf6f006712be553b306dfb6c5e",
+	"swap-2-line": "cbbc84fe2c1eb8e36951cf8e855e8eb35f2788b4",
+	"terminal-box-line": "d68839f2c6804e9bedaf272b6537fe3fa50447e8",
+	"user-search-line": "5d6ec3d3dc2a15e49c984cf81653e40d53c53fd8"
+};
 const COMPONENTS = {
 	"analyst": {
 		"brand": "gratia",
@@ -5214,16 +5233,6 @@ const COMPONENTS = {
 								"border": "false"
 							},
 							"children": [
-								{
-									"type": "text",
-									"tag": "badge-icon",
-									"attrs": {
-										"data-slot": "leading",
-										"icon": "star-fill",
-										"aria-hidden": "true"
-									},
-									"characters": ""
-								},
 								{
 									"type": "text",
 									"tag": "badge-text",
@@ -5507,6 +5516,7 @@ const COMPONENTS = {
 			"locationPadBottom": "spacing-1",
 			"tagsGap": "spacing-2",
 			"iconSize": "badge-icon-size",
+			"locationIcon": "earth-fill",
 			"photoFill": {
 				"r": 0,
 				"g": 0,
@@ -5611,9 +5621,6 @@ const COMPONENTS = {
 				"variable": "card-neutral-foreground",
 				"opacity": 1
 			}
-		},
-		"icons": {
-			"earth-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM16.0043 12.8777C15.6589 12.3533 15.4097 11.9746 14.4622 12.1248C12.6717 12.409 12.4732 12.7224 12.3877 13.2375L12.3636 13.3943L12.3393 13.5597C12.2416 14.2428 12.2453 14.5012 12.5589 14.8308C13.8241 16.1582 14.582 17.115 14.8116 17.6746C14.9237 17.9484 15.2119 18.7751 15.0136 19.5927C16.2372 19.1066 17.3156 18.3332 18.1653 17.3559C18.2755 16.9821 18.3551 16.5166 18.3551 15.9518V15.8472C18.3551 14.9247 18.3551 14.504 17.7031 14.1314C17.428 13.9751 17.2227 13.881 17.0582 13.8064C16.691 13.6394 16.4479 13.5297 16.1198 13.0499C16.0807 12.9928 16.0425 12.9358 16.0043 12.8777ZM12 3.83333C9.68259 3.83333 7.59062 4.79858 6.1042 6.34896C6.28116 6.47186 6.43537 6.64453 6.54129 6.88256C6.74529 7.34029 6.74529 7.8112 6.74529 8.22764C6.74488 8.55621 6.74442 8.8672 6.84992 9.09302C6.99443 9.40134 7.6164 9.53227 8.16548 9.64736C8.36166 9.68867 8.56395 9.73083 8.74797 9.78176C9.25405 9.92233 9.64554 10.3765 9.95938 10.7412C10.0896 10.8931 10.2819 11.1163 10.3783 11.1717C10.4286 11.1356 10.59 10.9608 10.6699 10.6735C10.7307 10.4547 10.7134 10.2597 10.6239 10.1543C10.0648 9.49445 10.0952 8.2232 10.268 7.75495C10.5402 7.01606 11.3905 7.07058 12.012 7.11097C12.2438 7.12589 12.4626 7.14023 12.6257 7.11976C13.2482 7.04166 13.4396 6.09538 13.575 5.91C13.8671 5.50981 14.7607 4.9071 15.3158 4.53454C14.3025 4.08382 13.1805 3.83333 12 3.83333Z\" fill=\"#04383A\"/>\n</svg>"
 		}
 	},
 	"badge": {
@@ -5687,7 +5694,8 @@ const COMPONENTS = {
 					"kind": "icon",
 					"icon": "checkbox-circle-fill",
 					"booleanProperty": "Show leading",
-					"booleanDefault": true
+					"booleanDefault": true,
+					"swapProperty": "Leading"
 				},
 				{
 					"id": "label",
@@ -5710,7 +5718,8 @@ const COMPONENTS = {
 					"kind": "icon",
 					"icon": "arrow-right-s-line",
 					"booleanProperty": "Show trailing",
-					"booleanDefault": true
+					"booleanDefault": true,
+					"swapProperty": "Trailing"
 				}
 			]
 		},
@@ -5811,11 +5820,7 @@ const COMPONENTS = {
 					"opacity": 1
 				}
 			}
-		],
-		"icons": {
-			"checkbox-circle-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z\" fill=\"#04383A\"/>\n</svg>",
-			"arrow-right-s-line": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z\" fill=\"#04383A\"/>\n</svg>"
-		}
+		]
 	},
 	"callout": {
 		"brand": "gratia",
@@ -6264,8 +6269,6 @@ const COMPONENTS = {
 					"textCase": "ORIGINAL",
 					"characters": "1",
 					"textProperty": "Mark",
-					"booleanProperty": "Show mark",
-					"booleanDefault": true,
 					"nowrap": true,
 					"align": "CENTER"
 				},
@@ -6274,15 +6277,15 @@ const COMPONENTS = {
 					"name": "icon",
 					"kind": "icon",
 					"icon": "star-fill",
-					"booleanProperty": "Show icon",
-					"booleanDefault": false
+					"swapProperty": "Icon"
 				}
 			]
 		},
 		"variants": [
 			{
-				"name": "Variant=neutral",
+				"name": "Variant=neutral, Type=mark",
 				"variant": "neutral",
+				"type": "mark",
 				"fill": {
 					"variable": "stamp-neutral-background",
 					"opacity": 0.1
@@ -6294,8 +6297,9 @@ const COMPONENTS = {
 				}
 			},
 			{
-				"name": "Variant=emphasis",
+				"name": "Variant=emphasis, Type=mark",
 				"variant": "emphasis",
+				"type": "mark",
 				"fill": {
 					"variable": "stamp-emphasis-background",
 					"opacity": 1
@@ -6307,8 +6311,9 @@ const COMPONENTS = {
 				}
 			},
 			{
-				"name": "Variant=positive",
+				"name": "Variant=positive, Type=mark",
 				"variant": "positive",
+				"type": "mark",
 				"fill": {
 					"variable": "stamp-positive-background",
 					"opacity": 1
@@ -6320,8 +6325,9 @@ const COMPONENTS = {
 				}
 			},
 			{
-				"name": "Variant=warning",
+				"name": "Variant=warning, Type=mark",
 				"variant": "warning",
+				"type": "mark",
 				"fill": {
 					"variable": "stamp-warning-background",
 					"opacity": 1
@@ -6333,8 +6339,9 @@ const COMPONENTS = {
 				}
 			},
 			{
-				"name": "Variant=negative",
+				"name": "Variant=negative, Type=mark",
 				"variant": "negative",
+				"type": "mark",
 				"fill": {
 					"variable": "stamp-negative-background",
 					"opacity": 1
@@ -6346,8 +6353,93 @@ const COMPONENTS = {
 				}
 			},
 			{
-				"name": "Variant=informative",
+				"name": "Variant=informative, Type=mark",
 				"variant": "informative",
+				"type": "mark",
+				"fill": {
+					"variable": "stamp-informative-background",
+					"opacity": 1
+				},
+				"stroke": null,
+				"foreground": {
+					"variable": "stamp-informative-foreground",
+					"opacity": 1
+				}
+			},
+			{
+				"name": "Variant=neutral, Type=icon",
+				"variant": "neutral",
+				"type": "icon",
+				"fill": {
+					"variable": "stamp-neutral-background",
+					"opacity": 0.1
+				},
+				"stroke": null,
+				"foreground": {
+					"variable": "stamp-neutral-foreground",
+					"opacity": 1
+				}
+			},
+			{
+				"name": "Variant=emphasis, Type=icon",
+				"variant": "emphasis",
+				"type": "icon",
+				"fill": {
+					"variable": "stamp-emphasis-background",
+					"opacity": 1
+				},
+				"stroke": null,
+				"foreground": {
+					"variable": "stamp-emphasis-foreground",
+					"opacity": 1
+				}
+			},
+			{
+				"name": "Variant=positive, Type=icon",
+				"variant": "positive",
+				"type": "icon",
+				"fill": {
+					"variable": "stamp-positive-background",
+					"opacity": 1
+				},
+				"stroke": null,
+				"foreground": {
+					"variable": "stamp-positive-foreground",
+					"opacity": 1
+				}
+			},
+			{
+				"name": "Variant=warning, Type=icon",
+				"variant": "warning",
+				"type": "icon",
+				"fill": {
+					"variable": "stamp-warning-background",
+					"opacity": 1
+				},
+				"stroke": null,
+				"foreground": {
+					"variable": "stamp-warning-foreground",
+					"opacity": 1
+				}
+			},
+			{
+				"name": "Variant=negative, Type=icon",
+				"variant": "negative",
+				"type": "icon",
+				"fill": {
+					"variable": "stamp-negative-background",
+					"opacity": 1
+				},
+				"stroke": null,
+				"foreground": {
+					"variable": "stamp-negative-foreground",
+					"opacity": 1
+				}
+			},
+			{
+				"name": "Variant=informative, Type=icon",
+				"variant": "informative",
+				"type": "icon",
 				"fill": {
 					"variable": "stamp-informative-background",
 					"opacity": 1
@@ -6359,9 +6451,18 @@ const COMPONENTS = {
 				}
 			}
 		],
-		"icons": {
-			"star-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z\" fill=\"#04383A\"/>\n</svg>"
-		}
+		"typeOrder": [
+			"mark",
+			"icon"
+		],
+		"variantOrder": [
+			"neutral",
+			"emphasis",
+			"positive",
+			"warning",
+			"negative",
+			"informative"
+		]
 	}
 };
 const TEMPLATES = {
@@ -6767,14 +6868,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -6901,14 +6999,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7035,14 +7130,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7179,14 +7271,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7313,14 +7402,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7447,14 +7533,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7591,14 +7674,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7725,14 +7805,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -7859,14 +7936,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -8003,14 +8077,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -8137,14 +8208,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -8271,14 +8339,11 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=emphasis",
-															"props": {
-																"Show icon": true,
-																"Show mark": false
-															},
+															"variant": "Variant=emphasis, Type=icon",
 															"sizeVar": "spacing-7",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"icon": "star-line"
 														},
 														{
 															"type": "text",
@@ -8390,6 +8455,13 @@ const TEMPLATES = {
 							"layoutSizingHorizontal": "FILL",
 							"layoutSizingVertical": "HUG",
 							"overrides": [
+								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
 								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
@@ -8600,6 +8672,13 @@ const TEMPLATES = {
 							"layoutSizingVertical": "HUG",
 							"overrides": [
 								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
+								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
 								},
@@ -8729,14 +8808,11 @@ const TEMPLATES = {
 																			"type": "instance",
 																			"name": "stamp",
 																			"component": "Stamp",
-																			"variant": "Variant=emphasis",
-																			"props": {
-																				"Show icon": true,
-																				"Show mark": false
-																			},
+																			"variant": "Variant=emphasis, Type=icon",
 																			"sizeVar": "spacing-4",
 																			"layoutSizingHorizontal": "FIXED",
-																			"layoutSizingVertical": "FIXED"
+																			"layoutSizingVertical": "FIXED",
+																			"icon": "check-fill"
 																		},
 																		{
 																			"type": "text",
@@ -8770,14 +8846,11 @@ const TEMPLATES = {
 																			"type": "instance",
 																			"name": "stamp",
 																			"component": "Stamp",
-																			"variant": "Variant=emphasis",
-																			"props": {
-																				"Show icon": true,
-																				"Show mark": false
-																			},
+																			"variant": "Variant=emphasis, Type=icon",
 																			"sizeVar": "spacing-4",
 																			"layoutSizingHorizontal": "FIXED",
-																			"layoutSizingVertical": "FIXED"
+																			"layoutSizingVertical": "FIXED",
+																			"icon": "check-fill"
 																		},
 																		{
 																			"type": "text",
@@ -8811,14 +8884,11 @@ const TEMPLATES = {
 																			"type": "instance",
 																			"name": "stamp",
 																			"component": "Stamp",
-																			"variant": "Variant=emphasis",
-																			"props": {
-																				"Show icon": true,
-																				"Show mark": false
-																			},
+																			"variant": "Variant=emphasis, Type=icon",
 																			"sizeVar": "spacing-4",
 																			"layoutSizingHorizontal": "FIXED",
-																			"layoutSizingVertical": "FIXED"
+																			"layoutSizingVertical": "FIXED",
+																			"icon": "check-fill"
 																		},
 																		{
 																			"type": "text",
@@ -9535,7 +9605,8 @@ const TEMPLATES = {
 										"Tag",
 										"Tag"
 									],
-									"colorTheme": "light"
+									"colorTheme": "light",
+									"locationIcon": "earth-fill"
 								}
 							],
 							"padding": {
@@ -9577,6 +9648,13 @@ const TEMPLATES = {
 							"layoutSizingHorizontal": "FILL",
 							"layoutSizingVertical": "HUG",
 							"overrides": [
+								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
 								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
@@ -10092,6 +10170,13 @@ const TEMPLATES = {
 							"layoutSizingVertical": "HUG",
 							"overrides": [
 								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
+								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
 								},
@@ -10213,15 +10298,13 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=neutral",
+															"variant": "Variant=neutral, Type=mark",
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED",
 															"props": {
-																"Show icon": false,
-																"Show mark": true,
 																"Mark": "1"
-															},
-															"sizeVar": "spacing-10",
-															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															}
 														},
 														{
 															"type": "autoLayout",
@@ -10290,15 +10373,13 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=neutral",
+															"variant": "Variant=neutral, Type=mark",
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED",
 															"props": {
-																"Show icon": false,
-																"Show mark": true,
 																"Mark": "2"
-															},
-															"sizeVar": "spacing-10",
-															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															}
 														},
 														{
 															"type": "autoLayout",
@@ -10367,15 +10448,13 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=neutral",
+															"variant": "Variant=neutral, Type=mark",
+															"sizeVar": "spacing-10",
+															"layoutSizingHorizontal": "FIXED",
+															"layoutSizingVertical": "FIXED",
 															"props": {
-																"Show icon": false,
-																"Show mark": true,
 																"Mark": "3"
-															},
-															"sizeVar": "spacing-10",
-															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															}
 														},
 														{
 															"type": "autoLayout",
@@ -10444,15 +10523,13 @@ const TEMPLATES = {
 															"type": "instance",
 															"name": "stamp",
 															"component": "Stamp",
-															"variant": "Variant=neutral",
-															"props": {
-																"Show icon": false,
-																"Show mark": true,
-																"Mark": "4"
-															},
+															"variant": "Variant=neutral, Type=mark",
 															"sizeVar": "spacing-10",
 															"layoutSizingHorizontal": "FIXED",
-															"layoutSizingVertical": "FIXED"
+															"layoutSizingVertical": "FIXED",
+															"props": {
+																"Mark": "4"
+															}
 														},
 														{
 															"type": "autoLayout",
@@ -10547,6 +10624,13 @@ const TEMPLATES = {
 							"layoutSizingHorizontal": "FILL",
 							"layoutSizingVertical": "HUG",
 							"overrides": [
+								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
 								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
@@ -10682,6 +10766,13 @@ const TEMPLATES = {
 							"layoutSizingHorizontal": "FILL",
 							"layoutSizingVertical": "HUG",
 							"overrides": [
+								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
 								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
@@ -11593,14 +11684,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "calculator-line"
 												},
 												{
 													"type": "text",
@@ -11727,14 +11815,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "user-search-line"
 												},
 												{
 													"type": "text",
@@ -11861,14 +11946,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "dashboard-3-line"
 												},
 												{
 													"type": "text",
@@ -11995,14 +12077,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "briefcase-line"
 												},
 												{
 													"type": "text",
@@ -12129,14 +12208,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "newspaper-line"
 												},
 												{
 													"type": "text",
@@ -12263,14 +12339,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "swap-2-line"
 												},
 												{
 													"type": "text",
@@ -12397,14 +12470,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "flow-chart"
 												},
 												{
 													"type": "text",
@@ -12531,14 +12601,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "slideshow-line"
 												},
 												{
 													"type": "text",
@@ -12665,14 +12732,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "line-chart-line"
 												},
 												{
 													"type": "text",
@@ -12799,14 +12863,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "terminal-box-line"
 												},
 												{
 													"type": "text",
@@ -12933,14 +12994,11 @@ const TEMPLATES = {
 													"type": "instance",
 													"name": "stamp",
 													"component": "Stamp",
-													"variant": "Variant=emphasis",
-													"props": {
-														"Show icon": true,
-														"Show mark": false
-													},
+													"variant": "Variant=emphasis, Type=icon",
 													"sizeVar": "spacing-7",
 													"layoutSizingHorizontal": "FIXED",
-													"layoutSizingVertical": "FIXED"
+													"layoutSizingVertical": "FIXED",
+													"icon": "sparkling-2-line"
 												},
 												{
 													"type": "text",
@@ -13052,6 +13110,13 @@ const TEMPLATES = {
 							"layoutSizingHorizontal": "FILL",
 							"layoutSizingVertical": "HUG",
 							"overrides": [
+								{
+									"name": "logo",
+									"swap": {
+										"component": "Brand-logo",
+										"variant": "Brand=Gratia, Theme=light"
+									}
+								},
 								{
 									"name": "notes",
 									"characters": "Add notes or sources here."
@@ -13995,21 +14060,6 @@ const ICON_GLYPH_TYPES = new Set([
 	"LINE",
 ]);
 
-function clearIconWrapperFills(node) {
-	if (node.type === "FRAME" || node.type === "GROUP") {
-		try {
-			node.fills = [];
-		} catch (error) {
-			// Some SVG wrappers reject fills.
-		}
-	}
-	if ("children" in node) {
-		for (const child of node.children) {
-			clearIconWrapperFills(child);
-		}
-	}
-}
-
 function bindFillsDeep(node, binding, byName) {
 	if (ICON_GLYPH_TYPES.has(node.type) && "fills" in node && node.fills !== figma.mixed) {
 		try {
@@ -14025,17 +14075,160 @@ function bindFillsDeep(node, binding, byName) {
 	}
 }
 
-function createIconNode(svg, name, sizePx) {
-	const node = figma.createNodeFromSvg(svg);
-	node.name = name;
-	clearIconWrapperFills(node);
-	node.resize(sizePx, sizePx);
-	node.layoutSizingHorizontal = "FIXED";
-	node.layoutSizingVertical = "FIXED";
-	return node;
+let libraryComponentIndex = null;
+const iconImportCache = new Map();
+
+async function libraryComponentsByName() {
+	if (libraryComponentIndex) return libraryComponentIndex;
+	libraryComponentIndex = new Map();
+	if (!figma.teamLibrary || typeof figma.teamLibrary.getAvailableComponentsAsync !== "function") {
+		return libraryComponentIndex;
+	}
+	const assets = await figma.teamLibrary.getAvailableComponentsAsync();
+	for (const asset of assets) {
+		if (!asset || !asset.name || !asset.key) continue;
+		libraryComponentIndex.set(asset.name, asset);
+		const slash = String(asset.name).lastIndexOf("/");
+		if (slash !== -1) {
+			const short = String(asset.name).slice(slash + 1);
+			if (short && !libraryComponentIndex.has(short)) {
+				libraryComponentIndex.set(short, asset);
+			}
+		}
+	}
+	return libraryComponentIndex;
 }
 
-function layoutVariantSet(componentSet, variantOrder, origin, sizeOrder) {
+async function findIconKeyFromDocument(name) {
+	const instance = figma.root.findOne(
+		(node) =>
+			node.type === "INSTANCE" &&
+			(node.name === name || (node.mainComponent && node.mainComponent.name === name)),
+	);
+	if (!instance || instance.type !== "INSTANCE") return null;
+	const main = await instance.getMainComponentAsync();
+	return main && main.key ? main.key : null;
+}
+
+async function resolveLibraryIconKey(name) {
+	if (typeof ICON_KEYS === "object" && ICON_KEYS && ICON_KEYS[name]) {
+		return ICON_KEYS[name];
+	}
+	const fromDoc = await findIconKeyFromDocument(name);
+	if (fromDoc) return fromDoc;
+	const byName = await libraryComponentsByName();
+	const asset = byName.get(name);
+	return asset && asset.key ? asset.key : null;
+}
+
+async function importLibraryIcon(name) {
+	if (iconImportCache.has(name)) return iconImportCache.get(name);
+	const key = await resolveLibraryIconKey(name);
+	if (!key) {
+		throw new Error(
+			`Unknown icon ${JSON.stringify(name)}. Add its key to scripts/figma/icon-keys.json (from the Icon library component), then regenerate the plugin.`,
+		);
+	}
+	try {
+		const component = await figma.importComponentByKeyAsync(key);
+		iconImportCache.set(name, component);
+		return component;
+	} catch (err) {
+		const message = err && err.message ? err.message : String(err);
+		throw new Error(
+			`Could not import icon ${JSON.stringify(name)} (key ${key}). Enable Icon library on this file. ${message}`,
+		);
+	}
+}
+
+async function createLibraryIconInstance(name, sizePx) {
+	const source = await importLibraryIcon(name);
+	const instance = source.createInstance();
+	instance.name = name;
+	if (sizePx) {
+		instance.resize(sizePx, sizePx);
+		instance.layoutSizingHorizontal = "FIXED";
+		instance.layoutSizingVertical = "FIXED";
+	}
+	return { instance, source };
+}
+
+function setInstanceSwap(instance, propName, component) {
+	const map = propertyKeyMap(instance);
+	const key = map[propName];
+	if (key) {
+		instance.setProperties({ [key]: component });
+		return true;
+	}
+	return false;
+}
+
+function findSwapInstance(host, slotName) {
+	const named = host.findOne((node) => node.name === slotName);
+	if (!named) return null;
+	if (named.type === "INSTANCE") return named;
+	if ("children" in named) {
+		return named.findOne((node) => node.type === "INSTANCE") || null;
+	}
+	return null;
+}
+
+async function swapAndRecolor(host, propName, iconName, slotName, foreground, byName) {
+	if (!iconName) return;
+	const imported = await importLibraryIcon(iconName);
+	if (!setInstanceSwap(host, propName, imported)) {
+		const nested = findSwapInstance(host, slotName || propName.toLowerCase());
+		if (nested && nested.type === "INSTANCE") nested.swapComponent(imported);
+		else {
+			throw new Error(`No ${propName} instance-swap on ${host.name}`);
+		}
+	}
+	const target = findSwapInstance(host, slotName || propName.toLowerCase()) || host;
+	if (foreground) bindFillsDeep(target, foreground, byName);
+}
+
+function stampPaintName(variant) {
+	const match = String(variant || "").match(/Variant=([^,]+)/);
+	return match ? match[1] : "neutral";
+}
+
+async function applyTemplateIconSwaps(instance, spec, byName) {
+	const paint = stampPaintName(spec.variant);
+	if (spec.component === "Stamp" && spec.icon) {
+		await swapAndRecolor(
+			instance,
+			"Icon",
+			spec.icon,
+			"icon",
+			{ variable: `stamp-${paint}-foreground`, opacity: 1 },
+			byName,
+		);
+	}
+	if (spec.component === "Badge") {
+		const foreground = { variable: `badge-${paint}-foreground`, opacity: 1 };
+		if (spec.leading) {
+			await swapAndRecolor(instance, "Leading", spec.leading, "leading", foreground, byName);
+		}
+		if (spec.trailing) {
+			await swapAndRecolor(instance, "Trailing", spec.trailing, "trailing", foreground, byName);
+		}
+	}
+	if (spec.component === "Analyst") {
+		const cardFg = { variable: "card-neutral-foreground", opacity: 1 };
+		if (spec.locationIcon) {
+			await swapAndRecolor(
+				instance,
+				"Location icon",
+				spec.locationIcon,
+				"location-icon",
+				cardFg,
+				byName,
+			);
+		}
+	}
+}
+
+function layoutVariantSet(componentSet, variantOrder, origin, rowOrder, rowProp) {
 	componentSet.x = origin.x;
 	componentSet.y = origin.y;
 	const colGap = 40;
@@ -14046,12 +14239,13 @@ function layoutVariantSet(componentSet, variantOrder, origin, sizeOrder) {
 		cellHeight = Math.max(cellHeight, child.height);
 	}
 	const rowGap = 40;
+	const axis = rowProp || "Size";
 	for (const child of componentSet.children) {
 		const props = Object.fromEntries(
 			child.name.split(", ").map((part) => part.split("=")),
 		);
 		const col = Math.max(0, variantOrder.indexOf(props.Variant));
-		const row = sizeOrder ? Math.max(0, sizeOrder.indexOf(props.Size)) : 0;
+		const row = rowOrder ? Math.max(0, rowOrder.indexOf(props[axis])) : 0;
 		child.x = col * (cellWidth + colGap);
 		child.y = row * (cellHeight + rowGap);
 	}
@@ -14107,6 +14301,17 @@ function styleVariantGroup(componentSet, byName) {
 		componentSet.counterAxisSpacing = VARIANT_GROUP_PAD;
 		componentSet.layoutSizingHorizontal = "FIXED";
 		componentSet.resize(2080, componentSet.height);
+	} else if (componentSet.name === "Stamp") {
+		componentSet.layoutWrap = "WRAP";
+		componentSet.counterAxisSpacing = VARIANT_GROUP_PAD;
+		componentSet.layoutSizingHorizontal = "FIXED";
+		let cellWidth = 0;
+		for (const child of componentSet.children) {
+			cellWidth = Math.max(cellWidth, child.width);
+		}
+		const cols = 6;
+		const inner = cols * cellWidth + (cols - 1) * VARIANT_GROUP_PAD;
+		componentSet.resize(inner + VARIANT_GROUP_PAD * 2, componentSet.height);
 	} else {
 		componentSet.layoutWrap = "NO_WRAP";
 		componentSet.layoutSizingHorizontal = "HUG";
@@ -14203,6 +14408,7 @@ async function createCardVariant(spec, payload, byName, familyFonts) {
 		bindField(text, "fontSize", slot.fontSize, byName);
 		bindField(text, "opacity", slot.opacity, byName);
 		text.name = slot.name;
+		await loadTextNodeFonts(text);
 
 		if (slot.id === "meta") {
 			const wrap = figma.createAutoLayout("VERTICAL");
@@ -14343,7 +14549,7 @@ async function localsByName(variableIds) {
 	return byName;
 }
 
-function applyTextSlot(text, slot, spec, byName, byId, familyFonts) {
+async function applyTextSlot(text, slot, spec, byName, byId, familyFonts) {
 	const weightVar = variableByName(byName, slot.fontWeight);
 	const weight = resolvedModeValue(weightVar, byId);
 	text.fontName = styleForWeight(familyFonts, weight);
@@ -14367,6 +14573,8 @@ function applyTextSlot(text, slot, spec, byName, byId, familyFonts) {
 	if (slot.fontSize) bindField(text, "fontSize", slot.fontSize, byName);
 	bindField(text, "opacity", slot.opacity, byName);
 	text.name = slot.name;
+	// Variable bindings may swap to an optical cut (e.g. "9pt Regular").
+	await loadTextNodeFonts(text);
 	if (slot.nowrap) {
 		text.textAutoResize = "WIDTH_AND_HEIGHT";
 	} else {
@@ -14386,10 +14594,22 @@ async function loadSlotFonts(payload, byName) {
 		weights.push(resolvedModeValue(weightVar, byId));
 	}
 	const weightList = [...new Set(weights.concat([400, 500, 600]))];
+	const available = await figma.listAvailableFontsAsync();
 	for (const family of families) {
 		await loadFamilyStyles(family, weightList);
+		const familyFonts = available.filter((font) => font.fontName.family === family);
+		for (const font of familyFonts) {
+			const style = font.fontName.style;
+			if (
+				styleMatchesWeight(style, "Regular") ||
+				styleMatchesWeight(style, "Medium") ||
+				styleMatchesWeight(style, "SemiBold") ||
+				styleMatchesWeight(style, "Bold")
+			) {
+				await figma.loadFontAsync(font.fontName);
+			}
+		}
 	}
-	const available = await figma.listAvailableFontsAsync();
 	const family = [...families][0];
 	return available.filter((font) => font.fontName.family === family);
 }
@@ -14442,8 +14662,11 @@ async function createBadgeVariant(spec, payload, byName, familyFonts) {
 			wrap.name = slot.name;
 			wrap.primaryAxisAlignItems = "CENTER";
 			wrap.counterAxisAlignItems = "CENTER";
-			const svg = payload.icons[slot.icon];
-			const icon = createIconNode(svg, slot.icon, iconSize);
+			const { instance: icon, source } = await createLibraryIconInstance(
+				slot.icon,
+				iconSize,
+			);
+			icon.name = slot.icon;
 			bindFillsDeep(icon, spec.foreground, byName);
 			wrap.appendChild(icon);
 			bindField(icon, "width", layout.iconSize, byName);
@@ -14451,11 +14674,11 @@ async function createBadgeVariant(spec, payload, byName, familyFonts) {
 			comp.appendChild(wrap);
 			wrap.layoutSizingHorizontal = "HUG";
 			wrap.layoutSizingVertical = "HUG";
-			slotNodes[slot.id] = { node: wrap };
+			slotNodes[slot.id] = { node: wrap, instance: icon, source };
 			continue;
 		}
 		const text = figma.createText();
-		applyTextSlot(text, slot, spec, byName, byId, familyFonts);
+		await applyTextSlot(text, slot, spec, byName, byId, familyFonts);
 		const wrap = createAutoFrame("HORIZONTAL");
 		wrap.name = `${slot.name}-wrap`;
 		wrap.primaryAxisAlignItems = "CENTER";
@@ -14492,7 +14715,26 @@ function linkSimpleProperties(comp, slotNodes, payload, keys) {
 	}
 }
 
-function addSlotProperties(comp, payload, keys) {
+function addInstanceSwapProperty(comp, name, instance, source) {
+	const defaultValue =
+		(source && source.id) ||
+		(instance && instance.mainComponent && instance.mainComponent.id);
+	if (!defaultValue) {
+		throw new Error(`No component id for instance-swap ${JSON.stringify(name)}`);
+	}
+	if (source && source.key) {
+		try {
+			return comp.addComponentProperty(name, "INSTANCE_SWAP", defaultValue, {
+				preferredValues: [{ type: "COMPONENT", key: source.key }],
+			});
+		} catch (error) {
+			// preferredValues is optional
+		}
+	}
+	return comp.addComponentProperty(name, "INSTANCE_SWAP", defaultValue);
+}
+
+function addSlotProperties(comp, payload, keys, slotNodes) {
 	for (const slot of payload.layout.slots) {
 		if (slot.textProperty && !keys[slot.textProperty]) {
 			keys[slot.textProperty] = comp.addComponentProperty(
@@ -14507,6 +14749,21 @@ function addSlotProperties(comp, payload, keys) {
 				"BOOLEAN",
 				slot.booleanDefault !== false,
 			);
+		}
+		if (slot.swapProperty && slotNodes && slotNodes[slot.id] && !keys[slot.swapProperty]) {
+			const target = slotNodes[slot.id].instance || slotNodes[slot.id].node;
+			if (target && target.type === "INSTANCE") {
+				keys[slot.swapProperty] = addInstanceSwapProperty(
+					comp,
+					slot.swapProperty,
+					target,
+					slotNodes[slot.id].source,
+				);
+				target.componentPropertyReferences = {
+					...(target.componentPropertyReferences || {}),
+					mainComponent: keys[slot.swapProperty],
+				};
+			}
 		}
 	}
 }
@@ -14523,7 +14780,7 @@ async function buildBadge(payload, variableIds) {
 	const first = payload.variants[0];
 	const base = await createBadgeVariant(first, payload, byName, familyFonts);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
@@ -14571,18 +14828,21 @@ async function createStampVariant(spec, payload, byName, familyFonts) {
 	const slotNodes = {};
 	for (const slot of layout.slots) {
 		if (slot.kind === "icon") {
-			const svg = payload.icons[slot.icon];
-			const icon = createIconNode(svg, slot.name, iconPx);
-			icon.visible = slot.booleanDefault === true;
+			const { instance: icon, source } = await createLibraryIconInstance(
+				slot.icon,
+				iconPx,
+			);
+			icon.name = slot.name;
+			icon.visible = spec.type === "icon";
 			bindFillsDeep(icon, spec.foreground, byName);
 			comp.appendChild(icon);
-			slotNodes[slot.id] = { node: icon };
+			slotNodes[slot.id] = { node: icon, instance: icon, source };
 			continue;
 		}
 		const text = figma.createText();
-		applyTextSlot(text, slot, spec, byName, byId, familyFonts);
+		await applyTextSlot(text, slot, spec, byName, byId, familyFonts);
 		text.fontSize = textPx;
-		text.visible = slot.booleanDefault !== false;
+		text.visible = spec.type !== "icon";
 		comp.appendChild(text);
 		text.layoutSizingHorizontal = "HUG";
 		text.layoutSizingVertical = "HUG";
@@ -14603,7 +14863,7 @@ async function buildStamp(payload, variableIds) {
 	const first = payload.variants[0];
 	const base = await createStampVariant(first, payload, byName, familyFonts);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
@@ -14619,6 +14879,11 @@ async function buildStamp(payload, variableIds) {
 		for (const node of clone.findAll((item) => item.type === "VECTOR" || item.type === "BOOLEAN_OPERATION")) {
 			bindFillsDeep(node, spec.foreground, byName);
 		}
+		const type = spec.type || "mark";
+		const iconNode = clone.findOne((node) => node.name === "icon");
+		const markNode = clone.findOne((node) => node.name === "mark" && node.type === "TEXT");
+		if (iconNode) iconNode.visible = type === "icon";
+		if (markNode) markNode.visible = type === "mark";
 		components.push(clone);
 	}
 	return finishVariantSet(page, payload, components, removed, byName);
@@ -14655,7 +14920,7 @@ async function createCalloutVariant(spec, payload, byName, familyFonts) {
 	const slotNodes = {};
 	for (const slot of layout.slots) {
 		const text = figma.createText();
-		applyTextSlot(text, slot, spec, byName, byId, familyFonts);
+		await applyTextSlot(text, slot, spec, byName, byId, familyFonts);
 		comp.appendChild(text);
 		text.layoutSizingHorizontal = "FILL";
 		slotNodes[slot.id] = { text };
@@ -14675,7 +14940,7 @@ async function buildCallout(payload, variableIds) {
 	const first = payload.variants[0];
 	const base = await createCalloutVariant(first, payload, byName, familyFonts);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
@@ -14769,9 +15034,9 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 	cover.name = "cover";
 	cover.clipsContent = true;
 	cover.resize(layout.width, layout.coverHeight);
+	comp.appendChild(cover);
 	cover.layoutSizingHorizontal = "FILL";
 	cover.layoutSizingVertical = "FIXED";
-	comp.appendChild(cover);
 
 	const flush =
 		mediaSet.children.find((child) => child.name === "Type=flush") ||
@@ -14785,7 +15050,7 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 	const specialization = createBadgeInstance(badgeSet, {
 		Variant: "emphasis",
 		Label: "Specialization",
-		"Show leading": true,
+		"Show leading": false,
 		"Show trailing": false,
 	});
 	specialization.name = "specialization";
@@ -14797,34 +15062,34 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 
 	const body = createAutoFrame("VERTICAL");
 	body.name = "body";
-	body.layoutSizingHorizontal = "FILL";
-	body.layoutSizingVertical = "HUG";
 	bindField(body, "paddingTop", size.padding, byName);
 	bindField(body, "paddingRight", size.padding, byName);
 	bindField(body, "paddingBottom", size.padding, byName);
 	bindField(body, "paddingLeft", size.padding, byName);
 	bindField(body, "itemSpacing", layout.bodyGap, byName);
 	comp.appendChild(body);
+	body.layoutSizingHorizontal = "FILL";
+	body.layoutSizingVertical = "HUG";
 
 	const identity = createAutoFrame("HORIZONTAL");
 	identity.name = "identity";
 	identity.counterAxisAlignItems = "CENTER";
-	identity.layoutSizingHorizontal = "FILL";
-	identity.layoutSizingVertical = "HUG";
 	bindField(identity, "itemSpacing", layout.identityGap, byName);
 	body.appendChild(identity);
+	identity.layoutSizingHorizontal = "FILL";
+	identity.layoutSizingVertical = "HUG";
 
 	const names = createAutoFrame("VERTICAL");
 	names.name = "names";
+	identity.appendChild(names);
 	names.layoutSizingHorizontal = "FILL";
 	names.layoutSizingVertical = "HUG";
-	identity.appendChild(names);
 	const nameText = figma.createText();
-	applyTextSlot(nameText, slotById(payload, "name"), paint, byName, byId, familyFonts);
+	await applyTextSlot(nameText, slotById(payload, "name"), paint, byName, byId, familyFonts);
 	names.appendChild(nameText);
 	nameText.layoutSizingHorizontal = "FILL";
 	const roleText = figma.createText();
-	applyTextSlot(roleText, slotById(payload, "role"), paint, byName, byId, familyFonts);
+	await applyTextSlot(roleText, slotById(payload, "role"), paint, byName, byId, familyFonts);
 	names.appendChild(roleText);
 	roleText.layoutSizingHorizontal = "FILL";
 
@@ -14839,29 +15104,34 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 	const locationRow = createAutoFrame("HORIZONTAL");
 	locationRow.name = "location-row";
 	locationRow.counterAxisAlignItems = "CENTER";
-	locationRow.layoutSizingHorizontal = "FILL";
-	locationRow.layoutSizingVertical = "HUG";
 	bindField(locationRow, "itemSpacing", layout.locationGap, byName);
 	bindField(locationRow, "paddingBottom", layout.locationPadBottom, byName);
 	body.appendChild(locationRow);
-	const locIcon = createIconNode(payload.icons["earth-fill"], "location-icon", iconSize);
+	locationRow.layoutSizingHorizontal = "FILL";
+	locationRow.layoutSizingVertical = "HUG";
+	const locIconResult = await createLibraryIconInstance(
+		layout.locationIcon || "earth-fill",
+		iconSize,
+	);
+	const locIcon = locIconResult.instance;
+	locIcon.name = "location-icon";
 	bindFillsDeep(locIcon, paint.foreground, byName);
 	bindField(locIcon, "width", layout.iconSize, byName);
 	bindField(locIcon, "height", layout.iconSize, byName);
 	locationRow.appendChild(locIcon);
 	const locationText = figma.createText();
-	applyTextSlot(locationText, slotById(payload, "location"), paint, byName, byId, familyFonts);
+	await applyTextSlot(locationText, slotById(payload, "location"), paint, byName, byId, familyFonts);
 	locationRow.appendChild(locationText);
 	locationText.layoutSizingHorizontal = "FILL";
 
 	const tags = createAutoFrame("HORIZONTAL");
 	tags.name = "tags";
 	tags.layoutWrap = "WRAP";
-	tags.layoutSizingHorizontal = "FILL";
-	tags.layoutSizingVertical = "HUG";
 	bindField(tags, "itemSpacing", layout.tagsGap, byName);
 	tags.counterAxisSpacing = resolvedModeValue(variableByName(byName, layout.tagsGap), byId);
 	body.appendChild(tags);
+	tags.layoutSizingHorizontal = "FILL";
+	tags.layoutSizingVertical = "HUG";
 	const tagInstances = [];
 	for (let index = 0; index < 4; index += 1) {
 		const tag = createBadgeInstance(badgeSet, {
@@ -14884,6 +15154,7 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 			specialization: { node: specialization },
 			logo: { node: logo },
 			"location-row": { node: locationRow },
+			"location-icon": { node: locIcon, instance: locIcon, source: locIconResult.source },
 			tags: { node: tags },
 		},
 	};
@@ -14910,7 +15181,7 @@ async function buildAnalyst(payload, variableIds) {
 		mediaSet,
 	);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	for (const slot of payload.layout.slots) {
 		if (!slot.booleanProperty) continue;
 		if (!keys[slot.booleanProperty]) {
@@ -14933,6 +15204,19 @@ async function buildAnalyst(payload, variableIds) {
 		target.componentPropertyReferences = {
 			...(target.componentPropertyReferences || {}),
 			visible: keys[prop],
+		};
+	}
+	const locNodes = base.slotNodes["location-icon"];
+	if (locNodes && locNodes.instance && locNodes.instance.type === "INSTANCE") {
+		keys["Location icon"] = addInstanceSwapProperty(
+			base.comp,
+			"Location icon",
+			locNodes.instance,
+			locNodes.source,
+		);
+		locNodes.instance.componentPropertyReferences = {
+			...(locNodes.instance.componentPropertyReferences || {}),
+			mainComponent: keys["Location icon"],
 		};
 	}
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
@@ -15424,6 +15708,7 @@ async function buildTemplateNode(spec, byName, parent) {
 			instance.resize(Math.max(1, spec.heightPx * ratio), spec.heightPx);
 		}
 		await applyOverrides(instance, spec.overrides);
+		await applyTemplateIconSwaps(instance, spec, byName);
 		if (spec.tagLabels && spec.tagLabels.length > 0) {
 			const tags = instance.findOne((node) => node.name === "tags");
 			const badges = tags
@@ -15559,6 +15844,8 @@ function summarizeSyncResult(result) {
 }
 
 async function runDeckToolSync(command) {
+	libraryComponentIndex = null;
+	iconImportCache.clear();
 	const cmd = command || "all";
 	if (cmd === "sync-variables") {
 		return { command: cmd, variables: await syncAllVariables(VARIABLES) };

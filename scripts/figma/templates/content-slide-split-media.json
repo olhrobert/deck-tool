@@ -490,6 +490,13 @@
 						"layoutSizingVertical": "HUG",
 						"overrides": [
 							{
+								"name": "logo",
+								"swap": {
+									"component": "Brand-logo",
+									"variant": "Brand=Gratia, Theme=light"
+								}
+							},
+							{
 								"name": "notes",
 								"characters": "Add notes or sources here."
 							},

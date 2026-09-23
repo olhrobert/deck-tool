@@ -58,7 +58,7 @@ Page order: **Components** → divider → section header → that section’s s
 - **Chrome.** Rebuild `<header-container>` / `<content-container>` / `<footer-container>` as frames with chrome padding variables. Header `paddingBottom` is the gap before content; content `paddingTop` is 0. Do not leave the Components-page media-slot samples inside. Class padding (`p-0`, `pr-0`, `p-20`) overrides those tokens.
 - **Pretitle.** Read `components.slideTitle.pretitle.default` on the **build brand** (default Gratia). `badge` → Slide-pretitle `Type=badge`; `text` → `Type=label`. Gratia = badge; Riverton = label. HTML may still use `<slide-pretitle>`; Figma resolves via that default unless the preset explicitly uses `<badge data-slot="pre">`. Hide pret/sub layers when the HTML omits them.
 - **Footer logo.** `Slide-footer` already nests Brand-logo. Default `Brand=Gratia, Theme=light` for Gratia builds. Cover `<img data-logo>` → Brand-logo (`Brand=Riverton` only when the src path says so). `Theme=dark` when the slide is `color-theme="dark"` or the src is `*-logo-inverted.svg`. Color collection Dark does not swap baked logo fills.
-- **Icons.** Stamp / Badge / Analyst SVG imports are frames around vectors. Never fill the icon frame — only VECTOR / BOOLEAN_OPERATION (and similar glyph nodes) get the foreground paint.
+- **Icons.** Stamp / Badge / Analyst nest Icon-library instances (`star-fill`, `checkbox-circle-fill`, `earth-fill`, …) with INSTANCE_SWAP. Do not detach. Template `icon="…"` / `leading` / `trailing` map to names in `scripts/figma/icon-keys.json`; apply uses `importComponentByKeyAsync`, swaps, then recolors VECTOR / BOOLEAN_OPERATION fills to the stamp or badge foreground token (`#000` in the library is only the default). New glyph names need a key entry and a plugin regen. Stamp is `Variant={paint}, Type=mark|icon`. HTML never uses mark and icon together.
 - **Analyst.** Instance `Size=lg` (or `sm`) with slot overrides. Do not recurse photo/badge innards.
 - **Dark slides.** `color-theme="dark"` on `<slide>` is a Color collection mode on the template root — not a separate variant.
 - Layout presets keep placeholder copy. Brand slides keep HTML copy.
@@ -74,7 +74,7 @@ Page order: **Components** → divider → section header → that section’s s
 | `<cover-title>` | Instance `Cover-title` `Size=sm\|md\|lg\|xl` × `Align=left\|center\|right` (omit `align` → left) |
 | `<stack>` / layout `<div>` | Auto-layout frame; `gap="2"` → `spacing-2`; `justify-between` / `mt-auto` → `SPACE_BETWEEN` with Gap **Auto** (no `itemSpacing`); `width="fill"` → FILL; `columns="3"` → wrap grid |
 | `<card>` | Instance `Card` when slots match the catalog; otherwise a tokenized card frame |
-| `<stamp>` / `<badge>` / `<divider>` / `<media-slot>` / `<analyst>` / `<attribution-box>` | Matching Components-page instance. On a dark canvas, attribution-box is pinned to Color mode light |
+| `<stamp>` / `<badge>` / `<divider>` / `<media-slot>` / `<analyst>` / `<attribution-box>` | Matching Components-page instance. Stamp is `Variant={paint}, Type=mark\|icon`. Badge leading/trailing are INSTANCE_SWAP. On a dark canvas, attribution-box is pinned to Color mode light |
 | `<slide-footer>` | Instance `Slide-footer` (includes Brand-logo) |
 | Free `<text>` | Text object with family / size / weight / line-height / tone bindings |
 

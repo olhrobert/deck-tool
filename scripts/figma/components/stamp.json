@@ -50,8 +50,6 @@
 				"textCase": "ORIGINAL",
 				"characters": "1",
 				"textProperty": "Mark",
-				"booleanProperty": "Show mark",
-				"booleanDefault": true,
 				"nowrap": true,
 				"align": "CENTER"
 			},
@@ -60,15 +58,15 @@
 				"name": "icon",
 				"kind": "icon",
 				"icon": "star-fill",
-				"booleanProperty": "Show icon",
-				"booleanDefault": false
+				"swapProperty": "Icon"
 			}
 		]
 	},
 	"variants": [
 		{
-			"name": "Variant=neutral",
+			"name": "Variant=neutral, Type=mark",
 			"variant": "neutral",
+			"type": "mark",
 			"fill": {
 				"variable": "stamp-neutral-background",
 				"opacity": 0.1
@@ -80,8 +78,9 @@
 			}
 		},
 		{
-			"name": "Variant=emphasis",
+			"name": "Variant=emphasis, Type=mark",
 			"variant": "emphasis",
+			"type": "mark",
 			"fill": {
 				"variable": "stamp-emphasis-background",
 				"opacity": 1
@@ -93,8 +92,9 @@
 			}
 		},
 		{
-			"name": "Variant=positive",
+			"name": "Variant=positive, Type=mark",
 			"variant": "positive",
+			"type": "mark",
 			"fill": {
 				"variable": "stamp-positive-background",
 				"opacity": 1
@@ -106,8 +106,9 @@
 			}
 		},
 		{
-			"name": "Variant=warning",
+			"name": "Variant=warning, Type=mark",
 			"variant": "warning",
+			"type": "mark",
 			"fill": {
 				"variable": "stamp-warning-background",
 				"opacity": 1
@@ -119,8 +120,9 @@
 			}
 		},
 		{
-			"name": "Variant=negative",
+			"name": "Variant=negative, Type=mark",
 			"variant": "negative",
+			"type": "mark",
 			"fill": {
 				"variable": "stamp-negative-background",
 				"opacity": 1
@@ -132,8 +134,93 @@
 			}
 		},
 		{
-			"name": "Variant=informative",
+			"name": "Variant=informative, Type=mark",
 			"variant": "informative",
+			"type": "mark",
+			"fill": {
+				"variable": "stamp-informative-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-informative-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=neutral, Type=icon",
+			"variant": "neutral",
+			"type": "icon",
+			"fill": {
+				"variable": "stamp-neutral-background",
+				"opacity": 0.1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-neutral-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=emphasis, Type=icon",
+			"variant": "emphasis",
+			"type": "icon",
+			"fill": {
+				"variable": "stamp-emphasis-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-emphasis-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=positive, Type=icon",
+			"variant": "positive",
+			"type": "icon",
+			"fill": {
+				"variable": "stamp-positive-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-positive-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=warning, Type=icon",
+			"variant": "warning",
+			"type": "icon",
+			"fill": {
+				"variable": "stamp-warning-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-warning-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=negative, Type=icon",
+			"variant": "negative",
+			"type": "icon",
+			"fill": {
+				"variable": "stamp-negative-background",
+				"opacity": 1
+			},
+			"stroke": null,
+			"foreground": {
+				"variable": "stamp-negative-foreground",
+				"opacity": 1
+			}
+		},
+		{
+			"name": "Variant=informative, Type=icon",
+			"variant": "informative",
+			"type": "icon",
 			"fill": {
 				"variable": "stamp-informative-background",
 				"opacity": 1
@@ -145,7 +232,16 @@
 			}
 		}
 	],
-	"icons": {
-		"star-fill": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z\" fill=\"#04383A\"/>\n</svg>"
-	}
+	"typeOrder": [
+		"mark",
+		"icon"
+	],
+	"variantOrder": [
+		"neutral",
+		"emphasis",
+		"positive",
+		"warning",
+		"negative",
+		"informative"
+	]
 }

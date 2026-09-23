@@ -378,21 +378,6 @@ const ICON_GLYPH_TYPES = new Set([
 	"LINE",
 ]);
 
-function clearIconWrapperFills(node) {
-	if (node.type === "FRAME" || node.type === "GROUP") {
-		try {
-			node.fills = [];
-		} catch (error) {
-			// Some SVG wrappers reject fills.
-		}
-	}
-	if ("children" in node) {
-		for (const child of node.children) {
-			clearIconWrapperFills(child);
-		}
-	}
-}
-
 function bindFillsDeep(node, binding, byName) {
 	if (ICON_GLYPH_TYPES.has(node.type) && "fills" in node && node.fills !== figma.mixed) {
 		try {
@@ -408,17 +393,160 @@ function bindFillsDeep(node, binding, byName) {
 	}
 }
 
-function createIconNode(svg, name, sizePx) {
-	const node = figma.createNodeFromSvg(svg);
-	node.name = name;
-	clearIconWrapperFills(node);
-	node.resize(sizePx, sizePx);
-	node.layoutSizingHorizontal = "FIXED";
-	node.layoutSizingVertical = "FIXED";
-	return node;
+let libraryComponentIndex = null;
+const iconImportCache = new Map();
+
+async function libraryComponentsByName() {
+	if (libraryComponentIndex) return libraryComponentIndex;
+	libraryComponentIndex = new Map();
+	if (!figma.teamLibrary || typeof figma.teamLibrary.getAvailableComponentsAsync !== "function") {
+		return libraryComponentIndex;
+	}
+	const assets = await figma.teamLibrary.getAvailableComponentsAsync();
+	for (const asset of assets) {
+		if (!asset || !asset.name || !asset.key) continue;
+		libraryComponentIndex.set(asset.name, asset);
+		const slash = String(asset.name).lastIndexOf("/");
+		if (slash !== -1) {
+			const short = String(asset.name).slice(slash + 1);
+			if (short && !libraryComponentIndex.has(short)) {
+				libraryComponentIndex.set(short, asset);
+			}
+		}
+	}
+	return libraryComponentIndex;
 }
 
-function layoutVariantSet(componentSet, variantOrder, origin, sizeOrder) {
+async function findIconKeyFromDocument(name) {
+	const instance = figma.root.findOne(
+		(node) =>
+			node.type === "INSTANCE" &&
+			(node.name === name || (node.mainComponent && node.mainComponent.name === name)),
+	);
+	if (!instance || instance.type !== "INSTANCE") return null;
+	const main = await instance.getMainComponentAsync();
+	return main && main.key ? main.key : null;
+}
+
+async function resolveLibraryIconKey(name) {
+	if (typeof ICON_KEYS === "object" && ICON_KEYS && ICON_KEYS[name]) {
+		return ICON_KEYS[name];
+	}
+	const fromDoc = await findIconKeyFromDocument(name);
+	if (fromDoc) return fromDoc;
+	const byName = await libraryComponentsByName();
+	const asset = byName.get(name);
+	return asset && asset.key ? asset.key : null;
+}
+
+async function importLibraryIcon(name) {
+	if (iconImportCache.has(name)) return iconImportCache.get(name);
+	const key = await resolveLibraryIconKey(name);
+	if (!key) {
+		throw new Error(
+			`Unknown icon ${JSON.stringify(name)}. Add its key to scripts/figma/icon-keys.json (from the Icon library component), then regenerate the plugin.`,
+		);
+	}
+	try {
+		const component = await figma.importComponentByKeyAsync(key);
+		iconImportCache.set(name, component);
+		return component;
+	} catch (err) {
+		const message = err && err.message ? err.message : String(err);
+		throw new Error(
+			`Could not import icon ${JSON.stringify(name)} (key ${key}). Enable Icon library on this file. ${message}`,
+		);
+	}
+}
+
+async function createLibraryIconInstance(name, sizePx) {
+	const source = await importLibraryIcon(name);
+	const instance = source.createInstance();
+	instance.name = name;
+	if (sizePx) {
+		instance.resize(sizePx, sizePx);
+		instance.layoutSizingHorizontal = "FIXED";
+		instance.layoutSizingVertical = "FIXED";
+	}
+	return { instance, source };
+}
+
+function setInstanceSwap(instance, propName, component) {
+	const map = propertyKeyMap(instance);
+	const key = map[propName];
+	if (key) {
+		instance.setProperties({ [key]: component });
+		return true;
+	}
+	return false;
+}
+
+function findSwapInstance(host, slotName) {
+	const named = host.findOne((node) => node.name === slotName);
+	if (!named) return null;
+	if (named.type === "INSTANCE") return named;
+	if ("children" in named) {
+		return named.findOne((node) => node.type === "INSTANCE") || null;
+	}
+	return null;
+}
+
+async function swapAndRecolor(host, propName, iconName, slotName, foreground, byName) {
+	if (!iconName) return;
+	const imported = await importLibraryIcon(iconName);
+	if (!setInstanceSwap(host, propName, imported)) {
+		const nested = findSwapInstance(host, slotName || propName.toLowerCase());
+		if (nested && nested.type === "INSTANCE") nested.swapComponent(imported);
+		else {
+			throw new Error(`No ${propName} instance-swap on ${host.name}`);
+		}
+	}
+	const target = findSwapInstance(host, slotName || propName.toLowerCase()) || host;
+	if (foreground) bindFillsDeep(target, foreground, byName);
+}
+
+function stampPaintName(variant) {
+	const match = String(variant || "").match(/Variant=([^,]+)/);
+	return match ? match[1] : "neutral";
+}
+
+async function applyTemplateIconSwaps(instance, spec, byName) {
+	const paint = stampPaintName(spec.variant);
+	if (spec.component === "Stamp" && spec.icon) {
+		await swapAndRecolor(
+			instance,
+			"Icon",
+			spec.icon,
+			"icon",
+			{ variable: `stamp-${paint}-foreground`, opacity: 1 },
+			byName,
+		);
+	}
+	if (spec.component === "Badge") {
+		const foreground = { variable: `badge-${paint}-foreground`, opacity: 1 };
+		if (spec.leading) {
+			await swapAndRecolor(instance, "Leading", spec.leading, "leading", foreground, byName);
+		}
+		if (spec.trailing) {
+			await swapAndRecolor(instance, "Trailing", spec.trailing, "trailing", foreground, byName);
+		}
+	}
+	if (spec.component === "Analyst") {
+		const cardFg = { variable: "card-neutral-foreground", opacity: 1 };
+		if (spec.locationIcon) {
+			await swapAndRecolor(
+				instance,
+				"Location icon",
+				spec.locationIcon,
+				"location-icon",
+				cardFg,
+				byName,
+			);
+		}
+	}
+}
+
+function layoutVariantSet(componentSet, variantOrder, origin, rowOrder, rowProp) {
 	componentSet.x = origin.x;
 	componentSet.y = origin.y;
 	const colGap = 40;
@@ -429,12 +557,13 @@ function layoutVariantSet(componentSet, variantOrder, origin, sizeOrder) {
 		cellHeight = Math.max(cellHeight, child.height);
 	}
 	const rowGap = 40;
+	const axis = rowProp || "Size";
 	for (const child of componentSet.children) {
 		const props = Object.fromEntries(
 			child.name.split(", ").map((part) => part.split("=")),
 		);
 		const col = Math.max(0, variantOrder.indexOf(props.Variant));
-		const row = sizeOrder ? Math.max(0, sizeOrder.indexOf(props.Size)) : 0;
+		const row = rowOrder ? Math.max(0, rowOrder.indexOf(props[axis])) : 0;
 		child.x = col * (cellWidth + colGap);
 		child.y = row * (cellHeight + rowGap);
 	}
@@ -490,6 +619,17 @@ function styleVariantGroup(componentSet, byName) {
 		componentSet.counterAxisSpacing = VARIANT_GROUP_PAD;
 		componentSet.layoutSizingHorizontal = "FIXED";
 		componentSet.resize(2080, componentSet.height);
+	} else if (componentSet.name === "Stamp") {
+		componentSet.layoutWrap = "WRAP";
+		componentSet.counterAxisSpacing = VARIANT_GROUP_PAD;
+		componentSet.layoutSizingHorizontal = "FIXED";
+		let cellWidth = 0;
+		for (const child of componentSet.children) {
+			cellWidth = Math.max(cellWidth, child.width);
+		}
+		const cols = 6;
+		const inner = cols * cellWidth + (cols - 1) * VARIANT_GROUP_PAD;
+		componentSet.resize(inner + VARIANT_GROUP_PAD * 2, componentSet.height);
 	} else {
 		componentSet.layoutWrap = "NO_WRAP";
 		componentSet.layoutSizingHorizontal = "HUG";
@@ -586,6 +726,7 @@ async function createCardVariant(spec, payload, byName, familyFonts) {
 		bindField(text, "fontSize", slot.fontSize, byName);
 		bindField(text, "opacity", slot.opacity, byName);
 		text.name = slot.name;
+		await loadTextNodeFonts(text);
 
 		if (slot.id === "meta") {
 			const wrap = figma.createAutoLayout("VERTICAL");
@@ -726,7 +867,7 @@ async function localsByName(variableIds) {
 	return byName;
 }
 
-function applyTextSlot(text, slot, spec, byName, byId, familyFonts) {
+async function applyTextSlot(text, slot, spec, byName, byId, familyFonts) {
 	const weightVar = variableByName(byName, slot.fontWeight);
 	const weight = resolvedModeValue(weightVar, byId);
 	text.fontName = styleForWeight(familyFonts, weight);
@@ -750,6 +891,8 @@ function applyTextSlot(text, slot, spec, byName, byId, familyFonts) {
 	if (slot.fontSize) bindField(text, "fontSize", slot.fontSize, byName);
 	bindField(text, "opacity", slot.opacity, byName);
 	text.name = slot.name;
+	// Variable bindings may swap to an optical cut (e.g. "9pt Regular").
+	await loadTextNodeFonts(text);
 	if (slot.nowrap) {
 		text.textAutoResize = "WIDTH_AND_HEIGHT";
 	} else {
@@ -769,10 +912,22 @@ async function loadSlotFonts(payload, byName) {
 		weights.push(resolvedModeValue(weightVar, byId));
 	}
 	const weightList = [...new Set(weights.concat([400, 500, 600]))];
+	const available = await figma.listAvailableFontsAsync();
 	for (const family of families) {
 		await loadFamilyStyles(family, weightList);
+		const familyFonts = available.filter((font) => font.fontName.family === family);
+		for (const font of familyFonts) {
+			const style = font.fontName.style;
+			if (
+				styleMatchesWeight(style, "Regular") ||
+				styleMatchesWeight(style, "Medium") ||
+				styleMatchesWeight(style, "SemiBold") ||
+				styleMatchesWeight(style, "Bold")
+			) {
+				await figma.loadFontAsync(font.fontName);
+			}
+		}
 	}
-	const available = await figma.listAvailableFontsAsync();
 	const family = [...families][0];
 	return available.filter((font) => font.fontName.family === family);
 }
@@ -825,8 +980,11 @@ async function createBadgeVariant(spec, payload, byName, familyFonts) {
 			wrap.name = slot.name;
 			wrap.primaryAxisAlignItems = "CENTER";
 			wrap.counterAxisAlignItems = "CENTER";
-			const svg = payload.icons[slot.icon];
-			const icon = createIconNode(svg, slot.icon, iconSize);
+			const { instance: icon, source } = await createLibraryIconInstance(
+				slot.icon,
+				iconSize,
+			);
+			icon.name = slot.icon;
 			bindFillsDeep(icon, spec.foreground, byName);
 			wrap.appendChild(icon);
 			bindField(icon, "width", layout.iconSize, byName);
@@ -834,11 +992,11 @@ async function createBadgeVariant(spec, payload, byName, familyFonts) {
 			comp.appendChild(wrap);
 			wrap.layoutSizingHorizontal = "HUG";
 			wrap.layoutSizingVertical = "HUG";
-			slotNodes[slot.id] = { node: wrap };
+			slotNodes[slot.id] = { node: wrap, instance: icon, source };
 			continue;
 		}
 		const text = figma.createText();
-		applyTextSlot(text, slot, spec, byName, byId, familyFonts);
+		await applyTextSlot(text, slot, spec, byName, byId, familyFonts);
 		const wrap = createAutoFrame("HORIZONTAL");
 		wrap.name = `${slot.name}-wrap`;
 		wrap.primaryAxisAlignItems = "CENTER";
@@ -875,7 +1033,26 @@ function linkSimpleProperties(comp, slotNodes, payload, keys) {
 	}
 }
 
-function addSlotProperties(comp, payload, keys) {
+function addInstanceSwapProperty(comp, name, instance, source) {
+	const defaultValue =
+		(source && source.id) ||
+		(instance && instance.mainComponent && instance.mainComponent.id);
+	if (!defaultValue) {
+		throw new Error(`No component id for instance-swap ${JSON.stringify(name)}`);
+	}
+	if (source && source.key) {
+		try {
+			return comp.addComponentProperty(name, "INSTANCE_SWAP", defaultValue, {
+				preferredValues: [{ type: "COMPONENT", key: source.key }],
+			});
+		} catch (error) {
+			// preferredValues is optional
+		}
+	}
+	return comp.addComponentProperty(name, "INSTANCE_SWAP", defaultValue);
+}
+
+function addSlotProperties(comp, payload, keys, slotNodes) {
 	for (const slot of payload.layout.slots) {
 		if (slot.textProperty && !keys[slot.textProperty]) {
 			keys[slot.textProperty] = comp.addComponentProperty(
@@ -890,6 +1067,21 @@ function addSlotProperties(comp, payload, keys) {
 				"BOOLEAN",
 				slot.booleanDefault !== false,
 			);
+		}
+		if (slot.swapProperty && slotNodes && slotNodes[slot.id] && !keys[slot.swapProperty]) {
+			const target = slotNodes[slot.id].instance || slotNodes[slot.id].node;
+			if (target && target.type === "INSTANCE") {
+				keys[slot.swapProperty] = addInstanceSwapProperty(
+					comp,
+					slot.swapProperty,
+					target,
+					slotNodes[slot.id].source,
+				);
+				target.componentPropertyReferences = {
+					...(target.componentPropertyReferences || {}),
+					mainComponent: keys[slot.swapProperty],
+				};
+			}
 		}
 	}
 }
@@ -906,7 +1098,7 @@ async function buildBadge(payload, variableIds) {
 	const first = payload.variants[0];
 	const base = await createBadgeVariant(first, payload, byName, familyFonts);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
@@ -954,18 +1146,21 @@ async function createStampVariant(spec, payload, byName, familyFonts) {
 	const slotNodes = {};
 	for (const slot of layout.slots) {
 		if (slot.kind === "icon") {
-			const svg = payload.icons[slot.icon];
-			const icon = createIconNode(svg, slot.name, iconPx);
-			icon.visible = slot.booleanDefault === true;
+			const { instance: icon, source } = await createLibraryIconInstance(
+				slot.icon,
+				iconPx,
+			);
+			icon.name = slot.name;
+			icon.visible = spec.type === "icon";
 			bindFillsDeep(icon, spec.foreground, byName);
 			comp.appendChild(icon);
-			slotNodes[slot.id] = { node: icon };
+			slotNodes[slot.id] = { node: icon, instance: icon, source };
 			continue;
 		}
 		const text = figma.createText();
-		applyTextSlot(text, slot, spec, byName, byId, familyFonts);
+		await applyTextSlot(text, slot, spec, byName, byId, familyFonts);
 		text.fontSize = textPx;
-		text.visible = slot.booleanDefault !== false;
+		text.visible = spec.type !== "icon";
 		comp.appendChild(text);
 		text.layoutSizingHorizontal = "HUG";
 		text.layoutSizingVertical = "HUG";
@@ -986,7 +1181,7 @@ async function buildStamp(payload, variableIds) {
 	const first = payload.variants[0];
 	const base = await createStampVariant(first, payload, byName, familyFonts);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
@@ -1002,6 +1197,11 @@ async function buildStamp(payload, variableIds) {
 		for (const node of clone.findAll((item) => item.type === "VECTOR" || item.type === "BOOLEAN_OPERATION")) {
 			bindFillsDeep(node, spec.foreground, byName);
 		}
+		const type = spec.type || "mark";
+		const iconNode = clone.findOne((node) => node.name === "icon");
+		const markNode = clone.findOne((node) => node.name === "mark" && node.type === "TEXT");
+		if (iconNode) iconNode.visible = type === "icon";
+		if (markNode) markNode.visible = type === "mark";
 		components.push(clone);
 	}
 	return finishVariantSet(page, payload, components, removed, byName);
@@ -1038,7 +1238,7 @@ async function createCalloutVariant(spec, payload, byName, familyFonts) {
 	const slotNodes = {};
 	for (const slot of layout.slots) {
 		const text = figma.createText();
-		applyTextSlot(text, slot, spec, byName, byId, familyFonts);
+		await applyTextSlot(text, slot, spec, byName, byId, familyFonts);
 		comp.appendChild(text);
 		text.layoutSizingHorizontal = "FILL";
 		slotNodes[slot.id] = { text };
@@ -1058,7 +1258,7 @@ async function buildCallout(payload, variableIds) {
 	const first = payload.variants[0];
 	const base = await createCalloutVariant(first, payload, byName, familyFonts);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
 
 	const components = [base.comp];
@@ -1152,9 +1352,9 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 	cover.name = "cover";
 	cover.clipsContent = true;
 	cover.resize(layout.width, layout.coverHeight);
+	comp.appendChild(cover);
 	cover.layoutSizingHorizontal = "FILL";
 	cover.layoutSizingVertical = "FIXED";
-	comp.appendChild(cover);
 
 	const flush =
 		mediaSet.children.find((child) => child.name === "Type=flush") ||
@@ -1168,7 +1368,7 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 	const specialization = createBadgeInstance(badgeSet, {
 		Variant: "emphasis",
 		Label: "Specialization",
-		"Show leading": true,
+		"Show leading": false,
 		"Show trailing": false,
 	});
 	specialization.name = "specialization";
@@ -1180,34 +1380,34 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 
 	const body = createAutoFrame("VERTICAL");
 	body.name = "body";
-	body.layoutSizingHorizontal = "FILL";
-	body.layoutSizingVertical = "HUG";
 	bindField(body, "paddingTop", size.padding, byName);
 	bindField(body, "paddingRight", size.padding, byName);
 	bindField(body, "paddingBottom", size.padding, byName);
 	bindField(body, "paddingLeft", size.padding, byName);
 	bindField(body, "itemSpacing", layout.bodyGap, byName);
 	comp.appendChild(body);
+	body.layoutSizingHorizontal = "FILL";
+	body.layoutSizingVertical = "HUG";
 
 	const identity = createAutoFrame("HORIZONTAL");
 	identity.name = "identity";
 	identity.counterAxisAlignItems = "CENTER";
-	identity.layoutSizingHorizontal = "FILL";
-	identity.layoutSizingVertical = "HUG";
 	bindField(identity, "itemSpacing", layout.identityGap, byName);
 	body.appendChild(identity);
+	identity.layoutSizingHorizontal = "FILL";
+	identity.layoutSizingVertical = "HUG";
 
 	const names = createAutoFrame("VERTICAL");
 	names.name = "names";
+	identity.appendChild(names);
 	names.layoutSizingHorizontal = "FILL";
 	names.layoutSizingVertical = "HUG";
-	identity.appendChild(names);
 	const nameText = figma.createText();
-	applyTextSlot(nameText, slotById(payload, "name"), paint, byName, byId, familyFonts);
+	await applyTextSlot(nameText, slotById(payload, "name"), paint, byName, byId, familyFonts);
 	names.appendChild(nameText);
 	nameText.layoutSizingHorizontal = "FILL";
 	const roleText = figma.createText();
-	applyTextSlot(roleText, slotById(payload, "role"), paint, byName, byId, familyFonts);
+	await applyTextSlot(roleText, slotById(payload, "role"), paint, byName, byId, familyFonts);
 	names.appendChild(roleText);
 	roleText.layoutSizingHorizontal = "FILL";
 
@@ -1222,29 +1422,34 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 	const locationRow = createAutoFrame("HORIZONTAL");
 	locationRow.name = "location-row";
 	locationRow.counterAxisAlignItems = "CENTER";
-	locationRow.layoutSizingHorizontal = "FILL";
-	locationRow.layoutSizingVertical = "HUG";
 	bindField(locationRow, "itemSpacing", layout.locationGap, byName);
 	bindField(locationRow, "paddingBottom", layout.locationPadBottom, byName);
 	body.appendChild(locationRow);
-	const locIcon = createIconNode(payload.icons["earth-fill"], "location-icon", iconSize);
+	locationRow.layoutSizingHorizontal = "FILL";
+	locationRow.layoutSizingVertical = "HUG";
+	const locIconResult = await createLibraryIconInstance(
+		layout.locationIcon || "earth-fill",
+		iconSize,
+	);
+	const locIcon = locIconResult.instance;
+	locIcon.name = "location-icon";
 	bindFillsDeep(locIcon, paint.foreground, byName);
 	bindField(locIcon, "width", layout.iconSize, byName);
 	bindField(locIcon, "height", layout.iconSize, byName);
 	locationRow.appendChild(locIcon);
 	const locationText = figma.createText();
-	applyTextSlot(locationText, slotById(payload, "location"), paint, byName, byId, familyFonts);
+	await applyTextSlot(locationText, slotById(payload, "location"), paint, byName, byId, familyFonts);
 	locationRow.appendChild(locationText);
 	locationText.layoutSizingHorizontal = "FILL";
 
 	const tags = createAutoFrame("HORIZONTAL");
 	tags.name = "tags";
 	tags.layoutWrap = "WRAP";
-	tags.layoutSizingHorizontal = "FILL";
-	tags.layoutSizingVertical = "HUG";
 	bindField(tags, "itemSpacing", layout.tagsGap, byName);
 	tags.counterAxisSpacing = resolvedModeValue(variableByName(byName, layout.tagsGap), byId);
 	body.appendChild(tags);
+	tags.layoutSizingHorizontal = "FILL";
+	tags.layoutSizingVertical = "HUG";
 	const tagInstances = [];
 	for (let index = 0; index < 4; index += 1) {
 		const tag = createBadgeInstance(badgeSet, {
@@ -1267,6 +1472,7 @@ async function createAnalystVariant(size, payload, byName, familyFonts, badgeSet
 			specialization: { node: specialization },
 			logo: { node: logo },
 			"location-row": { node: locationRow },
+			"location-icon": { node: locIcon, instance: locIcon, source: locIconResult.source },
 			tags: { node: tags },
 		},
 	};
@@ -1293,7 +1499,7 @@ async function buildAnalyst(payload, variableIds) {
 		mediaSet,
 	);
 	const keys = {};
-	addSlotProperties(base.comp, payload, keys);
+	addSlotProperties(base.comp, payload, keys, base.slotNodes);
 	for (const slot of payload.layout.slots) {
 		if (!slot.booleanProperty) continue;
 		if (!keys[slot.booleanProperty]) {
@@ -1316,6 +1522,19 @@ async function buildAnalyst(payload, variableIds) {
 		target.componentPropertyReferences = {
 			...(target.componentPropertyReferences || {}),
 			visible: keys[prop],
+		};
+	}
+	const locNodes = base.slotNodes["location-icon"];
+	if (locNodes && locNodes.instance && locNodes.instance.type === "INSTANCE") {
+		keys["Location icon"] = addInstanceSwapProperty(
+			base.comp,
+			"Location icon",
+			locNodes.instance,
+			locNodes.source,
+		);
+		locNodes.instance.componentPropertyReferences = {
+			...(locNodes.instance.componentPropertyReferences || {}),
+			mainComponent: keys["Location icon"],
 		};
 	}
 	linkSimpleProperties(base.comp, base.slotNodes, payload, keys);
@@ -1807,6 +2026,7 @@ async function buildTemplateNode(spec, byName, parent) {
 			instance.resize(Math.max(1, spec.heightPx * ratio), spec.heightPx);
 		}
 		await applyOverrides(instance, spec.overrides);
+		await applyTemplateIconSwaps(instance, spec, byName);
 		if (spec.tagLabels && spec.tagLabels.length > 0) {
 			const tags = instance.findOne((node) => node.name === "tags");
 			const badges = tags
@@ -1942,6 +2162,8 @@ function summarizeSyncResult(result) {
 }
 
 async function runDeckToolSync(command) {
+	libraryComponentIndex = null;
+	iconImportCache.clear();
 	const cmd = command || "all";
 	if (cmd === "sync-variables") {
 		return { command: cmd, variables: await syncAllVariables(VARIABLES) };

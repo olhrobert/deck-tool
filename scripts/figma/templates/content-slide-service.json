@@ -105,14 +105,11 @@
 																		"type": "instance",
 																		"name": "stamp",
 																		"component": "Stamp",
-																		"variant": "Variant=emphasis",
-																		"props": {
-																			"Show icon": true,
-																			"Show mark": false
-																		},
+																		"variant": "Variant=emphasis, Type=icon",
 																		"sizeVar": "spacing-4",
 																		"layoutSizingHorizontal": "FIXED",
-																		"layoutSizingVertical": "FIXED"
+																		"layoutSizingVertical": "FIXED",
+																		"icon": "check-fill"
 																	},
 																	{
 																		"type": "text",
@@ -146,14 +143,11 @@
 																		"type": "instance",
 																		"name": "stamp",
 																		"component": "Stamp",
-																		"variant": "Variant=emphasis",
-																		"props": {
-																			"Show icon": true,
-																			"Show mark": false
-																		},
+																		"variant": "Variant=emphasis, Type=icon",
 																		"sizeVar": "spacing-4",
 																		"layoutSizingHorizontal": "FIXED",
-																		"layoutSizingVertical": "FIXED"
+																		"layoutSizingVertical": "FIXED",
+																		"icon": "check-fill"
 																	},
 																	{
 																		"type": "text",
@@ -187,14 +181,11 @@
 																		"type": "instance",
 																		"name": "stamp",
 																		"component": "Stamp",
-																		"variant": "Variant=emphasis",
-																		"props": {
-																			"Show icon": true,
-																			"Show mark": false
-																		},
+																		"variant": "Variant=emphasis, Type=icon",
 																		"sizeVar": "spacing-4",
 																		"layoutSizingHorizontal": "FIXED",
-																		"layoutSizingVertical": "FIXED"
+																		"layoutSizingVertical": "FIXED",
+																		"icon": "check-fill"
 																	},
 																	{
 																		"type": "text",
@@ -911,7 +902,8 @@
 									"Tag",
 									"Tag"
 								],
-								"colorTheme": "light"
+								"colorTheme": "light",
+								"locationIcon": "earth-fill"
 							}
 						],
 						"padding": {
@@ -953,6 +945,13 @@
 						"layoutSizingHorizontal": "FILL",
 						"layoutSizingVertical": "HUG",
 						"overrides": [
+							{
+								"name": "logo",
+								"swap": {
+									"component": "Brand-logo",
+									"variant": "Brand=Gratia, Theme=light"
+								}
+							},
 							{
 								"name": "notes",
 								"characters": "Add notes or sources here."

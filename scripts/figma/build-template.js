@@ -440,39 +440,47 @@ function mapStamp(node) {
 	const icon = findChild(node, "stamp-icon");
 	const mark = findChild(node, "stamp-text");
 	const size = node.attrs.size;
-	const props = {
-		"Show icon": Boolean(icon),
-		"Show mark": Boolean(mark),
-	};
+	const iconName = icon && icon.attrs.icon ? String(icon.attrs.icon) : null;
+	const props = {};
 	if (mark) props.Mark = copy(mark);
-	return {
+	const spec = {
 		type: "instance",
 		name: "stamp",
 		component: "Stamp",
-		variant: `Variant=${node.attrs.variant || "neutral"}`,
-		props,
+		variant: `Variant=${node.attrs.variant || "neutral"}, Type=${iconName ? "icon" : "mark"}`,
 		sizeVar: size ? `spacing-${size}` : null,
 		layoutSizingHorizontal: "FIXED",
 		layoutSizingVertical: "FIXED",
 	};
+	if (Object.keys(props).length > 0) spec.props = props;
+	if (iconName) spec.icon = iconName;
+	return spec;
 }
 
 function mapBadge(node) {
-	const icon = findChild(node, "badge-icon");
 	const label = findChild(node, "badge-text") || node;
-	return {
+	const leading = elements(node).find(
+		(child) => child.tag === "badge-icon" && child.attrs["data-slot"] === "leading",
+	);
+	const trailing = elements(node).find(
+		(child) => child.tag === "badge-icon" && child.attrs["data-slot"] === "trailing",
+	);
+	const spec = {
 		type: "instance",
 		name: node.attrs["data-slot"] || "badge",
 		component: "Badge",
 		variant: `Variant=${node.attrs.variant || "neutral"}`,
 		props: {
 			Label: copy(label),
-			"Show leading": Boolean(icon),
-			"Show trailing": false,
+			"Show leading": Boolean(leading),
+			"Show trailing": Boolean(trailing),
 		},
 		layoutSizingHorizontal: "HUG",
 		layoutSizingVertical: "HUG",
 	};
+	if (leading && leading.attrs.icon) spec.leading = String(leading.attrs.icon);
+	if (trailing && trailing.attrs.icon) spec.trailing = String(trailing.attrs.icon);
+	return spec;
 }
 
 function mapDivider(node) {
@@ -600,7 +608,8 @@ function mapAnalyst(node) {
 			characters: copy(findChild(specLabel, "badge-text") || specLabel),
 		});
 	}
-	return {
+	const locationIcon = findSlot(node, "location-icon");
+	const spec = {
 		type: "instance",
 		name: "analyst",
 		component: "Analyst",
@@ -611,6 +620,8 @@ function mapAnalyst(node) {
 		tagLabels,
 		colorTheme: node.attrs["color-theme"] || null,
 	};
+	if (locationIcon && locationIcon.attrs.icon) spec.locationIcon = String(locationIcon.attrs.icon);
+	return spec;
 }
 
 function mapText(node, extras = {}) {
@@ -867,6 +878,12 @@ function buildTemplate(id, settings, slug) {
 		slide.attrs.kind === "cover" ? getPath(settings, "foundations.colorTheme.cover") : null;
 	// Match CSS: kind="cover" with no color-theme uses foundations.colorTheme.cover.
 	const colorTheme = explicitTheme || coverTheme || null;
+	const tree = buildTree(slide, {
+		pretitleDefault,
+		id,
+		colorTheme,
+		logoTheme: colorTheme,
+	});
 	return {
 		brand: slug,
 		id,
@@ -878,12 +895,7 @@ function buildTemplate(id, settings, slug) {
 		height: 800,
 		fill: { variable: "color-slide-background", opacity: 1 },
 		colorTheme,
-		tree: buildTree(slide, {
-			pretitleDefault,
-			id,
-			colorTheme,
-			logoTheme: colorTheme,
-		}),
+		tree,
 	};
 }
 

@@ -7,6 +7,9 @@
 		"figma"
 	],
 	"documentAccess": "dynamic-page",
+	"permissions": [
+		"teamlibrary"
+	],
 	"networkAccess": {
 		"allowedDomains": [
 			"none"
