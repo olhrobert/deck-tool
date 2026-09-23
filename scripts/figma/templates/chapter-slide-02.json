@@ -11,7 +11,7 @@
 		"variable": "color-slide-background",
 		"opacity": 1
 	},
-	"colorTheme": null,
+	"colorTheme": "dark",
 	"tree": {
 		"type": "component",
 		"layoutMode": "VERTICAL",
@@ -46,7 +46,7 @@
 										"name": "cover-title",
 										"component": "Cover-title",
 										"variant": "Size=sm, Align=left",
-										"layoutSizingHorizontal": "HUG",
+										"layoutSizingHorizontal": "FILL",
 										"layoutSizingVertical": "HUG",
 										"overrides": [
 											{

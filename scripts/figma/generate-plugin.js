@@ -4,9 +4,18 @@ const path = require("path");
 const PLUGIN_DIR = path.join(__dirname, "plugin");
 const BODY_PATH = path.join(PLUGIN_DIR, "apply-body.js");
 const CODE_PATH = path.join(PLUGIN_DIR, "code.js");
+const MANIFEST_PATH = path.join(PLUGIN_DIR, "manifest.json");
 const VARIABLES_PATH = path.join(__dirname, "variables.json");
 const COMPONENTS_DIR = path.join(__dirname, "components");
 const TEMPLATES_DIR = path.join(__dirname, "templates");
+
+/** Keep in sync with TEMPLATE_SECTIONS in apply-body.js (menu labels only). */
+const TEMPLATE_MENU_SECTIONS = [
+	{ header: "TITLE SLIDES", match: (id) => String(id).startsWith("title-slide") },
+	{ header: "CHAPTER SLIDES", match: (id) => String(id).startsWith("chapter-slide") },
+	{ header: "CONTENT SLIDES", match: (id) => String(id).startsWith("content-slide") },
+	{ header: "GRATIA SLIDES", match: (id) => String(id).startsWith("gratia-") },
+];
 
 function readJsonOrNull(filePath) {
 	if (!fs.existsSync(filePath)) return null;
@@ -32,6 +41,88 @@ function loadTemplates() {
 	return loadJsonDir(TEMPLATES_DIR);
 }
 
+function templateMenuItems(templates) {
+	const ids = Object.keys(templates || {})
+		.filter((id) => templates[id])
+		.sort();
+	const sections = TEMPLATE_MENU_SECTIONS.map((section) => ({
+		name: section.header,
+		menu: ids
+			.filter((id) => section.match(id))
+			.map((id) => ({
+				name: id,
+				command: `build-template-${id}`,
+			})),
+	})).filter((section) => section.menu.length > 0);
+
+	const leftovers = ids.filter(
+		(id) => !TEMPLATE_MENU_SECTIONS.some((section) => section.match(id)),
+	);
+	for (const id of leftovers) {
+		sections.push({ name: id, command: `build-template-${id}` });
+	}
+	return sections;
+}
+
+function writeManifest(templates) {
+	const perTemplate = templateMenuItems(templates);
+	const manifest = {
+		name: "DeckTool Sync",
+		id: "com.gratia.decktool.sync",
+		api: "1.0.0",
+		main: "code.js",
+		editorType: ["figma"],
+		documentAccess: "dynamic-page",
+		networkAccess: {
+			allowedDomains: ["none"],
+		},
+		menu: [
+			{
+				name: "Sync brand variables",
+				command: "sync-variables",
+			},
+			{
+				name: "Build card",
+				command: "build-card",
+			},
+			{
+				name: "Build badge",
+				command: "build-badge",
+			},
+			{
+				name: "Build stamp",
+				command: "build-stamp",
+			},
+			{
+				name: "Build callout",
+				command: "build-callout",
+			},
+			{
+				name: "Build analyst",
+				command: "build-analyst",
+			},
+			{
+				name: "Build all templates",
+				command: "build-templates",
+			},
+			...(perTemplate.length > 0
+				? [
+						{
+							name: "Build template",
+							menu: perTemplate,
+						},
+					]
+				: []),
+			{
+				name: "Sync variables and components",
+				command: "all",
+			},
+		],
+	};
+	fs.writeFileSync(MANIFEST_PATH, `${JSON.stringify(manifest, null, "\t")}\n`);
+	return MANIFEST_PATH;
+}
+
 function generatePlugin() {
 	const body = fs.readFileSync(BODY_PATH, "utf8");
 	const variables = readJsonOrNull(VARIABLES_PATH);
@@ -46,18 +137,25 @@ const CARD_COMPONENT = COMPONENTS.card || null;
 ${body}
 
 (async () => {
-	const result = await runDeckToolSync(figma.command || "all");
-	figma.closePlugin(JSON.stringify(result));
+	try {
+		const result = await runDeckToolSync(figma.command || "all");
+		figma.closePlugin(summarizeSyncResult(result));
+	} catch (error) {
+		const message = error && error.message ? error.message : String(error);
+		figma.closePlugin(message);
+	}
 })();
 `;
 	fs.mkdirSync(PLUGIN_DIR, { recursive: true });
 	fs.writeFileSync(CODE_PATH, code);
+	writeManifest(templates);
 	return CODE_PATH;
 }
 
-module.exports = { generatePlugin };
+module.exports = { generatePlugin, writeManifest };
 
 if (require.main === module) {
 	generatePlugin();
 	console.log("Updated scripts/figma/plugin/code.js");
+	console.log("Updated scripts/figma/plugin/manifest.json");
 }

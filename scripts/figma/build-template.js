@@ -509,9 +509,9 @@ function mapCoverTitle(node) {
 	return spec;
 }
 
-function mapAttributionBox(node) {
+function mapAttributionBox(node, ctx) {
 	const credit = findSlot(node, "credit") || findChild(node, "text");
-	return {
+	const spec = {
 		type: "instance",
 		name: "attribution-box",
 		component: "Attribution-box",
@@ -519,12 +519,18 @@ function mapAttributionBox(node) {
 		layoutSizingVertical: "HUG",
 		overrides: credit ? [{ characters: copy(credit) }] : [],
 	};
+	// The prepared-by chip stays the light surface even on a dark cover.
+	if (ctx && ctx.colorTheme === "dark") spec.colorTheme = "light";
+	return spec;
 }
 
 function mapBrandLogo(node, ctx) {
 	const src = String(node.attrs.src || "");
 	const brand = /riverton/i.test(src) ? "Riverton" : "Gratia";
-	const theme = /inverted/i.test(src) || ctx.colorTheme === "dark" ? "dark" : "light";
+	const theme =
+		/inverted/i.test(src) || ctx.colorTheme === "dark" || ctx.logoTheme === "dark"
+			? "dark"
+			: "light";
 	const style = parseStyle(node.attrs.style);
 	const spec = {
 		type: "instance",
@@ -609,7 +615,10 @@ function mapText(node, extras = {}) {
 		fontSize: `text-size-${size}`,
 		fill: { variable: fillVariable, opacity: 1 },
 		opacity: style.fillVariable ? null : `tone-${tone}`,
-		layoutSizingHorizontal: cls.includes("w-full") || extras.parentFill ? "FILL" : "HUG",
+		layoutSizingHorizontal: horizontalSize(
+			node.attrs.width,
+			cls.includes("w-full") || extras.parentFill ? "FILL" : "HUG",
+		),
 		layoutSizingVertical: "HUG",
 		textAlign: cls.includes("text-center")
 			? "CENTER"
@@ -705,7 +714,7 @@ function mapNode(node, ctx, extras = {}) {
 	if (node.tag === "divider") return mapDivider(node);
 	if (node.tag === "media-slot") return mapMediaSlot(node);
 	if (node.tag === "cover-title") return mapCoverTitle(node);
-	if (node.tag === "attribution-box") return mapAttributionBox(node);
+	if (node.tag === "attribution-box") return mapAttributionBox(node, ctx);
 	if (node.tag === "analyst") return mapAnalyst(node);
 	if (node.tag === "text") return mapText(node, extras);
 	if (node.tag === "img") return mapImg(node, ctx);
@@ -830,7 +839,11 @@ function buildTemplate(id, settings, slug) {
 	const slide = findSlide(parseFragment(html));
 	if (!slide) throw new Error(`${preset.htmlPath} has no <slide>`);
 	const pretitleDefault = getPath(settings, "components.slideTitle.pretitle.default") || "text";
-	const colorTheme = slide.attrs["color-theme"] || null;
+	const explicitTheme = slide.attrs["color-theme"] || null;
+	const coverTheme =
+		slide.attrs.kind === "cover" ? getPath(settings, "foundations.colorTheme.cover") : null;
+	// Match CSS: kind="cover" with no color-theme uses foundations.colorTheme.cover.
+	const colorTheme = explicitTheme || coverTheme || null;
 	return {
 		brand: slug,
 		id,
@@ -842,7 +855,12 @@ function buildTemplate(id, settings, slug) {
 		height: 800,
 		fill: { variable: "color-slide-background", opacity: 1 },
 		colorTheme,
-		tree: buildTree(slide, { pretitleDefault, id, colorTheme }),
+		tree: buildTree(slide, {
+			pretitleDefault,
+			id,
+			colorTheme,
+			logoTheme: colorTheme,
+		}),
 	};
 }
 
@@ -873,6 +891,7 @@ function main() {
 	generatePlugin();
 	for (const file of written) console.log(`Wrote ${file}`);
 	console.log("Updated scripts/figma/plugin/code.js");
+	console.log("Updated scripts/figma/plugin/manifest.json");
 }
 
 try {

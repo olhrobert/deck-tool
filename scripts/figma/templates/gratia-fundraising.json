@@ -54,7 +54,7 @@
 										"variant": "Brand=Gratia, Theme=dark",
 										"layoutSizingHorizontal": "HUG",
 										"layoutSizingVertical": "HUG",
-										"heightPx": 24
+										"heightPx": 12
 									},
 									{
 										"type": "autoLayout",

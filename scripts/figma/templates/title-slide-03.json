@@ -11,7 +11,7 @@
 		"variable": "color-slide-background",
 		"opacity": 1
 	},
-	"colorTheme": null,
+	"colorTheme": "dark",
 	"tree": {
 		"type": "component",
 		"layoutMode": "VERTICAL",
@@ -37,10 +37,10 @@
 								"type": "instance",
 								"name": "brand-logo",
 								"component": "Brand-logo",
-								"variant": "Brand=Gratia, Theme=light",
+								"variant": "Brand=Gratia, Theme=dark",
 								"layoutSizingHorizontal": "HUG",
 								"layoutSizingVertical": "HUG",
-								"heightPx": 24
+								"heightPx": 32
 							},
 							{
 								"type": "autoLayout",
@@ -55,7 +55,7 @@
 										"name": "cover-title",
 										"component": "Cover-title",
 										"variant": "Size=xl, Align=left",
-										"layoutSizingHorizontal": "HUG",
+										"layoutSizingHorizontal": "FILL",
 										"layoutSizingVertical": "HUG",
 										"overrides": [
 											{
@@ -93,7 +93,8 @@
 									{
 										"characters": "Sanitized excerpt prepared by"
 									}
-								]
+								],
+								"colorTheme": "light"
 							},
 							{
 								"type": "autoLayout",
@@ -133,6 +134,7 @@
 							"bottom": "spacing-0",
 							"left": "spacing-0"
 						},
+						"widthPx": 320,
 						"primaryAxisAlignItems": "SPACE_BETWEEN"
 					}
 				]

@@ -10,6 +10,41 @@ const WEIGHT_STYLES = {
 	900: ["Black"],
 };
 
+const nodeMeta = new WeakMap();
+function setMeta(node, key, value) {
+	let bag = nodeMeta.get(node);
+	if (!bag) {
+		bag = {};
+		nodeMeta.set(node, bag);
+	}
+	bag[key] = value;
+}
+function getMeta(node, key) {
+	const bag = nodeMeta.get(node);
+	return bag ? bag[key] : undefined;
+}
+
+function styleMatchesWeight(style, candidate) {
+	if (style === candidate) return true;
+	// Optical-size cuts (DM Sans "9pt Regular", "18pt Medium", …)
+	return style.endsWith(` ${candidate}`);
+}
+
+function findFontForWeight(familyFonts, weight) {
+	const candidates = WEIGHT_STYLES[weight] || ["Regular"];
+	for (const candidate of candidates) {
+		const exact = familyFonts.find((font) => font.fontName.style === candidate);
+		if (exact) return exact.fontName;
+	}
+	for (const candidate of candidates) {
+		const hit = familyFonts.find((font) =>
+			styleMatchesWeight(font.fontName.style, candidate),
+		);
+		if (hit) return hit.fontName;
+	}
+	return familyFonts[0] ? familyFonts[0].fontName : null;
+}
+
 function fallbackPaint(binding) {
 	if (binding && binding.color) {
 		return {
@@ -40,16 +75,14 @@ async function loadFamilyStyles(family, weights) {
 	const loaded = [];
 	const missing = [];
 	for (const weight of weights) {
+		const fontName = findFontForWeight(familyFonts, weight);
 		const candidates = WEIGHT_STYLES[weight] || ["Regular"];
-		const hit = familyFonts.find((font) =>
-			candidates.includes(font.fontName.style),
-		);
-		if (!hit) {
+		if (!fontName || !candidates.some((candidate) => styleMatchesWeight(fontName.style, candidate))) {
 			missing.push(`${weight} (${candidates[0]})`);
 			continue;
 		}
-		await figma.loadFontAsync(hit.fontName);
-		loaded.push(hit.fontName);
+		await figma.loadFontAsync(fontName);
+		loaded.push(fontName);
 	}
 	if (missing.length > 0) {
 		throw new Error(
@@ -60,9 +93,22 @@ async function loadFamilyStyles(family, weights) {
 }
 
 function styleForWeight(familyFonts, weight) {
-	const candidates = WEIGHT_STYLES[weight] || ["Regular"];
-	const hit = familyFonts.find((font) => candidates.includes(font.fontName.style));
-	return hit ? hit.fontName : familyFonts[0].fontName;
+	return findFontForWeight(familyFonts, weight) || familyFonts[0].fontName;
+}
+
+async function loadTextNodeFonts(text) {
+	if (!text || text.type !== "TEXT") return;
+	if (text.fontName === figma.mixed) {
+		const fonts = new Map();
+		const len = Math.max(text.characters.length, 1);
+		for (let i = 0; i < len; i += 1) {
+			const font = text.getRangeFontName(i, Math.min(i + 1, len));
+			if (font && font !== figma.mixed) fonts.set(JSON.stringify(font), font);
+		}
+		for (const font of fonts.values()) await figma.loadFontAsync(font);
+		return;
+	}
+	await figma.loadFontAsync(text.fontName);
 }
 
 function resolvedModeValue(variable, byId) {
@@ -1361,6 +1407,20 @@ function layoutTemplatesColumn(page) {
 }
 
 function applySizing(node, spec) {
+	if (node.type === "TEXT") {
+		// FILL width requires HEIGHT auto-resize. Setting layoutSizingVertical
+		// afterward can reset textAutoResize to WIDTH_AND_HEIGHT (HUG width).
+		if (spec.layoutSizingHorizontal === "FILL") {
+			node.textAutoResize = "HEIGHT";
+			node.layoutSizingHorizontal = "FILL";
+			if (spec.layoutSizingVertical) node.layoutSizingVertical = spec.layoutSizingVertical;
+			return;
+		}
+		if (spec.layoutSizingHorizontal) node.layoutSizingHorizontal = spec.layoutSizingHorizontal;
+		if (spec.layoutSizingVertical) node.layoutSizingVertical = spec.layoutSizingVertical;
+		if (spec.layoutSizingHorizontal === "HUG") node.textAutoResize = "WIDTH_AND_HEIGHT";
+		return;
+	}
 	if (spec.layoutSizingHorizontal) node.layoutSizingHorizontal = spec.layoutSizingHorizontal;
 	if (spec.layoutSizingVertical) node.layoutSizingVertical = spec.layoutSizingVertical;
 }
@@ -1548,14 +1608,14 @@ function applyFrameChrome(node, spec, byName) {
 		node.layoutSizingVertical = "FIXED";
 		node.resize(node.width, spec.heightPx);
 	}
-	if (spec.columns) node.setPluginData("columns", String(spec.columns));
-	if (spec.aspectSquare) node.setPluginData("aspectSquare", "1");
-	if (spec.aspectRatio) node.setPluginData("aspectRatio", String(spec.aspectRatio));
-	if (spec.fraction) node.setPluginData("fraction", spec.fraction);
+	if (spec.columns) setMeta(node, "columns", String(spec.columns));
+	if (spec.aspectSquare) setMeta(node, "aspectSquare", "1");
+	if (spec.aspectRatio) setMeta(node, "aspectRatio", String(spec.aspectRatio));
+	if (spec.fraction) setMeta(node, "fraction", spec.fraction);
 }
 
 function applyColumnsNode(node) {
-	const columns = Number(node.getPluginData("columns") || 0);
+	const columns = Number(getMeta(node, "columns") || 0);
 	if (!columns || !("children" in node) || node.children.length === 0) return;
 	node.layoutMode = "HORIZONTAL";
 	node.layoutWrap = "WRAP";
@@ -1574,20 +1634,20 @@ function applyColumnsNode(node) {
 
 function applyFractionRow(node) {
 	if (!("children" in node) || node.layoutMode !== "HORIZONTAL") return;
-	const hasThird = node.children.some((child) => child.getPluginData("fraction") === "1-3");
+	const hasThird = node.children.some((child) => getMeta(child, "fraction") === "1-3");
 	if (!hasThird) return;
 	for (const child of node.children) {
 		child.layoutSizingHorizontal = "FILL";
-		child.layoutGrow = child.getPluginData("fraction") === "1-3" ? 1 : 2;
+		child.layoutGrow = getMeta(child, "fraction") === "1-3" ? 1 : 2;
 	}
 }
 
 function applyAspectNode(node) {
-	if (node.getPluginData("aspectSquare") === "1") {
+	if (getMeta(node, "aspectSquare") === "1") {
 		node.layoutSizingVertical = "FIXED";
 		node.resize(Math.max(1, node.width), Math.max(1, node.width));
 	}
-	const ratio = Number(node.getPluginData("aspectRatio") || 0);
+	const ratio = Number(getMeta(node, "aspectRatio") || 0);
 	if (ratio) {
 		node.layoutSizingVertical = "FIXED";
 		node.resize(Math.max(1, node.width), Math.max(1, node.width / ratio));
@@ -1627,8 +1687,22 @@ async function preloadTemplateFonts(byName) {
 		const value = resolvedModeValue(variable, byId);
 		if (typeof value === "string") families.add(value);
 	}
+	const available = await figma.listAvailableFontsAsync();
 	for (const family of families) {
 		await loadFamilyStyles(family, [400, 500, 600, 700]);
+		// Also load optical-size cuts variable bindings may resolve to.
+		const familyFonts = available.filter((font) => font.fontName.family === family);
+		for (const font of familyFonts) {
+			const style = font.fontName.style;
+			if (
+				styleMatchesWeight(style, "Regular") ||
+				styleMatchesWeight(style, "Medium") ||
+				styleMatchesWeight(style, "SemiBold") ||
+				styleMatchesWeight(style, "Bold")
+			) {
+				await figma.loadFontAsync(font.fontName);
+			}
+		}
 	}
 }
 
@@ -1643,7 +1717,9 @@ async function buildTextNode(spec, byName, parent) {
 	const weight = resolvedModeValue(weightVar, byId);
 	const available = await figma.listAvailableFontsAsync();
 	const familyFonts = available.filter((font) => font.fontName.family === family);
-	text.fontName = styleForWeight(familyFonts, weight);
+	const fontName = styleForWeight(familyFonts, weight);
+	await figma.loadFontAsync(fontName);
+	text.fontName = fontName;
 	text.characters = spec.characters || "";
 	text.lineHeight = {
 		unit: "PERCENT",
@@ -1658,7 +1734,9 @@ async function buildTextNode(spec, byName, parent) {
 	bindField(text, "fontWeight", spec.fontWeight, byName);
 	if (spec.fontSize) bindField(text, "fontSize", spec.fontSize, byName);
 	if (spec.opacity) bindField(text, "opacity", spec.opacity, byName);
-	text.textAutoResize = "HEIGHT";
+	// Variable bindings may swap to an optical cut (e.g. "9pt Regular") —
+	// load whatever is on the node before mutating textAutoResize / characters.
+	await loadTextNodeFonts(text);
 	applySizing(text, spec);
 	applyFrameChrome(text, spec, byName);
 	return text;
@@ -1830,6 +1908,24 @@ async function buildNamedComponent(name, variableIds) {
 		throw new Error(`Unknown component ${JSON.stringify(name)}`);
 	}
 	return builder(payload, variableIds);
+}
+
+function summarizeSyncResult(result) {
+	if (!result || typeof result !== "object") return "Done";
+	const cmd = result.command || "done";
+	if (cmd === "build-templates" && result.templates) {
+		return `Built ${Object.keys(result.templates).length} templates`;
+	}
+	if (String(cmd).startsWith("build-template-")) {
+		const id = String(cmd).slice("build-template-".length);
+		return `Built ${id}`;
+	}
+	if (String(cmd).startsWith("build-") && cmd !== "build-templates") {
+		return `Built ${String(cmd).slice("build-".length)}`;
+	}
+	if (cmd === "sync-variables") return "Synced variables";
+	if (cmd === "all") return "Synced variables and components";
+	return `Done (${cmd})`;
 }
 
 async function runDeckToolSync(command) {

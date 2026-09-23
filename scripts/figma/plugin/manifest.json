@@ -3,10 +3,14 @@
 	"id": "com.gratia.decktool.sync",
 	"api": "1.0.0",
 	"main": "code.js",
-	"editorType": ["figma"],
+	"editorType": [
+		"figma"
+	],
 	"documentAccess": "dynamic-page",
 	"networkAccess": {
-		"allowedDomains": ["none"]
+		"allowedDomains": [
+			"none"
+		]
 	},
 	"menu": [
 		{
@@ -36,6 +40,95 @@
 		{
 			"name": "Build all templates",
 			"command": "build-templates"
+		},
+		{
+			"name": "Build template",
+			"menu": [
+				{
+					"name": "TITLE SLIDES",
+					"menu": [
+						{
+							"name": "title-slide-01",
+							"command": "build-template-title-slide-01"
+						},
+						{
+							"name": "title-slide-02",
+							"command": "build-template-title-slide-02"
+						},
+						{
+							"name": "title-slide-03",
+							"command": "build-template-title-slide-03"
+						},
+						{
+							"name": "title-slide-04",
+							"command": "build-template-title-slide-04"
+						}
+					]
+				},
+				{
+					"name": "CHAPTER SLIDES",
+					"menu": [
+						{
+							"name": "chapter-slide-01",
+							"command": "build-template-chapter-slide-01"
+						},
+						{
+							"name": "chapter-slide-02",
+							"command": "build-template-chapter-slide-02"
+						}
+					]
+				},
+				{
+					"name": "CONTENT SLIDES",
+					"menu": [
+						{
+							"name": "content-slide-12-cards",
+							"command": "build-template-content-slide-12-cards"
+						},
+						{
+							"name": "content-slide-3-cards",
+							"command": "build-template-content-slide-3-cards"
+						},
+						{
+							"name": "content-slide-service",
+							"command": "build-template-content-slide-service"
+						},
+						{
+							"name": "content-slide-split-media",
+							"command": "build-template-content-slide-split-media"
+						},
+						{
+							"name": "content-slide-steps-media",
+							"command": "build-template-content-slide-steps-media"
+						},
+						{
+							"name": "content-slide-text-and-image",
+							"command": "build-template-content-slide-text-and-image"
+						}
+					]
+				},
+				{
+					"name": "GRATIA SLIDES",
+					"menu": [
+						{
+							"name": "gratia-about",
+							"command": "build-template-gratia-about"
+						},
+						{
+							"name": "gratia-contact",
+							"command": "build-template-gratia-contact"
+						},
+						{
+							"name": "gratia-fundraising",
+							"command": "build-template-gratia-fundraising"
+						},
+						{
+							"name": "gratia-services",
+							"command": "build-template-gratia-services"
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Sync variables and components",

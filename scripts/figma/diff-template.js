@@ -156,9 +156,14 @@ function walk(ir, fig, trail, rows, copy) {
 		rows.push({
 			kind: "structural",
 			path: trail.join(" > ") || "(root)",
-			detail: `Name mismatch (IR ${ir.name}, Figma ${fig.name}). Left unchanged.`,
+			detail: `Name mismatch (IR ${ir.name}, Figma ${fig.name}). Names are not renamed. Properties inside are still compared.`,
 		});
-		return;
+	}
+	if (ir.type === "component") {
+		// The template root is a fixed-size component. The IR stores that on the
+		// payload, not as layout sizing on the tree.
+		if (fig.layoutSizingHorizontal === "FIXED") delete fig.layoutSizingHorizontal;
+		if (fig.layoutSizingVertical === "FIXED") delete fig.layoutSizingVertical;
 	}
 
 	for (const prop of LAYOUT_PROPS) {

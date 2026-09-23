@@ -11,7 +11,21 @@ description: >-
 
 Load this skill before writing a slide onto a **template page**. HTML is the source of truth. Do not invent Figma components or brand tokens.
 
-Prefer the scripted pipeline. Assemble by hand (`use_figma`, load `/figma-use` first) only if the script fails — same mapping table.
+## Cost guardrail (read first)
+
+**Do not rebuild templates via `use_figma`.** Shipping the builder + IR through the agent burns a large amount of tokens.
+
+Default path:
+
+1. Fix HTML / mapper as needed.
+2. `node scripts/figma/build-template.js <id>` (or `all`) — regenerates IR and the plugin.
+3. Tell the user to run **Plugins → Development → DeckTool Sync → Build template →** section → `<id>` (or **Build all templates**). Stop there.
+
+If they asked you to “build it in Figma” / “push to Figma” from the agent, **warn first** that `use_figma` is expensive and the plugin is the cheap path. Only proceed with `use_figma` to assemble a template if they explicitly override after the warning.
+
+`use_figma` without that warning is OK for **small** work: inspect a node, tweak one property, pull snapshots (see figma-pull). Not for full template rebuilds.
+
+Import the plugin once: **Plugins → Development → Import plugin from manifest…** → `scripts/figma/plugin/manifest.json`.
 
 ```bash
 node scripts/figma/build-template.js all
@@ -19,9 +33,9 @@ node scripts/figma/build-template.js content-slide-3-cards
 npm run figma:build-template -- all
 ```
 
-Then in the DeckTool file: **Plugins → DeckTool Sync → Build all templates**. Do not run **Sync variables and components** to push templates — that command stays variables + Components page only.
+Do not run **Sync variables and components** to push templates — that command stays variables + Components page only.
 
-See `docs/scripts.md` → Template pages.
+See `docs/scripts.md` → Template pages. Project rule: `.cursor/rules/figma-build-via-plugin.mdc`.
 
 ## Pages
 
@@ -53,14 +67,14 @@ Page order: **Components** → divider → section header → that section’s s
 
 | HTML | Figma |
 | --- | --- |
-| `<slide>` | Template root component 1280×800, `color-slide-background`, width → `slide-max-width` |
+| `<slide>` | Template root component 1280×800, `color-slide-background`, width → `slide-max-width`. `kind="cover"` with no `color-theme` uses `foundations.colorTheme.cover` as the Color mode |
 | `<header-container>` / `<content-container>` / `<footer-container>` | Frames with chrome padding bindings (no media-slot sample) |
 | `<slide-title-group>` | Instance `Slide-title` matching Size × Align (`size` on `<slide-title>`, `align` on the group, defaults `md` / `left`) |
 | Pre slot | Slide-pretitle `Type=badge` \| `Type=label` from brand default |
 | `<cover-title>` | Instance `Cover-title` `Size=sm\|md\|lg\|xl` × `Align=left\|center\|right` (omit `align` → left) |
 | `<stack>` / layout `<div>` | Auto-layout frame; `gap="2"` → `spacing-2`; `width="fill"` → FILL; `columns="3"` → wrap grid |
 | `<card>` | Instance `Card` when slots match the catalog; otherwise a tokenized card frame |
-| `<stamp>` / `<badge>` / `<divider>` / `<media-slot>` / `<analyst>` / `<attribution-box>` | Matching Components-page instance |
+| `<stamp>` / `<badge>` / `<divider>` / `<media-slot>` / `<analyst>` / `<attribution-box>` | Matching Components-page instance. On a dark canvas, attribution-box is pinned to Color mode light |
 | `<slide-footer>` | Instance `Slide-footer` (includes Brand-logo) |
 | Free `<text>` | Text object with family / size / weight / line-height / tone bindings |
 

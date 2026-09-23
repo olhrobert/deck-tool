@@ -69,7 +69,8 @@
 		slide-footer,
 		stack,
 		media-slot,
-		img
+		img,
+		text
 	)[width="fill"] {
 	align-self: stretch;
 	min-width: 0;

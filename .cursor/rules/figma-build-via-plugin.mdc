@@ -1,0 +1,18 @@
+---
+description: Do not rebuild Figma templates via use_figma without warning — prefer the DeckTool Sync plugin.
+alwaysApply: true
+---
+
+# Figma builds go through the plugin
+
+Building or rebuilding template slides in Figma by shipping the template builder through `use_figma` is **expensive** (large JS payloads, many round-trips, high token use).
+
+When the user asks to build, rebuild, push, or sync a slide/template **into Figma**:
+
+1. Regenerate IR locally if needed (`node scripts/figma/build-template.js <id>`).
+2. **Stop and warn** them to apply it in Figma with **Plugins → Development → DeckTool Sync → Build template → …** (or **Build all templates**). Do not call `use_figma` to assemble the slide.
+3. Only use `use_figma` for a full template build if they **explicitly override** after that warning (e.g. “use use_figma anyway” / “build it from here”).
+
+Cheap `use_figma` is still fine without that warning: short inspect/read, tiny property fixes, figma-pull snapshots, and other small scripts — not rebuilding a template from IR/builder code.
+
+Details: `.cursor/skills/preset-to-figma/SKILL.md`, `docs/scripts.md` → Apply in Figma.

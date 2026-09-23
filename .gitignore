@@ -2,6 +2,7 @@
 scripts/figma/.figma-file.json
 scripts/figma/.chunks/
 scripts/figma/pull/out/
+.tmp-figma-chunks/
 
 # Brainstorm scratch and working artifacts.
 tmp/
