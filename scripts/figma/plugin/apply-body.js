@@ -1824,15 +1824,28 @@ async function buildTemplateNode(spec, byName, parent) {
 		frame.name = spec.name;
 		if (parent) parent.appendChild(frame);
 		applyChromePadding(frame, spec.padding, byName);
-		if (typeof spec.itemSpacing === "string") {
-			bindField(frame, "itemSpacing", spec.itemSpacing, byName);
-		} else if (typeof spec.itemSpacing === "number") {
-			frame.itemSpacing = spec.itemSpacing;
+		// SPACE_BETWEEN is Figma Gap "Auto" — do not bind/set itemSpacing or the
+		// panel stays on a fixed 0 (HTML often pairs justify-between with gap="0").
+		if (spec.primaryAxisAlignItems !== "SPACE_BETWEEN") {
+			if (typeof spec.itemSpacing === "string") {
+				bindField(frame, "itemSpacing", spec.itemSpacing, byName);
+			} else if (typeof spec.itemSpacing === "number") {
+				frame.itemSpacing = spec.itemSpacing;
+			}
 		}
 		applySizing(frame, spec);
 		applyFrameChrome(frame, spec, byName);
 		for (const child of spec.children || []) {
 			await buildTemplateNode(child, byName, frame);
+		}
+		// Re-apply after children: Figma can reset primaryAxisAlignItems when
+		// the first child is appended (SPACE_BETWEEN → MIN), which collapses
+		// title-slide header/footer distribution.
+		if (spec.primaryAxisAlignItems) {
+			frame.primaryAxisAlignItems = spec.primaryAxisAlignItems;
+		}
+		if (spec.counterAxisAlignItems) {
+			frame.counterAxisAlignItems = spec.counterAxisAlignItems;
 		}
 		return frame;
 	}

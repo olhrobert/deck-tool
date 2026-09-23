@@ -100,7 +100,11 @@
 										"lineHeight": "text-lineheight"
 									}
 								],
-								"counterAxisAlignItems": "CENTER"
+								"counterAxisAlignItems": "CENTER",
+								"padding": {
+									"left": "spacing-20",
+									"right": "spacing-20"
+								}
 							}
 						],
 						"primaryAxisAlignItems": "CENTER",

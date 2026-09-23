@@ -671,6 +671,11 @@ function mapFrame(node, ctx, extras = {}) {
 	if (kids.some((child) => classes(child).includes("mt-auto"))) {
 		spec.primaryAxisAlignItems = "SPACE_BETWEEN";
 	}
+	// Figma: Gap "Auto" + Between ≡ SPACE_BETWEEN. Emitting a numeric/token
+	// gap (often gap="0" → spacing-0) keeps the panel on a fixed Gap 0.
+	if (spec.primaryAxisAlignItems === "SPACE_BETWEEN") {
+		delete spec.itemSpacing;
+	}
 	const childExtras = {
 		parentMode: spec.layoutMode,
 		parentFill: spec.layoutSizingHorizontal === "FILL",

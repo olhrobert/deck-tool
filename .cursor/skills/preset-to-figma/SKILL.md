@@ -72,7 +72,7 @@ Page order: **Components** → divider → section header → that section’s s
 | `<slide-title-group>` | Instance `Slide-title` matching Size × Align (`size` on `<slide-title>`, `align` on the group, defaults `md` / `left`) |
 | Pre slot | Slide-pretitle `Type=badge` \| `Type=label` from brand default |
 | `<cover-title>` | Instance `Cover-title` `Size=sm\|md\|lg\|xl` × `Align=left\|center\|right` (omit `align` → left) |
-| `<stack>` / layout `<div>` | Auto-layout frame; `gap="2"` → `spacing-2`; `width="fill"` → FILL; `columns="3"` → wrap grid |
+| `<stack>` / layout `<div>` | Auto-layout frame; `gap="2"` → `spacing-2`; `justify-between` / `mt-auto` → `SPACE_BETWEEN` with Gap **Auto** (no `itemSpacing`); `width="fill"` → FILL; `columns="3"` → wrap grid |
 | `<card>` | Instance `Card` when slots match the catalog; otherwise a tokenized card frame |
 | `<stamp>` / `<badge>` / `<divider>` / `<media-slot>` / `<analyst>` / `<attribution-box>` | Matching Components-page instance. On a dark canvas, attribution-box is pinned to Color mode light |
 | `<slide-footer>` | Instance `Slide-footer` (includes Brand-logo) |

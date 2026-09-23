@@ -37,7 +37,6 @@
 								"type": "autoLayout",
 								"name": "stack",
 								"layoutMode": "VERTICAL",
-								"itemSpacing": "spacing-0",
 								"layoutSizingHorizontal": "FILL",
 								"layoutSizingVertical": "FILL",
 								"children": [

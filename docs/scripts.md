@@ -93,7 +93,7 @@ Skip layout enums, uppercase flags, and other non-bindable settings.
 
 | HTML | In Figma (author / push) | Pulling a design → HTML |
 | --- | --- | --- |
-| `<stack>` | Auto-layout frame (gap → nearest `--spacing-*`, direction / wrap / fill / hug on the frame) | Free auto-layout frames → `<stack>` (grids → `columns="3"`; nested fill rows → nested `direction="row"` stacks). Do not invent a Stack component. |
+| `<stack>` | Auto-layout frame (gap → nearest `--spacing-*`, direction / wrap / fill / hug on the frame; `justify-between` / trailing `mt-auto` → Gap Auto + Space between, not `itemSpacing: 0`) | Free auto-layout frames → `<stack>` (grids → `columns="3"`; nested fill rows → nested `direction="row"` stacks). Do not invent a Stack component. |
 | `<text>` and free canvas type | Text object with family / size / weight / line-height / letter-spacing bound to Typography (and related) variables | Text objects → `<text>` (map px to the type scale; infer `context` from parent surface vs slide). Prefer semantic tags when the role is clear (`<slide-title>`, `<cover-title>`, `<card-title>`, …). Do not invent a Text component. |
 
 Push already follows this: `build-component.js` walks `<stack>` / flex roots into an auto-layout IR and emits text nodes, never Stack or Text components (`scripts/figma/lib/html.js`). Semantic type inside Card / Badge / Stamp / Callout / Analyst stays nested text (or a real component like Badge), not a free Text set.

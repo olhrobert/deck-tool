@@ -24,7 +24,7 @@
 	flex-basis: auto;
 }
 
-:is(stack:not([direction="row"]), analyst, media-card, .flex-col)
+:is(stack:not([direction="row"]), slide, analyst, media-card, .flex-col)
 	> :is(
 		card,
 		analyst,
@@ -58,7 +58,7 @@
 	min-width: 0;
 }
 
-:is(stack:not([direction="row"]), analyst, media-card, .flex-col)
+:is(stack:not([direction="row"]), slide, analyst, media-card, .flex-col)
 	> :is(
 		card,
 		analyst,
@@ -77,7 +77,7 @@
 	width: 100%;
 }
 
-:is(stack:not([direction="row"]), analyst, media-card, .flex-col)
+:is(stack:not([direction="row"]), slide, analyst, media-card, .flex-col)
 	> :is(
 		card,
 		analyst,
