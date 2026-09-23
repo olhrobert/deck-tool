@@ -6464,6 +6464,13 @@ const TEMPLATES = {
 									"layoutSizingVertical": "HUG",
 									"overrides": [
 										{
+											"name": "logo",
+											"swap": {
+												"component": "Brand-logo",
+												"variant": "Brand=Gratia, Theme=dark"
+											}
+										},
+										{
 											"name": "notes",
 											"characters": "Add notes or sources here."
 										},
@@ -6593,6 +6600,13 @@ const TEMPLATES = {
 									"layoutSizingHorizontal": "FILL",
 									"layoutSizingVertical": "HUG",
 									"overrides": [
+										{
+											"name": "logo",
+											"swap": {
+												"component": "Brand-logo",
+												"variant": "Brand=Gratia, Theme=dark"
+											}
+										},
 										{
 											"name": "notes",
 											"characters": "Add notes or sources here."
@@ -11448,8 +11462,7 @@ const TEMPLATES = {
 									"component": "Media-slot",
 									"variant": "Type=flush",
 									"layoutSizingHorizontal": "FILL",
-									"layoutSizingVertical": "FILL",
-									"aspectRatio": 1.2416225749559082
+									"layoutSizingVertical": "FILL"
 								}
 							],
 							"counterAxisAlignItems": "CENTER"

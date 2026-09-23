@@ -378,8 +378,7 @@
 								"component": "Media-slot",
 								"variant": "Type=flush",
 								"layoutSizingHorizontal": "FILL",
-								"layoutSizingVertical": "FILL",
-								"aspectRatio": 1.2416225749559082
+								"layoutSizingVertical": "FILL"
 							}
 						],
 						"counterAxisAlignItems": "CENTER"

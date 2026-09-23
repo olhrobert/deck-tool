@@ -389,10 +389,34 @@ function mapCard(node, ctx, extras) {
 	return spec;
 }
 
-function mapSlideFooter(node) {
+function brandLogoVariant(node, ctx) {
+	const src = String((node && node.attrs && node.attrs.src) || "");
+	const brand = /riverton/i.test(src) ? "Riverton" : "Gratia";
+	const theme =
+		/inverted/i.test(src) ||
+		(ctx && (ctx.colorTheme === "dark" || ctx.logoTheme === "dark"))
+			? "dark"
+			: "light";
+	return `Brand=${brand}, Theme=${theme}`;
+}
+
+function mapSlideFooter(node, ctx) {
 	const notes = findChild(node, "slide-footer-notes");
 	const meta = findChild(node, "slide-footer-meta");
+	const logo = elements(node).find(
+		(child) =>
+			child.tag === "img" &&
+			(child.attrs["data-logo"] != null || child.attrs["data-slot"] === "logo"),
+	);
 	const overrides = [];
+	// Slide-footer nests Brand-logo as "logo" (default Theme=light). Swap to match
+	// the slide canvas / inverted src — Color mode alone does not change baked fills.
+	if (logo) {
+		overrides.push({
+			name: "logo",
+			swap: { component: "Brand-logo", variant: brandLogoVariant(logo, ctx) },
+		});
+	}
 	if (notes) overrides.push({ name: "notes", characters: copy(notes) });
 	if (meta) {
 		const title = findChild(meta, "slide-footer-title");
@@ -525,18 +549,12 @@ function mapAttributionBox(node, ctx) {
 }
 
 function mapBrandLogo(node, ctx) {
-	const src = String(node.attrs.src || "");
-	const brand = /riverton/i.test(src) ? "Riverton" : "Gratia";
-	const theme =
-		/inverted/i.test(src) || ctx.colorTheme === "dark" || ctx.logoTheme === "dark"
-			? "dark"
-			: "light";
 	const style = parseStyle(node.attrs.style);
 	const spec = {
 		type: "instance",
 		name: node.attrs["data-slot"] || "brand-logo",
 		component: "Brand-logo",
-		variant: `Brand=${brand}, Theme=${theme}`,
+		variant: brandLogoVariant(node, ctx),
 		layoutSizingHorizontal: "HUG",
 		layoutSizingVertical: "HUG",
 	};
@@ -713,7 +731,7 @@ function mapNode(node, ctx, extras = {}) {
 		return mapSlideTitleGroup(node, ctx);
 	}
 	if (node.tag === "card") return mapCard(node, ctx, extras);
-	if (node.tag === "slide-footer") return mapSlideFooter(node);
+	if (node.tag === "slide-footer") return mapSlideFooter(node, ctx);
 	if (node.tag === "stamp") return mapStamp(node);
 	if (node.tag === "badge") return mapBadge(node);
 	if (node.tag === "divider") return mapDivider(node);
