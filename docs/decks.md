@@ -13,16 +13,18 @@ decks/{slug}/
 
 ## Contract
 
-| Field | Role |
-| --- | --- |
-| Directory name | Slug (`[a-z0-9][a-z0-9-]*`). Foreign key for brand usage. |
-| `slides.json` | `title`, optional `brand`, optional `archived`, and `slides` (filename list). Compile rewrites `slides` from a numeric sort of the HTML files on disk. |
-| `{nn}.html` | Standalone HTML with one `<slide>…</slide>`. Stylesheet links are `../../design-system/` and `../../assets/` (same depth as `presets/{kind}/`). |
-| `index.html` | Output of `scripts/compile-deck.js`. |
+| Field          | Role                                                                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Directory name | Slug (`[a-z0-9][a-z0-9-]*`). Foreign key for brand usage.                                                                                              |
+| `slides.json`  | `title`, optional `brand`, optional `archived`, and `slides` (filename list). Compile rewrites `slides` from a numeric sort of the HTML files on disk. |
+| `{nn}.html`    | Standalone HTML with one `<slide>…</slide>`. Stylesheet links are `../../design-system/` and `../../assets/` (same depth as `presets/{kind}/`).        |
+| `index.html`   | Output of `scripts/compile-deck.js`.                                                                                                                   |
 
 Slide **order lives in the filenames**. Reordering means renumbering (`01.html`, `02.html`, …). A manifest-only order would be discarded on the next compile.
 
 ## Create
+
+**Agent workflow:** load `.cursor/skills/create-deck/SKILL.md`. Always collect deck title, brand, and a slide plan (or wireframe) before writing files.
 
 Copy a layout or brand preset into the deck folder (or use the admin Decks UI). Brand slides under `presets/brands/{slug}/` use `../../../` paths — rewrite those to `../../` when the file lands in `decks/{slug}/`. The admin does that rewrite automatically.
 
@@ -45,4 +47,4 @@ The local app under `app/` lists, creates, reorders, compiles, archives, and del
 
 ## Sample
 
-`decks/test/` is a Gratia sample (title, chapter, content presets) used to verify compile and the admin.
+`decks/test/` is a Gratia sample (title, chapter, content presets) used to verify compile and the admin. `decks/gratia-surge-team/` is a short filled-in talk (cover + problem/solution).

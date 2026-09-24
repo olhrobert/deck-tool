@@ -45,14 +45,9 @@ function componentSettings(key) {
 
 const PAGE_GROUPS = [
 	{
-		heading: "Foundations",
-		pages: [
-			{ id: "brand", label: "Brand", width: "narrow", kind: "brand" },
-		],
-	},
-	{
 		heading: "Components",
 		pages: [
+			{ id: "brand", label: "Brand", width: "narrow", kind: "brand" },
 			{
 				id: "analyst",
 				label: "Analyst",
@@ -312,143 +307,142 @@ const PAGE_GROUPS = [
 	},
 ];
 
-const PRESET_GROUPS = [
+const SLIDE_PRESETS = [
 	{
-		id: "title-slides",
-		heading: "Title slides",
-		presets: [
+		id: "title-slide-01",
+		label: "Title slide 01",
+		src: "../../presets/title-slides/title-slide-01.html",
+	},
+	{
+		id: "title-slide-02",
+		label: "Title slide 02",
+		src: "../../presets/title-slides/title-slide-02.html",
+	},
+	{
+		id: "title-slide-03",
+		label: "Title slide 03",
+		src: "../../presets/title-slides/title-slide-03.html",
+	},
+	{
+		id: "title-slide-04",
+		label: "Title slide 04",
+		src: "../../presets/title-slides/title-slide-04.html",
+	},
+	{
+		id: "chapter-slide-01",
+		label: "Chapter slide 01",
+		src: "../../presets/chapter-slides/chapter-slide-01.html",
+	},
+	{
+		id: "chapter-slide-02",
+		label: "Chapter slide 02",
+		src: "../../presets/chapter-slides/chapter-slide-02.html",
+	},
+	{
+		id: "content-slide-3-cards",
+		label: "3 cards",
+		src: "../../presets/content-slides/content-slide-3-cards.html",
+		variants: [
+			{},
+			{ colorTheme: "dark", caption: 'color-theme="dark"' },
 			{
-				id: "title-slide-01",
-				label: "01",
-				src: "../../presets/title-slides/title-slide-01.html",
-			},
-			{
-				id: "title-slide-02",
-				label: "02",
-				src: "../../presets/title-slides/title-slide-02.html",
-			},
-			{
-				id: "title-slide-03",
-				label: "03",
-				src: "../../presets/title-slides/title-slide-03.html",
-			},
-			{
-				id: "title-slide-04",
-				label: "04",
-				src: "../../presets/title-slides/title-slide-04.html",
+				colorTheme: "dark",
+				cardsColorTheme: "light",
+				caption:
+					'color-theme="dark" with cards color-theme="light"',
 			},
 		],
 	},
 	{
-		id: "chapter-slides",
-		heading: "Chapter slides",
-		presets: [
-			{
-				id: "chapter-slide-01",
-				label: "01",
-				src: "../../presets/chapter-slides/chapter-slide-01.html",
-			},
-			{
-				id: "chapter-slide-02",
-				label: "02",
-				src: "../../presets/chapter-slides/chapter-slide-02.html",
-			},
+		id: "content-slide-12-cards",
+		label: "12 cards",
+		src: "../../presets/content-slides/content-slide-12-cards.html",
+		variants: [
+			{},
+			{ colorTheme: "dark", caption: 'color-theme="dark"' },
 		],
 	},
 	{
-		id: "content-slides",
-		heading: "Content slides",
-		presets: [
-			{
-				id: "content-slide-3-cards",
-				label: "3 cards",
-				src: "../../presets/content-slides/content-slide-3-cards.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-					{
-						colorTheme: "dark",
-						cardsColorTheme: "light",
-						caption:
-							'color-theme="dark" with cards color-theme="light"',
-					},
-				],
-			},
-			{
-				id: "content-slide-12-cards",
-				label: "12 cards",
-				src: "../../presets/content-slides/content-slide-12-cards.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-				],
-			},
-			{
-				id: "content-slide-split-media",
-				label: "Split media",
-				src: "../../presets/content-slides/content-slide-split-media.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-				],
-			},
-			{
-				id: "content-slide-text-and-image",
-				label: "Text and image",
-				src: "../../presets/content-slides/content-slide-text-and-image.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-				],
-			},
-			{
-				id: "content-slide-service",
-				label: "Service",
-				src: "../../presets/content-slides/content-slide-service.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-				],
-			},
-			{
-				id: "content-slide-steps-media",
-				label: "Steps + media",
-				src: "../../presets/content-slides/content-slide-steps-media.html",
-				variants: [
-					{},
-					{ colorTheme: "dark", caption: 'color-theme="dark"' },
-				],
-			},
+		id: "content-slide-split-media",
+		label: "Split media",
+		src: "../../presets/content-slides/content-slide-split-media.html",
+		variants: [
+			{},
+			{ colorTheme: "dark", caption: 'color-theme="dark"' },
 		],
+	},
+	{
+		id: "content-slide-text-and-image",
+		label: "Text and image",
+		src: "../../presets/content-slides/content-slide-text-and-image.html",
+		variants: [
+			{},
+			{ colorTheme: "dark", caption: 'color-theme="dark"' },
+		],
+	},
+	{
+		id: "content-slide-service",
+		label: "Service",
+		src: "../../presets/content-slides/content-slide-service.html",
+		variants: [
+			{},
+			{ colorTheme: "dark", caption: 'color-theme="dark"' },
+		],
+	},
+	{
+		id: "content-slide-steps-media",
+		label: "Steps + media",
+		src: "../../presets/content-slides/content-slide-steps-media.html",
+		variants: [
+			{},
+			{ colorTheme: "dark", caption: 'color-theme="dark"' },
+		],
+	},
+	{
+		id: "gratia-fundraising",
+		label: "Fundraising",
+		brand: "gratia",
+		src: "../../presets/brands/gratia/fundraising.html",
+	},
+	{
+		id: "gratia-about",
+		label: "About",
+		brand: "gratia",
+		src: "../../presets/brands/gratia/about.html",
+	},
+	{
+		id: "gratia-services",
+		label: "Services",
+		brand: "gratia",
+		src: "../../presets/brands/gratia/services.html",
+	},
+	{
+		id: "gratia-contact",
+		label: "Contact",
+		brand: "gratia",
+		src: "../../presets/brands/gratia/contact.html",
 	},
 ];
 
-const BRAND_PRESET_GROUPS = [
+const DECKS = [
 	{
-		id: "gratia-slides",
-		heading: "Gratia",
+		id: "gratia-surge-team",
+		label: "Gratia Surge Team",
 		brand: "gratia",
-		presets: [
-			{
-				id: "gratia-fundraising",
-				label: "Fundraising",
-				src: "../../presets/brands/gratia/fundraising.html",
-			},
-			{
-				id: "gratia-about",
-				label: "About",
-				src: "../../presets/brands/gratia/about.html",
-			},
-			{
-				id: "gratia-services",
-				label: "Services",
-				src: "../../presets/brands/gratia/services.html",
-			},
-			{
-				id: "gratia-contact",
-				label: "Contact",
-				src: "../../presets/brands/gratia/contact.html",
-			},
+		slides: [
+			"../../decks/gratia-surge-team/01.html",
+			"../../decks/gratia-surge-team/02.html",
+		],
+	},
+	{
+		id: "test",
+		label: "Test",
+		brand: "gratia",
+		slides: [
+			"../../decks/test/01.html",
+			"../../decks/test/02.html",
+			"../../decks/test/03.html",
+			"../../decks/test/04.html",
 		],
 	},
 ];
@@ -456,6 +450,7 @@ const BRAND_PRESET_GROUPS = [
 const FILTER_ALIASES = {
 	layout: "content-container",
 	typography: "text",
+	foundations: "brand",
 	"content-slide-case-study": "content-slide-service",
 	"content-slide-card-grid": "content-slide-12-cards",
 	"content-slide-story": "content-slide-text-and-image",
@@ -463,12 +458,12 @@ const FILTER_ALIASES = {
 	"content-slide-contact": "gratia-contact",
 	"close-slide-contact": "gratia-contact",
 	"close-slides": "gratia-contact",
-	...Object.fromEntries(
-		[...PRESET_GROUPS, ...BRAND_PRESET_GROUPS].map((group) => [
-			group.id,
-			group.presets[0].id,
-		]),
-	),
+	"title-slides": "title-slide-01",
+	"chapter-slides": "chapter-slide-01",
+	"content-slides": "content-slide-3-cards",
+	"gratia-slides": "gratia-fundraising",
+	"slide-presets": "title-slide-01",
+	decks: DECKS[0].id,
 };
 
 const SETTINGS = PAGE_GROUPS.flatMap((group) =>
@@ -652,13 +647,13 @@ function renderPresetVariant(preset, variant = {}) {
 	</div>`;
 }
 
-function renderPresetPage(preset, brand) {
+function renderPresetPage(preset) {
 	const variants =
 		preset.variants && preset.variants.length ? preset.variants : [{}];
 	const decks = variants
 		.map((variant) => renderPresetVariant(preset, variant))
 		.join("");
-	const brandAttr = brand ? ` data-brand="${brand}"` : "";
+	const brandAttr = preset.brand ? ` data-brand="${preset.brand}"` : "";
 	return `<div class="showcase-group showcase-group-deck" data-section="${preset.id}"${brandAttr}>
 		<header class="showcase-header">
 			<text class="showcase-h1" tone="strong" context="slide">${escapeHtml(preset.label)}</text>
@@ -669,17 +664,34 @@ function renderPresetPage(preset, brand) {
 	</div>`;
 }
 
-function renderNavGroup(heading, items, brand) {
-	const brandAttr = brand ? ` data-brand="${brand}"` : "";
-	const links = items
-		.map(
-			(item) =>
-				`<a href="#${item.id}" data-filter="${item.id}">${escapeHtml(item.label)}</a>`,
-		)
+function renderDeckPage(deck) {
+	const slides = deck.slides
+		.map((src) => renderPresetVariant({ src }))
 		.join("");
-	return `<div class="showcase-filter-group"${brandAttr}>
-		<div class="showcase-filter-heading">${escapeHtml(heading)}</div>
-		${links}
+	const brandAttr = deck.brand ? ` data-brand="${deck.brand}"` : "";
+	return `<div class="showcase-group showcase-group-deck" data-section="${deck.id}"${brandAttr}>
+		<header class="showcase-header">
+			<text class="showcase-h1" tone="strong" context="slide">${escapeHtml(deck.label)}</text>
+		</header>
+		<div class="showcase-body">
+			${slides}
+		</div>
+	</div>`;
+}
+
+function renderNavGroup(heading, items) {
+	const links = items
+		.map((item) => {
+			const brandAttr = item.brand ? ` data-brand="${item.brand}"` : "";
+			return `<a href="#${item.id}" data-filter="${item.id}"${brandAttr}>${escapeHtml(item.label)}</a>`;
+		})
+		.join("");
+	return `<div class="showcase-filter-group">
+		<button type="button" class="showcase-filter-heading" aria-expanded="true">
+			<span>${escapeHtml(heading)}</span>
+			<span class="showcase-filter-chevron" aria-hidden="true"></span>
+		</button>
+		<div class="showcase-filter-items">${links}</div>
 	</div>`;
 }
 
@@ -690,23 +702,15 @@ function mountShowcase() {
 
 	const navHtml = [
 		...PAGE_GROUPS.map((group) => renderNavGroup(group.heading, group.pages)),
-		...PRESET_GROUPS.map((group) =>
-			renderNavGroup(group.heading, group.presets),
-		),
-		...BRAND_PRESET_GROUPS.map((group) =>
-			renderNavGroup(group.heading, group.presets, group.brand),
-		),
+		renderNavGroup("Slide presets", SLIDE_PRESETS),
+		renderNavGroup("Decks", DECKS),
 	].join("");
 	nav.insertAdjacentHTML("beforeend", navHtml);
 
 	const pageHtml = [
 		...PAGE_GROUPS.flatMap((group) => group.pages.map(renderPage)),
-		...PRESET_GROUPS.flatMap((group) =>
-			group.presets.map((preset) => renderPresetPage(preset)),
-		),
-		...BRAND_PRESET_GROUPS.flatMap((group) =>
-			group.presets.map((preset) => renderPresetPage(preset, group.brand)),
-		),
+		...SLIDE_PRESETS.map((preset) => renderPresetPage(preset)),
+		...DECKS.map((deck) => renderDeckPage(deck)),
 	].join("");
 	pages.innerHTML = pageHtml;
 }
@@ -1538,7 +1542,19 @@ function initFilters() {
 		return section && sectionAllowed(section) ? mapped : "brand";
 	}
 
+	function expandGroupFor(active) {
+		const link = document.querySelector(
+			`.showcase-filter a[data-filter="${active}"]`,
+		);
+		const group = link && link.closest(".showcase-filter-group");
+		if (!group) return;
+		group.classList.remove("is-collapsed");
+		const heading = group.querySelector(".showcase-filter-heading");
+		if (heading) heading.setAttribute("aria-expanded", "true");
+	}
+
 	function applyFilter(active) {
+		expandGroupFor(active);
 		filterLinks.forEach((link) => {
 			link.classList.toggle("is-active", link.dataset.filter === active);
 		});
@@ -1552,6 +1568,15 @@ function initFilters() {
 	}
 
 	applyShowcaseFilter = () => applyFilter(filterFromHash());
+
+	document.querySelector(".showcase-filter")?.addEventListener("click", (event) => {
+		const heading = event.target.closest(".showcase-filter-heading");
+		if (!heading) return;
+		const group = heading.closest(".showcase-filter-group");
+		if (!group) return;
+		const collapsed = group.classList.toggle("is-collapsed");
+		heading.setAttribute("aria-expanded", collapsed ? "false" : "true");
+	});
 
 	window.addEventListener("hashchange", () => {
 		applyShowcaseFilter();
@@ -1571,10 +1596,14 @@ function initFilters() {
 
 function syncBrandPresetNav(brand) {
 	document
-		.querySelectorAll(".showcase-filter-group[data-brand]")
-		.forEach((group) => {
-			group.hidden = group.dataset.brand !== brand;
+		.querySelectorAll(".showcase-filter a[data-brand]")
+		.forEach((link) => {
+			link.hidden = link.dataset.brand !== brand;
 		});
+	document.querySelectorAll(".showcase-filter-group").forEach((group) => {
+		const links = [...group.querySelectorAll("a")];
+		group.hidden = links.length > 0 && links.every((link) => link.hidden);
+	});
 	const hash = location.hash.replace(/^#/, "");
 	const mapped = FILTER_ALIASES[hash] || hash;
 	const section = document.querySelector(
